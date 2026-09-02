@@ -188,6 +188,22 @@ _LABELS: dict[str, str] = {
     "open_covenant": "Open covenant",
     "form_error": "The intake form needs correction.",
     "empty": "Upload a sanction letter or enter a clause to begin.",
+    "detect": "Detect covenant clauses",
+    "detect_message": (
+        "Extraction is complete. Run clause detection to generate proposals from "
+        "this document; every proposal is then verified by code before it can be "
+        "confirmed."
+    ),
+    "detect_facility_hint": (
+        "This document is not linked to a facility. Name the facility the detected "
+        "covenants belong to."
+    ),
+    "detect_again": "Re-run clause detection",
+    "detect_again_message": (
+        "This document already has proposals; they are shown below. Re-running "
+        "detection extracts and verifies the clauses again against the borrower's "
+        "current statements."
+    ),
 }
 
 
@@ -470,6 +486,11 @@ def create_intake_router(
                     ),
                     context=_context_for(principal, facility, context_factory),
                     document_id=document.id,
+                    # Without this a document that already carries proposals
+                    # replays them forever: the service's duplicate-submission
+                    # guard is right, but the screen had no way to ask for a
+                    # genuine re-extraction after a correction upstream.
+                    force_reextraction=_flag(values.get("force_reextraction")),
                     scope=scope,
                 )
                 _record_stage_one_trace(
@@ -1117,6 +1138,11 @@ def _candidate_for_text(text: str) -> ClauseCandidate:
     )
 
 
+def _flag(value: object) -> bool:
+    """Read a checkbox/hidden form flag as a boolean."""
+    return isinstance(value, str) and value.strip().lower() in {"1", "true", "on", "yes"}
+
+
 def _context_for(
     principal: Principal,
     facility: Facility,
@@ -1146,7 +1172,13 @@ def _facility_for_document(
     facilities: FacilityRepository,
     scope: Scope,
 ) -> Facility:
-    facility = _facility_from_values(values, facilities, scope, required=True)
+    # A document uploaded against a facility already carries the authoritative
+    # answer, so `facility_ref` is only *required* when the document has none.
+    # Demanding it either way left the document-driven detection control with
+    # no value it could send, since the screen never shows the reference.
+    facility = _facility_from_values(
+        values, facilities, scope, required=document.facility_id is None
+    )
     if document.facility_id is not None:
         stored = facilities.get(document.facility_id, scope=scope)
         if stored is None:

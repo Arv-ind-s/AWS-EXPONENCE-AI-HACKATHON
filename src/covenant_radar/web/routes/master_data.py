@@ -296,12 +296,19 @@ def create_master_data_router(
     ) -> HTMLResponse:
         borrower = service.get_borrower(principal, reference)
         facilities = service.list_facilities_for_borrower(principal, borrower.id)
+        # The summary showed the raw portfolio UUID, which names nothing to a
+        # reader. Resolve it to the same "CODE — Name" the portfolio filter and
+        # the create form already show.
+        portfolio_label = _portfolio_label(
+            service.list_portfolios(principal), borrower.portfolio_id
+        )
         return _render(
             request,
             fallback_environment,
             "screens/master_data/borrower_detail.html",
             principal=principal,
             borrower=borrower,
+            portfolio_label=portfolio_label,
             facilities=facilities,
             facility_rows=_facility_rows(facilities),
             form={"legal_name": borrower.legal_name, "expected_version": borrower.version},
@@ -955,6 +962,18 @@ def _portfolio_options(rows: Sequence[Portfolio]) -> list[dict[str, str | bool]]
         for row in rows
     )
     return options
+
+
+def _portfolio_label(rows: Sequence[Portfolio], portfolio_id: object) -> str:
+    """Name one portfolio the way every other control on these screens does.
+
+    Falls back to the identifier when the portfolio is outside the caller's
+    scope, so the field still says something rather than rendering blank.
+    """
+    for row in rows:
+        if row.id == portfolio_id:
+            return f"{row.code} — {row.name}"
+    return str(portfolio_id)
 
 
 def _portfolio_filter_options(rows: Sequence[Portfolio]) -> list[dict[str, str | bool]]:

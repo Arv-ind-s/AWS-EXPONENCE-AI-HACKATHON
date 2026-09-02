@@ -72,6 +72,22 @@
       </section>
     {% endif %}
     <p class="case-memo__reference">{{ labels.memo_reference }} {{ memo.memo_id }}</p>
+    {#
+      Plain links, not script-driven downloads: the browser navigates to a
+      route that answers with the file and a Content-Disposition, so the
+      export works with JavaScript disabled and inside the HTMX-swapped
+      block alike.
+    #}
+    <section class="case-memo__exports" aria-labelledby="memo-exports-title">
+      <h3 class="case-memo__subheading" id="memo-exports-title">{{ labels.memo_export }}</h3>
+      <p class="case-memo__citation-note">{{ labels.memo_export_note }}</p>
+      <p class="case-memo__export-actions">
+        <a class="button button--secondary"
+           href="/memos/{{ memo.memo_id }}/export?format=pdf">{{ labels.memo_export_pdf }}</a>
+        <a class="button button--secondary"
+           href="/memos/{{ memo.memo_id }}/export?format=docx">{{ labels.memo_export_docx }}</a>
+      </p>
+    </section>
   {% else %}
     <p class="case-memo__message">{{ memo.message }}</p>
 

@@ -205,6 +205,9 @@ def create_covenants_router(
             "screens/covenants/covenant_detail.html",
             principal=principal,
             covenant=covenant,
+            # The panel printed the facility's raw UUID. Resolve it to the
+            # reference a reader can match against every other screen.
+            facility_label=_facility_label(service, principal, covenant.facility_id),
             versions=versions,
             amend_form=_form_for_version(versions[-1]) if versions else {},
         )
@@ -297,6 +300,24 @@ _OPTIONAL_TERM_FIELDS = (
     "source_document_id",
     "source_span_id",
 )
+
+
+def _facility_label(
+    service: RegistryService,
+    principal: Principal,
+    facility_id: UUID,
+) -> str:
+    """Name the covenant's facility, falling back to its identifier.
+
+    An out-of-scope or missing facility keeps the identifier rather than
+    rendering an empty field: the reader still has something to quote.
+    """
+    try:
+        facility = service.get_facility(principal, facility_id)
+    except (DomainError, AttributeError, TypeError, ValueError):
+        return str(facility_id)
+    reference = getattr(facility, "reference", None) if facility is not None else None
+    return str(reference) if reference else str(facility_id)
 
 
 def _render(

@@ -80,6 +80,20 @@
   font-family: var(--font-data);
 }
 
+.intake-document__detect {
+  display: grid;
+  gap: var(--space-2);
+  margin-block-start: var(--space-4);
+  border-block-start: var(--border);
+  padding-block-start: var(--space-3);
+}
+
+.intake-document__detect-hint {
+  margin: 0;
+  color: var(--ink-muted, var(--ink));
+  font-size: var(--size-data);
+}
+
 .intake-state {
   align-self: center;
   padding: var(--space-1) var(--space-2);

@@ -88,6 +88,10 @@ class IntakeDocumentView:
     progress_value: int
     status_label: str
     ocr_label: str
+    #: Whether the upload is already tied to a facility.  The clause-detection
+    #: control needs a facility, and only asks for one when the document
+    #: cannot supply it itself.
+    facility_linked: bool = False
 
     def __post_init__(self) -> None:
         if not self.filename.strip() or not self.doc_type.strip():
@@ -196,6 +200,7 @@ def build_document_view(
         progress_value=progress,
         status_label=status_label,
         ocr_label=ocr_label,
+        facility_linked=document.facility_id is not None,
     )
 
 

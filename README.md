@@ -297,13 +297,24 @@ own catalogue of interventions, each with one of five closed effect types
 (`level_shift`, `rate_change`, `threshold_relaxation`, `pressure_reduction`,
 `combination`), declared parameters,
 declared assumptions, the covenant classes it applies to, and whether it needs
-approval. Three are seeded:
+approval. Four active entries are seeded:
 
-| Code | For | Effect | Approval |
-|---|---|---|---|
-| `RM-REVIEW-CONDUCT` | Relationship manager | Reduce conduct pressure 25% | No |
-| `CREDIT-REDUCE-EXPOSURE` | Credit | Exposure reduction | Yes |
-| `RISK-REVIEW-THRESHOLD` | Risk | Threshold review | Yes |
+| Code | For | Applies to | Effect | Approval |
+|---|---|---|---|---|
+| `RM-REVIEW-CONDUCT` | Relationship manager | conduct, liquidity | Reduce conduct pressure 25% | No |
+| `CREDIT-REPAY-TERM-DEBT` | Credit | leverage | Term-debt prepayment: level −0.60 | Yes |
+| `CREDIT-REDUCE-DEBT-SERVICE` | Credit | coverage, liquidity | Exposure and debt-service reduction: level +0.60 | Yes |
+| `RISK-REVIEW-THRESHOLD` | Risk | leverage, coverage, liquidity, net_worth | Threshold review: relax 0.10 | Yes |
+
+A `level_shift` amount is signed in the ratio's own units, so one entry is
+correct for exactly one covenant direction: −0.60 improves a `max` covenant
+such as leverage and worsens a `min` covenant such as coverage. That is why
+the credit action is two entries rather than one. The superseded
+`CREDIT-REDUCE-EXPOSURE`, which declared a single −0.10 shift across both
+directions, is retired rather than edited: a persisted simulation's content
+hash covers the catalogue amount, assumptions and applicable classes, so
+changing them in place would make every simulation already stored against
+that code fail its idempotency check.
 
 The simulator changes **one named input** and re-runs the *same* forecast,
 crossing and probability functions the nightly pipeline used, then shows the

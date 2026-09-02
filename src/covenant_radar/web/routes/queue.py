@@ -16,6 +16,7 @@ from typing import Final
 from urllib.parse import urlencode
 from uuid import UUID
 
+import structlog
 from fastapi import APIRouter, Depends, Query, Request
 from fastapi.responses import HTMLResponse
 from jinja2 import Environment, FileSystemLoader, select_autoescape
@@ -38,6 +39,7 @@ from covenant_radar.web.view_models.queue import (
     case_state_options,
 )
 
+_LOGGER = structlog.get_logger(__name__)
 _TEMPLATE_ROOT = Path(__file__).resolve().parents[1] / "templates"
 _READ = requires(Permission.VIEW_QUEUE)
 _READ_DEP = Depends(_READ)
@@ -369,11 +371,20 @@ def _saved_views(
     try:
         records = views_repo.list_for_user(principal.id)
     except (TypeError, ValueError):
+        # Blanking the whole picker used to be silent, which is how an
+        # undecodable stored document hid every saved view a user had without
+        # leaving a trace anywhere. Say so.
+        _LOGGER.warning("saved_views_unreadable", principal_id=str(principal.id), exc_info=True)
         return ()
     current = {key: _text(value) for key, value in filter_state.items()}
     views: list[dict[str, str]] = []
     for record in records:
-        values = views_repo.apply_within_scope(record, scope).filters.to_dict()
+        # One unreadable view must not cost the reader the rest of them.
+        try:
+            values = views_repo.apply_within_scope(record, scope).filters.to_dict()
+        except (TypeError, ValueError):
+            _LOGGER.warning("saved_view_skipped", view_name=record.name, exc_info=True)
+            continue
         applied = {key: _text(value) for key, value in values.items()}
         views.append(
             {

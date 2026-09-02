@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block page_title %}{{ tr("error.403.title") }} · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}{{ tr("error.403.heading") }}{% endblock %}
+{% block content %}
+  {#
+    Deliberately not the `_500.html` shell: a permission denial is an expected
+    outcome of role-based access, not an incident. Presenting it as a server
+    failure — complete with a support reference — reads as a broken product to
+    anyone watching, when the only thing that happened is that the signed-in
+    role does not hold the permission.
+  #}
+  <section class="state state--refused" aria-labelledby="error-message">
+    <p id="error-message">{{ tr("error.403.message") }}</p>
+    <p>{{ tr("error.403.hint") }}</p>
+    <a class="button" href="/">{{ tr("error.403.action") }}</a>
+    <a class="button button--secondary" href="/sign-in">{{ tr("error.403.sign_in") }}</a>
+  </section>
+{% endblock %}

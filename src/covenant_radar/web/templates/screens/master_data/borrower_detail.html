@@ -12,7 +12,7 @@
 {% block content %}
   {% call components.panel(title=borrower.reference, panel_id="borrower-summary") %}
     {{ components.field("legal_name", labels.borrowers_legal_name, value=borrower.legal_name, disabled=true, field_id="summary-legal_name") }}
-    {{ components.field("portfolio_id", labels.borrowers_portfolio, value=borrower.portfolio_id, disabled=true, field_id="summary-portfolio_id") }}
+    {{ components.field("portfolio_id", labels.borrowers_portfolio, value=portfolio_label|default(borrower.portfolio_id), disabled=true, field_id="summary-portfolio_id") }}
     {{ components.field("version", labels.borrower_version, value=borrower.version, disabled=true, field_id="summary-version") }}
     {{ components.field("cin_present", labels.borrower_cin_present, value=labels.borrowers_active if borrower.cin_fingerprint else labels.borrowers_inactive, disabled=true, field_id="summary-cin_present") }}
   {% endcall %}

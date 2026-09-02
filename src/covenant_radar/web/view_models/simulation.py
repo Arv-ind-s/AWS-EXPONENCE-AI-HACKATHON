@@ -49,6 +49,10 @@ _ZERO: Final[Decimal] = Decimal("0")
 _ONE_HUNDRED: Final[Decimal] = Decimal("100")
 _PERCENT_QUANTUM: Final[Decimal] = Decimal("0.01")
 _MAX_PARAMETERS_JSON_LENGTH: Final[int] = 16 * 1024
+_UNCHANGED_OUTCOME_REASON: Final[str] = (
+    "The option applies, but the projected crossing date and probability are unchanged at "
+    "every stored horizon; its effect does not change the outcome for this forecast."
+)
 
 SimulationScreenState = Literal["ready", "empty", "error", "degraded"]
 
@@ -505,6 +509,8 @@ def build_simulation_view(
                 no_effect_reason=(
                     "Zero observable effect for this forecast; the option is valid and applicable."
                     if is_no_effect
+                    else _UNCHANGED_OUTCOME_REASON
+                    if _outcome_unchanged(horizons)
                     else None
                 ),
             )
@@ -635,6 +641,29 @@ def _baseline_horizons(
             )
         )
     return tuple(views)
+
+
+def _outcome_unchanged(horizons: Sequence[ComparisonHorizonView]) -> bool:
+    """Whether an applied option left both displayed outcomes untouched.
+
+    The domain marks an option ``applied`` as soon as any observable input
+    moves: a level shift changes every path value, a threshold relaxation
+    changes the threshold.  The comparison table, however, shows only the
+    crossing date and the probability.  An option that moves neither at any
+    stored horizon therefore rendered as "Applied" beside four zeroes with
+    nothing said about it, which reads as a failed calculation rather than as
+    an intervention that is simply too small to change this forecast's
+    outcome -- the usual case for an already breached covenant.
+
+    A missing (``None``) delta is not an unchanged one; it is an unavailable
+    figure, and is deliberately excluded here.
+    """
+
+    if not horizons:
+        return False
+    return all(
+        horizon.delta_days == 0 and horizon.delta_probability == _ZERO for horizon in horizons
+    )
 
 
 def _baseline_column(horizons: Sequence[ComparisonHorizonView]) -> ComparisonColumnView:

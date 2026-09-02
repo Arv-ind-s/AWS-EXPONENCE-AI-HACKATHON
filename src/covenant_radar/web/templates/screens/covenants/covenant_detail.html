@@ -12,7 +12,7 @@
 {% block content %}
   {% call components.panel(title=covenant.reference, panel_id="covenant-summary") %}
     <p>{{ labels.class }}: {{ covenant.covenant_class }}</p>
-    <p>{{ labels.facility }}: {{ covenant.facility_id }}</p>
+    <p>{{ labels.facility }}: {{ facility_label|default(covenant.facility_id) }}</p>
     <p>{{ labels.status }}: {{ labels.active if covenant.is_active else labels.retired }}</p>
   {% endcall %}
 

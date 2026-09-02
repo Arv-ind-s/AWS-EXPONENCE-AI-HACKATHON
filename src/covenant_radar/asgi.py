@@ -5,7 +5,7 @@ from __future__ import annotations
 import os
 from collections.abc import Callable, Iterable, Mapping
 from pathlib import Path
-from typing import Any, cast
+from typing import Any, Final, cast
 
 from fastapi import APIRouter, FastAPI, Request
 from fastapi.exceptions import RequestValidationError
@@ -206,9 +206,18 @@ def _notification_unread_count(request: Request, principal: object) -> int:
     return value
 
 
+#: Statuses with a screen of their own.  Anything absent is a genuine server
+#: failure and gets `_500.html`.
+_ERROR_TEMPLATES: Final[Mapping[int, str]] = {
+    403: "screens/_403.html",
+    404: "screens/_404.html",
+}
+
+
 def _assert_shell_templates_are_externalized(template_root: Path, catalogue: Catalogue) -> None:
     shell_paths = (
         template_root / "base.html",
+        template_root / "screens" / "_403.html",
         template_root / "screens" / "_404.html",
         template_root / "screens" / "_500.html",
     )
@@ -335,7 +344,11 @@ async def _unhandled_error_handler(request: Request, error: Exception) -> HTMLRe
 def _render_error(
     request: Request, *, status: int, support_reference_value: str | None = None
 ) -> Response:
-    template_name = "screens/_404.html" if status == 404 else "screens/_500.html"
+    # A denial and a crash are different events and must not share a screen:
+    # every non-404 status previously rendered `_500.html`, so signing in as
+    # the wrong role produced "the incident has been recorded" on a request
+    # the server handled exactly as designed.
+    template_name = _ERROR_TEMPLATES.get(status, "screens/_500.html")
     context = _template_context(request)
     context["support_reference"] = support_reference_value or support_reference(
         request.state.request_id

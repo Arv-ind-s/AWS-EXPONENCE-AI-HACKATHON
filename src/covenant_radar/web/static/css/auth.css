@@ -1,0 +1,356 @@
+/* The unauthenticated shell: sign-in, MFA, password change.
+ *
+ * Everything here is scoped under `.auth-shell`, which `base.html` only sets
+ * when there is no principal, and the stylesheet is only linked on those
+ * pages. Nothing in this file can reach the signed-in application, so the
+ * shared `.panel` / `.field` / `.button` components keep their app-wide
+ * appearance and only get a richer treatment on the front door.
+ */
+
+.auth-shell {
+  --hit-min: 48px;
+  --auth-card-radius: 20px;
+  background: var(--surface-sunken);
+}
+
+/* ---- Left: the covenant surface ------------------------------------ */
+
+/* The stage is deliberately dark in *both* themes. A luminous wireframe has
+   no contrast to spend on porcelain, and these literals are the light
+   theme's brand plum darkened — the token would invert to pink under
+   `[data-theme="dark"]` and take the stage with it. */
+.auth-shell .auth-story {
+  --auth-stage: #14081A;
+  --auth-stage-bloom: #6B1F55;
+  --auth-scene-accent: #F5A8DC;
+  --auth-scene-ink: #B98FB8;
+
+  isolation: isolate;
+  align-content: end;
+  gap: var(--space-4);
+  color: #F4ECF3;
+  background:
+    /* Atmosphere banked along the horizon the scene converges to, so the
+       glow reads as distance rather than as a corner wash. */
+    radial-gradient(78% 26% at 50% 21%, color-mix(in srgb, var(--auth-stage-bloom) 62%, transparent) 0%, transparent 74%),
+    radial-gradient(100% 58% at 84% -14%, color-mix(in srgb, var(--auth-stage-bloom) 46%, transparent) 0%, transparent 62%),
+    radial-gradient(80% 56% at 4% 106%, color-mix(in srgb, var(--auth-stage-bloom) 34%, transparent) 0%, transparent 66%),
+    linear-gradient(178deg, #1B0C20 0%, #150819 30%, #0D050F 100%);
+}
+
+/* A scrim under the copy only. It has to sit *above* the canvas to earn the
+   contrast, so it is confined to the bottom of the panel — a full-panel
+   vignette over the scene simply erases the wireframe. */
+.auth-shell .auth-story::after {
+  position: absolute;
+  z-index: 2;
+  inset: 52% 0 0;
+  background: linear-gradient(
+    to top,
+    color-mix(in srgb, var(--auth-stage) 90%, transparent) 0%,
+    color-mix(in srgb, var(--auth-stage) 62%, transparent) 42%,
+    transparent 100%);
+  pointer-events: none;
+  content: "";
+}
+
+.auth-canvas {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity calc(var(--dur-page) * 4) var(--ease);
+}
+
+.auth-story[data-canvas="live"] .auth-canvas {
+  opacity: 1;
+}
+
+/* The CSS orbit is the fallback for no-JS, no-WebGL and a lost context. It
+   stands down the moment the real scene is drawing. */
+.auth-story[data-canvas="live"] .auth-story__visual {
+  display: none;
+}
+
+.auth-shell .auth-story > .page-heading__eyebrow,
+.auth-shell .auth-story h2,
+.auth-shell .auth-story > p:last-child {
+  position: relative;
+  z-index: 3;
+}
+
+.auth-shell .auth-story > .page-heading__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  color: var(--auth-scene-accent);
+}
+
+.auth-shell .auth-story > .page-heading__eyebrow::before {
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: 50%;
+  background: var(--auth-scene-accent);
+  box-shadow: 0 0 0 var(--space-1) color-mix(in srgb, var(--auth-scene-accent) 22%, transparent);
+  animation: auth-pulse 2.8s var(--ease) infinite;
+  content: "";
+}
+
+.auth-shell .auth-story h2 {
+  max-width: 14ch;
+  color: #FFFFFF;
+  font-weight: var(--weight-bold);
+  text-shadow: 0 2px 24px rgba(12, 5, 14, .55);
+  text-wrap: balance;
+}
+
+.auth-shell .auth-story > p:last-child {
+  max-width: 40ch;
+  margin: 0;
+  color: #CDBBCB;
+  font-size: var(--size-section);
+  line-height: 1.5;
+  text-wrap: pretty;
+}
+
+/* The no-JS / no-WebGL orbit has to survive on the dark stage too. */
+.auth-shell .auth-orbit,
+.auth-shell .auth-orbit--inner {
+  border-color: color-mix(in srgb, var(--auth-scene-accent) 60%, transparent);
+  opacity: .34;
+}
+
+.auth-shell .auth-orbit__beam {
+  background: linear-gradient(90deg, var(--auth-scene-accent), transparent);
+}
+
+.auth-shell .auth-orbit__point {
+  background: var(--auth-scene-accent);
+  box-shadow: 0 0 0 var(--space-2) color-mix(in srgb, var(--auth-scene-accent) 20%, transparent);
+}
+
+@keyframes auth-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: .45; transform: scale(.7); }
+}
+
+/* ---- Brand bar ------------------------------------------------------ */
+
+/* The brand bar is fixed across both columns, but the wordmark only ever
+   overlaps the dark stage — at every width the story panel is the full width
+   of the bar's leading edge — so it is inverted unconditionally. */
+.auth-shell .auth-brandbar .brand,
+.auth-shell .auth-brandbar .brand:hover,
+.auth-shell .auth-brandbar .brand__copy {
+  color: #FFFFFF;
+}
+
+.auth-shell .auth-brandbar .brand__copy span {
+  color: #C4AEC2;
+}
+
+.auth-shell .auth-brandbar .brand__mark {
+  background: linear-gradient(160deg, #8E2A72 0%, #4E1440 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8px 24px rgba(107, 31, 85, .45);
+}
+
+/* ---- Right: the credential card ------------------------------------ */
+
+.auth-shell .auth-main {
+  position: relative;
+  background:
+    radial-gradient(92% 54% at 50% 0%, color-mix(in srgb, var(--accent) 8%, transparent), transparent 72%),
+    linear-gradient(180deg, var(--surface-raised) 0%, var(--paper) 58%, var(--surface-subtle) 100%);
+}
+
+/* The two panels meet at a hard edge; a hairline plus a cast shadow makes
+   that edge deliberate rather than a rendering seam. */
+@media (min-width: 60.0625rem) {
+  .auth-shell .auth-main {
+    box-shadow: -1px 0 0 rgba(0, 0, 0, .28), -24px 0 48px -24px rgba(0, 0, 0, .35);
+  }
+}
+
+.auth-shell .auth-main__content {
+  width: min(100%, 27rem);
+}
+
+.auth-shell .auth-main .page-heading__eyebrow {
+  color: var(--ink-muted);
+  letter-spacing: var(--tracking-label);
+}
+
+.auth-shell .auth-main h1 {
+  margin-block: var(--space-2) var(--space-6);
+  font-size: clamp(var(--size-screen-title), 3.4vw, 42px);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+}
+
+.auth-shell .auth-panel {
+  position: relative;
+  padding: clamp(var(--space-6), 3vw, var(--space-8));
+  border: var(--border);
+  border-color: color-mix(in srgb, var(--accent) 14%, var(--hairline));
+  border-radius: var(--auth-card-radius);
+  background: var(--surface-raised);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--surface-raised) 70%, #FFF) inset,
+    var(--shadow-lg);
+}
+
+/* A single plum filament along the top edge — the only ornament the card
+   gets, and it doubles as the focus anchor for the eye. */
+.auth-shell .auth-panel::before {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent), transparent);
+  opacity: .6;
+  content: "";
+}
+
+.auth-shell .auth-panel:hover {
+  border-color: color-mix(in srgb, var(--accent) 14%, var(--hairline));
+  box-shadow:
+    0 1px 0 color-mix(in srgb, var(--surface-raised) 70%, #FFF) inset,
+    var(--shadow-lg);
+}
+
+.auth-shell .auth-panel form {
+  gap: var(--space-5);
+}
+
+/* ---- Controls -------------------------------------------------------- */
+
+.auth-shell .field__label {
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.auth-shell .field__control {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid color-mix(in srgb, var(--hairline) 88%, var(--ink));
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--surface-subtle) 46%, var(--surface-raised));
+  color: var(--ink);
+  font-size: var(--size-section);
+  transition:
+    border-color var(--dur-state) var(--ease),
+    box-shadow var(--dur-state) var(--ease),
+    background-color var(--dur-state) var(--ease);
+}
+
+.auth-shell .field__control:hover {
+  border-color: color-mix(in srgb, var(--accent) 34%, var(--hairline));
+}
+
+.auth-shell .field__control:focus,
+.auth-shell .field__control:focus-visible {
+  border-color: var(--accent);
+  background: var(--surface-raised);
+  outline: none;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.auth-shell .password-control__toggle {
+  inset-block: var(--space-1);
+  inset-inline-end: var(--space-1);
+  border-radius: var(--radius-sm);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  transition: background-color var(--dur-state) var(--ease);
+}
+
+.auth-shell .password-control__toggle:hover {
+  background: var(--accent-soft);
+}
+
+.auth-shell .auth-panel form .button {
+  width: 100%;
+  margin-block-start: var(--space-1);
+  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, var(--accent) 0%, var(--accent-strong) 100%);
+  font-size: var(--size-section);
+  letter-spacing: -0.01em;
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #FFF 22%, transparent) inset,
+    0 4px 14px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.auth-shell .auth-panel form .button:hover {
+  filter: saturate(1.06) brightness(1.04);
+  box-shadow:
+    0 1px 0 color-mix(in srgb, #FFF 22%, transparent) inset,
+    0 8px 22px color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+/* The dark accent is a pale plum, so the same glow that reads as depth on
+   the light theme reads as a halo here. */
+[data-theme="dark"] .auth-shell .auth-panel form .button {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .5);
+}
+
+[data-theme="dark"] .auth-shell .auth-panel form .button:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .6);
+}
+
+/* ---- Error state ----------------------------------------------------- */
+
+.auth-shell .auth-panel .state--error {
+  min-height: 0;
+  margin-block-end: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  text-align: start;
+  animation: auth-shake var(--dur-panel) var(--ease) 1;
+}
+
+.auth-shell .auth-panel .state--error .state__message {
+  margin: 0;
+  font-size: var(--size-data);
+}
+
+@keyframes auth-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+/* ---- Motion and narrow viewports ------------------------------------- */
+
+@media (max-width: 60rem) {
+  .auth-shell .auth-story {
+    min-height: 20rem;
+  }
+
+  .auth-shell .auth-story h2 {
+    max-width: 18ch;
+  }
+
+  .auth-shell .auth-story > p:last-child {
+    font-size: var(--size-body);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auth-canvas {
+    transition: none;
+  }
+
+  .auth-shell .auth-story > .page-heading__eyebrow::before,
+  .auth-shell .auth-panel .state--error {
+    animation: none;
+  }
+}

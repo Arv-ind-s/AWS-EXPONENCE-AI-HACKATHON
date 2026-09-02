@@ -279,6 +279,17 @@ _DEFAULT_MESSAGES: dict[str, str] = {
     "error.400.title": "Request could not be completed",
     "error.401.title": "Sign-in required",
     "error.403.title": "Access denied",
+    "error.403.heading": "Your role does not have access to this screen",
+    "error.403.message": (
+        "Nothing has gone wrong. This screen is restricted to other roles, and the "
+        "account you are signed in as is not one of them."
+    ),
+    "error.403.hint": (
+        "Sign in as a role that holds the required permission, or return to the "
+        "portfolio queue."
+    ),
+    "error.403.action": "Return to the portfolio queue",
+    "error.403.sign_in": "Sign in as another user",
     "error.404.generic": "The requested resource was not found.",
     "error.409.title": "The record changed",
     "error.422.title": "The request needs correction",

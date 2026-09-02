@@ -38,6 +38,13 @@ class _PortableNumeric(TypeDecorator[Decimal]):
         self._scale = scale
         self._quantum = Decimal("1").scaleb(-scale)
 
+    @property
+    def quantum(self) -> Decimal:
+        """The smallest value this column stores, for callers that must
+        compare a freshly computed Decimal against an already-persisted one
+        without tracking the scale themselves."""
+        return self._quantum
+
     def load_dialect_impl(self, dialect: Dialect) -> TypeEngine[Any]:
         if dialect.name == "sqlite":
             return dialect.type_descriptor(Text())

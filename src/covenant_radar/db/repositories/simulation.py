@@ -23,7 +23,7 @@ from datetime import UTC, date, datetime
 from decimal import Decimal
 from enum import Enum
 from math import isfinite
-from typing import cast
+from typing import Any, cast
 from uuid import UUID
 
 from sqlalchemy import Select, and_, func, or_, select
@@ -55,6 +55,9 @@ from covenant_radar.domain.interventions.simulate import SimulationResult
 _REQUEST_ID_MAX_LENGTH = 40
 _SUPERSEDES_PARAMETER = "_supersedes_simulation_id"
 _COMPLETE_RUN_STATE = "complete"
+#: Read from the column itself so the idempotency comparison follows the
+#: stored scale rather than a second copy of it.
+_FRACTION_QUANTUM = cast(Any, Simulation.__table__.c.probability.type).quantum
 
 
 @dataclass(frozen=True, slots=True)
@@ -680,6 +683,24 @@ def _assumption_payload(result: SimulationResult) -> dict[str, object]:
     }
 
 
+def _stored_fraction(value: Decimal | None) -> Decimal | None:
+    """Round a computed fraction the way its column stores it.
+
+    ``Simulation.probability`` and ``delta_probability`` are ``FractionValue``
+    columns, which quantize to four decimal places on write.  A freshly
+    recomputed ``SimulationResult`` carries the full-precision Decimal, so
+    comparing it raw against a value that has already been through the column
+    is never equal for any probability with more than four decimal places --
+    which is nearly all of them.  Quantizing here asks the question the caller
+    actually means: would persisting this result produce the row already
+    stored?
+    """
+
+    if value is None:
+        return None
+    return value.quantize(_FRACTION_QUANTUM)
+
+
 def _same_persisted_result(
     row: Simulation,
     result: SimulationResult,
@@ -687,9 +708,9 @@ def _same_persisted_result(
 ) -> bool:
     return (
         _calendar_date(row.projected_cross_date) == _calendar_date(result.projected_cross_date)
-        and row.probability == result.probability
+        and _stored_fraction(row.probability) == _stored_fraction(result.probability)
         and row.delta_days == result.delta_days
-        and row.delta_probability == result.delta_probability
+        and _stored_fraction(row.delta_probability) == _stored_fraction(result.delta_probability)
         and _canonical(row.assumptions) == _canonical(assumptions)
     )
 

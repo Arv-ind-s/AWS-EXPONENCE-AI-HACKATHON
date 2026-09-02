@@ -42,6 +42,7 @@ from covenant_radar.db.models.covenant import (
     CovenantVersion,
     CovenantWaiver,
 )
+from covenant_radar.db.models.facility import Facility
 from covenant_radar.db.models.maker_checker import MakerCheckerRequest as MakerCheckerRow
 from covenant_radar.db.models.workflow import Notification
 from covenant_radar.db.repositories.covenant import CovenantRepository, CovenantVersionRepository
@@ -778,6 +779,20 @@ class RegistryService:
         if covenant is None:
             raise NotFound(f"Covenant {reference!r} was not found within the current scope.")
         return covenant
+
+    def get_facility(
+        self,
+        principal: Principal,
+        facility_id: UUID,
+        *,
+        scope: Scope | None = None,
+    ) -> Facility:
+        """Return one scoped facility, for a screen that needs to name it."""
+        resolved_scope = self._read_context(principal, scope)
+        facility = self.facilities.get(facility_id, scope=resolved_scope)
+        if facility is None:
+            raise NotFound(f"Facility {facility_id} was not found within the current scope.")
+        return facility
 
     def list_versions(
         self,

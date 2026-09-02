@@ -1,5 +1,5 @@
 {
-  "taxonomy_version": "1.0",
+  "taxonomy_version": "1.1",
   "interventions": [
     {
       "code": "RM-REVIEW-CONDUCT",
@@ -32,6 +32,43 @@
       },
       "applicable_covenant_classes": [
         "leverage",
+        "coverage",
+        "liquidity"
+      ],
+      "requires_approval": true,
+      "is_active": false
+    },
+    {
+      "code": "CREDIT-REPAY-TERM-DEBT",
+      "role_tag": "credit",
+      "text": "Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process.",
+      "effect_model": "level_shift",
+      "effect_parameters": {
+        "amount": "-0.60",
+        "_assumptions": [
+          "The prepayment is funded from surplus cash already held by the borrower.",
+          "The approved prepayment settles before the next covenant test date."
+        ]
+      },
+      "applicable_covenant_classes": [
+        "leverage"
+      ],
+      "requires_approval": true,
+      "is_active": true
+    },
+    {
+      "code": "CREDIT-REDUCE-DEBT-SERVICE",
+      "role_tag": "credit",
+      "text": "Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.",
+      "effect_model": "level_shift",
+      "effect_parameters": {
+        "amount": "0.60",
+        "_assumptions": [
+          "The approved exposure reduction is available immediately.",
+          "The released debt service is retained in the borrower's operating cash flow."
+        ]
+      },
+      "applicable_covenant_classes": [
         "coverage",
         "liquidity"
       ],

@@ -18,18 +18,19 @@ from __future__ import annotations
 
 import json
 from collections.abc import Mapping, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Annotated, Protocol
 from urllib.parse import parse_qs
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Query, Request
-from fastapi.responses import HTMLResponse
+from fastapi.responses import HTMLResponse, Response
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 from sqlalchemy.orm import Session
 
 from covenant_radar.api.deps import requires
-from covenant_radar.core.errors import NotFound, ValidationError
+from covenant_radar.core.errors import ExternalServiceError, NotFound, ValidationError
 from covenant_radar.db.models.borrower import Borrower
 from covenant_radar.db.repositories.borrower import BorrowerRepository
 from covenant_radar.db.repositories.memo import MemoRepository
@@ -58,6 +59,35 @@ _MEMO = requires(Permission.GENERATE_MEMO)
 _MEMO_DEP = Depends(_MEMO)
 _MAX_FORM_BYTES = 64 * 1024
 _MAX_SIMULATION_IDS = 20
+
+
+class MemoExporter(Protocol):
+    """The composition root's per-request ``MemoExportService.export``.
+
+    Injected for the same reason as ``MemoGenerator``: the export service
+    needs a byte store and a renderer, both of which the composition root
+    owns. Declared structurally so this screen stays renderable — and the
+    export control stays honestly absent — when neither is configured.
+    """
+
+    def __call__(
+        self,
+        memo_id: UUID,
+        *,
+        principal: Principal,
+        scope: Scope,
+        export_format: str,
+    ) -> MemoExportDownload: ...
+
+
+@dataclass(frozen=True, slots=True)
+class MemoExportDownload:
+    """One rendered memo artefact ready to be handed to the browser."""
+
+    content: bytes
+    content_type: str
+    filename: str
+    integrity_hash: str
 
 
 class MemoGenerator(Protocol):
@@ -244,6 +274,13 @@ _LABELS = {
     "memo_failed_checks": "Checks that did not pass",
     "memo_retry_at": "Expected to resolve after",
     "memo_reference": "Memo reference",
+    "memo_export": "Export this memo",
+    "memo_export_pdf": "Download PDF",
+    "memo_export_docx": "Download DOCX",
+    "memo_export_note": (
+        "The export carries a stable integrity digest over the stored memo, so the same "
+        "memo always exports to the same document."
+    ),
     "memo_empty_title": "AI-generated explanation",
     "memo_empty_message": (
         "No AI explanation has been generated yet. Use the action above to draft a grounded "
@@ -269,17 +306,22 @@ def create_borrower_router(
     *,
     template_directory: Path | str = _TEMPLATE_ROOT,
     memo_generator: MemoGenerator | None = None,
+    memo_exporter: MemoExporter | None = None,
 ) -> APIRouter:
     """Build the case-file read route and the ``POST /memos`` memo action.
 
     ``memo_generator`` is optional on purpose: with no model provider
     configured the screen still renders and the memo action explains itself
-    rather than failing.
+    rather than failing.  ``memo_exporter`` is optional on the same terms: an
+    application composed without a byte store simply does not offer the
+    download.
     """
     if not is_database_session(session):
         raise TypeError("create_borrower_router requires a SQLAlchemy Session.")
     if memo_generator is not None and not callable(memo_generator):
         raise TypeError("memo_generator must be callable.")
+    if memo_exporter is not None and not callable(memo_exporter):
+        raise TypeError("memo_exporter must be callable.")
     router = APIRouter(tags=["borrower-web"])
     fallback_environment = Environment(
         loader=FileSystemLoader(str(template_directory)),
@@ -316,6 +358,51 @@ def create_borrower_router(
             view=view,
             selected_day=day,
             latest_memo=(build_persisted_memo_block(memos[0]) if memos else None),
+        )
+
+    @router.get(
+        "/memos/{memo_id}/export",
+        response_class=Response,
+        name="borrower_memo_export",
+    )
+    def borrower_memo_export(
+        memo_id: UUID,
+        format: Annotated[str, Query(pattern="^(pdf|docx)$")] = "pdf",
+        principal: Principal = _MEMO_DEP,
+    ) -> Response:
+        """Download one stored memo as PDF or DOCX (`README` "Exports").
+
+        The renderer is the only thing that decides whether a format can be
+        produced here.  A host without the native PDF libraries raises from
+        `MemoRenderer.render_pdf`; that is surfaced as an explicit
+        capability failure rather than a crash, so DOCX stays usable and the
+        reader is told which one is missing.
+        """
+        if memo_exporter is None:
+            raise ExternalServiceError(
+                "Memo export is not configured on this deployment.",
+            )
+        scope = resolve_scope(principal, session)
+        try:
+            download = memo_exporter(
+                memo_id,
+                principal=principal,
+                scope=scope,
+                export_format=format,
+            )
+        except (ImportError, OSError, RuntimeError) as error:
+            # WeasyPrint's native stack is the usual absentee. Name the
+            # format that is unavailable and leave the other one working.
+            raise ExternalServiceError(
+                f"{format.upper()} memo export is unavailable on this host: {error}"
+            ) from error
+        return Response(
+            content=download.content,
+            media_type=download.content_type,
+            headers={
+                "Content-Disposition": f'attachment; filename="{download.filename}"',
+                "X-Memo-Integrity-SHA256": download.integrity_hash,
+            },
         )
 
     @router.post("/memos", response_class=HTMLResponse, name="borrower_memo")

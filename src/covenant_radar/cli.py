@@ -59,6 +59,7 @@ from covenant_radar.db.seed import (
     deterministic_catalog_hash,
 )
 from covenant_radar.db.seed.demo import seed_demo_covenants
+from covenant_radar.demo.governance import seed_governance_records
 from covenant_radar.ports.llm import CompletionRequest, CompletionResponse, LLMProvider
 from covenant_radar.scheduler import default_registry
 from covenant_radar.scheduler.jobs import JobRegistry
@@ -619,6 +620,14 @@ def _run_demo_covenant_seed(*, database_url: str | None, stream: TextIO) -> int:
                         clock=SystemClock(),
                         signal_path="var/inbox/covenant-radar-demo-signals.json",
                     )
+                    # The governance screen reads its own two tables and
+                    # invents nothing; without this the model register and
+                    # evaluation scoreboard are empty for the walkthrough.
+                    governance_report = seed_governance_records(
+                        session,
+                        system_actor_id=system_actor_id,
+                        clock=SystemClock(),
+                    )
             except (ReferenceDataError, ValueError, IntegrityError, SQLAlchemyError) as error:
                 _write(stream, f"Demo covenant seed failed: {error}")
                 return 1
@@ -628,7 +637,10 @@ def _run_demo_covenant_seed(*, database_url: str | None, stream: TextIO) -> int:
             f"{report.borrowers} borrowers, {report.covenants_created} covenants, "
             f"{report.periods_created} periods, {report.tests_created} tests, "
             f"{report.signal_events} signal events, "
-            f"threshold snapshot {report.threshold_snapshot_id}.",
+            f"threshold snapshot {report.threshold_snapshot_id}; "
+            f"governance: {governance_report.registrations_created} model registrations, "
+            f"{governance_report.evaluation_runs_created} evaluation runs, "
+            f"champion approved: {governance_report.champion_approved}.",
         )
         return 0
     except SQLAlchemyError as error:

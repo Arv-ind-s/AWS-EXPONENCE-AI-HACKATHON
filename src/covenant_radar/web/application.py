@@ -81,7 +81,11 @@ from covenant_radar.lifecycle import (
 from covenant_radar.notifications.inapp import InAppNotificationService, InAppNotifier
 from covenant_radar.ports.document_store import DocumentStore
 from covenant_radar.security.crypto import FieldEncryptor, HMACFingerprinter
-from covenant_radar.security.rbac import RolePermissionResolver
+from covenant_radar.db.models.facility import Facility as FacilityRow
+from covenant_radar.db.scoping import Scope, resolve_scope
+from covenant_radar.domain.intake.verify import VerificationContext
+from covenant_radar.security.rbac import Principal, RolePermissionResolver
+from covenant_radar.services.intake_context import build_verification_context
 from covenant_radar.security.sessions import SessionManager, SessionSettings
 from covenant_radar.services.admin_users import AdminUsersService
 from covenant_radar.services.auth import AuthService
@@ -95,7 +99,11 @@ from covenant_radar.services.export import ExportService, ExportStore
 from covenant_radar.services.ingestion import SignalIngestionService
 from covenant_radar.services.intake import IntakeService
 from covenant_radar.services.master_data import MasterDataService
-from covenant_radar.services.memo import MemoGenerationOutcome, MemoGenerationService
+from covenant_radar.services.memo import (
+    MemoExportService,
+    MemoGenerationOutcome,
+    MemoGenerationService,
+)
 from covenant_radar.services.model_governance import SqlAlchemyModelRegistryRepository
 from covenant_radar.services.nightly_runtime import NightlyRuntime, build_nightly_runtime
 from covenant_radar.services.notifications import NotificationService
@@ -109,7 +117,11 @@ from covenant_radar.web.preferences import create_preferences_router
 from covenant_radar.web.routes.admin import create_admin_users_router
 from covenant_radar.web.routes.audit import create_audit_router
 from covenant_radar.web.routes.auth import create_auth_router
-from covenant_radar.web.routes.borrower import MemoGenerator, create_borrower_router
+from covenant_radar.web.routes.borrower import (
+    MemoExportDownload,
+    MemoGenerator,
+    create_borrower_router,
+)
 from covenant_radar.web.routes.bulk import create_bulk_router
 from covenant_radar.web.routes.cases import create_cases_router
 from covenant_radar.web.routes.catalogue import create_catalogue_router
@@ -318,12 +330,63 @@ def create_production_app(settings: Settings | None = None) -> FastAPI:
     # Bulk and export share one request session because `create_bulk_router`
     # refuses a split transaction: a bulk action and the export it produces
     # must commit or roll back together.
+    export_store = _export_store(resolved, document_store)
     exports = ExportService(
         sessions,
-        store=_export_store(resolved, document_store),
+        store=export_store,
         audit=audit,
     )
     signal_ingestion = SignalIngestionService(sessions, audit=audit)
+
+    def intake_verification_context(
+        principal: Principal,
+        facility: FacilityRow,
+    ) -> VerificationContext:
+        """Give stage-2 verification the borrower's real stored statements.
+
+        Without this the intake router falls back to an empty context, and
+        RECOMPUTABLE — one of the six checks a proposal must pass — fails for
+        every clause on every document, so no covenant can ever be confirmed
+        from an uploaded sanction letter.
+        """
+        request_session = sessions()
+        return build_verification_context(
+            request_session,
+            facility,
+            scope=resolve_scope(principal, request_session),
+        )
+
+    def memo_exporter(
+        memo_id: UUID,
+        *,
+        principal: Principal,
+        scope: Scope,
+        export_format: str,
+    ) -> MemoExportDownload:
+        """Render one stored memo through the export service.
+
+        Built per request for the same reason `memo_generator` is: the
+        service stamps its rows with the request id it was constructed with.
+        `sessions()` resolves the request's real Session — the
+        `scoped_session` proxy is refused at construction.
+        """
+        service = MemoExportService(
+            sessions(),
+            storage=export_store,
+            request_id=get_request_id(),
+        )
+        result = service.export(
+            memo_id,
+            format=export_format,
+            principal=principal,
+            scope=scope,
+        )
+        return MemoExportDownload(
+            content=result.content,
+            content_type=result.content_type,
+            filename=result.filename,
+            integrity_hash=result.integrity_hash,
+        )
     # Derived from the session secret rather than stored separately: the API's
     # pagination cursors need a stable signing key across restarts and
     # workers, and inventing a second secret to configure would be one more
@@ -405,7 +468,11 @@ def create_production_app(settings: Settings | None = None) -> FastAPI:
         # route at `/borrowers/{reference}` or `/borrowers/new` is treated as
         # a borrower reference and returns a 404.
         create_master_data_router(master_data, borrower_create_only=True),
-        create_borrower_router(sessions, memo_generator=memo_generator),
+        create_borrower_router(
+            sessions,
+            memo_generator=memo_generator,
+            memo_exporter=memo_exporter,
+        ),
         create_why_router(sessions),
         create_simulator_router(
             sessions,
@@ -417,6 +484,7 @@ def create_production_app(settings: Settings | None = None) -> FastAPI:
             intake,
             document_service,
             proposal_generator=proposal_generator,
+            context_factory=intake_verification_context,
         ),
         create_audit_router(sessions, reconstruction_service=reconstruction, audit_writer=audit),
         create_documents_router(document_service),

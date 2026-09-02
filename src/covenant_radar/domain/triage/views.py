@@ -13,7 +13,7 @@ from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from datetime import date, datetime
 from decimal import Decimal
-from typing import Final, cast
+from typing import ClassVar, Final, cast
 from uuid import UUID
 
 from covenant_radar.domain.signals import FAMILIES
@@ -231,12 +231,35 @@ class SavedView:
             raise ValueError("A saved view requires a name and filters.")
         return cls(name=cast(str, name), filters=QueueFilters.from_value(filters))
 
+    #: Fields of the stored view document (`db/repositories/view.py`'s
+    #: `_encode_document`) that this value object deliberately does not model.
+    #: Sharing, default-ness and view kind are persistence and authorization
+    #: concerns owned by the repository; a `SavedView` is only the named filter
+    #: set.  They are named explicitly rather than ignoring every unknown key,
+    #: so a typo in a stored document is still rejected.
+    _DOCUMENT_METADATA_FIELDS: ClassVar[frozenset[str]] = frozenset(
+        {
+            "schema_version",
+            "kind",
+            "shared_user_ids",
+            "shared_role_codes",
+            "share_all",
+            "is_default",
+        }
+    )
+
     @classmethod
     def from_dict(cls, value: Mapping[str, object]) -> SavedView:
-        """Deserialize a saved view while rejecting unexpected fields."""
+        """Deserialize a saved view while rejecting unexpected fields.
+
+        Accepts both the bare ``{name, filters}`` shape and the full stored
+        document the view repository writes.  Rejecting the latter's metadata
+        made every view saved through `POST /views` unreadable here, which the
+        queue's saved-view picker swallowed as "no saved views".
+        """
         if not isinstance(value, Mapping):
             raise TypeError("A saved view must be deserialized from a mapping.")
-        unknown = sorted(set(value) - {"name", "filters"})
+        unknown = sorted(set(value) - {"name", "filters"} - cls._DOCUMENT_METADATA_FIELDS)
         if unknown:
             raise ValueError(f"Unknown saved view field {unknown[0]!r}.")
         return cls.from_value(value)

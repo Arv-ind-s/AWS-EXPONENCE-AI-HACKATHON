@@ -187,16 +187,38 @@ IDs.
    covenant forecast.
 3. Select these two catalogue options:
 
-   - `CREDIT-REDUCE-EXPOSURE` — credit-led exposure reduction; approval is
-     required.
+   - `CREDIT-REDUCE-DEBT-SERVICE` — credit-led exposure and debt-service
+     reduction; approval is required.
    - `RISK-REVIEW-THRESHOLD` — risk-led threshold review; approval is
      required.
+
+   The catalogue offers options by covenant class, so the codes differ by
+   covenant. `D04COV` is an interest coverage ratio (a `min` covenant), which
+   is why the credit option here is `CREDIT-REDUCE-DEBT-SERVICE`. On a
+   `leverage` covenant, such as `B-000002`'s `D02LEV`, the equivalent credit
+   option is `CREDIT-REPAY-TERM-DEBT`. Read the codes off the screen rather
+   than expecting one fixed pair.
 
 4. Leave the parameters at their defaults and activate `Compare with
    baseline`.
 5. In `Comparison against doing nothing`, show the `Do nothing (baseline)`
    column beside both selected interventions. Point to crossing date and
    probability, then to the assumptions printed below each option.
+
+   The two options deliberately do not agree, and the contrast is the point:
+
+   - `CREDIT-REDUCE-DEBT-SERVICE` clears the breach. The projected crossing
+     leaves the horizon entirely and the probability falls from `99.00%` to
+     roughly `44%` at 30 days.
+   - `RISK-REVIEW-THRESHOLD` does not. It reports `0 days` and `0.00%`,
+     with a printed note that the option applies but changes neither the
+     projected crossing nor the probability at any stored horizon.
+
+   That second column is a correct result, not a failure. If asked, say:
+   “The threshold review is a real, applicable action, but a `0.10` relaxation
+   cannot recover a covenant that is already `0.42` through its floor. The
+   simulator says so rather than rounding it into an improvement.”
+
 6. Activate `Carry selected simulations into memo generation` only after the
    comparison is visible.
 
@@ -210,6 +232,13 @@ POST is rejected, read the displayed validation message, select no more than
 two options and retry once. If comparison still fails, move to `Forecast
 trajectory` and explain the stored baseline rather than improvising an
 intervention effect.
+
+Re-running the same comparison is safe: a simulation is write-once, so a
+repeat submission returns the stored result rather than creating a second
+one. Do not edit an intervention's catalogue parameters between rehearsal and
+the live run — a stored simulation's content hash covers the catalogue
+amount, assumptions and applicable classes, so changing any of them makes the
+next run of that code fail with a `409` conflict.
 
 ### 5:15–6:35 — Run intake against the demo document
 

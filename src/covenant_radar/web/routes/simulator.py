@@ -183,6 +183,7 @@ def create_simulator_router(
             principal=principal,
             session=session,
             catalogue=resolved_catalogue,
+            simulation_service=resolved_simulation_service,
             scope_resolver=scope_resolver,
             fallback_environment=fallback_environment,
         )
@@ -204,6 +205,7 @@ def create_simulator_router(
             principal=principal,
             session=session,
             catalogue=resolved_catalogue,
+            simulation_service=resolved_simulation_service,
             scope_resolver=scope_resolver,
             fallback_environment=fallback_environment,
         )
@@ -318,6 +320,7 @@ def _get_simulator(
     principal: Principal,
     session: Session,
     catalogue: CatalogueService,
+    simulation_service: SimulationService | None,
     scope_resolver: Callable[[Principal], Scope] | None,
     fallback_environment: Environment,
 ) -> HTMLResponse:
@@ -326,19 +329,59 @@ def _get_simulator(
         scope = _scope_for(principal, session, scope_resolver)
         context = _load_context(session, parsed_id, scope, catalogue)
         selected = _normalise_codes(selected_codes)
-        view = build_simulation_view(
-            context,
-            selected_codes=selected,
-            parameters=_default_parameters(context.forecast),
-        )
     except NotFound:
         raise
     except (DomainError, TypeError, ValueError) as error:
-        view = build_simulation_view(
-            None,
-            error_message=error.message if isinstance(error, DomainError) else str(error),
+        # Nothing was resolved, so there is no forecast panel to keep; the
+        # screen falls back to its own "no forecast selected" copy.
+        return _render(
+            request,
+            fallback_environment,
+            principal=principal,
+            view=build_simulation_view(None, error_message=_error_message(error)),
         )
+
+    parameters = _default_parameters(context.forecast)
+    comparisons: dict[UUID, SimulationComparison] | None = None
+    error_message: str | None = None
+    if selected:
+        # A borrower's actionable-insight card links straight to one option
+        # (`/simulator/{id}?intervention_code=...`).  Without this the link
+        # arrived with the box ticked and the comparison region still telling
+        # the reader to select an intervention.  The preview is calculated but
+        # never persisted: a GET stays side-effect free, so `simulation_ids`
+        # remain empty and the memo action correctly waits for the POST that
+        # mints the ids a memo has to cite.
+        try:
+            if len(selected) > _MAX_COMPARISON_OPTIONS:
+                raise ValidationError(
+                    f"At most {_MAX_COMPARISON_OPTIONS} interventions may be compared; "
+                    f"received {len(selected)}.",
+                    field="intervention_code",
+                )
+            entries = _resolve_entries(catalogue, selected, context.covenant.covenant_class)
+            comparisons = _compare(context, entries, parameters, simulation_service)
+        except (DomainError, TypeError, ValueError) as error:
+            # The forecast itself resolved, so the screen stays usable: the
+            # reader keeps the forecast facts and the selection form and is
+            # told why this particular preselection could not be previewed.
+            comparisons = None
+            error_message = _error_message(error)
+
+    view = build_simulation_view(
+        context,
+        selected_codes=selected,
+        comparisons=comparisons,
+        parameters=parameters,
+        error_message=error_message,
+    )
     return _render(request, fallback_environment, principal=principal, view=view)
+
+
+def _error_message(error: Exception) -> str:
+    if isinstance(error, DomainError):
+        return error.message
+    return str(error) or _LABELS["error_message"]
 
 
 def _load_context(

@@ -308,7 +308,7 @@ def _parse_shape(raw_reply: str) -> dict[str, object]:
         )
 
     validated: dict[str, object] = {
-        "definition": _optional_text(payload["definition"], "definition"),
+        "definition": _definition_field(payload["definition"]),
         "custom_formula": _optional_text(payload["custom_formula"], "custom_formula"),
         "threshold": _threshold_field(payload["threshold"]),
         "direction": _enum_or_none(payload["direction"], "direction", DIRECTION_WORDS),
@@ -428,6 +428,26 @@ def _optional_text(value: object, field_name: str) -> str | None:
         return None
     if len(cleaned) > _MAX_TEXT_FIELD_LENGTH:
         raise ProposalShapeError(f"Stage-1 reply field {field_name!r} exceeds the length limit.")
+    return cleaned
+
+
+#: The namespace `domain/intake/candidates.py` gives its ratio-name detection
+#: rules (`ratio:leverage_ratio`).  Those rule ids are rendered into the
+#: stage-1 prompt as the "detection rules that selected this clause", and a
+#: model reliably echoes the prefixed id back as `definition` rather than the
+#: bare library key the ratio library is actually keyed by.  Stripping our own
+#: prefix here de-aliases an identifier this system minted; it is not a guess
+#: about what the model meant, and the de-prefixed name still has to survive
+#: `T-095`'s DEFINITION_KNOWN check against the library.
+_RULE_ID_DEFINITION_PREFIX: Final[str] = "ratio:"
+
+
+def _definition_field(value: object) -> str | None:
+    cleaned = _optional_text(value, "definition")
+    if cleaned is None:
+        return None
+    if cleaned.startswith(_RULE_ID_DEFINITION_PREFIX):
+        return cleaned[len(_RULE_ID_DEFINITION_PREFIX) :].strip() or None
     return cleaned
 
 

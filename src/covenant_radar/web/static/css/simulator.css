@@ -35,6 +35,15 @@
   margin: 0;
 }
 
+/* An intervention card is much narrower than the forecast panel, so three
+   8rem tracks left no room for `threshold_relaxation`, the longest effect
+   model name. Asking for 10rem lets auto-fit drop the card to two columns
+   and keeps the value on one line; the forecast panel above is wide enough
+   to keep all of its tracks. */
+.simulator-option__facts {
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+}
+
 .simulator__facts div,
 .simulator-option__facts div {
   min-width: 0;
@@ -52,6 +61,12 @@
   margin: 0;
   font-family: var(--font-data);
   font-variant-numeric: tabular-nums;
+  /* Effect model names are single unbroken tokens (`threshold_relaxation`),
+     and a browser will not break on an underscore.  Without this the longest
+     of them overflowed its `minmax(8rem, 1fr)` track and painted on top of
+     the neighbouring Role value.  `min-width: 0` on the wrapper only lets the
+     track shrink; the value itself still has to be allowed to wrap. */
+  overflow-wrap: anywhere;
 }
 
 .simulator__section-heading {

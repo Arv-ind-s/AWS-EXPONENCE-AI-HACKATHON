@@ -10,7 +10,11 @@
 
 {% block content %}
   <div class="intake-screen" data-intake-screen
-       {% if view.document and view.document.extraction_state in ("queued", "pending", "processing", "extracting") %}
+       {# `IntakeDocumentView` only ever carries these four states, so the
+          in-flight pair is what the poll must name; the old list used
+          queued/processing/extracting, none of which the view model emits,
+          so the screen never refreshed itself while extraction ran. #}
+       {% if view.document and view.document.extraction_state in ("pending", "in_progress") %}
        hx-get="/intake/{{ view.document.document_id }}" hx-trigger="every 3s, refresh"
        hx-target="this" hx-select="[data-intake-screen]" hx-swap="outerHTML transition:true" data-live-poll
        {% endif %}>
@@ -51,6 +55,26 @@
           <div><dt>{{ labels.review_pages }}</dt><dd>{{ view.document.review_page_count }}</dd></div>
           {% if view.document.page_count is not none %}<div><dt>{{ labels.pages }}</dt><dd>{{ view.document.page_count }}</dd></div>{% endif %}
         </dl>
+        {% if view.document.extraction_state == "complete" and view.can_run_intake %}
+          <div class="intake-document__detect">
+            <p>{% if view.proposals %}{{ labels.detect_again_message }}{% else %}{{ labels.detect_message }}{% endif %}</p>
+            <form method="post" action="/intake/proposals" novalidate>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <input type="hidden" name="document_id" value="{{ view.document.document_id }}">
+              {% if view.proposals %}
+                {# The service returns the stored proposals unchanged unless a
+                   re-extraction is explicitly asked for, so this flag is the
+                   only way to get a fresh run after upstream data changed. #}
+                <input type="hidden" name="force_reextraction" value="1">
+              {% endif %}
+              {% if not view.document.facility_linked %}
+                <p class="intake-document__detect-hint">{{ labels.detect_facility_hint }}</p>
+                {{ components.field("facility_ref", labels.facility_ref, value=view.form.get("facility_ref", ""), required=true, autocomplete="off", field_id="detect-facility-ref") }}
+              {% endif %}
+              {{ components.button(labels.detect_again if view.proposals else labels.detect, type="submit") }}
+            </form>
+          </div>
+        {% endif %}
       </section>
     {% endif %}
 

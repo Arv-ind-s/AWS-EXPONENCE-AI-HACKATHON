@@ -30,6 +30,10 @@
     {# After modern.css: the financials tab's tables and charts layer over the
        shared ledger and trajectory rules rather than replacing them. #}
     <link rel="stylesheet" href="/static/css/financials.css">
+    {# The unauthenticated shell only. Keeping it out of the signed-in pages
+       is what lets it restyle the shared field/button components without
+       reaching the application. #}
+    {% if not principal %}<link rel="stylesheet" href="/static/css/auth.css">{% endif %}
     <link rel="stylesheet" href="/static/css/print.css" media="print">
   </head>
   <body class="{% if principal %}app-shell{% else %}auth-shell{% endif %}">
@@ -185,6 +189,10 @@
       </header>
       <div class="auth-layout">
         <aside class="auth-story" aria-label="{{ tr('auth.product_introduction') }}">
+          {# Decoration. `auth-scene.js` draws the covenant surface here and
+             flips data-canvas to "live", which stands the CSS orbit below
+             down; without JS, WebGL or a surviving context the orbit stays. #}
+          <canvas class="auth-canvas" data-auth-canvas aria-hidden="true"></canvas>
           <div class="auth-story__visual" aria-hidden="true">
             <span class="auth-orbit auth-orbit--outer"></span><span class="auth-orbit auth-orbit--inner"></span><span class="auth-orbit__beam"></span><span class="auth-orbit__point"></span>
           </div>
@@ -206,6 +214,7 @@
     <script src="/static/vendor/htmx/htmx.min.js" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous" defer></script>
     <script src="/static/js/app.js" defer></script>
     <script src="/static/js/horizon.js" defer></script>
+    {% if not principal %}<script src="/static/js/auth-scene.js" defer></script>{% endif %}
     {% if live_workspace_enabled %}<script src="/static/js/live-workspace.js" defer></script>{% endif %}
   </body>
 </html>

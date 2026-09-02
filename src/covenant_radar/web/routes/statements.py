@@ -101,6 +101,15 @@ _LABELS = {
 
 _SOURCE_TYPES = ("csv", "xlsx", "json")
 
+#: What the dropdown shows.  The codes above stay the submitted values and the
+#: validation vocabulary; a reader picking a file format should see the format
+#: named, not its wire code.
+_SOURCE_TYPE_OPTIONS: tuple[tuple[str, str], ...] = (
+    ("csv", "CSV (comma-separated values)"),
+    ("xlsx", "Excel workbook (.xlsx)"),
+    ("json", "JSON extract"),
+)
+
 
 def create_statements_router(
     service: StatementImportService,
@@ -329,7 +338,7 @@ def _render_import(
     environment = getattr(request.app.state, "template_env", fallback_environment)
     template = environment.get_template("screens/statements/_import.html")
     context = _base_context(request, principal, error=error)
-    context["source_type_options"] = _SOURCE_TYPES
+    context["source_type_options"] = _SOURCE_TYPE_OPTIONS
     context["mapping_options"] = mapping_options
     context["report"] = report
     return HTMLResponse(template.render(**context), status_code=status_code)
@@ -346,7 +355,7 @@ def _render_restate(
     environment = getattr(request.app.state, "template_env", fallback_environment)
     template = environment.get_template("screens/statements/_restate.html")
     context = _base_context(request, principal, error=error)
-    context["source_type_options"] = _SOURCE_TYPES
+    context["source_type_options"] = _SOURCE_TYPE_OPTIONS
     return HTMLResponse(template.render(**context), status_code=status_code)
 
 
