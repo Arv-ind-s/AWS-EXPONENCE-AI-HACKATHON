@@ -48,29 +48,32 @@
   font-display: swap;
 }
 
+/* Plum & Porcelain. The brand accent sits outside green/amber/red because
+   those three hues are owned by covenant risk semantics and must never be
+   confusable with chrome. */
 :root {
-  --paper: #F7F4EE;
-  --ink: #191C1F;
-  --ink-muted: #5A6067;
-  --hairline: #D9D3C7;
-  --surface-raised: #FCFBF7;
-  --surface-subtle: #EFEBE2;
-  --surface-sunken: #E6E1D4;
-  --surface-overlay: #FCFBF7;
-  --focus: #191C1F;
-  --accent: #191C1F;
-  --accent-fill: #191C1F;
-  --accent-strong: #000000;
-  --accent-soft: #EFEBE2;
-  --accent-contrast: #F7F4EE;
-  --signal: #5A6067;
-  --signal-soft: #EFEBE2;
-  --headroom: #1E6B45;
-  --watch: #B45309;
-  --breach: #B42318;
-  --headroom-bg: #E9F3ED;
-  --watch-bg: #FBEEE0;
-  --breach-bg: #FBEAE7;
+  --paper: #F7F4F6;
+  --ink: #1A1418;
+  --ink-muted: #5F5460;
+  --hairline: #E1D8DF;
+  --surface-raised: #FFFFFF;
+  --surface-subtle: #EFE9EE;
+  --surface-sunken: #E7DEE5;
+  --surface-overlay: #FFFFFF;
+  --focus: #6B1F55;
+  --accent: #6B1F55;
+  --accent-fill: #6B1F55;
+  --accent-strong: #4E1440;
+  --accent-soft: #F3E7F0;
+  --accent-contrast: #FFFFFF;
+  --signal: #5F5460;
+  --signal-soft: #EFE9EE;
+  --headroom: #14663F;
+  --watch: #935608;
+  --breach: #AF2318;
+  --headroom-bg: #E1EFE7;
+  --watch-bg: #F9EAD3;
+  --breach-bg: #FAE4E1;
 
   --font-head: "Radar Sans", "Segoe UI", Tahoma, sans-serif;
   --font-editorial: "Radar Serif", Georgia, "Times New Roman", serif;
@@ -113,20 +116,20 @@
   --grid-cols: 12;
   --hit-min: 44px;
 
-  --radius: 2px;
-  --radius-sm: 2px;
-  --radius-md: 2px;
-  --radius-lg: 2px;
-  --radius-pill: 2px;
+  --radius: 10px;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-pill: 999px;
   --border: 1px solid var(--hairline);
   --border-strong: 2px solid var(--hairline);
   --border-width: 1px;
   --tracking-label: 0.08em;
 
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-drawer: 0 24px 64px rgba(17, 24, 39, 0.22);
+  --shadow-sm: 0 1px 2px rgba(26, 20, 24, 0.05);
+  --shadow-md: 0 2px 4px rgba(26, 20, 24, 0.04), 0 8px 20px rgba(26, 20, 24, 0.07);
+  --shadow-lg: 0 4px 10px rgba(26, 20, 24, 0.06), 0 20px 48px rgba(26, 20, 24, 0.12);
+  --shadow-drawer: 0 24px 64px rgba(26, 20, 24, 0.24);
   --shadow-1: var(--shadow-sm);
   --shadow-2: var(--shadow-md);
   --dur-state: 140ms;
@@ -139,33 +142,35 @@
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* Plum-black. The accent inverts to a light plum so it stays legible as ink,
+   which is how the ledger and forecast marks use it. */
 [data-theme="dark"] {
-  --paper: #14161A;
-  --ink: #E8E4DC;
-  --ink-muted: #9AA1A9;
-  --hairline: #2C3138;
-  --surface-raised: #1B1E23;
-  --surface-subtle: #202329;
-  --surface-sunken: #0F1114;
-  --surface-overlay: #1B1E23;
-  --focus: #E8E4DC;
-  --accent: #E8E4DC;
-  --accent-fill: #E8E4DC;
-  --accent-strong: #FFFFFF;
-  --accent-soft: #202329;
-  --accent-contrast: #14161A;
-  --signal: #9AA1A9;
-  --signal-soft: #202329;
-  --headroom: #4CAF7D;
-  --watch: #E0913A;
-  --breach: #E8695E;
-  --headroom-bg: #16281F;
-  --watch-bg: #2E2011;
-  --breach-bg: #2E1917;
-  --shadow-sm: none;
-  --shadow-md: none;
-  --shadow-lg: none;
-  --shadow-drawer: 0 28px 72px rgba(0, 0, 0, 0.58);
+  --paper: #131015;
+  --ink: #EDE6EC;
+  --ink-muted: #A0929E;
+  --hairline: #2E2731;
+  --surface-raised: #1B171D;
+  --surface-subtle: #221D24;
+  --surface-sunken: #0D0B0F;
+  --surface-overlay: #1F1A21;
+  --focus: #F0A6D6;
+  --accent: #F0A6D6;
+  --accent-fill: #F0A6D6;
+  --accent-strong: #F8CDE8;
+  --accent-soft: #2A1F27;
+  --accent-contrast: #131015;
+  --signal: #A0929E;
+  --signal-soft: #221D24;
+  --headroom: #4FCB8B;
+  --watch: #E6A23D;
+  --breach: #FF7D73;
+  --headroom-bg: #12291F;
+  --watch-bg: #2B2012;
+  --breach-bg: #2E1B19;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.44);
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.4), 0 8px 20px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 4px 10px rgba(0, 0, 0, 0.44), 0 20px 48px rgba(0, 0, 0, 0.58);
+  --shadow-drawer: 0 28px 72px rgba(0, 0, 0, 0.66);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -178,12 +183,12 @@
 
 @media (prefers-contrast: more) {
   :root {
-    --ink-muted: #344054;
-    --hairline: #667085;
+    --ink-muted: #443A45;
+    --hairline: #8C7F89;
   }
 
   [data-theme="dark"] {
-    --ink-muted: #D9E0E8;
-    --hairline: #7890AC;
+    --ink-muted: #C7BCC5;
+    --hairline: #7A6C76;
   }
 }

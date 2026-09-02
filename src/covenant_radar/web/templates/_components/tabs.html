@@ -1,0 +1,33 @@
+{#
+  A tab strip that is a list of in-page links until script upgrades it.
+
+  Without JavaScript this renders exactly what it is: anchors to sections
+  that are all present and all open, which is the whole screen in document
+  order. `app.js` then adds the `tablist`/`tab`/`tabpanel` roles, roving
+  arrow-key focus, and hides the panels that are not selected.
+
+  Panels are addressed by id and are only ever hidden, never removed:
+  `horizon.js` binds its controls once on load and reaches its chart by
+  walking up to `[data-horizon-card]`, and several tests read text out of
+  panels that are not the selected one.
+
+  Wrap the panels in an element carrying `data-tabs`, put this strip inside
+  it, and give each `tab()` the id of the panel it selects:
+
+    <div data-tabs>
+      {% call components.tab_strip("Sections") %}
+        {{ components.tab("case-covenants", "Covenants") }}
+      {% endcall %}
+      <section id="case-covenants">…</section>
+    </div>
+#}
+{% macro tab_strip(label) -%}
+  <nav class="tab-strip" aria-label="{{ label }}" data-tablist>{{ caller() }}</nav>
+{%- endmacro %}
+
+{% macro tab(target, name, detail="") -%}
+  <a class="tab-strip__tab" href="#{{ target }}" data-tab="{{ target }}">
+    <span class="tab-strip__name">{{ name }}</span>
+    {%- if detail %}<span class="tab-strip__detail">{{ detail }}</span>{% endif -%}
+  </a>
+{%- endmacro %}

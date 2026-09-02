@@ -1095,7 +1095,7 @@ main > h1 {
 
 .case-documents__list {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
   gap: var(--space-3);
   margin: 0;
   padding: 0;
@@ -1425,10 +1425,6 @@ main > h1 {
 
   .case-header__whitespace {
     display: none;
-  }
-
-  .case-documents__list {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .case-actions__control {

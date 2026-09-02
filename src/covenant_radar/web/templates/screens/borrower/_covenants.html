@@ -20,7 +20,7 @@
   {% elif covenant_panel.state == "loading" %}
     {% set state_label = labels.loading %}
     {% set state_rows = 3 %}
-    {% set state_columns = 7 %}
+    {% set state_columns = 8 %}
     {% include "_states/loading.html" %}
   {% elif covenant_panel.state == "error" %}
     {% set state_id = "case-covenants-error" %}
@@ -40,6 +40,7 @@
             <th scope="col">{{ labels.covenant_reference }}</th>
             <th scope="col">{{ labels.covenant_facility }}</th>
             <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_value }}</th>
+            <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_agreed_threshold }}</th>
             <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_threshold }}</th>
             <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_headroom }}</th>
             <th scope="col">{{ labels.covenant_verdict }}</th>
@@ -57,6 +58,7 @@
               </th>
               <td class="ledger-row__cell">{{ row.facility_reference }}</td>
               <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric">{{ row.value_display }}</td>
+              <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric">{{ row.agreed_threshold_display }}</td>
               <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric">{{ row.threshold_display }}</td>
               <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric case-covenant-row__headroom">{{ row.headroom_display }}</td>
               <td class="ledger-row__cell">
@@ -69,6 +71,16 @@
                 <span aria-label="{{ row.trajectory_label }}">{{ row.trajectory_arrow }}</span>
               </td>
             </tr>
+            {% if row.history_svg %}
+              <tr class="ledger-row case-covenant-row__history-row">
+                <td class="ledger-row__cell" colspan="9">
+                  <figure class="trajectory case-covenant-row__history" aria-label="{{ row.history_label }}">
+                    <figcaption class="trajectory__caption">{{ row.history_label }} — {{ row.covenant_name }}</figcaption>
+                    {{ row.history_svg }}
+                  </figure>
+                </td>
+              </tr>
+            {% endif %}
           {% endfor %}
         </tbody>
       </table>

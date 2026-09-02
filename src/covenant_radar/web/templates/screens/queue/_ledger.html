@@ -43,6 +43,7 @@
             <th scope="col">{{ labels.column_borrower }}</th>
             <th scope="col" class="ledger-table__heading--right ledger-table__heading--amount">{{ labels.column_exposure }}</th>
             <th scope="col">{{ labels.column_band }}</th>
+            <th scope="col" class="ledger-table__heading--trajectory">{{ labels.column_trajectory }}</th>
             <th scope="col">{{ labels.column_dated_risk }}</th>
           </tr>
         </thead>
@@ -79,13 +80,27 @@
               </td>
               <td class="ledger-row__cell ledger-row__cell--right ledger-row__cell--amount">{% if row.exposure is not none %}{{ row.exposure|indian_currency }}{% else %}—{% endif %}</td>
               <td class="ledger-row__cell">{{ components.band_chip(row.band) }}</td>
+              {#
+                The stored path is the fastest read on the row — whether a
+                borrower is falling toward a threshold or holding — so it
+                belongs in the summary, not behind a disclosure. It carries
+                no link: `test_queue_flow` requires exactly two anchors per
+                summary row, and both are already spoken for.
+              #}
+              <td class="ledger-row__cell ledger-row__cell--trajectory queue-row__trajectory-cell">
+                {% if row.trajectory_svg %}
+                  <span class="queue-row__trajectory" aria-label="{{ row.trajectory_label }}">{{ row.trajectory_svg }}</span>
+                {% else %}
+                  <span class="queue-row__trajectory queue-row__trajectory--empty" role="img" aria-label="{{ row.trajectory_label }}">—</span>
+                {% endif %}
+              </td>
               <td class="ledger-row__cell ledger-row__cell--risk">
-                <span class="queue-row__probability">{{ row.probability_display }}{% if row.crossing_date %} {{ labels.by }} {{ row.crossing_date|ist_date }}{% endif %}</span>
+                <span class="queue-row__probability">{{ row.probability_display }}{% if row.crossing_date %} {{ labels.by }} {{ row.crossing_date|ist_date }}{% elif row.crossing_note %} · {{ row.crossing_note }}{% endif %}</span>
                 {% if row.why_href %}<a class="queue-row__why text-action" href="{{ row.why_href }}" hx-get="{{ row.why_href }}" hx-target="body" hx-swap="beforeend" aria-label="Why {{ row.borrower_name }} is ranked here">{{ labels.why }}</a>{% endif %}
               </td>
             </tr>
             <tr class="ledger-detail" id="{{ row.detail_id }}" hidden>
-              <td class="ledger-detail__cell" colspan="7">
+              <td class="ledger-detail__cell" colspan="8">
                 <div class="ledger-detail__grid">
                   <div class="ledger-detail__block ledger-detail__block--forecast">
                     <h3 class="ledger-detail__title">{{ labels.detail_horizons }}</h3>
@@ -96,11 +111,7 @@
                         <span>Unavailable</span>
                       {% endif %}
                     </div>
-                    {% if row.trajectory_svg %}
-                      <span class="queue-row__trajectory" aria-label="{{ row.trajectory_label }}">{{ row.trajectory_svg }}</span>
-                    {% else %}
-                      <span class="queue-row__trajectory queue-row__trajectory--empty" role="img" aria-label="{{ row.trajectory_label }}">—</span>
-                    {% endif %}
+                    {# The stored path moved up to its own summary column. #}
                     <p class="queue-row__confidence">{{ row.confidence_display }}</p>
                   </div>
 

@@ -249,6 +249,13 @@ def create_queue_router(
                 else _LABELS["summary_no_exposure"]
             ),
             "as_of_date": view.as_of_date,
+            # Each band tile draws its share of the book beneath its count.
+            # A count alone does not say whether 31 amber borrowers is most
+            # of the portfolio or a rounding error in it. Computed here
+            # rather than in the template so the tile stays a dumb renderer,
+            # and floored to whole percent because the bar cannot draw
+            # finer than that anyway.
+            "shares": _band_shares(band_facet),
         }
 
         return _render(
@@ -312,6 +319,23 @@ def _active_filters(filter_state: Mapping[str, object]) -> tuple[dict[str, str],
             }
         )
     return tuple(chips)
+
+
+def _band_shares(facet: object) -> dict[str, int]:
+    """Return each band's whole-percent share of the unfiltered book.
+
+    Floored, not rounded: the bar is three user units tall and a hundred
+    wide, so a fractional percent is a precision the mark cannot carry.  An
+    empty book yields zero everywhere rather than dividing by it.
+    """
+
+    total = int(getattr(facet, "total", 0) or 0)
+    if total <= 0:
+        return {"act": 0, "amber": 0, "watch": 0}
+    return {
+        band: int(getattr(facet, band, 0) or 0) * 100 // total
+        for band in ("act", "amber", "watch")
+    }
 
 
 def _band_hrefs(filter_state: Mapping[str, object]) -> dict[str, str]:

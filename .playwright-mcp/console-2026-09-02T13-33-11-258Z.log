@@ -1,0 +1,19 @@
+[  332991ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  332992ms] [ERROR] htmx:sendAbort @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  332995ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  332995ms] [ERROR] htmx:sendAbort @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  350447ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  350447ms] [ERROR] htmx:sendAbort @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  350458ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  350458ms] [ERROR] htmx:sendAbort @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  508737ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a06250-f06c-7270-995e-09b024aed3db:0
+[  508737ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "username"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a06250-f06c-7270-995e-09b024aed3db:0
+[  512847ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a06250-f06c-726d-935f-91aedc2c81be:0
+[  512848ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "username"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a06250-f06c-726d-935f-91aedc2c81be:0
+[  999060ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8000/memos:0
+[  999061ms] [ERROR] Response Status Error Code 500 from /memos @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 1000285ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8000/memos:0
+[ 1000286ms] [ERROR] Response Status Error Code 500 from /memos @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 1000806ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8000/memos:0
+[ 1000807ms] [ERROR] Response Status Error Code 500 from /memos @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[10644444ms] [ERROR] Failed to load resource: the server responded with a status of 429 (Too Many Requests) @ http://127.0.0.1:8000/sign-in:0

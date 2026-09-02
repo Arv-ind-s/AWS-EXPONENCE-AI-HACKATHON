@@ -25,8 +25,31 @@
     </p>
   {% endif %}
 
-  <section class="panel" aria-labelledby="thresholds-title">
+  {#
+    Six panels of evidence, one at a time.
+
+    Every panel is still server-rendered in full and merely hidden — the
+    governance tests read text out of panels that are not selected, and an
+    auditor reading this page without script gets the whole thing in
+    document order, which is the point of the screen.
+  #}
+  <div class="governance__sections" data-tabs>
+    {% call components.tab_strip("Governance sections") %}
+      {{ components.tab("governance-thresholds", "Thresholds") }}
+      {{ components.tab("governance-proposals", "Approvals", detail=view.pending_proposals|length) }}
+      {{ components.tab("governance-models", "Model registry", detail=view.models|length) }}
+      {{ components.tab("governance-drift", "Drift", detail=view.drift|length) }}
+      {{ components.tab("governance-evaluations", "Evaluations") }}
+      {{ components.tab("governance-history", "History", detail=view.threshold_history|length) }}
+    {% endcall %}
+
+  <section class="panel" id="governance-thresholds" aria-labelledby="thresholds-title">
     <h2 class="panel__title" id="thresholds-title">Thresholds in force</h2>
+    {% if can_propose %}
+      <p class="governance__panel-actions">
+        {{ components.button("Propose a threshold change", variant="secondary", drawer_target="propose-threshold") }}
+      </p>
+    {% endif %}
     {% if view.current_threshold %}
       <dl class="governance__facts">
         <div><dt>Effective from</dt><dd>{{ view.current_threshold.effective_from|ist_date }}</dd></div>
@@ -84,26 +107,7 @@
     {% endif %}
   </section>
 
-  {% if can_propose %}
-    <section class="panel" aria-labelledby="propose-title">
-      <h2 class="panel__title" id="propose-title">Propose a threshold change</h2>
-      <form method="post" action="/governance/thresholds/proposals" novalidate>
-        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
-        <div class="field">
-          <label class="field__label" for="proposal-values">Revised values (JSON, keyed by threshold name)</label>
-          <textarea class="field__control" id="proposal-values" name="values" rows="3" required aria-describedby="proposal-values-hint" placeholder='{"T1": {"amber": "0.45"}}'></textarea>
-          <p class="field__hint" id="proposal-values-hint">Only the fields being changed need to appear, e.g. {"T1": {"amber": "0.45"}}.</p>
-        </div>
-        <div class="field">
-          <label class="field__label" for="proposal-note">Note (required)</label>
-          <textarea class="field__control" id="proposal-note" name="note" rows="3" required maxlength="2000"></textarea>
-        </div>
-        <button class="button" type="submit">Submit proposal</button>
-      </form>
-    </section>
-  {% endif %}
-
-  <section class="panel" aria-labelledby="proposals-title">
+  <section class="panel" id="governance-proposals" aria-labelledby="proposals-title">
     <h2 class="panel__title" id="proposals-title">Pending threshold approvals</h2>
     {% if view.pending_proposals %}
       <ul class="governance__list">
@@ -137,7 +141,7 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="models-title">
+  <section class="panel" id="governance-models" aria-labelledby="models-title">
     <h2 class="panel__title" id="models-title">Model registry</h2>
     {% if view.models %}
       <div class="governance__scroll"><table class="governance__table"><thead><tr><th scope="col">Component</th><th scope="col">Provider / model</th><th scope="col">Prompt version</th><th scope="col">Owner</th><th scope="col">State</th><th scope="col">Approval</th></tr></thead><tbody>
@@ -146,7 +150,7 @@
     {% else %}<p class="case-file__panel-message">No model registrations are recorded.</p>{% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="drift-title">
+  <section class="panel" id="governance-drift" aria-labelledby="drift-title">
     <h2 class="panel__title" id="drift-title">Drift observations</h2>
     {% if view.drift %}
       <div class="governance__scroll"><table class="governance__table"><thead><tr><th scope="col">Component</th><th scope="col">Metric</th><th scope="col">Window</th><th scope="col">Observed</th><th scope="col">Baseline</th><th scope="col">Status</th><th scope="col">Rollback state</th></tr></thead><tbody>
@@ -155,7 +159,7 @@
     {% else %}<p class="case-file__panel-message">No drift observations are recorded.</p>{% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="evaluations-title">
+  <section class="panel" id="governance-evaluations" aria-labelledby="evaluations-title">
     <h2 class="panel__title" id="evaluations-title">Evaluation scoreboard</h2>
     {% if view.evaluations %}
       {% for release in view.evaluations %}
@@ -181,16 +185,25 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="history-title">
+  {#
+    A calibration history is a sequence of dated decisions, so it is drawn
+    as one. Every field the run-on sentence carried is still here, just
+    given its own line: when it took effect, who proposed and approved it,
+    the note, and what actually changed.
+  #}
+  <section class="panel" id="governance-history" aria-labelledby="history-title">
     <h2 class="panel__title" id="history-title">Threshold history</h2>
     {% if view.threshold_history %}
-      <ul class="governance__list">
+      <ol class="event-timeline">
         {% for snapshot in view.threshold_history %}
-          <li>
-            {{ snapshot.effective_from|ist_date }} — {{ snapshot.source }} —
-            proposed by {{ snapshot.proposed_by_name or snapshot.proposed_by_id or "Not applicable" }},
-            approved by {{ snapshot.approved_by_name or snapshot.approved_by_id or "Not applicable" }}
-            — {{ snapshot.note or "No note recorded" }}
+          <li class="event-timeline__event">
+            <span class="event-timeline__mark" aria-hidden="true"></span>
+            <p class="event-timeline__headline">{{ snapshot.effective_from|ist_date }} — {{ snapshot.source }}</p>
+            <p class="event-timeline__meta">
+              proposed by {{ snapshot.proposed_by_name or snapshot.proposed_by_id or "Not applicable" }},
+              approved by {{ snapshot.approved_by_name or snapshot.approved_by_id or "Not applicable" }}
+            </p>
+            <p class="event-timeline__detail">{{ snapshot.note or "No note recorded" }}</p>
             {% if snapshot.changes %}
               <ul class="governance__proposal-changes">
                 {% for change in snapshot.changes %}
@@ -200,10 +213,36 @@
             {% endif %}
           </li>
         {% endfor %}
-      </ul>
+      </ol>
     {% else %}
       <p class="case-file__panel-message">No prior threshold snapshots are recorded.</p>
     {% endif %}
   </section>
+  </div>
+
+  {#
+    The proposal form was a full panel sitting between the thresholds it
+    changes and the approvals queue it feeds, pushing both apart for a
+    control most visits never use. It is now a modal opened from the
+    thresholds panel. Without script it renders inline here, in document
+    order, still a plain POST form.
+  #}
+  {% if can_propose %}
+    {% call components.modal("propose-threshold", "Propose a threshold change") %}
+      <form method="post" action="/governance/thresholds/proposals" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="field">
+          <label class="field__label" for="proposal-values">Revised values (JSON, keyed by threshold name)</label>
+          <textarea class="field__control" id="proposal-values" name="values" rows="3" required aria-describedby="proposal-values-hint" placeholder='{"T1": {"amber": "0.45"}}'></textarea>
+          <p class="field__hint" id="proposal-values-hint">Only the fields being changed need to appear, e.g. {"T1": {"amber": "0.45"}}.</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="proposal-note">Note (required)</label>
+          <textarea class="field__control" id="proposal-note" name="note" rows="3" required maxlength="2000"></textarea>
+        </div>
+        <button class="button" type="submit">Submit proposal</button>
+      </form>
+    {% endcall %}
+  {% endif %}
 </div>
 {% endblock %}

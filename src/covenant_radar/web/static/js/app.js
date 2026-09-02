@@ -190,6 +190,77 @@
     });
   };
 
+  // A `[data-tabs]` container renders every panel in full, which is what a
+  // reader without script gets and what several tests read out of the
+  // response. With script the list of jump links at the top of it becomes a
+  // tablist and only the selected panel stays visible. Panels are hidden,
+  // never removed: `horizon.js` binds its controls once on load and finds
+  // its chart by walking up to `[data-horizon-card]`, so a detached panel
+  // would silently stop updating.
+  const installTabStrip = (container) => {
+    if (!container || container.dataset.tabsInstalled === "true") return;
+    const list = container.querySelector("[data-tablist]");
+    const tabs = list ? Array.from(list.querySelectorAll("[data-tab]")) : [];
+    if (!list || tabs.length < 2) return;
+    container.dataset.tabsInstalled = "true";
+
+    const panelFor = (tab) => document.getElementById(tab.getAttribute("data-tab"));
+    list.setAttribute("role", "tablist");
+    tabs.forEach((tab) => {
+      const target = panelFor(tab);
+      if (!target) return;
+      tab.setAttribute("role", "tab");
+      tab.setAttribute("aria-controls", target.id);
+      target.setAttribute("role", "tabpanel");
+      target.setAttribute("aria-labelledby", tab.id || (tab.id = `${target.id}-tab`));
+    });
+
+    const select = (selected, { focus = false } = {}) => {
+      tabs.forEach((tab) => {
+        const target = panelFor(tab);
+        const active = tab === selected;
+        tab.setAttribute("aria-selected", active ? "true" : "false");
+        // Only the selected tab stays in the tab order; the arrow keys move
+        // between them, which is what a tablist is expected to do.
+        tab.tabIndex = active ? 0 : -1;
+        if (target) target.hidden = !active;
+      });
+      if (focus) selected.focus({ preventScroll: true });
+    };
+
+    list.addEventListener("click", (event) => {
+      const tab = event.target instanceof Element
+        ? event.target.closest("[data-tab]")
+        : null;
+      if (!tab || !list.contains(tab)) return;
+      // The href is a real in-page link without script; with script it is a
+      // tab, so it selects rather than jumping and moving the scroll.
+      event.preventDefault();
+      select(tab);
+    });
+
+    list.addEventListener("keydown", (event) => {
+      const current = event.target instanceof Element
+        ? event.target.closest("[data-tab]")
+        : null;
+      if (!current) return;
+      const index = tabs.indexOf(current);
+      const step = { ArrowRight: 1, ArrowLeft: -1, Home: -index, End: tabs.length - 1 - index };
+      if (!(event.key in step)) return;
+      event.preventDefault();
+      select(tabs[(index + step[event.key] + tabs.length) % tabs.length], { focus: true });
+    });
+
+    select(tabs[0]);
+  };
+
+  // Innermost first, so a nested strip (the covenants inside the case file's
+  // forecast tab) is wired up before its container hides it.
+  const installTabs = (scope = document) => {
+    if (!scope.querySelectorAll) return;
+    Array.from(scope.querySelectorAll("[data-tabs]")).reverse().forEach(installTabStrip);
+  };
+
   const expandedDetailIds = () => Array.from(
     document.querySelectorAll('.ledger-row__disclosure[aria-expanded="true"]'),
   ).map((button) => button.getAttribute("aria-controls")).filter(Boolean);
@@ -346,6 +417,7 @@
   const installEnhancements = (scope = document) => {
     installQueueSelection(scope);
     installRowDisclosure(scope);
+    installTabs(scope);
     installSavedViewSave(scope);
     markForms(scope);
     enhanceUploads(scope);

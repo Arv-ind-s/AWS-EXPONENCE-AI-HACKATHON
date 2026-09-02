@@ -35,14 +35,36 @@
         </section>
       {% endif %}
 
-      {% include "screens/borrower/_covenants.html" %}
+      {#
+         The five evidence panels below were stacked, which made the case
+         file eleven thousand pixels long and put the forecast — the reason
+         the case exists — several screens below the memo. They become tabs
+         over the same markup: nothing is removed, and with script disabled
+         the strip is a set of jump links over the whole stack rendered
+         open, exactly as before.
 
-      {% include "screens/borrower/_signals.html" %}
+         The action and memo panels above stay outside the tabs on purpose;
+         the comment above explains why the memo has to remain where an
+         HTMX response lands in view.
+      #}
+      <div class="case-file__sections" data-tabs>
+        {% call components.tab_strip(labels.sections_label) %}
+          {{ components.tab("case-forecast", labels.forecast_title) }}
+          {{ components.tab("case-covenants", labels.covenant_title) }}
+          {{ components.tab("case-signals", labels.signals_title) }}
+          {{ components.tab("case-evidence", labels.evidence_title) }}
+          {{ components.tab("case-documents", labels.documents_title) }}
+        {% endcall %}
 
-      {% include "screens/borrower/_forecast.html" %}
+        {% include "screens/borrower/_forecast.html" %}
 
-      {% include "screens/borrower/_evidence.html" %}
-      {% include "screens/borrower/_documents.html" %}
+        {% include "screens/borrower/_covenants.html" %}
+
+        {% include "screens/borrower/_signals.html" %}
+
+        {% include "screens/borrower/_evidence.html" %}
+        {% include "screens/borrower/_documents.html" %}
+      </div>
     </div>
   </div>
 {% endif %}

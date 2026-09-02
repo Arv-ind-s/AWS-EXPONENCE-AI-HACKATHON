@@ -105,6 +105,9 @@ FORECAST_HORIZONS: Final[tuple[int, ...]] = (30, 60, 90)
 
 _DIRECTION_SYMBOLS: Final[Mapping[str, str]] = {"min": "≥", "max": "≤"}
 _DIRECTION_ARROWS: Final[Mapping[str, str]] = {"min": "↓", "max": "↑"}
+# Presentation only. Stored figures keep their full precision; this is the
+# point past which further digits tell a reader nothing.  See `_number_display`.
+_DISPLAY_QUANTUM: Final[Decimal] = Decimal("0.0001")
 _VERDICT_LABELS: Final[Mapping[str, str]] = {
     "pass": "Pass",
     "warning": "Warning",
@@ -450,6 +453,7 @@ class CovenantRowView:
     trajectory_label: str
     value_display: str
     threshold_display: str
+    agreed_threshold_display: str
     headroom_display: str
     next_test_display: str
     status_message: str
@@ -457,6 +461,8 @@ class CovenantRowView:
     not_computable_reason: str | None = None
     stale_period: str | None = None
     confidence_reduction: str | None = None
+    history_svg: Markup | None = None
+    history_label: str = ""
 
 
 EvidenceDecayState = Literal["fresh", "decaying", "decayed", "not_recorded"]
@@ -700,8 +706,10 @@ def build_borrower_view(
     triage = _latest_triage_entry(session, borrower.id, latest_run, scope)
     covenant_records = _covenant_records(session, borrower.id, scope)
     selected_versions = _select_versions(covenant_records)
+    initial_versions = _initial_versions(covenant_records)
     version_ids = tuple(version.id for _, _, version in selected_versions if version is not None)
     tests = _latest_tests(session, version_ids, scope)
+    test_history = _covenant_test_history(session, version_ids, scope, limit=4)
     schedules = _next_schedules(
         session,
         version_ids,
@@ -724,7 +732,15 @@ def build_borrower_view(
     documents = _document_strip(session, borrower.id, scope)
 
     covenant_rows = tuple(
-        _covenant_row(covenant, facility, version, tests, schedules)
+        _covenant_row(
+            covenant,
+            facility,
+            version,
+            tests,
+            schedules,
+            test_history,
+            initial_versions.get(covenant.id),
+        )
         for covenant, facility, version in selected_versions
     )
     covenant_rows = tuple(sorted(covenant_rows, key=lambda row: (row.covenant_name, row.row_id)))
@@ -886,6 +902,27 @@ def _select_versions(
     return tuple(sorted(selected, key=lambda record: (record[0].reference, str(record[0].id))))
 
 
+def _initial_versions(
+    records: Sequence[tuple[Covenant, Facility, CovenantVersion | None]],
+) -> dict[UUID, CovenantVersion]:
+    """Return each covenant's first-ever version — the terms the borrower
+    originally agreed at registration — as opposed to `_select_versions`'
+    live/current terms. `covenant_version` rows are frozen once tested
+    (`db/models/covenant.py`), so `version_no == 1`'s `threshold` is exactly
+    what was agreed, unaffected by any later amendment."""
+    earliest: dict[UUID, CovenantVersion] = {}
+    for covenant, _facility, version in records:
+        if version is None:
+            continue
+        current = earliest.get(covenant.id)
+        if current is None or (version.version_no, str(version.id)) < (
+            current.version_no,
+            str(current.id),
+        ):
+            earliest[covenant.id] = version
+    return earliest
+
+
 def _latest_tests(
     session: Session,
     version_ids: Sequence[UUID],
@@ -906,6 +943,40 @@ def _latest_tests(
     for test in session.execute(statement).scalars().all():
         latest.setdefault(test.covenant_version_id, test)
     return latest
+
+
+def _covenant_test_history(
+    session: Session,
+    version_ids: Sequence[UUID],
+    scope: Scope,
+    *,
+    limit: int = 4,
+) -> dict[UUID, tuple[CovenantTest, ...]]:
+    """Return each version's most recent tests, oldest first, for a trend.
+
+    A banker reviewing a case wants to see the last few quarters' trajectory
+    alongside the current verdict, not just the latest snapshot `_latest_tests`
+    returns. The query mirrors that one and only differs by keeping the most
+    recent ``limit`` rows per version instead of just the first.
+    """
+
+    if not version_ids:
+        return {}
+    statement = _scoped_select(CovenantTest, scope).where(
+        CovenantTest.covenant_version_id.in_(version_ids)
+    )
+    statement = statement.order_by(
+        CovenantTest.covenant_version_id,
+        CovenantTest.as_of_date.desc(),
+        CovenantTest.computed_at.desc(),
+        CovenantTest.id.desc(),
+    )
+    recent: dict[UUID, list[CovenantTest]] = {}
+    for test in session.execute(statement).scalars().all():
+        bucket = recent.setdefault(test.covenant_version_id, [])
+        if len(bucket) < limit:
+            bucket.append(test)
+    return {version_id: tuple(reversed(tests)) for version_id, tests in recent.items()}
 
 
 def _next_schedules(
@@ -1091,7 +1162,18 @@ def _signal_family_views(
     statement = (
         _scoped_select(SignalEvent, scope)
         .where(SignalEvent.borrower_id == borrower_id)
-        .order_by(SignalEvent.family, SignalEvent.event_date, SignalEvent.id)
+        # Two independent generators can each write an event for the same
+        # calendar day (the base reference portfolio's own signal generator
+        # and the curated demo overlay both cover every borrower on their
+        # shared seed date). `id` is not a reliable recency tie-break across
+        # them — the overlay's ids are time-sortable but the reference
+        # portfolio's are not, so ordering on `id` alone let an unrelated,
+        # earlier-ingested reference-portfolio reading sort after the
+        # borrower's real latest reading purely by chance, which is exactly
+        # what made every signal family read "Improving" for borrowers whose
+        # true trend was deteriorating. `ingested_at` reflects true
+        # ingestion order regardless of which generator wrote the row.
+        .order_by(SignalEvent.family, SignalEvent.event_date, SignalEvent.ingested_at, SignalEvent.id)
     )
     if as_of_date is not None:
         statement = statement.where(SignalEvent.event_date <= as_of_date)
@@ -1445,6 +1527,10 @@ def _forecast_covenant_view(
         ledger_figures,
         crossing=crossing,
         label=f"{covenant.name} trajectory",
+        # A "max" covenant is breached by rising through its ceiling, a
+        # "min" one by falling through its floor. The chart shades whichever
+        # side that is; it is told, never inferred from the path.
+        breach_above=direction == "max",
     )
     trajectory_available = (
         trajectory_forecast is not None and len(path_points) >= 2 and threshold is not None
@@ -1626,7 +1712,7 @@ def _forecast_explanation(
         f"Assembled from stored forecast {forecast.id}, its saved formula inputs and "
         f"{len(driver_views)} attribution record{'s' if len(driver_views) != 1 else ''}. "
         "An LLM did not calculate or rewrite this explanation; when an AI memo is requested, "
-        "the TCS-backed stage-7 draft is separately labelled and shape-checked."
+        "the Covenant Radar AI stage-7 draft is separately labelled and shape-checked."
     )
     return ForecastExplanationView(
         method=method,
@@ -1959,6 +2045,16 @@ def _number_display(value: object, *, signed: bool = False) -> str:
     number = _as_decimal(value)
     if number is None:
         return "not recorded"
+    # Stored factor inputs carry the solver's full precision, so formatting
+    # them as-is put "4.42545068787779875910439709" on the case file next to
+    # a weight of "0.5".  Four places is well past anything a credit
+    # decision turns on, and the trailing-zero strip below still leaves the
+    # already-short values exactly as short as they were.  A magnitude too
+    # large to requantize is left alone rather than refused.
+    try:
+        number = number.quantize(_DISPLAY_QUANTUM)
+    except InvalidOperation:
+        pass
     text = format(number, "f")
     if "." in text:
         text = text.rstrip("0").rstrip(".")
@@ -2205,6 +2301,8 @@ def _covenant_row(
     version: CovenantVersion | None,
     tests: Mapping[UUID, CovenantTest],
     schedules: Mapping[UUID, CovenantSchedule],
+    test_history: Mapping[UUID, Sequence[CovenantTest]] | None = None,
+    initial_version: CovenantVersion | None = None,
 ) -> CovenantRowView:
     if version is None:
         return CovenantRowView(
@@ -2223,6 +2321,7 @@ def _covenant_row(
             trajectory_label="No covenant version is available",
             value_display=NO_VALUE,
             threshold_display=NO_THRESHOLD,
+            agreed_threshold_display=NO_THRESHOLD,
             headroom_display=NO_HEADROOM,
             next_test_display=NO_SCHEDULE,
             status_message="Covenant terms are not available because no version is recorded.",
@@ -2255,11 +2354,19 @@ def _covenant_row(
     threshold_display = (
         _number_with_unit(threshold, unit) if threshold is not None else NO_THRESHOLD
     )
+    agreed_threshold_display = (
+        _number_with_unit(initial_version.threshold, initial_version.unit)
+        if initial_version is not None
+        else NO_THRESHOLD
+    )
     arrow = _DIRECTION_ARROWS.get(version.direction, "→")
     direction_label = (
         "toward the minimum threshold"
         if version.direction == "min"
         else "toward the maximum threshold"
+    )
+    history_svg, history_label = _covenant_history_view(
+        covenant, version, unit, threshold, (test_history or {}).get(version.id, ())
     )
     return CovenantRowView(
         row_id=f"covenant-row-{covenant.id}",
@@ -2277,6 +2384,7 @@ def _covenant_row(
         trajectory_label=f"Trajectory {direction_label}",
         value_display=value_display,
         threshold_display=threshold_display,
+        agreed_threshold_display=agreed_threshold_display,
         headroom_display=headroom_display,
         next_test_display=(
             format_ist_date(schedule.due_date) if schedule is not None else NO_SCHEDULE
@@ -2289,7 +2397,47 @@ def _covenant_row(
         not_computable_reason=reason,
         stale_period=stale_period,
         confidence_reduction=confidence_reduction,
+        history_svg=history_svg,
+        history_label=history_label,
     )
+
+
+def _covenant_history_view(
+    covenant: Covenant,
+    version: CovenantVersion,
+    unit: str,
+    threshold: Decimal,
+    history_tests: Sequence[CovenantTest],
+) -> tuple[Markup | None, str]:
+    """Chart the covenant's recently tested quarters, oldest first.
+
+    Reuses the same accessible SVG renderer as the forward-looking forecast
+    trajectory, just fed historical test values instead of a projected path,
+    so a banker sees where the ratio has actually been alongside where the
+    forecast says it is going.
+    """
+
+    valued = tuple(item for item in history_tests if item.value is not None)
+    if len(valued) < 2:
+        return None, ""
+    points = tuple(TrajectoryPoint(day=index, value=item.value) for index, item in enumerate(valued))
+    ledger_figures = tuple(
+        TrajectoryLedgerFigure(
+            label=format_ist_date(item.as_of_date),
+            value=_number_with_unit(item.value, unit),
+        )
+        for item in valued
+    )
+    label = f"Last {len(valued)} tested quarters"
+    svg = render_trajectory_svg(
+        f"covenant-history-{covenant.id}",
+        points,
+        threshold,
+        ledger_figures,
+        label=f"{covenant.name} recent history",
+        breach_above=(version.direction == "max"),
+    )
+    return svg, label
 
 
 def _covenant_label(covenant: Covenant, version: CovenantVersion) -> str:

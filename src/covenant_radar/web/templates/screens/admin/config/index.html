@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% import "_components/components.html" as components %}
 
 {% block page_title %}Admin configuration — Covenant Radar{% endblock %}
 {% block h1 %}Admin configuration{% endblock %}
@@ -10,7 +11,23 @@
     <p class="state state--error" role="alert">{{ error }}</p>
   {% endif %}
 
-  <section class="panel" aria-labelledby="thresholds-title">
+  {#
+    Six stacked panels of versioned configuration, one at a time. Each is
+    still rendered in full and merely hidden, so the admin tests that read
+    text out of a panel they did not select keep passing and a reader
+    without script gets the whole page in document order.
+  #}
+  <div class="governance__sections" data-tabs>
+    {% call components.tab_strip("Configuration sections") %}
+      {{ components.tab("config-thresholds", "Thresholds") }}
+      {% if can_propose %}{{ components.tab("config-threshold-editor", "Propose") }}{% endif %}
+      {{ components.tab("config-threshold-proposals", "Approvals") }}
+      {{ components.tab("config-threshold-history", "History") }}
+      {{ components.tab("config-catalogue", "Action catalogue") }}
+      {{ components.tab("config-catalogue-approvals", "Catalogue approvals") }}
+    {% endcall %}
+
+  <section class="panel" id="config-thresholds" aria-labelledby="thresholds-title">
     <header class="panel__header">
       <div>
         <p class="eyebrow">Risk controls</p>
@@ -68,7 +85,7 @@
   </section>
 
   {% if can_propose %}
-    <section class="panel" aria-labelledby="threshold-editor-title">
+    <section class="panel" id="config-threshold-editor" aria-labelledby="threshold-editor-title">
       <h2 class="panel__title" id="threshold-editor-title">Propose a threshold change</h2>
       <form method="post" action="/admin/config/thresholds/preview" novalidate>
         <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
@@ -112,7 +129,7 @@
     </section>
   {% endif %}
 
-  <section class="panel" aria-labelledby="threshold-proposals-title">
+  <section class="panel" id="config-threshold-proposals" aria-labelledby="threshold-proposals-title">
     <h2 class="panel__title" id="threshold-proposals-title">Pending threshold approvals</h2>
     {% if view.pending_threshold_proposals %}
       <ul class="governance__list">
@@ -142,7 +159,7 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="threshold-history-title">
+  <section class="panel" id="config-threshold-history" aria-labelledby="threshold-history-title">
     <h2 class="panel__title" id="threshold-history-title">Threshold history</h2>
     {% if view.threshold_history %}
       <ul class="governance__list">
@@ -155,7 +172,7 @@
     {% endif %}
   </section>
 
-  <section class="panel" aria-labelledby="catalogue-title">
+  <section class="panel" id="config-catalogue" aria-labelledby="catalogue-title">
     <header class="panel__header">
       <div>
         <p class="eyebrow">Recommendations</p>
@@ -253,5 +270,6 @@
       <p class="state state--empty">No catalogue proposal is awaiting approval.</p>
     {% endif %}
   </section>
+  </div>
 </div>
 {% endblock %}

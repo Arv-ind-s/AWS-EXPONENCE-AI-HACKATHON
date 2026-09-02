@@ -56,8 +56,8 @@ _CASE_BAND_CHANGED_EVENT: Final[str] = "band_changed"
 _CASE_STATE_CHANGED_EVENT: Final[str] = "state_changed"
 _CASE_SLA_BREACHED_EVENT: Final[str] = "sla_breached"
 _CASE_ASSIGNEE_FALLBACK_EVENT: Final[str] = "assignee_fallback"
-_ASSIGNEE_FALLBACK_TEMPLATE: Final[str] = "case_assignee_fallback"
-_SLA_BREACH_TEMPLATE: Final[str] = "case_sla_breach"
+_ASSIGNEE_FALLBACK_TEMPLATE: Final[str] = "assignee_fallback"
+_SLA_BREACH_TEMPLATE: Final[str] = "sla_breach"
 _IN_APP_CHANNEL: Final[str] = "in_app"
 
 

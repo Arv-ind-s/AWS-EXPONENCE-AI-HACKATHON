@@ -2,7 +2,17 @@
 param(
     [string]$PythonPath = "python",
     [switch]$SkipInstall,
-    [int]$SignalDays = 0,
+    # The base reference portfolio's own signal generator is unrelated to the
+    # curated Phase 7A demo overlay, but its "sustained" evidence still feeds
+    # the same forecast pressure term. At the default 365 days it produces
+    # enough sustained evidence to force every borrower's covenant into the
+    # `act` band regardless of the curated financials, so the demo bootstrap
+    # defaults to a single day here -- long enough to seed `facility_conduct`
+    # for the base portfolio, far short of the T3 sustained-evidence window
+    # (14 days), so it never contaminates the curated borrowers' bands. Pass
+    # a larger value only when you specifically need the full reference
+    # portfolio's own signal history (e.g. evaluating it in isolation).
+    [int]$SignalDays = 1,
     # Off by default: the bootstrap must never send a request to a paid gateway
     # just because the caller happens to have a key configured. Passing this
     # keeps whatever `.env` and the caller's environment select for the model
@@ -207,9 +217,12 @@ try {
     }
     Invoke-Checked "Apply database migrations" { & $python -m radarctl migrate upgrade }
     Invoke-Checked "Load reference portfolio" {
-        # Each borrower-day generates seven signal events, so the full default
-        # (365 days x 5,000 borrowers) is roughly 11 million rows. -SignalDays
-        # trims that for a quicker rebuild without changing any code.
+        # Each borrower-day generates seven signal events. The portfolio is
+        # sized to the curated 24-company demo roster (one borrower per
+        # industry), so even the full 365-day default is a few thousand rows
+        # here -- -SignalDays exists to keep the base portfolio's signal
+        # history short enough that it can never become "sustained" evidence
+        # (see the -SignalDays default above), not for row-count size.
         if ($SignalDays -gt 0) {
             & $python -m radarctl seed --reference-portfolio --signal-days $SignalDays
         } else {

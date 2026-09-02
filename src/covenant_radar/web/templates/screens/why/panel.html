@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="/static/css/why.css">
 {% endblock %}
 
-{% block content %}
+{% block body_end %}
+  {#
+    The drawer is rendered here, as a direct child of <body>, not inside
+    {% block content %}. On this standalone page {% block content %} sits
+    deep inside .shell-frame > .shell-main > main > .page-content, none of
+    which establishes a stacking context — so the drawer's own
+    position:fixed + z-index still loses to the body::after dimming scrim
+    (app.css) there, and every control including Close becomes unclickable
+    (confirmed: elementFromPoint over the Close button resolves to <body>).
+    The HTMX path that normally opens this drawer already appends it
+    straight to <body> (hx-target="body" hx-swap="beforeend"); rendering it
+    at body_end reproduces that same, working DOM position for a direct
+    page load (e.g. a bookmarked link or "open in new tab").
+  #}
   {% include "screens/why/_drawer.html" %}
 {% endblock %}

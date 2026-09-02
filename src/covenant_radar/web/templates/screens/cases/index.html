@@ -13,19 +13,24 @@
       <p class="queue-hero__eyebrow">{{ labels.list_eyebrow }}</p>
       <h2 id="case-register-title">{{ labels.list_subheading }}</h2>
     </div>
+    {#
+      Two of these three counters are subsets of the first, so each carries
+      the share of the register it represents. Integer division is
+      deliberate: a share bar that claims a decimal place it cannot draw is
+      a false precision.
+    #}
     <div class="queue-hero__stats" aria-label="Case register summary">
-      <div class="queue-stat queue-stat--act">
-        <span class="queue-stat__value">{{ view.total }}</span>
-        <span class="queue-stat__label">{{ labels.column_case }}</span>
-      </div>
-      <div class="queue-stat queue-stat--amber">
-        <span class="queue-stat__value">{{ view.open_count }}</span>
-        <span class="queue-stat__label">{{ labels.state }}</span>
-      </div>
-      <div class="queue-stat queue-stat--watch">
-        <span class="queue-stat__value">{{ view.overdue_count }}</span>
-        <span class="queue-stat__label">{{ labels.overdue }}</span>
-      </div>
+      {{ components.stat_tile(labels.stat_total, view.total, tone="accent") }}
+      {{ components.stat_tile(
+           labels.stat_open,
+           view.open_count,
+           tone="amber",
+           share=(view.open_count * 100 // view.total) if view.total else 0) }}
+      {{ components.stat_tile(
+           labels.stat_overdue,
+           view.overdue_count,
+           tone="act",
+           share=(view.overdue_count * 100 // view.total) if view.total else 0) }}
     </div>
   </section>
 

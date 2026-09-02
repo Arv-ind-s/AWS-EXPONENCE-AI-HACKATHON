@@ -13,19 +13,28 @@ local machine.
 From the repository root, start the prepared demo with:
 
 ```powershell
-powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo_up.ps1
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\scripts\demo_up.ps1 -LiveModel
 ```
 
 The bootstrap applies migrations, loads the reference portfolio, seeds the
 Phase 7A data, runs `nightly.pipeline`, creates the presenter account and
-starts the server at `http://127.0.0.1:8000`. The configured provider is the
-recorded offline adapter and documents use the local encrypted store.
+starts the server at `http://127.0.0.1:8000`. `-LiveModel` is required for
+this demo: the curated roster is new for every rehearsal, so no recorded
+cassette exists for its prompts, and `Generate AI explanation`/`Generate
+memo` would otherwise report a provider outage instead of drafting a memo.
+With `-LiveModel`, `.env`'s configured provider (`tcs`, model
+`genailab-maas-gpt-5.4-mini`) drafts real memos through the corporate
+gateway — billable, and requiring the corporate CA bundle
+(`var/corporate-ca.pem`) to be current. Documents still use the local
+encrypted store.
 
-Use these credentials only for this disposable local demo:
+Use these credentials only for this disposable local demo. `riskhead` carries
+every permission the golden path below touches (queue, simulator, intake,
+memo generation):
 
 ```text
-Username: testuser
-Password: TestPassword123
+Username: riskhead
+Password: CovenantRadar#2026
 ```
 
 The first bootstrap is intended for a clean checkout. For a second rehearsal
@@ -35,21 +44,31 @@ server on port 8000.
 
 ### Canonical records
 
-The demo seed takes the first 36 deterministic borrowers from the reference
-portfolio. Use references in the browser and the full legal names when
-speaking about a record:
+The demo seed is a curated, 24-company roster — one company per industry,
+covering eight quarters of history (`FY24Q3`–`FY26Q2`) each, deliberately
+spread across five narrative tiers so the Portfolio Queue always shows at
+least four companies in every band: `act` (already breached + about to
+breach), `amber` (deteriorating), and `watch` (early signal + safe/stable).
+Use references in the browser and the full legal names when speaking about a
+record:
 
-| Role | Borrower reference | Exact seeded legal name | First facility | Leverage covenant |
-|---|---|---|---|---|
-| Primary breach | `B-000003` | Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited | `F-000003-01` | `D03LEV` |
-| Forecast fallback | `B-000004` | Menon Energy Transition Technologies Saanvi 00004 Private Limited | `F-000004-01` | `D04LEV` |
-| Second forecast fallback | `B-000009` | Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited | `F-000009-01` | `D09LEV` |
+| Role | Borrower reference | Exact seeded legal name | First facility | Binding covenant | Story |
+|---|---|---|---|---|---|
+| Primary breach | `B-000004` | Arclume Textile Mills Private Limited | `F-000004-01` | `D04COV` (Interest coverage) | Already breached: coverage 1.08x vs. a 1.50x minimum threshold, in cure |
+| Forecast fallback | `B-000009` | Bellora Mobility Components Private Limited | `F-000009-01` | `D09COV` (Interest coverage) | About to breach: coverage still 1.54x above threshold today, but the 90-day projection crosses it — and payment conduct is still clean (SMA band: none) |
+| Second forecast fallback | `B-000017` | Cloudmere Aviation Support Private Limited | `F-000017-01` | `D17COV` (Interest coverage) | About to breach, but payment conduct is already `beyond` (90+ days past due) — conduct worsened before the covenant did |
+| Amber example | `B-000013` | Cairnwell Wholesale Markets Private Limited | `F-000013-01` | `D13LIQ` (Current ratio) | Deteriorating trend, ~43% breach probability, clean conduct |
+| Safe example | `B-000020` | Dalespring Software Systems Private Limited | `F-000020-01` | `D20LEV` (Leverage) | Flat/improving trend, 57% headroom, ~18% probability |
 
-`B-000003` is the primary case because its seeded leverage history is already
-at the breach side of the `D03LEV` threshold. If the latest queue ranking
-places a different borrower first, search by the exact reference above rather
-than choosing an arbitrary live record. The reference and facility values are
-synthetic identifiers, not customer data.
+Every borrower carries all three covenant classes (leverage, interest
+coverage, current ratio); the roster deliberately spreads which one binds
+across companies rather than leverage always being the driver, so `Worst
+covenant` genuinely varies across the queue. `B-000004` is the primary case
+because its seeded interest-coverage history is already past the `D04COV`
+threshold. If the latest queue ranking places a different borrower first,
+search by the exact reference above rather than choosing an arbitrary live
+record. The reference and facility values are synthetic identifiers, not
+customer data.
 
 ### Intake document
 
@@ -74,7 +93,7 @@ toggle is a short optional finish after the primary path.
 ### 0:00–0:25 — Sign in
 
 1. Open `http://127.0.0.1:8000/sign-in?next=%2F`.
-2. Enter `testuser` and `TestPassword123`.
+2. Enter `riskhead` and `CovenantRadar#2026`.
 3. Submit `Sign in` and wait for the redirect to `/`.
 
 Say: “This is a local presenter session. The queue is already backed by the
@@ -88,9 +107,8 @@ a blank dashboard.”
    exposure`.
 3. Do not filter the queue yet. The ranked rows and their mini-trajectories
    make the risk shape visible immediately.
-4. Activate the row link for
-   `Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited`
-   (`B-000003`). The row link is keyboard reachable; pressing `Enter` after
+4. Activate the row link for `Arclume Textile Mills Private Limited`
+   (`B-000004`). The row link is keyboard reachable; pressing `Enter` after
    tabbing to it is the keyboard equivalent.
 
 Say: “The strip is portfolio-wide, while the ledger is ranked for the desk.
@@ -100,23 +118,26 @@ open the case file.”
 ### 1:15–2:05 — Open the breach case file
 
 1. Confirm the case-file header shows the exact primary borrower name and
-   reference `B-000003`.
-2. In `Covenant position`, point to the `D03LEV` leverage row and its
-   current value, threshold, headroom and verdict.
+   reference `B-000004`.
+2. In `Covenant position`, point to the `D04COV` interest-coverage row and
+   its current value, threshold, headroom and verdict, and to the "Last N
+   tested quarters" trend chart beneath it — the same trajectory renderer
+   used for the forward-looking forecast, fed the borrower's actual test
+   history instead of a projection.
 3. Point out that the page also separates evidence and source documents from
    the covenant ledger; do not edit any data during the demo.
 
-If the primary row is not present, open `/borrowers/B-000003` directly. If
-that returns the designed not-found page, use `/borrowers/B-000004` and say
+If the primary row is not present, open `/borrowers/B-000004` directly. If
+that returns the designed not-found page, use `/borrowers/B-000009` and say
 “I’m moving to the next deterministic forecast case while the scope is
 rechecked.” Do not use an unseeded borrower.
 
 ### 2:05–3:20 — Make the forecast the visual beat
 
 1. Scroll to `Forecast trajectory`.
-2. On the `D03LEV` card, point to the stored daily trajectory, threshold
+2. On the `D04COV` card, point to the stored daily trajectory, threshold
    marker and the visible crossing annotation. Name the displayed driver:
-   `debt expansion / tangible net worth`.
+   `EBIT / finance cost`.
 3. Activate the `60 days` named horizon stop. If the browser has reduced
    motion enabled, use the named stop instead of the range input; the stop is
    the supported no-JavaScript path.
@@ -131,7 +152,7 @@ its confidence state.”
 If a selected-day request reports an error, leave the current figures in view,
 say “The last stored value remains visible while this day is unavailable,” and
 continue with the three named horizon stops. If the full trajectory is absent,
-move to `B-000004` and show its stored path; an empty path is a data-readiness
+move to `B-000009` and show its stored path; an empty path is a data-readiness
 issue, not a reason to invent a crossing date.
 
 ### 3:20–4:05 — Open the why-panel on one figure
@@ -162,7 +183,7 @@ IDs.
 ### 4:05–5:15 — Compare two interventions
 
 1. Return to the case file and activate `Run simulation`.
-2. Confirm the simulator identifies `B-000003`, its facility and the selected
+2. Confirm the simulator identifies `B-000004`, its facility and the selected
    covenant forecast.
 3. Select these two catalogue options:
 
@@ -183,7 +204,7 @@ Say: “The simulator does not accept an effect model from the browser. It
 offers only bank-owned, applicable catalogue actions, persists each
 counterfactual, and keeps the assumptions next to the result.”
 
-If no options are shown, return to `/borrowers/B-000003` and reopen the
+If no options are shown, return to `/borrowers/B-000004` and reopen the
 simulator; the financial covenant should offer the two codes above. If the
 POST is rejected, read the displayed validation message, select no more than
 two options and retry once. If comparison still fails, move to `Forecast
@@ -193,8 +214,8 @@ intervention effect.
 ### 5:15–6:35 — Run intake against the demo document
 
 1. Open `Intake` from the main navigation, or go directly to `/intake`.
-2. In `Borrower reference`, enter `B-000003`.
-3. In `Facility reference`, enter `F-000003-01`.
+2. In `Borrower reference`, enter `B-000004`.
+3. In `Facility reference`, enter `F-000004-01`.
 4. Keep document type as `Sanction letter`.
 5. Choose `var/demo/phase-7a-sanction-letter.pdf` and submit `Upload`.
 6. Wait for the document state to reach extraction complete. Then run the
@@ -250,17 +271,19 @@ truth of the product and gives the audience a visible next surface.
 |---|---|---|
 | Sign-in loops or rejects the presenter | “The local session is not ready; I’m restarting the disposable presenter session.” | Restart the server, rerun `create_user.py` through `demo_up.ps1`, then `/sign-in`; do not bypass authentication. |
 | Queue is empty or says no completed run | “This screen is correctly refusing to fabricate a ranking without a completed run.” | Terminal: `python -m radarctl job run nightly.pipeline`; refresh `/`. If it cannot complete, `/governance`. |
-| `B-000003` is missing | “The borrower is outside the current portfolio scope, so the case lookup fails closed.” | `/borrowers/B-000004`, then `/borrowers/B-000009`. |
+| `B-000004` is missing | “The borrower is outside the current portfolio scope, so the case lookup fails closed.” | `/borrowers/B-000009`, then `/borrowers/B-000017`. |
 | Forecast path or selected day fails | “The previous stored value remains visible; the browser never invents a point.” | Use the `Today`, `30 days`, `60 days` and `90 days` stops, then show another seeded case. |
 | Why view fails | “Explainability is scoped to the same subject as the case file.” | `/audit`, then return to the case file. |
-| Simulator has no applicable action | “Only applicable, bank-owned catalogue actions can be simulated.” | `/borrowers/B-000003` → `Run simulation`; if still unavailable, show the forecast baseline. |
+| Simulator has no applicable action | “Only applicable, bank-owned catalogue actions can be simulated.” | `/borrowers/B-000004` → `Run simulation`; if still unavailable, show the forecast baseline. |
 | Intake rejects the PDF or provider is unavailable | “The intake boundary keeps an unverified clause from becoming a covenant.” | `/intake` hand-entry with the exact clause, or the existing case file. |
 | Memo link is missing/404 | “The stored analysis remains auditable, but this runtime has no browser memo handoff.” | `/audit`; record the defect and do not claim a memo was generated. |
 
 ## Presenter discipline
 
-- Keep the browser on `127.0.0.1`; the bootstrap deliberately selects SQLite,
-  local document storage and recorded AI responses.
+- Keep the browser on `127.0.0.1`; the bootstrap deliberately selects SQLite
+  and local document storage. With `-LiveModel`, AI explanations and memos are
+  drafted live through the corporate TCS gateway (`genailab-maas-gpt-5.4-mini`)
+  — real, billable calls, not recorded playback.
 - Speak from displayed values and labels. Do not turn a suppressed probability,
   unavailable crossing date or no-effect intervention into a positive claim.
 - Do not expose UUIDs, database files, environment variables, request logs or

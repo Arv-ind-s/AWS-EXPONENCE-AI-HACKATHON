@@ -12,6 +12,7 @@ needs no template change.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from decimal import Decimal, InvalidOperation
@@ -41,6 +42,7 @@ from covenant_radar.db.repositories.memo import MemoRepository
 from covenant_radar.db.repositories.trace import TraceSubject
 from covenant_radar.db.scoping import Scope, resolve_scope
 from covenant_radar.db.session import is_database_session
+from covenant_radar.domain.trace import TRACE_STAGE_MIN
 from covenant_radar.security.permissions import Permission
 from covenant_radar.security.rbac import Principal
 from covenant_radar.services.explain import explain
@@ -93,6 +95,7 @@ _LABELS: Final[Mapping[str, str]] = {
     "stage_confidence": "Confidence",
     "stage_received": "What it received",
     "stage_produced": "What it produced",
+    "technical_detail": "Technical detail",
     "decision_summary": "Decision summary",
     "reasoning_summary": "Reason this result was produced",
     "thresholds_heading": "Thresholds compared",
@@ -146,6 +149,38 @@ _DECIDER_LABEL_KEYS: Final[Mapping[str, str]] = {
     "statistical": "decider_statistical",
 }
 
+# Stages 1, 5 and 6 have no writer for the demo's directly-registered
+# covenants (intake) or at all yet (intervention, triage) — `_LABELS`'s
+# generic "This stage has not run." is truthful but leaves a reader no way
+# to tell "nothing has happened" from "this decision exists, just not
+# traced here." Each message below says which one it is, and where to look
+# for the real decision when one exists.
+_STAGE_NOT_RUN_MESSAGES: Final[Mapping[int, str]] = {
+    1: (
+        "No intake record exists for this borrower's covenants. Covenants added "
+        "directly by a credit officer, rather than confirmed from an uploaded "
+        "sanction letter, do not produce this stage."
+    ),
+    5: (
+        "No intervention decision is traced at this stage yet. Simulated "
+        "interventions for this borrower are available from the case file's "
+        "simulator, and can be compared there against doing nothing."
+    ),
+    6: (
+        "No triage decision is traced at this stage yet. This borrower's band "
+        "and urgency, when ranked, are shown on the portfolio queue."
+    ),
+}
+
+_VERDICT_LABELS: Final[Mapping[str, str]] = {
+    "pass": "passing",
+    "warning": "in warning",
+    "breach": "in breach",
+    "breach_cure_open": "in breach, with an open cure period",
+    "stale": "stale",
+    "not_computable": "not computable",
+}
+
 
 @dataclass(frozen=True, slots=True)
 class ThresholdView:
@@ -173,6 +208,7 @@ class StageView:
     stage: int
     name: str
     not_run: bool
+    not_run_message: str
     decider: str | None
     decider_label: str
     version_label: str
@@ -232,6 +268,8 @@ def create_why_router(
 
         stages = explain(session, TraceSubject(validated_type, validated_id))
         borrower = _subject_borrower(session, validated_type, record, scope)
+        if validated_type == ExplainSubjectType.BORROWER.value and borrower is not None:
+            stages = _fill_borrower_stages(session, stages, borrower.id)
         ai_explanation = _ai_explanation(
             session,
             stages,
@@ -392,12 +430,59 @@ def _subject_borrower(
     return RepositoryBase(session, Borrower).get(borrower_id, scope=scope)
 
 
+def _fill_borrower_stages(
+    session: Session,
+    stages: Sequence[ExplainStage],
+    borrower_id: UUID,
+) -> tuple[ExplainStage, ...]:
+    """Complete a borrower-level why-panel with stages recorded elsewhere.
+
+    Stage 2 (Covenant Engine) writes under its covenant test's own subject
+    and stage 4 (Forecast) under its forecast's own subject (`T-037`,
+    `T-058`) rather than the borrower's, so a plain borrower-subject read
+    shows both as ``not_run`` even when they plainly ran. This borrows the
+    borrower's own latest covenant test / forecast trace for exactly those
+    two stage slots, and only when the borrower-subject read had nothing —
+    a stage already present there is left untouched.
+    """
+
+    result = list(stages)
+    by_stage = {stage.stage: index for index, stage in enumerate(result)}
+    for stage_number, model, subject_type, order_column in (
+        (2, CovenantTest, ExplainSubjectType.COVENANT_TEST, CovenantTest.as_of_date),
+        (4, Forecast, ExplainSubjectType.FORECAST, Forecast.data_as_of),
+    ):
+        index = by_stage.get(stage_number)
+        if index is None or not result[index].not_run:
+            continue
+        subject_id = session.scalar(
+            select(model.id)
+            .join(CovenantVersion, model.covenant_version_id == CovenantVersion.id)
+            .join(Covenant, CovenantVersion.covenant_id == Covenant.id)
+            .join(Facility, Covenant.facility_id == Facility.id)
+            .where(Facility.borrower_id == borrower_id)
+            .order_by(order_column.desc())
+            .limit(1)
+        )
+        if not isinstance(subject_id, UUID):
+            continue
+        # `explain` always returns one padded entry per stage, in stage
+        # order, so the wanted stage sits at a fixed offset from the start.
+        replacement = explain(session, TraceSubject(subject_type.value, subject_id))[
+            stage_number - TRACE_STAGE_MIN
+        ]
+        if not replacement.not_run:
+            result[index] = replacement
+    return tuple(result)
+
+
 def _build_stage_view(stage: ExplainStage) -> StageView:
     if stage.not_run:
         return StageView(
             stage=stage.stage,
             name=stage.name,
             not_run=True,
+            not_run_message=_STAGE_NOT_RUN_MESSAGES.get(stage.stage, _LABELS["stage_not_run"]),
             decider=None,
             decider_label="",
             version_label="",
@@ -431,15 +516,16 @@ def _build_stage_view(stage: ExplainStage) -> StageView:
         stage=stage.stage,
         name=stage.name,
         not_run=False,
+        not_run_message="",
         decider=decider,
         decider_label=_LABELS.get(_DECIDER_LABEL_KEYS.get(decider, ""), decider.title()),
         version_label=_LABELS.get(_VERSION_LABEL_KEYS.get(decider, ""), ""),
         rule_or_prompt_version=stage.rule_or_prompt_version,
         confidence_display=(
-            f"{stage.confidence:.2f}" if isinstance(stage.confidence, Decimal) else None
+            _percentage(stage.confidence) if isinstance(stage.confidence, Decimal) else None
         ),
-        inputs=stage.inputs,
-        outputs=outputs,
+        inputs=_format_nested(stage.inputs),
+        outputs=_format_nested(outputs),
         thresholds=tuple(_threshold_view(entry) for entry in stage.thresholds_compared),
         sources=tuple(
             view for source in stage.sources if (view := _source_view(source)) is not None
@@ -453,13 +539,15 @@ def _build_stage_view(stage: ExplainStage) -> StageView:
 
 
 def _stage_summaries(stage: ExplainStage) -> tuple[str | None, str | None]:
-    """Turn dense stage-4 trace fields into a reviewable plain-language lead.
+    """Turn dense stage 2/4 trace fields into a reviewable plain-language lead.
 
-    The raw inputs and outputs remain immediately below this summary.  This
-    layer only names stored values; it never asks a model to reinterpret an
-    audited decision.
+    The raw inputs and outputs remain available (collapsed) below this
+    summary. This layer only names stored values; it never asks a model to
+    reinterpret an audited decision.
     """
 
+    if stage.stage == 2:
+        return _stage2_summary(stage)
     if stage.stage != 4:
         return None, None
     source = str(stage.outputs.get("probability_source", "deterministic")).strip().lower()
@@ -503,6 +591,55 @@ def _stage_summaries(stage: ExplainStage) -> tuple[str | None, str | None]:
     return decision, " ".join(reason_parts)
 
 
+def _stage2_summary(stage: ExplainStage) -> tuple[str | None, str | None]:
+    outputs = stage.outputs
+    verdict = str(outputs.get("verdict", "")).strip().lower()
+    if not verdict:
+        return None, None
+    verdict_label = _VERDICT_LABELS.get(verdict, verdict.replace("_", " "))
+    ratio_code = stage.inputs.get("ratio_code")
+    ratio_name = (
+        str(ratio_code).replace("_", " ").strip().capitalize() if ratio_code else "This covenant"
+    )
+    value = _as_decimal(outputs.get("value"))
+    threshold = _as_decimal(outputs.get("threshold_used"))
+    direction = str(stage.inputs.get("direction", "")).strip().lower()
+    direction_word = {"min": "at least", "max": "at most"}.get(direction, "")
+
+    decision = f"{ratio_name} is {verdict_label}"
+    if value is not None and threshold is not None:
+        decision += (
+            f": {_trimmed_decimal(value)} observed against a {_trimmed_decimal(threshold)} "
+            f"threshold"
+        )
+        if direction_word:
+            decision += f" ({direction_word})"
+    decision += "."
+
+    reason_parts: list[str] = []
+    headroom = _as_decimal(outputs.get("headroom_pct"))
+    if headroom is not None:
+        reason_parts.append(f"Headroom is {_trimmed_decimal(headroom)} percentage points.")
+    cure_ends_on = outputs.get("cure_ends_on")
+    if verdict == "breach_cure_open" and isinstance(cure_ends_on, str) and cure_ends_on.strip():
+        reason_parts.append(f"A cure period is open until {cure_ends_on}.")
+    if outputs.get("exception_applied"):
+        reason_parts.append("An approved exception was applied to this test.")
+    if outputs.get("waiver_applied"):
+        reason_parts.append("An approved waiver was applied to this test.")
+    stale_reason = outputs.get("stale_reason")
+    if verdict == "stale" and isinstance(stale_reason, str) and stale_reason.strip():
+        reason_parts.append(stale_reason.strip())
+    reason_context = outputs.get("reason_context")
+    if (
+        verdict == "not_computable"
+        and isinstance(reason_context, Mapping)
+        and outputs.get("reason")
+    ):
+        reason_parts.append(str(outputs["reason"]).replace("_", " ") + ".")
+    return decision, " ".join(reason_parts) if reason_parts else None
+
+
 def _percentage(value: object) -> str:
     number = _as_decimal(value)
     if number is None:
@@ -516,7 +653,7 @@ def _threshold_view(entry: Mapping[str, object]) -> ThresholdView:
     side_key = _SIDE_LABEL_KEYS.get(str(side), "")
     side_display = _LABELS.get(side_key, str(side) if side is not None else _LABELS["empty_value"])
     return ThresholdView(
-        name=str(entry.get("name", "")),
+        name=_humanize_key(str(entry.get("name", ""))),
         value_display=_display(entry.get("value")),
         observed_display=_display(entry.get("observed")),
         side_display=side_display,
@@ -528,7 +665,75 @@ def _display(value: object) -> str:
         return _LABELS["empty_value"]
     if isinstance(value, bool):
         return _LABELS["value_yes"] if value else _LABELS["value_no"]
+    number = _as_decimal(value)
+    if number is not None:
+        return _trimmed_decimal(number)
     return str(value)
+
+
+def _trimmed_decimal(number: Decimal) -> str:
+    """Format a trace decimal without its stored 8-place scale.
+
+    `RatioValue` columns persist every ratio/threshold at a fixed scale of 8
+    (`db/models/_decimal.py`), and the trace JSON boundary keeps a `Decimal`
+    as its exact text (`domain/trace.py`), so an unformatted threshold reads
+    as ``1.08000000`` instead of ``1.08``.
+    """
+
+    try:
+        number = number.quantize(Decimal("0.0001"))
+    except InvalidOperation:
+        pass
+    text = format(number, "f")
+    if "." in text:
+        text = text.rstrip("0").rstrip(".")
+    return text
+
+
+def _format_nested(value: object) -> object:
+    """Recursively apply :func:`_trimmed_decimal` to a stage's stored payload.
+
+    ``inputs``/``outputs`` are read straight from trace JSON, so any ratio or
+    threshold buried in them carries the same 8-place scale as a threshold
+    row. The macro that renders them (``why/_stage.html``) prints a scalar
+    as-is, so the trim has to happen here rather than in the template.
+    """
+
+    if isinstance(value, Mapping):
+        return {_humanize_key(key): _format_nested(item) for key, item in value.items()}
+    if isinstance(value, list | tuple):
+        return [_format_nested(item) for item in value]
+    if isinstance(value, bool) or value is None:
+        return value
+    number = _as_decimal(value)
+    if number is not None:
+        return _trimmed_decimal(number)
+    # A drafted sentence (stage 7's headline/summary) can carry the same
+    # over-precise ratio embedded in free text rather than as a lone value —
+    # trim those occurrences too rather than only whole-value matches.
+    return _LONG_DECIMAL_RE.sub(_replace_long_decimal, value) if isinstance(value, str) else value
+
+
+def _humanize_key(key: str) -> str:
+    """Turn a trace field's internal snake_case name into a reader-facing label.
+
+    The template prints every ``inputs``/``outputs`` key verbatim as a
+    definition-list term, so an unrecognised field like ``exception_id``
+    otherwise reaches the screen exactly as it is stored.
+    """
+
+    return key.replace("_", " ").strip().capitalize()
+
+
+_LONG_DECIMAL_RE: Final[re.Pattern[str]] = re.compile(r"(?<!\d)(\d+\.\d{4,})(?!\d)")
+
+
+def _replace_long_decimal(match: re.Match[str]) -> str:
+    try:
+        number = Decimal(match.group(1))
+    except InvalidOperation:
+        return match.group(1)
+    return _trimmed_decimal(number)
 
 
 def _source_view(source: object) -> SourceView | None:

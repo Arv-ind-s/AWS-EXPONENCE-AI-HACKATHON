@@ -1,0 +1,780 @@
+- generic [active] [ref=f1e1]:
+  - link "Skip to content" [ref=f1e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f1e3]:
+    - complementary "Workspace navigation" [ref=f1e4]:
+      - link "Covenant Radar" [ref=f1e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f1e13]:
+          - strong [ref=f1e14]: Covenant
+          - generic [ref=f1e15]: Radar
+      - navigation "Primary navigation" [ref=f1e16]:
+        - region [ref=f1e17]:
+          - heading "Monitor" [level=2] [ref=f1e18]
+          - link "Portfolio queue" [ref=f1e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f1e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f1e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f1e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f1e31]: "0"
+          - link "Search" [ref=f1e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f1e37]:
+          - heading "Portfolio data" [level=2] [ref=f1e38]
+          - link "Borrowers" [ref=f1e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f1e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f1e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f1e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f1e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f1e61]:
+          - heading "Workflows" [level=2] [ref=f1e62]
+          - link "Intake" [ref=f1e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f1e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f1e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f1e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f1e79]:
+          - heading "Administration" [level=2] [ref=f1e80]
+          - link "Action catalogue" [ref=f1e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f1e86] [cursor=pointer]
+    - generic [ref=f1e90]:
+      - banner [ref=f1e91]:
+        - generic [ref=f1e93]:
+          - generic [ref=f1e94]: Workspace
+          - generic [ref=f1e97]: Current view
+        - search [ref=f1e98]:
+          - generic [ref=f1e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f1e100]
+          - generic: /
+        - generic [ref=f1e101]:
+          - button "Live activity" [ref=f1e102]:
+            - generic [ref=f1e104]: Live
+          - button "Use dark theme" [ref=f1e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f1e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f1e112] [cursor=pointer]
+      - main [ref=f1e116]:
+        - generic [ref=f1e118]:
+          - paragraph [ref=f1e119]: Decision workspace
+          - heading "Portfolio queue" [level=1] [ref=f1e120]
+        - generic [ref=f1e122]:
+          - region [ref=f1e123]:
+            - heading "Portfolio snapshot" [level=2] [ref=f1e124]
+            - paragraph [ref=f1e125]:
+              - generic [ref=f1e126]: Ranked by urgency
+              - generic [aria-hidden] [ref=f1e127]: ·
+              - generic [ref=f1e128]: Latest completed run 02 Sep 2026
+              - generic [aria-hidden] [ref=f1e129]: ·
+              - generic [ref=f1e130]:
+                - text: checked
+                - time [ref=f1e131]: just now
+              - button "Check now" [ref=f1e132] [cursor=pointer]
+            - navigation "Band" [ref=f1e133]:
+              - link "All 36" [ref=f1e134] [cursor=pointer]:
+                - /url: /
+                - generic [ref=f1e135]: All
+                - strong [ref=f1e136]: "36"
+              - link "Act now 13" [ref=f1e137] [cursor=pointer]:
+                - /url: /?band=act
+                - generic "Act now" [ref=f1e138]
+                - strong [ref=f1e139]: "13"
+              - link "Amber 0" [ref=f1e140] [cursor=pointer]:
+                - /url: /?band=amber
+                - generic "Amber" [ref=f1e141]
+                - strong [ref=f1e142]: "0"
+              - link "Watch 23" [ref=f1e143] [cursor=pointer]:
+                - /url: /?band=watch
+                - generic "Watch" [ref=f1e144]
+                - strong [ref=f1e145]: "23"
+            - generic [ref=f1e146]:
+              - generic [ref=f1e147]:
+                - term [ref=f1e148]: Exposure in view
+                - definition [ref=f1e149]: ₹13,471.43
+              - generic [ref=f1e150]:
+                - term [ref=f1e151]: Changed today
+                - definition [ref=f1e152]: "0"
+          - group "Narrow the queue" [ref=f1e154]:
+            - generic [ref=f1e156]:
+              - generic [ref=f1e157]: Band
+              - combobox "Band" [ref=f1e158]:
+                - option "All bands" [selected]
+                - option "Act now"
+                - option "Amber"
+                - option "Watch"
+            - generic [ref=f1e159]:
+              - generic [ref=f1e160]: SMA band
+              - combobox "SMA band" [ref=f1e161]:
+                - option "All SMA bands" [selected]
+                - option "None"
+                - option "SMA-0"
+                - option "SMA-1"
+                - option "SMA-2"
+                - option "Beyond"
+            - generic [ref=f1e162]:
+              - generic [ref=f1e163]: Case state
+              - combobox "Case state" [ref=f1e164]:
+                - option "All case states" [selected]
+                - option "No case opened"
+                - option "Open"
+                - option "In progress"
+                - option "Monitoring"
+                - option "Escalated"
+                - option "Closed"
+            - generic [ref=f1e165]:
+              - generic [ref=f1e166]: Signal family
+              - combobox "Signal family" [ref=f1e167]:
+                - option "All signal families" [selected]
+                - option "Account activity"
+                - option "Payment behaviour"
+                - option "Facility utilisation"
+                - option "Treasury flows"
+                - option "Concentration exposure"
+                - option "Industry conditions"
+                - option "News deterioration"
+          - generic [ref=f1e168]:
+            - status [ref=f1e169]:
+              - text: Showing
+              - strong [ref=f1e170]: "36"
+              - text: of 36 borrowers
+            - button "Save this view" [ref=f1e172] [cursor=pointer]
+          - group [ref=f1e173]:
+            - generic "How to read this queue" [ref=f1e174] [cursor=pointer]
+          - region "Portfolio queue results" [ref=f1e175]:
+            - table [ref=f1e177]:
+              - caption [ref=f1e178]: Portfolio queue — Ranked by urgency, 02 Sep 2026
+              - rowgroup [ref=f1e179]:
+                - row [ref=f1e180]:
+                  - columnheader "Row detail" [ref=f1e181]
+                  - columnheader [ref=f1e183]:
+                    - checkbox "Select all rows" [ref=f1e184]
+                  - columnheader "#" [ref=f1e185]
+                  - columnheader "Borrower" [ref=f1e186]
+                  - columnheader "Exposure" [ref=f1e187]
+                  - columnheader "Band" [ref=f1e188]
+                  - columnheader "Dated risk" [ref=f1e189]
+              - rowgroup [ref=f1e190]:
+                - row [ref=f1e191]:
+                  - cell [ref=f1e192]:
+                    - button "Show detail for Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f1e193] [cursor=pointer]
+                  - cell [ref=f1e196]:
+                    - checkbox "Select Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f1e197]
+                  - cell "1" [ref=f1e198]
+                  - cell "Deshmukh Precision Materials and Components Kavya 00008 Private Limited B-000008" [ref=f1e199]:
+                    - link "Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f1e200] [cursor=pointer]:
+                      - /url: /borrowers/B-000008
+                    - generic [ref=f1e201]: B-000008
+                  - cell "₹636.30" [ref=f1e202]
+                  - cell "Act" [ref=f1e203]
+                  - cell [ref=f1e205]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Deshmukh Precision Materials and Components Kavya 00008 Private Limited is ranked here" [ref=f1e206] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5e23-7c1e-9a1a-f96637819427
+                      - text: Why this score
+                - row [ref=f1e207]:
+                  - cell [ref=f1e208]:
+                    - button "Show detail for Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f1e209] [cursor=pointer]
+                  - cell [ref=f1e212]:
+                    - checkbox "Select Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f1e213]
+                  - cell "2" [ref=f1e214]
+                  - cell "Patel Applied Engineering Systems Aarav 00006 Private Limited B-000006" [ref=f1e215]:
+                    - link "Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f1e216] [cursor=pointer]:
+                      - /url: /borrowers/B-000006
+                    - generic [ref=f1e217]: B-000006
+                  - cell "₹457.24" [ref=f1e218]
+                  - cell "Act" [ref=f1e219]
+                  - cell [ref=f1e221]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Patel Applied Engineering Systems Aarav 00006 Private Limited is ranked here" [ref=f1e222] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5c6f-7224-b845-549422be294d
+                      - text: Why this score
+                - row [ref=f1e223]:
+                  - cell [ref=f1e224]:
+                    - button "Show detail for Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f1e225] [cursor=pointer]
+                  - cell [ref=f1e228]:
+                    - checkbox "Select Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f1e229]
+                  - cell "3" [ref=f1e230]
+                  - cell "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited B-000003" [ref=f1e231]:
+                    - link "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f1e232] [cursor=pointer]:
+                      - /url: /borrowers/B-000003
+                    - generic [ref=f1e233]: B-000003
+                  - cell "₹350.46" [ref=f1e234]
+                  - cell "Act" [ref=f1e235]
+                  - cell [ref=f1e237]:
+                    - text: 99% by 02 Sep 2026
+                    - link "Why Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited is ranked here" [ref=f1e238] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-59ce-79d3-8e54-d3b51919c96f
+                      - text: Why this score
+                - row [ref=f1e239]:
+                  - cell [ref=f1e240]:
+                    - button "Show detail for Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f1e241] [cursor=pointer]
+                  - cell [ref=f1e244]:
+                    - checkbox "Select Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f1e245]
+                  - cell "4" [ref=f1e246]
+                  - cell "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited B-000013" [ref=f1e247]:
+                    - link "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f1e248] [cursor=pointer]:
+                      - /url: /borrowers/B-000013
+                    - generic [ref=f1e249]: B-000013
+                  - cell "₹260.81" [ref=f1e250]
+                  - cell "Act" [ref=f1e251]
+                  - cell [ref=f1e253]:
+                    - text: 99% by 23 Nov 2026
+                    - link "Why Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited is ranked here" [ref=f1e254] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6309-7fcd-94d3-5225e1e4f989
+                      - text: Why this score
+                - row [ref=f1e255]:
+                  - cell [ref=f1e256]:
+                    - button "Show detail for Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f1e257] [cursor=pointer]
+                  - cell [ref=f1e260]:
+                    - checkbox "Select Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f1e261]
+                  - cell "5" [ref=f1e262]
+                  - cell "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited B-000009" [ref=f1e263]:
+                    - link "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f1e264] [cursor=pointer]:
+                      - /url: /borrowers/B-000009
+                    - generic [ref=f1e265]: B-000009
+                  - cell "₹245.75" [ref=f1e266]
+                  - cell "Act" [ref=f1e267]
+                  - cell [ref=f1e269]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited is ranked here" [ref=f1e270] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5ef3-742a-8b51-4314d52675bc
+                      - text: Why this score
+                - row [ref=f1e271]:
+                  - cell [ref=f1e272]:
+                    - button "Show detail for Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f1e273] [cursor=pointer]
+                  - cell [ref=f1e276]:
+                    - checkbox "Select Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f1e277]
+                  - cell "6" [ref=f1e278]
+                  - cell "Menon Energy Transition Technologies Saanvi 00004 Private Limited B-000004" [ref=f1e279]:
+                    - link "Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f1e280] [cursor=pointer]:
+                      - /url: /borrowers/B-000004
+                    - generic [ref=f1e281]: B-000004
+                  - cell "₹241.67" [ref=f1e282]
+                  - cell "Act" [ref=f1e283]
+                  - cell [ref=f1e285]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Menon Energy Transition Technologies Saanvi 00004 Private Limited is ranked here" [ref=f1e286] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5aa5-7382-8752-fc1f182bbc7b
+                      - text: Why this score
+                - row [ref=f1e287]:
+                  - cell [ref=f1e288]:
+                    - button "Show detail for Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f1e289] [cursor=pointer]
+                  - cell [ref=f1e292]:
+                    - checkbox "Select Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f1e293]
+                  - cell "7" [ref=f1e294]
+                  - cell "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited B-000011" [ref=f1e295]:
+                    - link "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f1e296] [cursor=pointer]:
+                      - /url: /borrowers/B-000011
+                    - generic [ref=f1e297]: B-000011
+                  - cell "₹196.04" [ref=f1e298]
+                  - cell "Act" [ref=f1e299]
+                  - cell [ref=f1e301]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited is ranked here" [ref=f1e302] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-60e4-7cca-ac50-84297acb0c1f
+                      - text: Why this score
+                - row [ref=f1e303]:
+                  - cell [ref=f1e304]:
+                    - button "Show detail for Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f1e305] [cursor=pointer]
+                  - cell [ref=f1e308]:
+                    - checkbox "Select Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f1e309]
+                  - cell "8" [ref=f1e310]
+                  - cell "Nair Integrated Manufacturing Systems Devika 00012 Private Limited B-000012" [ref=f1e311]:
+                    - link "Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f1e312] [cursor=pointer]:
+                      - /url: /borrowers/B-000012
+                    - generic [ref=f1e313]: B-000012
+                  - cell "₹195.71" [ref=f1e314]
+                  - cell "Act" [ref=f1e315]
+                  - cell [ref=f1e317]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Nair Integrated Manufacturing Systems Devika 00012 Private Limited is ranked here" [ref=f1e318] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6203-7e3a-8469-fe091801cf8f
+                      - text: Why this score
+                - row [ref=f1e319]:
+                  - cell [ref=f1e320]:
+                    - button "Show detail for Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f1e321] [cursor=pointer]
+                  - cell [ref=f1e324]:
+                    - checkbox "Select Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f1e325]
+                  - cell "9" [ref=f1e326]
+                  - cell "Sharma Applied Engineering Systems Arjun 00010 Private Limited B-000010" [ref=f1e327]:
+                    - link "Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f1e328] [cursor=pointer]:
+                      - /url: /borrowers/B-000010
+                    - generic [ref=f1e329]: B-000010
+                  - cell "₹164.40" [ref=f1e330]
+                  - cell "Act" [ref=f1e331]
+                  - cell [ref=f1e333]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Sharma Applied Engineering Systems Arjun 00010 Private Limited is ranked here" [ref=f1e334] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5fce-7168-bdfd-b4bf54675f8d
+                      - text: Why this score
+                - row [ref=f1e335]:
+                  - cell [ref=f1e336]:
+                    - button "Show detail for Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f1e337] [cursor=pointer]
+                  - cell [ref=f1e340]:
+                    - checkbox "Select Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f1e341]
+                  - cell "10" [ref=f1e342]
+                  - cell "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited B-000007" [ref=f1e343]:
+                    - link "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f1e344] [cursor=pointer]:
+                      - /url: /borrowers/B-000007
+                    - generic [ref=f1e345]: B-000007
+                  - cell "₹164.35" [ref=f1e346]
+                  - cell "Act" [ref=f1e347]
+                  - cell [ref=f1e349]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Menon Integrated Manufacturing Systems Vikram 00007 Private Limited is ranked here" [ref=f1e350] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5d43-7054-aa31-41c44a53d552
+                      - text: Why this score
+                - row [ref=f1e351]:
+                  - cell [ref=f1e352]:
+                    - button "Show detail for Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f1e353] [cursor=pointer]
+                  - cell [ref=f1e356]:
+                    - checkbox "Select Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f1e357]
+                  - cell "11" [ref=f1e358]
+                  - cell "Subramanian Precision Materials and Components Kavya 00001 Private Limited B-000001" [ref=f1e359]:
+                    - link "Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f1e360] [cursor=pointer]:
+                      - /url: /borrowers/B-000001
+                    - generic [ref=f1e361]: B-000001
+                  - cell "₹158.92" [ref=f1e362]
+                  - cell "Act" [ref=f1e363]
+                  - cell [ref=f1e365]:
+                    - text: 99% by 02 Sep 2026
+                    - link "Why Subramanian Precision Materials and Components Kavya 00001 Private Limited is ranked here" [ref=f1e366] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-57fe-739d-99a1-7516296940d1
+                      - text: Why this score
+                - row [ref=f1e367]:
+                  - cell [ref=f1e368]:
+                    - button "Show detail for Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f1e369] [cursor=pointer]
+                  - cell [ref=f1e372]:
+                    - checkbox "Select Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f1e373]
+                  - cell "12" [ref=f1e374]
+                  - cell "Patel Precision Materials and Components Kavya 00005 Private Limited B-000005" [ref=f1e375]:
+                    - link "Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f1e376] [cursor=pointer]:
+                      - /url: /borrowers/B-000005
+                    - generic [ref=f1e377]: B-000005
+                  - cell "₹147.52" [ref=f1e378]
+                  - cell "Act" [ref=f1e379]
+                  - cell [ref=f1e381]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Patel Precision Materials and Components Kavya 00005 Private Limited is ranked here" [ref=f1e382] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-5b94-7220-bb69-79dc10a5c50a
+                      - text: Why this score
+                - row [ref=f1e383]:
+                  - cell [ref=f1e384]:
+                    - button "Show detail for Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f1e385] [cursor=pointer]
+                  - cell [ref=f1e388]:
+                    - checkbox "Select Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f1e389]
+                  - cell "13" [ref=f1e390]
+                  - cell "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited B-000002" [ref=f1e391]:
+                    - link "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f1e392] [cursor=pointer]:
+                      - /url: /borrowers/B-000002
+                    - generic [ref=f1e393]: B-000002
+                  - cell "₹133.54" [ref=f1e394]
+                  - cell "Act" [ref=f1e395]
+                  - cell [ref=f1e397]:
+                    - text: 99% by 02 Sep 2026
+                    - link "Why Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited is ranked here" [ref=f1e398] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-58f1-780f-8b8e-42dda9db0804
+                      - text: Why this score
+                - row [ref=f1e399]:
+                  - cell [ref=f1e400]:
+                    - button "Show detail for Kapoor Precision Materials and Components Nandini 00025 Private Limited" [ref=f1e401] [cursor=pointer]
+                  - cell [ref=f1e404]:
+                    - checkbox "Kapoor Precision Materials and Components Nandini 00025 Private Limited has no case to act on" [disabled] [ref=f1e405]
+                  - cell "14" [ref=f1e406]
+                  - cell "Kapoor Precision Materials and Components Nandini 00025 Private Limited B-000025" [ref=f1e407]:
+                    - link "Kapoor Precision Materials and Components Nandini 00025 Private Limited" [ref=f1e408] [cursor=pointer]:
+                      - /url: /borrowers/B-000025
+                    - generic [ref=f1e409]: B-000025
+                  - cell "₹1,205.31" [ref=f1e410]
+                  - cell "Watch" [ref=f1e411]
+                  - cell [ref=f1e413]:
+                    - text: 0%
+                    - link "Why Kapoor Precision Materials and Components Nandini 00025 Private Limited is ranked here" [ref=f1e414] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-74ae-76cf-934f-9fd175b3cda7
+                      - text: Why this score
+                - row [ref=f1e415]:
+                  - cell [ref=f1e416]:
+                    - button "Show detail for Reddy Capital Equipment and Services Arjun 00023 Private Limited" [ref=f1e417] [cursor=pointer]
+                  - cell [ref=f1e420]:
+                    - checkbox "Reddy Capital Equipment and Services Arjun 00023 Private Limited has no case to act on" [disabled] [ref=f1e421]
+                  - cell "15" [ref=f1e422]
+                  - cell "Reddy Capital Equipment and Services Arjun 00023 Private Limited B-000023" [ref=f1e423]:
+                    - link "Reddy Capital Equipment and Services Arjun 00023 Private Limited" [ref=f1e424] [cursor=pointer]:
+                      - /url: /borrowers/B-000023
+                    - generic [ref=f1e425]: B-000023
+                  - cell "₹1,180.46" [ref=f1e426]
+                  - cell "Watch" [ref=f1e427]
+                  - cell [ref=f1e429]:
+                    - text: 0%
+                    - link "Why Reddy Capital Equipment and Services Arjun 00023 Private Limited is ranked here" [ref=f1e430] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-71b6-79e2-9312-63b2762a792d
+                      - text: Why this score
+                - row [ref=f1e431]:
+                  - cell [ref=f1e432]:
+                    - button "Show detail for Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f1e433] [cursor=pointer]
+                  - cell [ref=f1e436]:
+                    - checkbox "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited has no case to act on" [disabled] [ref=f1e437]
+                  - cell "16" [ref=f1e438]
+                  - cell "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited B-000022" [ref=f1e439]:
+                    - link "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f1e440] [cursor=pointer]:
+                      - /url: /borrowers/B-000022
+                    - generic [ref=f1e441]: B-000022
+                  - cell "₹1,138.28" [ref=f1e442]
+                  - cell "Watch" [ref=f1e443]
+                  - cell [ref=f1e445]:
+                    - text: 0%
+                    - link "Why Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited is ranked here" [ref=f1e446] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7010-7882-b550-efdeaf943c60
+                      - text: Why this score
+                - row [ref=f1e447]:
+                  - cell [ref=f1e448]:
+                    - button "Show detail for Bhatia Advanced Industrial Components Rohan 00036 Private Limited" [ref=f1e449] [cursor=pointer]
+                  - cell [ref=f1e452]:
+                    - checkbox "Bhatia Advanced Industrial Components Rohan 00036 Private Limited has no case to act on" [disabled] [ref=f1e453]
+                  - cell "17" [ref=f1e454]
+                  - cell "Bhatia Advanced Industrial Components Rohan 00036 Private Limited B-000036" [ref=f1e455]:
+                    - link "Bhatia Advanced Industrial Components Rohan 00036 Private Limited" [ref=f1e456] [cursor=pointer]:
+                      - /url: /borrowers/B-000036
+                    - generic [ref=f1e457]: B-000036
+                  - cell "₹709.14" [ref=f1e458]
+                  - cell "Watch" [ref=f1e459]
+                  - cell [ref=f1e461]:
+                    - text: 0%
+                    - link "Why Bhatia Advanced Industrial Components Rohan 00036 Private Limited is ranked here" [ref=f1e462] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-88c3-7e65-ad77-8ca492418cf6
+                      - text: Why this score
+                - row [ref=f1e463]:
+                  - cell [ref=f1e464]:
+                    - button "Show detail for Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f1e465] [cursor=pointer]
+                  - cell [ref=f1e468]:
+                    - checkbox "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited has no case to act on" [disabled] [ref=f1e469]
+                  - cell "18" [ref=f1e470]
+                  - cell "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited B-000015" [ref=f1e471]:
+                    - link "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f1e472] [cursor=pointer]:
+                      - /url: /borrowers/B-000015
+                    - generic [ref=f1e473]: B-000015
+                  - cell "₹656.68" [ref=f1e474]
+                  - cell "Watch" [ref=f1e475]
+                  - cell [ref=f1e477]:
+                    - text: 0%
+                    - link "Why Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited is ranked here" [ref=f1e478] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-65f2-76fb-904e-e160755ec73d
+                      - text: Why this score
+                - row [ref=f1e479]:
+                  - cell [ref=f1e480]:
+                    - button "Show detail for Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f1e481] [cursor=pointer]
+                  - cell [ref=f1e484]:
+                    - checkbox "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited has no case to act on" [disabled] [ref=f1e485]
+                  - cell "19" [ref=f1e486]
+                  - cell "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited B-000014" [ref=f1e487]:
+                    - link "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f1e488] [cursor=pointer]:
+                      - /url: /borrowers/B-000014
+                    - generic [ref=f1e489]: B-000014
+                  - cell "₹562.84" [ref=f1e490]
+                  - cell "Watch" [ref=f1e491]
+                  - cell [ref=f1e493]:
+                    - text: 0%
+                    - link "Why Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited is ranked here" [ref=f1e494] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6487-74b3-88a3-e577c928596f
+                      - text: Why this score
+                - row [ref=f1e495]:
+                  - cell [ref=f1e496]:
+                    - button "Show detail for Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f1e497] [cursor=pointer]
+                  - cell [ref=f1e500]:
+                    - checkbox "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited has no case to act on" [disabled] [ref=f1e501]
+                  - cell "20" [ref=f1e502]
+                  - cell "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited B-000034" [ref=f1e503]:
+                    - link "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f1e504] [cursor=pointer]:
+                      - /url: /borrowers/B-000034
+                    - generic [ref=f1e505]: B-000034
+                  - cell "₹521.21" [ref=f1e506]
+                  - cell "Watch" [ref=f1e507]
+                  - cell [ref=f1e509]:
+                    - text: 0%
+                    - link "Why Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited is ranked here" [ref=f1e510] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-849a-7b06-b8d8-62507eb551ce
+                      - text: Why this score
+                - row [ref=f1e511]:
+                  - cell [ref=f1e512]:
+                    - button "Show detail for Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f1e513] [cursor=pointer]
+                  - cell [ref=f1e516]:
+                    - checkbox "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited has no case to act on" [disabled] [ref=f1e517]
+                  - cell "21" [ref=f1e518]
+                  - cell "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited B-000030" [ref=f1e519]:
+                    - link "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f1e520] [cursor=pointer]:
+                      - /url: /borrowers/B-000030
+                    - generic [ref=f1e521]: B-000030
+                  - cell "₹512.57" [ref=f1e522]
+                  - cell "Watch" [ref=f1e523]
+                  - cell [ref=f1e525]:
+                    - text: 0%
+                    - link "Why Chatterjee Energy Transition Technologies Rohan 00030 Private Limited is ranked here" [ref=f1e526] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7c54-723e-87e6-d613a06aae60
+                      - text: Why this score
+                - row [ref=f1e527]:
+                  - cell [ref=f1e528]:
+                    - button "Show detail for Chatterjee Applied Engineering Systems Meera 00029 Private Limited" [ref=f1e529] [cursor=pointer]
+                  - cell [ref=f1e532]:
+                    - checkbox "Chatterjee Applied Engineering Systems Meera 00029 Private Limited has no case to act on" [disabled] [ref=f1e533]
+                  - cell "22" [ref=f1e534]
+                  - cell "Chatterjee Applied Engineering Systems Meera 00029 Private Limited B-000029" [ref=f1e535]:
+                    - link "Chatterjee Applied Engineering Systems Meera 00029 Private Limited" [ref=f1e536] [cursor=pointer]:
+                      - /url: /borrowers/B-000029
+                    - generic [ref=f1e537]: B-000029
+                  - cell "₹494.09" [ref=f1e538]
+                  - cell "Watch" [ref=f1e539]
+                  - cell [ref=f1e541]:
+                    - text: 0%
+                    - link "Why Chatterjee Applied Engineering Systems Meera 00029 Private Limited is ranked here" [ref=f1e542] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7a94-7ff6-83f2-0ad7a151ba6b
+                      - text: Why this score
+                - row [ref=f1e543]:
+                  - cell [ref=f1e544]:
+                    - button "Show detail for Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f1e545] [cursor=pointer]
+                  - cell [ref=f1e548]:
+                    - checkbox "Bhatia Capital Equipment and Services Ananya 00020 Private Limited has no case to act on" [disabled] [ref=f1e549]
+                  - cell "23" [ref=f1e550]
+                  - cell "Bhatia Capital Equipment and Services Ananya 00020 Private Limited B-000020" [ref=f1e551]:
+                    - link "Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f1e552] [cursor=pointer]:
+                      - /url: /borrowers/B-000020
+                    - generic [ref=f1e553]: B-000020
+                  - cell "₹471.54" [ref=f1e554]
+                  - cell "Watch" [ref=f1e555]
+                  - cell [ref=f1e557]:
+                    - text: 0%
+                    - link "Why Bhatia Capital Equipment and Services Ananya 00020 Private Limited is ranked here" [ref=f1e558] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6cfb-7795-b4ae-37abea7db2e5
+                      - text: Why this score
+                - row [ref=f1e559]:
+                  - cell [ref=f1e560]:
+                    - button "Show detail for Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited" [ref=f1e561] [cursor=pointer]
+                  - cell [ref=f1e564]:
+                    - checkbox "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited has no case to act on" [disabled] [ref=f1e565]
+                  - cell "24" [ref=f1e566]
+                  - cell "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited B-000035" [ref=f1e567]:
+                    - link "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited" [ref=f1e568] [cursor=pointer]:
+                      - /url: /borrowers/B-000035
+                    - generic [ref=f1e569]: B-000035
+                  - cell "₹465.11" [ref=f1e570]
+                  - cell "Watch" [ref=f1e571]
+                  - cell [ref=f1e573]:
+                    - text: 0%
+                    - link "Why Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited is ranked here" [ref=f1e574] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-86a2-763a-afac-c173592cc899
+                      - text: Why this score
+                - row [ref=f1e575]:
+                  - cell [ref=f1e576]:
+                    - button "Show detail for Mukherjee National Supply Chain Services Devika 00028 Private Limited" [ref=f1e577] [cursor=pointer]
+                  - cell [ref=f1e580]:
+                    - checkbox "Mukherjee National Supply Chain Services Devika 00028 Private Limited has no case to act on" [disabled] [ref=f1e581]
+                  - cell "25" [ref=f1e582]
+                  - cell "Mukherjee National Supply Chain Services Devika 00028 Private Limited B-000028" [ref=f1e583]:
+                    - link "Mukherjee National Supply Chain Services Devika 00028 Private Limited" [ref=f1e584] [cursor=pointer]:
+                      - /url: /borrowers/B-000028
+                    - generic [ref=f1e585]: B-000028
+                  - cell "₹319.25" [ref=f1e586]
+                  - cell "Watch" [ref=f1e587]
+                  - cell [ref=f1e589]:
+                    - text: 0%
+                    - link "Why Mukherjee National Supply Chain Services Devika 00028 Private Limited is ranked here" [ref=f1e590] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-791e-7b3e-845b-15fb453b6a93
+                      - text: Why this score
+                - row [ref=f1e591]:
+                  - cell [ref=f1e592]:
+                    - button "Show detail for Kapoor Precision Materials and Components Kavya 00032 Private Limited" [ref=f1e593] [cursor=pointer]
+                  - cell [ref=f1e596]:
+                    - checkbox "Kapoor Precision Materials and Components Kavya 00032 Private Limited has no case to act on" [disabled] [ref=f1e597]
+                  - cell "26" [ref=f1e598]
+                  - cell "Kapoor Precision Materials and Components Kavya 00032 Private Limited B-000032" [ref=f1e599]:
+                    - link "Kapoor Precision Materials and Components Kavya 00032 Private Limited" [ref=f1e600] [cursor=pointer]:
+                      - /url: /borrowers/B-000032
+                    - generic [ref=f1e601]: B-000032
+                  - cell "₹318.85" [ref=f1e602]
+                  - cell "Watch" [ref=f1e603]
+                  - cell [ref=f1e605]:
+                    - text: 0%
+                    - link "Why Kapoor Precision Materials and Components Kavya 00032 Private Limited is ranked here" [ref=f1e606] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-8076-7816-b146-b43556e18bc8
+                      - text: Why this score
+                - row [ref=f1e607]:
+                  - cell [ref=f1e608]:
+                    - button "Show detail for Nair Agro Processing and Logistics Meera 00027 Private Limited" [ref=f1e609] [cursor=pointer]
+                  - cell [ref=f1e612]:
+                    - checkbox "Nair Agro Processing and Logistics Meera 00027 Private Limited has no case to act on" [disabled] [ref=f1e613]
+                  - cell "27" [ref=f1e614]
+                  - cell "Nair Agro Processing and Logistics Meera 00027 Private Limited B-000027" [ref=f1e615]:
+                    - link "Nair Agro Processing and Logistics Meera 00027 Private Limited" [ref=f1e616] [cursor=pointer]:
+                      - /url: /borrowers/B-000027
+                    - generic [ref=f1e617]: B-000027
+                  - cell "₹262.70" [ref=f1e618]
+                  - cell "Watch" [ref=f1e619]
+                  - cell [ref=f1e621]:
+                    - text: 0%
+                    - link "Why Nair Agro Processing and Logistics Meera 00027 Private Limited is ranked here" [ref=f1e622] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-779b-7b27-aaac-8ac498cdd2dd
+                      - text: Why this score
+                - row [ref=f1e623]:
+                  - cell [ref=f1e624]:
+                    - button "Show detail for Subramanian Agro Processing and Logistics Kavya 00026 Private Limited" [ref=f1e625] [cursor=pointer]
+                  - cell [ref=f1e628]:
+                    - checkbox "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited has no case to act on" [disabled] [ref=f1e629]
+                  - cell "28" [ref=f1e630]
+                  - cell "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited B-000026" [ref=f1e631]:
+                    - link "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited" [ref=f1e632] [cursor=pointer]:
+                      - /url: /borrowers/B-000026
+                    - generic [ref=f1e633]: B-000026
+                  - cell "₹205.25" [ref=f1e634]
+                  - cell "Watch" [ref=f1e635]
+                  - cell [ref=f1e637]:
+                    - text: 0%
+                    - link "Why Subramanian Agro Processing and Logistics Kavya 00026 Private Limited is ranked here" [ref=f1e638] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7634-7c4f-a7d3-91603d9e3a7f
+                      - text: Why this score
+                - row [ref=f1e639]:
+                  - cell [ref=f1e640]:
+                    - button "Show detail for Malhotra Capital Equipment and Services Aarav 00021 Private Limited" [ref=f1e641] [cursor=pointer]
+                  - cell [ref=f1e644]:
+                    - checkbox "Malhotra Capital Equipment and Services Aarav 00021 Private Limited has no case to act on" [disabled] [ref=f1e645]
+                  - cell "29" [ref=f1e646]
+                  - cell "Malhotra Capital Equipment and Services Aarav 00021 Private Limited B-000021" [ref=f1e647]:
+                    - link "Malhotra Capital Equipment and Services Aarav 00021 Private Limited" [ref=f1e648] [cursor=pointer]:
+                      - /url: /borrowers/B-000021
+                    - generic [ref=f1e649]: B-000021
+                  - cell "₹196.71" [ref=f1e650]
+                  - cell "Watch" [ref=f1e651]
+                  - cell [ref=f1e653]:
+                    - text: 0%
+                    - link "Why Malhotra Capital Equipment and Services Aarav 00021 Private Limited is ranked here" [ref=f1e654] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6e83-74a2-b502-5b72c9c08505
+                      - text: Why this score
+                - row [ref=f1e655]:
+                  - cell [ref=f1e656]:
+                    - button "Show detail for Menon Precision Materials and Components Rohan 00031 Private Limited" [ref=f1e657] [cursor=pointer]
+                  - cell [ref=f1e660]:
+                    - checkbox "Menon Precision Materials and Components Rohan 00031 Private Limited has no case to act on" [disabled] [ref=f1e661]
+                  - cell "30" [ref=f1e662]
+                  - cell "Menon Precision Materials and Components Rohan 00031 Private Limited B-000031" [ref=f1e663]:
+                    - link "Menon Precision Materials and Components Rohan 00031 Private Limited" [ref=f1e664] [cursor=pointer]:
+                      - /url: /borrowers/B-000031
+                    - generic [ref=f1e665]: B-000031
+                  - cell "₹186.48" [ref=f1e666]
+                  - cell "Watch" [ref=f1e667]
+                  - cell [ref=f1e669]:
+                    - text: 0%
+                    - link "Why Menon Precision Materials and Components Rohan 00031 Private Limited is ranked here" [ref=f1e670] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7e71-72a4-b1d2-ecee535289c3
+                      - text: Why this score
+                - row [ref=f1e671]:
+                  - cell [ref=f1e672]:
+                    - button "Show detail for Subramanian Precision Materials and Components Saanvi 00019 Private Limited" [ref=f1e673] [cursor=pointer]
+                  - cell [ref=f1e676]:
+                    - checkbox "Subramanian Precision Materials and Components Saanvi 00019 Private Limited has no case to act on" [disabled] [ref=f1e677]
+                  - cell "31" [ref=f1e678]
+                  - cell "Subramanian Precision Materials and Components Saanvi 00019 Private Limited B-000019" [ref=f1e679]:
+                    - link "Subramanian Precision Materials and Components Saanvi 00019 Private Limited" [ref=f1e680] [cursor=pointer]:
+                      - /url: /borrowers/B-000019
+                    - generic [ref=f1e681]: B-000019
+                  - cell "₹163.16" [ref=f1e682]
+                  - cell "Watch" [ref=f1e683]
+                  - cell [ref=f1e685]:
+                    - text: 0%
+                    - link "Why Subramanian Precision Materials and Components Saanvi 00019 Private Limited is ranked here" [ref=f1e686] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6b86-727b-818b-5c8aac560b3c
+                      - text: Why this score
+                - row [ref=f1e687]:
+                  - cell [ref=f1e688]:
+                    - button "Show detail for Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited" [ref=f1e689] [cursor=pointer]
+                  - cell [ref=f1e692]:
+                    - checkbox "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited has no case to act on" [disabled] [ref=f1e693]
+                  - cell "32" [ref=f1e694]
+                  - cell "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited B-000033" [ref=f1e695]:
+                    - link "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited" [ref=f1e696] [cursor=pointer]:
+                      - /url: /borrowers/B-000033
+                    - generic [ref=f1e697]: B-000033
+                  - cell "₹153.29" [ref=f1e698]
+                  - cell "Watch" [ref=f1e699]
+                  - cell [ref=f1e701]:
+                    - text: 0%
+                    - link "Why Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited is ranked here" [ref=f1e702] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-8288-7461-be58-e5765e63f96f
+                      - text: Why this score
+                - row [ref=f1e703]:
+                  - cell [ref=f1e704]:
+                    - button "Show detail for Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f1e705] [cursor=pointer]
+                  - cell [ref=f1e708]:
+                    - checkbox "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited has no case to act on" [disabled] [ref=f1e709]
+                  - cell "33" [ref=f1e710]
+                  - cell "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited B-000017" [ref=f1e711]:
+                    - link "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f1e712] [cursor=pointer]:
+                      - /url: /borrowers/B-000017
+                    - generic [ref=f1e713]: B-000017
+                  - cell "₹144.09" [ref=f1e714]
+                  - cell "Watch" [ref=f1e715]
+                  - cell [ref=f1e717]:
+                    - text: 0%
+                    - link "Why Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited is ranked here" [ref=f1e718] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-68b4-7fbd-b6a1-c0bd9c5f4468
+                      - text: Why this score
+                - row [ref=f1e719]:
+                  - cell [ref=f1e720]:
+                    - button "Show detail for Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited" [ref=f1e721] [cursor=pointer]
+                  - cell [ref=f1e724]:
+                    - checkbox "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited has no case to act on" [disabled] [ref=f1e725]
+                  - cell "34" [ref=f1e726]
+                  - cell "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited B-000024" [ref=f1e727]:
+                    - link "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited" [ref=f1e728] [cursor=pointer]:
+                      - /url: /borrowers/B-000024
+                    - generic [ref=f1e729]: B-000024
+                  - cell "₹102.58" [ref=f1e730]
+                  - cell "Watch" [ref=f1e731]
+                  - cell [ref=f1e733]:
+                    - text: 0%
+                    - link "Why Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited is ranked here" [ref=f1e734] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-7341-726a-9786-eb82ddb61ef9
+                      - text: Why this score
+                - row [ref=f1e735]:
+                  - cell [ref=f1e736]:
+                    - button "Show detail for Nair Integrated Manufacturing Systems Rohan 00016 Private Limited" [ref=f1e737] [cursor=pointer]
+                  - cell [ref=f1e740]:
+                    - checkbox "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited has no case to act on" [disabled] [ref=f1e741]
+                  - cell "35" [ref=f1e742]
+                  - cell "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited B-000016" [ref=f1e743]:
+                    - link "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited" [ref=f1e744] [cursor=pointer]:
+                      - /url: /borrowers/B-000016
+                    - generic [ref=f1e745]: B-000016
+                  - cell "₹95.59" [ref=f1e746]
+                  - cell "Watch" [ref=f1e747]
+                  - cell [ref=f1e749]:
+                    - text: 0%
+                    - link "Why Nair Integrated Manufacturing Systems Rohan 00016 Private Limited is ranked here" [ref=f1e750] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-675f-731b-94d2-48707039dcb5
+                      - text: Why this score
+                - row [ref=f1e751]:
+                  - cell [ref=f1e752]:
+                    - button "Show detail for Iyer National Supply Chain Services Ishaan 00018 Private Limited" [ref=f1e753] [cursor=pointer]
+                  - cell [ref=f1e756]:
+                    - checkbox "Iyer National Supply Chain Services Ishaan 00018 Private Limited has no case to act on" [disabled] [ref=f1e757]
+                  - cell "36" [ref=f1e758]
+                  - cell "Iyer National Supply Chain Services Ishaan 00018 Private Limited B-000018" [ref=f1e759]:
+                    - link "Iyer National Supply Chain Services Ishaan 00018 Private Limited" [ref=f1e760] [cursor=pointer]:
+                      - /url: /borrowers/B-000018
+                    - generic [ref=f1e761]: B-000018
+                  - cell "₹53.54" [ref=f1e762]
+                  - cell "Watch" [ref=f1e763]
+                  - cell [ref=f1e765]:
+                    - text: 0%
+                    - link "Why Iyer National Supply Chain Services Ishaan 00018 Private Limited is ranked here" [ref=f1e766] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-6a1c-79f0-bffa-73ccc039f492
+                      - text: Why this score
+            - generic [ref=f1e767]:
+              - text: Last updated
+              - time [ref=f1e768]: just now

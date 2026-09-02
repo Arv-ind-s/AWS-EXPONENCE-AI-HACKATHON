@@ -18,7 +18,7 @@ from pathlib import Path
 from typing import Final
 from uuid import UUID
 
-from sqlalchemy import select
+from sqlalchemy import delete, select
 from sqlalchemy.orm import Session
 
 from covenant_radar.audit.record import AuditRecorder
@@ -29,7 +29,7 @@ from covenant_radar.core.ids import new_id
 from covenant_radar.db.models.audit import ThresholdSnapshot
 from covenant_radar.db.models.borrower import Borrower
 from covenant_radar.db.models.covenant import Covenant, CovenantTest, CovenantVersion
-from covenant_radar.db.models.facility import Facility
+from covenant_radar.db.models.facility import Facility, FacilityConduct
 from covenant_radar.db.models.portfolio import Portfolio
 from covenant_radar.db.models.statements import (
     FieldProvenance,
@@ -53,6 +53,10 @@ DEMO_BATCH_HASH: Final[str] = hashlib.sha256(
 ).hexdigest()
 DEMO_SOURCE_REFERENCE: Final[str] = "evaluation/phase-7a-demo-statements-v1"
 DEMO_PERIODS: Final[tuple[tuple[str, date, date], ...]] = (
+    ("FY24Q3", date(2024, 7, 1), date(2024, 9, 30)),
+    ("FY24Q4", date(2024, 10, 1), date(2024, 12, 31)),
+    ("FY25Q1", date(2025, 1, 1), date(2025, 3, 31)),
+    ("FY25Q2", date(2025, 4, 1), date(2025, 6, 30)),
     ("FY25Q3", date(2025, 7, 1), date(2025, 9, 30)),
     ("FY25Q4", date(2025, 10, 1), date(2025, 12, 31)),
     ("FY26Q1", date(2026, 1, 1), date(2026, 3, 31)),
@@ -72,6 +76,143 @@ DEMO_SIGNAL_FAMILIES: Final[tuple[tuple[str, str, str, str], ...]] = (
     ("industry", "industry_indicator", "score", "industry_stress_score"),
     ("news", "news_event", "score", "news_risk_score"),
 )
+
+# The curated 24-company roster: `Borrower.reference` sequence number (1-based,
+# matching `B-{sequence:06d}`) grouped into narrative tiers. Sequence numbers
+# were hand-picked so each tier lands on a believable industry (see the
+# seeding plan) once the reference portfolio is built at 24 borrowers, one per
+# industry code. These tiers drive `_demo_lines` (leverage/coverage/liquidity
+# trajectory) and the signal-evidence profile below.
+_ALREADY_BREACHED: Final[tuple[int, ...]] = (2, 4, 7, 22)
+_ABOUT_TO_BREACH: Final[tuple[int, ...]] = (5, 9, 12, 16, 17)
+_DETERIORATING: Final[tuple[int, ...]] = (8, 11, 13, 14, 15, 24)
+_EARLY_SIGNAL: Final[tuple[int, ...]] = (1, 10, 19, 23)
+_SAFE_STABLE: Final[tuple[int, ...]] = (3, 6, 18, 20, 21)
+
+# Which covenant (LEV/COV/LIQ) tells each borrower's breach story. Every
+# borrower previously used leverage as the only covenant that ever moved
+# meaningfully, so every alert in the portfolio traced back to the same
+# "Leverage ratio" line — indistinguishable across 24 companies. Rotating the
+# driver within every tier (roughly a third each) means the queue's "worst
+# covenant" and the case file's binding covenant genuinely vary: some
+# companies breach on leverage, some on interest coverage, some on the
+# current ratio, spread evenly across act/amber/watch.
+_DRIVER: Final[Mapping[int, str]] = {
+    1: "LEV", 2: "LEV", 3: "LEV", 4: "COV", 5: "LEV", 6: "COV", 7: "LIQ",
+    8: "LEV", 9: "COV", 10: "COV", 11: "COV", 12: "LIQ", 13: "LIQ",
+    14: "LEV", 15: "COV", 16: "LEV", 17: "COV", 18: "LIQ", 19: "LIQ",
+    20: "LEV", 21: "COV", 22: "LEV", 23: "LEV", 24: "LIQ",
+}
+
+# The flat, comfortably-healthy shape used for whichever two covenants are
+# *not* a borrower's driver, so only the driver ever approaches its
+# threshold. Each covenant type gets its own shape calibrated to its own
+# threshold and direction (leverage breaches high, coverage and liquidity
+# breach low), not a single number reused across different units.
+_SAFE_SHAPE: Final[Mapping[str, tuple[Decimal, Decimal]]] = {
+    "LEV": (Decimal("1.35"), Decimal("-0.01")),
+    "COV": (Decimal("3.15"), Decimal("0.01")),
+    "LIQ": (Decimal("2.85"), Decimal("0.01")),
+}
+
+# Tier-uniform driver shapes for the tiers that do not need per-borrower
+# crossing-date variety: an already-breached covenant always shows today as
+# its crossing date regardless of margin, and the amber/watch tiers never
+# cross within the forecast horizon at all, so only their T1 band placement
+# matters. Each is mirrored across LEV (max, 3.00x), COV (min, 1.50x) and LIQ
+# (min, 1.20x) using the same start-to-threshold margin and slope magnitude
+# so whichever covenant is the driver produces an equivalent distance and
+# velocity.
+_TIER_SHAPE: Final[Mapping[str, Mapping[str, tuple[Decimal, Decimal]]]] = {
+    "already_breached": {
+        "LEV": (Decimal("2.30"), Decimal("0.16")),
+        "COV": (Decimal("2.20"), Decimal("-0.16")),
+        "LIQ": (Decimal("1.90"), Decimal("-0.16")),
+    },
+    # Only the driver covenant moves for a given borrower now (the other two
+    # sit on `_SAFE_SHAPE`), so it alone must carry the amber band instead of
+    # three covenants reinforcing each other. Calibrated so the 90-day
+    # projected distance is ~0.15 (raw score ~0.43), comfortably inside the
+    # 0.40-0.69 T1 amber range without crossing its own threshold.
+    "deteriorating": {
+        "LEV": (Decimal("2.1312"), Decimal("0.09")),
+        "COV": (Decimal("2.3688"), Decimal("-0.09")),
+        "LIQ": (Decimal("2.0688"), Decimal("-0.09")),
+    },
+    "early_signal": {
+        "LEV": (Decimal("1.55"), Decimal("0.03")),
+        "COV": (Decimal("2.95"), Decimal("-0.03")),
+        "LIQ": (Decimal("2.65"), Decimal("-0.03")),
+    },
+}
+
+# About-to-breach borrowers are individually tuned rather than sharing one
+# tier shape. `domain/forecast/path.py` adds sustained evidence pressure to
+# the projected daily drift at full, undecayed magnitude, so this seed keeps
+# every signal family non-adverse (see `_demo_signal_adverse`) and lets the
+# financial trend alone decide the projected crossing date. Each entry names
+# the borrower's driver covenant, its current (today) value, and its
+# per-quarter slope, chosen so the 90-day projection crosses that covenant's
+# own threshold on a different day per borrower (roughly 15/30/50/70/85
+# days out) instead of every "about to breach" company converging on the
+# same date.
+_ABOUT_TO_BREACH_SHAPE: Final[Mapping[int, tuple[Decimal, Decimal]]] = {
+    5: (Decimal("2.0686"), Decimal("0.13")),
+    9: (Decimal("2.4527"), Decimal("-0.13")),
+    12: (Decimal("2.1812"), Decimal("-0.13")),
+    16: (Decimal("1.9903"), Decimal("0.13")),
+    17: (Decimal("2.5311"), Decimal("-0.13")),
+}
+
+# Each tier's signal-evidence profile, used by `_demo_signal_value` for every
+# family (the `payment` family is driven by `_DPD_TARGET` instead, feeding
+# `facility_conduct` directly rather than a signal event — see
+# `_ensure_demo_conduct`). No family is ever flagged adverse (see
+# `_demo_signal_adverse`): the profile only shapes the *magnitude* shown on
+# the Signals tab, so every tier still reads distinctly instead of the three
+# non-act tiers all looking identically flat.
+_TIER_PROFILE: Final[Mapping[str, str]] = {
+    "already_breached": "deteriorating",
+    "about_to_breach": "deteriorating",
+    "deteriorating": "moderate",
+    "early_signal": "noisy",
+    "safe_stable": "stable",
+}
+
+# Target days-past-due for the borrower's SMA payment-conduct band
+# (`none`/`SMA-0`/`SMA-1`/`SMA-2`/`beyond`), held constant across the signal
+# window. A nonzero, sustained days-past-due is itself "sustained adverse
+# evidence" under the same pressure mechanism as the other six families (see
+# `_TIER_PROFILE` above), so it is restricted to the already-act tiers, where
+# it only reinforces a band the leverage trend already guarantees. This
+# still covers the full SMA vocabulary (see the seeding plan) and tells a
+# sharper story than spreading it across every tier would: every amber/watch
+# company has clean payment conduct, so the covenant forecast is shown
+# catching deterioration before it would show up in conduct at all. Two
+# deliberate divergences remain within the act tier: #9 is about to breach
+# its covenant but pays on time; #17 is not yet covenant-breached but is
+# already `beyond` on conduct, i.e. conduct worsened before the covenant did.
+_DPD_TARGET: Final[Mapping[int, int]] = {
+    1: 0, 2: 95, 3: 0, 4: 70, 5: 35, 6: 0, 7: 45, 8: 0, 9: 0, 10: 0,
+    11: 0, 12: 15, 13: 0, 14: 0, 15: 0, 16: 40, 17: 95, 18: 0, 19: 0,
+    20: 0, 21: 0, 22: 25, 23: 0, 24: 0,
+}
+
+
+def _tier_for(borrower_index: int) -> str:
+    """Return the narrative tier assigned to one curated borrower sequence."""
+
+    if borrower_index in _ALREADY_BREACHED:
+        return "already_breached"
+    if borrower_index in _ABOUT_TO_BREACH:
+        return "about_to_breach"
+    if borrower_index in _DETERIORATING:
+        return "deteriorating"
+    if borrower_index in _EARLY_SIGNAL:
+        return "early_signal"
+    if borrower_index in _SAFE_STABLE:
+        return "safe_stable"
+    raise ValueError(f"Borrower {borrower_index} has no assigned demo tier.")
 
 
 @dataclass(frozen=True, slots=True)
@@ -143,17 +284,23 @@ def seed_demo_covenants(
             select(Borrower)
             .where(Borrower.portfolio_id == portfolio.id, Borrower.is_active.is_(True))
             .order_by(Borrower.reference)
-            .limit(36)
+            .limit(24)
         )
     )
-    if len(borrowers) < 30:
+    if len(borrowers) < 24:
         raise ValueError(
             f"The reference portfolio contains only {len(borrowers)} active borrowers; "
-            "at least 30 are required for the demo."
+            "the curated 24-company demo roster requires all 24."
         )
 
+    _clear_non_curated_financials(session, borrowers)
+
     batch = _ensure_import_batch(
-        session, system_actor_id=system_actor_id, now=now, request_id=request_id
+        session,
+        system_actor_id=system_actor_id,
+        now=now,
+        request_id=request_id,
+        borrower_count=len(borrowers),
     )
     threshold_snapshot_id = _ensure_demo_threshold_snapshot(
         session, system_actor_id=system_actor_id, now=now, request_id=request_id
@@ -192,6 +339,15 @@ def seed_demo_covenants(
         )
         if facility is None:
             continue
+        _ensure_demo_conduct(
+            session,
+            facility=facility,
+            borrower_index=borrower_index,
+            as_of_date=now.date(),
+            system_actor_id=system_actor_id,
+            now=now,
+            request_id=request_id,
+        )
 
         versions: dict[str, CovenantVersion] = {}
         for kind, definition, threshold, direction, covenant_class, display_name in (
@@ -223,7 +379,7 @@ def seed_demo_covenants(
                         unit="x",
                         frequency="quarterly",
                         test_basis="period_end",
-                        effective_from=date(2025, 1, 1),
+                        effective_from=DEMO_PERIODS[0][1],
                         warning_headroom_pct=Decimal("10.00"),
                         cure_days=120,
                         grace_days=0,
@@ -331,15 +487,102 @@ def seed_demo_covenants(
     )
 
 
+def _ensure_demo_conduct(
+    session: Session,
+    *,
+    facility: Facility,
+    borrower_index: int,
+    as_of_date: date,
+    system_actor_id: UUID,
+    now: datetime,
+    request_id: str,
+) -> None:
+    """Write the borrower's SMA-driving conduct row directly.
+
+    Signal-event ingestion only derives `facility_conduct` for the base
+    reference portfolio's own generator (`evaluation.reference_portfolio`);
+    the demo's curated signal fixture is ingested through the nightly
+    pipeline's file source without a matching conduct-derivation step, so
+    `_DPD_TARGET` would otherwise never reach the SMA band the queue reads.
+    The SMA lookup requires an exact `as_of_date` match, so this writes
+    today's row directly — the same way the curated financial statements are
+    written directly rather than through a generic ingest pipeline.
+    """
+
+    existing = session.scalar(
+        select(FacilityConduct).where(
+            FacilityConduct.facility_id == facility.id,
+            FacilityConduct.as_of_date == as_of_date,
+        )
+    )
+    if existing is not None:
+        return
+    session.add(
+        FacilityConduct(
+            id=new_id(),
+            facility_id=facility.id,
+            as_of_date=as_of_date,
+            outstanding=facility.outstanding,
+            utilisation_pct=Decimal("60.00"),
+            days_past_due=_DPD_TARGET[borrower_index],
+            overdue_amount=None,
+            excess_amount=Decimal("0.00"),
+            source_id=None,
+            created_at=now,
+            updated_at=now,
+            created_by_id=system_actor_id,
+            updated_by_id=system_actor_id,
+            request_id=request_id,
+        )
+    )
+    session.flush()
+
+
+def _clear_non_curated_financials(session: Session, borrowers: Sequence[Borrower]) -> None:
+    """Remove the base reference-portfolio's own random financial history.
+
+    ``load_reference_portfolio`` gives every borrower its own randomly
+    generated financial periods (dated far in the past, unrelated to the
+    curated tiers above). Left in place, the forecast trend fit picks up the
+    single most recent one of those as a ninth, wildly-off-trend observation
+    alongside the eight curated quarters, which can distort the fitted slope
+    enough to push a borrower into the wrong queue band. The curated overlay
+    fully owns these borrowers' financial story, so their non-curated
+    periods are pure noise and are removed rather than left to interfere.
+    """
+
+    curated_labels = {label for label, _, _ in DEMO_PERIODS}
+    borrower_ids = [borrower.id for borrower in borrowers]
+    stray_period_ids = tuple(
+        session.scalars(
+            select(FinancialPeriod.id).where(
+                FinancialPeriod.borrower_id.in_(borrower_ids),
+                FinancialPeriod.fy_label.not_in(curated_labels),
+            )
+        )
+    )
+    if not stray_period_ids:
+        return
+    session.execute(
+        delete(StatementLineValue).where(StatementLineValue.period_id.in_(stray_period_ids))
+    )
+    session.execute(delete(FinancialPeriod).where(FinancialPeriod.id.in_(stray_period_ids)))
+    session.flush()
+
+
 def _ensure_demo_signal_source(path: Path, borrowers: Sequence[Borrower], session: Session) -> int:
     """Write deterministic seven-family events for the local demo source.
 
     The file is deliberately a source artifact, not a database fixture.  The
     nightly ingest step reads it through ``FileSignalSource`` and therefore
     exercises the same validation, quarantine, evidence, attribution, and
-    audit path as a production connector.  Deteriorating borrowers have a
-    sustained adverse run; noisy borrowers have isolated spikes; stable
-    borrowers remain healthy.  Re-seeding never rewrites an existing source.
+    audit path as a production connector.  Deteriorating and moderate
+    borrowers have a sustained adverse run (moderate at roughly half
+    severity); noisy borrowers have isolated, non-adverse spikes; stable
+    borrowers remain healthy.  The payment family is held at each borrower's
+    target days-past-due independent of this profile, so the SMA
+    payment-conduct band and the covenant-forecast band can agree or
+    deliberately diverge.  Re-seeding never rewrites an existing source.
     """
 
     if path.is_file():
@@ -363,17 +606,15 @@ def _ensure_demo_signal_source(path: Path, borrowers: Sequence[Borrower], sessio
         )
         if facility is None:
             continue
-        profile = (
-            "deteriorating"
-            if borrower_index <= 12
-            else "noisy"
-            if borrower_index <= 24
-            else "stable"
-        )
+        profile = _TIER_PROFILE[_tier_for(borrower_index)]
+        dpd_target = _DPD_TARGET[borrower_index]
         for day_offset in range(DEMO_SIGNAL_DAYS):
             event_date = start_date.fromordinal(start_date.toordinal() + day_offset)
             for family, event_type, unit, value_field in DEMO_SIGNAL_FAMILIES:
-                value = _demo_signal_value(family, profile, day_offset, borrower_index)
+                if family == "payment":
+                    value = _demo_payment_dpd(dpd_target)
+                else:
+                    value = _demo_signal_value(family, profile, day_offset, borrower_index)
                 is_adverse = _demo_signal_adverse(profile, day_offset)
                 rows.append(
                     {
@@ -400,13 +641,18 @@ def _ensure_demo_signal_source(path: Path, borrowers: Sequence[Borrower], sessio
 
 
 def _demo_signal_adverse(profile: str, day_offset: int) -> bool:
-    if profile == "deteriorating":
-        return True
-    # Noise is deliberately non-adverse: the persistence stage should show
-    # that frequent movement without a material adverse flag is filtered out
-    # rather than creating a false supersession chain in the ledger.
-    if profile == "noisy":
-        return False
+    """Never flag demo evidence adverse; see `_TIER_PROFILE` for why.
+
+    `domain/forecast/path.py` adds sustained evidence pressure to the
+    forecast's projected daily drift at full, undecayed magnitude, so any
+    adverse-flagged family collapses every borrower's projected crossing to
+    within a day or two regardless of its calibrated financial trend. The
+    curated portfolio's bands and crossing dates are fully determined by the
+    trend shapes in `_TIER_SHAPE`/`_ABOUT_TO_BREACH_SHAPE`, so evidence stays
+    descriptive — it still varies by profile for a readable Signals tab —
+    without ever entering the pressure term.
+    """
+
     return False
 
 
@@ -433,17 +679,59 @@ def _demo_signal_value(
             "news": Decimal("0.011"),
         }[family]
         value = base + slope * day_offset + Decimal(borrower_index % 5) / 100
-        return value.quantize(Decimal("1" if family == "payment" else "0.001"))
+        return value.quantize(Decimal("0.001"))
+    if profile == "moderate":
+        # Roughly half the "deteriorating" severity: enough sustained
+        # pressure to help lift the amber tier's raw score into the T1
+        # amber band without pushing it as far as the act-band tiers.
+        base = {
+            "account_activity": Decimal("6.00"),
+            "payment": Decimal("0"),
+            "utilisation": Decimal("60.00"),
+            "treasury": Decimal("0.18"),
+            "concentration": Decimal("30.00"),
+            "industry": Decimal("0.40"),
+            "news": Decimal("0.35"),
+        }[family]
+        slope = {
+            "account_activity": Decimal("0.07"),
+            "payment": Decimal("0"),
+            "utilisation": Decimal("0.14"),
+            "treasury": Decimal("0.004"),
+            "concentration": Decimal("0.12"),
+            "industry": Decimal("0.004"),
+            "news": Decimal("0.005"),
+        }[family]
+        value = base + slope * day_offset + Decimal(borrower_index % 5) / 100
+        return value.quantize(Decimal("0.001"))
     if profile == "noisy":
         spike = Decimal("4.00") if day_offset in {10, 25} else Decimal("1.00")
         value = spike + Decimal((borrower_index * 3 + day_offset) % 7) / 10
-        return value.quantize(Decimal("1" if family == "payment" else "0.001"))
+        return value.quantize(Decimal("0.001"))
     value = Decimal("0.50") + Decimal((borrower_index + day_offset) % 5) / 10
-    return value.quantize(Decimal("1" if family == "payment" else "0.001"))
+    return value.quantize(Decimal("0.001"))
+
+
+def _demo_payment_dpd(dpd_target: int) -> Decimal:
+    """Hold the payment family at the borrower's target days-past-due.
+
+    Held constant across the signal window (rather than driven by the
+    deterioration ``profile`` used for the other six families) so
+    ``facility_conduct.days_past_due`` on the final ingested day lands
+    cleanly in the borrower's intended SMA-0/SMA-1/SMA-2/beyond band,
+    independent of the covenant-forecast story.
+    """
+
+    return Decimal(dpd_target)
 
 
 def _ensure_import_batch(
-    session: Session, *, system_actor_id: UUID, now: datetime, request_id: str
+    session: Session,
+    *,
+    system_actor_id: UUID,
+    now: datetime,
+    request_id: str,
+    borrower_count: int,
 ) -> ImportBatch:
     batch = session.scalar(select(ImportBatch).where(ImportBatch.content_hash == DEMO_BATCH_HASH))
     if batch is not None:
@@ -469,6 +757,7 @@ def _ensure_import_batch(
         )
         session.add(mapping)
         session.flush()
+    row_count = borrower_count * len(DEMO_PERIODS)
     batch = ImportBatch(
         id=new_id(),
         source_type="json",
@@ -477,11 +766,11 @@ def _ensure_import_batch(
         content_hash=DEMO_BATCH_HASH,
         started_at=now,
         finished_at=now,
-        row_count=36 * len(DEMO_PERIODS),
-        accepted_count=36 * len(DEMO_PERIODS),
+        row_count=row_count,
+        accepted_count=row_count,
         quarantined_count=0,
         state="completed",
-        report={"seed": "phase-7a", "rows": 36 * len(DEMO_PERIODS)},
+        report={"seed": "phase-7a", "rows": row_count},
         created_at=now,
         updated_at=now,
         created_by_id=system_actor_id,
@@ -597,23 +886,41 @@ def _ensure_statement_lines(
     session.flush()
 
 
-def _demo_lines(borrower_index: int, period_index: int) -> dict[str, Decimal]:
-    """Return a coherent statement with curated leverage trajectories."""
+def _covenant_shapes(borrower_index: int, tier: str) -> Mapping[str, tuple[Decimal, Decimal]]:
+    """Return this borrower's (start, slope) pair for LEV, COV and LIQ.
 
-    if borrower_index <= 3:
-        leverage = Decimal("2.80") + Decimal("0.14") * period_index
-    elif borrower_index <= 8:
-        leverage = Decimal("1.85") + Decimal("0.35") * period_index
-    elif borrower_index <= 13:
-        leverage = Decimal("1.125") + Decimal("0.525") * period_index
-    elif borrower_index <= 18:
-        leverage = Decimal("1.25") + Decimal("0.45") * period_index
-    elif borrower_index <= 25:
-        leverage = Decimal("2.55") + Decimal("0.055") * period_index
-    else:
-        leverage = Decimal("1.55") + Decimal("0.025") * period_index
-    coverage = Decimal("2.40") - Decimal("0.05") * period_index
-    liquidity = Decimal("1.55") - Decimal("0.025") * period_index
+    Only the borrower's driver covenant (`_DRIVER`) ever moves toward its
+    threshold; the other two stay on their flat, healthy shape. This is what
+    makes the queue's "worst covenant" vary across the portfolio instead of
+    leverage winning for every borrower.
+    """
+
+    shapes = dict(_SAFE_SHAPE)
+    driver = _DRIVER[borrower_index]
+    if tier == "about_to_breach":
+        shapes[driver] = _ABOUT_TO_BREACH_SHAPE[borrower_index]
+    elif tier in _TIER_SHAPE:
+        shapes[driver] = _TIER_SHAPE[tier][driver]
+    return shapes
+
+
+def _demo_lines(borrower_index: int, period_index: int) -> dict[str, Decimal]:
+    """Return a coherent statement whose ratios follow the borrower's tier.
+
+    The driver covenant crosses (or nears) its own threshold on the schedule
+    its tier calls for; the other two covenants stay flat and healthy so
+    they never become an accidental second binding covenant. See
+    `_covenant_shapes` for how the driver is chosen and shaped.
+    """
+
+    tier = _tier_for(borrower_index)
+    shapes = _covenant_shapes(borrower_index, tier)
+    lev_start, lev_slope = shapes["LEV"]
+    cov_start, cov_slope = shapes["COV"]
+    liq_start, liq_slope = shapes["LIQ"]
+    leverage = lev_start + lev_slope * period_index
+    coverage = cov_start + cov_slope * period_index
+    liquidity = liq_start + liq_slope * period_index
     return {
         "total_debt": (leverage * Decimal("100")).quantize(Decimal("0.001")),
         "tangible_net_worth": Decimal("100"),

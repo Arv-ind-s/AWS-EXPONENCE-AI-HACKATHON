@@ -18,6 +18,16 @@
       hx-target="#queue-workspace"
       hx-swap="outerHTML transition:true"
       hx-push-url="true">
+  {#
+    The four selects are one row on a desk and four stacked rows on a
+    phone, where they pushed the ledger itself below the fold. Wrapping
+    them in a disclosure gives a narrow viewport a way to put them away;
+    it is rendered `open`, and the summary is hidden at wide widths, so a
+    desktop reader sees exactly what they saw before and a browser without
+    JavaScript loses nothing — `<details>` needs no script.
+  #}
+  <details class="queue-filters__disclosure" open>
+    <summary class="queue-filters__disclosure-summary">{{ labels.filters_legend }}</summary>
   <fieldset class="queue-filters__fields">
     <legend class="sr-only">{{ labels.filters_legend }}</legend>
 
@@ -72,6 +82,7 @@
 
     <button class="button queue-filters__submit" type="submit">{{ labels.filters_apply }}</button>
   </fieldset>
+  </details>
 </form>
 
 <div class="queue-filters__state">

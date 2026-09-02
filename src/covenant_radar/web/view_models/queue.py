@@ -93,6 +93,7 @@ class QueueRowView:
     confidence_display: str = ""
     urgency_display: str = ""
     why_href: str = ""
+    crossing_note: str = ""
     trajectory_svg: Markup | None = None
     trajectory_label: str = "No stored trajectory available."
     rank: int = 0
@@ -197,7 +198,7 @@ def _row_view(
     drivers: Mapping[tuple[UUID, int], str] | None = None,
     forecast_ids: Mapping[tuple[UUID, int], UUID] | None = None,
 ) -> QueueRowView:
-    worst_covenant, probability_display, crossing_date = _risk_cells(
+    worst_covenant, probability_display, crossing_date, crossing_note = _risk_cells(
         entry, covenant_labels, crossing_dates
     )
     trajectory = (
@@ -259,6 +260,7 @@ def _row_view(
             and (entry.worst_covenant_version_id, entry.worst_horizon) in forecast_ids
             else f"/why/borrower/{entry.borrower_id}"
         ),
+        crossing_note=crossing_note,
         trajectory_svg=trajectory_svg,
         trajectory_label=(
             trajectory_label if trajectory is not None else "No stored trajectory is available."
@@ -501,12 +503,12 @@ def _risk_cells(
     entry: QueueEntry,
     covenant_labels: Mapping[UUID, str],
     crossing_dates: Mapping[tuple[UUID, int], date],
-) -> tuple[str, str, date | None]:
+) -> tuple[str, str, date | None, str]:
     if entry.worst_covenant_version_id is None:
-        return NO_FORECAST_TEXT, NO_FORECAST_TEXT, None
+        return NO_FORECAST_TEXT, NO_FORECAST_TEXT, None, ""
     worst_covenant = covenant_labels.get(entry.worst_covenant_version_id, "—")
     if entry.probability is None:
-        return worst_covenant, SUPPRESSED_TEXT, None
+        return worst_covenant, SUPPRESSED_TEXT, None, ""
     percent = (entry.probability * 100).quantize(_PERCENT_QUANTUM, rounding=ROUND_HALF_UP)
     probability_display = f"{percent}%"
     crossing_date = (
@@ -514,7 +516,18 @@ def _risk_cells(
         if entry.worst_horizon is not None
         else None
     )
-    return worst_covenant, probability_display, crossing_date
+    # A probability can land in Amber (or Act) from the blended
+    # distance/velocity/pressure signal even when the fitted trend never
+    # actually crosses the threshold inside its own horizon window
+    # (`domain/forecast/crossing.py`) — that is a real, explainable outcome,
+    # not a missing fact, so the row says so instead of leaving a silent gap
+    # next to the probability (mirrors `_crossing_display` on the case file).
+    crossing_note = (
+        ""
+        if crossing_date is not None or entry.worst_horizon is None
+        else f"no crossing projected within {entry.worst_horizon}d"
+    )
+    return worst_covenant, probability_display, crossing_date, crossing_note
 
 
 def _covenant_labels(session: Session, entries: Sequence[QueueEntry]) -> dict[UUID, str]:

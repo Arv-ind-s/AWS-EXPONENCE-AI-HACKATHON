@@ -108,6 +108,16 @@
   padding: var(--space-4);
   border: var(--border);
   background: var(--paper);
+  /*
+    `.forecast-covenant__layout`'s grid items stretch to the row height by
+    default, so this card matched whatever the ledger table's row count made
+    the row — three horizons routinely left several hundred pixels of dead
+    white space below the chart's own fixed 5:2 aspect ratio (the card's
+    `align-content: start` above only packed its own children to the top of
+    that stretched box, it never shrank the box itself). The card should end
+    where its content ends, not where the table happens to.
+  */
+  align-self: start;
 }
 
 .trajectory {
@@ -132,15 +142,74 @@
   overflow: hidden;
 }
 
-.trajectory__threshold {
+/*
+  The covenant ledger's per-row history chart sits in a table cell, far
+  narrower than the wide forecast card `.trajectory__plot`'s viewport-relative
+  min-height assumes. Left unscoped, the same rule renders a tall, mostly
+  empty box in the narrower cell instead of a compact trend line.
+*/
+.case-covenant-row__history .trajectory__plot {
+  min-height: calc(var(--space-12) * 3);
+}
+
+/*
+  The side of the threshold the covenant is in breach on, shaded so the
+  reader can see whether the path is heading into it without first working
+  out which way this covenant breaches.  The renderer only emits this when
+  the caller stated a direction.
+*/
+.trajectory__breach-zone {
+  fill: var(--breach);
+  opacity: .07;
+}
+
+/*
+  Gridlines and their day labels are drawn before the path, so the series
+  always reads on top of them.  Both are deliberately quiet: they are a
+  scale, not a finding.
+*/
+.trajectory__gridline {
   stroke: var(--hairline);
+  stroke-width: 0.3;
+}
+
+.trajectory__gridline-label {
+  fill: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: calc(var(--size-caption) / 5);
+  opacity: .75;
+}
+
+/*
+  The stored path closed to the plot floor.  It carries no value the
+  polyline does not; it gives the series enough body to read at a glance
+  from across a desk, which a one-unit stroke does not.
+
+  The fill is deliberately a neutral ink tint rather than the accent: the
+  accent is plum and the breach zone is red, so an accent-tinted area sat on
+  top of the breach shading and the two washed into one pink field.  Neutral
+  keeps the two readings separate — red says "this is breach territory",
+  the grey says "this is where the path has been".
+*/
+.trajectory__area {
+  fill: color-mix(in oklab, var(--ink) 8%, transparent);
+  stroke: none;
+}
+
+/*
+  The threshold is the one line every other mark on this chart is read
+  against, so it was the wrong thing to draw in the hairline colour — it
+  was fainter than the gridlines now are.
+*/
+.trajectory__threshold {
+  stroke: var(--ink-muted);
   stroke-dasharray: 2 2;
   stroke-width: 0.8;
 }
 
 .trajectory__line {
   fill: none;
-  stroke: var(--ink);
+  stroke: var(--accent);
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 1.2;
@@ -155,7 +224,16 @@
   stroke-width: 0.8;
 }
 
+/*
+  `r` is read in the plot's own user space, exactly like the annotation's
+  font size below.  `app.css` sets it from `--space-2`, which lands as eight
+  of the forty units the chart is tall: a dot two-fifths the height of the
+  plot, drawn at the crossing and clipped by the plot edge whenever the
+  crossing falls near day zero.  Divided down it is the ~1.5 units the
+  renderer asks for in the `r` attribute it emits.
+*/
 .trajectory__crossing {
+  r: calc(var(--space-2) / 5);
   fill: var(--paper);
   stroke-width: 1.2;
 }

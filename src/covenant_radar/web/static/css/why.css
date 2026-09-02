@@ -45,14 +45,30 @@
   font-weight: var(--weight-semi);
 }
 
-.why-stage__name {
+.why-stage__summary-text {
+  display: grid;
   flex: 1 1 auto;
   min-width: 0;
+  gap: var(--space-1);
+}
+
+.why-stage__name {
   color: var(--ink);
   font-family: var(--font-head);
   font-size: var(--size-body);
   font-weight: var(--weight-bold);
   overflow-wrap: anywhere;
+}
+
+.why-stage__preview {
+  display: block;
+  overflow: hidden;
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  font-weight: var(--weight-regular);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .why-stage__decider {
@@ -65,6 +81,25 @@
   text-transform: uppercase;
 }
 
+.why-stage__chevron {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: var(--space-5);
+  height: var(--space-5);
+  color: var(--ink-muted);
+}
+
+.why-stage__chevron .icon {
+  width: 70%;
+  height: 70%;
+  transition: transform 0.15s ease;
+}
+
+.why-stage[open] > .why-stage__summary .why-stage__chevron .icon {
+  transform: rotate(90deg);
+}
+
 .why-stage__body {
   display: grid;
   gap: var(--space-4);
@@ -74,9 +109,32 @@
 }
 
 .why-stage__not-run {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
   margin: 0;
   padding: 0 var(--space-4) var(--space-4);
   color: var(--ink-muted);
+}
+
+.why-stage__not-run p {
+  margin: 0;
+}
+
+.why-stage__not-run-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  border: var(--border);
+  border-radius: var(--radius);
+  color: var(--ink-muted);
+}
+
+.why-stage__not-run-icon .icon {
+  width: 60%;
+  height: 60%;
 }
 
 .why-stage__suppressed {
@@ -152,6 +210,29 @@
 .why-stage__plain-summary h4,
 .why-stage__plain-summary p + p {
   margin-block-start: var(--space-2);
+}
+
+.why-stage__technical {
+  padding-block-start: var(--space-3);
+  border-block-start: var(--border);
+}
+
+.why-stage__technical summary {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.why-stage__technical[open] summary {
+  margin-block-end: var(--space-3);
+}
+
+.why-stage__technical > .why-stage__section + .why-stage__section {
+  margin-block-start: var(--space-4);
 }
 
 .why-value-list {

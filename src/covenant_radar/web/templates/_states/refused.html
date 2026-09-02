@@ -1,3 +1,10 @@
+{#
+  No <svg> here, deliberately.  This state is included by
+  `_components/trajectory.html`, and both `test_components.py` and
+  `test_forecast_panel.py` assert the refused trajectory renders no SVG at all —
+  the promise being that a refused chart draws nothing that could be mistaken
+  for data.  The mark is therefore a CSS glyph on `.state--refused`.
+#}
 <div class="state state--refused" role="alert" aria-live="assertive">
   <p class="state__message">{{ state_message }}</p>
 </div>

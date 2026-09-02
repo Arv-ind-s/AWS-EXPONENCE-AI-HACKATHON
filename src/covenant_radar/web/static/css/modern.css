@@ -2027,8 +2027,16 @@ details:not(.shell-user-menu)[open] > summary {
   columns each of those panels is narrower than the table it holds, so the
   table was cut off inside its own card behind a scrollbar.  Give them the full
   track; the remaining panels stay two-up.
+
+  `.case-file__sections` needs the same override for a different reason: it is
+  the tab strip's wrapper, sitting as a direct child of this grid alongside
+  the two-up action/memo panels, so the `span 6` default above left it (and
+  every card inside it) squeezed into half the page with the other half
+  blank. Its own five panels are already full-width blocks, so this is the
+  one place their width was actually being decided.
 */
-.case-file__panels > .case-file__panel--wide {
+.case-file__panels > .case-file__panel--wide,
+.case-file__panels > .case-file__sections {
   grid-column: span 12;
 }
 
@@ -2904,9 +2912,17 @@ body[data-overlay-open="true"] {
   to { opacity: 1; transform: translateY(0); }
 }
 
+/*
+  Ends at `none` rather than `translateY(0)`.  With `animation-fill-mode:
+  both` the final frame's transform persists, and any transform — even an
+  identity one — makes the element a containing block for `position: fixed`
+  descendants.  That would pin every drawer opened inside `.page-content` to
+  the panel instead of the viewport.  `none` is visually identical and
+  leaves fixed positioning working.
+*/
 @keyframes content-enter {
   from { opacity: 0; transform: translateY(var(--space-4)); }
-  to { opacity: 1; transform: translateY(0); }
+  to { opacity: 1; transform: none; }
 }
 
 @keyframes auth-enter {
@@ -2945,4 +2961,1303 @@ body[data-overlay-open="true"] {
 @keyframes status-pulse {
   from { opacity: .35; transform: translateY(0); }
   to { opacity: 1; transform: translateY(calc(var(--space-2) * -1)); }
+}
+
+/*
+  ==================================================================
+  Redesign layer
+  ------------------------------------------------------------------
+  Every rule below overrides something established earlier in the
+  cascade.  It sits at the end of the last stylesheet the shell loads
+  so that no existing selector had to be edited to make room for it,
+  which is what keeps the markup and stylesheet contracts asserted in
+  `tests/` untouched.  Same reason it is token-only: `tokens.css` is
+  still the one place a colour, a radius or a duration is decided.
+  ==================================================================
+*/
+
+/*
+  A four-pixel ring around every focused control read as an error
+  state at this density.  Half the width, offset by the same amount,
+  clears the 3:1 non-text floor comfortably now that `--focus` is the
+  plum accent rather than a near-black that only just separated from
+  the ink around it.
+*/
+:where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+  outline: calc(var(--space-1) / 2) solid var(--focus);
+  outline-offset: calc(var(--space-1) / 2);
+}
+
+/*
+  Elevation is an affordance.  A tile that rises under the pointer and
+  then does nothing when clicked is precisely the complaint this
+  redesign answers, so lifting is reserved for cards that genuinely go
+  somewhere.  Containers still acknowledge the pointer — they just do
+  it without promising a click.
+*/
+.panel:hover {
+  border-color: var(--hairline);
+  box-shadow: var(--shadow-sm);
+}
+
+a.panel:hover,
+.panel:has(> a):hover {
+  border-color: color-mix(in srgb, var(--accent) 32%, var(--hairline));
+  box-shadow: var(--shadow-md);
+}
+
+.admin-metric:hover {
+  transform: none;
+  box-shadow: var(--shadow-sm);
+}
+
+a.admin-metric:hover,
+.admin-metric:has(a):hover {
+  transform: translateY(calc(var(--space-1) / -2));
+  box-shadow: var(--shadow-md);
+}
+
+/* Band tiles are real links carrying the rest of the filter, so they lift. */
+.queue-band-tile {
+  background: var(--surface-subtle);
+  transition:
+    box-shadow var(--dur-state) var(--ease),
+    border-color var(--dur-state) var(--ease),
+    background var(--dur-state) var(--ease),
+    transform var(--dur-state) var(--ease);
+}
+
+.queue-band-tile:hover,
+.queue-band-tile:focus-visible {
+  transform: translateY(calc(var(--space-1) / -2));
+  box-shadow: var(--shadow-md);
+}
+
+/*
+  The slice the reader is already in is stated on the tile itself, and
+  now says so in the brand accent rather than in ink, so it cannot be
+  mistaken for one of the four risk colours beside it.
+*/
+.queue-band-tile[data-active="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  box-shadow: inset var(--space-1) 0 0 0 var(--accent-fill);
+}
+
+/*
+  A chip is a label, not a target.  At `--hit-min` tall it was setting
+  the height of every ledger row it appeared in.  Size it to its text,
+  pill it, and let a filled dot carry the band as well as the tint, so
+  the reading survives a greyscale print and a red-green reader.
+*/
+.band-chip,
+.queue-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-6);
+  padding: calc(var(--space-1) / 2) var(--space-3);
+  border-radius: var(--radius-pill);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-bold);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.band-chip::before,
+.queue-summary-chip::before {
+  flex: none;
+  width: var(--space-2);
+  height: var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--hairline);
+  content: "";
+}
+
+.band-chip[data-band="act"]::before,
+.queue-summary-chip[data-band="act"]::before {
+  background: var(--breach);
+}
+
+.band-chip[data-band="amber"]::before,
+.queue-summary-chip[data-band="amber"]::before {
+  background: var(--watch);
+}
+
+/* The least urgent band still borrows no accent from either direction. */
+.band-chip[data-band="watch"]::before,
+.queue-summary-chip[data-band="watch"]::before {
+  background: var(--ink-muted);
+}
+
+/*
+  The borrower's name is a name, not a figure.  It was rendering in the
+  mono data face, right-aligned, inside four columns that a 40% spacer
+  had squeezed into the remaining 60% of the width.  Give the facts the
+  whole row, card them so each is a discrete object, and let every fact
+  pick the face that suits what it actually holds.
+*/
+.case-header__facts {
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-3);
+}
+
+.case-header__whitespace {
+  display: none;
+}
+
+/*
+  ------------------------------------------------------------------
+  Depth reads by alternation, not by repetition
+  ------------------------------------------------------------------
+  The ground is `--paper`, a panel raises to `--surface-raised`, and a
+  card inside a panel recesses to `--surface-subtle` again.  Anything
+  nested a further level raises back to white.  Before this the second
+  and third levels all asked for `--surface-raised`, so a card inside a
+  panel was white on white with a hairline doing the whole job — which
+  is a large part of why the workspace read as flat.  These are the
+  surfaces that were measurably nesting into their own colour.
+
+  The tinted states are left alone on purpose: an error, a refusal and
+  a degraded panel carry meaning in their fill, and recessing them
+  would spend that colour on depth.
+*/
+.panel .forecast-covenant,
+.panel .signal-card,
+.panel .case-memo__provenance,
+.panel .state:not(.state--error):not(.state--refused):not(.state--degraded) {
+  background: var(--surface-subtle);
+  box-shadow: none;
+}
+
+.panel .forecast-covenant .forecast-explanation {
+  background: var(--surface-raised);
+}
+
+.case-header__fact {
+  gap: var(--space-2);
+  min-height: 0;
+  padding: var(--space-3) var(--space-4);
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+  box-shadow: none;
+}
+
+.case-header__fact-label {
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.case-header__fact-value {
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  text-align: start;
+}
+
+.case-header__fact[data-fact="name"] .case-header__fact-value,
+.case-header__fact[data-fact="worst_covenant"] .case-header__fact-value {
+  font-family: var(--font-head);
+  letter-spacing: -0.01em;
+}
+
+.case-header__fact[data-fact="name"] .case-header__fact-value {
+  font-size: var(--size-case-title);
+}
+
+/*
+  The plot draws into a `0 0 100 40` user space but was given a
+  min-height clamp roughly twice that ratio, so the drawing sat in a
+  letterbox with the whole series compressed into a band across the
+  middle.  Match the box to the viewBox and the chart fills it.
+*/
+.forecast-covenant__trajectory {
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+}
+
+.forecast-covenant__trajectory .trajectory__plot {
+  height: auto;
+  min-height: 0;
+  aspect-ratio: 5 / 2;
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+/*
+  A borrower's legal name is prose.  `.ledger-table__table` sets the
+  mono data face on the whole table so the figures line up, which also
+  caught the one column that holds a name — nine words of "Deshmukh
+  Precision Materials and Components Kavya 00008 Private Limited" in
+  Courier is the hardest thing on the screen to read.  The reference
+  beneath it keeps the mono face; that one really is an identifier.
+
+  The underline stays, because these links sit among plain text and
+  colour alone must not be what marks them, but it is drawn in a
+  softened ink and dropped clear of the descenders so thirty-six of
+  them in a column stop reading as one hatched block.
+*/
+.ledger-row__cell--borrower .text-action {
+  font-family: var(--font-head);
+  font-size: var(--size-body);
+  font-weight: var(--weight-semi);
+  letter-spacing: -0.01em;
+  text-decoration-color: color-mix(in srgb, currentColor 35%, transparent);
+  text-underline-offset: 0.2em;
+}
+
+.ledger-row__cell--borrower .text-action:hover,
+.ledger-row__cell--borrower .text-action:focus-visible {
+  text-decoration-color: currentColor;
+}
+
+.ledger-row__meta {
+  display: block;
+  margin-block-start: calc(var(--space-1) / 2);
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+/*
+  The trend column. The sparkline was previously buried in the collapsed
+  detail row, which meant the one mark that answers "is this getting worse"
+  needed a click per borrower to see. Sized so thirty-six of them read as a
+  column of shapes rather than thirty-six separate charts.
+*/
+.ledger-row__cell--trajectory {
+  width: calc(var(--space-16) * 1.5);
+  padding-block: var(--space-2);
+}
+
+/*
+  The sparkline draws into the same `0 0 100 40` space as the full chart, so
+  a box of any other ratio letterboxes it — a cell twice as wide as it is
+  tall shrank the whole path to fit the height and then centred it in dead
+  space. Give the box the viewBox's own 5:2 and the drawing fills it.
+*/
+/*
+  An SVG's viewBox is mapped into its *content* box, so any padding it picks
+  up shrinks the drawing rather than insetting it: the ledger's blanket cell
+  padding reached the sparkline and scaled the whole path to a fifth of the
+  box, leaving a tiny mark floating in the middle of an empty rectangle.
+*/
+.ledger-row__cell--trajectory .trajectory__plot--mini {
+  display: block;
+  width: calc(var(--space-16) * 1.25);
+  height: auto;
+  min-height: 0;
+  padding: 0;
+  aspect-ratio: 5 / 2;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+}
+
+/*
+  At a fifth of the case file's size the path needs a heavier stroke to
+  survive; the threshold drops back to a hairline because at this scale a
+  second emphatic line is just noise.
+*/
+.ledger-row__cell--trajectory .trajectory__line {
+  stroke: var(--accent);
+  stroke-width: 2.4;
+}
+
+/* No day scale on a sparkline: at this size a label is noise, not a scale. */
+.ledger-row__cell--trajectory .trajectory__threshold {
+  stroke: var(--hairline);
+}
+
+.queue-row__trajectory--empty {
+  display: block;
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/*
+  The governance tables are almost entirely sentences — what a
+  threshold means, and what happens above it, below it and exactly at
+  it — but every cell was set in the mono data face.  Twelve rows of
+  §17.5 boundary prose in Courier is the least readable thing in the
+  application.  The face follows the content here too; the figures in
+  it are label-and-value strings rather than a column to align, so they
+  lose nothing by joining the prose.
+*/
+.governance__table td {
+  font-family: var(--font-ui);
+}
+
+/*
+  Figures only line up column-wise when the digits are the same width,
+  and a ledger the reader scans vertically is the whole point of the
+  screen.
+*/
+:where(.ledger-table__table, .governance__table, .admin-table, .page-content table) td {
+  font-variant-numeric: tabular-nums;
+}
+
+/*
+  The band already governs a row's priority, so drawing it as an edge
+  rule lets the eye sort the ledger before reading a word.  It is keyed
+  off the chip's own `data-band`, which means no row markup changes and
+  the exact `<tr class="ledger-row" id="…">` string the queue tests
+  assert on stays byte-identical.
+*/
+.ledger-row:has([data-band="watch"]) td:first-child {
+  box-shadow: inset var(--space-1) 0 0 0 var(--hairline);
+}
+
+.ledger-row:has([data-band="amber"]) td:first-child {
+  box-shadow: inset var(--space-1) 0 0 0 var(--watch);
+}
+
+.ledger-row:has([data-band="act"]) td:first-child {
+  box-shadow: inset var(--space-1) 0 0 0 var(--breach);
+}
+
+/*
+  The mini sparkline drew every row in one flat accent colour regardless of
+  band, so a glance at the trajectory column carried no more signal than the
+  band chip already gives in words. The full case-file chart keeps its
+  neutral fill (see forecast.css: it shares plot space with a red breach
+  zone the mini sparkline never draws), so this override is scoped to the
+  queue's `--mini` variant only, keyed off the same row-level `data-band`
+  the edge rule above already reads.
+*/
+.ledger-row:has([data-band="act"]) .ledger-row__cell--trajectory .trajectory__line {
+  stroke: var(--breach);
+}
+.ledger-row:has([data-band="act"]) .ledger-row__cell--trajectory .trajectory__area {
+  fill: color-mix(in oklab, var(--breach) 16%, transparent);
+}
+.ledger-row:has([data-band="amber"]) .ledger-row__cell--trajectory .trajectory__line {
+  stroke: var(--watch);
+}
+.ledger-row:has([data-band="amber"]) .ledger-row__cell--trajectory .trajectory__area {
+  fill: color-mix(in oklab, var(--watch) 16%, transparent);
+}
+
+/* Selection outranks the band: it is the reader's own state, not the data's. */
+.ledger-row--selected td:first-child,
+.ledger-row:has(input[type="checkbox"]:checked) td:first-child {
+  box-shadow: inset var(--space-1) 0 0 0 var(--accent-fill);
+}
+
+/*
+  Four solid accent buttons in a row is four primary actions, which is
+  none.  The templates give every control in `.case-actions__row` the
+  bare `.button` class, so the row's own order is the only statement of
+  importance available without touching markup — and that order is
+  deliberate: "why this decision" is what an analyst reaches for first,
+  which is why it is written first.  Everything after it steps back to
+  the secondary treatment that already exists.
+
+  A disabled control keeps whatever `.button--disabled` gives it; this
+  only demotes the live ones.
+*/
+.case-actions__row .case-actions__control:not(:first-child) .button:not(.button--disabled),
+.case-actions__row .case-actions__control:not(:first-child) button:not(.icon-button) {
+  border: var(--border);
+  background: var(--surface-raised);
+  color: var(--ink);
+  font-weight: var(--weight-semi);
+}
+
+.case-actions__row .case-actions__control:not(:first-child) .button:not(.button--disabled):hover,
+.case-actions__row .case-actions__control:not(:first-child) button:not(.icon-button):hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+/*
+  ------------------------------------------------------------------
+  Case file — covenant tabs and evidence drawers
+  ------------------------------------------------------------------
+  Three covenants rendered in full made an eleven-thousand-pixel page on
+  which nothing could be compared with anything else. One covenant at a
+  time, with its evidence one click away, is the same information in a
+  hundredth of the scroll.
+*/
+.tab-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block-end: var(--space-5);
+  padding-block-end: var(--space-3);
+  border-block-end: var(--border);
+}
+
+.tab-strip__tab {
+  display: grid;
+  gap: calc(var(--space-1) / 2);
+  padding: var(--space-2) var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-subtle);
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition:
+    background var(--dur-state) var(--ease),
+    border-color var(--dur-state) var(--ease),
+    color var(--dur-state) var(--ease);
+}
+
+.tab-strip__tab:hover {
+  border-color: var(--accent);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.tab-strip__tab[aria-selected="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.tab-strip__name {
+  font-family: var(--font-head);
+  font-size: var(--size-body);
+  font-weight: var(--weight-semi);
+}
+
+.tab-strip__detail {
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  letter-spacing: var(--tracking-label);
+}
+
+/*
+  The case file's own strip sits above five panels that are each already a
+  card, so it does not need a second rule under it.
+*/
+.case-file__sections {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.forecast-covenant__evidence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-5);
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border);
+}
+
+/*
+  A `position: fixed` element is positioned against the viewport only if no
+  ancestor holds a transform — an identity one counts. Two do: `.page-content`
+  keeps the final frame of its entrance animation, and a covenant card is
+  lifted while the pointer is over it, which is exactly when its own drawer
+  is opened. Either one pins the drawer inside the panel instead of the
+  window, which is how a drawer ends up half of it above the top of the
+  screen with no way to scroll to the rest.
+
+  `setOverlayState` in `app.js` already marks the body while any overlay is
+  open, so the transforms can be dropped for precisely that moment. The
+  entrance animation is cancelled rather than overridden because an
+  animation's filled value outranks a normal declaration; by the time a
+  reader opens a drawer it has long since finished, so there is nothing to
+  see. This also covers any drawer added later, anywhere in the app.
+*/
+body[data-overlay-open="true"] .page-content {
+  animation: none;
+}
+
+body[data-overlay-open="true"] .forecast-covenant {
+  transform: none;
+}
+
+/*
+  Any element carrying a `display` declaration outranks the user agent's
+  `[hidden] { display: none }`, and most panels here do — `.forecast-covenant`
+  is `display: grid`, so hiding it had no visible effect at all and the case
+  file kept rendering all three covenants on top of each other.
+
+  `role="tabpanel"` is set by the tabs controller and only ever exists when
+  script is running, so keying off it hides exactly the panels the controller
+  manages and leaves the no-JS path, where every panel must stay open,
+  completely untouched.
+*/
+[role="tabpanel"][hidden] {
+  display: none;
+}
+
+/*
+  `.drawer` carries `display: grid`, which outranks the user agent's
+  `[hidden] { display: none }` — so a closed drawer was never actually
+  hidden. It stayed in the layout, translated off the right-hand edge, and
+  pushed the document three hundred pixels wider than the viewport on a
+  phone. `openDrawer` and `closeDrawer` both drive the `hidden` property, so
+  honouring it is all that is needed; the `.no-js` rule below is more
+  specific and still overrides this to lay the drawers out inline.
+*/
+.drawer[hidden] {
+  display: none;
+}
+
+/*
+  A `1fr` grid row is never smaller than its content unless it is told it
+  may be, so the drawer grew to the height of the whole explanation instead
+  of letting the body scroll inside a viewport-height panel.
+*/
+.drawer__body {
+  min-height: 0;
+}
+
+/*
+  The five-column forecast ledger is wider than a phone. It scrolls inside
+  its own column, like every other wide table in the application, rather
+  than widening the page under it.
+*/
+.forecast-covenant__figures {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+/*
+  The drawer declares `aria-modal="true"` and traps focus, so the page
+  behind it is genuinely inert to a keyboard user. It should look inert
+  too. Scoped to an open drawer rather than to `data-overlay-open`, which
+  the mobile navigation also sets and already dims itself.
+*/
+body:has(.drawer[data-state="open"])::after {
+  position: fixed;
+  inset: 0;
+  z-index: 14;
+  background: color-mix(in srgb, var(--ink) 38%, transparent);
+  content: "";
+}
+
+
+/*
+  Without script there is nothing to open a drawer with, so the drawers are
+  not overlays at all: they lay out inline, in document order, exactly where
+  the content used to be. The `hidden` attribute stays on the element — the
+  server's state is unchanged — and only its presentation is overridden.
+*/
+.no-js .drawer[hidden] {
+  display: block;
+  position: static;
+  width: auto;
+  max-width: none;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.no-js .drawer__close,
+.no-js .forecast-covenant__evidence {
+  display: none;
+}
+
+/*
+  The topbar outlives the scroll, so let the content show through it
+  rather than pretending the page starts underneath an opaque slab.
+*/
+.shell-topbar {
+  background: color-mix(in srgb, var(--surface-raised) 86%, transparent);
+  backdrop-filter: blur(0.75rem);
+}
+
+@supports not (backdrop-filter: blur(0.75rem)) {
+  .shell-topbar {
+    background: var(--surface-raised);
+  }
+}
+
+/*
+  ==================================================================
+  Stage C · 3 — the remaining screens
+  ==================================================================
+*/
+
+/*
+  An empty or failed panel was a title and a grey sentence, which is
+  indistinguishable from a panel that simply hasn't finished loading.
+  Give each one a mark, and put the recovery action on the same line
+  of sight as the explanation instead of trailing off underneath it.
+*/
+.state--empty,
+.state--error {
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: start;
+  gap: var(--space-4);
+}
+
+.state__content {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.state__icon {
+  display: grid;
+  flex: none;
+  place-items: center;
+  width: var(--space-10);
+  height: var(--space-10);
+  border-radius: var(--radius-pill);
+  background: var(--surface-subtle);
+  color: var(--ink-muted);
+}
+
+.state__icon .icon {
+  width: var(--space-5);
+  height: var(--space-5);
+}
+
+.state--error .state__icon {
+  background: color-mix(in srgb, var(--breach) 14%, transparent);
+  color: var(--breach);
+}
+
+.state--empty .state__title,
+.state--error .state__title {
+  margin: 0;
+}
+
+/*
+  The recovery action is the whole point of the state, so it stops
+  looking like body copy that happens to be underlined.
+*/
+.state__action {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-8);
+  margin-block-start: var(--space-1);
+  padding-inline: var(--space-4);
+  border: var(--border);
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  border-radius: var(--radius-pill);
+  background: var(--surface-raised);
+  color: var(--accent);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+  text-decoration: none;
+  transition:
+    background var(--dur-state) var(--ease),
+    border-color var(--dur-state) var(--ease);
+}
+
+.state__action:hover,
+.state__action:focus-visible {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.state__action::after {
+  content: " →";
+}
+
+/*
+  The degraded note is a strip, not a card: icon, then one line of
+  prose explaining what is still trustworthy on the screen.
+*/
+.state--degraded {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.state--degraded .state__icon {
+  width: var(--space-8);
+  height: var(--space-8);
+  background: color-mix(in srgb, var(--watch) 18%, transparent);
+  color: var(--watch);
+}
+
+.state--degraded .state__icon .icon {
+  width: var(--space-4);
+  height: var(--space-4);
+}
+
+/*
+  A refused chart may not draw an SVG (see the note in
+  `_states/refused.html`), so its mark is typographic and comes from
+  the stylesheet, where it costs the template nothing.
+*/
+.state--refused {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  min-height: 0;
+}
+
+.state--refused::before {
+  display: grid;
+  place-items: center;
+  width: var(--space-6);
+  height: var(--space-6);
+  border: var(--border-width) solid currentColor;
+  border-radius: var(--radius-pill);
+  color: var(--breach);
+  font-family: var(--font-head);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  content: "!";
+}
+
+/*
+  ------------------------------------------------------------------
+  Stat tile
+  ------------------------------------------------------------------
+  Label above figure, not below it: the reader scans the column of
+  eyebrows to find the number they want, and a figure that arrives
+  before its own label is briefly meaningless.
+*/
+.stat-tile-row,
+.queue-hero__stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-3);
+}
+
+/*
+  The hero's three counters are one instrument, so they stay on one
+  line rather than wrapping two-and-one and leaving a hole. They are
+  also read as a set, so they are sized by the widest of the three —
+  which on the case workspace is a word ("Within SLA"), not a figure,
+  hence the smaller face than a standalone tile gets.
+*/
+.queue-hero__stats {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.queue-hero__stats .stat-tile {
+  /*
+    Reserve two lines for the eyebrow so a label that wraps ("Cases in
+    view") does not push its own figure below the two beside it. Three
+    figures that do not share a baseline are three figures the reader
+    has to compare one at a time.
+  */
+  grid-template-rows: minmax(2.2rem, auto) auto auto;
+  padding: var(--space-3);
+}
+
+.queue-hero__stats .stat-tile__value {
+  font-size: var(--size-section);
+}
+
+@media (max-width: 40rem) {
+  .queue-hero__stats {
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  }
+}
+
+.stat-tile {
+  display: grid;
+  align-content: start;
+  gap: var(--space-1);
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  color: var(--ink);
+  text-decoration: none;
+}
+
+.stat-tile__label {
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semi);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.stat-tile__value {
+  font-family: var(--font-data);
+  font-size: var(--size-case-title);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+}
+
+.stat-tile__detail {
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+/*
+  The tone is stated on the left edge rather than by tinting the whole
+  tile, so four tiles in a row still read as one instrument panel
+  instead of four unrelated alerts.
+*/
+.stat-tile--act {
+  box-shadow: inset var(--space-1) 0 0 0 var(--breach);
+}
+
+.stat-tile--amber {
+  box-shadow: inset var(--space-1) 0 0 0 var(--watch);
+}
+
+.stat-tile--watch {
+  box-shadow: inset var(--space-1) 0 0 0 var(--signal);
+}
+
+.stat-tile--headroom {
+  box-shadow: inset var(--space-1) 0 0 0 var(--headroom);
+}
+
+.stat-tile--accent {
+  box-shadow: inset var(--space-1) 0 0 0 var(--accent-fill);
+}
+
+a.stat-tile {
+  transition:
+    border-color var(--dur-state) var(--ease),
+    background var(--dur-state) var(--ease),
+    transform var(--dur-state) var(--ease);
+}
+
+a.stat-tile:hover,
+a.stat-tile:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 40%, var(--hairline));
+  transform: translateY(calc(var(--space-1) / -2));
+}
+
+.stat-tile[data-active="true"] {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+
+/* The share bar reads as a proportion, so it spans the tile's full width. */
+.stat-tile__share,
+.queue-band-tile__share {
+  display: block;
+  width: 100%;
+  height: var(--space-1);
+  margin-block-start: var(--space-2);
+  overflow: hidden;
+  border-radius: var(--radius-pill);
+}
+
+.stat-tile__share-track,
+.queue-band-tile__share-track {
+  fill: var(--surface-sunken);
+}
+
+.stat-tile__share-fill,
+.queue-band-tile__share-fill {
+  fill: var(--ink-muted);
+}
+
+.queue-band-tile[data-band="act"] .queue-band-tile__share-fill {
+  fill: var(--breach);
+}
+
+.queue-band-tile[data-band="amber"] .queue-band-tile__share-fill {
+  fill: var(--watch);
+}
+
+.queue-band-tile[data-band="watch"] .queue-band-tile__share-fill {
+  fill: var(--signal);
+}
+
+.stat-tile--act .stat-tile__share-fill {
+  fill: var(--breach);
+}
+
+.stat-tile--amber .stat-tile__share-fill {
+  fill: var(--watch);
+}
+
+.stat-tile--headroom .stat-tile__share-fill {
+  fill: var(--headroom);
+}
+
+.stat-tile--accent .stat-tile__share-fill {
+  fill: var(--accent-fill);
+}
+
+/*
+  ------------------------------------------------------------------
+  Modal
+  ------------------------------------------------------------------
+  The same element as the drawer, so it inherits the focus trap, the
+  scrim and the `[hidden]` rule. Only the geometry differs: centred and
+  bounded rather than flush to the inline end and full height.
+*/
+.drawer--modal {
+  inset: 0;
+  width: min(100% - var(--space-8), 40rem);
+  max-width: none;
+  height: max-content;
+  max-height: min(85%, 48rem);
+  margin: auto;
+  border: var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-drawer);
+}
+
+.drawer--modal-wide {
+  width: min(100% - var(--space-8), 60rem);
+}
+
+/*
+  A modal is short enough that the body scrolls rather than the page
+  behind it; without this the header scrolls away with the content.
+*/
+.drawer--modal .drawer__body {
+  min-height: 0;
+  overflow-y: auto;
+}
+
+/*
+  Close is the way out, not the thing to do. As a filled primary button
+  it was the loudest control in every overlay, competing with the
+  submit button the overlay exists for. The macro's markup is shared
+  and asserted on, so the correction is made here.
+
+  The second selector is not redundant: the blanket control rule above
+  is `.page-content button:not(.icon-button):not(.shell-sidebar__collapse)`,
+  which outweighs a single class, so a plain `.drawer__close` would lose
+  to it. This matches its weight and, being later, wins.
+*/
+.drawer__close,
+.page-content button.drawer__close:not(.icon-button) {
+  border: var(--border);
+  background: var(--surface-raised);
+  color: var(--ink-muted);
+  font-weight: var(--weight-semi);
+  box-shadow: none;
+}
+
+.drawer__close:hover,
+.drawer__close:focus-visible,
+.page-content button.drawer__close:not(.icon-button):hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  color: var(--accent);
+  filter: none;
+}
+
+/*
+  ------------------------------------------------------------------
+  Case lifecycle strip
+  ------------------------------------------------------------------
+  A rail with a node per state. The rail is drawn on the list rather
+  than between the nodes so it cannot suggest a direction of travel
+  the state machine does not have.
+*/
+.case-lifecycle__steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-raised);
+  list-style: none;
+}
+
+.case-lifecycle__step {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  padding-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semi);
+  letter-spacing: var(--tracking-label);
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.case-lifecycle__mark {
+  position: relative;
+  width: 100%;
+  height: calc(var(--space-1) / 2);
+  border-radius: var(--radius-pill);
+  background: var(--hairline);
+}
+
+.case-lifecycle__mark::after {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  width: var(--space-3);
+  height: var(--space-3);
+  border: var(--border-width) solid var(--surface-raised);
+  border-radius: var(--radius-pill);
+  background: var(--hairline);
+  translate: -50% -50%;
+  content: "";
+}
+
+.case-lifecycle__step[data-step-state="current"] {
+  color: var(--accent);
+}
+
+.case-lifecycle__step[data-step-state="current"] .case-lifecycle__mark,
+.case-lifecycle__step[data-step-state="current"] .case-lifecycle__mark::after {
+  background: var(--accent-fill);
+}
+
+.case-lifecycle__step[data-step-state="current"] .case-lifecycle__mark::after {
+  width: var(--space-4);
+  height: var(--space-4);
+  box-shadow: 0 0 0 calc(var(--space-1) / 2) var(--accent-soft);
+}
+
+.case-lifecycle__step[data-step-state="reachable"] {
+  color: var(--ink);
+}
+
+.case-lifecycle__step[data-step-state="reachable"] .case-lifecycle__mark::after {
+  background: var(--surface-raised);
+  border-color: var(--ink-muted);
+}
+
+/*
+  A state this case can no longer reach is dimmed, never removed: the
+  vocabulary is the same on every case, and a strip that changed length
+  would be harder to read across two cases than one that greys a step.
+*/
+.case-lifecycle__step[data-step-state="unreachable"] {
+  opacity: 0.55;
+}
+
+/*
+  ------------------------------------------------------------------
+  Event timeline
+  ------------------------------------------------------------------
+*/
+.event-timeline {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  margin: 0;
+  padding: 0 0 0 var(--space-6);
+  list-style: none;
+}
+
+.event-timeline::before {
+  position: absolute;
+  inset-block: var(--space-2);
+  inset-inline-start: calc(var(--space-2) - var(--border-width));
+  width: var(--border-width);
+  background: var(--hairline);
+  content: "";
+}
+
+.event-timeline__event {
+  position: relative;
+  display: grid;
+  gap: calc(var(--space-1) / 2);
+}
+
+.event-timeline__mark {
+  position: absolute;
+  inset-block-start: var(--space-1);
+  inset-inline-start: calc(var(--space-6) * -1);
+  width: var(--space-3);
+  height: var(--space-3);
+  border: var(--border-width) solid var(--surface-raised);
+  border-radius: var(--radius-pill);
+  background: var(--accent-fill);
+}
+
+.event-timeline__headline {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: var(--size-body);
+  font-weight: var(--weight-semi);
+}
+
+.event-timeline__meta {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  font-variant-numeric: tabular-nums;
+}
+
+.event-timeline__detail {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-data);
+  overflow-wrap: anywhere;
+}
+
+/*
+  ------------------------------------------------------------------
+  Governance sections
+  ------------------------------------------------------------------
+  The panels inside a tab strip carry the strip's own frame, so they
+  drop their individual borders and read as one document.
+*/
+.governance__sections {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.governance__panel-actions {
+  margin-block: 0 var(--space-4);
+}
+
+/*
+  Only some tabs carry a count, and a tab that has one was growing
+  taller than its neighbours, so the strip read as ragged rather than
+  as a row of equal choices.
+*/
+.tab-strip {
+  align-items: stretch;
+}
+
+.tab-strip__tab {
+  align-content: start;
+}
+
+/*
+  ------------------------------------------------------------------
+  Simulator comparison
+  ------------------------------------------------------------------
+  Every figure in this table is a comparison *against* the baseline
+  column, so the baseline is marked as the reference rather than
+  competing with the options as a fifth equal choice.
+*/
+.simulator-table [data-baseline="true"] {
+  background: var(--surface-subtle);
+}
+
+.simulator-table th[data-baseline="true"] .simulator-table__option {
+  color: var(--ink-muted);
+}
+
+/*
+  The sign is in the text already. This says the same thing a second
+  way, for a reader scanning the row rather than reading it — and
+  never as colour alone.
+*/
+.simulator-table__horizons li[data-direction="better"] {
+  color: var(--headroom);
+  font-weight: var(--weight-semi);
+}
+
+.simulator-table__horizons li[data-direction="worse"] {
+  color: var(--breach);
+  font-weight: var(--weight-semi);
+}
+
+/*
+  ------------------------------------------------------------------
+  Intake
+  ------------------------------------------------------------------
+  The clause is the evidence for everything to its right, so it stays
+  on screen while the reader works down the proposed fields. Only
+  where there is a viewport tall enough to have a "rest of the page"
+  and two columns to be sticky within.
+*/
+@media (min-width: 60rem) {
+  .intake-proposal__source {
+    position: sticky;
+    inset-block-start: var(--space-16);
+    align-self: start;
+    max-height: calc(100vh - var(--space-16) * 2);
+    overflow-y: auto;
+  }
+}
+
+/*
+  Six verdicts, read as a strike sheet rather than as six paragraphs.
+  A failed check keeps its full detail — it is struck, not removed,
+  and that is a product promise, so nothing here may hide it.
+*/
+.intake-verdict-list {
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--space-2);
+}
+
+.intake-verdict-item {
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border: var(--border);
+  border-block-end: var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface-subtle);
+}
+
+.intake-verdict-item p {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+.intake-verdict-item--passed {
+  border-color: color-mix(in srgb, var(--headroom) 35%, var(--hairline));
+  background: var(--headroom-bg);
+}
+
+.intake-verdict-item--struck {
+  border-color: color-mix(in srgb, var(--breach) 35%, var(--hairline));
+  background: var(--breach-bg);
+}
+
+.intake-verdict-item--struck p {
+  color: var(--ink);
+}
+
+.intake-verdict-item .verdict-mark {
+  font-size: var(--size-data);
+  font-weight: var(--weight-bold);
+}
+
+/*
+  ------------------------------------------------------------------
+  Queue filter disclosure
+  ------------------------------------------------------------------
+  Wide viewports have room for the whole row, so the control that
+  collapses it is not offered there — the element stays `open` and the
+  summary is simply not painted.
+*/
+.queue-filters__disclosure-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--space-8);
+  margin-block-end: var(--space-3);
+  padding-inline: var(--space-3);
+  border: var(--border);
+  border-radius: var(--radius-pill);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+  list-style: none;
+}
+
+.queue-filters__disclosure-summary::-webkit-details-marker {
+  display: none;
+}
+
+.queue-filters__disclosure-summary::after {
+  color: var(--ink-muted);
+  content: "▾";
+}
+
+.queue-filters__disclosure[open] > .queue-filters__disclosure-summary::after {
+  content: "▴";
+}
+
+@media (min-width: 48rem) {
+  .queue-filters__disclosure-summary {
+    display: none;
+  }
+}
+
+/* The × is the target the reader is aiming at, so it reacts to them. */
+.queue-filter-chip:hover .queue-filter-chip__remove,
+.queue-filter-chip:focus-visible .queue-filter-chip__remove {
+  color: var(--breach);
 }

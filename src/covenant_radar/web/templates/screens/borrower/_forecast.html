@@ -1,4 +1,5 @@
 {% if view is defined %}
+{% import "_components/components.html" as components %}
 {% set forecast_panel = view.forecast_panel %}
 <section
   class="panel panel--{{ forecast_panel.state }} case-file__panel--wide"
@@ -30,7 +31,14 @@
     {% set state_message = forecast_panel.degraded_message %}
     {% include "_states/degraded.html" %}
   {% else %}
-    <div class="forecast-panel" id="forecast-panel">
+    <div class="forecast-panel" id="forecast-panel" data-tabs>
+      {% if forecast_panel.covenants|length > 1 %}
+        {% call components.tab_strip(labels.forecast_covenants_nav) %}
+          {% for covenant in forecast_panel.covenants %}
+            {{ components.tab(covenant.row_id, covenant.covenant_name, covenant.covenant_reference) }}
+          {% endfor %}
+        {% endcall %}
+      {% endif %}
       {% for covenant in forecast_panel.covenants %}
         <article
           class="forecast-covenant"
@@ -113,9 +121,37 @@
             </div>
           </div>
 
+          {#
+            The evidence behind the forecast is the bulk of this card — it
+            ran to several thousand pixels per covenant, which pushed the
+            next covenant off the bottom of the world. It moves into two
+            drawers, opened from here. Both are rendered by the server and
+            merely hidden, so every word of the provenance and the insight
+            text is still in the response, and `.no-js` below lays them out
+            inline for a reader without script.
+          #}
+          <div class="forecast-covenant__evidence">
+            <button class="button button--secondary"
+                    type="button"
+                    data-drawer-open="{{ covenant.trajectory_id }}-assurance"
+                    aria-expanded="false"
+                    aria-controls="{{ covenant.trajectory_id }}-assurance">{{ labels.forecast_open_explanations }}</button>
+            <button class="button button--secondary"
+                    type="button"
+                    data-drawer-open="{{ covenant.trajectory_id }}-insights"
+                    aria-expanded="false"
+                    aria-controls="{{ covenant.trajectory_id }}-insights">{{ labels.forecast_open_insights }}{% if covenant.actionable_insights %} ({{ covenant.actionable_insights|length }}){% endif %}</button>
+          </div>
+
+          {% call components.drawer(covenant.trajectory_id ~ "-assurance", labels.forecast_explanations, close_label=labels.forecast_close) %}
           <section class="forecast-assurance" aria-labelledby="{{ covenant.trajectory_id }}-explanations">
             <div class="forecast-assurance__heading">
-              <h4 id="{{ covenant.trajectory_id }}-explanations">{{ labels.forecast_explanations }}</h4>
+              {# Inside a drawer these sit under the drawer's own h2, so the
+                 headings here and below step down one level from what they
+                 were when this block was inline under the covenant's h3. #}
+              {# The drawer's own header already carries this title, so it is
+                 kept for the section's `aria-labelledby` but not drawn twice. #}
+              <h3 class="sr-only" id="{{ covenant.trajectory_id }}-explanations">{{ labels.forecast_explanations }}</h3>
               <p>{{ labels.forecast_explanations_note }}</p>
             </div>
             <div class="forecast-explanation-list">
@@ -153,7 +189,7 @@
 
                       {% if explanation.factors %}
                         <section aria-labelledby="forecast-factors-{{ horizon.forecast_id }}">
-                          <h5 id="forecast-factors-{{ horizon.forecast_id }}">{{ labels.forecast_rule_factors }}</h5>
+                          <h4 id="forecast-factors-{{ horizon.forecast_id }}">{{ labels.forecast_rule_factors }}</h4>
                           <div class="forecast-explanation__table-wrap">
                             <table class="forecast-explanation__factor-table">
                               <thead><tr><th scope="col">{{ labels.forecast_factor }}</th><th scope="col">{{ labels.forecast_input }}</th><th scope="col">{{ labels.forecast_normalized }}</th><th scope="col">{{ labels.forecast_weight }}</th><th scope="col">{{ labels.forecast_contribution }}</th></tr></thead>
@@ -168,7 +204,7 @@
                       {% endif %}
 
                       <section aria-labelledby="forecast-drivers-{{ horizon.forecast_id }}">
-                        <h5 id="forecast-drivers-{{ horizon.forecast_id }}">{{ labels.forecast_drivers }}</h5>
+                        <h4 id="forecast-drivers-{{ horizon.forecast_id }}">{{ labels.forecast_drivers }}</h4>
                         {% if explanation.drivers %}
                           <ul class="forecast-driver-list">
                             {% for driver in explanation.drivers %}
@@ -185,7 +221,7 @@
 
                       {% if explanation.ml_model_version %}
                         <section aria-labelledby="forecast-ml-contributions-{{ horizon.forecast_id }}">
-                          <h5 id="forecast-ml-contributions-{{ horizon.forecast_id }}">{{ labels.forecast_model_contributions }}</h5>
+                          <h4 id="forecast-ml-contributions-{{ horizon.forecast_id }}">{{ labels.forecast_model_contributions }}</h4>
                           {% if explanation.model_contributions %}
                             <ul class="forecast-model-contribution-list">
                               {% for contribution in explanation.model_contributions %}
@@ -199,7 +235,7 @@
                       {% endif %}
 
                       <section aria-labelledby="forecast-citations-{{ horizon.forecast_id }}">
-                        <h5 id="forecast-citations-{{ horizon.forecast_id }}">{{ labels.forecast_citations }}</h5>
+                        <h4 id="forecast-citations-{{ horizon.forecast_id }}">{{ labels.forecast_citations }}</h4>
                         <ol class="forecast-citation-list">
                           {% for citation in explanation.citations %}
                             <li>
@@ -219,10 +255,13 @@
               {% endfor %}
             </div>
           </section>
+          {% endcall %}
 
-          <section class="forecast-insights" aria-labelledby="{{ covenant.trajectory_id }}-insights">
+          {% call components.drawer(covenant.trajectory_id ~ "-insights", labels.forecast_actionable_insights, close_label=labels.forecast_close) %}
+          <section class="forecast-insights" aria-labelledby="{{ covenant.trajectory_id }}-insights-heading">
             <div class="forecast-insights__heading">
-              <h4 id="{{ covenant.trajectory_id }}-insights">{{ labels.forecast_actionable_insights }}</h4>
+              {# `-insights` now names the drawer, so the heading takes its own id. #}
+              <h3 class="sr-only" id="{{ covenant.trajectory_id }}-insights-heading">{{ labels.forecast_actionable_insights }}</h3>
               <p>{{ labels.forecast_actionable_note }}</p>
             </div>
             {% if covenant.actionable_insights %}
@@ -244,6 +283,7 @@
               <p class="muted">{{ labels.forecast_no_actions }}</p>
             {% endif %}
           </section>
+          {% endcall %}
         </article>
       {% endfor %}
     </div>

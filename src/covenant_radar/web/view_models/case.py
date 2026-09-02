@@ -12,6 +12,7 @@ from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from decimal import ROUND_HALF_UP, Decimal
+from typing import Final
 from urllib.parse import quote
 from uuid import UUID
 from zoneinfo import ZoneInfo
@@ -36,7 +37,7 @@ from covenant_radar.db.models.workflow import ActionTaken, Case, CaseComment, Ca
 from covenant_radar.db.repositories.case import CaseRepository
 from covenant_radar.db.scoping import Scope, grant_reaches_path
 from covenant_radar.db.session import is_database_session
-from covenant_radar.domain.cases.lifecycle import permitted_transitions
+from covenant_radar.domain.cases.lifecycle import CASE_STATES, permitted_transitions
 
 IST = ZoneInfo("Asia/Kolkata")
 _PERCENT_QUANTUM = Decimal("0.1")
@@ -72,6 +73,16 @@ class SelectOption:
 
     value: str
     label: str
+
+
+# The lifecycle strip on the case workspace needs the whole vocabulary, in
+# the domain's own order, not just the transitions available from here.  It
+# is derived from `CASE_STATES` so a new state cannot appear in the state
+# machine and be silently missing from the screen that draws it.
+CASE_LIFECYCLE: Final[tuple[SelectOption, ...]] = tuple(
+    SelectOption(state, _STATE_LABELS.get(state, state.replace("_", " ").title()))
+    for state in CASE_STATES
+)
 
 
 @dataclass(frozen=True, slots=True)
@@ -642,6 +653,7 @@ def _aware(value: datetime, field: str) -> datetime:
 
 
 __all__ = [
+    "CASE_LIFECYCLE",
     "CaseActionView",
     "CaseCommentView",
     "CaseDetailView",

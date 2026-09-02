@@ -58,7 +58,58 @@ SLA_BREACH_TEMPLATE = NotificationTemplate(
     name="sla_breach",
     subject_template="Covenant Radar SLA breach: {case_reference}",
     body_template="{summary}",
-    slots=(_slot("case_reference", str), _slot("summary", str)),
+    slots=(
+        _slot("case_reference", str),
+        _slot("summary", str, required=False),
+        _slot("case_id", str, required=False),
+        _slot("borrower_id", str, required=False),
+        _slot("due_at", str, required=False),
+        _slot("overdue_at", str, required=False),
+    ),
+)
+
+ASSIGNEE_FALLBACK_TEMPLATE = NotificationTemplate(
+    name="assignee_fallback",
+    subject_template="Covenant Radar assignment fallback: {case_reference}",
+    body_template="{summary}",
+    slots=(
+        _slot("case_reference", str),
+        _slot("summary", str, required=False),
+        _slot("case_id", str, required=False),
+        _slot("borrower_id", str, required=False),
+        _slot("assignee_id", str, required=False),
+    ),
+)
+
+COMMENT_MENTION_TEMPLATE = NotificationTemplate(
+    name="comment_mention",
+    subject_template="Covenant Radar mention: {case_reference}",
+    body_template="You were mentioned in a case comment.",
+    slots=(
+        _slot("case_reference", str),
+        _slot("comment_id", str, required=False),
+    ),
+)
+
+# Historical aliases remain executable data-only templates.  They allow old
+# notification rows to render after new writers have moved to canonical names.
+CASE_SLA_BREACH_ALIAS = NotificationTemplate(
+    name="case_sla_breach",
+    subject_template=SLA_BREACH_TEMPLATE.subject_template,
+    body_template=SLA_BREACH_TEMPLATE.body_template,
+    slots=SLA_BREACH_TEMPLATE.slots,
+)
+CASE_ASSIGNEE_FALLBACK_ALIAS = NotificationTemplate(
+    name="case_assignee_fallback",
+    subject_template=ASSIGNEE_FALLBACK_TEMPLATE.subject_template,
+    body_template=ASSIGNEE_FALLBACK_TEMPLATE.body_template,
+    slots=ASSIGNEE_FALLBACK_TEMPLATE.slots,
+)
+CASE_COMMENT_MENTION_ALIAS = NotificationTemplate(
+    name="case_comment_mention",
+    subject_template=COMMENT_MENTION_TEMPLATE.subject_template,
+    body_template=COMMENT_MENTION_TEMPLATE.body_template,
+    slots=COMMENT_MENTION_TEMPLATE.slots,
 )
 
 CERTIFICATE_DUE_TEMPLATE = NotificationTemplate(
@@ -95,17 +146,27 @@ DEFAULT_TEMPLATES = (
     BAND_CHANGE_TEMPLATE,
     MORNING_QUEUE_TEMPLATE,
     SLA_BREACH_TEMPLATE,
+    ASSIGNEE_FALLBACK_TEMPLATE,
+    COMMENT_MENTION_TEMPLATE,
     CERTIFICATE_DUE_TEMPLATE,
     JOB_FAILURE_TEMPLATE,
     SECURITY_ALERT_TEMPLATE,
     SYSTEM_FAILURE_TEMPLATE,
+    CASE_SLA_BREACH_ALIAS,
+    CASE_ASSIGNEE_FALLBACK_ALIAS,
+    CASE_COMMENT_MENTION_ALIAS,
 )
 DEFAULT_TEMPLATE_REGISTRY = TemplateRegistry(DEFAULT_TEMPLATES)
 
 
 __all__ = [
+    "ASSIGNEE_FALLBACK_TEMPLATE",
     "BAND_CHANGE_TEMPLATE",
+    "CASE_ASSIGNEE_FALLBACK_ALIAS",
+    "CASE_COMMENT_MENTION_ALIAS",
+    "CASE_SLA_BREACH_ALIAS",
     "CERTIFICATE_DUE_TEMPLATE",
+    "COMMENT_MENTION_TEMPLATE",
     "DEFAULT_TEMPLATES",
     "DEFAULT_TEMPLATE_REGISTRY",
     "JOB_FAILURE_TEMPLATE",

@@ -85,7 +85,7 @@ from covenant_radar.db.models.covenant import (
     CovenantTest,
     CovenantVersion,
 )
-from covenant_radar.db.models.facility import Facility
+from covenant_radar.db.models.facility import Facility, FacilityConduct
 from covenant_radar.db.models.forecast import Forecast, ForecastRun
 from covenant_radar.db.models.forecast import TriageEntry as TriageEntryModel
 from covenant_radar.db.models.operations import JobRun
@@ -98,8 +98,6 @@ from covenant_radar.db.models.signal import (
     SignalEvent as SignalEventModel,
 )
 from covenant_radar.db.models.workflow import Case, Notification
-from covenant_radar.notifications.templates import BAND_CHANGE_TEMPLATE
-from covenant_radar.ports.notifier import NotificationChannel
 from covenant_radar.db.repositories.audit import SqlAlchemyAuditStore
 from covenant_radar.db.repositories.evidence import EvidenceRepository
 from covenant_radar.db.repositories.forecast import COMPLETE as COMPLETE_FORECAST_RUN_STATE
@@ -107,6 +105,7 @@ from covenant_radar.db.repositories.trace import TraceRepository
 from covenant_radar.db.scoping import Scope
 from covenant_radar.db.session import SessionFactory
 from covenant_radar.domain.covenants.calendar import ScheduleState
+from covenant_radar.domain.covenants.sma import derive_borrower_sma
 from covenant_radar.domain.forecast import Observation, Weights, evidence_pressure
 from covenant_radar.domain.forecast.predictor import ForecastPredictor
 from covenant_radar.domain.signals import SignalEvent
@@ -115,6 +114,8 @@ from covenant_radar.domain.signals.persistence import PersistenceThresholds
 from covenant_radar.domain.triage.banding import ACT_BAND, TriageThresholds
 from covenant_radar.domain.triage.urgency import ForecastFact, TriageInput
 from covenant_radar.domain.triage.urgency import rank as rank_triage_entries
+from covenant_radar.notifications.templates import BAND_CHANGE_TEMPLATE
+from covenant_radar.ports.notifier import NotificationChannel
 from covenant_radar.scheduler.jobs import JobHandler, JobRunContext
 from covenant_radar.scheduler.ledger import FAILED, SUCCEEDED
 from covenant_radar.scheduler.pipeline import (
@@ -915,6 +916,9 @@ class NightlyPipelineService:
                             reference=borrower.reference,
                             exposure=self._borrower_exposure(session, borrower.id, as_of_date),
                             forecasts=self._forecast_facts(session, forecast_run.id, borrower.id),
+                            sma_band=self._borrower_sma_band(
+                                session, borrower.id, as_of_date
+                            ),
                         )
                     )
                 except Exception as error:  # noqa: BLE001 - isolated and recorded, not swallowed
@@ -964,6 +968,47 @@ class NightlyPipelineService:
             raise
         finally:
             session.close()
+
+    def _borrower_sma_band(
+        self, session: Session, borrower_id: UUID, as_of_date: date
+    ) -> str | None:
+        """Return a complete current-day SMA derivation for queue ranking.
+
+        ``SmaBand.NONE`` is a real value only when every effective facility
+        has a conduct row with days-past-due.  Any absent row/value leaves the
+        queue field unknown instead of making missing data look healthy.
+        """
+
+        facility_ids = tuple(
+            session.scalars(
+                select(Facility.id)
+                .where(
+                    Facility.borrower_id == borrower_id,
+                    Facility.effective_from <= as_of_date,
+                    or_(Facility.effective_to.is_(None), Facility.effective_to >= as_of_date),
+                )
+                .order_by(Facility.id)
+            ).all()
+        )
+        if not facility_ids:
+            return None
+        conduct = tuple(
+            session.scalars(
+                select(FacilityConduct).where(
+                    FacilityConduct.facility_id.in_(facility_ids),
+                    FacilityConduct.as_of_date == as_of_date,
+                )
+            ).all()
+        )
+        derivation = derive_borrower_sma(
+            conduct,
+            borrower_id=borrower_id,
+            as_of_date=as_of_date,
+            facility_ids=facility_ids,
+        )
+        if derivation.reason is not None:
+            return None
+        return derivation.band.value
 
     # -- update cases -------------------------------------------------------
 

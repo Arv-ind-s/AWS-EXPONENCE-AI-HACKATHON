@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import json
+
 import httpx
 import pytest
 
@@ -83,3 +85,47 @@ def test_non_conforming_payload_passed_through_with_note() -> None:
     assert response.model is None
     assert response.normalization_note is not None
     assert "choices" in response.normalization_note
+
+
+def test_tcs_omits_temperature_only_for_gpt5_models() -> None:
+    bodies: list[dict[str, object]] = []
+
+    def handler(request: httpx.Request) -> httpx.Response:
+        bodies.append(json.loads(request.content))
+        return httpx.Response(
+            200,
+            json={
+                "model": "gateway-model",
+                "choices": [{"message": {"role": "assistant", "content": "answer"}}],
+            },
+            request=request,
+        )
+
+    client = httpx.Client(transport=httpx.MockTransport(handler))
+    provider = TCSGenAILabProvider(
+        endpoint="https://tcs.example", api_key="key", http_client=client
+    )
+    try:
+        provider.complete(
+            CompletionRequest(
+                messages=[{"role": "user", "content": "test"}],
+                model="genailab-maas-gpt-5.4-mini",
+                max_tokens=256,
+                temperature=0.0,
+            )
+        )
+        provider.complete(
+            CompletionRequest(
+                messages=[{"role": "user", "content": "test"}],
+                model="azure/genailab-maas-gpt-4o-mini",
+                max_tokens=256,
+                temperature=0.0,
+            )
+        )
+    finally:
+        client.close()
+
+    assert bodies[0]["model"] == "genailab-maas-gpt-5.4-mini"
+    assert bodies[0]["max_tokens"] == 256
+    assert "temperature" not in bodies[0]
+    assert bodies[1]["temperature"] == 0.0

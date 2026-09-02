@@ -196,6 +196,11 @@ class SimulationScreenView:
     error_message: str | None = None
     empty_title: str = "Select an intervention"
     empty_message: str = "Select an intervention to compare against doing nothing."
+    # An empty state that names no next step is indistinguishable from a
+    # screen that failed to load, so it carries one.  Both are blank when
+    # the recovery is already on the screen (the intervention checkboxes).
+    empty_action_label: str = ""
+    empty_action_href: str = ""
 
     def __post_init__(self) -> None:
         if self.state not in {"ready", "empty", "error", "degraded"}:
@@ -434,6 +439,10 @@ def build_simulation_view(
     safe_parameters = dict(parameters or {})
     parameters_json = _parameters_json(safe_parameters)
     if context is None:
+        # No forecast was resolved, so there is nothing on this screen to
+        # select. The default copy ("Select an intervention") described a
+        # control that is not rendered in this branch; say what is actually
+        # missing and where the reader gets it.
         return SimulationScreenView(
             state="error" if error_message else "empty",
             forecast=None,
@@ -442,6 +451,14 @@ def build_simulation_view(
             selected_codes=selected,
             parameters_json=parameters_json,
             error_message=error_message,
+            empty_title="No forecast selected",
+            empty_message=(
+                "The simulator compares interventions against one covenant forecast. "
+                "Open a borrower from the queue and start a simulation from the "
+                "covenant you want to test."
+            ),
+            empty_action_label="Open the queue",
+            empty_action_href="/",
         )
 
     comparison_map = comparisons or {}

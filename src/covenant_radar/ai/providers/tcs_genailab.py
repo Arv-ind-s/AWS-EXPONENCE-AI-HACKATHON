@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import httpx
@@ -13,6 +14,21 @@ from covenant_radar.ai.providers.base import (
     openai_body,
 )
 from covenant_radar.ports.llm import CompletionRequest, CompletionResponse
+
+_GPT5_MODEL_NAME = re.compile(r"(?:^|-)gpt-5(?:[.-]|$)", re.IGNORECASE)
+
+
+def _tcs_openai_body(request: CompletionRequest) -> dict[str, object]:
+    """Build a body compatible with the TCS gateway's GPT-5 deployments."""
+
+    body = openai_body(request)
+    model_name = request.model.rsplit("/", maxsplit=1)[-1]
+    if _GPT5_MODEL_NAME.search(model_name):
+        # TCS's LiteLLM gateway rejects the client's deterministic
+        # ``temperature=0`` default for GPT-5 models. Omitting the optional
+        # parameter lets the deployment use its supported default.
+        body.pop("temperature", None)
+    return body
 
 
 class TCSGenAILabProvider(BaseHttpProvider):
@@ -47,7 +63,7 @@ class TCSGenAILabProvider(BaseHttpProvider):
                 "Authorization": f"Bearer {self._api_key}",
                 "Content-Type": "application/json",
             },
-            body=openai_body(request),
+            body=_tcs_openai_body(request),
         )
         return normalise_openai_payload(payload, latency_ms=latency_ms)
 

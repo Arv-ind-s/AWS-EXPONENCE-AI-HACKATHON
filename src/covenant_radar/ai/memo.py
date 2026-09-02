@@ -441,7 +441,20 @@ def _outbound_fields(slots: MemoSlotMap, actions: Sequence[CatalogueAction]) -> 
         "confidence",
         "crossing_date",
     ):
-        value = slots[slot_name].value
+        slot = slots[slot_name]
+        # An absent or suppressed slot still carries human-readable
+        # placeholder text (`MemoSlot` requires explicit text instead of
+        # null), which is meant for display, not for the model-bound
+        # payload. Without this guard, e.g. a borrower whose covenant never
+        # projects a crossing date sends its placeholder text
+        # ("Not available from the recorded evidence.") down the
+        # `crossing_date` slot, whose masking spec accepts any string and
+        # then fails trying to parse it as an ISO date — turning every
+        # borrower without a projected crossing into a 500 on memo
+        # generation instead of a memo that simply omits the field.
+        if not slot.resolved:
+            continue
+        value = slot.value
         if _outbound_value_is_valid(slot_name, value):
             fields[slot_name] = value
     return fields

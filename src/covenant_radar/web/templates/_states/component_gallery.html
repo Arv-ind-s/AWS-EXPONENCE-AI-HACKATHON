@@ -16,6 +16,9 @@
 {% import "_components/provenance_link.html" as provenance_link_component %}{% set provenance_link = provenance_link_component.provenance_link %}
 {% import "_components/pagination.html" as pagination_component %}{% set pagination = pagination_component.pagination %}
 {% import "_components/filter_bar.html" as filter_bar_component %}{% set filter_bar = filter_bar_component.filter_bar %}
+{% import "_components/tabs.html" as tabs_component %}{% set tab_strip = tabs_component.tab_strip %}{% set tab = tabs_component.tab %}
+{% import "_components/modal.html" as modal_component %}{% set modal = modal_component.modal %}
+{% import "_components/stat_tile.html" as stat_tile_component %}{% set stat_tile = stat_tile_component.stat_tile %}
 <!doctype html>
 <html lang="en" data-theme="{{ theme|default("light", true) }}">
   <head>
@@ -88,6 +91,29 @@
       {{ filter_bar("filters-rest", "/queue", ({"name": "band", "label": "Band", "options": (("all", "All"), ("watch", "Watch")), "value": "all"},)) }}
       {{ filter_bar("filters-active", "/queue", state="active") }}
       {{ filter_bar("filters-saved", "/queue", state="saved-view") }}
+
+      <section aria-labelledby="stat-tiles-title"><h2 id="stat-tiles-title">Stat tiles</h2>
+        <div class="stat-tile-row">
+          {{ stat_tile("Borrowers in view", "148", detail="of 1,204 in scope") }}
+          {{ stat_tile("Act now", "12", tone="act", share=8, href="/?band=act") }}
+          {{ stat_tile("Amber", "31", tone="amber", share=21, href="/?band=amber", active=true) }}
+          {{ stat_tile("Watch", "105", tone="watch", share=71, href="/?band=watch") }}
+        </div>
+      </section>
+
+      <section aria-labelledby="tab-strip-title"><h2 id="tab-strip-title">Tab strip</h2>
+        <div data-tabs>
+          {% call tab_strip("Covenants") %}
+            {{ tab("gallery-tab-one", "TOL/TNW", detail="Act now") }}
+            {{ tab("gallery-tab-two", "DSCR", detail="Watch") }}
+          {% endcall %}
+          <section id="gallery-tab-one" aria-labelledby="gallery-tab-one-title"><h3 id="gallery-tab-one-title">TOL/TNW</h3><p>First panel content.</p></section>
+          <section id="gallery-tab-two" aria-labelledby="gallery-tab-two-title"><h3 id="gallery-tab-two-title">DSCR</h3><p>Second panel content.</p></section>
+        </div>
+      </section>
+
+      {{ modal("modal-closed", "Closed modal", state="closed", content="Modal content.") }}
+      {% call modal("modal-open", "Open modal", state="open") %}<p>Modal content.</p>{% endcall %}
     </main>
     <script src="/static/vendor/htmx/htmx.min.js" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous" defer></script>
     <script src="/static/js/app.js" defer></script>

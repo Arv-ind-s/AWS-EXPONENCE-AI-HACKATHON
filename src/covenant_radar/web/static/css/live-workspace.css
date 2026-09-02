@@ -6,5 +6,10 @@
 .queue-hero--live { position: relative; overflow: hidden; border-inline-start-color: var(--signal); background: radial-gradient(circle at 85% 20%, var(--signal-soft), transparent 22rem), var(--surface-raised); }.queue-live-band { display: flex; align-items: center; gap: var(--space-2); color: var(--signal); font-family: var(--font-data); font-size: var(--size-caption); letter-spacing: var(--tracking-label); text-transform: uppercase; }.queue-live-band__radar { width: var(--space-3); height: var(--space-3); border: var(--border-width) solid var(--signal); border-radius: 50%; animation: live-radar 2.4s linear infinite; }
 [data-live-value] { font-variant-numeric: tabular-nums; }.queue-row__trajectory svg .trajectory__line { stroke-dasharray: 140; stroke-dashoffset: 140; animation: live-chart-draw .9s var(--ease) forwards; }
 @keyframes live-pulse { 0% { box-shadow: 0 0 0 0 var(--headroom-bg); } 70%, 100% { box-shadow: 0 0 0 var(--space-3) transparent; } } @keyframes live-region-flash { 0%, 100% { box-shadow: none; } 30% { box-shadow: 0 0 0 var(--space-1) var(--signal); } } @keyframes live-radar { to { transform: rotate(360deg); } } @keyframes live-chart-draw { to { stroke-dashoffset: 0; } }
-@media (prefers-reduced-motion: reduce) { .live-status__pulse, .queue-live-band__radar, .live-region--changed, .queue-row__trajectory svg .trajectory__line { animation: none; } }
+/* The draw-on animation starts the path fully dashed out of sight and the
+   keyframe brings it back. Turning the animation off for reduced motion
+   without also clearing the dash left the trajectory permanently invisible,
+   so these readers saw an empty box where the trend should be. Reset the
+   dash here and the path is simply drawn, with no motion. */
+@media (prefers-reduced-motion: reduce) { .live-status__pulse, .queue-live-band__radar, .live-region--changed, .queue-row__trajectory svg .trajectory__line { animation: none; } .queue-row__trajectory svg .trajectory__line { stroke-dasharray: none; stroke-dashoffset: 0; } }
 @media (max-width: 48rem) { .live-status { padding-inline: var(--space-2); }.live-status [data-live-status] { display: none; }.live-activity-drawer { inset: auto var(--space-2) var(--space-2); width: auto; } }

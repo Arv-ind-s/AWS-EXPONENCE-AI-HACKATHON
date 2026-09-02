@@ -4,6 +4,7 @@
   stage name, field or column is hardcoded, so a future statistical stage
   (spec §17.6) needs no template change.
 #}
+{% import "_components/icon.html" as icon_module %}
 
 {% macro render_value(value, labels) -%}
   {%- if value is none -%}
@@ -57,15 +58,22 @@
 {%- endmacro %}
 
 {% macro why_stage(stage, labels, components) -%}
-  <details class="why-stage" id="why-stage-{{ stage.stage }}" data-stage="{{ stage.stage }}" data-state="{{ 'not-run' if stage.not_run else stage.decider }}" open>
+  <details class="why-stage" id="why-stage-{{ stage.stage }}" data-stage="{{ stage.stage }}" data-state="{{ 'not-run' if stage.not_run else stage.decider }}">
     <summary class="why-stage__summary">
       <span class="why-stage__number" aria-hidden="true">{{ stage.stage }}</span>
-      <span class="why-stage__name">{{ stage.name }}</span>
+      <span class="why-stage__summary-text">
+        <span class="why-stage__name">{{ stage.name }}</span>
+        {%- if stage.decision_summary %}<span class="why-stage__preview">{{ stage.decision_summary }}</span>{% endif -%}
+      </span>
       {%- if not stage.not_run %}<span class="why-stage__decider">{{ stage.decider_label }}</span>{% endif -%}
+      <span class="why-stage__chevron" aria-hidden="true">{{ icon_module.icon("chevron") }}</span>
     </summary>
     <div class="why-stage__body">
       {%- if stage.not_run %}
-        <p class="why-stage__not-run">{{ labels.stage_not_run }}</p>
+        <div class="why-stage__not-run">
+          <span class="why-stage__not-run-icon" aria-hidden="true">{{ icon_module.icon("empty") }}</span>
+          <p>{{ stage.not_run_message }}</p>
+        </div>
       {%- else %}
         {%- if stage.suppressed %}
           <div class="why-stage__suppressed" role="note">
@@ -94,16 +102,6 @@
             {%- if stage.reasoning_summary %}<h4>{{ labels.reasoning_summary }}</h4><p>{{ stage.reasoning_summary }}</p>{% endif %}
           </section>
         {%- endif %}
-
-        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-received">
-          <h3 id="why-stage-{{ stage.stage }}-received">{{ labels.stage_received }}</h3>
-          {{ render_value(stage.inputs, labels) }}
-        </section>
-
-        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-produced">
-          <h3 id="why-stage-{{ stage.stage }}-produced">{{ labels.stage_produced }}</h3>
-          {{ render_outputs(stage.outputs, stage.decider == "model", labels) }}
-        </section>
 
         <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-thresholds">
           <h3 id="why-stage-{{ stage.stage }}-thresholds">{{ labels.thresholds_heading }}</h3>
@@ -146,6 +144,19 @@
             <p>{{ labels.no_sources }}</p>
           {%- endif %}
         </section>
+
+        <details class="why-stage__technical">
+          <summary>{{ labels.technical_detail }}</summary>
+          <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-received">
+            <h3 id="why-stage-{{ stage.stage }}-received">{{ labels.stage_received }}</h3>
+            {{ render_value(stage.inputs, labels) }}
+          </section>
+
+          <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-produced">
+            <h3 id="why-stage-{{ stage.stage }}-produced">{{ labels.stage_produced }}</h3>
+            {{ render_outputs(stage.outputs, stage.decider == "model", labels) }}
+          </section>
+        </details>
       {%- endif %}
     </div>
   </details>

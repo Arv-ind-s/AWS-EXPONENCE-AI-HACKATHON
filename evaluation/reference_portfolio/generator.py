@@ -46,7 +46,9 @@ from evaluation.reference_portfolio.names import (
     CONTACT_DESIGNATIONS,
     NameFactory,
     build_cin,
+    build_contact_email,
     build_contact_name,
+    build_group_name,
     build_legal_name,
     build_pan,
     is_valid_cin,
@@ -54,8 +56,12 @@ from evaluation.reference_portfolio.names import (
 )
 
 DEFAULT_SEED: Final[int] = 20260830
-DEFAULT_BORROWER_COUNT: Final[int] = 5_000
-DEFAULT_FACILITY_COUNT: Final[int] = 12_000
+# Sized to the 24-entry `SHOWCASE_SECTOR_DESCRIPTORS_V2` name corpus and the
+# 24 leaf industry codes in `industries.json`, both walked in the same order:
+# a 24-borrower build gives one realistically-named company per industry,
+# which is what the curated demo overlay (`db/seed/demo.py`) is built on.
+DEFAULT_BORROWER_COUNT: Final[int] = 24
+DEFAULT_FACILITY_COUNT: Final[int] = 28
 DEFAULT_QUARTER_COUNT: Final[int] = 8
 DEFAULT_MIN_LEGAL_NAME_LENGTH: Final[int] = 20
 CRILC_MINIMUM_EXPOSURE_CRORE: Final[Decimal] = Decimal("5.00")
@@ -373,7 +379,7 @@ class ReferencePortfolioGenerator:
         return [
             BorrowerGroupRecord(
                 id=_stable_uuid(self.config.seed, "group", index),
-                name=f"Indian Commercial Group {index:04d} Private Limited",
+                name=build_group_name(index),
                 parent_id=None,
             )
             for index in range(1, group_count + 1)
@@ -437,13 +443,12 @@ class ReferencePortfolioGenerator:
                 )
             )
             name = build_contact_name(random_source)
-            email_local = f"finance{index:06d}"
             contacts.append(
                 ContactRecord(
                     id=_stable_uuid(self.config.seed, "contact", index),
                     borrower_id=borrower.id,
                     name=name,
-                    email=f"{email_local}@reference.invalid",
+                    email=build_contact_email(index),
                     phone=f"+91-90000-{index:05d}",
                     designation=CONTACT_DESIGNATIONS[(index - 1) % len(CONTACT_DESIGNATIONS)],
                     is_primary=True,

@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import json
 from collections.abc import Callable, Mapping, Sequence
+from decimal import Decimal
 from pathlib import Path
 from typing import cast
 from urllib.parse import parse_qs
@@ -26,6 +27,7 @@ from covenant_radar.api.deps import requires
 from covenant_radar.audit.record import AuditRecorder
 from covenant_radar.core.errors import Conflict, DomainError, NotFound, ValidationError
 from covenant_radar.db.repositories.audit import AuditRepository
+from covenant_radar.db.repositories.trace import TraceRepository, TraceSubject
 from covenant_radar.db.scoping import Scope, resolve_scope
 from covenant_radar.db.session import is_database_session
 from covenant_radar.domain.forecast import Weights
@@ -34,7 +36,8 @@ from covenant_radar.domain.interventions.applicability import (
     normalize_covenant_class,
 )
 from covenant_radar.domain.interventions.catalogue import CatalogueEntry
-from covenant_radar.domain.interventions.simulate import SimulationComparison
+from covenant_radar.domain.interventions.simulate import SimulationComparison, SimulationResult
+from covenant_radar.domain.trace import stage_record
 from covenant_radar.security.permissions import Permission
 from covenant_radar.security.rbac import Principal
 from covenant_radar.services.catalogue import CatalogueService
@@ -53,6 +56,7 @@ from covenant_radar.web.view_models.simulation import (
 _TEMPLATE_ROOT = Path(__file__).resolve().parents[1] / "templates"
 _MAX_FORM_BYTES = 128 * 1024
 _MAX_COMPARISON_OPTIONS = 4
+_INTERVENTION_RULE_VERSION = "simulator.compare.v1"
 _RUN = requires(Permission.RUN_SIMULATION)
 _RUN_DEP = Depends(_RUN)
 
@@ -467,11 +471,67 @@ def _persist(
                         request_id=request_id,
                     )
                     identifiers[(forecast.id, result.intervention_code)] = row.id
+                    _write_intervention_trace(
+                        session,
+                        borrower_id=context.borrower.id,
+                        forecast_id=forecast.id,
+                        simulation_id=row.id,
+                        result=result,
+                        actor_id=principal.id,
+                        request_id=request_id,
+                    )
     except Conflict:
         raise
     except (TypeError, ValueError) as error:
         raise ValidationError(str(error), field="simulation") from error
     return identifiers
+
+
+def _write_intervention_trace(
+    session: Session,
+    *,
+    borrower_id: UUID,
+    forecast_id: UUID,
+    simulation_id: UUID,
+    result: SimulationResult,
+    actor_id: UUID | None,
+    request_id: str,
+) -> None:
+    """Record stage 5 (Intervention) for a persisted simulation result.
+
+    Written under the borrower subject, matching stage 1/3/7's convention,
+    so a borrower-level why-panel finds it without needing the covenant-test
+    / forecast subject lookup stage 2 and 4 require. Nothing here is
+    calculated: every field is copied from the already-persisted
+    `SimulationResult`/`Simulation` row.
+    """
+
+    record = stage_record(
+        5,
+        "code",
+        {
+            "forecast_id": str(forecast_id),
+            "intervention_code": result.intervention_code,
+            "parameters": dict(result.parameters),
+        },
+        {
+            "simulation_id": str(simulation_id),
+            "effect_status": result.effect_status,
+            "delta_days": result.delta_days,
+            "delta_days_qualifier": result.delta_days_qualifier,
+            "delta_probability": result.delta_probability,
+            "assumptions": list(result.assumptions),
+        },
+        _INTERVENTION_RULE_VERSION,
+        (),
+        Decimal("1"),
+        [{"type": "simulation", "id": str(simulation_id)}, {"type": "forecast", "id": str(forecast_id)}],
+    )
+    TraceRepository(session, request_id=request_id).write(
+        TraceSubject("borrower", borrower_id),
+        record,
+        actor_id=actor_id,
+    )
 
 
 def _scope_for(
@@ -656,13 +716,19 @@ def _stored_weights(forecast: object) -> Mapping[str, object] | None:
 
 
 def _default_parameters(forecast: object) -> Mapping[str, object]:
+    # `horizon_days` is deliberately left out: a comparison runs against every
+    # horizon stored for this forecast's run (`_compare` loops `context.forecasts`),
+    # each with its own `horizon_days`, while `forecast` here is only the one
+    # horizon shown above the form. Pre-filling that single value made the
+    # untouched default submission fail `_effective_parameters`' "must match
+    # the selected forecast horizon" check for every horizon but that one.
+    # The field stays user-suppliable and is still verified per forecast in
+    # `_effective_parameters`; it just no longer starts as a value that is
+    # wrong for most of the run's forecasts.
     weights = _stored_weights(forecast)
-    horizon = getattr(forecast, "horizon_days", None)
     result: dict[str, object] = {}
     if weights is not None:
         result["weights"] = weights
-    if isinstance(horizon, int) and not isinstance(horizon, bool):
-        result["horizon_days"] = horizon
     return result
 
 

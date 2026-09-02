@@ -36,6 +36,11 @@ _ANNOTATION_FONT_SIZE: Final[Decimal] = Decimal("2.6")
 _ANNOTATION_CHAR_WIDTH: Final[Decimal] = _ANNOTATION_FONT_SIZE * Decimal("0.55")
 _ANNOTATION_OFFSET: Final[Decimal] = Decimal("2")
 _ANNOTATION_MAX_CHARS: Final[int] = 34
+# The horizons the case file forecasts on, ruled inside the plot so the path
+# has a day scale.  A stop is drawn only when the stored path actually spans
+# it, so a thirty-day path is not labelled with days it does not contain.
+_GRID_DAYS: Final[tuple[int, ...]] = (30, 60, 90)
+_GRID_LABEL_INSET: Final[Decimal] = Decimal("1")
 _REFUSAL_LEDGER = "Trajectory unavailable: ledger figures are required before a chart can be shown."
 _REFUSAL_PATH = "Trajectory unavailable: the stored daily path is missing or incomplete."
 
@@ -96,6 +101,7 @@ def render_trajectory_svg(
     *,
     crossing: TrajectoryCrossing | None = None,
     label: str = "Covenant trajectory",
+    breach_above: bool | None = None,
 ) -> Markup:
     """Return a safe SVG, or a refusal state when the data is not drawable.
 
@@ -103,6 +109,11 @@ def render_trajectory_svg(
     caller.  The renderer uses it to enforce the pairing rule and repeats its
     text in ``<desc>`` so screen-reader users receive the same text equivalent
     as the visible ledger.
+
+    ``breach_above`` states which side of the threshold a breach lives on so
+    that side can be shaded.  It is optional and has no default side: which
+    way a covenant breaches is a fact about the covenant, and this renderer
+    does not infer business values it was not given.
     """
 
     safe_id = _required_text(trajectory_id, "trajectory_id")
@@ -157,9 +168,18 @@ def render_trajectory_svg(
         f'<svg class="trajectory__plot" viewBox="{view_box}" role="img" '
         f'aria-labelledby="{escaped_id}-title" '
         f'aria-describedby="{escaped_id}-ledger {escaped_id}-description" focusable="false" '
-        f'data-trajectory="stored">'
+        f'data-trajectory="stored" '
+        # The plot's own vertical extent, stated once on the root so script
+        # never has to infer it.  `horizon.js` used to take it from the
+        # threshold line, which is horizontal, so every marker it drew came
+        # out zero-height and therefore invisible.
+        f'data-plot-top="{_coordinate_text(_PLOT_TOP)}" '
+        f'data-plot-bottom="{_coordinate_text(_PLOT_BOTTOM)}">'
         f'<title id="{escaped_id}-title">{escaped_label}</title>'
         f'<desc id="{escaped_id}-description">{escaped_description}</desc>'
+        f"{_breach_zone(plot.threshold_y, breach_above)}"
+        f"{_gridlines(plot)}"
+        f'<path class="trajectory__area" d="{_area_path(plot.points)}"></path>'
         f'<line class="trajectory__threshold" x1="{_coordinate_text(_PLOT_X)}" '
         f'y1="{threshold_y}" x2="{_coordinate_text(_VIEWBOX_WIDTH - _PLOT_X)}" '
         f'y2="{threshold_y}"></line>'
@@ -209,6 +229,9 @@ def render_trajectory_sparkline_svg(
         f'y1="{_coordinate_text(plot.threshold_y)}" '
         f'x2="{_coordinate_text(_VIEWBOX_WIDTH - _PLOT_X)}" '
         f'y2="{_coordinate_text(plot.threshold_y)}"></line>'
+        # The area fill alone: a sparkline is a shape, not a chart, so it
+        # gets no gridlines, no day labels and no breach shading.
+        f'<path class="trajectory__area" d="{_area_path(plot.points)}"></path>'
         f'<polyline class="trajectory__line" points="{points_text}"></polyline>'
         "</svg>"
     )
@@ -414,6 +437,75 @@ def _crossing_annotation(crossing: TrajectoryCrossing, x: Decimal) -> str:
         'data-crossing-annotation="true">'
         f"{escape(text, quote=False)}</text>"
     )
+
+
+def _breach_zone(threshold_y: Decimal, breach_above: bool | None) -> str:
+    """Shade the side of the threshold on which the covenant is in breach.
+
+    Higher values sit at smaller ``y``, so a covenant that breaches above its
+    threshold shades from the top of the plot down to the threshold line.
+    Nothing is drawn when the caller did not state a direction.
+    """
+
+    if breach_above is None:
+        return ""
+    top = _PLOT_TOP if breach_above else threshold_y
+    bottom = threshold_y if breach_above else _PLOT_BOTTOM
+    height = bottom - top
+    if height <= _ZERO:
+        return ""
+    return (
+        '<rect class="trajectory__breach-zone" '
+        f'x="{_coordinate_text(_PLOT_X)}" y="{_coordinate_text(top)}" '
+        f'width="{_coordinate_text(_PLOT_WIDTH)}" '
+        f'height="{_coordinate_text(height)}"></rect>'
+    )
+
+
+def _gridlines(plot: _Plot) -> str:
+    """Rule and label the named horizons the case file actually forecasts on.
+
+    Without them the path has no day scale at all, so a reader cannot say
+    where in the ninety days a crossing falls.  The labels are sized in the
+    plot's own user space for the reason ``_crossing_annotation`` explains.
+    """
+
+    span = Decimal(plot.maximum_day - plot.minimum_day)
+    if span <= _ZERO:
+        return ""
+    parts: list[str] = []
+    for day in _GRID_DAYS:
+        if not plot.minimum_day < day < plot.maximum_day:
+            continue
+        x = _coordinate_text(_PLOT_X + (Decimal(day - plot.minimum_day) / span * _PLOT_WIDTH))
+        parts.append(
+            '<line class="trajectory__gridline" '
+            f'x1="{x}" y1="{_coordinate_text(_PLOT_TOP)}" '
+            f'x2="{x}" y2="{_coordinate_text(_PLOT_BOTTOM)}" '
+            f'data-grid-day="{day}"></line>'
+            '<text class="trajectory__gridline-label" '
+            f'x="{x}" y="{_coordinate_text(_PLOT_BOTTOM - _GRID_LABEL_INSET)}" '
+            f'text-anchor="middle">{day}d</text>'
+        )
+    return "".join(parts)
+
+
+def _area_path(points: tuple[tuple[Decimal, Decimal], ...]) -> str:
+    """Close the stored path down to the plot floor so the series has body.
+
+    The fill is decoration over the same coordinates the polyline already
+    uses; it adds no point the path did not contain.
+    """
+
+    if not points:
+        return ""
+    floor = _coordinate_text(_PLOT_BOTTOM)
+    segments = [f"M {_coordinate_text(points[0][0])} {_coordinate_text(points[0][1])}"]
+    segments.extend(f"L {_coordinate_text(x)} {_coordinate_text(y)}" for x, y in points[1:])
+    segments.append(f"L {_coordinate_text(points[-1][0])} {floor}")
+    segments.append(f"L {_coordinate_text(points[0][0])} {floor}")
+    segments.append("Z")
+    return " ".join(segments)
 
 
 def _short_svg_text(value: str, maximum: int = 72) -> str:

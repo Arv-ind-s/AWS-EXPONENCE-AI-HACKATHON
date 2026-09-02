@@ -65,6 +65,17 @@
          {% if filters.band == band %}aria-current="true" data-active="true"{% endif %}>
         {{ components.band_chip(band, label, variant="queue-summary-chip") }}
         <strong class="queue-band-tile__value" data-live-value="{{ band }}">{{ count }}</strong>
+        {#
+          Share of the book, sized by SVG attribute rather than an inline
+          style: `style-src` carries only the empty-string hash, so a
+          `style` attribute would be dropped and the bar would read zero.
+          Hidden from assistive technology because the count beside it
+          already states the same fact.
+        #}
+        <svg class="queue-band-tile__share" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+          <rect class="queue-band-tile__share-track" x="0" y="0" width="100" height="3"></rect>
+          <rect class="queue-band-tile__share-fill" x="0" y="0" width="{{ summary.shares[band] if summary.shares is defined else 0 }}" height="3"></rect>
+        </svg>
       </a>
     {% endfor %}
   </nav>

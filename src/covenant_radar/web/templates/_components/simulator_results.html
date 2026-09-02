@@ -15,7 +15,7 @@
             <tr>
               <th scope="col">{{ labels.status }}</th>
               {% for column in view.comparison.columns %}
-                <th scope="col" data-comparison-code="{{ column.code }}">
+                <th scope="col" data-comparison-code="{{ column.code }}"{% if column.is_baseline %} data-baseline="true"{% endif %}>
                   <span class="simulator-table__option">{{ column.label }}</span>
                   <span class="simulator-table__status simulator-table__status--{{ column.status.value }}">
                     {% if column.is_baseline %}{{ labels.baseline }}{% elif column.no_effect %}{{ labels.status_no_effect }}{% else %}{{ labels.status_applied }}{% endif %}
@@ -50,16 +50,16 @@
             <tr>
               <th scope="row">{{ labels.delta_days }}</th>
               {% for column in view.comparison.columns %}
-                <td><ul class="simulator-table__horizons" data-metric="delta-days">
-                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_days_display }}</li>{% endfor %}
+                <td{% if column.is_baseline %} data-baseline="true"{% endif %}><ul class="simulator-table__horizons" data-metric="delta-days">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}"{% if horizon.delta_days is not none and horizon.delta_days != 0 %} data-direction="{{ 'better' if horizon.delta_days > 0 else 'worse' }}"{% endif %}>{{ horizon.delta_days_display }}</li>{% endfor %}
                 </ul></td>
               {% endfor %}
             </tr>
             <tr>
               <th scope="row">{{ labels.delta_probability }}</th>
               {% for column in view.comparison.columns %}
-                <td><ul class="simulator-table__horizons" data-metric="delta-probability">
-                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_probability_display }}</li>{% endfor %}
+                <td{% if column.is_baseline %} data-baseline="true"{% endif %}><ul class="simulator-table__horizons" data-metric="delta-probability">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}"{% if horizon.delta_probability is not none and horizon.delta_probability != 0 %} data-direction="{{ 'better' if horizon.delta_probability < 0 else 'worse' }}"{% endif %}>{{ horizon.delta_probability_display }}</li>{% endfor %}
                 </ul></td>
               {% endfor %}
             </tr>
@@ -72,8 +72,8 @@
     {% set state_id = "simulator-comparison-empty" %}
     {% set state_title = view.empty_title %}
     {% set state_message = view.empty_message %}
-    {% set state_action_label = "" %}
-    {% set state_action_href = "" %}
+    {% set state_action_label = view.empty_action_label %}
+    {% set state_action_href = view.empty_action_href %}
     {% include "_states/empty.html" %}
   {% endif %}
 </div>

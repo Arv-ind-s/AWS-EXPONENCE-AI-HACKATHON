@@ -156,8 +156,18 @@
     const threshold = svg.querySelector(".trajectory__threshold");
     const xStart = Number(threshold?.getAttribute("x1"));
     const xEnd = Number(threshold?.getAttribute("x2"));
-    const yStart = Number(threshold?.getAttribute("y1"));
-    const yEnd = Number(threshold?.getAttribute("y2"));
+    // The threshold is a horizontal rule, so its two y values are identical.
+    // Taking the plot's vertical extent from it gave every marker below a
+    // height of zero, which is why the selected-day line never appeared and
+    // why the server's crossing tick vanished the moment the slider moved:
+    // `clearDynamicMarkers` removed it and this redrew it invisible.  The
+    // renderer now states the real extent on the root element; the threshold
+    // stays as the fallback for any chart rendered before it did.
+    const top = Number(svg.getAttribute("data-plot-top"));
+    const bottom = Number(svg.getAttribute("data-plot-bottom"));
+    const hasBounds = Number.isFinite(top) && Number.isFinite(bottom) && bottom > top;
+    const yStart = hasBounds ? top : Number(threshold?.getAttribute("y1"));
+    const yEnd = hasBounds ? bottom : Number(threshold?.getAttribute("y2"));
     if (![xStart, xEnd, yStart, yEnd].every(Number.isFinite) || xEnd <= xStart) return null;
     return { xStart, xEnd, yStart: Math.min(yStart, yEnd), yEnd: Math.max(yStart, yEnd) };
   };
@@ -198,8 +208,14 @@
     // The path is already a persisted path rendered by the server.  Clipping
     // it at the response's selected day makes the current state visible
     // without deriving or filling any missing business value in the browser.
+    // The area fill is the same path closed to the plot floor and so shares
+    // the polyline's horizontal extent exactly; the one percentage clips
+    // both at the same day.
     const rightInset = Math.max(0, 100 - progress * 100);
-    line.style.clipPath = `inset(0 ${rightInset}% 0 0)`;
+    const clip = `inset(0 ${rightInset}% 0 0)`;
+    line.style.clipPath = clip;
+    const area = svg.querySelector(".trajectory__area");
+    if (area) area.style.clipPath = clip;
     line.dataset.selectedDay = String(day);
     const crossingDate = displayDate(payload.crossing_date);
     const crossingDay = crossingDate === null ? null : crossingDayFor(state, payload.crossing_date);

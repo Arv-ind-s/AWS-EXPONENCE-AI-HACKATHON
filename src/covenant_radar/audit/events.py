@@ -56,6 +56,7 @@ class AuditEventType(str, Enum):
     MASTER_DATA_BORROWER_CREATED = "master_data_borrower_created"
     MASTER_DATA_BORROWER_UPDATED = "master_data_borrower_updated"
     MASTER_DATA_BORROWER_DEACTIVATED = "master_data_borrower_deactivated"
+    MASTER_DATA_REFERENCE_IDENTITIES_UPGRADED = "master_data_reference_identities_upgraded"
     MASTER_DATA_FACILITY_CREATED = "master_data_facility_created"
     MASTER_DATA_FACILITY_LIMIT_CHANGED = "master_data_facility_limit_changed"
     MASTER_DATA_FACILITY_UPDATED = "master_data_facility_updated"

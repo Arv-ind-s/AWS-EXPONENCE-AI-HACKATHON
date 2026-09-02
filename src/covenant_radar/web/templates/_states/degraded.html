@@ -1,3 +1,5 @@
+{% import "_components/icon.html" as state_icon_component %}
 <aside class="state state--degraded" role="status" aria-label="{{ state_capability }} unavailable">
+  <span class="state__icon" aria-hidden="true">{{ state_icon_component.icon("alert") }}</span>
   <p class="state__message"><strong>{{ state_capability }}</strong> is unavailable. {{ state_message }}</p>
 </aside>

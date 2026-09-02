@@ -14,9 +14,11 @@ start and stop.
 
 from __future__ import annotations
 
+import re
 from collections.abc import Mapping
 from dataclasses import dataclass
 from datetime import datetime
+from decimal import Decimal, InvalidOperation
 from enum import StrEnum
 from typing import Final
 from uuid import UUID
@@ -212,12 +214,12 @@ def build_persisted_memo_block(memo: Memo) -> MemoBlockView:
         title=_TITLES["generated"],
         memo_id=memo.id,
         label="Drafted by model",
-        headline=prose[0],
-        summary=prose[1],
-        drivers=drivers,
+        headline=_trim_drafted_numbers(prose[0]),
+        summary=_trim_drafted_numbers(prose[1]),
+        drivers=tuple(_trim_drafted_numbers(driver) for driver in drivers),
         actions=actions,
-        recommended_next_step=prose[2],
-        disclaimer=prose[3],
+        recommended_next_step=_trim_drafted_numbers(prose[2]),
+        disclaimer=_trim_drafted_numbers(prose[3]),
         provider=_provider_label(memo.provider),
         model_version=memo.model_version or "Not recorded",
         prompt_version=memo.prompt_version or "Not recorded",
@@ -270,11 +272,38 @@ def _persisted_citations(slots: Mapping[str, object]) -> tuple[MemoCitationView,
     return tuple(citations)
 
 
+_LONG_DECIMAL_RE: Final[re.Pattern[str]] = re.compile(r"(?<!\d)(\d+\.\d{4,})(?!\d)")
+
+
+def _trim_drafted_numbers(text: str) -> str:
+    """Shorten a drafted sentence's over-precise decimals for display.
+
+    A grounding slot reaches the model at its stored database precision — a
+    `RatioValue` column is scale 8 — so a drafted sentence that repeats one
+    verbatim reads as "1.76000000" instead of "1.76". This trims it at
+    render time, after the model has already replied: the fix cannot live
+    upstream in the prompt without changing the exact bytes cassette replay
+    matches on (`ai/providers/recorded.py`'s `cassette_key` hashes the exact
+    masked messages), which would turn every already-recorded memo into a
+    cassette miss instead of a clean number.
+    """
+
+    def _replace(match: re.Match[str]) -> str:
+        try:
+            number = Decimal(match.group(1))
+        except InvalidOperation:
+            return match.group(1)
+        text = format(number.quantize(Decimal("0.0001")), "f")
+        return text.rstrip("0").rstrip(".") if "." in text else text
+
+    return _LONG_DECIMAL_RE.sub(_replace, text)
+
+
 def _provider_label(value: str | None) -> str:
     if not isinstance(value, str) or not value.strip():
         return "Not recorded"
     provider = value.strip()
-    return "TCS" if provider.lower() == "tcs" else provider
+    return "Covenant Radar AI" if provider.lower() == "tcs" else provider
 
 
 def _verdict_label(value: str | None) -> str:
@@ -315,9 +344,9 @@ def _generated(memo: Memo, draft: MemoDraft) -> MemoBlockView:
         title=_TITLES["generated"],
         memo_id=memo.id,
         label=draft.label,
-        headline=draft.headline,
-        summary=draft.summary,
-        drivers=draft.drivers,
+        headline=_trim_drafted_numbers(draft.headline),
+        summary=_trim_drafted_numbers(draft.summary),
+        drivers=tuple(_trim_drafted_numbers(driver) for driver in draft.drivers),
         actions=tuple(
             MemoActionView(
                 id=str(action.get("id", "")),
@@ -331,8 +360,8 @@ def _generated(memo: Memo, draft: MemoDraft) -> MemoBlockView:
             )
             for action in draft.actions
         ),
-        recommended_next_step=draft.recommended_next_step,
-        disclaimer=draft.disclaimer,
+        recommended_next_step=_trim_drafted_numbers(draft.recommended_next_step),
+        disclaimer=_trim_drafted_numbers(draft.disclaimer),
         provider=_provider_label(memo.provider),
         model_version=memo.model_version or "Not recorded",
         prompt_version=memo.prompt_version or "Not recorded",

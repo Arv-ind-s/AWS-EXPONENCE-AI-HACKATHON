@@ -12,12 +12,54 @@
       <h2 id="case-workspace-title">{{ view.borrower_name }}</h2>
       <p class="case-file__panel-message">{{ view.borrower_reference }} · {{ view.portfolio_code }}</p>
     </div>
+    {#
+      The three tones now say something. Previously the SLA counter was
+      always tinted "watch" whether the case was overdue or not, and the
+      band counter was always "amber" whatever the band actually was.
+    #}
     <div class="queue-hero__stats" aria-label="Case status">
-      <div class="queue-stat queue-stat--act"><span class="queue-stat__value">{{ view.state_label }}</span><span class="queue-stat__label">{{ labels.state }}</span></div>
-      <div class="queue-stat queue-stat--amber"><span class="queue-stat__value">{{ view.band_label }}</span><span class="queue-stat__label">{{ labels.band }}</span></div>
-      <div class="queue-stat queue-stat--watch"><span class="queue-stat__value">{% if view.overdue %}{{ labels.overdue }}{% else %}{{ labels.on_track }}{% endif %}</span><span class="queue-stat__label">{{ labels.due_at }}</span></div>
+      {{ components.stat_tile(labels.state, view.state_label, tone="accent") }}
+      {{ components.stat_tile(labels.band, view.band_label, tone=view.band if view.band in ("act", "amber", "watch") else "neutral") }}
+      {{ components.stat_tile(
+           labels.due_at,
+           labels.overdue if view.overdue else labels.on_track,
+           tone="act" if view.overdue else "headroom",
+           detail=view.due_at) }}
     </div>
   </section>
+
+  {#
+    Where this case sits in the lifecycle, and where it may go from here.
+
+    Deliberately not a progress stepper: `PERMITTED_TRANSITIONS` is not a
+    chain — an open case may move straight to any other state, and
+    monitoring, in progress and escalated all reach each other — so a strip
+    implying forward progress would misdescribe the state machine. It shows
+    the vocabulary in the domain's own order and marks each step with what
+    is true of it now.
+  #}
+  <nav class="case-lifecycle" aria-label="{{ labels.lifecycle_title }}">
+    {% set reachable = view.permitted_states | map(attribute='value') | list %}
+    <ol class="case-lifecycle__steps">
+      {% for step in lifecycle %}
+        {% if step.value == view.state %}{% set step_state = 'current' %}
+        {% elif step.value in reachable %}{% set step_state = 'reachable' %}
+        {% else %}{% set step_state = 'unreachable' %}{% endif %}
+        <li class="case-lifecycle__step"
+            data-step="{{ step.value }}"
+            data-step-state="{{ step_state }}"
+            {% if step_state == 'current' %}aria-current="step"{% endif %}>
+          <span class="case-lifecycle__mark" aria-hidden="true"></span>
+          <span class="case-lifecycle__name">{{ step.label }}</span>
+          <span class="sr-only">
+            {%- if step_state == 'current' %}{{ labels.lifecycle_current }}
+            {%- elif step_state == 'reachable' %}{{ labels.lifecycle_reachable }}
+            {%- else %}{{ labels.lifecycle_unreachable }}{% endif -%}
+          </span>
+        </li>
+      {% endfor %}
+    </ol>
+  </nav>
 
   <p><a class="text-action" href="/cases">← {{ labels.back_to_register }}</a></p>
 
@@ -70,19 +112,25 @@
       {% endif %}
     {% endcall %}
 
+    {#
+      The history is an append-only sequence of events, so it is drawn as a
+      sequence rather than as a four-column grid that made the reader
+      reassemble each event from cells. `data-history-event` stays on the
+      item — `test_case_screens.py` reads it — and every field the table
+      showed is still here.
+    #}
     {% call components.panel(labels.history_title, panel_id='case-history') %}
       {% if view.history %}
-        <div class="case-evidence__scroll">
-          <table class="case-evidence__table">
-            <caption class="sr-only">{{ labels.history_title }}</caption>
-            <thead><tr><th scope="col">Event</th><th scope="col">Actor</th><th scope="col">When</th><th scope="col">Detail</th></tr></thead>
-            <tbody>
-            {% for event in view.history %}
-              <tr data-history-event="{{ event.event_type }}"><th scope="row">{{ event.event_label }}</th><td>{{ event.actor }}</td><td>{{ event.occurred_at }}</td><td>{{ event.detail }}</td></tr>
-            {% endfor %}
-            </tbody>
-          </table>
-        </div>
+        <ol class="event-timeline">
+          {% for event in view.history %}
+            <li class="event-timeline__event" data-history-event="{{ event.event_type }}">
+              <span class="event-timeline__mark" aria-hidden="true"></span>
+              <p class="event-timeline__headline">{{ event.event_label }}</p>
+              <p class="event-timeline__meta">{{ event.actor }} · {{ event.occurred_at }}</p>
+              {% if event.detail %}<p class="event-timeline__detail">{{ event.detail }}</p>{% endif %}
+            </li>
+          {% endfor %}
+        </ol>
       {% else %}<p class="case-file__panel-message">{{ labels.history_empty }}</p>{% endif %}
     {% endcall %}
 

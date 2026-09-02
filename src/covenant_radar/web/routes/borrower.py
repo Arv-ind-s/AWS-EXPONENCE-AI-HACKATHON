@@ -88,6 +88,7 @@ _LABELS = {
     "covenant_reference": "Covenant",
     "covenant_facility": "Facility",
     "covenant_value": "Value",
+    "covenant_agreed_threshold": "Initially agreed",
     "covenant_threshold": "Threshold in force",
     "covenant_headroom": "Headroom",
     "covenant_verdict": "Verdict",
@@ -127,6 +128,16 @@ _LABELS = {
     ),
     "forecast_citations": "Citations",
     "forecast_explanation_provenance": "Why this explanation is supportable",
+    # The case file runs to several thousand pixels per covenant, so the
+    # evidence behind a forecast opens in a drawer rather than extending the
+    # scroll. These name the controls that open them, the covenant switcher
+    # above them, and the strip that selects between the evidence panels.
+    "sections_label": "Case sections",
+    "signals_title": "Seven signal families",
+    "forecast_covenants_nav": "Covenants on this case",
+    "forecast_open_explanations": "Explanations and provenance",
+    "forecast_open_insights": "Actionable insights",
+    "forecast_close": "Close",
     "forecast_actionable_insights": "Possible actionable insights",
     "forecast_actionable_note": (
         "These are active, bank-owned catalogue actions applicable to this covenant. They are "

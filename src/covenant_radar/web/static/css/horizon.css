@@ -166,23 +166,34 @@
   font-variant-numeric: tabular-nums;
 }
 
+/*
+  These three keep `vector-effect: non-scaling-stroke`, so their widths are
+  read in device pixels rather than plot units — but a full `--space-1` is
+  four of them, which drew the crossing as a bar thick enough to hide the
+  day it marks.  Half that still reads clearly at every plot size and lets
+  the path stay the loudest thing in the chart.
+
+  The selected-day rule now matters for the first time: until the plot
+  reported its own vertical extent these markers were all drawn zero-height
+  and never appeared at all.
+*/
 .trajectory__selected-day {
-  stroke: var(--hairline);
+  stroke: var(--ink-muted);
   stroke-dasharray: var(--space-1) var(--space-1);
-  stroke-width: var(--space-1);
+  stroke-width: calc(var(--space-1) / 2);
   vector-effect: non-scaling-stroke;
 }
 
 .trajectory__crossing-tick {
   stroke: var(--breach);
-  stroke-width: var(--space-1);
+  stroke-width: calc(var(--space-1) / 2);
   vector-effect: non-scaling-stroke;
 }
 
 .trajectory__crossing {
   fill: var(--paper);
   stroke: var(--breach);
-  stroke-width: var(--space-1);
+  stroke-width: calc(var(--space-1) / 2);
   vector-effect: non-scaling-stroke;
 }
 

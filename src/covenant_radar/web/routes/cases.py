@@ -53,6 +53,7 @@ from covenant_radar.services.cases import AuditWriter as CaseAuditWriter
 from covenant_radar.services.cases import CaseService
 from covenant_radar.web.preferences import theme_for_request
 from covenant_radar.web.view_models.case import (
+    CASE_LIFECYCLE,
     CaseDetailView,
     CaseListView,
     build_case_detail_view,
@@ -93,6 +94,12 @@ _LABELS = {
     "all_assignees": "All assignees",
     "apply": "Apply filters",
     "clear": "Clear filters",
+    # The register's three counters were labelled with column headings —
+    # "Case" over the total and "State" over the open count — which named
+    # neither figure. These say what is actually being counted.
+    "stat_total": "Cases in view",
+    "stat_open": "Open",
+    "stat_overdue": "Overdue",
     "column_case": "Case",
     "column_borrower": "Borrower",
     "column_state": "State",
@@ -128,6 +135,10 @@ _LABELS = {
     "simulations_empty": "No persisted simulation is linked to this borrower.",
     "documents_title": "Source documents",
     "documents_empty": "No source documents are linked to this borrower.",
+    "lifecycle_title": "Lifecycle",
+    "lifecycle_current": "Current state",
+    "lifecycle_reachable": "Can move here",
+    "lifecycle_unreachable": "Not available from here",
     "assignment_title": "Ownership and state",
     "assign_to": "Assign to",
     "save_assignment": "Save ownership",
@@ -526,7 +537,7 @@ def _add_comment(
                     id=new_id(),
                     recipient_id=recipient_id,
                     channel="in_app",
-                    template="case_comment_mention",
+                    template="comment_mention",
                     subject_type="case",
                     subject_id=locked.id,
                     payload={"case_reference": locked.reference, "comment_id": str(comment.id)},
@@ -735,6 +746,9 @@ def _render_detail(
             "view": view,
             "error": error,
             "mention_notice": mention_notice,
+            # The whole lifecycle vocabulary, so the workspace can show where
+            # this case sits in it rather than only where it may go next.
+            "lifecycle": CASE_LIFECYCLE,
             "can_update": principal.has(Permission.UPDATE_CASE),
             "can_log_action": principal.has(Permission.UPDATE_CASE)
             and principal.has(Permission.LOG_ACTION),

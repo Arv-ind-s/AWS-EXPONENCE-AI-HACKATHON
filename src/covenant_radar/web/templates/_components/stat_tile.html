@@ -1,0 +1,35 @@
+{#
+  One figure, said once.
+
+  The queue's band tiles, the case register's counters and the admin
+  metrics were three near-identical patterns written three different ways.
+  This is the one shape: an eyebrow, a figure set in the data face, an
+  optional qualifier, and an optional share-of-total bar.
+
+  The bar is an SVG sized by *attribute*, never by a `style` attribute —
+  `security/headers.py` sets a `style-src` whose only hash is the empty
+  string, so an inline style would be dropped and the bar would silently
+  read as zero. It is `aria-hidden` because the figure beside it already
+  states the same fact in words.
+#}
+{% macro stat_tile(label, value, tone="neutral", detail="", share=-1, href="", active=false, tile_id="") -%}
+  {% set safe_tone = tone if tone in ("neutral", "act", "amber", "watch", "headroom", "accent") else "neutral" %}
+  {% set safe_href = href if href and href.startswith("/") and not href.startswith("//") else "" %}
+  {% set safe_share = share if share is number and share >= 0 else -1 %}
+  {% set tag = "a" if safe_href else "div" %}
+  <{{ tag }} class="stat-tile stat-tile--{{ safe_tone }}"
+     {%- if tile_id %} id="{{ tile_id }}"{% endif %}
+     {%- if safe_href %} href="{{ safe_href }}"{% endif %}
+     {%- if active %} aria-current="true" data-active="true"{% endif %}
+     data-tone="{{ safe_tone }}">
+    <span class="stat-tile__label">{{ label }}</span>
+    <strong class="stat-tile__value">{{ value }}</strong>
+    {%- if detail %}<span class="stat-tile__detail">{{ detail }}</span>{% endif %}
+    {%- if safe_share >= 0 %}
+      <svg class="stat-tile__share" viewBox="0 0 100 3" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <rect class="stat-tile__share-track" x="0" y="0" width="100" height="3"></rect>
+        <rect class="stat-tile__share-fill" x="0" y="0" width="{{ safe_share }}" height="3"></rect>
+      </svg>
+    {%- endif %}
+  </{{ tag }}>
+{%- endmacro %}
