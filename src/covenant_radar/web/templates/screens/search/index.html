@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  <p>{{ labels.subheading }}</p>
+
+  <form class="filter-bar search-workspace" method="get" action="/search" role="search"
+        hx-get="/search" hx-target="#search-results" hx-swap="outerHTML transition:true"
+        hx-push-url="true" hx-sync="this:replace" data-filter-form data-submit-on-change>
+    {# The label belongs with its own box: `.search-workspace` lays out three
+       tracks, so leaving the label loose made it a grid item in its own right
+       and pushed the submit button onto a second row. #}
+    <div class="search-workspace__query">
+      <label for="search-query">{{ labels.query_label }}</label>
+      <input id="search-query" name="q" type="search" value="{{ page.query }}"
+             placeholder="{{ labels.query_placeholder }}" maxlength="200" autocomplete="off"
+             data-live-search>
+    </div>
+
+    <fieldset>
+      <legend>{{ labels.type_filter }}</legend>
+      <label>
+        <input type="radio" name="type" value=""{% if not request.query_params.getlist('type') and not request.query_params.getlist('entity_type') %} checked{% endif %}>
+        {{ labels.all_types }}
+      </label>
+      {% for option in type_options %}
+        <label>
+          <input type="radio" name="type" value="{{ option.value }}"{% if option.selected and (request.query_params.getlist('type') or request.query_params.getlist('entity_type')) %} checked{% endif %}>
+          {{ option.label }}
+        </label>
+      {% endfor %}
+    </fieldset>
+
+    <button type="submit">{{ labels.search }}</button>
+  </form>
+
+  {% include "_components/search_results.html" %}
+{% endblock %}

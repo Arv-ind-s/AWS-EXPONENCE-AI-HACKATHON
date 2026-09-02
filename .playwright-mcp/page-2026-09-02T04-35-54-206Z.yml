@@ -1,0 +1,560 @@
+- generic [active] [ref=f18e1]:
+  - link "Skip to content" [ref=f18e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f18e3]:
+    - complementary "Workspace navigation" [ref=f18e4]:
+      - link "Covenant Radar" [ref=f18e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f18e13]:
+          - strong [ref=f18e14]: Covenant
+          - generic [ref=f18e15]: Radar
+      - navigation "Primary navigation" [ref=f18e16]:
+        - region [ref=f18e17]:
+          - heading "Monitor" [level=2] [ref=f18e18]
+          - link "Portfolio queue" [ref=f18e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f18e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f18e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f18e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f18e31]: "0"
+          - link "Search" [ref=f18e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f18e37]:
+          - heading "Portfolio data" [level=2] [ref=f18e38]
+          - link "Borrowers" [ref=f18e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f18e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f18e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f18e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f18e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f18e61]:
+          - heading "Workflows" [level=2] [ref=f18e62]
+          - link "Intake" [ref=f18e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f18e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f18e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f18e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f18e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f18e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f18e87]:
+          - heading "Administration" [level=2] [ref=f18e88]
+          - link "Action catalogue" [ref=f18e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f18e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f18e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f18e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f18e109] [cursor=pointer]
+    - generic [ref=f18e113]:
+      - banner [ref=f18e114]:
+        - generic [ref=f18e116]:
+          - generic [ref=f18e117]: Workspace
+          - generic [ref=f18e120]: Current view
+        - search [ref=f18e121]:
+          - generic [ref=f18e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f18e123]
+          - generic: /
+        - generic [ref=f18e124]:
+          - button "Live activity" [ref=f18e125]:
+            - generic [ref=f18e127]: Live
+          - button "Use dark theme" [ref=f18e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f18e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f18e135] [cursor=pointer]
+      - main [ref=f18e139]:
+        - generic [ref=f18e141]:
+          - paragraph [ref=f18e142]: Decision workspace
+          - heading "Search across Covenant Radar" [level=1] [ref=f18e143]
+        - generic [ref=f18e144]:
+          - paragraph [ref=f18e145]: Find scoped borrowers, facilities, covenants, documents, memos, cases and audit events.
+          - search [ref=f18e146]:
+            - generic: Search terms
+            - searchbox "Search terms" [ref=f18e147]: kavya
+            - group "Limit result types" [ref=f18e148]:
+              - generic [ref=f18e150] [cursor=pointer]:
+                - radio "All permitted types" [checked] [ref=f18e151]
+                - text: All permitted types
+              - generic [ref=f18e152] [cursor=pointer]:
+                - radio "Borrower" [ref=f18e153]
+                - text: Borrower
+              - generic [ref=f18e154] [cursor=pointer]:
+                - radio "Facility" [ref=f18e155]
+                - text: Facility
+              - generic [ref=f18e156] [cursor=pointer]:
+                - radio "Covenant" [ref=f18e157]
+                - text: Covenant
+              - generic [ref=f18e158] [cursor=pointer]:
+                - radio "Document" [ref=f18e159]
+                - text: Document
+              - generic [ref=f18e160] [cursor=pointer]:
+                - radio "Memo" [ref=f18e161]
+                - text: Memo
+              - generic [ref=f18e162] [cursor=pointer]:
+                - radio "Case" [ref=f18e163]
+                - text: Case
+              - generic [ref=f18e164] [cursor=pointer]:
+                - radio "Audit event" [ref=f18e165]
+                - text: Audit event
+            - button "Search" [ref=f18e166] [cursor=pointer]
+          - region [ref=f18e167]:
+            - generic [ref=f18e169]:
+              - paragraph [ref=f18e170]: 1389 matching results
+              - heading "Search results" [level=2] [ref=f18e171]
+            - list [ref=f18e172]:
+              - listitem [ref=f18e173]:
+                - generic [ref=f18e174]: Document
+                - link "probe.pdf" [ref=f18e175] [cursor=pointer]:
+                  - /url: /documents/01a05ed4-e27d-731c-a72f-0a3d027e00a8/view
+                - generic [ref=f18e176]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e177]: other
+                - generic [ref=f18e178]: Matched in document metadata or body
+              - listitem [ref=f18e179]:
+                - generic [ref=f18e180]: Case
+                - link "C-018CF0AE3D48-2" [ref=f18e181] [cursor=pointer]:
+                  - /url: /cases/C-018CF0AE3D48-2
+                - generic [ref=f18e182]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - paragraph [ref=f18e183]:
+                  - text: Deshmukh Precision Materials and Components
+                  - mark [ref=f18e184]: Kavya
+                  - text: 00008 Private Limited
+                - generic [ref=f18e185]: Matched in case fields
+              - listitem [ref=f18e186]:
+                - generic [ref=f18e187]: Case
+                - link "C-018C9EEBC221-2" [ref=f18e188] [cursor=pointer]:
+                  - /url: /cases/C-018C9EEBC221-2
+                - generic [ref=f18e189]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e190]:
+                  - text: Subramanian Precision Materials and Components
+                  - mark [ref=f18e191]: Kavya
+                  - text: 00001 Private Limited
+                - generic [ref=f18e192]: Matched in case fields
+              - listitem [ref=f18e193]:
+                - generic [ref=f18e194]: Case
+                - link "C-018CC00C97E5-2" [ref=f18e195] [cursor=pointer]:
+                  - /url: /cases/C-018CC00C97E5-2
+                - generic [ref=f18e196]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                - paragraph [ref=f18e197]:
+                  - text: Patel Precision Materials and Components
+                  - mark [ref=f18e198]: Kavya
+                  - text: 00005 Private Limited
+                - generic [ref=f18e199]: Matched in case fields
+              - listitem [ref=f18e200]:
+                - generic [ref=f18e201]: Case
+                - link "C-018CF0AE3D48" [ref=f18e202] [cursor=pointer]:
+                  - /url: /cases/C-018CF0AE3D48
+                - generic [ref=f18e203]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - paragraph [ref=f18e204]: "Closed by operational repair: opened unassigned because the nightly runtime did not resolve default_assignee_id, so no notification could ever be dispatched. The pipeline re-raises this borrower with an assignee."
+                - generic [ref=f18e205]: Matched in case fields
+              - listitem [ref=f18e206]:
+                - generic [ref=f18e207]: Case
+                - link "C-018C9EEBC221" [ref=f18e208] [cursor=pointer]:
+                  - /url: /cases/C-018C9EEBC221
+                - generic [ref=f18e209]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e210]: "Closed by operational repair: opened unassigned because the nightly runtime did not resolve default_assignee_id, so no notification could ever be dispatched. The pipeline re-raises this borrower with an assignee."
+                - generic [ref=f18e211]: Matched in case fields
+              - listitem [ref=f18e212]:
+                - generic [ref=f18e213]: Case
+                - link "C-018CC00C97E5" [ref=f18e214] [cursor=pointer]:
+                  - /url: /cases/C-018CC00C97E5
+                - generic [ref=f18e215]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                - paragraph [ref=f18e216]: "Closed by operational repair: opened unassigned because the nightly runtime did not resolve default_assignee_id, so no notification could ever be dispatched. The pipeline re-raises this borrower with an assignee."
+                - generic [ref=f18e217]: Matched in case fields
+              - listitem [ref=f18e218]:
+                - generic [ref=f18e219]: Covenant
+                - link "Current ratio" [ref=f18e220] [cursor=pointer]:
+                  - /url: /covenants/D32LIQ
+                - generic [ref=f18e221]: F-000032-01 Kapoor Precision Materials and Components Kavya 00032 Private Limited
+                - paragraph [ref=f18e222]: liquidity
+                - generic [ref=f18e223]: Matched in covenant fields
+              - listitem [ref=f18e224]:
+                - generic [ref=f18e225]: Covenant
+                - link "Interest coverage ratio" [ref=f18e226] [cursor=pointer]:
+                  - /url: /covenants/D32COV
+                - generic [ref=f18e227]: F-000032-01 Kapoor Precision Materials and Components Kavya 00032 Private Limited
+                - paragraph [ref=f18e228]: coverage
+                - generic [ref=f18e229]: Matched in covenant fields
+              - listitem [ref=f18e230]:
+                - generic [ref=f18e231]: Covenant
+                - link "Leverage ratio" [ref=f18e232] [cursor=pointer]:
+                  - /url: /covenants/D32LEV
+                - generic [ref=f18e233]: F-000032-01 Kapoor Precision Materials and Components Kavya 00032 Private Limited
+                - paragraph [ref=f18e234]: leverage
+                - generic [ref=f18e235]: Matched in covenant fields
+              - listitem [ref=f18e236]:
+                - generic [ref=f18e237]: Covenant
+                - link "Current ratio" [ref=f18e238] [cursor=pointer]:
+                  - /url: /covenants/D26LIQ
+                - generic [ref=f18e239]: F-000026-01 Subramanian Agro Processing and Logistics Kavya 00026 Private Limited
+                - paragraph [ref=f18e240]: liquidity
+                - generic [ref=f18e241]: Matched in covenant fields
+              - listitem [ref=f18e242]:
+                - generic [ref=f18e243]: Covenant
+                - link "Interest coverage ratio" [ref=f18e244] [cursor=pointer]:
+                  - /url: /covenants/D26COV
+                - generic [ref=f18e245]: F-000026-01 Subramanian Agro Processing and Logistics Kavya 00026 Private Limited
+                - paragraph [ref=f18e246]: coverage
+                - generic [ref=f18e247]: Matched in covenant fields
+              - listitem [ref=f18e248]:
+                - generic [ref=f18e249]: Covenant
+                - link "Leverage ratio" [ref=f18e250] [cursor=pointer]:
+                  - /url: /covenants/D26LEV
+                - generic [ref=f18e251]: F-000026-01 Subramanian Agro Processing and Logistics Kavya 00026 Private Limited
+                - paragraph [ref=f18e252]: leverage
+                - generic [ref=f18e253]: Matched in covenant fields
+              - listitem [ref=f18e254]:
+                - generic [ref=f18e255]: Covenant
+                - link "Leverage ratio" [ref=f18e256] [cursor=pointer]:
+                  - /url: /covenants/D08LEV
+                - generic [ref=f18e257]: F-000008-01 Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - paragraph [ref=f18e258]: leverage
+                - generic [ref=f18e259]: Matched in covenant fields
+              - listitem [ref=f18e260]:
+                - generic [ref=f18e261]: Covenant
+                - link "Interest coverage ratio" [ref=f18e262] [cursor=pointer]:
+                  - /url: /covenants/D08COV
+                - generic [ref=f18e263]: F-000008-01 Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - paragraph [ref=f18e264]: coverage
+                - generic [ref=f18e265]: Matched in covenant fields
+              - listitem [ref=f18e266]:
+                - generic [ref=f18e267]: Covenant
+                - link "Current ratio" [ref=f18e268] [cursor=pointer]:
+                  - /url: /covenants/D08LIQ
+                - generic [ref=f18e269]: F-000008-01 Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - paragraph [ref=f18e270]: liquidity
+                - generic [ref=f18e271]: Matched in covenant fields
+              - listitem [ref=f18e272]:
+                - generic [ref=f18e273]: Covenant
+                - link "Current ratio" [ref=f18e274] [cursor=pointer]:
+                  - /url: /covenants/D05LIQ
+                - generic [ref=f18e275]: F-000005-01 Patel Precision Materials and Components Kavya 00005 Private Limited
+                - paragraph [ref=f18e276]: liquidity
+                - generic [ref=f18e277]: Matched in covenant fields
+              - listitem [ref=f18e278]:
+                - generic [ref=f18e279]: Covenant
+                - link "Interest coverage ratio" [ref=f18e280] [cursor=pointer]:
+                  - /url: /covenants/D05COV
+                - generic [ref=f18e281]: F-000005-01 Patel Precision Materials and Components Kavya 00005 Private Limited
+                - paragraph [ref=f18e282]: coverage
+                - generic [ref=f18e283]: Matched in covenant fields
+              - listitem [ref=f18e284]:
+                - generic [ref=f18e285]: Covenant
+                - link "Leverage ratio" [ref=f18e286] [cursor=pointer]:
+                  - /url: /covenants/D05LEV
+                - generic [ref=f18e287]: F-000005-01 Patel Precision Materials and Components Kavya 00005 Private Limited
+                - paragraph [ref=f18e288]: leverage
+                - generic [ref=f18e289]: Matched in covenant fields
+              - listitem [ref=f18e290]:
+                - generic [ref=f18e291]: Covenant
+                - link "Current ratio" [ref=f18e292] [cursor=pointer]:
+                  - /url: /covenants/D01LIQ
+                - generic [ref=f18e293]: F-000001-01 Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e294]: liquidity
+                - generic [ref=f18e295]: Matched in covenant fields
+              - listitem [ref=f18e296]:
+                - generic [ref=f18e297]: Covenant
+                - link "Interest coverage ratio" [ref=f18e298] [cursor=pointer]:
+                  - /url: /covenants/D01COV
+                - generic [ref=f18e299]: F-000001-01 Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e300]: coverage
+                - generic [ref=f18e301]: Matched in covenant fields
+              - listitem [ref=f18e302]:
+                - generic [ref=f18e303]: Covenant
+                - link "Leverage ratio" [ref=f18e304] [cursor=pointer]:
+                  - /url: /covenants/D01LEV
+                - generic [ref=f18e305]: F-000001-01 Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                - paragraph [ref=f18e306]: leverage
+                - generic [ref=f18e307]: Matched in covenant fields
+              - listitem [ref=f18e308]:
+                - generic [ref=f18e309]: Borrower
+                - link [ref=f18e310] [cursor=pointer]:
+                  - /url: /borrowers/B-000663
+                  - text: Subramanian Advanced Industrial Components
+                  - mark [ref=f18e311]: Kavya
+                  - text: 00663 Private Limited
+                - generic [ref=f18e312]: B-000663
+                - paragraph [ref=f18e313]: C24
+                - generic [ref=f18e314]: Matched in borrower fields
+              - listitem [ref=f18e315]:
+                - generic [ref=f18e316]: Borrower
+                - link [ref=f18e317] [cursor=pointer]:
+                  - /url: /borrowers/B-000063
+                  - text: Chatterjee Agro Processing and Logistics
+                  - mark [ref=f18e318]: Kavya
+                  - text: 00063 Private Limited
+                - generic [ref=f18e319]: B-000063
+                - paragraph [ref=f18e320]: C24
+                - generic [ref=f18e321]: Matched in borrower fields
+              - listitem [ref=f18e322]:
+                - generic [ref=f18e323]: Borrower
+                - link [ref=f18e324] [cursor=pointer]:
+                  - /url: /borrowers/B-002666
+                  - text: Reddy Advanced Industrial Components
+                  - mark [ref=f18e325]: Kavya
+                  - text: 02666 Private Limited
+                - generic [ref=f18e326]: B-002666
+                - paragraph [ref=f18e327]: G46
+                - generic [ref=f18e328]: Matched in borrower fields
+              - listitem [ref=f18e329]:
+                - generic [ref=f18e330]: Borrower
+                - link [ref=f18e331] [cursor=pointer]:
+                  - /url: /borrowers/B-002065
+                  - text: Iyer Consumer Products and Distribution
+                  - mark [ref=f18e332]: Kavya
+                  - text: 02065 Private Limited
+                - generic [ref=f18e333]: B-002065
+                - paragraph [ref=f18e334]: F41
+                - generic [ref=f18e335]: Matched in borrower fields
+              - listitem [ref=f18e336]:
+                - generic [ref=f18e337]: Borrower
+                - link [ref=f18e338] [cursor=pointer]:
+                  - /url: /borrowers/B-004193
+                  - text: Varma Speciality Chemicals and Technologies
+                  - mark [ref=f18e339]: Kavya
+                  - text: 04193 Private Limited
+                - generic [ref=f18e340]: B-004193
+                - paragraph [ref=f18e341]: C24
+                - generic [ref=f18e342]: Matched in borrower fields
+              - listitem [ref=f18e343]:
+                - generic [ref=f18e344]: Borrower
+                - link [ref=f18e345] [cursor=pointer]:
+                  - /url: /borrowers/B-001352
+                  - text: Mukherjee Agro Processing and Logistics
+                  - mark [ref=f18e346]: Kavya
+                  - text: 01352 Private Limited
+                - generic [ref=f18e347]: B-001352
+                - paragraph [ref=f18e348]: C10
+                - generic [ref=f18e349]: Matched in borrower fields
+              - listitem [ref=f18e350]:
+                - generic [ref=f18e351]: Borrower
+                - link [ref=f18e352] [cursor=pointer]:
+                  - /url: /borrowers/B-001123
+                  - text: Sharma Speciality Chemicals and Technologies
+                  - mark [ref=f18e353]: Kavya
+                  - text: 01123 Private Limited
+                - generic [ref=f18e354]: B-001123
+                - paragraph [ref=f18e355]: C24
+                - generic [ref=f18e356]: Matched in borrower fields
+              - listitem [ref=f18e357]:
+                - generic [ref=f18e358]: Borrower
+                - link [ref=f18e359] [cursor=pointer]:
+                  - /url: /borrowers/B-002297
+                  - text: Bhatia National Supply Chain Services
+                  - mark [ref=f18e360]: Kavya
+                  - text: 02297 Private Limited
+                - generic [ref=f18e361]: B-002297
+                - paragraph [ref=f18e362]: G47
+                - generic [ref=f18e363]: Matched in borrower fields
+              - listitem [ref=f18e364]:
+                - generic [ref=f18e365]: Borrower
+                - link [ref=f18e366] [cursor=pointer]:
+                  - /url: /borrowers/B-003320
+                  - text: Iyer Agro Processing and Logistics
+                  - mark [ref=f18e367]: Kavya
+                  - text: 03320 Private Limited
+                - generic [ref=f18e368]: B-003320
+                - paragraph [ref=f18e369]: M70
+                - generic [ref=f18e370]: Matched in borrower fields
+              - listitem [ref=f18e371]:
+                - generic [ref=f18e372]: Borrower
+                - link [ref=f18e373] [cursor=pointer]:
+                  - /url: /borrowers/B-004768
+                  - text: Menon Commercial Infrastructure Solutions
+                  - mark [ref=f18e374]: Kavya
+                  - text: 04768 Private Limited
+                - generic [ref=f18e375]: B-004768
+                - paragraph [ref=f18e376]: H49
+                - generic [ref=f18e377]: Matched in borrower fields
+              - listitem [ref=f18e378]:
+                - generic [ref=f18e379]: Borrower
+                - link [ref=f18e380] [cursor=pointer]:
+                  - /url: /borrowers/B-001288
+                  - text: Kapoor Integrated Manufacturing Systems
+                  - mark [ref=f18e381]: Kavya
+                  - text: 01288 Private Limited
+                - generic [ref=f18e382]: B-001288
+                - paragraph [ref=f18e383]: H49
+                - generic [ref=f18e384]: Matched in borrower fields
+              - listitem [ref=f18e385]:
+                - generic [ref=f18e386]: Borrower
+                - link [ref=f18e387] [cursor=pointer]:
+                  - /url: /borrowers/B-001337
+                  - text: Subramanian Capital Equipment and Services
+                  - mark [ref=f18e388]: Kavya
+                  - text: 01337 Private Limited
+                - generic [ref=f18e389]: B-001337
+                - paragraph [ref=f18e390]: G47
+                - generic [ref=f18e391]: Matched in borrower fields
+              - listitem [ref=f18e392]:
+                - generic [ref=f18e393]: Borrower
+                - link [ref=f18e394] [cursor=pointer]:
+                  - /url: /borrowers/B-003831
+                  - text: Chatterjee Agro Processing and Logistics
+                  - mark [ref=f18e395]: Kavya
+                  - text: 03831 Private Limited
+                - generic [ref=f18e396]: B-003831
+                - paragraph [ref=f18e397]: A01
+                - generic [ref=f18e398]: Matched in borrower fields
+              - listitem [ref=f18e399]:
+                - generic [ref=f18e400]: Borrower
+                - link [ref=f18e401] [cursor=pointer]:
+                  - /url: /borrowers/B-003927
+                  - text: Sharma National Supply Chain Services
+                  - mark [ref=f18e402]: Kavya
+                  - text: 03927 Private Limited
+                - generic [ref=f18e403]: B-003927
+                - paragraph [ref=f18e404]: G47
+                - generic [ref=f18e405]: Matched in borrower fields
+              - listitem [ref=f18e406]:
+                - generic [ref=f18e407]: Borrower
+                - link [ref=f18e408] [cursor=pointer]:
+                  - /url: /borrowers/B-004432
+                  - text: Mukherjee Applied Engineering Systems
+                  - mark [ref=f18e409]: Kavya
+                  - text: 04432 Private Limited
+                - generic [ref=f18e410]: B-004432
+                - paragraph [ref=f18e411]: C10
+                - generic [ref=f18e412]: Matched in borrower fields
+              - listitem [ref=f18e413]:
+                - generic [ref=f18e414]: Borrower
+                - link [ref=f18e415] [cursor=pointer]:
+                  - /url: /borrowers/B-001293
+                  - text: Kapoor Commercial Infrastructure Solutions
+                  - mark [ref=f18e416]: Kavya
+                  - text: 01293 Private Limited
+                - generic [ref=f18e417]: B-001293
+                - paragraph [ref=f18e418]: C24
+                - generic [ref=f18e419]: Matched in borrower fields
+              - listitem [ref=f18e420]:
+                - generic [ref=f18e421]: Borrower
+                - link [ref=f18e422] [cursor=pointer]:
+                  - /url: /borrowers/B-002661
+                  - text: Malhotra Renewable Infrastructure Projects
+                  - mark [ref=f18e423]: Kavya
+                  - text: 02661 Private Limited
+                - generic [ref=f18e424]: B-002661
+                - paragraph [ref=f18e425]: A01
+                - generic [ref=f18e426]: Matched in borrower fields
+              - listitem [ref=f18e427]:
+                - generic [ref=f18e428]: Borrower
+                - link [ref=f18e429] [cursor=pointer]:
+                  - /url: /borrowers/B-001585
+                  - text: Malhotra Advanced Industrial Components
+                  - mark [ref=f18e430]: Kavya
+                  - text: 01585 Private Limited
+                - generic [ref=f18e431]: B-001585
+                - paragraph [ref=f18e432]: F41
+                - generic [ref=f18e433]: Matched in borrower fields
+              - listitem [ref=f18e434]:
+                - generic [ref=f18e435]: Borrower
+                - link [ref=f18e436] [cursor=pointer]:
+                  - /url: /borrowers/B-001250
+                  - text: Malhotra Agro Processing and Logistics
+                  - mark [ref=f18e437]: Kavya
+                  - text: 01250 Private Limited
+                - generic [ref=f18e438]: B-001250
+                - paragraph [ref=f18e439]: M70
+                - generic [ref=f18e440]: Matched in borrower fields
+              - listitem [ref=f18e441]:
+                - generic [ref=f18e442]: Borrower
+                - link [ref=f18e443] [cursor=pointer]:
+                  - /url: /borrowers/B-004061
+                  - text: Varma Precision Materials and Components
+                  - mark [ref=f18e444]: Kavya
+                  - text: 04061 Private Limited
+                - generic [ref=f18e445]: B-004061
+                - paragraph [ref=f18e446]: A01
+                - generic [ref=f18e447]: Matched in borrower fields
+              - listitem [ref=f18e448]:
+                - generic [ref=f18e449]: Borrower
+                - link [ref=f18e450] [cursor=pointer]:
+                  - /url: /borrowers/B-000896
+                  - text: Bhatia Speciality Chemicals and Technologies
+                  - mark [ref=f18e451]: Kavya
+                  - text: 00896 Private Limited
+                - generic [ref=f18e452]: B-000896
+                - paragraph [ref=f18e453]: G46
+                - generic [ref=f18e454]: Matched in borrower fields
+              - listitem [ref=f18e455]:
+                - generic [ref=f18e456]: Borrower
+                - link [ref=f18e457] [cursor=pointer]:
+                  - /url: /borrowers/B-004662
+                  - text: Sharma Commercial Infrastructure Solutions
+                  - mark [ref=f18e458]: Kavya
+                  - text: 04662 Private Limited
+                - generic [ref=f18e459]: B-004662
+                - paragraph [ref=f18e460]: C10
+                - generic [ref=f18e461]: Matched in borrower fields
+              - listitem [ref=f18e462]:
+                - generic [ref=f18e463]: Borrower
+                - link [ref=f18e464] [cursor=pointer]:
+                  - /url: /borrowers/B-000903
+                  - text: Nair Capital Equipment and Services
+                  - mark [ref=f18e465]: Kavya
+                  - text: 00903 Private Limited
+                - generic [ref=f18e466]: B-000903
+                - paragraph [ref=f18e467]: C24
+                - generic [ref=f18e468]: Matched in borrower fields
+              - listitem [ref=f18e469]:
+                - generic [ref=f18e470]: Borrower
+                - link [ref=f18e471] [cursor=pointer]:
+                  - /url: /borrowers/B-003878
+                  - text: Patel Integrated Manufacturing Systems
+                  - mark [ref=f18e472]: Kavya
+                  - text: 03878 Private Limited
+                - generic [ref=f18e473]: B-003878
+                - paragraph [ref=f18e474]: H49
+                - generic [ref=f18e475]: Matched in borrower fields
+              - listitem [ref=f18e476]:
+                - generic [ref=f18e477]: Borrower
+                - link [ref=f18e478] [cursor=pointer]:
+                  - /url: /borrowers/B-004184
+                  - text: Subramanian Precision Materials and Components
+                  - mark [ref=f18e479]: Kavya
+                  - text: 04184 Private Limited
+                - generic [ref=f18e480]: B-004184
+                - paragraph [ref=f18e481]: C25
+                - generic [ref=f18e482]: Matched in borrower fields
+              - listitem [ref=f18e483]:
+                - generic [ref=f18e484]: Borrower
+                - link [ref=f18e485] [cursor=pointer]:
+                  - /url: /borrowers/B-004591
+                  - text: Iyer Energy Transition Technologies
+                  - mark [ref=f18e486]: Kavya
+                  - text: 04591 Private Limited
+                - generic [ref=f18e487]: B-004591
+                - paragraph [ref=f18e488]: A01
+                - generic [ref=f18e489]: Matched in borrower fields
+              - listitem [ref=f18e490]:
+                - generic [ref=f18e491]: Borrower
+                - link [ref=f18e492] [cursor=pointer]:
+                  - /url: /borrowers/B-004958
+                  - text: Mukherjee Renewable Infrastructure Projects
+                  - mark [ref=f18e493]: Kavya
+                  - text: 04958 Private Limited
+                - generic [ref=f18e494]: B-004958
+                - paragraph [ref=f18e495]: H49
+                - generic [ref=f18e496]: Matched in borrower fields
+              - listitem [ref=f18e497]:
+                - generic [ref=f18e498]: Borrower
+                - link [ref=f18e499] [cursor=pointer]:
+                  - /url: /borrowers/B-000666
+                  - text: Varma Renewable Infrastructure Projects
+                  - mark [ref=f18e500]: Kavya
+                  - text: 00666 Private Limited
+                - generic [ref=f18e501]: B-000666
+                - paragraph [ref=f18e502]: G46
+                - generic [ref=f18e503]: Matched in borrower fields
+            - link "Next page" [ref=f18e504] [cursor=pointer]:
+              - /url: /search?q=kavya&page_size=50&offset=50

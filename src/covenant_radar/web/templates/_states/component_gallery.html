@@ -1,0 +1,95 @@
+{% import "_components/button.html" as button_component %}{% set button = button_component.button %}
+{% import "_components/field.html" as field_component %}{% set field = field_component.field %}
+{% import "_components/panel.html" as panel_component %}{% set panel = panel_component.panel %}
+{% import "_components/ledger_table.html" as ledger_table_component %}{% set ledger_table = ledger_table_component.ledger_table %}
+{% import "_components/band_chip.html" as band_chip_component %}{% set band_chip = band_chip_component.band_chip %}
+{% import "_components/verdict_mark.html" as verdict_mark_component %}{% set verdict_mark = verdict_mark_component.verdict_mark %}
+{% import "_components/drawer.html" as drawer_component %}{% set drawer = drawer_component.drawer %}
+{% import "_components/toast.html" as toast_component %}{% set toast = toast_component.toast %}
+{% import "_components/empty_state.html" as empty_state_component %}{% set empty_state = empty_state_component.empty_state %}
+{% import "_components/skeleton.html" as skeleton_component %}{% set skeleton = skeleton_component.skeleton %}
+{% import "_components/degraded_note.html" as degraded_note_component %}{% set degraded_note = degraded_note_component.degraded_note %}
+{% import "_components/trajectory.html" as trajectory_component %}{% set trajectory = trajectory_component.trajectory %}
+{% import "_components/horizon_control.html" as horizon_control_component %}{% set horizon_control = horizon_control_component.horizon_control %}
+{% import "_components/why_section.html" as why_section_component %}{% set why_section = why_section_component.why_section %}
+{% import "_components/feedback_control.html" as feedback_control_component %}{% set feedback_control = feedback_control_component.feedback_control %}
+{% import "_components/provenance_link.html" as provenance_link_component %}{% set provenance_link = provenance_link_component.provenance_link %}
+{% import "_components/pagination.html" as pagination_component %}{% set pagination = pagination_component.pagination %}
+{% import "_components/filter_bar.html" as filter_bar_component %}{% set filter_bar = filter_bar_component.filter_bar %}
+<!doctype html>
+<html lang="en" data-theme="{{ theme|default("light", true) }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Component gallery · Covenant Radar</title>
+    <link rel="stylesheet" href="/static/css/tokens.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+  </head>
+  <body>
+    <main>
+      <h1>Component gallery</h1>
+      <p>Meridian Auto Components Private Limited</p>
+
+      <section aria-labelledby="buttons-title"><h2 id="buttons-title">Buttons</h2>
+        {{ button("Save") }} {{ button("Secondary", variant="secondary") }} {{ button("Ghost", variant="ghost") }} {{ button("Submit", type="submit") }} {{ button("Disabled", disabled=true) }}
+        {{ button("Loading", loading=true) }} {{ button("Delete", destructive=true) }}
+      </section>
+
+      <section aria-labelledby="fields-title"><h2 id="fields-title">Fields</h2>
+        {{ field("entity", "Borrower", value="Meridian Auto Components Private Limited", hint="Use the registered legal name.") }}
+        {{ field("reviewer", "Reviewer", value="", error="Select a reviewer.", required=true) }}
+        {{ field("status", "Status", type="select", options=(("active", "Active"), ("closed", "Closed")), value="active") }}
+        {{ field("notes", "Notes", type="textarea", disabled=true) }}
+        {{ field("document", "Sanction letter", type="file", accept="application/pdf") }}
+      </section>
+
+      {% call panel("Case summary", panel_id="panel-rest") %}<p>Resting panel content.</p>{% endcall %}
+      {{ panel("Loading summary", state="loading", panel_id="panel-loading") }}
+      {{ panel("Error summary", state="error", panel_id="panel-error") }}
+      {{ panel("Empty summary", state="empty", panel_id="panel-empty", empty_action_label="Add a covenant", empty_action_href="/covenants/new") }}
+
+      {{ ledger_table("Covenant ledger", (("name", "Covenant"), ("value", "Value")), ({"id": "covenant-one", "name": "TOL/TNW", "value": "3.25", "selected": true},)) }}
+      {{ ledger_table("Empty ledger", (("name", "Covenant"),), ()) }}
+      {{ ledger_table("Loading ledger", (("name", "Covenant"),), (), state="skeleton") }}
+
+      <section aria-labelledby="bands-title"><h2 id="bands-title">Bands and verdicts</h2>
+        {{ band_chip("act", "Act") }} {{ band_chip("amber", "Amber") }} {{ band_chip("watch", "Watch") }} {{ band_chip("unknown", "Unclassified") }}
+        {{ verdict_mark("passed") }} {{ verdict_mark("struck") }} {{ verdict_mark("pending") }}
+      </section>
+
+      {{ drawer("drawer-closed", "Closed drawer", state="closed", content="Drawer content.") }}
+      {{ drawer("drawer-opening", "Opening drawer", state="opening", content="Drawer content.") }}
+      {% call drawer("drawer-open", "Open drawer", state="open") %}<p>Drawer content.</p>{% endcall %}
+      {{ toast("toast-info", "An informational update.", kind="info") }}
+      {{ toast("toast-success", "The record was saved.", kind="success") }}
+      {{ toast("toast-error", "The record could not be saved.", kind="error") }}
+      {{ empty_state("empty-component", "No borrowers in scope", "Import a portfolio to begin.", "Import portfolio", "/imports") }}
+      {{ skeleton("Loading evidence", rows=2, columns=3) }}
+      {{ degraded_note("Memo generation", "The evidence and covenant calculations remain available.") }}
+
+      {{ trajectory("trajectory-with-ledger", "0,30 50,22 100,10", (("Current", "3.25"), ("Threshold", "4.00")), threshold_y="18", crossing={"x": 72, "y": 18, "date": "30 Sep 2026", "label": "Threshold crossing"}) }}
+      {{ trajectory("trajectory-without-ledger", "0,30 50,22 100,10", ()) }}
+      {{ horizon_control("horizon-idle", "/case", 30, 0, 90, ((0, "Today"), (30, "30 days"), (90, "90 days"))) }}
+      {{ horizon_control("horizon-dragging", "/case", 30, 0, 90, state="dragging") }}
+      {{ horizon_control("horizon-keyboard", "/case", 30, 0, 90, state="keyboard") }}
+      {{ horizon_control("horizon-stops", "/case", 30, 0, 90, ((0, "Today"), (30, "30 days"), (90, "90 days")), state="stops-only") }}
+
+      {{ why_section("why-ran", "Why this changed", state="ran", decision="Watch", explanation="Headroom narrowed in the latest period.") }}
+      {{ why_section("why-not-run", "Why this changed", state="not-run") }}
+      {{ why_section("why-code", "Code decision", state="code-decided", decision="Passed", explanation="The contractual threshold comparison passed.") }}
+      {{ why_section("why-model", "Model decision", state="model-decided", decision="Review", confidence="0.82", explanation="The model identified persistence in the signal.") }}
+      {{ feedback_control("feedback-rest", "/feedback") }}
+      {{ feedback_control("feedback-submitted", "/feedback", state="submitted") }}
+      {{ provenance_link("Statement line", href="/evidence/statement-line") }}
+      {{ provenance_link("Purged statement", state="purged") }}
+      {{ pagination("pages-rest", 2, 4, previous_href="/queue?page=1", next_href="/queue?page=3") }}
+      {{ pagination("pages-loading", 2, 4, state="loading") }}
+      {{ pagination("pages-end", 4, 4, state="end") }}
+      {{ filter_bar("filters-rest", "/queue", ({"name": "band", "label": "Band", "options": (("all", "All"), ("watch", "Watch")), "value": "all"},)) }}
+      {{ filter_bar("filters-active", "/queue", state="active") }}
+      {{ filter_bar("filters-saved", "/queue", state="saved-view") }}
+    </main>
+    <script src="/static/vendor/htmx/htmx.min.js" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous" defer></script>
+    <script src="/static/js/app.js" defer></script>
+  </body>
+</html>

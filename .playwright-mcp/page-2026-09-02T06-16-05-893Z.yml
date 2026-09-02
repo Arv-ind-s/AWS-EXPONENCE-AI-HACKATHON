@@ -1,0 +1,841 @@
+- generic [active] [ref=f6e1]:
+  - link "Skip to content" [ref=f6e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f6e3]:
+    - complementary "Workspace navigation" [ref=f6e4]:
+      - link "Covenant Radar" [ref=f6e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f6e13]:
+          - strong [ref=f6e14]: Covenant
+          - generic [ref=f6e15]: Radar
+      - navigation "Primary navigation" [ref=f6e16]:
+        - region [ref=f6e17]:
+          - heading "Monitor" [level=2] [ref=f6e18]
+          - link "Portfolio queue" [ref=f6e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f6e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f6e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f6e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f6e31]: "0"
+          - link "Search" [ref=f6e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f6e37]:
+          - heading "Portfolio data" [level=2] [ref=f6e38]
+          - link "Borrowers" [ref=f6e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f6e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f6e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f6e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f6e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f6e61]:
+          - heading "Workflows" [level=2] [ref=f6e62]
+          - link "Intake" [ref=f6e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f6e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f6e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f6e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f6e79]:
+          - heading "Administration" [level=2] [ref=f6e80]
+          - link "Action catalogue" [ref=f6e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f6e86] [cursor=pointer]
+    - generic [ref=f6e90]:
+      - banner [ref=f6e91]:
+        - generic [ref=f6e93]:
+          - generic [ref=f6e94]: Workspace
+          - generic [ref=f6e97]: Current view
+        - search [ref=f6e98]:
+          - generic [ref=f6e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f6e100]
+          - generic: /
+        - generic [ref=f6e101]:
+          - button "Live activity" [ref=f6e102]:
+            - generic [ref=f6e104]: Live
+          - button "Use dark theme" [ref=f6e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f6e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f6e112] [cursor=pointer]
+      - main [ref=f6e116]:
+        - generic [ref=f6e117]:
+          - generic [ref=f6e118]:
+            - paragraph [ref=f6e119]: Decision workspace
+            - heading "Facility master data" [level=1] [ref=f6e120]
+          - link "Book insights" [ref=f6e122] [cursor=pointer]:
+            - /url: /facilities/insights
+        - generic [ref=f6e123]:
+          - generic [ref=f6e124]:
+            - generic [ref=f6e125]:
+              - generic [ref=f6e126]:
+                - generic [ref=f6e127]: Search facilities
+                - searchbox "Search facilities" [ref=f6e128]: chatterjee
+              - generic [ref=f6e129]:
+                - generic [ref=f6e130]: Facility type
+                - combobox "Facility type" [ref=f6e131]:
+                  - option "All facility types"
+                  - option "Cash credit"
+                  - option "Term loan" [selected]
+              - generic [ref=f6e132]:
+                - generic [ref=f6e133]: Currency
+                - combobox "Currency" [ref=f6e134]:
+                  - option "All currencies" [selected]
+                  - option "INR"
+              - generic [ref=f6e135]:
+                - generic [ref=f6e136]: Version status
+                - combobox "Version status" [ref=f6e137]:
+                  - option "Current versions" [selected]
+                  - option "Superseded versions"
+                  - option "All versions"
+            - generic [ref=f6e138]:
+              - button "Apply filters" [ref=f6e139] [cursor=pointer]
+              - link "Clear" [ref=f6e140] [cursor=pointer]:
+                - /url: /facilities
+          - generic [ref=f6e142]:
+            - paragraph [ref=f6e143]:
+              - generic [ref=f6e144]: Showing 1–50 of 327 facilities
+              - generic [ref=f6e145]: Amounts in ₹ crore
+            - table [ref=f6e147]:
+              - caption [ref=f6e148]: Facility master data
+              - rowgroup [ref=f6e149]:
+                - row [ref=f6e150]:
+                  - columnheader "Reference" [ref=f6e151]
+                  - columnheader "Borrower" [ref=f6e152]
+                  - columnheader "Facility type" [ref=f6e153]
+                  - columnheader "Sanctioned limit" [ref=f6e154]
+                  - columnheader "Outstanding" [ref=f6e155]
+                  - columnheader "Utilisation" [ref=f6e156]
+                  - columnheader "Maturity date" [ref=f6e157]
+                  - columnheader "Version status" [ref=f6e158]
+              - rowgroup [ref=f6e159]:
+                - row [ref=f6e160]:
+                  - cell [ref=f6e161]:
+                    - link "F-000003-02" [ref=f6e162] [cursor=pointer]:
+                      - /url: /facilities/F-000003-02
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f6e163]:
+                    - link "B-000003" [ref=f6e164] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f6e165]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Term loan" [ref=f6e166]
+                  - cell "35.85" [ref=f6e167]
+                  - cell "28.95" [ref=f6e168]
+                  - cell "80.8%" [ref=f6e169]
+                  - cell "31 Mar 2028" [ref=f6e171]
+                  - cell "Current" [ref=f6e172]
+                - row [ref=f6e174]:
+                  - cell [ref=f6e175]:
+                    - link "F-000003-04" [ref=f6e176] [cursor=pointer]:
+                      - /url: /facilities/F-000003-04
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f6e177]:
+                    - link "B-000003" [ref=f6e178] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f6e179]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Term loan" [ref=f6e180]
+                  - cell "212.22" [ref=f6e181]
+                  - cell "142.61" [ref=f6e182]
+                  - cell "67.2%" [ref=f6e183]
+                  - cell "31 Mar 2027" [ref=f6e185]
+                  - cell "Current" [ref=f6e186]
+                - row [ref=f6e188]:
+                  - cell [ref=f6e189]:
+                    - link "F-000013-02" [ref=f6e190] [cursor=pointer]:
+                      - /url: /facilities/F-000013-02
+                  - cell "B-000013 Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f6e191]:
+                    - link "B-000013" [ref=f6e192] [cursor=pointer]:
+                      - /url: /borrowers/B-000013/master-data
+                    - generic [ref=f6e193]: Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited
+                  - cell "Term loan" [ref=f6e194]
+                  - cell "451.76" [ref=f6e195]
+                  - cell "199.59" [ref=f6e196]
+                  - cell "44.2%" [ref=f6e197]
+                  - cell "31 Mar 2031" [ref=f6e199]
+                  - cell "Current" [ref=f6e200]
+                - row [ref=f6e202]:
+                  - cell [ref=f6e203]:
+                    - link "F-000029-02" [ref=f6e204] [cursor=pointer]:
+                      - /url: /facilities/F-000029-02
+                  - cell "B-000029 Chatterjee Applied Engineering Systems Meera 00029 Private Limited" [ref=f6e205]:
+                    - link "B-000029" [ref=f6e206] [cursor=pointer]:
+                      - /url: /borrowers/B-000029/master-data
+                    - generic [ref=f6e207]: Chatterjee Applied Engineering Systems Meera 00029 Private Limited
+                  - cell "Term loan" [ref=f6e208]
+                  - cell "128.46" [ref=f6e209]
+                  - cell "109.52" [ref=f6e210]
+                  - cell "85.3%" [ref=f6e211]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f6e213]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f6e214]: matured 155 days ago
+                  - cell "Current" [ref=f6e215]
+                - row [ref=f6e217]:
+                  - cell [ref=f6e218]:
+                    - link "F-000030-02" [ref=f6e219] [cursor=pointer]:
+                      - /url: /facilities/F-000030-02
+                  - cell "B-000030 Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f6e220]:
+                    - link "B-000030" [ref=f6e221] [cursor=pointer]:
+                      - /url: /borrowers/B-000030/master-data
+                    - generic [ref=f6e222]: Chatterjee Energy Transition Technologies Rohan 00030 Private Limited
+                  - cell "Term loan" [ref=f6e223]
+                  - cell "148.91" [ref=f6e224]
+                  - cell "62.29" [ref=f6e225]
+                  - cell "41.8%" [ref=f6e226]
+                  - cell "31 Mar 2027" [ref=f6e228]
+                  - cell "Current" [ref=f6e229]
+                - row [ref=f6e231]:
+                  - cell [ref=f6e232]:
+                    - link "F-000030-04" [ref=f6e233] [cursor=pointer]:
+                      - /url: /facilities/F-000030-04
+                  - cell "B-000030 Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f6e234]:
+                    - link "B-000030" [ref=f6e235] [cursor=pointer]:
+                      - /url: /borrowers/B-000030/master-data
+                    - generic [ref=f6e236]: Chatterjee Energy Transition Technologies Rohan 00030 Private Limited
+                  - cell "Term loan" [ref=f6e237]
+                  - cell "57.33" [ref=f6e238]
+                  - cell "40.30" [ref=f6e239]
+                  - cell "70.3%" [ref=f6e240]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f6e242]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f6e243]: matured 155 days ago
+                  - cell "Current" [ref=f6e244]
+                - row [ref=f6e246]:
+                  - cell [ref=f6e247]:
+                    - link "F-000034-02" [ref=f6e248] [cursor=pointer]:
+                      - /url: /facilities/F-000034-02
+                  - cell "B-000034 Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f6e249]:
+                    - link "B-000034" [ref=f6e250] [cursor=pointer]:
+                      - /url: /borrowers/B-000034/master-data
+                    - generic [ref=f6e251]: Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited
+                  - cell "Term loan" [ref=f6e252]
+                  - cell "39.73" [ref=f6e253]
+                  - cell "31.27" [ref=f6e254]
+                  - cell "78.7%" [ref=f6e255]
+                  - cell "31 Mar 2031" [ref=f6e257]
+                  - cell "Current" [ref=f6e258]
+                - row [ref=f6e260]:
+                  - cell [ref=f6e261]:
+                    - link "F-000034-04" [ref=f6e262] [cursor=pointer]:
+                      - /url: /facilities/F-000034-04
+                  - cell "B-000034 Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f6e263]:
+                    - link "B-000034" [ref=f6e264] [cursor=pointer]:
+                      - /url: /borrowers/B-000034/master-data
+                    - generic [ref=f6e265]: Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited
+                  - cell "Term loan" [ref=f6e266]
+                  - cell "116.93" [ref=f6e267]
+                  - cell "55.00" [ref=f6e268]
+                  - cell "47.0%" [ref=f6e269]
+                  - cell "31 Mar 2030" [ref=f6e271]
+                  - cell "Current" [ref=f6e272]
+                - row [ref=f6e274]:
+                  - cell [ref=f6e275]:
+                    - link "F-000048-02" [ref=f6e276] [cursor=pointer]:
+                      - /url: /facilities/F-000048-02
+                  - cell "B-000048 Chatterjee Applied Engineering Systems Aditi 00048 Private Limited" [ref=f6e277]:
+                    - link "B-000048" [ref=f6e278] [cursor=pointer]:
+                      - /url: /borrowers/B-000048/master-data
+                    - generic [ref=f6e279]: Chatterjee Applied Engineering Systems Aditi 00048 Private Limited
+                  - cell "Term loan" [ref=f6e280]
+                  - cell "131.15" [ref=f6e281]
+                  - cell "98.94" [ref=f6e282]
+                  - cell "75.4%" [ref=f6e283]
+                  - cell "31 Mar 2031" [ref=f6e285]
+                  - cell "Current" [ref=f6e286]
+                - row [ref=f6e288]:
+                  - cell [ref=f6e289]:
+                    - link "F-000048-04" [ref=f6e290] [cursor=pointer]:
+                      - /url: /facilities/F-000048-04
+                  - cell "B-000048 Chatterjee Applied Engineering Systems Aditi 00048 Private Limited" [ref=f6e291]:
+                    - link "B-000048" [ref=f6e292] [cursor=pointer]:
+                      - /url: /borrowers/B-000048/master-data
+                    - generic [ref=f6e293]: Chatterjee Applied Engineering Systems Aditi 00048 Private Limited
+                  - cell "Term loan" [ref=f6e294]
+                  - cell "460.73" [ref=f6e295]
+                  - cell "198.67" [ref=f6e296]
+                  - cell "43.1%" [ref=f6e297]
+                  - cell "31 Mar 2030" [ref=f6e299]
+                  - cell "Current" [ref=f6e300]
+                - row [ref=f6e302]:
+                  - cell [ref=f6e303]:
+                    - link "F-000048-06" [ref=f6e304] [cursor=pointer]:
+                      - /url: /facilities/F-000048-06
+                  - cell "B-000048 Chatterjee Applied Engineering Systems Aditi 00048 Private Limited" [ref=f6e305]:
+                    - link "B-000048" [ref=f6e306] [cursor=pointer]:
+                      - /url: /borrowers/B-000048/master-data
+                    - generic [ref=f6e307]: Chatterjee Applied Engineering Systems Aditi 00048 Private Limited
+                  - cell "Term loan" [ref=f6e308]
+                  - cell "346.86" [ref=f6e309]
+                  - cell "125.77" [ref=f6e310]
+                  - cell "36.3%" [ref=f6e311]
+                  - cell "31 Mar 2029" [ref=f6e313]
+                  - cell "Current" [ref=f6e314]
+                - row [ref=f6e316]:
+                  - cell [ref=f6e317]:
+                    - link "F-000063-02" [ref=f6e318] [cursor=pointer]:
+                      - /url: /facilities/F-000063-02
+                  - cell "B-000063 Chatterjee Agro Processing and Logistics Kavya 00063 Private Limited" [ref=f6e319]:
+                    - link "B-000063" [ref=f6e320] [cursor=pointer]:
+                      - /url: /borrowers/B-000063/master-data
+                    - generic [ref=f6e321]: Chatterjee Agro Processing and Logistics Kavya 00063 Private Limited
+                  - cell "Term loan" [ref=f6e322]
+                  - cell "88.60" [ref=f6e323]
+                  - cell "49.90" [ref=f6e324]
+                  - cell "56.3%" [ref=f6e325]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e327]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e328]: matured 520 days ago
+                  - cell "Current" [ref=f6e329]
+                - row [ref=f6e331]:
+                  - cell [ref=f6e332]:
+                    - link "F-000079-02" [ref=f6e333] [cursor=pointer]:
+                      - /url: /facilities/F-000079-02
+                  - cell "B-000079 Chatterjee Precision Materials and Components Devika 00079 Private Limited" [ref=f6e334]:
+                    - link "B-000079" [ref=f6e335] [cursor=pointer]:
+                      - /url: /borrowers/B-000079/master-data
+                    - generic [ref=f6e336]: Chatterjee Precision Materials and Components Devika 00079 Private Limited
+                  - cell "Term loan" [ref=f6e337]
+                  - cell "88.87" [ref=f6e338]
+                  - cell "72.61" [ref=f6e339]
+                  - cell "81.7%" [ref=f6e340]
+                  - cell "31 Mar 2027" [ref=f6e342]
+                  - cell "Current" [ref=f6e343]
+                - row [ref=f6e345]:
+                  - cell [ref=f6e346]:
+                    - link "F-000080-02" [ref=f6e347] [cursor=pointer]:
+                      - /url: /facilities/F-000080-02
+                  - cell "B-000080 Chatterjee Speciality Chemicals and Technologies Devika 00080 Private Limited" [ref=f6e348]:
+                    - link "B-000080" [ref=f6e349] [cursor=pointer]:
+                      - /url: /borrowers/B-000080/master-data
+                    - generic [ref=f6e350]: Chatterjee Speciality Chemicals and Technologies Devika 00080 Private Limited
+                  - cell "Term loan" [ref=f6e351]
+                  - cell "496.09" [ref=f6e352]
+                  - cell "317.60" [ref=f6e353]
+                  - cell "64.0%" [ref=f6e354]
+                  - cell "31 Mar 2028" [ref=f6e356]
+                  - cell "Current" [ref=f6e357]
+                - row [ref=f6e359]:
+                  - cell [ref=f6e360]:
+                    - link "F-000080-04" [ref=f6e361] [cursor=pointer]:
+                      - /url: /facilities/F-000080-04
+                  - cell "B-000080 Chatterjee Speciality Chemicals and Technologies Devika 00080 Private Limited" [ref=f6e362]:
+                    - link "B-000080" [ref=f6e363] [cursor=pointer]:
+                      - /url: /borrowers/B-000080/master-data
+                    - generic [ref=f6e364]: Chatterjee Speciality Chemicals and Technologies Devika 00080 Private Limited
+                  - cell "Term loan" [ref=f6e365]
+                  - cell "16.47" [ref=f6e366]
+                  - cell "7.74" [ref=f6e367]
+                  - cell "47.0%" [ref=f6e368]
+                  - cell "31 Mar 2027" [ref=f6e370]
+                  - cell "Current" [ref=f6e371]
+                - row [ref=f6e373]:
+                  - cell [ref=f6e374]:
+                    - link "F-000144-02" [ref=f6e375] [cursor=pointer]:
+                      - /url: /facilities/F-000144-02
+                  - cell "B-000144 Chatterjee Capital Equipment and Services Rohan 00144 Private Limited" [ref=f6e376]:
+                    - link "B-000144" [ref=f6e377] [cursor=pointer]:
+                      - /url: /borrowers/B-000144/master-data
+                    - generic [ref=f6e378]: Chatterjee Capital Equipment and Services Rohan 00144 Private Limited
+                  - cell "Term loan" [ref=f6e379]
+                  - cell "390.14" [ref=f6e380]
+                  - cell "234.71" [ref=f6e381]
+                  - cell "60.2%" [ref=f6e382]
+                  - cell "31 Mar 2029" [ref=f6e384]
+                  - cell "Current" [ref=f6e385]
+                - row [ref=f6e387]:
+                  - cell [ref=f6e388]:
+                    - link "F-000149-02" [ref=f6e389] [cursor=pointer]:
+                      - /url: /facilities/F-000149-02
+                  - cell "B-000149 Chatterjee Capital Equipment and Services Ananya 00149 Private Limited" [ref=f6e390]:
+                    - link "B-000149" [ref=f6e391] [cursor=pointer]:
+                      - /url: /borrowers/B-000149/master-data
+                    - generic [ref=f6e392]: Chatterjee Capital Equipment and Services Ananya 00149 Private Limited
+                  - cell "Term loan" [ref=f6e393]
+                  - cell "237.14" [ref=f6e394]
+                  - cell "192.08" [ref=f6e395]
+                  - cell "81.0%" [ref=f6e396]
+                  - cell "31 Mar 2027" [ref=f6e398]
+                  - cell "Current" [ref=f6e399]
+                - row [ref=f6e401]:
+                  - cell [ref=f6e402]:
+                    - link "F-000164-02" [ref=f6e403] [cursor=pointer]:
+                      - /url: /facilities/F-000164-02
+                  - cell "B-000164 Chatterjee Renewable Infrastructure Projects Nandini 00164 Private Limited" [ref=f6e404]:
+                    - link "B-000164" [ref=f6e405] [cursor=pointer]:
+                      - /url: /borrowers/B-000164/master-data
+                    - generic [ref=f6e406]: Chatterjee Renewable Infrastructure Projects Nandini 00164 Private Limited
+                  - cell "Term loan" [ref=f6e407]
+                  - cell "36.62" [ref=f6e408]
+                  - cell "20.86" [ref=f6e409]
+                  - cell "57.0%" [ref=f6e410]
+                  - cell "31 Mar 2028" [ref=f6e412]
+                  - cell "Current" [ref=f6e413]
+                - row [ref=f6e415]:
+                  - cell [ref=f6e416]:
+                    - link "F-000167-02" [ref=f6e417] [cursor=pointer]:
+                      - /url: /facilities/F-000167-02
+                  - cell "B-000167 Chatterjee Precision Materials and Components Aarav 00167 Private Limited" [ref=f6e418]:
+                    - link "B-000167" [ref=f6e419] [cursor=pointer]:
+                      - /url: /borrowers/B-000167/master-data
+                    - generic [ref=f6e420]: Chatterjee Precision Materials and Components Aarav 00167 Private Limited
+                  - cell "Term loan" [ref=f6e421]
+                  - cell "112.57" [ref=f6e422]
+                  - cell "73.79" [ref=f6e423]
+                  - cell "65.6%" [ref=f6e424]
+                  - cell "31 Mar 2031" [ref=f6e426]
+                  - cell "Current" [ref=f6e427]
+                - row [ref=f6e429]:
+                  - cell [ref=f6e430]:
+                    - link "F-000167-04" [ref=f6e431] [cursor=pointer]:
+                      - /url: /facilities/F-000167-04
+                  - cell "B-000167 Chatterjee Precision Materials and Components Aarav 00167 Private Limited" [ref=f6e432]:
+                    - link "B-000167" [ref=f6e433] [cursor=pointer]:
+                      - /url: /borrowers/B-000167/master-data
+                    - generic [ref=f6e434]: Chatterjee Precision Materials and Components Aarav 00167 Private Limited
+                  - cell "Term loan" [ref=f6e435]
+                  - cell "275.24" [ref=f6e436]
+                  - cell "153.86" [ref=f6e437]
+                  - cell "55.9%" [ref=f6e438]
+                  - cell "31 Mar 2030" [ref=f6e440]
+                  - cell "Current" [ref=f6e441]
+                - row [ref=f6e443]:
+                  - cell [ref=f6e444]:
+                    - link "F-000170-02" [ref=f6e445] [cursor=pointer]:
+                      - /url: /facilities/F-000170-02
+                  - cell "B-000170 Chatterjee Precision Materials and Components Vikram 00170 Private Limited" [ref=f6e446]:
+                    - link "B-000170" [ref=f6e447] [cursor=pointer]:
+                      - /url: /borrowers/B-000170/master-data
+                    - generic [ref=f6e448]: Chatterjee Precision Materials and Components Vikram 00170 Private Limited
+                  - cell "Term loan" [ref=f6e449]
+                  - cell "216.38" [ref=f6e450]
+                  - cell "68.16" [ref=f6e451]
+                  - cell "31.5%" [ref=f6e452]
+                  - cell "31 Mar 2027" [ref=f6e454]
+                  - cell "Current" [ref=f6e455]
+                - row [ref=f6e457]:
+                  - cell [ref=f6e458]:
+                    - link "F-000177-02" [ref=f6e459] [cursor=pointer]:
+                      - /url: /facilities/F-000177-02
+                  - cell "B-000177 Chatterjee Agro Processing and Logistics Aarav 00177 Private Limited" [ref=f6e460]:
+                    - link "B-000177" [ref=f6e461] [cursor=pointer]:
+                      - /url: /borrowers/B-000177/master-data
+                    - generic [ref=f6e462]: Chatterjee Agro Processing and Logistics Aarav 00177 Private Limited
+                  - cell "Term loan" [ref=f6e463]
+                  - cell "411.96" [ref=f6e464]
+                  - cell "166.51" [ref=f6e465]
+                  - cell "40.4%" [ref=f6e466]
+                  - cell "31 Mar 2027" [ref=f6e468]
+                  - cell "Current" [ref=f6e469]
+                - row [ref=f6e471]:
+                  - cell [ref=f6e472]:
+                    - link "F-000189-02" [ref=f6e473] [cursor=pointer]:
+                      - /url: /facilities/F-000189-02
+                  - cell "B-000189 Chatterjee Speciality Chemicals and Technologies Ishaan 00189 Private Limited" [ref=f6e474]:
+                    - link "B-000189" [ref=f6e475] [cursor=pointer]:
+                      - /url: /borrowers/B-000189/master-data
+                    - generic [ref=f6e476]: Chatterjee Speciality Chemicals and Technologies Ishaan 00189 Private Limited
+                  - cell "Term loan" [ref=f6e477]
+                  - cell "148.37" [ref=f6e478]
+                  - cell "104.67" [ref=f6e479]
+                  - cell "70.5%" [ref=f6e480]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e482]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e483]: matured 520 days ago
+                  - cell "Current" [ref=f6e484]
+                - row [ref=f6e486]:
+                  - cell [ref=f6e487]:
+                    - link "F-000223-02" [ref=f6e488] [cursor=pointer]:
+                      - /url: /facilities/F-000223-02
+                  - cell "B-000223 Chatterjee Speciality Chemicals and Technologies Vikram 00223 Private Limited" [ref=f6e489]:
+                    - link "B-000223" [ref=f6e490] [cursor=pointer]:
+                      - /url: /borrowers/B-000223/master-data
+                    - generic [ref=f6e491]: Chatterjee Speciality Chemicals and Technologies Vikram 00223 Private Limited
+                  - cell "Term loan" [ref=f6e492]
+                  - cell "242.25" [ref=f6e493]
+                  - cell "151.89" [ref=f6e494]
+                  - cell "62.7%" [ref=f6e495]
+                  - cell "31 Mar 2031" [ref=f6e497]
+                  - cell "Current" [ref=f6e498]
+                - row [ref=f6e500]:
+                  - cell [ref=f6e501]:
+                    - link "F-000223-04" [ref=f6e502] [cursor=pointer]:
+                      - /url: /facilities/F-000223-04
+                  - cell "B-000223 Chatterjee Speciality Chemicals and Technologies Vikram 00223 Private Limited" [ref=f6e503]:
+                    - link "B-000223" [ref=f6e504] [cursor=pointer]:
+                      - /url: /borrowers/B-000223/master-data
+                    - generic [ref=f6e505]: Chatterjee Speciality Chemicals and Technologies Vikram 00223 Private Limited
+                  - cell "Term loan" [ref=f6e506]
+                  - cell "438.92" [ref=f6e507]
+                  - cell "257.03" [ref=f6e508]
+                  - cell "58.6%" [ref=f6e509]
+                  - cell "31 Mar 2030" [ref=f6e511]
+                  - cell "Current" [ref=f6e512]
+                - row [ref=f6e514]:
+                  - cell [ref=f6e515]:
+                    - link "F-000229-02" [ref=f6e516] [cursor=pointer]:
+                      - /url: /facilities/F-000229-02
+                  - cell "B-000229 Chatterjee Capital Equipment and Services Aarav 00229 Private Limited" [ref=f6e517]:
+                    - link "B-000229" [ref=f6e518] [cursor=pointer]:
+                      - /url: /borrowers/B-000229/master-data
+                    - generic [ref=f6e519]: Chatterjee Capital Equipment and Services Aarav 00229 Private Limited
+                  - cell "Term loan" [ref=f6e520]
+                  - cell "230.60" [ref=f6e521]
+                  - cell "159.92" [ref=f6e522]
+                  - cell "69.3%" [ref=f6e523]
+                  - cell "31 Mar 2030" [ref=f6e525]
+                  - cell "Current" [ref=f6e526]
+                - row [ref=f6e528]:
+                  - cell [ref=f6e529]:
+                    - link "F-000271-02" [ref=f6e530] [cursor=pointer]:
+                      - /url: /facilities/F-000271-02
+                  - cell "B-000271 Chatterjee Capital Equipment and Services Ishaan 00271 Private Limited" [ref=f6e531]:
+                    - link "B-000271" [ref=f6e532] [cursor=pointer]:
+                      - /url: /borrowers/B-000271/master-data
+                    - generic [ref=f6e533]: Chatterjee Capital Equipment and Services Ishaan 00271 Private Limited
+                  - cell "Term loan" [ref=f6e534]
+                  - cell "437.31" [ref=f6e535]
+                  - cell "232.08" [ref=f6e536]
+                  - cell "53.1%" [ref=f6e537]
+                  - cell "31 Mar 2030" [ref=f6e539]
+                  - cell "Current" [ref=f6e540]
+                - row [ref=f6e542]:
+                  - cell [ref=f6e543]:
+                    - link "F-000275-02" [ref=f6e544] [cursor=pointer]:
+                      - /url: /facilities/F-000275-02
+                  - cell "B-000275 Chatterjee Advanced Industrial Components Nandini 00275 Private Limited" [ref=f6e545]:
+                    - link "B-000275" [ref=f6e546] [cursor=pointer]:
+                      - /url: /borrowers/B-000275/master-data
+                    - generic [ref=f6e547]: Chatterjee Advanced Industrial Components Nandini 00275 Private Limited
+                  - cell "Term loan" [ref=f6e548]
+                  - cell "374.94" [ref=f6e549]
+                  - cell "267.14" [ref=f6e550]
+                  - cell "71.2%" [ref=f6e551]
+                  - cell "31 Mar 2027" [ref=f6e553]
+                  - cell "Current" [ref=f6e554]
+                - row [ref=f6e556]:
+                  - cell [ref=f6e557]:
+                    - link "F-000294-02" [ref=f6e558] [cursor=pointer]:
+                      - /url: /facilities/F-000294-02
+                  - cell "B-000294 Chatterjee National Supply Chain Services Kavya 00294 Private Limited" [ref=f6e559]:
+                    - link "B-000294" [ref=f6e560] [cursor=pointer]:
+                      - /url: /borrowers/B-000294/master-data
+                    - generic [ref=f6e561]: Chatterjee National Supply Chain Services Kavya 00294 Private Limited
+                  - cell "Term loan" [ref=f6e562]
+                  - cell "131.01" [ref=f6e563]
+                  - cell "113.10" [ref=f6e564]
+                  - cell "86.3%" [ref=f6e565]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e567]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e568]: matured 520 days ago
+                  - cell "Current" [ref=f6e569]
+                - row [ref=f6e571]:
+                  - cell [ref=f6e572]:
+                    - link "F-000329-02" [ref=f6e573] [cursor=pointer]:
+                      - /url: /facilities/F-000329-02
+                  - cell "B-000329 Chatterjee Precision Materials and Components Arjun 00329 Private Limited" [ref=f6e574]:
+                    - link "B-000329" [ref=f6e575] [cursor=pointer]:
+                      - /url: /borrowers/B-000329/master-data
+                    - generic [ref=f6e576]: Chatterjee Precision Materials and Components Arjun 00329 Private Limited
+                  - cell "Term loan" [ref=f6e577]
+                  - cell "253.62" [ref=f6e578]
+                  - cell "161.43" [ref=f6e579]
+                  - cell "63.7%" [ref=f6e580]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e582]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e583]: matured 520 days ago
+                  - cell "Current" [ref=f6e584]
+                - row [ref=f6e586]:
+                  - cell [ref=f6e587]:
+                    - link "F-000353-02" [ref=f6e588] [cursor=pointer]:
+                      - /url: /facilities/F-000353-02
+                  - cell "B-000353 Chatterjee Speciality Chemicals and Technologies Arjun 00353 Private Limited" [ref=f6e589]:
+                    - link "B-000353" [ref=f6e590] [cursor=pointer]:
+                      - /url: /borrowers/B-000353/master-data
+                    - generic [ref=f6e591]: Chatterjee Speciality Chemicals and Technologies Arjun 00353 Private Limited
+                  - cell "Term loan" [ref=f6e592]
+                  - cell "281.14" [ref=f6e593]
+                  - cell "205.17" [ref=f6e594]
+                  - cell "73.0%" [ref=f6e595]
+                  - cell "31 Mar 2028" [ref=f6e597]
+                  - cell "Current" [ref=f6e598]
+                - row [ref=f6e600]:
+                  - cell [ref=f6e601]:
+                    - link "F-000368-02" [ref=f6e602] [cursor=pointer]:
+                      - /url: /facilities/F-000368-02
+                  - cell "B-000368 Chatterjee Speciality Chemicals and Technologies Arjun 00368 Private Limited" [ref=f6e603]:
+                    - link "B-000368" [ref=f6e604] [cursor=pointer]:
+                      - /url: /borrowers/B-000368/master-data
+                    - generic [ref=f6e605]: Chatterjee Speciality Chemicals and Technologies Arjun 00368 Private Limited
+                  - cell "Term loan" [ref=f6e606]
+                  - cell "354.17" [ref=f6e607]
+                  - cell "228.02" [ref=f6e608]
+                  - cell "64.4%" [ref=f6e609]
+                  - cell "31 Mar 2029" [ref=f6e611]
+                  - cell "Current" [ref=f6e612]
+                - row [ref=f6e614]:
+                  - cell [ref=f6e615]:
+                    - link "F-000439-02" [ref=f6e616] [cursor=pointer]:
+                      - /url: /facilities/F-000439-02
+                  - cell "B-000439 Chatterjee Advanced Industrial Components Meera 00439 Private Limited" [ref=f6e617]:
+                    - link "B-000439" [ref=f6e618] [cursor=pointer]:
+                      - /url: /borrowers/B-000439/master-data
+                    - generic [ref=f6e619]: Chatterjee Advanced Industrial Components Meera 00439 Private Limited
+                  - cell "Term loan" [ref=f6e620]
+                  - cell "76.92" [ref=f6e621]
+                  - cell "53.40" [ref=f6e622]
+                  - cell "69.4%" [ref=f6e623]
+                  - cell "31 Mar 2030" [ref=f6e625]
+                  - cell "Current" [ref=f6e626]
+                - row [ref=f6e628]:
+                  - cell [ref=f6e629]:
+                    - link "F-000461-02" [ref=f6e630] [cursor=pointer]:
+                      - /url: /facilities/F-000461-02
+                  - cell "B-000461 Chatterjee Consumer Products and Distribution Vikram 00461 Private Limited" [ref=f6e631]:
+                    - link "B-000461" [ref=f6e632] [cursor=pointer]:
+                      - /url: /borrowers/B-000461/master-data
+                    - generic [ref=f6e633]: Chatterjee Consumer Products and Distribution Vikram 00461 Private Limited
+                  - cell "Term loan" [ref=f6e634]
+                  - cell "159.75" [ref=f6e635]
+                  - cell "76.42" [ref=f6e636]
+                  - cell "47.8%" [ref=f6e637]
+                  - cell "31 Mar 2031" [ref=f6e639]
+                  - cell "Current" [ref=f6e640]
+                - row [ref=f6e642]:
+                  - cell [ref=f6e643]:
+                    - link "F-000474-02" [ref=f6e644] [cursor=pointer]:
+                      - /url: /facilities/F-000474-02
+                  - cell "B-000474 Chatterjee Agro Processing and Logistics Vikram 00474 Private Limited" [ref=f6e645]:
+                    - link "B-000474" [ref=f6e646] [cursor=pointer]:
+                      - /url: /borrowers/B-000474/master-data
+                    - generic [ref=f6e647]: Chatterjee Agro Processing and Logistics Vikram 00474 Private Limited
+                  - cell "Term loan" [ref=f6e648]
+                  - cell "100.98" [ref=f6e649]
+                  - cell "46.51" [ref=f6e650]
+                  - cell "46.1%" [ref=f6e651]
+                  - cell "31 Mar 2030" [ref=f6e653]
+                  - cell "Current" [ref=f6e654]
+                - row [ref=f6e656]:
+                  - cell [ref=f6e657]:
+                    - link "F-000474-04" [ref=f6e658] [cursor=pointer]:
+                      - /url: /facilities/F-000474-04
+                  - cell "B-000474 Chatterjee Agro Processing and Logistics Vikram 00474 Private Limited" [ref=f6e659]:
+                    - link "B-000474" [ref=f6e660] [cursor=pointer]:
+                      - /url: /borrowers/B-000474/master-data
+                    - generic [ref=f6e661]: Chatterjee Agro Processing and Logistics Vikram 00474 Private Limited
+                  - cell "Term loan" [ref=f6e662]
+                  - cell "496.47" [ref=f6e663]
+                  - cell "309.30" [ref=f6e664]
+                  - cell "62.3%" [ref=f6e665]
+                  - cell "31 Mar 2029" [ref=f6e667]
+                  - cell "Current" [ref=f6e668]
+                - row [ref=f6e670]:
+                  - cell [ref=f6e671]:
+                    - link "F-000480-02" [ref=f6e672] [cursor=pointer]:
+                      - /url: /facilities/F-000480-02
+                  - cell "B-000480 Chatterjee Capital Equipment and Services Kavya 00480 Private Limited" [ref=f6e673]:
+                    - link "B-000480" [ref=f6e674] [cursor=pointer]:
+                      - /url: /borrowers/B-000480/master-data
+                    - generic [ref=f6e675]: Chatterjee Capital Equipment and Services Kavya 00480 Private Limited
+                  - cell "Term loan" [ref=f6e676]
+                  - cell "373.35" [ref=f6e677]
+                  - cell "118.91" [ref=f6e678]
+                  - cell "31.8%" [ref=f6e679]
+                  - cell "31 Mar 2029" [ref=f6e681]
+                  - cell "Current" [ref=f6e682]
+                - row [ref=f6e684]:
+                  - cell [ref=f6e685]:
+                    - link "F-000499-02" [ref=f6e686] [cursor=pointer]:
+                      - /url: /facilities/F-000499-02
+                  - cell "B-000499 Chatterjee Consumer Products and Distribution Kavya 00499 Private Limited" [ref=f6e687]:
+                    - link "B-000499" [ref=f6e688] [cursor=pointer]:
+                      - /url: /borrowers/B-000499/master-data
+                    - generic [ref=f6e689]: Chatterjee Consumer Products and Distribution Kavya 00499 Private Limited
+                  - cell "Term loan" [ref=f6e690]
+                  - cell "369.25" [ref=f6e691]
+                  - cell "217.41" [ref=f6e692]
+                  - cell "58.9%" [ref=f6e693]
+                  - cell "31 Mar 2027" [ref=f6e695]
+                  - cell "Current" [ref=f6e696]
+                - row [ref=f6e698]:
+                  - cell [ref=f6e699]:
+                    - link "F-000499-04" [ref=f6e700] [cursor=pointer]:
+                      - /url: /facilities/F-000499-04
+                  - cell "B-000499 Chatterjee Consumer Products and Distribution Kavya 00499 Private Limited" [ref=f6e701]:
+                    - link "B-000499" [ref=f6e702] [cursor=pointer]:
+                      - /url: /borrowers/B-000499/master-data
+                    - generic [ref=f6e703]: Chatterjee Consumer Products and Distribution Kavya 00499 Private Limited
+                  - cell "Term loan" [ref=f6e704]
+                  - cell "231.54" [ref=f6e705]
+                  - cell "96.85" [ref=f6e706]
+                  - cell "41.8%" [ref=f6e707]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f6e709]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f6e710]: matured 155 days ago
+                  - cell "Current" [ref=f6e711]
+                - row [ref=f6e713]:
+                  - cell [ref=f6e714]:
+                    - link "F-000502-02" [ref=f6e715] [cursor=pointer]:
+                      - /url: /facilities/F-000502-02
+                  - cell "B-000502 Chatterjee Applied Engineering Systems Aditi 00502 Private Limited" [ref=f6e716]:
+                    - link "B-000502" [ref=f6e717] [cursor=pointer]:
+                      - /url: /borrowers/B-000502/master-data
+                    - generic [ref=f6e718]: Chatterjee Applied Engineering Systems Aditi 00502 Private Limited
+                  - cell "Term loan" [ref=f6e719]
+                  - cell "246.25" [ref=f6e720]
+                  - cell "106.38" [ref=f6e721]
+                  - cell "43.2%" [ref=f6e722]
+                  - cell "31 Mar 2030" [ref=f6e724]
+                  - cell "Current" [ref=f6e725]
+                - row [ref=f6e727]:
+                  - cell [ref=f6e728]:
+                    - link "F-000513-02" [ref=f6e729] [cursor=pointer]:
+                      - /url: /facilities/F-000513-02
+                  - cell "B-000513 Chatterjee Applied Engineering Systems Ananya 00513 Private Limited" [ref=f6e730]:
+                    - link "B-000513" [ref=f6e731] [cursor=pointer]:
+                      - /url: /borrowers/B-000513/master-data
+                    - generic [ref=f6e732]: Chatterjee Applied Engineering Systems Ananya 00513 Private Limited
+                  - cell "Term loan" [ref=f6e733]
+                  - cell "35.88" [ref=f6e734]
+                  - cell "12.96" [ref=f6e735]
+                  - cell "36.1%" [ref=f6e736]
+                  - cell "31 Mar 2027" [ref=f6e738]
+                  - cell "Current" [ref=f6e739]
+                - row [ref=f6e741]:
+                  - cell [ref=f6e742]:
+                    - link "F-000572-02" [ref=f6e743] [cursor=pointer]:
+                      - /url: /facilities/F-000572-02
+                  - cell "B-000572 Chatterjee Speciality Chemicals and Technologies Devika 00572 Private Limited" [ref=f6e744]:
+                    - link "B-000572" [ref=f6e745] [cursor=pointer]:
+                      - /url: /borrowers/B-000572/master-data
+                    - generic [ref=f6e746]: Chatterjee Speciality Chemicals and Technologies Devika 00572 Private Limited
+                  - cell "Term loan" [ref=f6e747]
+                  - cell "202.79" [ref=f6e748]
+                  - cell "115.59" [ref=f6e749]
+                  - cell "57.0%" [ref=f6e750]
+                  - cell "31 Mar 2030" [ref=f6e752]
+                  - cell "Current" [ref=f6e753]
+                - row [ref=f6e755]:
+                  - cell [ref=f6e756]:
+                    - link "F-000572-04" [ref=f6e757] [cursor=pointer]:
+                      - /url: /facilities/F-000572-04
+                  - cell "B-000572 Chatterjee Speciality Chemicals and Technologies Devika 00572 Private Limited" [ref=f6e758]:
+                    - link "B-000572" [ref=f6e759] [cursor=pointer]:
+                      - /url: /borrowers/B-000572/master-data
+                    - generic [ref=f6e760]: Chatterjee Speciality Chemicals and Technologies Devika 00572 Private Limited
+                  - cell "Term loan" [ref=f6e761]
+                  - cell "23.68" [ref=f6e762]
+                  - cell "8.76" [ref=f6e763]
+                  - cell "37.0%" [ref=f6e764]
+                  - cell "31 Mar 2029" [ref=f6e766]
+                  - cell "Current" [ref=f6e767]
+                - row [ref=f6e769]:
+                  - cell [ref=f6e770]:
+                    - link "F-000575-02" [ref=f6e771] [cursor=pointer]:
+                      - /url: /facilities/F-000575-02
+                  - cell "B-000575 Chatterjee Capital Equipment and Services Nandini 00575 Private Limited" [ref=f6e772]:
+                    - link "B-000575" [ref=f6e773] [cursor=pointer]:
+                      - /url: /borrowers/B-000575/master-data
+                    - generic [ref=f6e774]: Chatterjee Capital Equipment and Services Nandini 00575 Private Limited
+                  - cell "Term loan" [ref=f6e775]
+                  - cell "493.21" [ref=f6e776]
+                  - cell "243.11" [ref=f6e777]
+                  - cell "49.3%" [ref=f6e778]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f6e780]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f6e781]: matured 155 days ago
+                  - cell "Current" [ref=f6e782]
+                - row [ref=f6e784]:
+                  - cell [ref=f6e785]:
+                    - link "F-000575-04" [ref=f6e786] [cursor=pointer]:
+                      - /url: /facilities/F-000575-04
+                  - cell "B-000575 Chatterjee Capital Equipment and Services Nandini 00575 Private Limited" [ref=f6e787]:
+                    - link "B-000575" [ref=f6e788] [cursor=pointer]:
+                      - /url: /borrowers/B-000575/master-data
+                    - generic [ref=f6e789]: Chatterjee Capital Equipment and Services Nandini 00575 Private Limited
+                  - cell "Term loan" [ref=f6e790]
+                  - cell "479.19" [ref=f6e791]
+                  - cell "328.92" [ref=f6e792]
+                  - cell "68.6%" [ref=f6e793]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e795]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e796]: matured 520 days ago
+                  - cell "Current" [ref=f6e797]
+                - row [ref=f6e799]:
+                  - cell [ref=f6e800]:
+                    - link "F-000588-02" [ref=f6e801] [cursor=pointer]:
+                      - /url: /facilities/F-000588-02
+                  - cell "B-000588 Chatterjee Commercial Infrastructure Solutions Ishaan 00588 Private Limited" [ref=f6e802]:
+                    - link "B-000588" [ref=f6e803] [cursor=pointer]:
+                      - /url: /borrowers/B-000588/master-data
+                    - generic [ref=f6e804]: Chatterjee Commercial Infrastructure Solutions Ishaan 00588 Private Limited
+                  - cell "Term loan" [ref=f6e805]
+                  - cell "297.53" [ref=f6e806]
+                  - cell "201.61" [ref=f6e807]
+                  - cell "67.8%" [ref=f6e808]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f6e810]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f6e811]: matured 520 days ago
+                  - cell "Current" [ref=f6e812]
+                - row [ref=f6e814]:
+                  - cell [ref=f6e815]:
+                    - link "F-000611-02" [ref=f6e816] [cursor=pointer]:
+                      - /url: /facilities/F-000611-02
+                  - cell "B-000611 Chatterjee Precision Materials and Components Kavya 00611 Private Limited" [ref=f6e817]:
+                    - link "B-000611" [ref=f6e818] [cursor=pointer]:
+                      - /url: /borrowers/B-000611/master-data
+                    - generic [ref=f6e819]: Chatterjee Precision Materials and Components Kavya 00611 Private Limited
+                  - cell "Term loan" [ref=f6e820]
+                  - cell "426.52" [ref=f6e821]
+                  - cell "165.06" [ref=f6e822]
+                  - cell "38.7%" [ref=f6e823]
+                  - cell "31 Mar 2027" [ref=f6e825]
+                  - cell "Current" [ref=f6e826]
+                - row [ref=f6e828]:
+                  - cell [ref=f6e829]:
+                    - link "F-000661-02" [ref=f6e830] [cursor=pointer]:
+                      - /url: /facilities/F-000661-02
+                  - cell "B-000661 Chatterjee National Supply Chain Services Aarav 00661 Private Limited" [ref=f6e831]:
+                    - link "B-000661" [ref=f6e832] [cursor=pointer]:
+                      - /url: /borrowers/B-000661/master-data
+                    - generic [ref=f6e833]: Chatterjee National Supply Chain Services Aarav 00661 Private Limited
+                  - cell "Term loan" [ref=f6e834]
+                  - cell "195.19" [ref=f6e835]
+                  - cell "144.44" [ref=f6e836]
+                  - cell "74.0%" [ref=f6e837]
+                  - cell "31 Mar 2028" [ref=f6e839]
+                  - cell "Current" [ref=f6e840]
+                - row [ref=f6e842]:
+                  - cell [ref=f6e843]:
+                    - link "F-000661-04" [ref=f6e844] [cursor=pointer]:
+                      - /url: /facilities/F-000661-04
+                  - cell "B-000661 Chatterjee National Supply Chain Services Aarav 00661 Private Limited" [ref=f6e845]:
+                    - link "B-000661" [ref=f6e846] [cursor=pointer]:
+                      - /url: /borrowers/B-000661/master-data
+                    - generic [ref=f6e847]: Chatterjee National Supply Chain Services Aarav 00661 Private Limited
+                  - cell "Term loan" [ref=f6e848]
+                  - cell "203.08" [ref=f6e849]
+                  - cell "91.55" [ref=f6e850]
+                  - cell "45.1%" [ref=f6e851]
+                  - cell "31 Mar 2027" [ref=f6e853]
+                  - cell "Current" [ref=f6e854]
+                - row [ref=f6e856]:
+                  - cell [ref=f6e857]:
+                    - link "F-000664-02" [ref=f6e858] [cursor=pointer]:
+                      - /url: /facilities/F-000664-02
+                  - cell "B-000664 Chatterjee Renewable Infrastructure Projects Kavya 00664 Private Limited" [ref=f6e859]:
+                    - link "B-000664" [ref=f6e860] [cursor=pointer]:
+                      - /url: /borrowers/B-000664/master-data
+                    - generic [ref=f6e861]: Chatterjee Renewable Infrastructure Projects Kavya 00664 Private Limited
+                  - cell "Term loan" [ref=f6e862]
+                  - cell "170.16" [ref=f6e863]
+                  - cell "60.75" [ref=f6e864]
+                  - cell "35.7%" [ref=f6e865]
+                  - cell "31 Mar 2031" [ref=f6e867]
+                  - cell "Current" [ref=f6e868]
+            - navigation "Pagination" [ref=f6e870]:
+              - generic [ref=f6e871]: Previous
+              - generic [ref=f6e872]: Page 1
+              - link "Next" [ref=f6e873] [cursor=pointer]:
+                - /url: /facilities?q=chatterjee&type=term_loan&page=2

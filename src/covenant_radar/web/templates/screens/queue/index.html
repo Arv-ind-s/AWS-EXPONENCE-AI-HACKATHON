@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% set labels = labels|default({}) %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  {% include "screens/queue/_workspace.html" %}
+{% endblock %}

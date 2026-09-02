@@ -1,0 +1,34 @@
+{
+  "id": "EX-0022",
+  "kind": "forecast_dating",
+  "title": "A second deteriorating-cohort borrower's crossing is also dated within the labelled window",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "forecast_dating",
+    "deteriorating"
+  ],
+  "references_reference_portfolio": true,
+  "input": {
+    "reference_dataset": {
+      "seed": 17,
+      "borrower_count": 24,
+      "facility_count": 57,
+      "quarter_count": 4
+    },
+    "cohort": "deteriorating",
+    "borrower_reference": "B-000002"
+  },
+  "expected": {
+    "crossing_within_days_of_label": 10
+  },
+  "pass_mark": {
+    "type": "date_window",
+    "window_days": 10
+  },
+  "note": "A second, independently authored deteriorating borrower (B-000002) exercises the same +/-10-day pass mark against a different signal trajectory, so the mark is proven on more than a single coincidental fit."
+}

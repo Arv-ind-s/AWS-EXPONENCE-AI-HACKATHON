@@ -1,0 +1,39 @@
+{
+  "id": "EX-0012",
+  "kind": "boundary",
+  "title": "A min-direction covenant breaches when the value falls to the threshold",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "breach",
+    "min_direction"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "1.00",
+      "direction": "min"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "0.80"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "breach",
+    "headroom_pct": "-20.0",
+    "threshold_used": "1.00"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "A min covenant breaches at value <= threshold. headroom = (value-threshold)/|threshold|*100 = (0.80-1.00)/1.00*100 = -20.00%; 0.80 <= 1.00, so the verdict is breach with negative headroom."
+}

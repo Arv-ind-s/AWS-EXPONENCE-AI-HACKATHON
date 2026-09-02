@@ -1,0 +1,10 @@
+{
+  "5dff5f8cc373bc71a0d8cae41d24982a01b568c00e05a6a40346c75493d21a3a": {
+    "text": "{\"definition\":\"leverage_ratio\",\"custom_formula\":null,\"threshold\":\"3.00x\",\"direction\":\"below\",\"unit\":\"ratio\",\"currency\":null,\"frequency\":\"quarterly\",\"effective_from\":null,\"effective_to\":null,\"exceptions\":[],\"cure_period_days\":\"30\",\"source_quote\":\"The leverage ratio shall not exceed 3.00x.\"}",
+    "model": "demo-recorded",
+    "input_tokens": 318,
+    "output_tokens": 92,
+    "latency_ms": 18,
+    "raw_payload": {"provider": "phase-7a-demo", "recorded": true}
+  }
+}

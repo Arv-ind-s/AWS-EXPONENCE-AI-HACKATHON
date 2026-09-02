@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set error = error|default("") %}
+
+{% block page_title %}{{ labels.approvals }}{% endblock %}
+{% block h1 %}{{ labels.approvals }}{% endblock %}
+
+{% block content %}
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+  {% call components.panel(title=labels.approvals, panel_id="covenant-approvals") %}
+    {% if rows %}
+      {% for row in rows %}
+        <article class="panel" data-request-id="{{ row.id }}">
+          <h2>{{ row.operation }}</h2>
+          <p>{{ labels.maker }}: {{ row.maker_id }}</p>
+          <p>{{ labels.created }}: {{ row.created_at }}</p>
+          <form method="post" action="/covenants/approvals/{{ row.id }}" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {{ components.field("reason", labels.reason, type="textarea", required=false) }}
+            {{ components.button(labels.approve, type="submit", name="decision", value="approve") }}
+            {{ components.button(labels.reject, type="submit", name="decision", value="reject", destructive=true) }}
+          </form>
+        </article>
+      {% endfor %}
+    {% else %}
+      {{ components.empty_state("covenant-approvals-empty", labels.empty, labels.empty) }}
+    {% endif %}
+  {% endcall %}
+{% endblock %}

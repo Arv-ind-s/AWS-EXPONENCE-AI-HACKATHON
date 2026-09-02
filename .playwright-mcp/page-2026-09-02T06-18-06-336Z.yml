@@ -1,0 +1,370 @@
+- generic [active] [ref=f9e1]:
+  - link "Skip to content" [ref=f9e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f9e3]:
+    - complementary "Workspace navigation" [ref=f9e4]:
+      - link "Covenant Radar" [ref=f9e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f9e13]:
+          - strong [ref=f9e14]: Covenant
+          - generic [ref=f9e15]: Radar
+      - navigation "Primary navigation" [ref=f9e16]:
+        - region [ref=f9e17]:
+          - heading "Monitor" [level=2] [ref=f9e18]
+          - link "Portfolio queue" [ref=f9e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f9e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f9e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f9e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f9e31]: "0"
+          - link "Search" [ref=f9e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f9e37]:
+          - heading "Portfolio data" [level=2] [ref=f9e38]
+          - link "Borrowers" [ref=f9e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f9e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f9e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f9e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f9e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f9e61]:
+          - heading "Workflows" [level=2] [ref=f9e62]
+          - link "Intake" [ref=f9e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f9e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f9e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f9e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f9e79]:
+          - heading "Administration" [level=2] [ref=f9e80]
+          - link "Action catalogue" [ref=f9e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f9e86] [cursor=pointer]
+    - generic [ref=f9e90]:
+      - banner [ref=f9e91]:
+        - generic [ref=f9e93]:
+          - generic [ref=f9e94]: Workspace
+          - generic [ref=f9e97]: Facility book insights
+        - search [ref=f9e98]:
+          - generic [ref=f9e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f9e100]
+          - generic: /
+        - generic [ref=f9e101]:
+          - button "Live activity" [ref=f9e102]:
+            - generic [ref=f9e104]: Live
+          - button "Use light theme" [ref=f9e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f9e111] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f9e113] [cursor=pointer]
+      - main [ref=f9e117]:
+        - generic [ref=f9e118]:
+          - generic [ref=f9e119]:
+            - paragraph [ref=f9e120]: Decision workspace
+            - heading "Facility book insights" [level=1] [ref=f9e121]
+            - paragraph [ref=f9e122]: "Everything the master data already holds about the sanctioned book, summarised: how much is lent, how hard it is worked, when it was sanctioned and when it falls due."
+          - link "Back to facilities" [ref=f9e124] [cursor=pointer]:
+            - /url: /facilities
+        - generic [ref=f9e125]:
+          - generic [ref=f9e126]:
+            - heading "Headline figures" [level=2] [ref=f9e127]
+            - generic [ref=f9e129]:
+              - generic [ref=f9e130]:
+                - term [ref=f9e131]: Facilities
+                - definition [ref=f9e132]:
+                  - generic [ref=f9e133]: 12,000
+                  - generic [ref=f9e134]: across 5,000 borrowers
+              - generic [ref=f9e135]:
+                - term [ref=f9e136]: Sanctioned limit
+                - definition [ref=f9e137]:
+                  - generic [ref=f9e138]: 30,16,148.59
+                  - generic [ref=f9e139]: ₹ crore
+              - generic [ref=f9e140]:
+                - term [ref=f9e141]: Outstanding
+                - definition [ref=f9e142]:
+                  - generic [ref=f9e143]: 17,46,528.37
+                  - generic [ref=f9e144]: ₹ crore
+              - generic [ref=f9e145]:
+                - term [ref=f9e146]: Utilisation
+                - definition [ref=f9e147]:
+                  - generic [ref=f9e148]: 57.9%
+                  - generic [ref=f9e149]: 12,69,620.22 ₹ crore undrawn
+              - generic [ref=f9e150]:
+                - term [ref=f9e151]: Weighted average pricing
+                - definition [ref=f9e152]:
+                  - generic [ref=f9e153]: 1,099.89
+                  - generic [ref=f9e154]: bps
+                  - generic [ref=f9e155]: weighted by sanctioned limit
+              - generic [ref=f9e156]:
+                - term [ref=f9e157]: Maturing within a year
+                - definition [ref=f9e158]:
+                  - generic [ref=f9e159]: 1,739
+                  - generic [ref=f9e160]: 4,47,016.11 ₹ crore up for renewal
+          - generic [ref=f9e161]:
+            - heading "Sanction vintage" [level=2] [ref=f9e162]
+            - generic [ref=f9e163]:
+              - paragraph [ref=f9e164]: What the book was sanctioned in each financial year, and how much of that vintage is still drawn. Amounts in ₹ crore
+              - table [ref=f9e166]:
+                - caption [ref=f9e167]: Sanction vintage — Amounts in ₹ crore
+                - rowgroup [ref=f9e168]:
+                  - row [ref=f9e169]:
+                    - columnheader "Bucket" [ref=f9e170]
+                    - columnheader "Facilities" [ref=f9e171]
+                    - columnheader "Sanctioned limit" [ref=f9e172]
+                    - columnheader "Outstanding" [ref=f9e173]
+                    - columnheader "Utilisation" [ref=f9e174]
+                    - columnheader "Share of book" [ref=f9e175]
+                    - columnheader "Relative size" [ref=f9e176]
+                - rowgroup [ref=f9e177]:
+                  - row [ref=f9e178]:
+                    - rowheader "FY19" [ref=f9e179]
+                    - cell "1670" [ref=f9e180]
+                    - cell "4,17,919.71" [ref=f9e181]
+                    - cell "2,45,428.42" [ref=f9e182]
+                    - cell "58.7%" [ref=f9e183]
+                    - cell "13.9%" [ref=f9e185]
+                    - 'cell "FY19: 13.9% of the sanctioned book" [ref=f9e186]':
+                      - 'img "FY19: 13.9% of the sanctioned book" [ref=f9e187]'
+                  - row [ref=f9e190]:
+                    - rowheader "FY20" [ref=f9e191]
+                    - cell "1735" [ref=f9e192]
+                    - cell "4,39,336.22" [ref=f9e193]
+                    - cell "2,55,079.89" [ref=f9e194]
+                    - cell "58.1%" [ref=f9e195]
+                    - cell "14.6%" [ref=f9e197]
+                    - 'cell "FY20: 14.6% of the sanctioned book" [ref=f9e198]':
+                      - 'img "FY20: 14.6% of the sanctioned book" [ref=f9e199]'
+                  - row [ref=f9e202]:
+                    - rowheader "FY21" [ref=f9e203]
+                    - cell "1723" [ref=f9e204]
+                    - cell "4,31,705.31" [ref=f9e205]
+                    - cell "2,49,956.53" [ref=f9e206]
+                    - cell "57.9%" [ref=f9e207]
+                    - cell "14.3%" [ref=f9e209]
+                    - 'cell "FY21: 14.3% of the sanctioned book" [ref=f9e210]':
+                      - 'img "FY21: 14.3% of the sanctioned book" [ref=f9e211]'
+                  - row [ref=f9e214]:
+                    - rowheader "FY22" [ref=f9e215]
+                    - cell "1741" [ref=f9e216]
+                    - cell "4,46,966.83" [ref=f9e217]
+                    - cell "2,57,460.47" [ref=f9e218]
+                    - cell "57.6%" [ref=f9e219]
+                    - cell "14.8%" [ref=f9e221]
+                    - 'cell "FY22: 14.8% of the sanctioned book" [ref=f9e222]':
+                      - 'img "FY22: 14.8% of the sanctioned book" [ref=f9e223]'
+                  - row [ref=f9e226]:
+                    - rowheader "FY23" [ref=f9e227]
+                    - cell "1668" [ref=f9e228]
+                    - cell "4,19,209.49" [ref=f9e229]
+                    - cell "2,43,576.72" [ref=f9e230]
+                    - cell "58.1%" [ref=f9e231]
+                    - cell "13.9%" [ref=f9e233]
+                    - 'cell "FY23: 13.9% of the sanctioned book" [ref=f9e234]':
+                      - 'img "FY23: 13.9% of the sanctioned book" [ref=f9e235]'
+                  - row [ref=f9e238]:
+                    - rowheader "FY24" [ref=f9e239]
+                    - cell "1710" [ref=f9e240]
+                    - cell "4,29,470.54" [ref=f9e241]
+                    - cell "2,45,573.84" [ref=f9e242]
+                    - cell "57.2%" [ref=f9e243]
+                    - cell "14.2%" [ref=f9e245]
+                    - 'cell "FY24: 14.2% of the sanctioned book" [ref=f9e246]':
+                      - 'img "FY24: 14.2% of the sanctioned book" [ref=f9e247]'
+                  - row [ref=f9e250]:
+                    - rowheader "FY25" [ref=f9e251]
+                    - cell "1753" [ref=f9e252]
+                    - cell "4,31,540.49" [ref=f9e253]
+                    - cell "2,49,452.50" [ref=f9e254]
+                    - cell "57.8%" [ref=f9e255]
+                    - cell "14.3%" [ref=f9e257]
+                    - 'cell "FY25: 14.3% of the sanctioned book" [ref=f9e258]':
+                      - 'img "FY25: 14.3% of the sanctioned book" [ref=f9e259]'
+          - generic [ref=f9e262]:
+            - heading "Maturity profile" [level=2] [ref=f9e263]
+            - generic [ref=f9e264]:
+              - paragraph [ref=f9e265]: When the sanctioned limits fall due for renewal — the roll-off the book has to refinance, year by year. Amounts in ₹ crore
+              - table [ref=f9e267]:
+                - caption [ref=f9e268]: Maturity profile — Amounts in ₹ crore
+                - rowgroup [ref=f9e269]:
+                  - row [ref=f9e270]:
+                    - columnheader "Bucket" [ref=f9e271]
+                    - columnheader "Facilities" [ref=f9e272]
+                    - columnheader "Sanctioned limit maturing" [ref=f9e273]
+                    - columnheader "Outstanding" [ref=f9e274]
+                    - columnheader "Utilisation" [ref=f9e275]
+                    - columnheader "Share of book" [ref=f9e276]
+                    - columnheader "Relative size" [ref=f9e277]
+                - rowgroup [ref=f9e278]:
+                  - row [ref=f9e279]:
+                    - rowheader "FY23" [ref=f9e280]
+                    - cell "274" [ref=f9e281]
+                    - cell "71,244.69" [ref=f9e282]
+                    - cell "41,642.33" [ref=f9e283]
+                    - cell "58.4%" [ref=f9e284]
+                    - cell "2.4%" [ref=f9e286]
+                    - 'cell "FY23: 2.4% of the sanctioned book" [ref=f9e287]':
+                      - 'img "FY23: 2.4% of the sanctioned book" [ref=f9e288]'
+                  - row [ref=f9e291]:
+                    - rowheader "FY24" [ref=f9e292]
+                    - cell "1142" [ref=f9e293]
+                    - cell "2,84,020.06" [ref=f9e294]
+                    - cell "1,67,728.57" [ref=f9e295]
+                    - cell "59.1%" [ref=f9e296]
+                    - cell "9.4%" [ref=f9e298]
+                    - 'cell "FY24: 9.4% of the sanctioned book" [ref=f9e299]':
+                      - 'img "FY24: 9.4% of the sanctioned book" [ref=f9e300]'
+                  - row [ref=f9e303]:
+                    - rowheader "FY25" [ref=f9e304]
+                    - cell "1704" [ref=f9e305]
+                    - cell "4,21,843.23" [ref=f9e306]
+                    - cell "2,45,992.08" [ref=f9e307]
+                    - cell "58.3%" [ref=f9e308]
+                    - cell "14.0%" [ref=f9e310]
+                    - 'cell "FY25: 14.0% of the sanctioned book" [ref=f9e311]':
+                      - 'img "FY25: 14.0% of the sanctioned book" [ref=f9e312]'
+                  - row [ref=f9e315]:
+                    - rowheader "FY26" [ref=f9e316]
+                    - cell "1720" [ref=f9e317]
+                    - cell "4,38,679.48" [ref=f9e318]
+                    - cell "2,54,054.01" [ref=f9e319]
+                    - cell "57.9%" [ref=f9e320]
+                    - cell "14.5%" [ref=f9e322]
+                    - 'cell "FY26: 14.5% of the sanctioned book" [ref=f9e323]':
+                      - 'img "FY26: 14.5% of the sanctioned book" [ref=f9e324]'
+                  - row [ref=f9e327]:
+                    - rowheader "FY27" [ref=f9e328]
+                    - cell "1739" [ref=f9e329]
+                    - cell "4,47,016.11" [ref=f9e330]
+                    - cell "2,57,519.36" [ref=f9e331]
+                    - cell "57.6%" [ref=f9e332]
+                    - cell "14.8%" [ref=f9e334]
+                    - 'cell "FY27: 14.8% of the sanctioned book" [ref=f9e335]':
+                      - 'img "FY27: 14.8% of the sanctioned book" [ref=f9e336]'
+                  - row [ref=f9e339]:
+                    - rowheader "FY28" [ref=f9e340]
+                    - cell "1719" [ref=f9e341]
+                    - cell "4,34,965.72" [ref=f9e342]
+                    - cell "2,52,101.25" [ref=f9e343]
+                    - cell "58.0%" [ref=f9e344]
+                    - cell "14.4%" [ref=f9e346]
+                    - 'cell "FY28: 14.4% of the sanctioned book" [ref=f9e347]':
+                      - 'img "FY28: 14.4% of the sanctioned book" [ref=f9e348]'
+                  - row [ref=f9e351]:
+                    - rowheader "FY29" [ref=f9e352]
+                    - cell "1702" [ref=f9e353]
+                    - cell "4,18,624.77" [ref=f9e354]
+                    - cell "2,38,586.16" [ref=f9e355]
+                    - cell "57.0%" [ref=f9e356]
+                    - cell "13.9%" [ref=f9e358]
+                    - 'cell "FY29: 13.9% of the sanctioned book" [ref=f9e359]':
+                      - 'img "FY29: 13.9% of the sanctioned book" [ref=f9e360]'
+                  - row [ref=f9e363]:
+                    - rowheader "FY30" [ref=f9e364]
+                    - cell "1401" [ref=f9e365]
+                    - cell "3,51,896.13" [ref=f9e366]
+                    - cell "2,02,970.21" [ref=f9e367]
+                    - cell "57.7%" [ref=f9e368]
+                    - cell "11.7%" [ref=f9e370]
+                    - 'cell "FY30: 11.7% of the sanctioned book" [ref=f9e371]':
+                      - 'img "FY30: 11.7% of the sanctioned book" [ref=f9e372]'
+                  - row [ref=f9e375]:
+                    - rowheader "FY31" [ref=f9e376]
+                    - cell "599" [ref=f9e377]
+                    - cell "1,47,858.40" [ref=f9e378]
+                    - cell "85,934.40" [ref=f9e379]
+                    - cell "58.1%" [ref=f9e380]
+                    - cell "4.9%" [ref=f9e382]
+                    - 'cell "FY31: 4.9% of the sanctioned book" [ref=f9e383]':
+                      - 'img "FY31: 4.9% of the sanctioned book" [ref=f9e384]'
+          - generic [ref=f9e387]:
+            - heading "Mix by facility type" [level=2] [ref=f9e388]
+            - generic [ref=f9e389]:
+              - paragraph [ref=f9e390]: How the sanctioned book splits by product, and how hard each is worked. Amounts in ₹ crore
+              - table [ref=f9e392]:
+                - caption [ref=f9e393]: Mix by facility type — Amounts in ₹ crore
+                - rowgroup [ref=f9e394]:
+                  - row [ref=f9e395]:
+                    - columnheader "Bucket" [ref=f9e396]
+                    - columnheader "Facilities" [ref=f9e397]
+                    - columnheader "Sanctioned limit" [ref=f9e398]
+                    - columnheader "Outstanding" [ref=f9e399]
+                    - columnheader "Utilisation" [ref=f9e400]
+                    - columnheader "Share of book" [ref=f9e401]
+                    - columnheader "Relative size" [ref=f9e402]
+                - rowgroup [ref=f9e403]:
+                  - row [ref=f9e404]:
+                    - rowheader "Cash credit" [ref=f9e405]
+                    - cell "7331" [ref=f9e406]
+                    - cell "18,45,085.04" [ref=f9e407]
+                    - cell "10,70,081.57" [ref=f9e408]
+                    - cell "58.0%" [ref=f9e409]
+                    - cell "61.2%" [ref=f9e411]
+                    - 'cell "Cash credit: 61.2% of the sanctioned book" [ref=f9e412]':
+                      - 'img "Cash credit: 61.2% of the sanctioned book" [ref=f9e413]'
+                  - row [ref=f9e416]:
+                    - rowheader "Term loan" [ref=f9e417]
+                    - cell "4669" [ref=f9e418]
+                    - cell "11,71,063.55" [ref=f9e419]
+                    - cell "6,76,446.80" [ref=f9e420]
+                    - cell "57.8%" [ref=f9e421]
+                    - cell "38.8%" [ref=f9e423]
+                    - 'cell "Term loan: 38.8% of the sanctioned book" [ref=f9e424]':
+                      - 'img "Term loan: 38.8% of the sanctioned book" [ref=f9e425]'
+          - generic [ref=f9e428]:
+            - heading "Utilisation distribution" [level=2] [ref=f9e429]
+            - generic [ref=f9e430]:
+              - paragraph [ref=f9e431]: Where the drawn position sits against the sanctioned limit. The top band is the one that turns into an excess. Amounts in ₹ crore
+              - table [ref=f9e433]:
+                - caption [ref=f9e434]: Utilisation distribution — Amounts in ₹ crore
+                - rowgroup [ref=f9e435]:
+                  - row [ref=f9e436]:
+                    - columnheader "Bucket" [ref=f9e437]
+                    - columnheader "Facilities" [ref=f9e438]
+                    - columnheader "Sanctioned limit" [ref=f9e439]
+                    - columnheader "Outstanding" [ref=f9e440]
+                    - columnheader "Utilisation" [ref=f9e441]
+                    - columnheader "Share of book" [ref=f9e442]
+                    - columnheader "Relative size" [ref=f9e443]
+                - rowgroup [ref=f9e444]:
+                  - row [ref=f9e445]:
+                    - rowheader "Up to 50%" [ref=f9e446]
+                    - cell "4195" [ref=f9e447]
+                    - cell "10,40,853.15" [ref=f9e448]
+                    - cell "4,23,302.00" [ref=f9e449]
+                    - cell "40.7%" [ref=f9e450]
+                    - cell "34.5%" [ref=f9e452]
+                    - 'cell "Up to 50%: 34.5% of the sanctioned book" [ref=f9e453]':
+                      - 'img "Up to 50%: 34.5% of the sanctioned book" [ref=f9e454]'
+                  - row [ref=f9e457]:
+                    - rowheader "50% to 75%" [ref=f9e458]
+                    - cell "5854" [ref=f9e459]
+                    - cell "14,71,960.44" [ref=f9e460]
+                    - cell "9,19,141.30" [ref=f9e461]
+                    - cell "62.4%" [ref=f9e462]
+                    - cell "48.8%" [ref=f9e464]
+                    - 'cell "50% to 75%: 48.8% of the sanctioned book" [ref=f9e465]':
+                      - 'img "50% to 75%: 48.8% of the sanctioned book" [ref=f9e466]'
+                  - row [ref=f9e469]:
+                    - rowheader "75% to 90%" [ref=f9e470]
+                    - cell "1939" [ref=f9e471]
+                    - cell "5,00,361.66" [ref=f9e472]
+                    - cell "4,01,409.07" [ref=f9e473]
+                    - cell "80.2%" [ref=f9e474]
+                    - cell "16.6%" [ref=f9e476]
+                    - 'cell "75% to 90%: 16.6% of the sanctioned book" [ref=f9e477]':
+                      - 'img "75% to 90%: 16.6% of the sanctioned book" [ref=f9e478]'
+                  - row [ref=f9e481]:
+                    - rowheader "Over 90%" [ref=f9e482]
+                    - cell "12" [ref=f9e483]
+                    - cell "2,973.34" [ref=f9e484]
+                    - cell "2,676.00" [ref=f9e485]
+                    - cell "90.0%" [ref=f9e486]
+                    - cell "0.1%" [ref=f9e488]
+                    - 'cell "Over 90%: 0.1% of the sanctioned book" [ref=f9e489]':
+                      - 'img "Over 90%: 0.1% of the sanctioned book" [ref=f9e490]'

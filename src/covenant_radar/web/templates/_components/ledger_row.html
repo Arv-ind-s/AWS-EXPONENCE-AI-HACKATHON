@@ -1,0 +1,7 @@
+{% macro ledger_row(cells, row_id="", selected=false, headers=()) -%}
+  <tr class="ledger-row{% if selected %} ledger-row--selected{% endif %}"{% if row_id %} id="{{ row_id }}"{% endif %}{% if selected %} aria-selected="true"{% endif %}>
+    {% for cell in cells %}
+      <td class="ledger-row__cell{% if headers and loop.index0 < headers|length %} ledger-row__cell--{{ headers[loop.index0] }}{% endif %}">{{ cell }}</td>
+    {% endfor %}
+  </tr>
+{%- endmacro %}

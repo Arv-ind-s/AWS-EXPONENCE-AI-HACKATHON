@@ -1,0 +1,36 @@
+{
+  "id": "EX-0023",
+  "kind": "false_escalation",
+  "title": "A stable-cohort borrower never escalates despite continuous monitoring",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "false_escalation",
+    "stable"
+  ],
+  "references_reference_portfolio": true,
+  "input": {
+    "reference_dataset": {
+      "seed": 17,
+      "borrower_count": 24,
+      "facility_count": 57,
+      "quarter_count": 4
+    },
+    "cohort": "stable",
+    "borrower_reference": "B-000005"
+  },
+  "expected": {
+    "escalates": false
+  },
+  "pass_mark": {
+    "type": "zero_false_escalation",
+    "cohorts": [
+      "stable"
+    ]
+  },
+  "note": "Borrower B-000005 is authored to stay within every signal family's stable band for the full generated year (evaluation.reference_portfolio.cohorts.STABLE_BANDS), so the pipeline must never open a case or raise a covenant warning for it. spec §17.7's pass mark is zero false escalations on the stable cohort; this is the borrower-level assertion the harness checks."
+}

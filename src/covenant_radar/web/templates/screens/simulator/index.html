@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block page_title %}{% if labels is defined %}{{ labels.title }}{% else %}Intervention simulator{% endif %}{% endblock %}
+{% block h1 %}{% if labels is defined %}{{ labels.heading }}{% else %}Intervention simulator{% endif %}{% endblock %}
+
+{% block content %}
+  {% if view is defined %}
+  <div class="simulator" id="simulator-screen" data-state="{{ view.state }}">
+    {% if view.forecast %}
+      <section class="panel simulator__forecast" aria-labelledby="simulator-forecast-title">
+        <h2 class="panel__title" id="simulator-forecast-title">{{ labels.forecast }}</h2>
+        <p class="simulator__subject">
+          <strong>{{ view.forecast.borrower_name }}</strong>
+          <span>{{ view.forecast.borrower_reference }}</span>
+          <span>{{ view.forecast.facility_reference }}</span>
+          <span>{{ view.forecast.covenant_reference }} · {{ view.forecast.covenant_name }}</span>
+        </p>
+        <dl class="simulator__facts">
+          <div>
+            <dt>{{ labels.covenant_class }}</dt>
+            <dd>{{ view.forecast.covenant_class }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.threshold }}</dt>
+            <dd>{{ view.forecast.threshold_display }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.direction }}</dt>
+            <dd>{{ view.forecast.direction }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.horizon }}</dt>
+            <dd>{{ view.forecast.horizon_days }} {{ labels.days }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.probability }}</dt>
+            <dd>{{ view.forecast.probability_display }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.confidence }}</dt>
+            <dd>{{ view.forecast.confidence_display }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.crossing }}</dt>
+            <dd>{{ view.forecast.crossing_display }}</dd>
+          </div>
+          <div>
+            <dt>{{ labels.as_of }}</dt>
+            <dd>{{ view.forecast.as_of_date|ist_date if view.forecast.as_of_date else labels.unavailable }}</dd>
+          </div>
+        </dl>
+      </section>
+    {% endif %}
+
+    {% if view.error_message %}
+      <section class="panel panel--error simulator__alert" role="alert" aria-live="assertive">
+        <h2 class="panel__title">{{ labels.error_title }}</h2>
+        <p>{{ view.error_message }}</p>
+      </section>
+    {% endif %}
+
+    {% if view.state == "empty" %}
+      {% set state_id = "simulator-empty" %}
+      {% set state_title = view.empty_title %}
+      {% set state_message = view.empty_message %}
+      {% set state_action_label = "" %}
+      {% set state_action_href = "" %}
+      {% include "_states/empty.html" %}
+    {% elif view.forecast %}
+      <section class="panel simulator__selection" aria-labelledby="simulator-selection-title">
+        <div class="simulator__section-heading">
+          <div>
+            <h2 class="panel__title" id="simulator-selection-title">{{ labels.interventions_title }}</h2>
+            <p class="simulator__hint">{{ labels.select_hint }}</p>
+          </div>
+        </div>
+
+        {% if view.interventions %}
+          <form class="simulator-form" id="simulator-form" method="post" action="/simulations"
+                hx-post="/simulations" hx-target="#simulator-comparison-region"
+                hx-swap="outerHTML transition:true">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="forecast_id" value="{{ view.forecast.id }}">
+            <label class="simulator-form__parameters" for="simulation-parameters">
+              <span>{{ labels.parameters }}</span>
+              <textarea id="simulation-parameters" name="parameters" rows="2">{{ view.parameters_json }}</textarea>
+            </label>
+            <div class="simulator-options">
+              {% for option in view.interventions %}
+                <article class="simulator-option" data-intervention-code="{{ option.code }}">
+                  <label class="simulator-option__choice" for="intervention-{{ loop.index }}">
+                    <input
+                      id="intervention-{{ loop.index }}"
+                      type="checkbox"
+                      name="intervention_code"
+                      value="{{ option.code }}"
+                      {% if option.selected %}checked{% endif %}
+                    >
+                    <span class="simulator-option__code">{{ option.code }}</span>
+                    <span class="simulator-option__text">{{ option.text }}</span>
+                  </label>
+                  <dl class="simulator-option__facts">
+                    <div>
+                      <dt>{{ labels.effect }}</dt>
+                      <dd>{{ option.effect_model }}</dd>
+                    </div>
+                    <div>
+                      <dt>{{ labels.role }}</dt>
+                      <dd>{{ option.role_tag }}</dd>
+                    </div>
+                    <div>
+                      <dt>{{ labels.requires_approval }}</dt>
+                      <dd>{{ labels.yes if option.requires_approval else labels.no }}</dd>
+                    </div>
+                  </dl>
+                  <section class="simulator-option__assumptions" aria-labelledby="assumptions-{{ loop.index }}">
+                    <h3 id="assumptions-{{ loop.index }}">{{ labels.assumption_list }}</h3>
+                    {% if option.effect_parameters %}
+                      <h4>{{ labels.parameters }}</h4>
+                      <ul>
+                        {% for parameter in option.effect_parameters %}
+                          <li><span>{{ parameter.name }}</span>: {{ parameter.value }}</li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                    <h4>{{ labels.assumptions }}</h4>
+                    <ul>
+                      {% for assumption in option.assumptions %}
+                        <li>{{ assumption }}</li>
+                      {% endfor %}
+                    </ul>
+                  </section>
+                </article>
+              {% endfor %}
+            </div>
+            <button class="button" type="submit">{{ labels.compare }}</button>
+          </form>
+        {% else %}
+          <p class="simulator__empty-options">{{ labels.no_options }}</p>
+        {% endif %}
+      </section>
+
+      <div id="simulator-comparison-region" aria-live="polite">
+      {% if view.options %}
+        <section
+          class="panel simulator__comparison"
+          id="simulator-comparison"
+          aria-labelledby="simulator-comparison-title"
+        >
+          <h2 class="panel__title" id="simulator-comparison-title">{{ labels.comparison_title }}</h2>
+          <div class="simulator-table-wrap">
+            <table class="simulator-table">
+              <caption class="sr-only">{{ labels.comparison_title }}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{{ labels.status }}</th>
+                  {% for column in view.comparison.columns %}
+                    <th scope="col" data-comparison-code="{{ column.code }}">
+                      <span class="simulator-table__option">{{ column.label }}</span>
+                      <span class="simulator-table__status simulator-table__status--{{ column.status.value }}">
+                        {% if column.is_baseline %}{{ labels.baseline }}{% elif column.no_effect %}{{ labels.status_no_effect }}{% else %}{{ labels.status_applied }}{% endif %}
+                      </span>
+                      <span class="simulator-table__description">{{ column.description }}</span>
+                      <span class="simulator-table__assumptions">{{ labels.assumptions }}</span>
+                      <ul class="simulator-table__assumption-list">
+                        {% for assumption in column.assumptions %}
+                          <li>{{ assumption }}</li>
+                        {% endfor %}
+                      </ul>
+                      {% if column.no_effect_reason %}
+                        <span class="simulator-table__no-effect">{{ column.no_effect_reason }}</span>
+                      {% endif %}
+                    </th>
+                  {% endfor %}
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">{{ labels.crossing }}</th>
+                  {% for column in view.comparison.columns %}
+                    <td>
+                      <ul class="simulator-table__horizons">
+                        {% for horizon in column.horizons %}
+                          <li data-horizon="{{ horizon.horizon_days }}">
+                            <span>{{ horizon.horizon_days }} {{ labels.days }}</span> {{ horizon.crossing_display }}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  <th scope="row">{{ labels.probability }}</th>
+                  {% for column in view.comparison.columns %}
+                    <td>
+                      <ul class="simulator-table__horizons simulator-table__horizons--numbers">
+                        {% for horizon in column.horizons %}
+                          <li data-horizon="{{ horizon.horizon_days }}">
+                            <span>{{ horizon.horizon_days }} {{ labels.days }}</span> {{ horizon.probability_display }}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  <th scope="row">{{ labels.delta_days }}</th>
+                  {% for column in view.comparison.columns %}
+                    <td>
+                      <ul class="simulator-table__horizons" data-metric="delta-days">
+                        {% for horizon in column.horizons %}
+                          <li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_days_display }}</li>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                  {% endfor %}
+                </tr>
+                <tr>
+                  <th scope="row">{{ labels.delta_probability }}</th>
+                  {% for column in view.comparison.columns %}
+                    <td>
+                      <ul class="simulator-table__horizons" data-metric="delta-probability">
+                        {% for horizon in column.horizons %}
+                          <li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_probability_display }}</li>
+                        {% endfor %}
+                      </ul>
+                    </td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          {% if view.memo_href %}
+            {% include "_components/memo_action.html" %}
+          {% endif %}
+        </section>
+      {% else %}
+        {% set state_id = "simulator-comparison-empty" %}
+        {% set state_title = view.empty_title %}
+        {% set state_message = view.empty_message %}
+        {% set state_action_label = "" %}
+        {% set state_action_href = "" %}
+        {% include "_states/empty.html" %}
+      {% endif %}
+      </div>
+    {% endif %}
+  </div>
+  {% endif %}
+{% endblock %}

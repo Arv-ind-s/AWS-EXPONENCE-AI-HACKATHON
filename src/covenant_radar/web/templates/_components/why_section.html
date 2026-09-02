@@ -1,0 +1,15 @@
+{% macro why_section(section_id, title, state="not-run", decision="", explanation="", source_label="", source_href="", confidence="") -%}
+  {% set why_state = state if state in ("ran", "not-run", "code-decided", "model-decided") else "not-run" %}
+  {% set safe_source_href = source_href if source_href and source_href.startswith("/") and not source_href.startswith("//") else "" %}
+  <section class="why-section why-section--{{ why_state }}" id="{{ section_id }}" data-state="{{ why_state }}" aria-labelledby="{{ section_id }}-title">
+    <h2 class="why-section__title" id="{{ section_id }}-title">{{ title }}</h2>
+    {% if why_state == "not-run" %}
+      <p class="why-section__status">This analysis has not run.</p>
+    {% else %}
+      <p class="why-section__decision">{{ decision }}</p>
+      {% if explanation %}<p class="why-section__explanation">{{ explanation }}</p>{% endif %}
+      {% if confidence %}<p class="why-section__confidence">Confidence: {{ confidence }}</p>{% endif %}
+      {% if source_label and safe_source_href %}<a class="provenance-link" href="{{ safe_source_href }}">{{ source_label }}</a>{% endif %}
+    {% endif %}
+  </section>
+{%- endmacro %}

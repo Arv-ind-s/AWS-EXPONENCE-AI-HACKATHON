@@ -1,0 +1,28 @@
+{
+  "id": "EX-0031",
+  "kind": "refusal",
+  "title": "A model reply that is not valid JSON is refused outright",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "refusal",
+    "malformed_json"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "model_reply_raw": "{\"headline\": \"Leverage ratio breach\", \"summary\": "
+  },
+  "expected": {
+    "refused": true,
+    "reasons": [
+      "model reply is not valid JSON"
+    ]
+  },
+  "pass_mark": {
+    "type": "exact_refusal"
+  },
+  "note": "The raw text is truncated mid-object and cannot be parsed by json.loads. ai.shapes.check_stage7_shapes's _payload_mapping returns exactly the failure 'model reply is not valid JSON: ...' for this shape (hand-verified against the function), which the caller treats as the normal, expected retry-or-refuse path -- never as a caller error and never as a value invented to paper over the parse failure."
+}

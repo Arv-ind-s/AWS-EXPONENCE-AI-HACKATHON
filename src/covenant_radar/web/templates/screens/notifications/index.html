@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% set labels = labels|default({}) %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  <section class="queue-hero" aria-labelledby="notifications-hero-title">
+    <div>
+      <p class="queue-hero__eyebrow">{{ labels.unread_count }}: {{ view.unread_count }}</p>
+      <h2 id="notifications-hero-title">{{ labels.subheading }}</h2>
+    </div>
+  </section>
+
+  <form method="get" action="/notifications" class="queue-filters filter-bar" id="notification-filters" data-filter-form
+        hx-get="/notifications" hx-target="#notification-results" hx-swap="outerHTML transition:true" hx-push-url="true">
+    <fieldset>
+      <legend>{{ labels.heading }}</legend>
+      <div class="filter-group">
+        <label for="notification-status">{{ labels.status }}</label>
+        <select name="status" id="notification-status">
+          <option value="all" {% if view.status == "all" %}selected{% endif %}>{{ labels.all }}</option>
+          <option value="unread" {% if view.status == "unread" %}selected{% endif %}>{{ labels.unread }}</option>
+          <option value="read" {% if view.status == "read" %}selected{% endif %}>{{ labels.read }}</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="notification-template">{{ labels.template }}</label>
+        <select name="template" id="notification-template">
+          <option value="">{{ labels.all_templates }}</option>
+          {% for option in template_options %}
+            <option value="{{ option }}" {% if view.template == option %}selected{% endif %}>{{ option }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <button type="submit">{{ labels.apply }}</button>
+    </fieldset>
+  </form>
+
+  {% include "_components/notification_results.html" %}
+{% endblock %}

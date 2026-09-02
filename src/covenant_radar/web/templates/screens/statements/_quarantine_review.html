@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set error = error|default("") %}
+
+{% block page_title %}{{ labels.quarantine_title }}{% endblock %}
+{% block h1 %}{{ labels.quarantine_heading }}{% endblock %}
+
+{% block content %}
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+  {% if rows %}
+    {% for row in rows %}
+      <article class="panel" id="quarantine-row-{{ row.id }}">
+        <h2>{{ labels.row_number }} {{ row.row_number }}</h2>
+        <p>{{ labels.rule_failed }}: {{ row.rule_failed }}</p>
+        <p>{{ labels.message }}: {{ row.message }}</p>
+        <p>{{ labels.batch }}: {{ row.batch_id }}</p>
+
+        <section>
+          <h3>{{ labels.correction_heading }}</h3>
+          <form method="post" action="/statements/quarantine/{{ row.id }}/correct" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {% if row.raw %}
+              {% for column, value in row.raw|dictsort %}
+                {{ components.field(column_prefix ~ column, column, value=value if value is not none else "", field_id="correct-" ~ row.id ~ "-" ~ column, hint=labels.original_value) }}
+              {% endfor %}
+            {% endif %}
+            {{ components.field("reason", labels.reason, type="textarea", field_id="correct-reason-" ~ row.id, required=true, error=labels.reason_required if error else "") }}
+            {{ components.button(labels.correct_submit, type="submit") }}
+          </form>
+        </section>
+
+        <section>
+          <h3>{{ labels.reject_heading }}</h3>
+          <form method="post" action="/statements/quarantine/{{ row.id }}/reject" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {{ components.field("reason", labels.reason, type="textarea", field_id="reject-reason-" ~ row.id, required=true) }}
+            {{ components.button(labels.reject_submit, type="submit", destructive=true) }}
+          </form>
+        </section>
+      </article>
+    {% endfor %}
+  {% else %}
+    {{ components.empty_state("quarantine-review-empty", labels.quarantine_empty, labels.quarantine_empty) }}
+  {% endif %}
+{% endblock %}

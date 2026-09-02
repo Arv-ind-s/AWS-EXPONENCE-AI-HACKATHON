@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set portfolio = portfolio|default(namespace(id="unknown", code="", name="", branch_code="")) %}
+{% set form = form|default({}) %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.portfolio_title }}{% endblock %}
+{% block h1 %}{{ labels.portfolio_heading }}{% endblock %}
+
+{% block content %}
+  {% call components.panel(title=portfolio.code, panel_id="portfolio-summary") %}
+    {{ components.field("code", labels.portfolios_code, value=portfolio.code, disabled=true, field_id="summary-code") }}
+    {{ components.field("name", labels.portfolios_name, value=portfolio.name, disabled=true, field_id="summary-name") }}
+    {{ components.field("branch_code", labels.portfolios_branch, value=portfolio.branch_code or "", disabled=true, field_id="summary-branch_code") }}
+  {% endcall %}
+  {% if principal.has("CORRECT_SOURCE_DATA") %}
+  {% call components.panel(title=labels.portfolio_save, panel_id="portfolio-edit") %}
+    <form method="post" action="/portfolios/{{ portfolio.id }}/edit" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <input type="hidden" name="expected_version" value="{{ form.expected_version }}">
+      {{ components.field("code", labels.portfolios_code, value=portfolio.code, required=true) }}
+      {{ components.field("name", labels.portfolios_name, value=portfolio.name, required=true) }}
+      {{ components.field("branch_code", labels.portfolios_branch, value=portfolio.branch_code or "") }}
+      {{ components.button(labels.portfolio_save, type="submit") }}
+    </form>
+  {% endcall %}
+  {% endif %}
+{% endblock %}

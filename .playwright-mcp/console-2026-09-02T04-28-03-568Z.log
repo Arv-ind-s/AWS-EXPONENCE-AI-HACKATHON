@@ -1,0 +1,38 @@
+[   74875ms] [ERROR] Framing 'http://127.0.0.1:8000/' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   75252ms] [ERROR] Framing 'http://127.0.0.1:8000/cases' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   75635ms] [ERROR] Framing 'http://127.0.0.1:8000/borrowers' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   76003ms] [ERROR] Framing 'http://127.0.0.1:8000/facilities' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   76385ms] [ERROR] Framing 'http://127.0.0.1:8000/portfolios' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   76752ms] [ERROR] Framing 'http://127.0.0.1:8000/covenants' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   77130ms] [ERROR] Framing 'http://127.0.0.1:8000/certificates' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   77498ms] [ERROR] Framing 'http://127.0.0.1:8000/intake' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   77867ms] [ERROR] Framing 'http://127.0.0.1:8000/financial-statements' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   78233ms] [ERROR] Framing 'http://127.0.0.1:8000/documents/review' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   78599ms] [ERROR] Framing 'http://127.0.0.1:8000/simulator' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   78966ms] [ERROR] Framing 'http://127.0.0.1:8000/audit' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   79334ms] [ERROR] Framing 'http://127.0.0.1:8000/governance' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   79700ms] [ERROR] Framing 'http://127.0.0.1:8000/admin/catalogue' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   80066ms] [ERROR] Framing 'http://127.0.0.1:8000/admin/jobs' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   80433ms] [ERROR] Framing 'http://127.0.0.1:8000/admin/config' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   80800ms] [ERROR] Framing 'http://127.0.0.1:8000/admin/users' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   81166ms] [ERROR] Framing 'http://127.0.0.1:8000/notifications' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0
+[   81532ms] [ERROR] Framing 'http://127.0.0.1:8000/search' violates the following Content Security Policy directive: "frame-src 'none'". The request has been blocked.
+ @ :0

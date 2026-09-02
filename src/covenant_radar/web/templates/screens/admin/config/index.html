@@ -1,0 +1,257 @@
+{% extends "base.html" %}
+
+{% block page_title %}Admin configuration — Covenant Radar{% endblock %}
+{% block h1 %}Admin configuration{% endblock %}
+
+{% block content %}
+<div class="governance" data-testid="admin-config">
+  <p class="muted">Thresholds and recommendations are versioned, approval-gated configuration.</p>
+  {% if error %}
+    <p class="state state--error" role="alert">{{ error }}</p>
+  {% endif %}
+
+  <section class="panel" aria-labelledby="thresholds-title">
+    <header class="panel__header">
+      <div>
+        <p class="eyebrow">Risk controls</p>
+        <h2 class="panel__title" id="thresholds-title">Thresholds in force</h2>
+      </div>
+      <p class="muted">An approved snapshot is used by the next forecast run. Past runs remain immutable.</p>
+    </header>
+
+    {% if view.current_threshold %}
+      <dl class="governance__facts">
+        <div><dt>Effective from</dt><dd>{{ view.current_threshold.effective_from|ist_date }}</dd></div>
+        <div><dt>Source</dt><dd>{{ view.current_threshold.source }}</dd></div>
+        <div><dt>Proposed by</dt><dd>{{ view.current_threshold.proposed_by_name or view.current_threshold.proposed_by_id or "Not applicable" }}</dd></div>
+        <div><dt>Approved by</dt><dd>{{ view.current_threshold.approved_by_name or view.current_threshold.approved_by_id or "Not applicable" }}</dd></div>
+      </dl>
+      {% if view.current_threshold_application %}
+        <p class="case-file__panel-message" data-testid="threshold-application">
+          Applied by completed forecast run {{ view.current_threshold_application.run_id }} dated {{ view.current_threshold_application.as_of|ist_date }}.
+        </p>
+      {% else %}
+        <p class="case-file__panel-message" data-testid="threshold-awaiting-run">
+          This snapshot will be applied by the next completed forecast run.
+        </p>
+      {% endif %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Current threshold values and boundary behaviour</caption>
+          <thead>
+            <tr>
+              <th scope="col">Threshold</th>
+              <th scope="col">Definition</th>
+              <th scope="col">Value</th>
+              <th scope="col">Above</th>
+              <th scope="col">Below</th>
+              <th scope="col">Exactly at</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in view.current_threshold.rows %}
+              <tr>
+                <th scope="row">{{ row.code }}</th>
+                <td>{{ row.label }}</td>
+                <td>{% for field in row.fields %}{{ field.name }}: {{ field.value }}{% if not loop.last %}; {% endif %}{% endfor %}</td>
+                <td>{{ row.above }}</td>
+                <td>{{ row.below }}</td>
+                <td>{{ row.at }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="state state--empty">No threshold snapshot is available.</p>
+    {% endif %}
+  </section>
+
+  {% if can_propose %}
+    <section class="panel" aria-labelledby="threshold-editor-title">
+      <h2 class="panel__title" id="threshold-editor-title">Propose a threshold change</h2>
+      <form method="post" action="/admin/config/thresholds/preview" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="field">
+          <label class="field__label" for="threshold-values">Revised values (JSON)</label>
+          <textarea class="field__control" id="threshold-values" name="values" rows="5" required spellcheck="false" aria-describedby="threshold-values-hint">{{ form.get("values", "") }}</textarea>
+          <p class="field__hint" id="threshold-values-hint">Enter only changed fields, for example {"T1": {"amber": "0.45"}}.</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="threshold-note">Reason for change</label>
+          <textarea class="field__control" id="threshold-note" name="note" rows="3" required maxlength="2000">{{ form.get("note", "") }}</textarea>
+        </div>
+        <button class="button" type="submit">Preview band impact</button>
+      </form>
+
+      {% if view.band_preview %}
+        <section class="panel" aria-labelledby="preview-title" data-testid="band-change-preview">
+          <h3 class="panel__title" id="preview-title">Band-change preview</h3>
+          {% if view.band_preview.available %}
+            <p data-testid="band-change-count">
+              {{ view.band_preview.changed_borrowers }} of {{ view.band_preview.total_borrowers }} borrower{{ "s" if view.band_preview.total_borrowers != 1 else "" }} would change band in the completed run dated {{ view.band_preview.run_as_of|ist_date }}.
+            </p>
+            {% if view.band_preview.transitions %}
+              <ul class="governance__list">
+                {% for transition in view.band_preview.transitions %}
+                  <li>{{ transition.count }}: {{ transition.before }} → {{ transition.after }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            <form method="post" action="/admin/thresholds">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <input type="hidden" name="values" value="{{ form.get("values", "") }}">
+              <input type="hidden" name="note" value="{{ form.get("note", "") }}">
+              <button class="button" type="submit">Submit threshold proposal</button>
+            </form>
+          {% else %}
+            <p class="state state--empty">{{ view.band_preview.message }}</p>
+          {% endif %}
+        </section>
+      {% endif %}
+    </section>
+  {% endif %}
+
+  <section class="panel" aria-labelledby="threshold-proposals-title">
+    <h2 class="panel__title" id="threshold-proposals-title">Pending threshold approvals</h2>
+    {% if view.pending_threshold_proposals %}
+      <ul class="governance__list">
+        {% for proposal in view.pending_threshold_proposals %}
+          <li class="governance__proposal" data-testid="pending-threshold-proposal-{{ proposal.id }}">
+            <p>Proposed by <strong>{{ proposal.proposer_name or proposal.maker_id }}</strong> on {{ proposal.created_at|ist_date }}{% if proposal.note %} — {{ proposal.note }}{% endif %}.</p>
+            {% if proposal.changes %}
+              <ul class="governance__proposal-changes">
+                {% for change in proposal.changes %}
+                  <li>{{ change.code }}.{{ change.field }}: {{ change.before }} → {{ change.after }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if can_approve and not proposal.is_own_proposal %}
+              <form method="post" action="/admin/thresholds/proposals/{{ proposal.id }}/approve">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button class="button" type="submit">Approve</button>
+              </form>
+            {% elif proposal.is_own_proposal %}
+              <p class="case-file__panel-message">You proposed this change; a different approver must decide it.</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="state state--empty">No threshold proposal is awaiting a separate approver.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="threshold-history-title">
+    <h2 class="panel__title" id="threshold-history-title">Threshold history</h2>
+    {% if view.threshold_history %}
+      <ul class="governance__list">
+        {% for snapshot in view.threshold_history %}
+          <li>{{ snapshot.effective_from|ist_date }} — {{ snapshot.source }} — proposed by {{ snapshot.proposed_by_name or snapshot.proposed_by_id or "Not applicable" }}, approved by {{ snapshot.approved_by_name or snapshot.approved_by_id or "Not applicable" }}{% if snapshot.note %} — {{ snapshot.note }}{% endif %}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="state state--empty">No prior threshold snapshots are recorded.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="catalogue-title">
+    <header class="panel__header">
+      <div>
+        <p class="eyebrow">Recommendations</p>
+        <h2 class="panel__title" id="catalogue-title">Action catalogue</h2>
+      </div>
+      <p class="muted">Only entries with a deterministic effect model can be recommended or simulated.</p>
+    </header>
+
+    {% if can_propose %}
+      <form method="post" action="/admin/config/catalogue" class="form-grid" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label>Identifier <input name="id" value="{{ form.get("id", "") }}" required maxlength="50" autocomplete="off"></label>
+        <label>Role tag
+          <select name="role_tag" required>
+            <option value="">Select a role</option>
+            <option value="relationship_manager"{% if form.get("role_tag") == "relationship_manager" %} selected{% endif %}>Relationship manager</option>
+            <option value="credit"{% if form.get("role_tag") == "credit" %} selected{% endif %}>Credit</option>
+            <option value="risk"{% if form.get("role_tag") == "risk" %} selected{% endif %}>Risk</option>
+          </select>
+        </label>
+        <label class="form-grid__wide">Display text <textarea name="text" required maxlength="2000">{{ form.get("text", "") }}</textarea></label>
+        <label>Effect model
+          <select name="effect_model" required>
+            <option value="">Select a model</option>
+            <option value="level_shift"{% if form.get("effect_model") == "level_shift" %} selected{% endif %}>Level shift</option>
+            <option value="rate_change"{% if form.get("effect_model") == "rate_change" %} selected{% endif %}>Rate change</option>
+            <option value="threshold_relaxation"{% if form.get("effect_model") == "threshold_relaxation" %} selected{% endif %}>Threshold relaxation</option>
+            <option value="pressure_reduction"{% if form.get("effect_model") == "pressure_reduction" %} selected{% endif %}>Pressure reduction</option>
+            <option value="combination"{% if form.get("effect_model") == "combination" %} selected{% endif %}>Combination</option>
+          </select>
+        </label>
+        <label>Effect parameters (JSON) <textarea name="effect_parameters" required spellcheck="false">{{ form.get("effect_parameters", "{}") }}</textarea></label>
+        <label>Applicable covenant classes <input name="applicable_covenant_classes" value="{{ form.get("applicable_covenant_classes", "") }}" required></label>
+        <label>Assumptions (one per line) <textarea name="assumptions" required>{{ form.get("assumptions", "") }}</textarea></label>
+        <label class="checkbox"><input type="checkbox" name="requires_approval" value="true"{% if form.get("requires_approval") %} checked{% endif %}> Requires approval when recommended</label>
+        <div class="form-actions form-grid__wide"><button class="button" type="submit">Submit catalogue change</button></div>
+      </form>
+    {% endif %}
+
+    {% if view.catalogue %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Configured intervention actions</caption>
+          <thead><tr><th scope="col">Identifier</th><th scope="col">Role</th><th scope="col">Effect model</th><th scope="col">Applicable classes</th><th scope="col">Status</th><th scope="col">Action</th></tr></thead>
+          <tbody>
+            {% for entry in view.catalogue %}
+              <tr data-testid="catalogue-entry-{{ entry.code }}">
+                <th scope="row">{{ entry.code }}</th>
+                <td>{{ entry.role_tag }}</td>
+                <td>{{ entry.effect_model }}</td>
+                <td>{{ entry.applicable_covenant_classes|join(", ") }}</td>
+                <td>{{ entry.status }}</td>
+                <td>
+                  {% if entry.is_active and can_propose %}
+                    <form method="post" action="/admin/config/catalogue/{{ entry.code }}/retire">
+                      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                      <input type="hidden" name="expected_version" value="{{ entry.version }}">
+                      <button class="button" type="submit">Retire</button>
+                    </form>
+                  {% else %}—{% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="state state--empty">No intervention catalogue entries are configured.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="catalogue-approvals-title">
+    <h2 class="panel__title" id="catalogue-approvals-title">Pending catalogue approvals</h2>
+    {% if view.pending_catalogue_approvals %}
+      <ul class="governance__list">
+        {% for proposal in view.pending_catalogue_approvals %}
+          <li class="governance__proposal" data-testid="pending-catalogue-proposal-{{ proposal.id }}">
+            <p><strong>{{ proposal.entry_code }}</strong> proposed by {{ proposal.maker_name or proposal.maker_id }} on {{ proposal.created_at|ist_date }}.</p>
+            {% if can_approve and not proposal.is_own_proposal %}
+              <form method="post" action="/admin/config/catalogue/approvals/{{ proposal.id }}">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <label>Decision
+                  <select name="decision" required><option value="approve">Approve</option><option value="reject">Reject</option></select>
+                </label>
+                <label>Reason <input name="reason" maxlength="2000"></label>
+                <button class="button" type="submit">Record decision</button>
+              </form>
+            {% elif proposal.is_own_proposal %}
+              <p class="case-file__panel-message">You proposed this change; a different approver must decide it.</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="state state--empty">No catalogue proposal is awaiting approval.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

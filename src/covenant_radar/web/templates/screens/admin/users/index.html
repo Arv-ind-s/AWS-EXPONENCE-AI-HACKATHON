@@ -1,0 +1,317 @@
+{% extends "base.html" %}
+
+{% block page_title %}Administration · Users & access{% endblock %}
+{% block h1 %}Users & access{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/admin.css">
+{% endblock %}
+
+{% macro field_error() %}{% endmacro %}
+
+{% block content %}
+<div class="admin-console">
+  <section class="admin-hero" aria-labelledby="admin-hero-title">
+    <div>
+      <p class="admin-hero__eyebrow">Access control / M-5</p>
+      <h2 id="admin-hero-title">The people behind the radar.</h2>
+      <p class="admin-hero__lede">Manage identity, authority, and reach from one accountable control room.</p>
+    </div>
+    <div class="admin-hero__aside">
+      <span class="admin-status-dot" aria-hidden="true"></span>
+      <div>
+        <strong>Access posture</strong>
+        <span>Changes are live after save.</span>
+      </div>
+    </div>
+  </section>
+
+  {% if error %}
+    <div class="admin-alert admin-alert--error" role="alert">
+      <strong>Change not applied.</strong>
+      <span>{{ error }}</span>
+    </div>
+  {% endif %}
+
+  <section class="admin-metrics" aria-label="Identity overview">
+    <div class="admin-metric">
+      <span class="admin-metric__label">Directory</span>
+      <strong class="admin-metric__value">{{ users|length }}</strong>
+      <span class="admin-metric__detail">{{ users|selectattr("is_active")|list|length }} active accounts</span>
+    </div>
+    <div class="admin-metric admin-metric--accent">
+      <span class="admin-metric__label">Authority</span>
+      <strong class="admin-metric__value">{{ roles|length }}</strong>
+      <span class="admin-metric__detail">role definitions in force</span>
+    </div>
+    <div class="admin-metric">
+      <span class="admin-metric__label">Reach</span>
+      <strong class="admin-metric__value">{{ portfolios|length }}</strong>
+      <span class="admin-metric__detail">portfolios available to scope</span>
+    </div>
+    <div class="admin-metric {% if pending %}admin-metric--attention{% endif %}">
+      <span class="admin-metric__label">Review queue</span>
+      <strong class="admin-metric__value">{{ pending|length }}</strong>
+      <span class="admin-metric__detail">self-escalation request{{ "s" if pending|length != 1 else "" }}</span>
+    </div>
+  </section>
+
+  <div class="admin-grid">
+    <section class="panel admin-panel admin-panel--directory" aria-labelledby="directory-title">
+      <header class="admin-panel__header">
+        <div>
+          <p class="admin-kicker">Directory</p>
+          <h2 class="admin-panel__title" id="directory-title">People and authority</h2>
+        </div>
+        <span class="admin-panel__meta">{{ users|length }} records</span>
+      </header>
+      {% if users %}
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <caption class="sr-only">Users and assigned roles</caption>
+            <thead>
+              <tr>
+                <th scope="col">Person</th>
+                <th scope="col">Role</th>
+                <th scope="col">Reach</th>
+                <th scope="col">Sessions</th>
+                <th scope="col">Status</th>
+                <th scope="col"><span class="sr-only">Open</span></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for user in users %}
+                <tr class="admin-table__row{% if selected and selected.id == user.id %} admin-table__row--selected{% endif %}">
+                  <td>
+                    <a class="admin-person" href="/admin/users/{{ user.id }}">
+                      <span class="admin-avatar" aria-hidden="true">{{ user.full_name[:1]|upper }}</span>
+                      <span>
+                        <strong>{{ user.full_name }}</strong>
+                        <small>@{{ user.username }} · {{ user.auth_source|upper }}</small>
+                      </span>
+                    </a>
+                  </td>
+                  <td>
+                    <span class="admin-role-list">{% for role in user.roles %}<span>{{ role.name }}</span>{% else %}<span class="admin-muted">No role</span>{% endfor %}</span>
+                  </td>
+                  <td><span class="admin-data">{{ user.scopes|length }} grant{{ "s" if user.scopes|length != 1 else "" }}</span></td>
+                  <td><span class="admin-data">{{ user.active_session_count }}</span></td>
+                  <td>
+                    {% if user.is_active %}<span class="admin-pill admin-pill--live">Active</span>{% else %}<span class="admin-pill">Inactive</span>{% endif %}
+                  </td>
+                  <td><a class="admin-open-link" href="/admin/users/{{ user.id }}" aria-label="Open {{ user.full_name }}">Open <span aria-hidden="true">↗</span></a></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}
+        <p class="admin-empty">No users are provisioned yet.</p>
+      {% endif %}
+    </section>
+
+    <section class="panel admin-panel admin-panel--create" aria-labelledby="create-title">
+      <header class="admin-panel__header">
+        <div>
+          <p class="admin-kicker">Provision</p>
+          <h2 class="admin-panel__title" id="create-title">Add a person</h2>
+        </div>
+        <span class="admin-panel__index">01</span>
+      </header>
+      <form method="post" action="/admin/users" class="admin-form" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <label class="admin-field">
+          <span>Full name</span>
+          <input name="full_name" value="{{ form.get('full_name', [''])[-1] }}" required maxlength="200" autocomplete="name">
+        </label>
+        <div class="admin-form__split">
+          <label class="admin-field">
+            <span>Username</span>
+            <input name="username" value="{{ form.get('username', [''])[-1] }}" required maxlength="64" autocomplete="off">
+          </label>
+          <label class="admin-field">
+            <span>Work email</span>
+            <input type="email" name="email" value="{{ form.get('email', [''])[-1] }}" required maxlength="254" autocomplete="email">
+          </label>
+        </div>
+        <label class="admin-field">
+          <span>Identity source</span>
+          <select name="auth_source">
+            <option value="local"{% if form.get('auth_source', ['local'])[-1] == 'local' %} selected{% endif %}>Local account</option>
+            <option value="oidc"{% if form.get('auth_source', [''])[-1] == 'oidc' %} selected{% endif %}>OIDC / bank SSO</option>
+            <option value="saml"{% if form.get('auth_source', [''])[-1] == 'saml' %} selected{% endif %}>SAML / bank SSO</option>
+          </select>
+        </label>
+        <label class="admin-field">
+          <span>External subject <small>required for SSO</small></span>
+          <input name="external_subject" value="{{ form.get('external_subject', [''])[-1] }}" maxlength="255" autocomplete="off">
+        </label>
+        <label class="admin-field">
+          <span>Initial password <small>local accounts only</small></span>
+          <input type="password" name="password" autocomplete="new-password">
+        </label>
+        <label class="admin-field">
+          <span>Role codes <small>comma-separated</small></span>
+          <input name="role_codes" value="{{ form.get('role_codes', ['administrator'])[-1] }}" required autocomplete="off" placeholder="credit, risk">
+        </label>
+        <div class="admin-form__footer">
+          <p>Local users are asked to change the initial password at first sign-in.</p>
+          <button class="button button--primary" type="submit">Create account <span aria-hidden="true">→</span></button>
+        </div>
+      </form>
+    </section>
+  </div>
+
+  {% if pending %}
+    <section class="panel admin-panel admin-panel--approvals" aria-labelledby="approvals-title">
+      <header class="admin-panel__header">
+        <div>
+          <p class="admin-kicker">Maker / checker</p>
+          <h2 class="admin-panel__title" id="approvals-title">Role changes awaiting a second administrator</h2>
+        </div>
+        <span class="admin-panel__meta">Distinct approver required</span>
+      </header>
+      <div class="admin-approval-list">
+        {% for request in pending %}
+          <article class="admin-approval">
+            <div>
+              <span class="admin-approval__label">Pending request</span>
+              <strong>{{ request.role_codes|join(', ') }}</strong>
+              <small>User {{ request.user_id }} · submitted {{ request.created_at|ist_date }}</small>
+            </div>
+            <div class="admin-approval__actions">
+              <form method="post" action="/admin/users/role-approvals/{{ request.id }}/approve">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button class="button button--primary" type="submit">Approve</button>
+              </form>
+              <form method="post" action="/admin/users/role-approvals/{{ request.id }}/reject">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <input type="text" name="reason" required maxlength="2000" placeholder="Reason for rejection" aria-label="Reason for rejection">
+                <button class="button" type="submit">Reject</button>
+              </form>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+    </section>
+  {% endif %}
+
+  {% if selected %}
+    <section class="admin-detail" aria-labelledby="detail-title">
+      <header class="admin-detail__header">
+        <div>
+          <a class="admin-back-link" href="/admin/users">← Directory</a>
+          <p class="admin-kicker">Identity record</p>
+          <h2 id="detail-title">{{ selected.full_name }}</h2>
+          <p class="admin-detail__subline">@{{ selected.username }} · {{ selected.email }} · record v{{ selected.version }}</p>
+        </div>
+        <div class="admin-detail__state">
+          {% if selected.is_active %}<span class="admin-pill admin-pill--live">Active</span>{% else %}<span class="admin-pill">Inactive</span>{% endif %}
+          <span class="admin-detail__source">{{ selected.auth_source|upper }}{% if selected.external_subject %} · {{ selected.external_subject }}{% endif %}</span>
+        </div>
+      </header>
+
+      <div class="admin-detail__grid">
+        <section class="panel admin-panel" aria-labelledby="roles-title">
+          <header class="admin-panel__header"><div><p class="admin-kicker">01 / Authority</p><h3 class="admin-panel__title" id="roles-title">Assigned roles</h3></div></header>
+          <div class="admin-role-cards">
+            {% for role in selected.roles %}
+              <article class="admin-role-card"><strong>{{ role.name }}</strong><span>{{ role.code }}</span><small>{{ role.permissions|length }} permissions</small></article>
+            {% else %}<p class="admin-empty">No roles assigned. This user cannot access scoped product surfaces.</p>{% endfor %}
+          </div>
+          <form method="post" action="/admin/users/{{ selected.id }}/roles" class="admin-form admin-form--compact" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label class="admin-field"><span>Replace role set <small>comma-separated role codes</small></span><input name="role_codes" value="{{ selected.role_codes|join(', ') }}" required autocomplete="off"></label>
+            <label class="admin-field"><span>Reason for change</span><input name="reason" required maxlength="2000"></label>
+            <button class="button" type="submit">Save role set</button>
+          </form>
+        </section>
+
+        <section class="panel admin-panel" aria-labelledby="scope-title">
+          <header class="admin-panel__header"><div><p class="admin-kicker">02 / Reach</p><h3 class="admin-panel__title" id="scope-title">Portfolio scope</h3></div><span class="admin-panel__meta">{{ selected.scopes|length }} grants</span></header>
+          <form method="post" action="/admin/users/{{ selected.id }}/scope" class="admin-form admin-form--compact" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <div class="admin-scope-list">
+              {% for portfolio in portfolios %}
+                {% set current_scope = selected.scopes|selectattr('portfolio_id', 'equalto', portfolio.id)|list|first %}
+                <label class="admin-scope-row">
+                  <input type="checkbox" name="scope" value="{{ portfolio.id }}"{% if current_scope %} checked{% endif %}>
+                  <span><strong>{{ portfolio.code }}</strong><small>{{ portfolio.name }}</small></span>
+                  <span class="admin-scope-row__depth">{{ portfolio.path.count('/') - 1 }}</span>
+                </label>
+                <label class="admin-scope-option"><input type="checkbox" name="scope_descendants" value="{{ portfolio.id }}"{% if current_scope and current_scope.include_descendants %} checked{% endif %}> Include descendants</label>
+              {% else %}<p class="admin-empty">No portfolios exist to scope.</p>{% endfor %}
+            </div>
+            <label class="admin-field"><span>Reason for change</span><input name="reason" required maxlength="2000"></label>
+            <button class="button" type="submit">Save portfolio reach</button>
+          </form>
+          <p class="admin-note">Removing reach narrows owned saved views that point at a lost portfolio. It never widens another user's view.</p>
+        </section>
+
+        <section class="panel admin-panel" aria-labelledby="sessions-title">
+          <header class="admin-panel__header"><div><p class="admin-kicker">03 / Sessions</p><h3 class="admin-panel__title" id="sessions-title">Active sessions</h3></div><span class="admin-panel__meta">{{ sessions|selectattr('is_live')|list|length }} live</span></header>
+          {% if sessions %}
+            <div class="admin-session-list">
+              {% for session in sessions %}
+                <article class="admin-session{% if not session.is_live %} admin-session--revoked{% endif %}">
+                  <div><strong>{{ session.last_seen_at|ist_date }}</strong><small>Issued {{ session.issued_at|ist_date }} · expires {{ session.expires_at|ist_date }}</small></div>
+                  {% if session.is_live %}
+                    <form method="post" action="/admin/users/{{ selected.id }}/sessions/{{ session.id }}/revoke">
+                      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                      <input type="hidden" name="reason" value="Administrator revoked from console">
+                      <button class="button button--quiet" type="submit">Revoke</button>
+                    </form>
+                  {% else %}<span class="admin-pill">Revoked</span>{% endif %}
+                </article>
+              {% endfor %}
+            </div>
+          {% else %}<p class="admin-empty">No sessions have been issued for this account.</p>{% endif %}
+        </section>
+
+        <section class="panel admin-panel" aria-labelledby="security-title">
+          <header class="admin-panel__header"><div><p class="admin-kicker">04 / Recovery</p><h3 class="admin-panel__title" id="security-title">Security controls</h3></div></header>
+          <dl class="admin-facts">
+            <div><dt>Password state</dt><dd>{% if selected.auth_source != 'local' %}SSO-managed{% elif selected.must_change_password %}Change required{% else %}Set{% endif %}</dd></div>
+            <div><dt>API keys</dt><dd>{{ selected.active_api_key_count }} active</dd></div>
+            <div><dt>Created</dt><dd>{{ selected.created_at|ist_date }}</dd></div>
+          </dl>
+          {% if selected.auth_source == 'local' %}
+            <form method="post" action="/admin/users/{{ selected.id }}/password" class="admin-form admin-form--compact" novalidate>
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <label class="admin-field"><span>Replacement password</span><input type="password" name="password" required autocomplete="new-password"></label>
+              <label class="admin-field"><span>Repeat password</span><input type="password" name="password_confirmation" required autocomplete="new-password"></label>
+              <label class="admin-field"><span>Reason</span><input name="reason" required maxlength="2000"></label>
+              <button class="button" type="submit">Reset password</button>
+            </form>
+          {% endif %}
+          <form method="post" action="/admin/users/{{ selected.id }}/sso" class="admin-form admin-form--compact" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <label class="admin-field"><span>Identity source</span><select name="auth_source"><option value="local"{% if selected.auth_source == 'local' %} selected{% endif %}>Local account</option><option value="oidc"{% if selected.auth_source == 'oidc' %} selected{% endif %}>OIDC / bank SSO</option><option value="saml"{% if selected.auth_source == 'saml' %} selected{% endif %}>SAML / bank SSO</option></select></label>
+            <label class="admin-field"><span>External subject</span><input name="external_subject" value="{{ selected.external_subject or '' }}" maxlength="255"></label>
+            <label class="admin-field"><span>Local password <small>required when switching from SSO</small></span><input type="password" name="password" autocomplete="new-password"></label>
+            <label class="admin-field"><span>Reason</span><input name="reason" required maxlength="2000"></label>
+            <button class="button button--quiet" type="submit">Save identity mapping</button>
+          </form>
+        </section>
+      </div>
+
+      <footer class="admin-detail__footer">
+        {% if selected.is_active %}
+          <form method="post" action="/admin/users/{{ selected.id }}/deactivate" class="admin-inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="reason" value="Administrator deactivated from console">
+            <button class="button button--danger" type="submit">Deactivate account</button>
+          </form>
+        {% else %}
+          <form method="post" action="/admin/users/{{ selected.id }}/reactivate" class="admin-inline-form">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="reason" value="Administrator reactivated from console">
+            <button class="button" type="submit">Reactivate account</button>
+          </form>
+        {% endif %}
+        <span>All identity changes are recorded with before and after state.</span>
+      </footer>
+    </section>
+  {% endif %}
+</div>
+{% endblock %}

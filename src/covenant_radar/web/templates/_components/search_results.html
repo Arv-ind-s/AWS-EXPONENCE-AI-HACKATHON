@@ -1,0 +1,23 @@
+<section class="search-results panel" id="search-results" aria-labelledby="search-results-heading" aria-live="polite">
+  <div class="panel__header">
+    <div><p class="page-heading__eyebrow">{{ summary }}</p><h2 id="search-results-heading">{% if page.is_recent %}{{ labels.recent_heading }}{% else %}{{ labels.results_heading }}{% endif %}</h2></div>
+  </div>
+  {% if page.results %}
+    <ol>
+      {% for result in page.results %}
+        <li>
+          <span class="search-result-card__type">{{ result.entity_label }}</span>
+          <a href="{{ result.href }}">{{ result.highlighted_title }}</a>
+          {% if result.subtitle %}<span>{{ result.subtitle }}</span>{% endif %}
+          {% if result.highlighted_snippet %}<p>{{ result.highlighted_snippet }}</p>{% endif %}
+          <small>{{ labels.match_source.format(source=result.match_source) }}</small>
+        </li>
+      {% endfor %}
+    </ol>
+  {% elif page.is_recent %}
+    <div class="state state--empty"><p class="state__message">{{ labels.no_recent }}</p></div>
+  {% else %}
+    <div class="state state--empty"><p class="state__message">{{ labels.no_results }}</p></div>
+  {% endif %}
+  {% if next_href %}<a class="button button--secondary" href="{{ next_href }}">{{ labels.next }}</a>{% endif %}
+</section>

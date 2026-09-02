@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set form = form|default({}) %}
+{% set error = error|default("") %}
+{% set error_field = error_field|default("") %}
+{% set action = action|default("") %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.portfolios_new }}{% endblock %}
+{% block h1 %}{{ labels.portfolios_new }}{% endblock %}
+
+{% block content %}
+  {% if error %}
+    {% call components.panel(title=labels.form_error, panel_id="portfolio-form-error", state="error", error_title=labels.form_error, error_message=error) %}{% endcall %}
+  {% endif %}
+  <form method="post" action="{{ action }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {{ components.field("code", labels.portfolios_code, value=form.get("code", ""), required=true, error=error if error_field == "portfolio.code" else "") }}
+    {{ components.field("name", labels.portfolios_name, value=form.get("name", ""), required=true, error=error if error_field == "portfolio.name" else "") }}
+    {{ components.field("branch_code", labels.portfolios_branch, value=form.get("branch_code", "")) }}
+    {{ components.button(labels.portfolio_save, type="submit") }}
+  </form>
+{% endblock %}

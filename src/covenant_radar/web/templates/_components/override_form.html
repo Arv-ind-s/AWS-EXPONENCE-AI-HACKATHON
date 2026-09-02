@@ -1,0 +1,57 @@
+{# T-111: the same accessible override control is embedded by both the case
+   file and the why-panel surfaces.  Values are already validated by the
+   service; Jinja autoescaping protects the reason and replacement text. #}
+{% set display_labels = labels|default({}) %}
+<section class="override-control panel" id="override-control" data-surface="case-file why-panel" aria-labelledby="override-control-title">
+  <h2 class="panel__title" id="override-control-title">{{ display_labels.get("title", "Override risk view") }}</h2>
+  <p class="override-control__history" role="status">{{ display_labels.get("history", "The original assessment remains retained for review.") }}</p>
+
+  {% if error %}
+    <p class="override-control__error" role="alert">{{ error }}</p>
+  {% endif %}
+
+  {% if view %}
+    <details class="override-control__shown" open>
+      <summary>{{ display_labels.get("current_view", "Current displayed view") }}</summary>
+      <dl>
+        {% for key, value in view.current.items() %}
+          <div><dt>{{ key }}</dt><dd>{{ value }}</dd></div>
+        {% endfor %}
+      </dl>
+    </details>
+  {% endif %}
+
+  <form class="override-control__form" method="post" action="/overrides" novalidate>
+    {% if csrf_token %}<input type="hidden" name="csrf_token" value="{{ csrf_token }}">{% endif %}
+    {% if subject is mapping or (subject and subject.subject_type is defined) %}
+      <input type="hidden" name="subject" value="{{ (subject.subject_type or subject.type) ~ ':' ~ (subject.subject_id or subject.id) }}">
+    {% else %}
+      <input type="hidden" name="subject" value="{{ subject }}">
+    {% endif %}
+
+    <div class="field">
+      <label for="override-stage">{{ display_labels.get("stage", "Assessment stage") }}</label>
+      <input id="override-stage" name="stage" type="number" min="1" max="7" value="{{ stage }}" required aria-describedby="override-stage-hint">
+      <p class="field__hint" id="override-stage-hint">{{ display_labels.get("stage_hint", "Choose the stage being revised.") }}</p>
+    </div>
+
+    <div class="field">
+      <label for="override-action">{{ display_labels.get("user_action", "Action") }}</label>
+      <input id="override-action" name="user_action" type="text" maxlength="50" value="{{ user_action }}" required>
+    </div>
+
+    <div class="field">
+      <label for="override-value">{{ display_labels.get("user_value", "Replacement value (JSON)") }}</label>
+      <textarea id="override-value" name="user_value" rows="4" aria-describedby="override-value-hint">{{ user_value }}</textarea>
+      <p class="field__hint" id="override-value-hint">{{ display_labels.get("value_hint", "Enter a JSON value for the revised view.") }}</p>
+    </div>
+
+    <div class="field">
+      <label for="override-reason">{{ display_labels.get("reason", "Reason (required)") }}</label>
+      <textarea id="override-reason" name="reason" rows="5" maxlength="2000" required aria-describedby="override-reason-hint">{{ reason }}</textarea>
+      <p class="field__hint" id="override-reason-hint">{{ display_labels.get("reason_hint", "Explain the evidence supporting this change.") }}</p>
+    </div>
+
+    <button class="button" type="submit">{{ display_labels.get("submit", "Save override") }}</button>
+  </form>
+</section>

@@ -1,0 +1,10 @@
+{% set loading_rows = state_rows|default(1, true) %}
+{% set loading_columns = state_columns|default(1, true) %}
+<div class="state state--loading" role="status" aria-live="polite" aria-label="{{ state_label|default("Loading", true) }}">
+  {% for _ in range(loading_rows) %}
+    <div class="skeleton-row" aria-hidden="true">
+      {% for _ in range(loading_columns) %}<span class="skeleton-row__cell"></span>{% endfor %}
+    </div>
+  {% endfor %}
+  <span class="sr-only">{{ state_label|default("Loading", true) }}</span>
+</div>

@@ -1,0 +1,28 @@
+{
+  "id": "EX-0007",
+  "kind": "engine",
+  "title": "Facility utilisation refuses closed when no facility facts are supplied",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "not_computable",
+    "facility_facts_absent"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "utilisation",
+    "lines": {}
+  },
+  "expected": {
+    "computable": false,
+    "reason": "facility_facts_absent"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "utilisation reads facility.sanctioned_limit and facility.outstanding, not a statement line. An empty FacilityFacts carries neither, so the formula reports FACILITY_FACTS_ABSENT naming both fields rather than treating a missing fact as a statement-line miss."
+}

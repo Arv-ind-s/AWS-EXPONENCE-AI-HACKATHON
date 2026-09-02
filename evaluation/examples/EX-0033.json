@@ -1,0 +1,58 @@
+{
+  "id": "EX-0033",
+  "kind": "usefulness",
+  "title": "A specific, dated, actionable memo draft meets the usefulness rubric floor",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "usefulness"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "memo_draft": {
+      "headline": "Leverage ratio breach dated 2026-08-04",
+      "summary": "Leverage ratio rose to 3.25x against a covenant threshold of 3.00x, first breached on 2026-08-04, driven by a drawdown against the working capital facility.",
+      "drivers": [
+        "Leverage ratio",
+        "Facility utilisation"
+      ],
+      "recommended_next_step": "Request a promoter infusion covering the shortfall.",
+      "disclaimer": "human credit review is required before action"
+    }
+  },
+  "expected": {
+    "rubric_floor_met": true,
+    "criteria": [
+      {
+        "name": "names the specific covenant and its threshold",
+        "satisfied": true
+      },
+      {
+        "name": "states the breach or crossing date",
+        "satisfied": true
+      },
+      {
+        "name": "cites a concrete driver rather than a generic statement",
+        "satisfied": true
+      },
+      {
+        "name": "recommends a next step from the permitted catalogue, or names its absence",
+        "satisfied": true
+      },
+      {
+        "name": "carries the fixed advisory disclaimer",
+        "satisfied": true
+      }
+    ]
+  },
+  "pass_mark": {
+    "type": "rubric_floor",
+    "floor": 4.0,
+    "reviewers": 3
+  },
+  "note": "The draft names the covenant (leverage ratio), its threshold (3.00x) and the dated crossing (2026-08-04), cites two concrete drivers rather than a generic 'covenant deteriorating' statement, recommends a specific catalogue-shaped action, and carries the fixed disclaimer -- a reviewer working the rubric by hand would mark all five criteria satisfied, clearing the 4-of-5 floor."
+}

@@ -1,0 +1,7 @@
+{% macro toast(toast_id, message, kind="info", dismissible=true, close_label="Dismiss") -%}
+  {% set toast_kind = kind if kind in ("info", "success", "error") else "info" %}
+  <div class="toast toast--{{ toast_kind }}" id="{{ toast_id }}" data-toast role="{{ "alert" if toast_kind == "error" else "status" }}" aria-live="{{ "assertive" if toast_kind == "error" else "polite" }}">
+    <p class="toast__message">{{ message }}</p>
+    {% if dismissible %}<button class="button toast__dismiss" type="button" data-toast-dismiss="{{ toast_id }}">{{ close_label }}</button>{% endif %}
+  </div>
+{%- endmacro %}

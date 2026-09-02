@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set error = error|default("") %}
+{% set source_type_options = source_type_options|default(()) %}
+
+{% block page_title %}{{ labels.restate_title }}{% endblock %}
+{% block h1 %}{{ labels.restate_heading }}{% endblock %}
+
+{% block content %}
+  <p>{{ labels.restate_help }}</p>
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+  <form method="post" action="/statements/restate" enctype="multipart/form-data" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {{ components.field("source_type", labels.source_type, type="select", options=source_type_options, required=true) }}
+    {{ components.field("mapping_name", labels.mapping_name, required=true) }}
+    {{ components.field("file", labels.file, type="file", accept=".csv,.xlsx,.json", required=true) }}
+    {{ components.field("reason", labels.reason, type="textarea", required=true, error=labels.reason_required if error else "") }}
+    {{ components.button(labels.restate_submit, type="submit") }}
+  </form>
+{% endblock %}

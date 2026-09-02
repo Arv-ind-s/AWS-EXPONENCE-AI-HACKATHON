@@ -1,0 +1,90 @@
+{% if covenant is defined %}
+{% set control_id = covenant.trajectory_id ~ "-horizon" %}
+{% set selected = [selected_day|default(0, true)|int, covenant.maximum_day]|min %}
+<div
+  class="horizon-control"
+  id="{{ control_id }}"
+  data-horizon-control
+  data-horizon-mode="stops"
+  data-horizon-api="/api/v1/forecasts/{{ covenant.covenant_reference }}/path"
+  data-minimum-day="0"
+  data-maximum-day="{{ covenant.maximum_day }}"
+  data-selected-day="{{ selected }}"
+  data-as-of-date="{{ covenant.as_of_date.isoformat() if covenant.as_of_date else "" }}"
+  data-direction-label="{{ covenant.horizons[0].direction_label }}"
+  aria-labelledby="{{ control_id }}-title"
+>
+  <div class="horizon-control__heading">
+    <h4 class="horizon-control__title" id="{{ control_id }}-title">{{ labels.horizon_title }}</h4>
+    <p class="horizon-control__selected">
+      {{ labels.horizon_selected_day }}: <output data-horizon-value for="{{ control_id }}-input">{{ selected }}</output>
+    </p>
+  </div>
+
+  <div class="horizon-control__range" data-horizon-range>
+    <label class="horizon-control__label" for="{{ control_id }}-input">{{ labels.horizon_move }}</label>
+    <input
+      class="horizon-control__input"
+      id="{{ control_id }}-input"
+      data-horizon-input
+      type="range"
+      min="0"
+      max="{{ covenant.maximum_day }}"
+      value="{{ selected }}"
+      step="1"
+      aria-valuemin="0"
+      aria-valuemax="{{ covenant.maximum_day }}"
+      aria-valuenow="{{ selected }}"
+      aria-controls="{{ control_id }}-live-ledger{% if covenant.trajectory_available %} {{ covenant.trajectory_id }}{% endif %} {{ covenant.trajectory_id }}-ledger"
+    >
+  </div>
+
+  <nav class="horizon-control__stops" data-horizon-stops aria-labelledby="{{ control_id }}-title">
+    <span class="horizon-control__stops-label">{{ labels.horizon_named }}</span>
+    {% for stop_day, stop_label in ((0, labels.horizon_today), (30, labels.horizon_days_30), (60, labels.horizon_days_60), (90, labels.horizon_days_90)) %}
+      {% if stop_day <= covenant.maximum_day %}
+        <a
+          class="button horizon-control__stop"
+          href="{{ request.url.path }}?day={{ stop_day }}"
+          data-horizon-stop="{{ stop_day }}"
+          {% if stop_day == selected %}aria-current="true"{% endif %}
+        >{{ stop_label }}</a>
+      {% endif %}
+    {% endfor %}
+  </nav>
+
+  <p class="horizon-control__status" data-horizon-status role="status" aria-live="polite">
+    {{ labels.horizon_no_javascript }}
+  </p>
+
+  <dl class="horizon-control__live-ledger" id="{{ control_id }}-live-ledger" data-horizon-live-ledger aria-live="polite" aria-atomic="true">
+    <div>
+      <dt>{{ labels.horizon_projected_value }}</dt>
+      <dd data-horizon-projected-value>{{ labels.horizon_not_selected }}</dd>
+    </div>
+    <div>
+      <dt>{{ labels.horizon_headroom }}</dt>
+      <dd data-horizon-headroom>{{ labels.horizon_not_selected }}</dd>
+    </div>
+    <div>
+      <dt>{{ labels.horizon_probability }}</dt>
+      <dd data-horizon-probability>{{ labels.horizon_not_selected }}</dd>
+    </div>
+    <div>
+      <dt>{{ labels.horizon_confidence }}</dt>
+      <dd data-horizon-confidence>{{ labels.horizon_not_selected }}</dd>
+    </div>
+    <div>
+      <dt>{{ labels.horizon_crossing }}</dt>
+      <dd data-horizon-crossing>{{ labels.horizon_not_selected }}</dd>
+    </div>
+  </dl>
+
+  <div class="horizon-control__drivers" aria-labelledby="{{ control_id }}-drivers-title">
+    <h5 id="{{ control_id }}-drivers-title">{{ labels.horizon_drivers }}</h5>
+    <ul data-horizon-drivers>
+      <li>{{ labels.horizon_no_driver }}</li>
+    </ul>
+  </div>
+</div>
+{% endif %}

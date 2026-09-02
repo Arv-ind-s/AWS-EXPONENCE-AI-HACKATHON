@@ -1,0 +1,224 @@
+- generic [active] [ref=f65e1]:
+  - link "Skip to content" [ref=f65e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f65e3]:
+    - complementary "Workspace navigation" [ref=f65e4]:
+      - link "Covenant Radar" [ref=f65e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f65e13]:
+          - strong [ref=f65e14]: Covenant
+          - generic [ref=f65e15]: Radar
+      - navigation "Primary navigation" [ref=f65e16]:
+        - region [ref=f65e17]:
+          - heading "Monitor" [level=2] [ref=f65e18]
+          - link "Portfolio queue" [ref=f65e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f65e23] [cursor=pointer]:
+            - /url: /cases
+          - link "13 unread notifications" [ref=f65e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f65e30]: Notifications (13)
+            - generic [aria-hidden] [ref=f65e31]: "13"
+          - link "Search" [ref=f65e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f65e37]:
+          - heading "Portfolio data" [level=2] [ref=f65e38]
+          - link "Borrowers" [ref=f65e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f65e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f65e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f65e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f65e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f65e61]:
+          - heading "Workflows" [level=2] [ref=f65e62]
+          - link "Document review" [ref=f65e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f65e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f65e71] [cursor=pointer]
+    - generic [ref=f65e75]:
+      - banner [ref=f65e76]:
+        - generic [ref=f65e78]:
+          - generic [ref=f65e79]: Workspace
+          - generic [ref=f65e82]: Current view
+        - search [ref=f65e83]:
+          - generic [ref=f65e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f65e85]
+          - generic: /
+        - generic [ref=f65e86]:
+          - button "Live activity" [ref=f65e87]:
+            - generic [ref=f65e89]: Live
+          - button "Use dark theme" [ref=f65e91] [cursor=pointer]
+          - button "Open user menu" [ref=f65e95] [cursor=pointer]
+      - main [ref=f65e99]:
+        - generic [ref=f65e101]:
+          - paragraph [ref=f65e102]: Decision workspace
+          - heading "Notification centre" [level=1] [ref=f65e103]
+        - generic [ref=f65e104]:
+          - region [ref=f65e105]:
+            - generic [ref=f65e106]:
+              - paragraph [ref=f65e107]: "Unread notifications: 13"
+              - heading "Durable notices for the work in your queue." [level=2] [ref=f65e108]
+          - group "Notification centre" [ref=f65e110]:
+            - generic [ref=f65e112]:
+              - generic [ref=f65e113]: Status
+              - combobox "Status" [ref=f65e114]:
+                - option "All" [selected]
+                - option "Unread"
+                - option "Read"
+            - generic [ref=f65e115]:
+              - generic [ref=f65e116]: Notification type
+              - combobox "Notification type" [ref=f65e117]:
+                - option "All notification types" [selected]
+                - option "band_change"
+                - option "morning_queue"
+                - option "sla_breach"
+                - option "certificate_due"
+                - option "job_failure"
+                - option "security_alert"
+                - option "system_failure"
+            - button "Apply filters" [ref=f65e118] [cursor=pointer]
+          - region [ref=f65e119]:
+            - generic [ref=f65e120]:
+              - generic [ref=f65e121]:
+                - paragraph [ref=f65e122]: "Unread notifications: 13"
+                - heading "Notification centre" [level=2] [ref=f65e123]
+              - button "Mark all as read" [ref=f65e125] [cursor=pointer]
+            - list [ref=f65e126]:
+              - listitem [ref=f65e127]:
+                - generic [ref=f65e128]:
+                  - generic [ref=f65e129]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e130]
+                    - paragraph [ref=f65e131]: "Type: Notification centre"
+                  - generic [ref=f65e132]:
+                    - text: Unread
+                    - time [ref=f65e133]: 02 Sep 2026
+                - status [ref=f65e134]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e137] [cursor=pointer]
+              - listitem [ref=f65e138]:
+                - generic [ref=f65e139]:
+                  - generic [ref=f65e140]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e141]
+                    - paragraph [ref=f65e142]: "Type: Notification centre"
+                  - generic [ref=f65e143]:
+                    - text: Unread
+                    - time [ref=f65e144]: 02 Sep 2026
+                - status [ref=f65e145]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e148] [cursor=pointer]
+              - listitem [ref=f65e149]:
+                - generic [ref=f65e150]:
+                  - generic [ref=f65e151]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e152]
+                    - paragraph [ref=f65e153]: "Type: Notification centre"
+                  - generic [ref=f65e154]:
+                    - text: Unread
+                    - time [ref=f65e155]: 02 Sep 2026
+                - status [ref=f65e156]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e159] [cursor=pointer]
+              - listitem [ref=f65e160]:
+                - generic [ref=f65e161]:
+                  - generic [ref=f65e162]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e163]
+                    - paragraph [ref=f65e164]: "Type: Notification centre"
+                  - generic [ref=f65e165]:
+                    - text: Unread
+                    - time [ref=f65e166]: 02 Sep 2026
+                - status [ref=f65e167]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e170] [cursor=pointer]
+              - listitem [ref=f65e171]:
+                - generic [ref=f65e172]:
+                  - generic [ref=f65e173]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e174]
+                    - paragraph [ref=f65e175]: "Type: Notification centre"
+                  - generic [ref=f65e176]:
+                    - text: Unread
+                    - time [ref=f65e177]: 02 Sep 2026
+                - status [ref=f65e178]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e181] [cursor=pointer]
+              - listitem [ref=f65e182]:
+                - generic [ref=f65e183]:
+                  - generic [ref=f65e184]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e185]
+                    - paragraph [ref=f65e186]: "Type: Notification centre"
+                  - generic [ref=f65e187]:
+                    - text: Unread
+                    - time [ref=f65e188]: 02 Sep 2026
+                - status [ref=f65e189]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e192] [cursor=pointer]
+              - listitem [ref=f65e193]:
+                - generic [ref=f65e194]:
+                  - generic [ref=f65e195]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e196]
+                    - paragraph [ref=f65e197]: "Type: Notification centre"
+                  - generic [ref=f65e198]:
+                    - text: Unread
+                    - time [ref=f65e199]: 02 Sep 2026
+                - status [ref=f65e200]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e203] [cursor=pointer]
+              - listitem [ref=f65e204]:
+                - generic [ref=f65e205]:
+                  - generic [ref=f65e206]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e207]
+                    - paragraph [ref=f65e208]: "Type: Notification centre"
+                  - generic [ref=f65e209]:
+                    - text: Unread
+                    - time [ref=f65e210]: 02 Sep 2026
+                - status [ref=f65e211]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e214] [cursor=pointer]
+              - listitem [ref=f65e215]:
+                - generic [ref=f65e216]:
+                  - generic [ref=f65e217]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e218]
+                    - paragraph [ref=f65e219]: "Type: Notification centre"
+                  - generic [ref=f65e220]:
+                    - text: Unread
+                    - time [ref=f65e221]: 02 Sep 2026
+                - status [ref=f65e222]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e225] [cursor=pointer]
+              - listitem [ref=f65e226]:
+                - generic [ref=f65e227]:
+                  - generic [ref=f65e228]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e229]
+                    - paragraph [ref=f65e230]: "Type: Notification centre"
+                  - generic [ref=f65e231]:
+                    - text: Unread
+                    - time [ref=f65e232]: 02 Sep 2026
+                - status [ref=f65e233]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e236] [cursor=pointer]
+              - listitem [ref=f65e237]:
+                - generic [ref=f65e238]:
+                  - generic [ref=f65e239]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e240]
+                    - paragraph [ref=f65e241]: "Type: Notification centre"
+                  - generic [ref=f65e242]:
+                    - text: Unread
+                    - time [ref=f65e243]: 02 Sep 2026
+                - status [ref=f65e244]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e247] [cursor=pointer]
+              - listitem [ref=f65e248]:
+                - generic [ref=f65e249]:
+                  - generic [ref=f65e250]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e251]
+                    - paragraph [ref=f65e252]: "Type: Notification centre"
+                  - generic [ref=f65e253]:
+                    - text: Unread
+                    - time [ref=f65e254]: 02 Sep 2026
+                - status [ref=f65e255]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e258] [cursor=pointer]
+              - listitem [ref=f65e259]:
+                - generic [ref=f65e260]:
+                  - generic [ref=f65e261]:
+                    - heading "Notification unavailable" [level=3] [ref=f65e262]
+                    - paragraph [ref=f65e263]: "Type: Notification centre"
+                  - generic [ref=f65e264]:
+                    - text: Unread
+                    - time [ref=f65e265]: 02 Sep 2026
+                - status [ref=f65e266]: This notification is no longer available in your access scope.
+                - button "Mark as read" [ref=f65e269] [cursor=pointer]
+            - generic [ref=f65e270]:
+              - text: Last updated
+              - time [ref=f65e271]: just now

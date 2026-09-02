@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set state_action_label = "" %}
+{% set state_action_href = "" %}
+
+{% block page_title %}{% if view is defined %}{{ view.borrower_name }}{% if labels is defined %} — {{ labels.title_suffix }}{% endif %}{% elif labels is defined %}{{ labels.title_suffix }}{% else %}Case file{% endif %}{% endblock %}
+{% block h1 %}{% if view is defined %}{{ view.borrower_name }}{% elif labels is defined %}{{ labels.title_suffix }}{% else %}Case file{% endif %}{% endblock %}
+
+{% block content %}
+{% if view is defined %}
+  <div class="case-file" id="case-file" data-state="{{ view.state }}">
+    <section class="case-file__header panel" id="case-header" aria-labelledby="case-header-title">
+      <h2 class="sr-only" id="case-header-title">{{ labels.header_label }}</h2>
+      {% include "screens/borrower/_header.html" %}
+    </section>
+
+    <div class="case-file__panels">
+      {# Keep the model action and its result at the top of the case file. The
+         old placement after every evidence/document panel meant a successful
+         HTMX response was inserted below the viewport and appeared to have
+         produced nothing. #}
+      {% include "screens/borrower/_actions.html" %}
+      {% if latest_memo %}
+        {% set memo = latest_memo %}
+        {% include "screens/borrower/_memo.html" %}
+      {% else %}
+        <section class="panel case-memo case-memo--empty"
+                 id="case-memo"
+                 aria-labelledby="case-memo-title"
+                 aria-live="polite"
+                 data-state="empty"
+                 tabindex="-1">
+          <h2 class="panel__title" id="case-memo-title">{{ labels.memo_empty_title }}</h2>
+          <p class="case-memo__message">{{ labels.memo_empty_message }}</p>
+        </section>
+      {% endif %}
+
+      {% include "screens/borrower/_covenants.html" %}
+
+      {% include "screens/borrower/_signals.html" %}
+
+      {% include "screens/borrower/_forecast.html" %}
+
+      {% include "screens/borrower/_evidence.html" %}
+      {% include "screens/borrower/_documents.html" %}
+    </div>
+  </div>
+{% endif %}
+{% endblock %}

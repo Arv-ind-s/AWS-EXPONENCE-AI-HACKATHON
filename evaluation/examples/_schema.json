@@ -1,0 +1,601 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://covenant-radar.internal/schemas/evaluation-example.json",
+  "title": "Covenant Radar evaluation example",
+  "description": "One hand-labelled, versioned example scored by the N-01 evaluation harness (spec §17.7, T-103). One file is one example; adding an example is adding a file, never a code change.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "kind",
+    "title",
+    "arms",
+    "status",
+    "adversarial",
+    "tags",
+    "references_reference_portfolio",
+    "input",
+    "expected",
+    "pass_mark",
+    "note"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^EX-[0-9]{4}$",
+      "description": "Stable, unique example identifier. Never reused, even for a retired example."
+    },
+    "kind": {
+      "$ref": "#/$defs/kind"
+    },
+    "title": {
+      "type": "string",
+      "minLength": 8,
+      "maxLength": 160
+    },
+    "arms": {
+      "type": "array",
+      "description": "Which harness arms (N-01) this example is dispatched to.",
+      "items": { "enum": ["product", "baseline"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "status": {
+      "enum": ["authored", "disputed"],
+      "description": "'disputed' marks a hand-labelled expectation that disagrees with the current implementation. The example stands as authored; the disagreement is recorded in 'disputed_reason' and 'note' and raised for a human decision — it is never silently edited to match the code."
+    },
+    "disputed_reason": {
+      "type": "string",
+      "minLength": 20,
+      "description": "Required, and only present, when status is 'disputed'. Names exactly what the implementation currently does and why the hand label is believed correct regardless."
+    },
+    "adversarial": {
+      "type": "boolean",
+      "description": "True for an extraction case deliberately shaped as a redirection attempt or an implausible threshold (spec §17.7's 100% fail-closed pass mark)."
+    },
+    "tags": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 2, "maxLength": 40 },
+      "uniqueItems": true
+    },
+    "references_reference_portfolio": {
+      "type": "boolean",
+      "description": "True when 'expected' is resolved against evaluation.reference_portfolio's generated labels rather than a value copied into this file. A regeneration of the reference portfolio must not invalidate such an example."
+    },
+    "input": { "type": "object", "minProperties": 1 },
+    "expected": { "type": "object", "minProperties": 1 },
+    "pass_mark": { "$ref": "#/$defs/passMark" },
+    "note": {
+      "type": "string",
+      "minLength": 40,
+      "description": "The hand-worked reasoning behind 'expected' — for an engine or boundary case, the arithmetic itself; for every other kind, why the label is what a reviewer would have written by hand."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "disputed" } },
+        "required": ["status"]
+      },
+      "then": { "required": ["disputed_reason"] },
+      "else": { "not": { "required": ["disputed_reason"] } }
+    },
+    { "if": { "properties": { "kind": { "const": "engine" } } }, "then": { "$ref": "#/$defs/engineCase" } },
+    { "if": { "properties": { "kind": { "const": "boundary" } } }, "then": { "$ref": "#/$defs/boundaryCase" } },
+    { "if": { "properties": { "kind": { "const": "persistence" } } }, "then": { "$ref": "#/$defs/persistenceCase" } },
+    { "if": { "properties": { "kind": { "const": "materiality" } } }, "then": { "$ref": "#/$defs/materialityCase" } },
+    { "if": { "properties": { "kind": { "const": "forecast_dating" } } }, "then": { "$ref": "#/$defs/forecastDatingCase" } },
+    { "if": { "properties": { "kind": { "const": "false_escalation" } } }, "then": { "$ref": "#/$defs/falseEscalationCase" } },
+    { "if": { "properties": { "kind": { "const": "extraction" } } }, "then": { "$ref": "#/$defs/extractionCase" } },
+    { "if": { "properties": { "kind": { "const": "grounding" } } }, "then": { "$ref": "#/$defs/groundingCase" } },
+    { "if": { "properties": { "kind": { "const": "refusal" } } }, "then": { "$ref": "#/$defs/refusalCase" } },
+    { "if": { "properties": { "kind": { "const": "usefulness" } } }, "then": { "$ref": "#/$defs/usefulnessCase" } }
+  ],
+  "$defs": {
+    "kind": {
+      "enum": [
+        "extraction",
+        "engine",
+        "boundary",
+        "persistence",
+        "materiality",
+        "forecast_dating",
+        "false_escalation",
+        "grounding",
+        "refusal",
+        "usefulness"
+      ]
+    },
+    "decimalString": {
+      "type": "string",
+      "pattern": "^-?[0-9]+(\\.[0-9]+)?$",
+      "description": "A Decimal literal, compared by numeric value rather than by exact text."
+    },
+    "isoDate": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "notComputableReason": {
+      "enum": [
+        "missing_line",
+        "zero_denominator",
+        "sign_meaningless_denominator",
+        "period_incomplete",
+        "facility_facts_absent",
+        "formula_not_computable"
+      ]
+    },
+    "ratioDefinitionCode": {
+      "enum": [
+        "leverage_ratio", "dscr", "interest_coverage_ratio", "fixed_charge_coverage_ratio",
+        "current_ratio", "quick_ratio", "tol_tnw", "debt_to_ebitda", "net_debt_to_ebitda",
+        "ebitda_margin", "tnw_floor", "minimum_net_worth", "utilisation",
+        "drawing_power_headroom", "receivable_days", "inventory_days", "payable_days",
+        "cash_conversion_cycle", "working_capital_gap", "asset_cover_ratio",
+        "minimum_liquidity", "maximum_capex"
+      ]
+    },
+    "passMark": {
+      "type": "object",
+      "required": ["type"],
+      "oneOf": [
+        {
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": { "type": { "const": "exact" } }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type", "precision_floor", "recall_floor", "fail_closed_adversarial"],
+          "properties": {
+            "type": { "const": "field_precision_recall" },
+            "precision_floor": { "type": "number", "minimum": 0, "maximum": 1 },
+            "recall_floor": { "type": "number", "minimum": 0, "maximum": 1 },
+            "fail_closed_adversarial": { "const": true }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type", "window_days"],
+          "properties": {
+            "type": { "const": "date_window" },
+            "window_days": { "type": "integer", "minimum": 1 }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": {
+            "type": { "const": "zero_false_escalation" },
+            "cohorts": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": { "type": { "const": "zero_ungrounded_figures" } }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type"],
+          "properties": { "type": { "const": "exact_refusal" } }
+        },
+        {
+          "additionalProperties": false,
+          "required": ["type", "floor", "reviewers"],
+          "properties": {
+            "type": { "const": "rubric_floor" },
+            "floor": { "type": "number", "minimum": 0, "maximum": 5 },
+            "reviewers": { "type": "integer", "minimum": 1 }
+          }
+        }
+      ]
+    },
+    "engineCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "exact" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["definition_code", "lines"],
+          "properties": {
+            "definition_code": { "$ref": "#/$defs/ratioDefinitionCode" },
+            "lines": {
+              "type": "object",
+              "additionalProperties": { "$ref": "#/$defs/decimalString" }
+            },
+            "facility": {
+              "type": ["object", "null"],
+              "additionalProperties": false,
+              "properties": {
+                "sanctioned_limit": { "$ref": "#/$defs/decimalString" },
+                "outstanding": { "$ref": "#/$defs/decimalString" },
+                "drawing_power": { "$ref": "#/$defs/decimalString" },
+                "promoter_shareholding_floor_pct": { "$ref": "#/$defs/decimalString" }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["computable"],
+          "properties": {
+            "computable": { "type": "boolean" },
+            "value": { "$ref": "#/$defs/decimalString" },
+            "reason": { "$ref": "#/$defs/notComputableReason" },
+            "band_breached": { "type": "boolean" }
+          },
+          "allOf": [
+            {
+              "if": { "properties": { "computable": { "const": true } } },
+              "then": { "required": ["value", "band_breached"], "not": { "required": ["reason"] } }
+            },
+            {
+              "if": { "properties": { "computable": { "const": false } } },
+              "then": { "required": ["reason"], "not": { "required": ["value", "band_breached"] } }
+            }
+          ]
+        }
+      }
+    },
+    "boundaryCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "exact" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["covenant", "ratio", "period"],
+          "properties": {
+            "covenant": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["threshold", "direction"],
+              "properties": {
+                "threshold": { "$ref": "#/$defs/decimalString" },
+                "direction": { "enum": ["min", "max"] },
+                "warning_headroom_pct": { "$ref": "#/$defs/decimalString" },
+                "cure_days": { "type": "integer", "minimum": 0 }
+              }
+            },
+            "ratio": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["computable"],
+              "properties": {
+                "computable": { "type": "boolean" },
+                "value": { "$ref": "#/$defs/decimalString" },
+                "reason": { "$ref": "#/$defs/notComputableReason" }
+              }
+            },
+            "period": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["is_complete"],
+              "properties": {
+                "is_complete": { "type": "boolean" },
+                "as_of_date": { "$ref": "#/$defs/isoDate" },
+                "last_complete_period": { "type": "string" }
+              }
+            },
+            "waiver": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["from_date", "state"],
+              "properties": {
+                "from_date": { "$ref": "#/$defs/isoDate" },
+                "to_date": { "$ref": "#/$defs/isoDate" },
+                "state": { "type": "string" }
+              }
+            },
+            "exception": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["from_period", "to_period"],
+              "properties": {
+                "from_period": { "type": "string" },
+                "to_period": { "type": "string" },
+                "relaxed_threshold": { "$ref": "#/$defs/decimalString" }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["verdict"],
+          "properties": {
+            "verdict": {
+              "enum": ["pass", "warning", "breach", "breach_cure_open", "stale", "not_computable"]
+            },
+            "headroom_pct": { "$ref": "#/$defs/decimalString" },
+            "threshold_used": { "$ref": "#/$defs/decimalString" },
+            "cure_ends_on": { "$ref": "#/$defs/isoDate" },
+            "reason": { "$ref": "#/$defs/notComputableReason" },
+            "stale_reason": { "type": "string" }
+          }
+        }
+      }
+    },
+    "persistenceCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "exact" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["events", "as_of", "thresholds"],
+          "properties": {
+            "events": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/isoDate" },
+              "minItems": 1
+            },
+            "as_of": { "$ref": "#/$defs/isoDate" },
+            "thresholds": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["sustained_days", "sustained_events", "event_window_days"],
+              "properties": {
+                "sustained_days": { "type": "integer", "minimum": 1 },
+                "sustained_events": { "type": "integer", "minimum": 1 },
+                "event_window_days": { "type": "integer", "minimum": 1 }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sustained", "firing_arm", "persistence_days", "event_count_window"],
+          "properties": {
+            "sustained": { "type": "boolean" },
+            "firing_arm": { "enum": ["sustained_days", "sustained_events", null] },
+            "persistence_days": { "type": "integer", "minimum": 0 },
+            "event_count_window": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "materialityCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "exact" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["covenant_headrooms", "thresholds"],
+          "properties": {
+            "covenant_headrooms": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["covenant_id", "threshold"],
+                "properties": {
+                  "covenant_id": { "type": "string" },
+                  "threshold": { "$ref": "#/$defs/decimalString" },
+                  "current_headroom_pct": { "$ref": "#/$defs/decimalString" },
+                  "projected_headroom_pct": { "$ref": "#/$defs/decimalString" }
+                }
+              }
+            },
+            "thresholds": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["headroom_erosion_pct"],
+              "properties": {
+                "headroom_erosion_pct": { "$ref": "#/$defs/decimalString" }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["materiality_pct", "counts_toward_pressure", "driving_covenant_id"],
+          "properties": {
+            "materiality_pct": { "$ref": "#/$defs/decimalString" },
+            "counts_toward_pressure": { "type": "boolean" },
+            "driving_covenant_id": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "referenceDatasetInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reference_dataset", "cohort", "borrower_reference"],
+      "properties": {
+        "reference_dataset": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["seed", "borrower_count", "facility_count", "quarter_count"],
+          "properties": {
+            "seed": { "type": "integer" },
+            "borrower_count": { "type": "integer", "minimum": 1 },
+            "facility_count": { "type": "integer", "minimum": 1 },
+            "quarter_count": { "type": "integer", "minimum": 1 }
+          }
+        },
+        "cohort": {
+          "enum": ["deteriorating", "noisy_transient", "stable", "templated_remainder"]
+        },
+        "borrower_reference": {
+          "type": "string",
+          "pattern": "^B-[0-9]{6}$"
+        }
+      }
+    },
+    "forecastDatingCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "date_window" } } },
+        "references_reference_portfolio": { "const": true },
+        "input": {
+          "allOf": [
+            { "$ref": "#/$defs/referenceDatasetInput" },
+            { "properties": { "cohort": { "const": "deteriorating" } } }
+          ]
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["crossing_within_days_of_label"],
+          "properties": {
+            "crossing_within_days_of_label": { "type": "integer", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "falseEscalationCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "zero_false_escalation" } } },
+        "references_reference_portfolio": { "const": true },
+        "input": {
+          "allOf": [
+            { "$ref": "#/$defs/referenceDatasetInput" },
+            { "properties": { "cohort": { "enum": ["noisy_transient", "stable"] } } }
+          ]
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["escalates"],
+          "properties": {
+            "escalates": { "const": false }
+          }
+        }
+      }
+    },
+    "extractionCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "field_precision_recall" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["clause_text"],
+          "properties": {
+            "clause_text": { "type": "string", "minLength": 20 }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["refused", "definition_code", "direction", "threshold", "unit", "plausible", "refusal_reason"],
+          "properties": {
+            "refused": { "type": "boolean" },
+            "definition_code": { "anyOf": [{ "$ref": "#/$defs/ratioDefinitionCode" }, { "type": "null" }] },
+            "direction": { "enum": ["min", "max", null] },
+            "threshold": { "anyOf": [{ "$ref": "#/$defs/decimalString" }, { "type": "null" }] },
+            "unit": { "type": ["string", "null"] },
+            "plausible": { "type": ["boolean", "null"] },
+            "refusal_reason": { "type": ["string", "null"] }
+          }
+        }
+      }
+    },
+    "groundingCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "zero_ungrounded_figures" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["slots", "draft"],
+          "properties": {
+            "slots": { "type": "object", "minProperties": 1 },
+            "draft": {
+              "type": "object",
+              "required": ["headline", "summary"],
+              "properties": {
+                "headline": { "type": "string" },
+                "summary": { "type": "string" }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["grounding_passed", "fabricated_tokens"],
+          "properties": {
+            "grounding_passed": { "type": "boolean" },
+            "fabricated_tokens": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      }
+    },
+    "refusalCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "exact_refusal" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["model_reply_raw"],
+          "properties": {
+            "model_reply_raw": { "type": "string", "minLength": 1 }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["refused", "reasons"],
+          "properties": {
+            "refused": { "const": true },
+            "reasons": { "type": "array", "items": { "type": "string" }, "minItems": 1 }
+          }
+        }
+      }
+    },
+    "usefulnessCase": {
+      "type": "object",
+      "properties": {
+        "pass_mark": { "properties": { "type": { "const": "rubric_floor" } } },
+        "input": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["memo_draft"],
+          "properties": {
+            "memo_draft": {
+              "type": "object",
+              "required": ["headline", "summary", "drivers", "recommended_next_step", "disclaimer"],
+              "properties": {
+                "headline": { "type": "string" },
+                "summary": { "type": "string" },
+                "drivers": { "type": "array", "items": { "type": "string" } },
+                "recommended_next_step": { "type": "string" },
+                "disclaimer": { "type": "string" }
+              }
+            }
+          }
+        },
+        "expected": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["rubric_floor_met", "criteria"],
+          "properties": {
+            "rubric_floor_met": { "type": "boolean" },
+            "criteria": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": ["name", "satisfied"],
+                "properties": {
+                  "name": { "type": "string" },
+                  "satisfied": { "type": "boolean" }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,170 @@
+{% import "_components/components.html" as components %}
+{#
+  Seven columns answer "what do I open first"; everything that answers
+  "why" sits one keystroke away in a sibling detail row.
+
+  The `Why?` control deliberately stays in the summary row rather than
+  moving into the detail: R-21 makes explainability a first-class path, and
+  a reader should never have to expand a row to reach it. Without
+  JavaScript the detail rows render open (see `.no-js` in `modern.css`), so
+  no fact on this screen depends on script.
+#}
+<section class="queue-ledger-region"
+         id="queue-ledger"
+         aria-label="Portfolio queue results"
+         aria-live="polite"
+         hx-get="/"
+         hx-trigger="every 60s, refresh"
+         hx-include="#queue-filters"
+         hx-target="this"
+         hx-swap="outerHTML transition:true"
+         data-state="{{ 'empty' if view.empty else 'rest' }}"
+         data-run-id="{{ view.run_id if view.run_id else '' }}"
+         data-live-region="queue-ledger"
+         data-live-poll>
+  {% if view.empty %}
+    {{ components.empty_state("queue-empty", view.empty_title, view.empty_message) }}
+    {% if active_filters %}
+      <p class="queue-empty-action">
+        <a class="button button--secondary" href="{{ clear_href }}">{{ labels.filters_clear }}</a>
+      </p>
+    {% endif %}
+  {% else %}
+    <div class="ledger-table" data-state="rest">
+      <table class="ledger-table__table">
+        <caption class="ledger-table__caption">
+          {{ labels.heading }} — {{ labels.ranked_by }}{% if view.as_of_date %}, {{ view.as_of_date|ist_date }}{% endif %}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col" class="ledger-table__heading--icon"><span class="sr-only">Row detail</span></th>
+            <th scope="col" class="ledger-table__heading--icon"><input type="checkbox" id="select-all" aria-label="Select all rows"></th>
+            <th scope="col" class="ledger-table__heading--rank">{{ labels.column_rank }}</th>
+            <th scope="col">{{ labels.column_borrower }}</th>
+            <th scope="col" class="ledger-table__heading--right ledger-table__heading--amount">{{ labels.column_exposure }}</th>
+            <th scope="col">{{ labels.column_band }}</th>
+            <th scope="col">{{ labels.column_dated_risk }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in view.rows %}
+            <tr class="ledger-row" id="{{ row.row_id }}" data-borrower-id="{{ row.borrower_reference }}" data-live-entity="borrower:{{ row.borrower_reference }}">
+              <td class="ledger-row__cell ledger-row__cell--icon">
+                {# `icon-button` is what opts this out of the shell's blanket
+                   filled-button rule; the chevron is an icon, not a call to
+                   action. #}
+                <button class="icon-button ledger-row__disclosure"
+                        type="button"
+                        aria-expanded="false"
+                        aria-controls="{{ row.detail_id }}">
+                  <span class="ledger-row__chevron" aria-hidden="true"></span>
+                  <span class="sr-only">{{ labels.detail_show }} {{ row.borrower_name }}</span>
+                </button>
+              </td>
+              <td class="ledger-row__cell ledger-row__cell--icon">
+                {# `form=` associates the box with the selection bar outside
+                   the table, so a selection posts without JavaScript. #}
+                <input type="checkbox"
+                       class="row-select"
+                       name="selected_ids"
+                       form="queue-selection"
+                       value="{{ row.case_reference }}"
+                       {% if not row.case_reference %}disabled{% endif %}
+                       aria-label="{% if row.case_reference %}Select {{ row.borrower_name }}{% else %}{{ row.borrower_name }} has no case to act on{% endif %}">
+              </td>
+              <td class="ledger-row__cell ledger-row__cell--rank">{{ row.rank }}</td>
+              <td class="ledger-row__cell ledger-row__cell--borrower">
+                <a class="text-action" href="{{ row.href }}">{{ row.borrower_name }}</a>
+                <span class="ledger-row__meta">{{ row.borrower_reference }}{% if row.sma_band and row.sma_band != '—' %} · {{ labels.column_sma_band }} {{ row.sma_band }}{% endif %}</span>
+              </td>
+              <td class="ledger-row__cell ledger-row__cell--right ledger-row__cell--amount">{% if row.exposure is not none %}{{ row.exposure|indian_currency }}{% else %}—{% endif %}</td>
+              <td class="ledger-row__cell">{{ components.band_chip(row.band) }}</td>
+              <td class="ledger-row__cell ledger-row__cell--risk">
+                <span class="queue-row__probability">{{ row.probability_display }}{% if row.crossing_date %} {{ labels.by }} {{ row.crossing_date|ist_date }}{% endif %}</span>
+                {% if row.why_href %}<a class="queue-row__why text-action" href="{{ row.why_href }}" hx-get="{{ row.why_href }}" hx-target="body" hx-swap="beforeend" aria-label="Why {{ row.borrower_name }} is ranked here">{{ labels.why }}</a>{% endif %}
+              </td>
+            </tr>
+            <tr class="ledger-detail" id="{{ row.detail_id }}" hidden>
+              <td class="ledger-detail__cell" colspan="7">
+                <div class="ledger-detail__grid">
+                  <div class="ledger-detail__block ledger-detail__block--forecast">
+                    <h3 class="ledger-detail__title">{{ labels.detail_horizons }}</h3>
+                    <div class="queue-row__horizons">
+                      {% if row.horizon_displays %}
+                        {% for horizon in row.horizon_displays %}<span>{{ horizon }}</span>{% endfor %}
+                      {% else %}
+                        <span>Unavailable</span>
+                      {% endif %}
+                    </div>
+                    {% if row.trajectory_svg %}
+                      <span class="queue-row__trajectory" aria-label="{{ row.trajectory_label }}">{{ row.trajectory_svg }}</span>
+                    {% else %}
+                      <span class="queue-row__trajectory queue-row__trajectory--empty" role="img" aria-label="{{ row.trajectory_label }}">—</span>
+                    {% endif %}
+                    <p class="queue-row__confidence">{{ row.confidence_display }}</p>
+                  </div>
+
+                  <div class="ledger-detail__block">
+                    <h3 class="ledger-detail__title">{{ labels.detail_covenant }}</h3>
+                    <p>{{ row.worst_covenant }}</p>
+                    {# Shown only where the exposure column is dropped for
+                       width, so narrowing the table never loses a fact. #}
+                    <p class="ledger-detail__exposure">{{ labels.column_exposure }} {% if row.exposure is not none %}{{ row.exposure|indian_currency }}{% else %}—{% endif %}</p>
+                    {% if row.dominant_driver %}<p class="queue-row__driver">Dominant driver: {{ row.dominant_driver }}</p>{% endif %}
+                  </div>
+
+                  <div class="ledger-detail__block">
+                    <h3 class="ledger-detail__title">{{ labels.detail_case }}</h3>
+                    <p>{{ row.case_state }} · {{ row.assignee }}</p>
+                    <h3 class="ledger-detail__title">{{ labels.detail_changed }}</h3>
+                    <p>{{ row.what_changed }}</p>
+                  </div>
+
+                  <div class="ledger-detail__block ledger-detail__block--actions">
+                    {% if row.case_href %}
+                      <a class="button button--secondary" href="{{ row.case_href }}">{{ labels.open_case }}</a>
+                    {% else %}
+                      <a class="button button--secondary" href="{{ row.href }}">{{ labels.open_borrower }}</a>
+                    {% endif %}
+                    <a class="button button--secondary" href="{{ row.href }}#case-memo">{{ labels.ai_explanation }}</a>
+                    {% if can_update_case and row.case_reference %}
+                      {#
+                        One-click actions only. The controls that need a
+                        choice — an arbitrary assignee or state — live once
+                        in the selection bar rather than being repeated on
+                        every row, which would multiply the whole assignee
+                        list by the page size for no added reach.
+                      #}
+                      <form method="post" action="/bulk" class="queue-row-actions">
+                        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                        <input type="hidden" name="selected_ids" value="{{ row.case_reference }}">
+                        {# Both parameters ride along on every submit; the
+                           pressed button's `action` decides which one the
+                           service reads. #}
+                        <input type="hidden" name="assignee" value="{{ principal.id }}">
+                        <input type="hidden" name="state" value="escalated">
+                        <button class="button button--secondary" type="submit" name="action" value="assign">Assign to me</button>
+                        <button class="button button--secondary" type="submit" name="action" value="state">Escalate</button>
+                        <button class="button button--secondary" type="submit" name="action" value="watchlist">Watch</button>
+                      </form>
+                    {% endif %}
+                  </div>
+                </div>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    {% if view.next_cursor %}
+      {#
+        The queue is seek-paginated against one completed run, so there is
+        no total page count to state. The control says only what is true.
+      #}
+      <nav class="pagination queue-pagination" aria-label="Portfolio queue pages">
+        <a class="button pagination__next" href="/?cursor={{ view.next_cursor }}">Next {{ view.rows|length }} borrowers</a>
+      </nav>
+    {% endif %}
+  {% endif %}
+  <span class="sr-only">Last updated <time data-last-updated>just now</time></span>
+</section>

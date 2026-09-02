@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ labels.title }} — {{ subject_label }}{% endblock %}
+{% block h1 %}{{ labels.title }}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/why.css">
+{% endblock %}
+
+{% block content %}
+  {% include "screens/why/_drawer.html" %}
+{% endblock %}

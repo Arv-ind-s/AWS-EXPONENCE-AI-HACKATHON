@@ -1,0 +1,19 @@
+[   61463ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/covenants/new:0
+[  188784ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  188785ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  188785ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  248816ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  248816ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  248817ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  308814ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  308820ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  308821ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[10303741ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10696768ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10697662ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10697896ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10698119ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10698303ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10698483ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10698683ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0
+[10698877ms] [ERROR] Failed to load resource: the server responded with a status of 403 (Forbidden) @ http://127.0.0.1:8000/sign-in:0

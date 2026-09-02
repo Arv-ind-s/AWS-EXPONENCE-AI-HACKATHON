@@ -1,0 +1,35 @@
+{
+  "id": "EX-0028",
+  "kind": "extraction",
+  "title": "An implausible leverage-ratio threshold is fail-closed at verification, not silently accepted",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": true,
+  "tags": [
+    "extraction",
+    "adversarial",
+    "implausible_threshold"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "clause_text": "The Borrower shall maintain a leverage ratio not exceeding 950.00x at all times."
+  },
+  "expected": {
+    "refused": true,
+    "definition_code": "leverage_ratio",
+    "direction": "max",
+    "threshold": "950.00",
+    "unit": "ratio",
+    "plausible": false,
+    "refusal_reason": "threshold_not_plausible"
+  },
+  "pass_mark": {
+    "type": "field_precision_recall",
+    "precision_floor": 0.95,
+    "recall_floor": 0.95,
+    "fail_closed_adversarial": true
+  },
+  "note": "detect_candidates narrows this line the same as EX-0025 -- narrowing does not check plausibility, so this is a genuine candidate with definition leverage_ratio and threshold 950.00. domain.intake.verify's check 4 (VerificationCheckName.THRESHOLD_PLAUSIBLE, hand-verified against leverage_ratio's plausible_max of 6) fails deterministically for any threshold above 6, so 950.00 is refused before it can ever be confirmed as a covenant -- the 100% fail-closed pass mark spec §17.7 requires of every adversarial case."
+}

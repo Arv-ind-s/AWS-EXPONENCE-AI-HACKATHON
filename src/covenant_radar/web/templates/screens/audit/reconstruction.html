@@ -1,0 +1,91 @@
+{% extends "base.html" %}
+
+{% macro render_value(value) -%}
+  {%- if value is mapping -%}
+    {%- if value|length == 0 -%}
+      <span>—</span>
+    {%- else -%}
+      <dl>
+        {%- for key, item in value.items() -%}
+          <div><dt>{{ key }}</dt><dd>{{ render_value(item) }}</dd></div>
+        {%- endfor -%}
+      </dl>
+    {%- endif -%}
+  {%- elif value is sequence and value is not string -%}
+    {%- if value|length == 0 -%}
+      <span>—</span>
+    {%- else -%}
+      <ol>
+        {%- for item in value -%}<li>{{ render_value(item) }}</li>{%- endfor -%}
+      </ol>
+    {%- endif -%}
+  {%- elif value is none -%}
+    <span>—</span>
+  {%- else -%}
+    <span>{{ value }}</span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% block page_title %}{{ labels.warning_title }}{% endblock %}
+{% block h1 %}{{ labels.warning_title }}{% endblock %}
+
+{% block content %}
+  <div class="audit-reconstruction" id="audit-reconstruction" data-state="rest">
+    {% if not view.chain.verified %}
+      <section class="panel audit-chain audit-chain--failed" role="alert" aria-live="assertive">
+        <h2 class="panel__title">{{ labels.chain_failed }}</h2>
+        <p>{{ labels.chain_failure_detail.format(message=view.chain.message) }}</p>
+        {% if view.chain.failure %}
+          <dl>
+            {% for key, value in view.chain.failure.items() %}
+              <div><dt>{{ key }}</dt><dd>{{ value }}</dd></div>
+            {% endfor %}
+          </dl>
+        {% endif %}
+      </section>
+    {% else %}
+      <p class="audit-chain audit-chain--verified" role="status">{{ labels.chain_verified }}</p>
+    {% endif %}
+
+    <section class="panel" aria-labelledby="warning-summary-title">
+      <h2 class="panel__title" id="warning-summary-title">{{ labels.warning_title }}</h2>
+      <dl>
+        <div><dt>{{ labels.warning_id }}</dt><dd><code>{{ view.forecast_id }}</code></dd></div>
+        <div><dt>{{ labels.run_id }}</dt><dd><code>{{ view.run_id }}</code></dd></div>
+        <div><dt>{{ labels.as_of_date }}</dt><dd>{{ view.as_of_date.isoformat() }}</dd></div>
+        <div><dt>{{ labels.horizon }}</dt><dd>{{ view.horizon_days }}</dd></div>
+      </dl>
+      {% if view.can_export %}
+        <form method="post" action="{{ view.bundle_href }}" data-action="evidence-export">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <button class="button" type="submit">{{ labels.export_bundle }}</button>
+        </form>
+      {% endif %}
+    </section>
+
+    <section aria-labelledby="timeline-title">
+      <h2 id="timeline-title">{{ labels.timeline }}</h2>
+      <div class="audit-timeline">
+        {% for part in view.parts %}
+          <section class="panel audit-timeline__part" id="audit-part-{{ part.key }}" data-part="{{ part.key }}">
+            <h3 class="panel__title">{{ part.title }}</h3>
+            <p><strong>{{ labels.status }}:</strong> {{ labels["status_" ~ part.status] if ("status_" ~ part.status) in labels else part.status }}</p>
+            {% if part.status in ("not_generated", "absent") %}
+              <p>{{ labels.no_detail }}</p>
+            {% else %}
+              <div class="audit-timeline__details">{{ render_value(part.details) }}</div>
+            {% endif %}
+            <h4>{{ labels.provenance }}</h4>
+            {% if part.provenance %}
+              <ul>
+                {% for reference in part.provenance %}<li><code>{{ reference }}</code></li>{% endfor %}
+              </ul>
+            {% else %}
+              <p>{{ labels.no_provenance }}</p>
+            {% endif %}
+          </section>
+        {% endfor %}
+      </div>
+    </section>
+  </div>
+{% endblock %}

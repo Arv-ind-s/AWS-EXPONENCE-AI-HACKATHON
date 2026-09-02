@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set assignee_options = assignee_options|default([("", labels.all_assignees)]) %}
+{% set assignee_filter_options_enabled = assignee_filter_options_enabled|default(false) %}
+
+{% block page_title %}{{ labels.list_title }}{% endblock %}
+{% block h1 %}{{ labels.list_heading }}{% endblock %}
+
+{% block content %}
+<div class="case-file case-screen" data-state="{{ 'empty' if view.empty else 'ready' }}">
+  <section class="queue-hero" aria-labelledby="case-register-title">
+    <div>
+      <p class="queue-hero__eyebrow">{{ labels.list_eyebrow }}</p>
+      <h2 id="case-register-title">{{ labels.list_subheading }}</h2>
+    </div>
+    <div class="queue-hero__stats" aria-label="Case register summary">
+      <div class="queue-stat queue-stat--act">
+        <span class="queue-stat__value">{{ view.total }}</span>
+        <span class="queue-stat__label">{{ labels.column_case }}</span>
+      </div>
+      <div class="queue-stat queue-stat--amber">
+        <span class="queue-stat__value">{{ view.open_count }}</span>
+        <span class="queue-stat__label">{{ labels.state }}</span>
+      </div>
+      <div class="queue-stat queue-stat--watch">
+        <span class="queue-stat__value">{{ view.overdue_count }}</span>
+        <span class="queue-stat__label">{{ labels.overdue }}</span>
+      </div>
+    </div>
+  </section>
+
+  {% if error %}
+    <div class="state state--error" role="alert">
+      <strong class="state__title">{{ labels.form_error }}</strong>
+      <p class="state__message">{{ error }}</p>
+    </div>
+  {% endif %}
+
+  {% set filters_active = view.filters.get('state') or view.filters.get('assignee') or view.filters.get('q') or view.filters.get('overdue') %}
+  {% call components.filter_bar(
+    "case-filters",
+    "/cases",
+    state="active" if filters_active else "rest",
+    submit_label=labels.apply,
+    clear_href="/cases" if filters_active else ""
+  ) %}
+      {% set state_options = [('', labels.all_states), ('open', 'Open'), ('in_progress', 'In progress'), ('monitoring', 'Monitoring'), ('escalated', 'Escalated'), ('closed', 'Closed')] %}
+      {{ components.field('state', labels.state, type='select', field_id='case-state', value=view.filters.get('state', ''), options=state_options) }}
+      {% if assignee_filter_options_enabled %}
+        {{ components.field('assignee', labels.assignee, type='select', field_id='case-assignee', value=view.filters.get('assignee', ''), options=assignee_options) }}
+      {% else %}
+        {{ components.field('assignee', labels.assignee, type='text', field_id='case-assignee', value=view.filters.get('assignee', ''), placeholder='Assignee UUID') }}
+      {% endif %}
+      {{ components.field('q', labels.borrower, type='search', field_id='case-search', value=view.filters.get('q', ''), placeholder='Case or borrower') }}
+      <label class="field case-filter-check" for="case-overdue">
+        <span class="field__label">{{ labels.overdue }}</span>
+        <span><input id="case-overdue" name="overdue" type="checkbox" value="true"{% if view.filters.get('overdue') %} checked{% endif %}> {{ labels.overdue }}</span>
+      </label>
+  {% endcall %}
+
+  {% if view.empty %}
+    {{ components.empty_state('cases-empty', labels.no_cases_title, labels.no_cases_message) }}
+  {% else %}
+    <section class="panel" aria-labelledby="case-register-table-title">
+      <h2 class="panel__title" id="case-register-table-title">{{ labels.list_heading }}</h2>
+      <div class="case-evidence__scroll">
+        <table class="case-evidence__table">
+          <caption class="sr-only">{{ labels.list_heading }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ labels.column_case }}</th>
+              <th scope="col">{{ labels.column_borrower }}</th>
+              <th scope="col">{{ labels.column_state }}</th>
+              <th scope="col">{{ labels.column_band }}</th>
+              <th scope="col">{{ labels.column_assignee }}</th>
+              <th scope="col">{{ labels.column_due }}</th>
+              <th scope="col">{{ labels.column_updated }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in view.rows %}
+            <tr data-case-reference="{{ row.reference }}" data-case-state="{{ row.state }}"{% if row.overdue %} data-overdue="true"{% endif %}>
+              <th scope="row"><a class="text-action" href="{{ row.href }}">{{ row.reference }}</a></th>
+              <td>
+                <a class="text-action" href="/borrowers/{{ row.borrower_reference }}">{{ row.borrower_name }}</a>
+                <span class="case-evidence__link">{{ row.borrower_reference }}</span>
+              </td>
+              <td>{{ row.state_label }}</td>
+              <td>{{ components.band_chip(row.band, label=row.band_label) }}</td>
+              <td>{{ row.assignee }}</td>
+              <td{% if row.overdue %} data-overdue="true"{% endif %}>{{ row.due_at }}{% if row.overdue %} · {{ labels.overdue }}{% endif %}</td>
+              <td>{{ row.updated_at }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </section>
+  {% endif %}
+</div>
+{% endblock %}

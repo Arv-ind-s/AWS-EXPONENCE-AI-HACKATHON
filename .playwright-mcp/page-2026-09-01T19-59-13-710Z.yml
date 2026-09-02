@@ -1,0 +1,263 @@
+- generic [active] [ref=f66e1]:
+  - link "Skip to content" [ref=f66e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f66e3]:
+    - complementary "Workspace navigation" [ref=f66e4]:
+      - link "Covenant Radar" [ref=f66e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f66e13]:
+          - strong [ref=f66e14]: Covenant
+          - generic [ref=f66e15]: Radar
+      - navigation "Primary navigation" [ref=f66e16]:
+        - region [ref=f66e17]:
+          - heading "Monitor" [level=2] [ref=f66e18]
+          - link "Portfolio queue" [ref=f66e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f66e23] [cursor=pointer]:
+            - /url: /cases
+          - link "13 unread notifications" [ref=f66e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f66e30]: Notifications (13)
+            - generic [aria-hidden] [ref=f66e31]: "13"
+          - link "Search" [ref=f66e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f66e37]:
+          - heading "Portfolio data" [level=2] [ref=f66e38]
+          - link "Borrowers" [ref=f66e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f66e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f66e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f66e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f66e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f66e61]:
+          - heading "Workflows" [level=2] [ref=f66e62]
+          - link "Document review" [ref=f66e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f66e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f66e71] [cursor=pointer]
+    - generic [ref=f66e75]:
+      - banner [ref=f66e76]:
+        - generic [ref=f66e78]:
+          - generic [ref=f66e79]: Workspace
+          - generic [ref=f66e82]: Current view
+        - search [ref=f66e83]:
+          - generic [ref=f66e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f66e85]
+          - generic: /
+        - generic [ref=f66e86]:
+          - button "Live activity" [ref=f66e87]:
+            - generic [ref=f66e89]: Live
+          - button "Use dark theme" [ref=f66e91] [cursor=pointer]
+          - button "Open user menu" [ref=f66e95] [cursor=pointer]
+      - main [ref=f66e99]:
+        - generic [ref=f66e101]:
+          - paragraph [ref=f66e102]: Decision workspace
+          - heading "Notification centre" [level=1] [ref=f66e103]
+        - generic [ref=f66e104]:
+          - region [ref=f66e105]:
+            - generic [ref=f66e106]:
+              - paragraph [ref=f66e107]: "Unread notifications: 13"
+              - heading "Durable notices for the work in your queue." [level=2] [ref=f66e108]
+          - group "Notification centre" [ref=f66e110]:
+            - generic [ref=f66e112]:
+              - generic [ref=f66e113]: Status
+              - combobox "Status" [ref=f66e114]:
+                - option "All" [selected]
+                - option "Unread"
+                - option "Read"
+            - generic [ref=f66e115]:
+              - generic [ref=f66e116]: Notification type
+              - combobox "Notification type" [ref=f66e117]:
+                - option "All notification types" [selected]
+                - option "band_change"
+                - option "morning_queue"
+                - option "sla_breach"
+                - option "certificate_due"
+                - option "job_failure"
+                - option "security_alert"
+                - option "system_failure"
+            - button "Apply filters" [ref=f66e118] [cursor=pointer]
+          - region [ref=f66e119]:
+            - generic [ref=f66e120]:
+              - generic [ref=f66e121]:
+                - paragraph [ref=f66e122]: "Unread notifications: 13"
+                - heading "Notification centre" [level=2] [ref=f66e123]
+              - button "Mark all as read" [ref=f66e125] [cursor=pointer]
+            - list [ref=f66e126]:
+              - listitem [ref=f66e127]:
+                - generic [ref=f66e128]:
+                  - generic [ref=f66e129]:
+                    - 'heading "Covenant Radar: B-000002" [level=3] [ref=f66e130]'
+                    - paragraph [ref=f66e131]: "Type: band_change"
+                  - generic [ref=f66e132]:
+                    - text: Unread
+                    - time [ref=f66e133]: 02 Sep 2026
+                - paragraph [ref=f66e134]: Moved into the act band; case C-018CA12C8A62-2 is open for review. Case C-018CA12C8A62-2
+                - generic [ref=f66e135]:
+                  - link "Open" [ref=f66e136] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69fe-773a-852a-24e112cc8a80
+                  - button "Mark as read" [ref=f66e138] [cursor=pointer]
+              - listitem [ref=f66e139]:
+                - generic [ref=f66e140]:
+                  - generic [ref=f66e141]:
+                    - 'heading "Covenant Radar: B-000005" [level=3] [ref=f66e142]'
+                    - paragraph [ref=f66e143]: "Type: band_change"
+                  - generic [ref=f66e144]:
+                    - text: Unread
+                    - time [ref=f66e145]: 02 Sep 2026
+                - paragraph [ref=f66e146]: Moved into the act band; case C-018CC00C97E5-2 is open for review. Case C-018CC00C97E5-2
+                - generic [ref=f66e147]:
+                  - link "Open" [ref=f66e148] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69f8-722e-a6f9-5de02111eaa0
+                  - button "Mark as read" [ref=f66e150] [cursor=pointer]
+              - listitem [ref=f66e151]:
+                - generic [ref=f66e152]:
+                  - generic [ref=f66e153]:
+                    - 'heading "Covenant Radar: B-000001" [level=3] [ref=f66e154]'
+                    - paragraph [ref=f66e155]: "Type: band_change"
+                  - generic [ref=f66e156]:
+                    - text: Unread
+                    - time [ref=f66e157]: 02 Sep 2026
+                - paragraph [ref=f66e158]: Moved into the act band; case C-018C9EEBC221-2 is open for review. Case C-018C9EEBC221-2
+                - generic [ref=f66e159]:
+                  - link "Open" [ref=f66e160] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69ef-7d45-9e32-efcd8f8ed89f
+                  - button "Mark as read" [ref=f66e162] [cursor=pointer]
+              - listitem [ref=f66e163]:
+                - generic [ref=f66e164]:
+                  - generic [ref=f66e165]:
+                    - 'heading "Covenant Radar: B-000007" [level=3] [ref=f66e166]'
+                    - paragraph [ref=f66e167]: "Type: band_change"
+                  - generic [ref=f66e168]:
+                    - text: Unread
+                    - time [ref=f66e169]: 02 Sep 2026
+                - paragraph [ref=f66e170]: Moved into the act band; case C-018CE77BCEE7-2 is open for review. Case C-018CE77BCEE7-2
+                - generic [ref=f66e171]:
+                  - link "Open" [ref=f66e172] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69e7-75c1-9e1a-22f7be87f060
+                  - button "Mark as read" [ref=f66e174] [cursor=pointer]
+              - listitem [ref=f66e175]:
+                - generic [ref=f66e176]:
+                  - generic [ref=f66e177]:
+                    - 'heading "Covenant Radar: B-000010" [level=3] [ref=f66e178]'
+                    - paragraph [ref=f66e179]: "Type: band_change"
+                  - generic [ref=f66e180]:
+                    - text: Unread
+                    - time [ref=f66e181]: 02 Sep 2026
+                - paragraph [ref=f66e182]: Moved into the act band; case C-018D54863CAA-2 is open for review. Case C-018D54863CAA-2
+                - generic [ref=f66e183]:
+                  - link "Open" [ref=f66e184] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69de-7c8f-9990-6c6be0e6f1a3
+                  - button "Mark as read" [ref=f66e186] [cursor=pointer]
+              - listitem [ref=f66e187]:
+                - generic [ref=f66e188]:
+                  - generic [ref=f66e189]:
+                    - 'heading "Covenant Radar: B-000012" [level=3] [ref=f66e190]'
+                    - paragraph [ref=f66e191]: "Type: band_change"
+                  - generic [ref=f66e192]:
+                    - text: Unread
+                    - time [ref=f66e193]: 02 Sep 2026
+                - paragraph [ref=f66e194]: Moved into the act band; case C-018D431EABAC-2 is open for review. Case C-018D431EABAC-2
+                - generic [ref=f66e195]:
+                  - link "Open" [ref=f66e196] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69d3-7c2f-b9e4-1e8f99dfd6b4
+                  - button "Mark as read" [ref=f66e198] [cursor=pointer]
+              - listitem [ref=f66e199]:
+                - generic [ref=f66e200]:
+                  - generic [ref=f66e201]:
+                    - 'heading "Covenant Radar: B-000011" [level=3] [ref=f66e202]'
+                    - paragraph [ref=f66e203]: "Type: band_change"
+                  - generic [ref=f66e204]:
+                    - text: Unread
+                    - time [ref=f66e205]: 02 Sep 2026
+                - paragraph [ref=f66e206]: Moved into the act band; case C-018C799299EB-2 is open for review. Case C-018C799299EB-2
+                - generic [ref=f66e207]:
+                  - link "Open" [ref=f66e208] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69cb-7148-9cfa-a0b3c1a747df
+                  - button "Mark as read" [ref=f66e210] [cursor=pointer]
+              - listitem [ref=f66e211]:
+                - generic [ref=f66e212]:
+                  - generic [ref=f66e213]:
+                    - 'heading "Covenant Radar: B-000004" [level=3] [ref=f66e214]'
+                    - paragraph [ref=f66e215]: "Type: band_change"
+                  - generic [ref=f66e216]:
+                    - text: Unread
+                    - time [ref=f66e217]: 02 Sep 2026
+                - paragraph [ref=f66e218]: Moved into the act band; case C-018C2AE68684-2 is open for review. Case C-018C2AE68684-2
+                - generic [ref=f66e219]:
+                  - link "Open" [ref=f66e220] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69c2-7993-8c3e-ca9be403357d
+                  - button "Mark as read" [ref=f66e222] [cursor=pointer]
+              - listitem [ref=f66e223]:
+                - generic [ref=f66e224]:
+                  - generic [ref=f66e225]:
+                    - 'heading "Covenant Radar: B-000009" [level=3] [ref=f66e226]'
+                    - paragraph [ref=f66e227]: "Type: band_change"
+                  - generic [ref=f66e228]:
+                    - text: Unread
+                    - time [ref=f66e229]: 02 Sep 2026
+                - paragraph [ref=f66e230]: Moved into the act band; case C-018D46C608C9-2 is open for review. Case C-018D46C608C9-2
+                - generic [ref=f66e231]:
+                  - link "Open" [ref=f66e232] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69ba-771e-9895-d61668066ab1
+                  - button "Mark as read" [ref=f66e234] [cursor=pointer]
+              - listitem [ref=f66e235]:
+                - generic [ref=f66e236]:
+                  - generic [ref=f66e237]:
+                    - 'heading "Covenant Radar: B-000013" [level=3] [ref=f66e238]'
+                    - paragraph [ref=f66e239]: "Type: band_change"
+                  - generic [ref=f66e240]:
+                    - text: Unread
+                    - time [ref=f66e241]: 02 Sep 2026
+                - paragraph [ref=f66e242]: Moved into the act band; case C-018CA99BA8CD-2 is open for review. Case C-018CA99BA8CD-2
+                - generic [ref=f66e243]:
+                  - link "Open" [ref=f66e244] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69ab-7a50-b2ab-ccac6a660bfb
+                  - button "Mark as read" [ref=f66e246] [cursor=pointer]
+              - listitem [ref=f66e247]:
+                - generic [ref=f66e248]:
+                  - generic [ref=f66e249]:
+                    - 'heading "Covenant Radar: B-000003" [level=3] [ref=f66e250]'
+                    - paragraph [ref=f66e251]: "Type: band_change"
+                  - generic [ref=f66e252]:
+                    - text: Unread
+                    - time [ref=f66e253]: 02 Sep 2026
+                - paragraph [ref=f66e254]: Moved into the act band; case C-018D4EF38A43-2 is open for review. Case C-018D4EF38A43-2
+                - generic [ref=f66e255]:
+                  - link "Open" [ref=f66e256] [cursor=pointer]:
+                    - /url: /cases/01a05e88-69a2-71b3-9dbe-891a47416145
+                  - button "Mark as read" [ref=f66e258] [cursor=pointer]
+              - listitem [ref=f66e259]:
+                - generic [ref=f66e260]:
+                  - generic [ref=f66e261]:
+                    - 'heading "Covenant Radar: B-000006" [level=3] [ref=f66e262]'
+                    - paragraph [ref=f66e263]: "Type: band_change"
+                  - generic [ref=f66e264]:
+                    - text: Unread
+                    - time [ref=f66e265]: 02 Sep 2026
+                - paragraph [ref=f66e266]: Moved into the act band; case C-018CECBF28C6-2 is open for review. Case C-018CECBF28C6-2
+                - generic [ref=f66e267]:
+                  - link "Open" [ref=f66e268] [cursor=pointer]:
+                    - /url: /cases/01a05e88-6995-7c2f-aef9-966851417457
+                  - button "Mark as read" [ref=f66e270] [cursor=pointer]
+              - listitem [ref=f66e271]:
+                - generic [ref=f66e272]:
+                  - generic [ref=f66e273]:
+                    - 'heading "Covenant Radar: B-000008" [level=3] [ref=f66e274]'
+                    - paragraph [ref=f66e275]: "Type: band_change"
+                  - generic [ref=f66e276]:
+                    - text: Unread
+                    - time [ref=f66e277]: 02 Sep 2026
+                - paragraph [ref=f66e278]: Moved into the act band; case C-018CF0AE3D48-2 is open for review. Case C-018CF0AE3D48-2
+                - generic [ref=f66e279]:
+                  - link "Open" [ref=f66e280] [cursor=pointer]:
+                    - /url: /cases/01a05e88-698b-71b6-93b5-ca636745db0f
+                  - button "Mark as read" [ref=f66e282] [cursor=pointer]
+            - generic [ref=f66e283]:
+              - text: Last updated
+              - time [ref=f66e284]: just now

@@ -1,0 +1,492 @@
+/* Forecast panel styles: all visual values come from tokens.css. */
+
+.forecast-panel {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.forecast-covenant {
+  display: grid;
+  gap: var(--space-4);
+  min-width: 0;
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border);
+}
+
+.forecast-covenant__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.forecast-covenant__name {
+  margin: 0;
+  font-family: var(--font-head);
+  font-size: var(--size-case-title);
+  font-weight: var(--weight-bold);
+}
+
+.forecast-covenant__reference {
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-data);
+}
+
+.forecast-covenant__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.forecast-covenant__figures {
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.forecast-covenant__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.forecast-covenant__table caption {
+  margin-block-end: var(--space-2);
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  text-align: start;
+}
+
+.forecast-covenant__table th,
+.forecast-covenant__table td {
+  min-height: var(--row-height);
+  padding: var(--space-2);
+  border-block-end: var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.forecast-covenant__table th {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+}
+
+.forecast-covenant__table .forecast-number {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  text-align: end;
+  white-space: nowrap;
+}
+
+.forecast-horizon__probability,
+.forecast-horizon__confidence {
+  font-weight: var(--weight-semi);
+}
+
+.forecast-horizon__probability[data-suppressed="true"],
+.forecast-horizon__crossing[data-state="unavailable"],
+.forecast-covenant__reason {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-weight: var(--weight-regular);
+}
+
+.forecast-horizon__crossing {
+  min-width: var(--space-12);
+}
+
+.forecast-covenant__trajectory {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  background: var(--paper);
+}
+
+.trajectory {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  margin: 0;
+}
+
+.trajectory__plot {
+  display: block;
+  width: 100%;
+  min-height: clamp(calc(var(--space-12) * 4), 28vw, calc(var(--space-12) * 7));
+  border: var(--border);
+  background: var(--surface-raised);
+  /*
+    Children are positioned in the 0 0 100 40 user space of the viewBox, so
+    anything mis-sized in those units paints at chart scale.  Clipping to the
+    plot keeps such a mistake inside the chart instead of letting it run across
+    the case file.
+  */
+  overflow: hidden;
+}
+
+.trajectory__threshold {
+  stroke: var(--hairline);
+  stroke-dasharray: 2 2;
+  stroke-width: 0.8;
+}
+
+.trajectory__line {
+  fill: none;
+  stroke: var(--ink);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.2;
+}
+
+.trajectory__crossing-tick,
+.trajectory__crossing {
+  stroke: var(--breach);
+}
+
+.trajectory__crossing-tick {
+  stroke-width: 0.8;
+}
+
+.trajectory__crossing {
+  fill: var(--paper);
+  stroke-width: 1.2;
+}
+
+/*
+  This text sits inside the plot, so its font size is read as viewBox units and
+  not CSS pixels: a plain `var(--size-data)` was thirteen of the forty units the
+  chart is tall, which drew the crossing label about three times the width of
+  the chart.  Divided down it is 2.6 units, roughly a fifteenth of the plot,
+  which the plot then scales back up with the rest of the drawing.
+  `_ANNOTATION_FONT_SIZE` in `web/svg/trajectory.py` mirrors the same value and
+  uses it to keep the label inside the plot.
+*/
+.trajectory__crossing-annotation {
+  fill: var(--breach);
+  font-family: var(--font-ui);
+  font-size: calc(var(--size-data) / 5);
+  font-weight: var(--weight-semi);
+  pointer-events: none;
+}
+
+.trajectory-state {
+  margin: 0;
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.forecast-covenant__reason {
+  margin: 0;
+  font-size: var(--size-data);
+}
+
+.forecast-horizon__method {
+  min-width: calc(var(--space-12) * 2.5);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.forecast-assurance,
+.forecast-insights {
+  display: grid;
+  gap: var(--space-3);
+  padding-block-start: var(--space-4);
+  border-block-start: var(--border);
+}
+
+.forecast-assurance__heading,
+.forecast-insights__heading {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.forecast-assurance__heading h4,
+.forecast-insights__heading h4,
+.forecast-explanation__body h5 {
+  margin: 0;
+  font-family: var(--font-ui);
+  font-weight: var(--weight-bold);
+}
+
+.forecast-assurance__heading h4,
+.forecast-insights__heading h4 {
+  font-size: var(--size-section);
+}
+
+.forecast-assurance__heading p,
+.forecast-insights__heading p {
+  max-width: 72rem;
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.forecast-explanation-list {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.forecast-explanation {
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+.forecast-explanation > summary {
+  display: grid;
+  grid-template-columns: minmax(5rem, 0.35fr) minmax(5rem, 0.35fr) minmax(12rem, 1fr);
+  align-items: center;
+  gap: var(--space-3);
+  min-height: var(--hit-min);
+  padding: var(--space-2) var(--space-3);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+}
+
+.forecast-explanation > summary span:nth-child(2) {
+  font-family: var(--font-data);
+  text-align: end;
+}
+
+.forecast-explanation__body {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border-block-start: var(--border);
+}
+
+.forecast-explanation__body > p {
+  max-width: 78rem;
+  margin: 0;
+}
+
+.forecast-explanation__summary {
+  font-weight: var(--weight-semi);
+}
+
+.forecast-explanation__warning {
+  padding: var(--space-3);
+  border-inline-start: var(--space-1) solid var(--breach);
+  background: var(--breach-bg);
+  color: var(--breach);
+}
+
+.forecast-explanation__meta {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 var(--space-4);
+  margin: 0;
+  border-block-start: var(--border);
+}
+
+.forecast-explanation__meta > div {
+  display: grid;
+  grid-template-columns: minmax(9rem, 0.7fr) minmax(0, 1fr);
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+  border-block-end: var(--border);
+}
+
+.forecast-explanation__meta dt {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.forecast-explanation__meta dd {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.forecast-explanation__meta dd > span {
+  display: block;
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--size-data);
+}
+
+/*
+  The factor table carries a min-width, and each wrapper between it and the
+  panel is a grid item whose automatic minimum size is that table.  Left alone
+  the whole forecast panel inherits the table's width and shoulders the case
+  file off the screen on a narrow viewport, so the scroll has to be pinned to
+  the container rather than allowed to widen it.
+*/
+.forecast-explanation__body > *,
+.forecast-explanation__table-wrap {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.forecast-explanation__table-wrap {
+  overflow-x: auto;
+}
+
+.forecast-explanation__factor-table {
+  width: 100%;
+  min-width: calc(var(--space-12) * 9);
+  border-collapse: collapse;
+  font-family: var(--font-data);
+  font-size: var(--size-data);
+}
+
+.forecast-explanation__factor-table th,
+.forecast-explanation__factor-table td {
+  padding: var(--space-2);
+  border-block-end: var(--border);
+  text-align: end;
+}
+
+.forecast-explanation__factor-table th:first-child,
+.forecast-explanation__factor-table td:first-child {
+  text-align: start;
+}
+
+.forecast-driver-list,
+.forecast-model-contribution-list,
+.forecast-citation-list {
+  display: grid;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+  padding-inline-start: var(--space-5);
+}
+
+.forecast-driver-list li,
+.forecast-model-contribution-list li {
+  display: grid;
+  grid-template-columns: minmax(12rem, 1fr) minmax(4rem, auto) minmax(12rem, auto);
+  align-items: baseline;
+  gap: var(--space-3);
+}
+
+.forecast-driver-list strong,
+.forecast-model-contribution-list strong {
+  font-family: var(--font-data);
+  text-align: end;
+}
+
+.forecast-explanation__provenance {
+  padding: var(--space-3);
+  border: var(--border);
+  background: var(--paper);
+}
+
+.forecast-explanation__provenance p {
+  margin: var(--space-1) 0 0;
+  color: var(--ink-muted);
+}
+
+/*
+  Three hard columns inside a half-width case-file panel leave each insight
+  narrower than the `6rem` label column of its own definition list, so the
+  values spilled out of the card.  Size the cards to what they need and wrap
+  the row instead.
+*/
+.forecast-insight-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.forecast-insight {
+  display: grid;
+  align-content: start;
+  gap: var(--space-2);
+  min-width: 0;
+  padding: var(--space-3);
+  border: var(--border);
+  background: var(--paper);
+}
+
+.forecast-insight p,
+.forecast-insight dl,
+.forecast-insight ul {
+  margin: 0;
+}
+
+.forecast-insight__title {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-2);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+}
+
+.forecast-insight__reason {
+  color: var(--ink-muted);
+  font-size: var(--size-data);
+}
+
+.forecast-insight dl > div {
+  display: grid;
+  grid-template-columns: minmax(6rem, 0.6fr) minmax(0, 1fr);
+  gap: var(--space-2);
+  padding-block: var(--space-1);
+}
+
+.forecast-insight dt {
+  color: var(--ink-muted);
+  font-size: var(--size-data);
+}
+
+.forecast-insight dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.forecast-insight .button {
+  justify-self: start;
+  margin-block-start: var(--space-2);
+}
+
+@media (max-width: 45rem) {
+  .forecast-covenant__layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .forecast-covenant__table {
+    min-width: calc(var(--space-12) * 7);
+  }
+
+  .forecast-covenant__trajectory {
+    padding: var(--space-3);
+  }
+
+  .forecast-covenant__trajectory .trajectory__plot {
+    min-height: calc(var(--space-12) * 4);
+  }
+
+  .forecast-explanation > summary,
+  .forecast-explanation__meta,
+  .forecast-driver-list li,
+  .forecast-model-contribution-list li,
+  .forecast-insight-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .forecast-explanation > summary span:nth-child(2),
+  .forecast-driver-list strong,
+  .forecast-model-contribution-list strong {
+    text-align: start;
+  }
+
+  .forecast-explanation__meta > div {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--space-1);
+  }
+}

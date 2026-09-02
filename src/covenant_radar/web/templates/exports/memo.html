@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Covenant warning memo</title>
+    <link rel="stylesheet" href="static/css/tokens.css">
+    <style>
+      @page {
+        size: A4;
+        margin: 18mm 16mm 18mm;
+
+        @bottom-left {
+          color: var(--ink-muted);
+          content: "Model-drafted sections; figures are record-backed.";
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+        }
+
+        @bottom-right {
+          color: var(--ink-muted);
+          content: "Page " counter(page) " of " counter(pages);
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        color: var(--ink);
+        font-family: var(--font-ui);
+        font-size: 10pt;
+        line-height: 1.45;
+      }
+
+      .letterhead {
+        border-bottom: var(--border);
+        margin-bottom: 14pt;
+        padding-bottom: 8pt;
+      }
+
+      .letterhead__name {
+        font-family: var(--font-head);
+        font-size: 15pt;
+        font-weight: 700;
+      }
+
+      .letterhead__detail,
+      .meta__label,
+      .source,
+      .state {
+        color: var(--ink-muted);
+        font-size: 8pt;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-head);
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 20pt;
+        margin: 0 0 14pt;
+      }
+
+      h2 {
+        border-bottom: var(--border);
+        font-size: 13pt;
+        margin: 18pt 0 7pt;
+        padding-bottom: 3pt;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 11pt;
+        margin: 10pt 0 4pt;
+        page-break-after: avoid;
+      }
+
+      p {
+        margin: 0 0 8pt;
+        white-space: pre-wrap;
+      }
+
+      .meta,
+      .figures,
+      .collection {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .meta {
+        margin-bottom: 14pt;
+      }
+
+      .meta td,
+      .figures th,
+      .figures td,
+      .collection th,
+      .collection td {
+        border-bottom: var(--border);
+        padding: 5pt 6pt;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .meta__label {
+        width: 30%;
+      }
+
+      .figures th,
+      .collection th {
+        color: var(--ink-muted);
+        font-size: 8pt;
+        font-weight: 700;
+      }
+
+      .figure-value,
+      .hash,
+      .source {
+        font-family: var(--font-data);
+      }
+
+      .figure-value {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .source {
+        overflow-wrap: anywhere;
+      }
+
+      .prose {
+        page-break-inside: avoid;
+      }
+
+      .collection-block {
+        page-break-inside: avoid;
+      }
+
+      .collection td:first-child {
+        width: 30%;
+      }
+
+      .collection td:last-child {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .advisory {
+        border-top: var(--border);
+        color: var(--ink-muted);
+        font-size: 8pt;
+        margin-top: 14pt;
+        padding-top: 7pt;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="letterhead">
+      <div class="letterhead__name">{{ letterhead.name }}</div>
+      {% if letterhead.subtitle %}<div class="letterhead__detail">{{ letterhead.subtitle }}</div>{% endif %}
+      {% if letterhead.address %}<div class="letterhead__detail">{{ letterhead.address }}</div>{% endif %}
+    </header>
+
+    <h1>Covenant warning memo</h1>
+
+    <table class="meta" aria-label="Memo provenance">
+      <tbody>
+        {% for label, value in metadata %}
+        <tr>
+          <td class="meta__label">{{ label }}</td>
+          <td{% if label == "Integrity hash (SHA-256)" %} class="hash"{% endif %}>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>Recorded figures and provenance</h2>
+    <table class="figures" aria-label="Recorded figures and provenance">
+      <thead>
+        <tr><th>Figure</th><th>Value</th><th>State</th><th>Source record(s)</th></tr>
+      </thead>
+      <tbody>
+        {% for slot in slots %}
+        <tr>
+          <td>{{ slot.label }}</td>
+          <td class="figure-value">{{ slot.value }}</td>
+          <td class="state">{{ slot.state }}</td>
+          <td class="source">{{ slot.sources }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <h2>{{ "Model-drafted connecting prose" }}</h2>
+    {% for paragraph in draft_paragraphs %}
+    <p class="prose">{{ paragraph }}</p>
+    {% endfor %}
+
+    {% for collection in collections %}
+    <section class="collection-block">
+      <h2>{{ collection.title }}</h2>
+      {% for item in collection.items %}
+      <h3>{{ collection.title }} {{ loop.index }}</h3>
+      <table class="collection" aria-label="{{ collection.title }} {{ loop.index }}">
+        <tbody>
+          {% for field in item %}
+          <tr><td>{{ field.label }}</td><td>{{ field.value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endfor %}
+    </section>
+    {% endfor %}
+
+    <p class="advisory">This memo is advisory. Human credit review is required before action.</p>
+  </body>
+</html>

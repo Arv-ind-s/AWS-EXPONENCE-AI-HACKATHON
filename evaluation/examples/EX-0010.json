@@ -1,0 +1,39 @@
+{
+  "id": "EX-0010",
+  "kind": "boundary",
+  "title": "A max-direction covenant enters warning inside its configured headroom band",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "warning"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max",
+      "warning_headroom_pct": "20"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "3.50"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "warning",
+    "headroom_pct": "12.500",
+    "threshold_used": "4.00"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "headroom = (4.00-3.50)/4.00*100 = 12.5%. warning_headroom_pct is 20, and the covenant has not yet breached (3.50 < 4.00), so 12.5 <= 20 fires the warning verdict rather than pass."
+}

@@ -1,0 +1,156 @@
+- generic [active] [ref=f21e1]:
+  - link "Skip to content" [ref=f21e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f21e3]:
+    - complementary "Workspace navigation" [ref=f21e4]:
+      - link "Covenant Radar" [ref=f21e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f21e13]:
+          - strong [ref=f21e14]: Covenant
+          - generic [ref=f21e15]: Radar
+      - navigation "Primary navigation" [ref=f21e16]:
+        - region [ref=f21e17]:
+          - heading "Monitor" [level=2] [ref=f21e18]
+          - link "Portfolio queue" [ref=f21e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f21e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f21e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f21e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f21e31]: "0"
+          - link "Search" [ref=f21e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f21e37]:
+          - heading "Portfolio data" [level=2] [ref=f21e38]
+          - link "Borrowers" [ref=f21e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f21e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f21e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f21e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f21e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f21e61]:
+          - heading "Workflows" [level=2] [ref=f21e62]
+          - link "Intake" [ref=f21e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f21e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f21e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f21e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f21e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f21e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f21e87]:
+          - heading "Administration" [level=2] [ref=f21e88]
+          - link "Action catalogue" [ref=f21e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f21e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f21e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f21e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f21e109] [cursor=pointer]
+    - generic [ref=f21e113]:
+      - banner [ref=f21e114]:
+        - generic [ref=f21e116]:
+          - generic [ref=f21e117]: Workspace
+          - generic [ref=f21e120]: Current view
+        - search [ref=f21e121]:
+          - generic [ref=f21e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f21e123]
+          - generic: /
+        - generic [ref=f21e124]:
+          - button "Live activity" [ref=f21e125]:
+            - generic [ref=f21e127]: Live
+          - button "Use dark theme" [ref=f21e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f21e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f21e135] [cursor=pointer]
+      - main [ref=f21e139]:
+        - generic [ref=f21e141]:
+          - paragraph [ref=f21e142]: Decision workspace
+          - heading "Bank-owned intervention catalogue" [level=1] [ref=f21e143]
+        - region [ref=f21e145]:
+          - generic [ref=f21e146]:
+            - generic [ref=f21e147]:
+              - paragraph [ref=f21e148]: Action catalogue
+              - heading "Bank-owned intervention catalogue" [level=2] [ref=f21e149]
+            - paragraph [ref=f21e150]: Recommendations are limited to active actions with a deterministic effect model.
+          - generic [ref=f21e151]:
+            - generic [ref=f21e152]:
+              - text: Identifier
+              - textbox "Identifier" [ref=f21e153]
+            - generic [ref=f21e154]:
+              - text: Role tag
+              - combobox "Role tag" [ref=f21e155]:
+                - option "Select a role" [selected]
+                - option "RM"
+                - option "Credit"
+                - option "Risk"
+            - generic [ref=f21e156]:
+              - text: Display text
+              - textbox "Display text" [ref=f21e157]
+            - generic [ref=f21e158]:
+              - text: Effect model
+              - combobox "Effect model" [ref=f21e159]:
+                - option "Select a model" [selected]
+                - option "Level shift"
+                - option "Rate change"
+                - option "Threshold relaxation"
+                - option "Pressure reduction"
+                - option "Combination"
+            - generic [ref=f21e160]:
+              - text: Effect parameters (JSON)
+              - textbox "Effect parameters (JSON)" [ref=f21e161]: "{}"
+            - generic [ref=f21e162]:
+              - text: Applicable covenant classes (comma-separated)
+              - textbox "Applicable covenant classes (comma-separated)" [ref=f21e163]
+            - generic [ref=f21e164]:
+              - text: Assumptions (one per line)
+              - textbox "Assumptions (one per line)" [ref=f21e165]
+            - generic [ref=f21e166]:
+              - checkbox "Requires approval when recommended" [ref=f21e167]
+              - text: Requires approval when recommended
+            - button "Save intervention" [ref=f21e169] [cursor=pointer]
+          - table [ref=f21e171]:
+            - caption [ref=f21e172]: Action catalogue
+            - rowgroup [ref=f21e173]:
+              - row [ref=f21e174]:
+                - columnheader "Identifier" [ref=f21e175]
+                - columnheader "Role tag" [ref=f21e176]
+                - columnheader "Effect model" [ref=f21e177]
+                - columnheader "Applicable covenant classes (comma-separated)" [ref=f21e178]
+                - columnheader "Status" [ref=f21e179]
+                - columnheader "Actions" [ref=f21e180]
+            - rowgroup [ref=f21e181]:
+              - row [ref=f21e182]:
+                - rowheader "CREDIT-REDUCE-EXPOSURE" [ref=f21e183]
+                - cell "credit" [ref=f21e184]
+                - cell "level_shift" [ref=f21e185]
+                - cell "leverage, coverage, liquidity" [ref=f21e186]
+                - cell "Active" [ref=f21e187]
+                - cell [ref=f21e189]:
+                  - button "Retire" [ref=f21e191] [cursor=pointer]
+              - row [ref=f21e192]:
+                - rowheader "RISK-REVIEW-THRESHOLD" [ref=f21e193]
+                - cell "risk" [ref=f21e194]
+                - cell "threshold_relaxation" [ref=f21e195]
+                - cell "leverage, net_worth, coverage, liquidity" [ref=f21e196]
+                - cell "Active" [ref=f21e197]
+                - cell [ref=f21e199]:
+                  - button "Retire" [ref=f21e201] [cursor=pointer]
+              - row [ref=f21e202]:
+                - rowheader "RM-REVIEW-CONDUCT" [ref=f21e203]
+                - cell "relationship_manager" [ref=f21e204]
+                - cell "pressure_reduction" [ref=f21e205]
+                - cell "liquidity, conduct" [ref=f21e206]
+                - cell "Active" [ref=f21e207]
+                - cell [ref=f21e209]:
+                  - button "Retire" [ref=f21e211] [cursor=pointer]

@@ -1,0 +1,48 @@
+{% import "_components/ledger_row.html" as row_component %}{% set ledger_row = row_component.ledger_row %}
+{% macro ledger_table(caption, columns, rows, table_id="", state="rest", empty_title="No records", empty_message="There are no records in this view.", empty_action_label="", empty_action_href="", loading_label="Loading records", loading_rows=4) -%}
+  {% set table_state = state if state in ("rest", "skeleton", "empty") else "empty" %}
+  <div class="ledger-table ledger-table--{{ table_state }}"{% if table_id %} id="{{ table_id }}"{% endif %} data-state="{{ table_state }}">
+    {% if table_state == "empty" or (table_state == "rest" and not rows) %}
+      {% set state_id = table_id or "ledger-empty" %}{% set state_title = empty_title %}{% set state_message = empty_message %}
+      {% set state_action_label = empty_action_label %}{% set state_action_href = empty_action_href %}
+      {% include "_states/empty.html" %}
+    {% else %}
+      {% set header_classes = namespace(values=[]) %}
+      <table class="ledger-table__table">
+        <caption class="ledger-table__caption">{{ caption }}</caption>
+        <thead><tr>
+          {% for column in columns %}
+            {% if column is mapping %}{% set column_key = column.get("key", "column-" ~ loop.index) %}{% set column_label = column.get("label", column_key) %}{% set column_class = column.get("align", "") %}
+            {% elif column is string %}{% set column_key = column %}{% set column_label = column %}{% set column_class = "" %}
+            {% else %}{% set column_key = column[0] %}{% set column_label = column[1] %}{% set column_class = "" %}{% endif %}
+            {% set header_classes.values = header_classes.values + [column_class] %}
+            <th scope="col"{% if column_class %} class="ledger-table__heading--{{ column_class }}"{% endif %}>{{ column_label }}</th>
+          {% endfor %}
+        </tr></thead>
+        <tbody{% if table_state == "skeleton" %} aria-busy="true"{% endif %}>
+          {% if table_state == "skeleton" %}
+            {% for _ in range(loading_rows if loading_rows > 0 else 1) %}
+              <tr class="ledger-row ledger-row--skeleton" aria-hidden="true"><td colspan="{{ columns|length or 1 }}"><div class="skeleton-row"><span class="skeleton-row__cell"></span></div></td></tr>
+            {% endfor %}
+            <tr><td class="sr-only" colspan="{{ columns|length or 1 }}">{{ loading_label }}</td></tr>
+          {% else %}
+            {% for row in rows %}
+              {% if row is mapping %}
+                {% set row_cells = namespace(values=[]) %}
+                {% for column in columns %}
+                  {% if column is mapping %}{% set row_key = column.get("key", "") %}
+                  {% elif column is string %}{% set row_key = column %}
+                  {% else %}{% set row_key = column[0] %}{% endif %}
+                  {% set row_cells.values = row_cells.values + [row.get(row_key, "")] %}
+                {% endfor %}
+                {{ ledger_row(row_cells.values, row.get("id", ""), row.get("selected", false), header_classes.values) }}
+              {% else %}
+                {{ ledger_row(row) }}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+    {% endif %}
+  </div>
+{%- endmacro %}

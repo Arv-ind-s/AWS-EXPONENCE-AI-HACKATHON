@@ -1,0 +1,29 @@
+<section class="export-status state state--{{ result.state }}"
+         id="export-status-region"
+         aria-labelledby="export-status-title"
+         aria-live="polite"
+         {% if result.state in ("queued", "running") %}hx-get="/exports/{{ result.export_id }}" hx-trigger="every 3s, refresh" hx-target="this" hx-swap="outerHTML transition:true" data-live-poll{% endif %}>
+  <div class="export-status__progress" aria-hidden="true"><span></span><span></span><span></span></div>
+  {% if result.state == "queued" %}
+    <h2 id="export-status-title">{{ labels.export_queued }}</h2>
+  {% elif result.state == "running" %}
+    <h2 id="export-status-title">{{ labels.export_running }}</h2>
+  {% elif result.state == "ready" %}
+    <h2 id="export-status-title">{{ labels.export_ready }}</h2>
+  {% elif result.state == "expired" %}
+    <h2 id="export-status-title">{{ labels.export_expired }}</h2>
+  {% else %}
+    <h2 id="export-status-title">{{ labels.export_failed }}</h2>
+    {% if result.error %}<p>{{ result.error }}</p>{% endif %}
+  {% endif %}
+  <dl class="export-status__facts">
+    <div><dt>{{ labels.format }}</dt><dd>{{ result.format }}</dd></div>
+    <div><dt>{{ labels.row_count }}</dt><dd>{{ result.row_count if result.row_count is not none else "-" }}</dd></div>
+    {% if result.expires_at %}<div><dt>{{ labels.expires }}</dt><dd>{{ result.expires_at|ist_date }}</dd></div>{% endif %}
+  </dl>
+  <div class="export-status__actions">
+    {% if result.download_url %}<a class="button" href="{{ result.download_url }}">{{ labels.download }}</a>{% endif %}
+    <a class="button button--secondary" href="/">{{ labels.back_queue }}</a>
+  </div>
+  {% if result.state in ("queued", "running") %}<span class="sr-only">Last updated <time data-last-updated>just now</time></span>{% endif %}
+</section>

@@ -1,0 +1,77 @@
+{% set evidence_panel = view.evidence_panel %}
+<section
+  class="panel panel--{{ evidence_panel.state }} case-evidence case-file__panel--wide"
+  id="case-evidence"
+  data-state="{{ evidence_panel.state }}"
+  aria-labelledby="case-evidence-title"
+>
+  <div class="panel__heading">
+    <h2 class="panel__title" id="case-evidence-title">{{ labels.evidence_title }}</h2>
+    {% if view.actions %}<a class="text-action" href="{{ view.actions.why_href }}" hx-get="{{ view.actions.why_href }}" hx-target="body" hx-swap="beforeend">Why this evidence?</a>{% endif %}
+  </div>
+  {% if evidence_panel.state == "empty" %}
+    {% set state_id = "case-evidence-empty" %}
+    {% set state_title = evidence_panel.empty_title %}
+    {% set state_message = evidence_panel.empty_message %}
+    {% set state_action_label = "" %}
+    {% set state_action_href = "" %}
+    {% include "_states/empty.html" %}
+  {% else %}
+    <div class="case-evidence__scroll">
+      <table class="case-evidence__table">
+        <caption>{{ labels.evidence_ready }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.evidence_type }}</th>
+            <th scope="col">{{ labels.evidence_seen }}</th>
+            <th scope="col">{{ labels.evidence_persistence }}</th>
+            <th scope="col">{{ labels.evidence_materiality }}</th>
+            <th scope="col">{{ labels.evidence_decay }}</th>
+            <th scope="col">{{ labels.evidence_pressure }}</th>
+            <th scope="col">{{ labels.evidence_state }}</th>
+          </tr>
+        </thead>
+        {% for group in view.evidence_families %}
+          <tbody>
+            <tr class="case-evidence__family-row">
+              <th colspan="7" scope="rowgroup">{{ group.family }}</th>
+            </tr>
+            {% for item in group.items %}
+              <tr
+                id="{{ item.anchor_id }}"
+                data-evidence-state="{{ item.state }}"
+                data-counts-pressure="{{ "true" if item.counts_toward_pressure else "false" }}"
+                data-decay-state="{{ item.decay_state }}"
+              >
+                <th scope="row">
+                  {{ item.evidence_type }}
+                  {% if item.superseded_by_id %}
+                    <a class="case-evidence__link" href="#evidence-item-{{ item.superseded_by_id }}">{{ labels.evidence_superseded_by }} &rarr;</a>
+                  {% endif %}
+                  {% if item.supersedes_id %}
+                    <a class="case-evidence__link" href="#evidence-item-{{ item.supersedes_id }}">{{ labels.evidence_supersedes }} &rarr;</a>
+                  {% endif %}
+                </th>
+                <td>{{ item.first_seen|ist_date }} / {{ item.last_seen|ist_date }}</td>
+                <td>{{ item.persistence_display }}</td>
+                <td>{{ item.materiality_display }}</td>
+                <td>{{ item.decay_display }}</td>
+                <td>
+                  {% if item.counts_toward_pressure %}
+                    {{ labels.evidence_counts }}
+                  {% else %}
+                    {{ labels.evidence_not_counting }}
+                    {% if item.not_counting_reason %}
+                      <span class="case-evidence__reason">{{ item.not_counting_reason }}</span>
+                    {% endif %}
+                  {% endif %}
+                </td>
+                <td>{{ item.state|replace("_", " ")|title }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        {% endfor %}
+      </table>
+    </div>
+  {% endif %}
+</section>

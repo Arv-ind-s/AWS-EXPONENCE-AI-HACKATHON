@@ -1,0 +1,28 @@
+{% import "_components/components.html" as components %}
+{% import "screens/why/_stage.html" as stage_module %}
+
+{% call components.drawer("why-drawer", labels.title ~ " — " ~ subject_label, state="open", close_label=labels.close, describedby="why-drawer-subject") %}
+  <p class="sr-only" id="why-drawer-subject">{{ subject_type }}: {{ subject_id }}</p>
+  <section class="why-ai-explanation" data-state="{{ 'generated' if ai_explanation else 'empty' }}" aria-labelledby="why-ai-explanation-title">
+    <p class="why-ai-explanation__label">{{ labels.ai_explanation_label }}</p>
+    {% if ai_explanation %}
+      <h2 id="why-ai-explanation-title">{{ ai_explanation.headline }}</h2>
+      <p class="why-ai-explanation__summary">{{ ai_explanation.summary }}</p>
+      <h3>{{ labels.ai_explanation_next_step }}</h3>
+      <p>{{ ai_explanation.recommended_next_step }}</p>
+      <p class="why-ai-explanation__provenance">
+        {{ labels.ai_explanation_provenance.format(provider=ai_explanation.provider, model=ai_explanation.model_version, prompt=ai_explanation.prompt_version) }}
+      </p>
+      {% if ai_explanation_href %}<a class="button button--secondary" href="{{ ai_explanation_href }}">{{ labels.ai_explanation_view_full }}</a>{% endif %}
+    {% else %}
+      <h2 id="why-ai-explanation-title">{{ labels.ai_explanation_empty_title }}</h2>
+      <p>{{ labels.ai_explanation_empty_message }}</p>
+      {% if can_generate_ai_explanation and ai_explanation_href %}<a class="button" href="{{ ai_explanation_href }}">{{ labels.ai_explanation_generate }}</a>{% endif %}
+    {% endif %}
+  </section>
+  <div class="why-stage-list">
+    {%- for stage in stages %}
+      {{ stage_module.why_stage(stage, labels, components) }}
+    {%- endfor %}
+  </div>
+{% endcall %}

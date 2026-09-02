@@ -1,0 +1,35 @@
+{
+  "id": "EX-0026",
+  "kind": "extraction",
+  "title": "A DSCR covenant stated with the common Indian-banking abbreviation extracts cleanly",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "extraction",
+    "dscr"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "clause_text": "The Company undertakes that the Debt Service Coverage Ratio (DSCR) shall not fall below 1.25x for each financial year."
+  },
+  "expected": {
+    "refused": false,
+    "definition_code": "dscr",
+    "direction": "min",
+    "threshold": "1.25",
+    "unit": "ratio",
+    "plausible": true,
+    "refusal_reason": null
+  },
+  "pass_mark": {
+    "type": "field_precision_recall",
+    "precision_floor": 0.95,
+    "recall_floor": 0.95,
+    "fail_closed_adversarial": true
+  },
+  "note": "The ratio-name alias table (domain.intake.candidates._RATIO_NAME_ALIASES) matches both 'dscr' and 'debt service coverage ratio' to the dscr definition. 'shall not fall below' is a min-direction comparison phrase, and 1.25 is well inside dscr's plausible band of [-5, 20]."
+}

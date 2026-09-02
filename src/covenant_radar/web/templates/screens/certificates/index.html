@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set table_rows = table_rows|default(()) %}
+{% set error = error|default("") %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+  {% call components.panel(title=labels.heading, panel_id="certificate-list") %}
+    {{ components.ledger_table(
+      labels.heading,
+      [
+        {"key": "borrower", "label": labels.borrower},
+        {"key": "due_date", "label": labels.due_date},
+        {"key": "state", "label": labels.state},
+        {"key": "requested_at", "label": labels.requested_at},
+        {"key": "received_at", "label": labels.received_at}
+      ],
+      table_rows,
+      table_id="certificates-ledger",
+      empty_title=labels.empty,
+      empty_message=labels.empty
+    ) }}
+
+    {% for row in rows %}
+      <section class="certificate-actions" id="certificate-actions-{{ row.id }}">
+        {% if principal.has("UPLOAD_DOCUMENT") and row.state in ("requested", "received", "under_review", "overdue") %}
+          <form method="post" action="/certificates/{{ row.id }}/receive" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {{ components.field("document_id", labels.document_id, required=true, field_id="document-id-" ~ row.id) }}
+            {{ components.button(labels.receive, type="submit") }}
+          </form>
+        {% endif %}
+        {% if principal.has("RECORD_WAIVER") and row.state in ("received", "under_review") %}
+          <form method="post" action="/certificates/{{ row.id }}/accept" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {{ components.button(labels.accept, type="submit") }}
+          </form>
+        {% endif %}
+        {% if principal.has("RECORD_WAIVER") and row.state in ("requested", "received", "under_review", "overdue", "accepted") %}
+          <form method="post" action="/certificates/{{ row.id }}/reject" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            {{ components.field("reason", labels.reason, type="textarea", required=true, field_id="reject-reason-" ~ row.id) }}
+            {{ components.button(labels.reject, type="submit", destructive=true) }}
+          </form>
+        {% endif %}
+      </section>
+    {% endfor %}
+  {% endcall %}
+{% endblock %}

@@ -1,0 +1,102 @@
+/* Paper-safe case evidence and decision records. */
+
+@page {
+  margin: 16mm;
+}
+
+/* Printed output is always read on white paper in black ink, whichever
+   theme was active on screen. Re-pointing every colour role at the CSS
+   system-colour keywords for the physical page — rather than a third set of
+   hex values — collapses both palettes onto that page for free: every
+   `background: var(--*-bg)` in the component sheets disappears, every
+   `border-color`/`color: var(--ink|--headroom|--watch|--breach)` becomes a
+   single legible ink, and nothing here duplicates a literal tokens.css
+   already owns. */
+:root,
+[data-theme="dark"] {
+  --paper: Canvas;
+  --ink: CanvasText;
+  --ink-muted: CanvasText;
+  --hairline: CanvasText;
+  --surface-raised: Canvas;
+  --focus: CanvasText;
+  --headroom: CanvasText;
+  --watch: CanvasText;
+  --breach: CanvasText;
+  --headroom-bg: Canvas;
+  --watch-bg: Canvas;
+  --breach-bg: Canvas;
+}
+
+html,
+body {
+  background: var(--paper);
+  color: var(--ink);
+}
+
+body {
+  max-width: none;
+  padding: 0;
+  font-size: var(--size-data);
+}
+
+[data-shell-header],
+.shell-sidebar,
+.shell-topbar,
+.shell-scrim,
+.auth-brandbar,
+.auth-story,
+.shell-theme,
+.shell-sign-out,
+.case-actions,
+button,
+.button {
+  display: none;
+}
+
+.app-shell,
+.auth-layout {
+  display: block;
+}
+
+.app-shell__main,
+.auth-main {
+  margin: 0;
+  padding: 0;
+}
+
+main > h1 {
+  font-size: var(--size-case-title);
+}
+
+.panel,
+.forecast-covenant,
+.case-documents__item,
+.case-evidence__table tr,
+.governance__table tr {
+  break-inside: avoid;
+}
+
+.panel,
+.forecast-covenant {
+  border-color: var(--ink);
+  background: transparent;
+}
+
+.case-evidence__scroll,
+.governance__scroll,
+.case-covenant-ledger {
+  overflow: visible;
+}
+
+a {
+  color: var(--ink);
+  text-decoration: none;
+}
+
+a[href]:not([href^="#"])::after {
+  content: " (" attr(href) ")";
+  font-family: var(--font-data);
+  font-size: var(--size-data);
+  font-weight: var(--weight-regular);
+}

@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ labels.bulk_title }}{% endblock %}
+{% block h1 %}{{ labels.bulk_heading }}{% endblock %}
+
+{% block content %}
+  <section class="panel bulk-result-summary" aria-labelledby="bulk-result-title">
+    <h2 id="bulk-result-title">{{ labels.bulk_done }}</h2>
+    <dl class="governance__facts">
+      <dt>{{ labels.bulk_action }}</dt>
+      <dd>{{ report.action }}</dd>
+      <dt>{{ labels.bulk_requested }}</dt>
+      <dd>{{ report.requested_count }}</dd>
+      <dt>{{ labels.bulk_succeeded }}</dt>
+      <dd>{{ report.success_count }}</dd>
+      <dt>{{ labels.bulk_failed }}</dt>
+      <dd>{{ report.failure_count }}</dd>
+      <dt>{{ labels.bulk_excluded }}</dt>
+      <dd>{{ report.excluded_count }}</dd>
+    </dl>
+  </section>
+
+  <section class="panel" aria-labelledby="bulk-items-title">
+    <h2 id="bulk-items-title">{{ labels.bulk_item }}</h2>
+    <table>
+      <caption class="sr-only">{{ labels.bulk_done }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">{{ labels.bulk_item }}</th>
+          <th scope="col">{{ labels.bulk_status }}</th>
+          <th scope="col">{{ labels.bulk_reason }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in report.items %}
+        <tr>
+          <td>{{ item.case_reference or item.item_id }}</td>
+          <td>{{ item.status }}</td>
+          <td>{{ item.reason or "—" }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </section>
+
+  <p><a class="button button--secondary" href="/">{{ labels.back_queue }}</a></p>
+{% endblock %}

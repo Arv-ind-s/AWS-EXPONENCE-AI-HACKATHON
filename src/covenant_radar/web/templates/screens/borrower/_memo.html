@@ -1,0 +1,91 @@
+{#
+  The C-08 memo block. Swapped into #case-memo by the AI explanation action,
+  so a refusal, an outage or a ceiling replaces only this region and leaves
+  the rest of the case file standing (spec R-17.c).
+#}
+<section class="panel case-memo" id="case-memo" aria-labelledby="case-memo-title"
+         aria-live="polite" data-state="{{ memo.state }}" tabindex="-1">
+  <h2 class="panel__title" id="case-memo-title">{{ memo.title }}</h2>
+
+  {% if memo.generated %}
+    {# Model prose is fenced and labelled so a reader can see exactly where
+       the drafted words begin and end. #}
+    <p class="case-memo__label">{{ memo.label }}</p>
+    <section class="case-memo__provenance" aria-labelledby="memo-provenance-title">
+      <h3 class="case-memo__subheading" id="memo-provenance-title">{{ labels.memo_ai_provenance }}</h3>
+      <dl class="case-memo__provenance-grid">
+        <div><dt>{{ labels.memo_provider }}</dt><dd>{{ memo.provider }}</dd></div>
+        <div><dt>{{ labels.memo_model }}</dt><dd>{{ memo.model_version }}</dd></div>
+        <div><dt>{{ labels.memo_prompt }}</dt><dd>{{ memo.prompt_version }}</dd></div>
+        <div><dt>{{ labels.memo_shape_checks }}</dt><dd>{{ memo.check_verdict }}</dd></div>
+      </dl>
+    </section>
+    <article class="case-memo__draft" aria-label="{{ memo.label }}">
+      <h3 class="case-memo__headline">{{ memo.headline }}</h3>
+      <p class="case-memo__summary">{{ memo.summary }}</p>
+
+      {% if memo.drivers %}
+        <h4 class="case-memo__subheading">{{ labels.memo_drivers }}</h4>
+        <ul class="case-memo__drivers">
+          {% for driver in memo.drivers %}<li>{{ driver }}</li>{% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if memo.actions %}
+        <h4 class="case-memo__subheading">{{ labels.memo_actions }}</h4>
+        <table class="table case-memo__actions">
+          <caption class="sr-only">{{ labels.memo_actions }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ labels.memo_action_id }}</th>
+              <th scope="col">{{ labels.memo_action_role }}</th>
+              <th scope="col">{{ labels.memo_action_text }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for action in memo.actions %}
+              <tr>
+                <td>{{ action.id }}</td>
+                <td>{{ action.role_tag }}</td>
+                <td>{{ action.text }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% endif %}
+
+      <h4 class="case-memo__subheading">{{ labels.memo_next_step }}</h4>
+      <p class="case-memo__next-step">{{ memo.recommended_next_step }}</p>
+      <p class="case-memo__disclaimer">{{ memo.disclaimer }}</p>
+    </article>
+    {% if memo.citations %}
+      <section class="case-memo__citations" aria-labelledby="memo-citations-title">
+        <h3 class="case-memo__subheading" id="memo-citations-title">{{ labels.memo_citations }}</h3>
+        <p class="case-memo__citation-note">{{ labels.memo_citations_note }}</p>
+        <ul>
+          {% for citation in memo.citations %}
+            <li>
+              {% if citation.href %}<a href="{{ citation.href }}">{{ citation.label }}</a>{% else %}<span>{{ citation.label }}</span>{% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+    <p class="case-memo__reference">{{ labels.memo_reference }} {{ memo.memo_id }}</p>
+  {% else %}
+    <p class="case-memo__message">{{ memo.message }}</p>
+
+    {% if memo.failed_checks %}
+      <h3 class="case-memo__subheading">{{ labels.memo_failed_checks }}</h3>
+      <ul class="case-memo__failed-checks">
+        {% for check in memo.failed_checks %}<li>{{ check }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if memo.retry_at %}
+      <p class="case-memo__retry">
+        {{ labels.memo_retry_at }} <time datetime="{{ memo.retry_at.isoformat() }}">{{ memo.retry_at.isoformat() }}</time>
+      </p>
+    {% endif %}
+  {% endif %}
+</section>

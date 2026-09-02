@@ -1,0 +1,103 @@
+- generic [active] [ref=f22e1]:
+  - link "Skip to content" [ref=f22e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f22e3]:
+    - complementary "Workspace navigation" [ref=f22e4]:
+      - link "Covenant Radar" [ref=f22e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f22e13]:
+          - strong [ref=f22e14]: Covenant
+          - generic [ref=f22e15]: Radar
+      - navigation "Primary navigation" [ref=f22e16]:
+        - region [ref=f22e17]:
+          - heading "Monitor" [level=2] [ref=f22e18]
+          - link "Portfolio queue" [ref=f22e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f22e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f22e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f22e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f22e31]: "0"
+          - link "Search" [ref=f22e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f22e37]:
+          - heading "Portfolio data" [level=2] [ref=f22e38]
+          - link "Borrowers" [ref=f22e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f22e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f22e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f22e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f22e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f22e61]:
+          - heading "Workflows" [level=2] [ref=f22e62]
+          - link "Intake" [ref=f22e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f22e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f22e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f22e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f22e79]:
+          - heading "Administration" [level=2] [ref=f22e80]
+          - link "Action catalogue" [ref=f22e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f22e86] [cursor=pointer]
+    - generic [ref=f22e90]:
+      - banner [ref=f22e91]:
+        - generic [ref=f22e93]:
+          - generic [ref=f22e94]: Workspace
+          - generic [ref=f22e97]: Current view
+        - search [ref=f22e98]:
+          - generic [ref=f22e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f22e100]
+          - generic: /
+        - generic [ref=f22e101]:
+          - button "Live activity" [ref=f22e102]:
+            - generic [ref=f22e104]: Live
+          - button "Use dark theme" [ref=f22e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f22e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f22e112] [cursor=pointer]
+      - main [ref=f22e116]:
+        - generic [ref=f22e118]:
+          - paragraph [ref=f22e119]: Decision workspace
+          - heading "Borrower details" [level=1] [ref=f22e120]
+        - generic [ref=f22e121]:
+          - generic [ref=f22e122]:
+            - heading "B-000001" [level=2] [ref=f22e123]
+            - generic [ref=f22e124]:
+              - generic [ref=f22e125]:
+                - generic [ref=f22e126]: Legal name
+                - textbox "Legal name" [disabled] [ref=f22e127]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+              - generic [ref=f22e128]:
+                - generic [ref=f22e129]: Portfolio
+                - textbox "Portfolio" [disabled] [ref=f22e130]: 018c131f-cb61-7128-abf6-385b9ab6f62e
+              - generic [ref=f22e131]:
+                - generic [ref=f22e132]: Version
+                - textbox "Version" [disabled] [ref=f22e133]: "1"
+              - generic [ref=f22e134]:
+                - generic [ref=f22e135]: CIN on file
+                - textbox "CIN on file" [disabled] [ref=f22e136]: Present
+          - generic [ref=f22e137]:
+            - heading "Facility master data" [level=2] [ref=f22e138]
+            - table [ref=f22e141]:
+              - caption [ref=f22e142]: Facility master data
+              - rowgroup [ref=f22e143]:
+                - row [ref=f22e144]:
+                  - columnheader "Reference" [ref=f22e145]
+                  - columnheader "Sanctioned limit" [ref=f22e146]
+                  - columnheader "Effective from" [ref=f22e147]
+              - rowgroup [ref=f22e148]:
+                - row [ref=f22e149]:
+                  - cell "F-000001-02" [ref=f22e150]
+                  - cell "79.1300" [ref=f22e151]
+                  - cell "2019-04-01" [ref=f22e152]
+                - row [ref=f22e153]:
+                  - cell "F-000001-01" [ref=f22e154]
+                  - cell "148.8300" [ref=f22e155]
+                  - cell "2019-04-01" [ref=f22e156]

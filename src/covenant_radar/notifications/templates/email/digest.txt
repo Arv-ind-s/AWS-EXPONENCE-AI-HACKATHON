@@ -1,0 +1,9 @@
+{{ subject }}
+
+Window: {{ window_start }} to {{ window_end }}
+
+{% for entry in entries %}{{ loop.index }}. {{ entry.title }}
+{{ entry.summary }}
+Open in Covenant Radar: {{ entry.deep_link }}
+
+{% endfor %}This digest contains {{ entries | length }} notification item(s). Each item remains available in Covenant Radar for review and audit.

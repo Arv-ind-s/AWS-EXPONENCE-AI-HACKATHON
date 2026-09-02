@@ -1,0 +1,19 @@
+{
+  "report_type": "crilc_monthly",
+  "version": 1,
+  "effective_from": "2019-06-07",
+  "fields": [
+    {"name": "as_of_date", "label": "Reporting As-Of Date", "data_type": "date", "required": true},
+    {"name": "borrower_reference", "label": "Borrower Reference", "data_type": "string", "required": true, "max_length": 20},
+    {"name": "legal_name", "label": "Borrower Legal Name", "data_type": "string", "required": true, "max_length": 300},
+    {"name": "industry_code", "label": "Industry Code", "data_type": "string", "required": true, "max_length": 20},
+    {"name": "constitution", "label": "Constitution", "data_type": "string", "required": false, "max_length": 50},
+    {"name": "aggregate_exposure_amount", "label": "Aggregate Exposure (INR)", "data_type": "decimal", "required": true},
+    {"name": "currency", "label": "Currency", "data_type": "string", "required": true, "max_length": 3},
+    {"name": "facility_count", "label": "Facility Count", "data_type": "integer", "required": true},
+    {"name": "outstanding_amount", "label": "Outstanding Amount (INR)", "data_type": "decimal", "required": true},
+    {"name": "sma_band", "label": "SMA Classification", "data_type": "string", "required": true, "max_length": 10},
+    {"name": "days_past_due", "label": "Days Past Due", "data_type": "integer", "required": true},
+    {"name": "overdue_amount", "label": "Overdue Amount (INR)", "data_type": "decimal", "required": true}
+  ]
+}

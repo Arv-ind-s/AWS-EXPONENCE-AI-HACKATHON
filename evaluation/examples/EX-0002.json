@@ -1,0 +1,31 @@
+{
+  "id": "EX-0002",
+  "kind": "engine",
+  "title": "EBITDA margin is computable but breaches its plausible band on the low side",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "band_breach"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "ebitda_margin",
+    "lines": {
+      "ebitda": "2",
+      "revenue": "100"
+    }
+  },
+  "expected": {
+    "computable": true,
+    "value": "2.00",
+    "band_breached": true
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "ebitda_margin = ebitda / revenue * 100 = 2 / 100 * 100 = 2.00%. The plausible band is [5, 60]; 2.00 is below the floor of 5, so the value is returned computable with band_breached true rather than refused -- a plausible-band breach is a flag on a real value, not a not-computable reason."
+}

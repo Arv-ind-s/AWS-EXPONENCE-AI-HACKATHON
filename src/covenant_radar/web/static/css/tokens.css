@@ -1,0 +1,189 @@
+/* Covenant Radar's complete design vocabulary. Keep component styles token-only. */
+
+@font-face {
+  font-family: "Radar Serif";
+  src: url("../fonts/radar-serif.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Radar Mono";
+  src: url("../fonts/radar-mono-regular.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Radar Mono";
+  src: url("../fonts/radar-mono-semibold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Radar Mono";
+  src: url("../fonts/radar-mono-bold.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Radar Sans";
+  src: url("../fonts/radar-sans.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Radar Devanagari";
+  src: url("../fonts/radar-devanagari.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+}
+
+:root {
+  --paper: #F7F4EE;
+  --ink: #191C1F;
+  --ink-muted: #5A6067;
+  --hairline: #D9D3C7;
+  --surface-raised: #FCFBF7;
+  --surface-subtle: #EFEBE2;
+  --surface-sunken: #E6E1D4;
+  --surface-overlay: #FCFBF7;
+  --focus: #191C1F;
+  --accent: #191C1F;
+  --accent-fill: #191C1F;
+  --accent-strong: #000000;
+  --accent-soft: #EFEBE2;
+  --accent-contrast: #F7F4EE;
+  --signal: #5A6067;
+  --signal-soft: #EFEBE2;
+  --headroom: #1E6B45;
+  --watch: #B45309;
+  --breach: #B42318;
+  --headroom-bg: #E9F3ED;
+  --watch-bg: #FBEEE0;
+  --breach-bg: #FBEAE7;
+
+  --font-head: "Radar Sans", "Segoe UI", Tahoma, sans-serif;
+  --font-editorial: "Radar Serif", Georgia, "Times New Roman", serif;
+  --font-data: "Radar Mono", Consolas, "Courier New", monospace;
+  --font-ui: "Radar Sans", "Segoe UI", Tahoma, sans-serif;
+  --font-deva: "Radar Devanagari", "Nirmala UI", sans-serif;
+  --font-heading: var(--font-head);
+
+  --size-caption: 11px;
+  --size-data: 13px;
+  --size-body: 15px;
+  --size-section: 18px;
+  --size-section-title: var(--size-section);
+  --size-case-title: 24px;
+  --size-screen-title: 36px;
+  --size-display: 56px;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semi: 600;
+  --weight-bold: 700;
+
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+
+  --row-height: 44px;
+  --control-height: var(--hit-min);
+  --state-min-height: 320px;
+  --content-max: 1536px;
+  --sidebar-width: 272px;
+  --sidebar-collapsed: 80px;
+  --topbar-height: 64px;
+  --grid-cols: 12;
+  --hit-min: 44px;
+
+  --radius: 2px;
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-pill: 2px;
+  --border: 1px solid var(--hairline);
+  --border-strong: 2px solid var(--hairline);
+  --border-width: 1px;
+  --tracking-label: 0.08em;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-drawer: 0 24px 64px rgba(17, 24, 39, 0.22);
+  --shadow-1: var(--shadow-sm);
+  --shadow-2: var(--shadow-md);
+  --dur-state: 140ms;
+  --dur-panel: 240ms;
+  --dur-page: 320ms;
+  --dur-fast: var(--dur-state);
+  --dur-medium: var(--dur-panel);
+  --dur-slow: var(--dur-page);
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+[data-theme="dark"] {
+  --paper: #14161A;
+  --ink: #E8E4DC;
+  --ink-muted: #9AA1A9;
+  --hairline: #2C3138;
+  --surface-raised: #1B1E23;
+  --surface-subtle: #202329;
+  --surface-sunken: #0F1114;
+  --surface-overlay: #1B1E23;
+  --focus: #E8E4DC;
+  --accent: #E8E4DC;
+  --accent-fill: #E8E4DC;
+  --accent-strong: #FFFFFF;
+  --accent-soft: #202329;
+  --accent-contrast: #14161A;
+  --signal: #9AA1A9;
+  --signal-soft: #202329;
+  --headroom: #4CAF7D;
+  --watch: #E0913A;
+  --breach: #E8695E;
+  --headroom-bg: #16281F;
+  --watch-bg: #2E2011;
+  --breach-bg: #2E1917;
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: none;
+  --shadow-drawer: 0 28px 72px rgba(0, 0, 0, 0.58);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --dur-state: 0ms;
+    --dur-panel: 0ms;
+    --dur-page: 0ms;
+  }
+}
+
+@media (prefers-contrast: more) {
+  :root {
+    --ink-muted: #344054;
+    --hairline: #667085;
+  }
+
+  [data-theme="dark"] {
+    --ink-muted: #D9E0E8;
+    --hairline: #7890AC;
+  }
+}

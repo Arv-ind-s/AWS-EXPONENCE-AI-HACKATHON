@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block page_title %}{{ tr("error.404.title") }} · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}{{ tr("error.404.heading") }}{% endblock %}
+{% block content %}
+  <section class="state state--error" aria-labelledby="error-message">
+    <p id="error-message">{{ tr("error.404.message") }}</p>
+    <a class="button" href="/">{{ tr("error.404.action") }}</a>
+  </section>
+{% endblock %}

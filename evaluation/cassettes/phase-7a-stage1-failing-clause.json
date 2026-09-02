@@ -1,0 +1,10 @@
+{
+  "phase7a-stage1-deliberate-failing-clause": {
+    "text": "{\"definition\":\"not_a_real_ratio\",\"custom_formula\":null,\"threshold\":\"3.00x\",\"direction\":\"below\",\"unit\":\"ratio\",\"currency\":null,\"frequency\":\"quarterly\",\"effective_from\":null,\"effective_to\":null,\"exceptions\":[],\"cure_period_days\":null,\"source_quote\":\"Deliberate verification failure fixture.\"}",
+    "model": "demo-recorded",
+    "input_tokens": 120,
+    "output_tokens": 76,
+    "latency_ms": 12,
+    "raw_payload": {"provider": "phase-7a-demo", "recorded": true}
+  }
+}

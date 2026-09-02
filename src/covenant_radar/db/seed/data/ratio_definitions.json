@@ -1,0 +1,245 @@
+{
+  "taxonomy_version": "1.0",
+  "ratio_definitions": [
+    {
+      "code": "leverage_ratio",
+      "name": "Leverage ratio",
+      "formula_text": "total_debt / tangible_net_worth",
+      "required_lines": ["total_debt", "tangible_net_worth"],
+      "unit": "x",
+      "plausible_min": "0",
+      "plausible_max": "6",
+      "direction_hint": "max"
+    },
+    {
+      "code": "dscr",
+      "name": "Debt service coverage ratio",
+      "formula_text": "cash_flow_debt_service / finance_cost",
+      "required_lines": ["cash_flow_debt_service", "finance_cost"],
+      "unit": "x",
+      "plausible_min": "-5",
+      "plausible_max": "20",
+      "direction_hint": "min"
+    },
+    {
+      "code": "interest_coverage_ratio",
+      "name": "Interest coverage ratio",
+      "formula_text": "ebit / finance_cost",
+      "required_lines": ["ebit", "finance_cost"],
+      "unit": "x",
+      "plausible_min": "-5",
+      "plausible_max": "50",
+      "direction_hint": "min"
+    },
+    {
+      "code": "fixed_charge_coverage_ratio",
+      "name": "Fixed-charge coverage ratio",
+      "formula_text": "ebitda / finance_cost",
+      "required_lines": ["ebitda", "finance_cost"],
+      "unit": "x",
+      "plausible_min": "0",
+      "plausible_max": "30",
+      "direction_hint": "min"
+    },
+    {
+      "code": "current_ratio",
+      "name": "Current ratio",
+      "formula_text": "current_assets / current_liabilities",
+      "required_lines": ["current_assets", "current_liabilities"],
+      "unit": "x",
+      "plausible_min": "1",
+      "plausible_max": "4",
+      "direction_hint": "min"
+    },
+    {
+      "code": "quick_ratio",
+      "name": "Quick ratio",
+      "formula_text": "(current_assets - inventory) / current_liabilities",
+      "required_lines": ["current_assets", "inventory", "current_liabilities"],
+      "unit": "x",
+      "plausible_min": "0.5",
+      "plausible_max": "3",
+      "direction_hint": "min"
+    },
+    {
+      "code": "tol_tnw",
+      "name": "Total outside liabilities / tangible net worth",
+      "formula_text": "total_liabilities / tangible_net_worth",
+      "required_lines": ["total_liabilities", "tangible_net_worth"],
+      "unit": "x",
+      "plausible_min": "0",
+      "plausible_max": "6",
+      "direction_hint": "max"
+    },
+    {
+      "code": "debt_to_ebitda",
+      "name": "Debt / EBITDA",
+      "formula_text": "total_debt / ebitda",
+      "required_lines": ["total_debt", "ebitda"],
+      "unit": "x",
+      "plausible_min": "0",
+      "plausible_max": "5",
+      "direction_hint": "max"
+    },
+    {
+      "code": "net_debt_to_ebitda",
+      "name": "Net debt / EBITDA",
+      "formula_text": "(total_debt - cash_and_bank) / ebitda",
+      "required_lines": ["total_debt", "cash_and_bank", "ebitda"],
+      "unit": "x",
+      "plausible_min": "0",
+      "plausible_max": "5",
+      "direction_hint": "max"
+    },
+    {
+      "code": "ebitda_margin",
+      "name": "EBITDA margin",
+      "formula_text": "ebitda / revenue * 100",
+      "required_lines": ["ebitda", "revenue"],
+      "unit": "%",
+      "plausible_min": "5",
+      "plausible_max": "60",
+      "direction_hint": "min"
+    },
+    {
+      "code": "tnw_floor",
+      "name": "Tangible net worth floor",
+      "formula_text": "tangible_net_worth",
+      "required_lines": ["tangible_net_worth"],
+      "unit": "₹ crore",
+      "plausible_min": "-100000",
+      "plausible_max": "2000000",
+      "direction_hint": "min"
+    },
+    {
+      "code": "minimum_net_worth",
+      "name": "Minimum net worth",
+      "formula_text": "total_assets - total_liabilities",
+      "required_lines": ["total_assets", "total_liabilities"],
+      "unit": "₹ crore",
+      "plausible_min": "-100000",
+      "plausible_max": "2000000",
+      "direction_hint": "min"
+    },
+    {
+      "code": "utilisation",
+      "name": "Facility utilisation",
+      "formula_text": "facility.outstanding / facility.sanctioned_limit * 100",
+      "required_lines": ["sanctioned_limit", "outstanding"],
+      "unit": "%",
+      "plausible_min": "0",
+      "plausible_max": "100",
+      "direction_hint": "max"
+    },
+    {
+      "code": "drawing_power_headroom",
+      "name": "Drawing-power headroom",
+      "formula_text": "facility.drawing_power - facility.outstanding",
+      "required_lines": ["drawing_power", "outstanding"],
+      "unit": "₹ crore",
+      "plausible_min": "-100000",
+      "plausible_max": "2000000",
+      "direction_hint": "min"
+    },
+    {
+      "code": "receivable_days",
+      "name": "Receivable days",
+      "formula_text": "receivables / revenue * 365",
+      "required_lines": ["receivables", "revenue"],
+      "unit": "days",
+      "plausible_min": "0",
+      "plausible_max": "180",
+      "direction_hint": "max"
+    },
+    {
+      "code": "inventory_days",
+      "name": "Inventory days",
+      "formula_text": "inventory / cost_of_goods_sold * 365",
+      "required_lines": ["inventory", "cost_of_goods_sold"],
+      "unit": "days",
+      "plausible_min": "0",
+      "plausible_max": "180",
+      "direction_hint": "max"
+    },
+    {
+      "code": "payable_days",
+      "name": "Payable days",
+      "formula_text": "payables / cost_of_goods_sold * 365",
+      "required_lines": ["payables", "cost_of_goods_sold"],
+      "unit": "days",
+      "plausible_min": "0",
+      "plausible_max": "180",
+      "direction_hint": null
+    },
+    {
+      "code": "cash_conversion_cycle",
+      "name": "Cash conversion cycle",
+      "formula_text": "receivables / revenue * 365 + inventory / cost_of_goods_sold * 365 - payables / cost_of_goods_sold * 365",
+      "required_lines": ["receivables", "revenue", "inventory", "cost_of_goods_sold", "payables"],
+      "unit": "days",
+      "plausible_min": "-90",
+      "plausible_max": "365",
+      "direction_hint": "max"
+    },
+    {
+      "code": "working_capital_gap",
+      "name": "Working-capital gap",
+      "formula_text": "current_assets - payables - other_current_liabilities",
+      "required_lines": ["current_assets", "payables", "other_current_liabilities"],
+      "unit": "₹ crore",
+      "plausible_min": "-100000",
+      "plausible_max": "2000000",
+      "direction_hint": "max"
+    },
+    {
+      "code": "asset_cover_ratio",
+      "name": "Asset cover ratio",
+      "formula_text": "total_assets / total_debt",
+      "required_lines": ["total_assets", "total_debt"],
+      "unit": "x",
+      "plausible_min": "1",
+      "plausible_max": "10",
+      "direction_hint": "min"
+    },
+    {
+      "code": "minimum_liquidity",
+      "name": "Minimum liquidity",
+      "formula_text": "cash_and_bank",
+      "required_lines": ["cash_and_bank"],
+      "unit": "₹ crore",
+      "plausible_min": "0",
+      "plausible_max": "2000000",
+      "direction_hint": "min"
+    },
+    {
+      "code": "maximum_capex",
+      "name": "Maximum capital expenditure",
+      "formula_text": "capex",
+      "required_lines": ["capex"],
+      "unit": "₹ crore",
+      "plausible_min": "0",
+      "plausible_max": "2000000",
+      "direction_hint": "max"
+    },
+    {
+      "code": "dividend_restriction",
+      "name": "Dividend restriction",
+      "formula_text": "dividend_paid",
+      "required_lines": ["dividend_paid"],
+      "unit": "₹ crore",
+      "plausible_min": "0",
+      "plausible_max": null,
+      "direction_hint": "max"
+    },
+    {
+      "code": "promoter_shareholding_floor",
+      "name": "Promoter shareholding floor",
+      "formula_text": "promoter_shareholding",
+      "required_lines": ["promoter_shareholding", "promoter_shareholding_floor_pct"],
+      "unit": "%",
+      "plausible_min": "0",
+      "plausible_max": "100",
+      "direction_hint": "min"
+    }
+  ]
+}

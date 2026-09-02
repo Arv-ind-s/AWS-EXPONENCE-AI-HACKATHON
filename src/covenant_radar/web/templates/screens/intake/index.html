@@ -1,0 +1,219 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block head %}
+  <link rel="stylesheet" href="/static/css/intake.css">
+{% endblock %}
+
+{% block content %}
+  <div class="intake-screen" data-intake-screen
+       {% if view.document and view.document.extraction_state in ("queued", "pending", "processing", "extracting") %}
+       hx-get="/intake/{{ view.document.document_id }}" hx-trigger="every 3s, refresh"
+       hx-target="this" hx-select="[data-intake-screen]" hx-swap="outerHTML transition:true" data-live-poll
+       {% endif %}>
+    {% if view.error %}
+      <p class="intake-message intake-message--error" role="alert">{{ view.error }}</p>
+    {% endif %}
+    {% if view.status_message %}
+      <p class="intake-message intake-message--status" role="status">{{ view.status_message }}</p>
+    {% endif %}
+
+    {% if view.can_upload %}
+      <section class="panel intake-upload" id="intake-upload">
+        <h2 class="panel__title">{{ labels.upload_heading }}</h2>
+        <form method="post" action="/documents" enctype="multipart/form-data" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          {{ components.field("borrower_ref", labels.borrower_ref, value=view.form.get("borrower_ref", ""), required=true, autocomplete="off") }}
+          {{ components.field("facility_ref", labels.facility_ref, value=view.form.get("facility_ref", ""), autocomplete="off") }}
+          {{ components.field("doc_type", labels.doc_type, type="select", value=view.form.get("doc_type", "sanction_letter"), options=form_options["doc_type"], required=true) }}
+          {{ components.field("file", labels.upload_file, type="file", accept=".pdf,.docx,.xlsx,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", required=true) }}
+          {{ components.button(labels.upload, type="submit") }}
+        </form>
+      </section>
+    {% endif %}
+
+    {% if view.document %}
+      <section class="panel intake-document" id="intake-document-{{ view.document.document_id }}" data-extraction-state="{{ view.document.extraction_state }}">
+        <div class="intake-document__header">
+          <div>
+            <h2 class="panel__title">{{ labels.upload_status }}</h2>
+            <p class="intake-document__filename">{{ view.document.filename }}</p>
+          </div>
+          <span class="intake-state intake-state--{{ view.document.extraction_state }}">{{ view.document.status_label }}</span>
+        </div>
+        <progress class="intake-document__progress" max="100" value="{{ view.document.progress_value }}" aria-label="{{ view.document.status_label }}">{{ view.document.progress_value }}%</progress>
+        <dl class="intake-document__facts">
+          <div><dt>{{ labels.doc_type }}</dt><dd>{{ view.document.doc_type|replace("_", " ")|title }}</dd></div>
+          <div><dt>{{ labels.ocr }}</dt><dd>{{ view.document.ocr_label }}</dd></div>
+          <div><dt>{{ labels.review_pages }}</dt><dd>{{ view.document.review_page_count }}</dd></div>
+          {% if view.document.page_count is not none %}<div><dt>{{ labels.pages }}</dt><dd>{{ view.document.page_count }}</dd></div>{% endif %}
+        </dl>
+      </section>
+    {% endif %}
+
+    {% if view.pending_reviews %}
+      <section class="panel intake-review" id="intake-review-pending" data-candidate-state="pending-review">
+        <h2 class="panel__title">{{ labels.pending_review }}</h2>
+        <p>{{ labels.pending_review_message }}</p>
+        <ul class="intake-review__list">
+          {% for item in view.pending_reviews %}
+            <li>
+              <a class="provenance-link" href="{{ item.href }}">{{ labels.source_page }} {{ item.page_number }}</a>
+              <span>{{ item.reason }}</span>
+            </li>
+          {% endfor %}
+        </ul>
+      </section>
+    {% endif %}
+
+    {% if view.proposals %}
+      <section class="intake-proposals" id="intake-proposals" aria-labelledby="intake-proposals-heading">
+        <div class="intake-section-heading">
+          <h2 id="intake-proposals-heading">{{ labels.heading }}</h2>
+          <p>{{ labels.verdicts }}</p>
+        </div>
+
+        {% for proposal in view.proposals %}
+          <article class="panel intake-proposal" id="intake-proposal-{{ proposal.proposal_id }}" data-proposal-id="{{ proposal.proposal_id }}" data-verdict="{{ "passed" if proposal.all_passed else "struck" }}" data-bulk-included="{{ "true" if proposal.bulk_included else "false" }}">
+            <div class="intake-proposal__compare">
+              <section class="intake-proposal__source" aria-labelledby="source-{{ proposal.proposal_id }}">
+                <h3 id="source-{{ proposal.proposal_id }}">{{ labels.source_heading }}</h3>
+                <blockquote>{{ proposal.source.quote }}</blockquote>
+                {% if proposal.source.href %}
+                  <a class="provenance-link" href="{{ proposal.source.href }}">{{ labels.open_source }}</a>
+                  <p class="intake-source-meta">{{ proposal.source.filename }} · {{ labels.source_page }} {{ proposal.source.page_number }}</p>
+                {% elif proposal.source.is_hand_entry %}
+                  <p class="intake-source-meta">{{ labels.hand_entry_source }}</p>
+                {% else %}
+                  <p class="intake-source-meta">{{ labels.source_document }}</p>
+                {% endif %}
+              </section>
+
+              <section class="intake-proposal__proposal" aria-labelledby="proposal-{{ proposal.proposal_id }}">
+                <h3 id="proposal-{{ proposal.proposal_id }}">{{ labels.proposal_heading }}</h3>
+                <div class="intake-proposal__fields{% if proposal.struck %} intake-proposal__fields--struck{% endif %}">
+                  {% if proposal.struck %}<del>{% endif %}
+                  <dl>
+                    {% for field in proposal.fields %}
+                      <div><dt>{{ field.label }}</dt><dd>{{ field.value }}</dd></div>
+                    {% endfor %}
+                  </dl>
+                  {% if proposal.struck %}</del>{% endif %}
+                </div>
+              </section>
+            </div>
+
+            <section class="intake-proposal__verdicts" aria-labelledby="verdicts-{{ proposal.proposal_id }}">
+              <h3 id="verdicts-{{ proposal.proposal_id }}">{{ labels.verdicts }}</h3>
+              <ul class="intake-verdict-list">
+                {% for check in proposal.checks %}
+                  <li class="intake-verdict-item intake-verdict-item--{{ check.state }}">
+                    {{ components.verdict_mark(check.state, label=check.label, aria_label=check.label ~ ": " ~ check.detail) }}
+                    <p>{{ check.detail }}</p>
+                  </li>
+                {% endfor %}
+              </ul>
+              {% if proposal.failed_check_labels %}
+                <p class="intake-failed-checks"><strong>{{ labels.failed_checks }}:</strong> {{ proposal.failed_check_labels|join(", ") }}</p>
+              {% endif %}
+              {% if proposal.refusal_message %}
+                <p class="intake-message intake-message--error" role="alert">{{ proposal.refusal_message }}</p>
+              {% endif %}
+            </section>
+
+            {% if proposal.status == "open" and view.can_run_intake and can_register %}
+              <form class="intake-correction" method="post" action="/intake/proposals/{{ proposal.proposal_id }}/submit" novalidate>
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <input type="hidden" name="correction" value="{{ 1 }}">
+                {% if view.document %}<input type="hidden" name="document_id" value="{{ view.document.document_id }}">{% endif %}
+                <details>
+                  <summary>{{ labels.proposal_heading }}</summary>
+                  <div class="intake-form-grid">
+                    {{ components.field("clause_text", labels.source_heading, type="textarea", value=proposal.form.get("clause_text", ""), required=true, field_id="clause-text-" ~ proposal.proposal_id) }}
+                    {{ components.field("definition", labels.definition, value=proposal.form.get("definition", ""), field_id="definition-" ~ proposal.proposal_id) }}
+                    {{ components.field("custom_formula", labels.custom_formula, type="textarea", value=proposal.form.get("custom_formula", ""), field_id="custom-formula-" ~ proposal.proposal_id) }}
+                    {{ components.field("threshold", labels.threshold, value=proposal.form.get("threshold", ""), field_id="threshold-" ~ proposal.proposal_id) }}
+                    {{ components.field("direction", labels.direction, type="select", value=proposal.form.get("direction", ""), options=form_options["direction"], field_id="direction-" ~ proposal.proposal_id) }}
+                    {{ components.field("unit", labels.unit, type="select", value=proposal.form.get("unit", ""), options=form_options["unit"], field_id="unit-" ~ proposal.proposal_id) }}
+                    {{ components.field("currency", labels.currency, value=proposal.form.get("currency", ""), field_id="currency-" ~ proposal.proposal_id) }}
+                    {{ components.field("frequency", labels.frequency, type="select", value=proposal.form.get("frequency", ""), options=form_options["frequency"], field_id="frequency-" ~ proposal.proposal_id) }}
+                    {{ components.field("effective_from", labels.effective_from, type="date", value=proposal.form.get("effective_from", ""), field_id="effective-from-" ~ proposal.proposal_id) }}
+                    {{ components.field("effective_to", labels.effective_to, type="date", value=proposal.form.get("effective_to", ""), field_id="effective-to-" ~ proposal.proposal_id) }}
+                    {{ components.field("exceptions", labels.exceptions, type="textarea", value=proposal.form.get("exceptions", ""), field_id="exceptions-" ~ proposal.proposal_id) }}
+                    {{ components.field("cure_period_days", labels.cure_period_days, type="number", value=proposal.form.get("cure_period_days", ""), field_id="cure-period-" ~ proposal.proposal_id) }}
+                    {{ components.field("source_quote", labels.source_quote, type="textarea", value=proposal.form.get("source_quote", ""), required=true, field_id="source-quote-" ~ proposal.proposal_id) }}
+                  </div>
+                </details>
+                <div class="intake-submit-fields">
+                  {{ components.field("test_basis", labels.test_basis, value=proposal.form.get("test_basis", "standalone"), required=true, field_id="test-basis-" ~ proposal.proposal_id) }}
+                  {{ components.field("reference", labels.reference, value=proposal.form.get("reference", ""), field_id="reference-" ~ proposal.proposal_id) }}
+                  {{ components.field("name", labels.name, value=proposal.form.get("name", ""), field_id="name-" ~ proposal.proposal_id) }}
+                  {{ components.field("covenant_class", labels.covenant_class, value=proposal.form.get("covenant_class", "financial"), field_id="class-" ~ proposal.proposal_id) }}
+                </div>
+                {% if proposal.confirmable %}
+                  {{ components.button(labels.confirm, type="submit") }}
+                {% else %}
+                  {{ components.button(labels.rerun, type="submit") }}
+                {% endif %}
+              </form>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </section>
+
+      {% if view.bulk_proposal_ids %}
+        <section class="panel intake-bulk" id="intake-bulk">
+          <h2 class="panel__title">{{ labels.bulk_heading }}</h2>
+          <p>{{ labels.bulk_message }}</p>
+          <form method="post" action="/intake/proposals/bulk-submit" novalidate>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="proposal_ids" value="{{ view.bulk_proposal_ids|join(",") }}">
+            {% for proposal in view.proposals if proposal.bulk_included %}
+              <fieldset class="intake-bulk__proposal">
+                <legend>{{ proposal.source.quote }}</legend>
+                <input type="hidden" name="test_basis_{{ proposal.proposal_id }}" value="{{ proposal.form.get("test_basis", "standalone") }}">
+                {{ components.field("reference_" ~ proposal.proposal_id, labels.reference, value=proposal.form.get("reference", ""), field_id="bulk-reference-" ~ proposal.proposal_id) }}
+                {{ components.field("name_" ~ proposal.proposal_id, labels.name, value=proposal.form.get("name", ""), field_id="bulk-name-" ~ proposal.proposal_id) }}
+                {{ components.field("covenant_class_" ~ proposal.proposal_id, labels.covenant_class, value=proposal.form.get("covenant_class", "financial"), field_id="bulk-class-" ~ proposal.proposal_id) }}
+              </fieldset>
+            {% endfor %}
+            {{ components.button(labels.bulk_confirm, type="submit") }}
+          </form>
+        </section>
+      {% endif %}
+    {% endif %}
+
+    {% if view.hand_entry and view.can_run_intake %}
+      <section class="panel intake-hand-entry" id="intake-hand-entry" data-hand-entry="true">
+        <h2 class="panel__title">{{ labels.hand_entry_heading }}</h2>
+        {% if view.provider_unavailable %}<p class="intake-message intake-message--degraded" role="note">{{ labels.provider_unavailable }}</p>{% endif %}
+        {% if not view.provider_unavailable and not view.proposals %}<p>{{ labels.hand_entry_message }}</p>{% endif %}
+        <form method="post" action="/intake/proposals" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          {{ components.field("facility_ref", labels.facility_ref, value=view.form.get("facility_ref", ""), required=true, autocomplete="off", field_id="hand-entry-facility-ref") }}
+          {{ components.field("clause_text", labels.source_heading, type="textarea", value=view.form.get("clause_text", ""), required=true) }}
+          <div class="intake-form-grid">
+            {{ components.field("definition", labels.definition, value=view.form.get("definition", "")) }}
+            {{ components.field("custom_formula", labels.custom_formula, type="textarea", value=view.form.get("custom_formula", "")) }}
+            {{ components.field("threshold", labels.threshold, value=view.form.get("threshold", "")) }}
+            {{ components.field("direction", labels.direction, type="select", value=view.form.get("direction", ""), options=form_options["direction"]) }}
+            {{ components.field("unit", labels.unit, type="select", value=view.form.get("unit", ""), options=form_options["unit"]) }}
+            {{ components.field("currency", labels.currency, value=view.form.get("currency", "")) }}
+            {{ components.field("frequency", labels.frequency, type="select", value=view.form.get("frequency", ""), options=form_options["frequency"]) }}
+            {{ components.field("effective_from", labels.effective_from, type="date", value=view.form.get("effective_from", "")) }}
+            {{ components.field("effective_to", labels.effective_to, type="date", value=view.form.get("effective_to", "")) }}
+            {{ components.field("exceptions", labels.exceptions, type="textarea", value=view.form.get("exceptions", "")) }}
+            {{ components.field("cure_period_days", labels.cure_period_days, type="number", value=view.form.get("cure_period_days", "")) }}
+            {{ components.field("source_quote", labels.source_quote, type="textarea", value=view.form.get("source_quote", "")) }}
+          </div>
+          {{ components.button(labels.verify, type="submit") }}
+        </form>
+      </section>
+    {% elif not view.document and not view.proposals %}
+      <p class="intake-empty" role="status">{{ labels.empty }}</p>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,0 +1,51 @@
+"""Pure domain objects for assembling grounded warning memo slots."""
+
+from covenant_radar.domain.memo.slots import (
+    ABSENT_VALUE_TEXT,
+    NO_SIMULATIONS_VALUE_TEXT,
+    SUPPRESSED_PROBABILITY_PREFIX,
+    MemoRecord,
+    MemoRecords,
+    MemoSlot,
+    MemoSlotMap,
+    RecordReference,
+    SlotState,
+    absent_slot,
+    present_slot,
+    suppressed_slot,
+)
+from covenant_radar.domain.memo.template import (
+    ADVISORY_CLOSING_TEXT,
+    DEFAULT_MEMO_TEMPLATE,
+    FIXED_MEMO_SECTIONS,
+    MEMO_SECTION_NAMES,
+    MEMO_SECTIONS,
+    MEMO_TEMPLATE_VERSION,
+    TEMPLATE_SECTIONS,
+    MemoSection,
+    MemoTemplate,
+)
+
+__all__ = [
+    "ABSENT_VALUE_TEXT",
+    "ADVISORY_CLOSING_TEXT",
+    "DEFAULT_MEMO_TEMPLATE",
+    "FIXED_MEMO_SECTIONS",
+    "MEMO_SECTIONS",
+    "MEMO_SECTION_NAMES",
+    "MEMO_TEMPLATE_VERSION",
+    "NO_SIMULATIONS_VALUE_TEXT",
+    "SUPPRESSED_PROBABILITY_PREFIX",
+    "MemoRecord",
+    "MemoRecords",
+    "MemoSection",
+    "MemoSlot",
+    "MemoSlotMap",
+    "MemoTemplate",
+    "RecordReference",
+    "SlotState",
+    "TEMPLATE_SECTIONS",
+    "absent_slot",
+    "present_slot",
+    "suppressed_slot",
+]

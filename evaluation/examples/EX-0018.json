@@ -1,0 +1,38 @@
+{
+  "id": "EX-0018",
+  "kind": "persistence",
+  "title": "T3 stays transient when neither arm's threshold is reached",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "persistence",
+    "transient"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "events": [
+      "2026-03-01",
+      "2026-03-04",
+      "2026-03-08"
+    ],
+    "as_of": "2026-03-10",
+    "thresholds": {
+      "sustained_days": 5,
+      "sustained_events": 8,
+      "event_window_days": 14
+    }
+  },
+  "expected": {
+    "sustained": false,
+    "firing_arm": null,
+    "persistence_days": 1,
+    "event_count_window": 3
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "Three scattered dates within the 14-day window give a longest run of 1 day (well under sustained_days=5) and an event count of 3 (well under sustained_events=8), so neither arm fires and the evidence is transient."
+}

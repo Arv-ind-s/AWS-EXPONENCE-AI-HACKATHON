@@ -1,0 +1,82 @@
+- generic [active] [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f3e3]:
+    - complementary "Workspace navigation" [ref=f3e4]:
+      - link "Covenant Radar" [ref=f3e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e13]:
+          - strong [ref=f3e14]: Covenant
+          - generic [ref=f3e15]: Radar
+      - navigation "Primary navigation" [ref=f3e16]:
+        - region [ref=f3e17]:
+          - heading "Monitor" [level=2] [ref=f3e18]
+          - link "Portfolio queue" [ref=f3e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f3e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f3e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f3e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f3e31]: "0"
+          - link "Search" [ref=f3e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f3e37]:
+          - heading "Portfolio data" [level=2] [ref=f3e38]
+          - link "Borrowers" [ref=f3e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f3e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f3e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f3e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f3e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f3e61]:
+          - heading "Workflows" [level=2] [ref=f3e62]
+          - link "Intake" [ref=f3e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f3e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f3e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f3e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f3e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f3e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f3e87]:
+          - heading "Administration" [level=2] [ref=f3e88]
+          - link "Action catalogue" [ref=f3e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f3e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f3e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f3e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f3e109] [cursor=pointer]
+    - generic [ref=f3e113]:
+      - banner [ref=f3e114]:
+        - generic [ref=f3e115]: Current view
+        - search [ref=f3e118]:
+          - generic [ref=f3e119]: Search the workspace
+          - searchbox "Search the workspace" [ref=f3e120]
+          - generic: /
+        - generic [ref=f3e121]:
+          - button "Live activity" [ref=f3e122]:
+            - generic [ref=f3e124]: Live
+          - button "Use dark theme" [ref=f3e126] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f3e130] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f3e132] [cursor=pointer]
+      - main [ref=f3e136]:
+        - generic [ref=f3e138]:
+          - paragraph [ref=f3e139]: Decision workspace
+          - heading "We could not complete that request" [level=1] [ref=f3e140]
+        - region [ref=f3e142]:
+          - paragraph [ref=f3e143]: "The incident has been recorded. Contact support with this reference:"
+          - paragraph [ref=f3e144]: "Support reference: rq-80607f00b89b2fa0"
+          - link "Return to the portfolio queue" [ref=f3e145] [cursor=pointer]:
+            - /url: /

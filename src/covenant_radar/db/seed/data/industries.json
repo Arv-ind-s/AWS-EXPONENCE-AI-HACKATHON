@@ -1,0 +1,25 @@
+{
+  "taxonomy_version": "1.0",
+  "industries": [
+    {"code": "A", "name": "Agriculture, forestry and fishing", "parent_code": null},
+    {"code": "C", "name": "Manufacturing", "parent_code": null},
+    {"code": "F", "name": "Construction", "parent_code": null},
+    {"code": "G", "name": "Wholesale and retail trade", "parent_code": null},
+    {"code": "H", "name": "Transport and storage", "parent_code": null},
+    {"code": "I", "name": "Accommodation and food services", "parent_code": null},
+    {"code": "J", "name": "Information and communication", "parent_code": null},
+    {"code": "K", "name": "Financial and insurance activities", "parent_code": null},
+    {"code": "L", "name": "Real estate activities", "parent_code": null},
+    {"code": "M", "name": "Professional and technical services", "parent_code": null},
+    {"code": "A01", "name": "Crop and animal production", "parent_code": "A"},
+    {"code": "C10", "name": "Food and beverage manufacturing", "parent_code": "C"},
+    {"code": "C24", "name": "Basic metals manufacturing", "parent_code": "C"},
+    {"code": "C25", "name": "Fabricated metal products", "parent_code": "C"},
+    {"code": "F41", "name": "Building construction", "parent_code": "F"},
+    {"code": "G46", "name": "Wholesale trade", "parent_code": "G"},
+    {"code": "G47", "name": "Retail trade", "parent_code": "G"},
+    {"code": "H49", "name": "Land transport", "parent_code": "H"},
+    {"code": "J62", "name": "Information technology services", "parent_code": "J"},
+    {"code": "M70", "name": "Head offices and management consultancy", "parent_code": "M"}
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "taxonomy_version": "1.0",
+  "roles": [
+    {
+      "code": "relationship_manager",
+      "name": "Relationship Manager",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "GENERATE_MEMO",
+        "RUN_SIMULATION", "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION"
+      ]
+    },
+    {
+      "code": "credit",
+      "name": "Credit",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "UPLOAD_DOCUMENT", "RUN_INTAKE",
+        "REGISTER_COVENANT", "RECORD_WAIVER", "GENERATE_MEMO", "RUN_SIMULATION",
+        "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION", "EXPORT_EVIDENCE", "INGEST_FINANCIAL_STATEMENTS"
+      ]
+    },
+    {
+      "code": "credit_approver",
+      "name": "Credit Approver",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "UPLOAD_DOCUMENT", "RUN_INTAKE",
+        "REGISTER_COVENANT", "APPROVE_COVENANT", "RECORD_WAIVER", "GENERATE_MEMO",
+        "RUN_SIMULATION", "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION", "EXPORT_EVIDENCE"
+      ]
+    },
+    {
+      "code": "risk",
+      "name": "Risk Officer",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "UPLOAD_DOCUMENT", "RUN_INTAKE",
+        "REGISTER_COVENANT", "RECORD_WAIVER", "GENERATE_MEMO", "RUN_SIMULATION",
+        "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION", "OVERRIDE_RISK_VIEW", "INGEST_FINANCIAL_STATEMENTS",
+        "PROPOSE_THRESHOLDS", "EXPORT_EVIDENCE"
+      ]
+    },
+    {
+      "code": "risk_head",
+      "name": "Risk Head",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "UPLOAD_DOCUMENT", "RUN_INTAKE",
+        "REGISTER_COVENANT", "APPROVE_COVENANT", "RECORD_WAIVER", "GENERATE_MEMO",
+        "RUN_SIMULATION", "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION",
+        "OVERRIDE_RISK_VIEW", "PROPOSE_THRESHOLDS", "APPROVE_THRESHOLDS",
+        "APPROVE_MODEL_PROMOTION", "EXPORT_EVIDENCE"
+      ]
+    },
+    {
+      "code": "auditor",
+      "name": "Auditor / Inspector",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "VIEW_AUDIT", "EXPORT_EVIDENCE",
+        "READ_PERSONAL_DATA"
+      ]
+    },
+    {
+      "code": "administrator",
+      "name": "Administrator",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "VIEW_AUDIT", "UPLOAD_DOCUMENT",
+        "RUN_INTAKE", "REGISTER_COVENANT", "APPROVE_COVENANT", "RECORD_WAIVER",
+        "GENERATE_MEMO", "RUN_SIMULATION", "LOG_ACTION", "UPDATE_CASE", "RECORD_DISPOSITION",
+        "OVERRIDE_RISK_VIEW", "PROPOSE_THRESHOLDS", "APPROVE_THRESHOLDS", "MANAGE_USERS",
+        "MANAGE_CONNECTORS", "MANAGE_JOBS", "APPROVE_MODEL_PROMOTION", "RESOLVE_QUARANTINE",
+        "CORRECT_SOURCE_DATA", "INGEST_DATA", "INGEST_FINANCIAL_STATEMENTS", "EXPORT_EVIDENCE",
+        "READ_PERSONAL_DATA", "ASSUME_PERSONA"
+      ]
+    },
+    {
+      "code": "data_steward",
+      "name": "Data Steward",
+      "permissions": [
+        "VIEW_QUEUE", "VIEW_BORROWER", "VIEW_CASE", "VIEW_MEMO", "VIEW_COVENANT",
+        "VIEW_FORECAST", "VIEW_EVIDENCE", "VIEW_DOCUMENT", "UPLOAD_DOCUMENT", "RUN_INTAKE",
+        "RESOLVE_QUARANTINE", "CORRECT_SOURCE_DATA", "INGEST_DATA", "INGEST_FINANCIAL_STATEMENTS"
+      ]
+    }
+  ]
+}

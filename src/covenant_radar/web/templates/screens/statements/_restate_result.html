@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+
+{% block page_title %}{{ labels.restate_title }}{% endblock %}
+{% block h1 %}{{ labels.restate_success }}{% endblock %}
+
+{% block content %}
+  <dl>
+    <dt>Borrower</dt>
+    <dd>{{ result.borrower_id }}</dd>
+    <dt>Financial year</dt>
+    <dd>{{ result.fy_label }}</dd>
+    <dt>Previous period</dt>
+    <dd>{{ result.previous_period_id }} (version {{ result.previous_version }})</dd>
+    <dt>New period</dt>
+    <dd>{{ result.new_period_id }} (version {{ result.new_version }})</dd>
+    <dt>{{ labels.reason }}</dt>
+    <dd>{{ result.reason }}</dd>
+  </dl>
+
+  <h2>{{ labels.flagged_tests }}</h2>
+  {% if result.flagged_tests %}
+    <table>
+      <caption>{{ labels.flagged_tests }}</caption>
+      <thead>
+        <tr>
+          <th scope="col">Covenant test</th>
+          <th scope="col">Covenant version</th>
+          <th scope="col">As of</th>
+          <th scope="col">Verdict</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for test in result.flagged_tests %}
+          <tr>
+            <td>{{ test.covenant_test_id }}</td>
+            <td>{{ test.covenant_version_id }}</td>
+            <td>{{ test.as_of_date }}</td>
+            <td>{{ test.verdict }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>{{ labels.no_flagged_tests }}</p>
+  {% endif %}
+
+  {{ components.button(labels.back_to_quarantine, href="/statements/quarantine") }}
+{% endblock %}

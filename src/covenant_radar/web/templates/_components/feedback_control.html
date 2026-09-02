@@ -1,0 +1,52 @@
+{% macro feedback_control(control_id, action, state="rest", method="post", csrf_token="", prompt="Was this explanation useful?", submitted_message="Feedback recorded.", yes_label="Yes", no_label="No") -%}
+  {% set feedback_state = state if state in ("rest", "submitted") else "rest" %}
+  {% set safe_action = action if action and action.startswith("/") and not action.startswith("//") else "" %}
+  <div class="feedback-control feedback-control--{{ feedback_state }}" id="{{ control_id }}" data-state="{{ feedback_state }}">
+    {% if feedback_state == "submitted" %}
+      <p class="feedback-control__submitted" role="status">{{ submitted_message }}</p>
+    {% else %}
+      <form class="feedback-control__form" method="{{ method if method in ("get", "post") else "post" }}" action="{{ safe_action }}">
+        {% if csrf_token %}<input type="hidden" name="csrf_token" value="{{ csrf_token }}">{% endif %}
+        <fieldset>
+          <legend>{{ prompt }}</legend>
+          <button class="button" type="submit" name="feedback" value="positive">{{ yes_label }}</button>
+          <button class="button" type="submit" name="feedback" value="negative">{{ no_label }}</button>
+        </fieldset>
+      </form>
+    {% endif %}
+  </div>
+{%- endmacro %}
+
+{% macro disposition_control(control_id, action, subject_type, subject_id, csrf_token="", surface="case-file", reason_codes=(), history=()) -%}
+  {% set safe_action = action if action and action.startswith("/") and not action.startswith("//") else "" %}
+  {% set safe_surface = surface if surface in ("case-file", "memo") else "case-file" %}
+  <section class="feedback-control disposition-control" id="{{ control_id }}" data-surface="{{ safe_surface }}" aria-labelledby="{{ control_id }}-title">
+    <h2 class="sr-only" id="{{ control_id }}-title">Record warning disposition</h2>
+    <form class="feedback-control__form" method="post" action="{{ safe_action }}">
+      {% if csrf_token %}<input type="hidden" name="csrf_token" value="{{ csrf_token }}">{% endif %}
+      <input type="hidden" name="subject_type" value="{{ subject_type }}">
+      <input type="hidden" name="subject_id" value="{{ subject_id }}">
+      <fieldset>
+        <legend>What did the desk do with this warning?</legend>
+        <label for="{{ control_id }}-outcome">Disposition</label>
+        <select id="{{ control_id }}-outcome" name="outcome" required>
+          <option value="">Choose an outcome</option>
+          <option value="acted">Acted</option>
+          <option value="monitoring">Monitoring</option>
+          <option value="dismissed">Dismissed</option>
+        </select>
+        <label for="{{ control_id }}-reason">Reason code</label>
+        <select id="{{ control_id }}-reason" name="reason_code">
+          <option value="">Choose a reason code</option>
+          {% for reason_code in reason_codes %}<option value="{{ reason_code }}">{{ reason_code|replace('_', ' ')|title }}</option>{% endfor %}
+        </select>
+        <label for="{{ control_id }}-note">Note (optional)</label>
+        <textarea id="{{ control_id }}-note" name="note" rows="2" maxlength="2000"></textarea>
+        <button class="button" type="submit">Save disposition</button>
+      </fieldset>
+    </form>
+    {% if history %}
+      <p class="feedback-control__submitted" role="status">{{ history|length }} prior disposition{% if history|length != 1 %}s{% endif %} retained.</p>
+    {% endif %}
+  </section>
+{%- endmacro %}

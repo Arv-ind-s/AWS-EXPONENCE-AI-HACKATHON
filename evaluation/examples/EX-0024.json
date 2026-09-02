@@ -1,0 +1,36 @@
+{
+  "id": "EX-0024",
+  "kind": "false_escalation",
+  "title": "A noisy-transient borrower's blips never sustain into an escalation",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "false_escalation",
+    "noisy_transient"
+  ],
+  "references_reference_portfolio": true,
+  "input": {
+    "reference_dataset": {
+      "seed": 17,
+      "borrower_count": 24,
+      "facility_count": 57,
+      "quarter_count": 4
+    },
+    "cohort": "noisy_transient",
+    "borrower_reference": "B-000003"
+  },
+  "expected": {
+    "escalates": false
+  },
+  "pass_mark": {
+    "type": "zero_false_escalation",
+    "cohorts": [
+      "noisy_transient"
+    ]
+  },
+  "note": "Borrower B-000003 is authored so that no signal family ever satisfies T3's persistence test (evaluation.reference_portfolio.cohorts validates this at generation time via persistence_summary). A transient blip must decay back out rather than sustain into a covenant warning or case -- the other half of spec §17.7's zero-false-escalation pass mark, alongside the stable cohort."
+}

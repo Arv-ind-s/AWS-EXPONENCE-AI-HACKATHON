@@ -1,0 +1,209 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}Governance — Covenant Radar{% endblock %}
+{% block h1 %}Governance{% endblock %}
+
+{% block content %}
+<div class="governance">
+  {% if error %}
+    <p class="state state--error" role="alert">{{ error }}</p>
+  {% endif %}
+
+  {% if view.unapproved_models %}
+    <p class="governance__alert" role="alert" aria-live="assertive" data-testid="unapproved-models-alert">
+      {{ view.unapproved_models|length }} model{{ "s" if view.unapproved_models|length != 1 else "" }} in the registry
+      {{ "have" if view.unapproved_models|length != 1 else "has" }} no approval record —
+      {% for model in view.unapproved_models %}{{ model.component }} ({{ model.provider }} / {{ model.model_id }}){% if not loop.last %}, {% endif %}{% endfor %}.
+    </p>
+  {% endif %}
+
+  {% if view.breached_drift %}
+    <p class="governance__alert" role="alert" aria-live="assertive" data-testid="drift-breach-alert">
+      {{ view.breached_drift|length }} drift breach{{ "es" if view.breached_drift|length != 1 else "" }} —
+      {% for drift in view.breached_drift %}{{ drift.component }}/{{ drift.metric }} ({{ drift.rollback_state }}){% if not loop.last %}, {% endif %}{% endfor %}.
+    </p>
+  {% endif %}
+
+  <section class="panel" aria-labelledby="thresholds-title">
+    <h2 class="panel__title" id="thresholds-title">Thresholds in force</h2>
+    {% if view.current_threshold %}
+      <dl class="governance__facts">
+        <div><dt>Effective from</dt><dd>{{ view.current_threshold.effective_from|ist_date }}</dd></div>
+        <div><dt>Source</dt><dd>{{ view.current_threshold.source }}</dd></div>
+        <div><dt>Proposed by</dt><dd>{{ view.current_threshold.proposed_by_name or view.current_threshold.proposed_by_id or "Not applicable" }}</dd></div>
+        <div><dt>Approved by</dt><dd>{{ view.current_threshold.approved_by_name or view.current_threshold.approved_by_id or "Not applicable" }}</dd></div>
+      </dl>
+      {% if view.current_threshold.is_shipped_default %}
+        <p class="case-file__panel-message" data-testid="calibration-reference">
+          This is the shipped default — no calibration change has been proposed.
+          Calibration record: {{ view.current_threshold.calibration_reference }}
+        </p>
+      {% elif view.current_threshold.note %}
+        <p class="case-file__panel-message">{{ view.current_threshold.note }}</p>
+      {% endif %}
+      {% if view.current_threshold.changes %}
+        <details class="governance__proposal">
+          <summary>What changed from the prior snapshot</summary>
+          <ul class="governance__proposal-changes">
+            {% for change in view.current_threshold.changes %}
+              <li>{{ change.code }}.{{ change.field }}: {{ change.before }} → {{ change.after }}</li>
+            {% endfor %}
+          </ul>
+        </details>
+      {% endif %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Current calibrated thresholds — boundary behaviour above, below and exactly at (spec §17.5)</caption>
+          <thead>
+            <tr>
+              <th scope="col">Threshold</th>
+              <th scope="col">Definition</th>
+              <th scope="col">Value</th>
+              <th scope="col">Above</th>
+              <th scope="col">Below</th>
+              <th scope="col">Exactly at</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in view.current_threshold.rows %}
+              <tr>
+                <th scope="row">{{ row.code }}</th>
+                <td>{{ row.label }}</td>
+                <td>{% for field in row.fields %}{{ field.name }}: {{ field.value }}{% if not loop.last %}; {% endif %}{% endfor %}</td>
+                <td>{{ row.above }}</td>
+                <td>{{ row.below }}</td>
+                <td>{{ row.at }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="case-file__panel-message">No threshold calibration record has been persisted yet.</p>
+    {% endif %}
+  </section>
+
+  {% if can_propose %}
+    <section class="panel" aria-labelledby="propose-title">
+      <h2 class="panel__title" id="propose-title">Propose a threshold change</h2>
+      <form method="post" action="/governance/thresholds/proposals" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <div class="field">
+          <label class="field__label" for="proposal-values">Revised values (JSON, keyed by threshold name)</label>
+          <textarea class="field__control" id="proposal-values" name="values" rows="3" required aria-describedby="proposal-values-hint" placeholder='{"T1": {"amber": "0.45"}}'></textarea>
+          <p class="field__hint" id="proposal-values-hint">Only the fields being changed need to appear, e.g. {"T1": {"amber": "0.45"}}.</p>
+        </div>
+        <div class="field">
+          <label class="field__label" for="proposal-note">Note (required)</label>
+          <textarea class="field__control" id="proposal-note" name="note" rows="3" required maxlength="2000"></textarea>
+        </div>
+        <button class="button" type="submit">Submit proposal</button>
+      </form>
+    </section>
+  {% endif %}
+
+  <section class="panel" aria-labelledby="proposals-title">
+    <h2 class="panel__title" id="proposals-title">Pending threshold approvals</h2>
+    {% if view.pending_proposals %}
+      <ul class="governance__list">
+        {% for proposal in view.pending_proposals %}
+          <li class="governance__proposal" data-testid="pending-proposal-{{ proposal.id }}">
+            <p>
+              Proposed by <strong>{{ proposal.proposer_name or proposal.maker_id }}</strong>
+              on {{ proposal.created_at|ist_date }}
+              {% if proposal.note %} — {{ proposal.note }}{% endif %}
+            </p>
+            {% if proposal.changes %}
+              <ul class="governance__proposal-changes">
+                {% for change in proposal.changes %}
+                  <li>{{ change.code }}.{{ change.field }}: {{ change.before }} → {{ change.after }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+            {% if can_approve and not proposal.is_own_proposal %}
+              <form method="post" action="/governance/thresholds/proposals/{{ proposal.id }}/approve">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                <button class="button" type="submit" data-testid="approve-proposal-{{ proposal.id }}">Approve</button>
+              </form>
+            {% elif proposal.is_own_proposal %}
+              <p class="case-file__panel-message">You proposed this change; a different approver must decide it.</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="case-file__panel-message">No threshold proposal is awaiting a separate approver.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="models-title">
+    <h2 class="panel__title" id="models-title">Model registry</h2>
+    {% if view.models %}
+      <div class="governance__scroll"><table class="governance__table"><thead><tr><th scope="col">Component</th><th scope="col">Provider / model</th><th scope="col">Prompt version</th><th scope="col">Owner</th><th scope="col">State</th><th scope="col">Approval</th></tr></thead><tbody>
+        {% for model in view.models %}<tr data-approved="{{ "true" if model.approved else "false" }}"><th scope="row">{{ model.component }}</th><td>{{ model.provider }} / {{ model.model_id }}</td><td>{{ model.prompt_version or "—" }}</td><td>{{ model.owner_name or "Unassigned" }}</td><td>{{ model.state }}</td><td>{% if model.approved %}Approved by {{ model.approved_by_name or "an unnamed approver" }}{% else %}Unapproved — not promotable{% endif %}</td></tr>{% endfor %}
+      </tbody></table></div>
+    {% else %}<p class="case-file__panel-message">No model registrations are recorded.</p>{% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="drift-title">
+    <h2 class="panel__title" id="drift-title">Drift observations</h2>
+    {% if view.drift %}
+      <div class="governance__scroll"><table class="governance__table"><thead><tr><th scope="col">Component</th><th scope="col">Metric</th><th scope="col">Window</th><th scope="col">Observed</th><th scope="col">Baseline</th><th scope="col">Status</th><th scope="col">Rollback state</th></tr></thead><tbody>
+        {% for drift in view.drift %}<tr data-breached="{{ "true" if drift.breached else "false" }}"><th scope="row">{{ drift.component }}</th><td>{{ drift.metric }}</td><td>{{ drift.window_start|ist_date }} – {{ drift.window_end|ist_date }}</td><td>{{ drift.value }}</td><td>{{ drift.baseline }}</td><td>{% if drift.breached %}Breach{% else %}Within baseline{% endif %}</td><td>{{ drift.rollback_state }}</td></tr>{% endfor %}
+      </tbody></table></div>
+    {% else %}<p class="case-file__panel-message">No drift observations are recorded.</p>{% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="evaluations-title">
+    <h2 class="panel__title" id="evaluations-title">Evaluation scoreboard</h2>
+    {% if view.evaluations %}
+      {% for release in view.evaluations %}
+        <div class="governance__scroll">
+          <table class="governance__table">
+            <caption>Release {{ release.commit_sha }} — both arms against the pass marks (spec §17.7)</caption>
+            <thead><tr><th scope="col">Arm</th><th scope="col">Executed</th><th scope="col">Result</th><th scope="col">Scores</th></tr></thead>
+            <tbody>
+              {% for arm in release.arms %}
+                <tr data-passed="{{ "true" if arm.passed else "false" }}">
+                  <th scope="row">{{ arm.arm }}</th>
+                  <td>{{ arm.executed_at|ist_date }}</td>
+                  <td>{% if arm.passed %}Passed{% else %}Failed{% endif %}</td>
+                  <td>{% for key, value in arm.scores %}{{ key }}: {{ value }}{% if not loop.last %}; {% endif %}{% endfor %}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endfor %}
+    {% else %}
+      {{ components.empty_state("evaluations-empty", "Evaluation scoreboard", "No evaluation run has been recorded for any release yet.") }}
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="history-title">
+    <h2 class="panel__title" id="history-title">Threshold history</h2>
+    {% if view.threshold_history %}
+      <ul class="governance__list">
+        {% for snapshot in view.threshold_history %}
+          <li>
+            {{ snapshot.effective_from|ist_date }} — {{ snapshot.source }} —
+            proposed by {{ snapshot.proposed_by_name or snapshot.proposed_by_id or "Not applicable" }},
+            approved by {{ snapshot.approved_by_name or snapshot.approved_by_id or "Not applicable" }}
+            — {{ snapshot.note or "No note recorded" }}
+            {% if snapshot.changes %}
+              <ul class="governance__proposal-changes">
+                {% for change in snapshot.changes %}
+                  <li>{{ change.code }}.{{ change.field }}: {{ change.before }} → {{ change.after }}</li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p class="case-file__panel-message">No prior threshold snapshots are recorded.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

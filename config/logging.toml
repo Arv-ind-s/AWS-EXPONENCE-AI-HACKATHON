@@ -1,0 +1,79 @@
+# Structured-logging configuration. Loaded once at `configure()`.
+#
+# `level` is one of DEBUG, INFO, WARNING, ERROR, CRITICAL.  `rotation.directory`
+# is relative to the process working directory unless an absolute path is used.
+# `redaction.key_tokens` lists case-insensitive substrings; any log field
+# whose key contains one of them has its value replaced before the line is
+# written, regardless of what that value looks like. Additional configured
+# value patterns are replaced in free-form messages as well.
+
+level = "INFO"
+
+[redaction]
+key_tokens = [
+    "password",
+    "secret",
+    "token",
+    "api_key",
+    "access_key",
+    "private_key",
+    "authorization",
+    "cookie",
+    "aadhaar",
+    "pan_",
+    "cin_",
+    "mfa",
+]
+
+# Personal-class fields are replaced even when their value does not resemble a
+# secret.  Prompt and full document/clause bodies are rejected by the logger;
+# callers must emit a version, digest or business reference instead.
+personal_fields = [
+    "aadhaar",
+    "aadhar",
+    "account_number",
+    "address",
+    "bank_account",
+    "cin",
+    "cin_number",
+    "date_of_birth",
+    "dob",
+    "email",
+    "email_address",
+    "first_name",
+    "full_name",
+    "last_name",
+    "mobile",
+    "mobile_number",
+    "name",
+    "pan",
+    "pan_number",
+    "phone",
+    "phone_number",
+    "principal",
+    "principal_id",
+    "postal_address",
+    "tax_id",
+    "telephone",
+    "user",
+    "user_id",
+    "username",
+    "user_name",
+]
+reject_prompt_bodies = true
+
+# Application and model-call logs use separate files.  Rotated files are
+# timestamped in UTC and receive a neighbouring .sha256 sidecar.  The
+# 180-day minimum is the CERT-In-aligned default and may only be increased.
+[rotation]
+directory = "var/log"
+application_filename = "application.log"
+model_call_filename = "model-call.log"
+max_bytes = 52428800
+interval_seconds = 86400
+retention_days = 180
+
+# Error and warning records are always retained.  These rates apply to
+# debug/info events and can be overridden by an exact logger or logger prefix.
+[sampling]
+default_rate = 1.0

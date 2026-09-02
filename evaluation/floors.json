@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "categories": {
+    "boundary": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "engine": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "extraction": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "false_escalation": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "forecast_dating": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "grounding": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "materiality": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "persistence": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "refusal": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    },
+    "usefulness": {
+      "floor": "1.000",
+      "history": [
+        {
+          "floor": "1.000",
+          "justification": "Initial T-106 floor recorded from the calibrated product evaluation run.",
+          "recorded_at": "2026-09-01T00:00:00+00:00"
+        }
+      ]
+    }
+  }
+}

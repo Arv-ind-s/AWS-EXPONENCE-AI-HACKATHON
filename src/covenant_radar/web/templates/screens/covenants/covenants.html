@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set table_rows = table_rows|default(()) %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  {% if principal.has("REGISTER_COVENANT") %}
+    <p>{{ components.button(labels.new, href="/covenants/new") }}</p>
+  {% endif %}
+  {% call components.panel(title=labels.heading, panel_id="covenant-list") %}
+    {{ components.ledger_table(
+      labels.heading,
+      [
+        {"key": "reference", "label": labels.reference},
+        {"key": "name", "label": labels.name},
+        {"key": "class", "label": labels.class},
+        {"key": "facility", "label": labels.facility},
+        {"key": "status", "label": labels.status}
+      ],
+      table_rows,
+      table_id="covenants-ledger",
+      empty_title=labels.empty,
+      empty_message=labels.empty
+    ) }}
+    {% for row in rows %}
+      <p>{{ components.button(labels.open, href="/covenants/" ~ row.reference) }}</p>
+    {% endfor %}
+  {% endcall %}
+{% endblock %}

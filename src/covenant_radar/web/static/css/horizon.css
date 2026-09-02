@@ -1,0 +1,207 @@
+/* Horizon control styles: interaction is direct manipulation, without tweening. */
+
+.horizon-control {
+  display: grid;
+  gap: var(--space-3);
+  min-width: 0;
+  padding-block: var(--space-3);
+  border-block: var(--border);
+  color: var(--ink);
+  font-family: var(--font-ui);
+}
+
+.horizon-control__heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-2) var(--space-4);
+}
+
+.horizon-control__title,
+.horizon-control__drivers h5 {
+  margin: 0;
+  font-family: var(--font-head);
+  font-weight: var(--weight-bold);
+}
+
+.horizon-control__title {
+  font-size: var(--size-section);
+}
+
+.horizon-control__drivers h5 {
+  font-size: var(--size-body);
+}
+
+.horizon-control__selected,
+.horizon-control__status,
+.horizon-control__stops-label,
+.horizon-control__drivers ul {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-data);
+}
+
+.horizon-control__selected,
+.horizon-control__live-ledger dd {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.horizon-control__range {
+  display: none;
+  gap: var(--space-2);
+}
+
+.horizon-control[data-horizon-mode="interactive"] .horizon-control__range {
+  display: grid;
+}
+
+.horizon-control[data-horizon-mode="interactive"] .horizon-control__stops {
+  display: none;
+}
+
+.horizon-control__label {
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+}
+
+.horizon-control__input {
+  width: 100%;
+  min-height: var(--hit-min);
+  /* A range input carries a user-agent inline margin, which a 100% width then
+     pushes past its own track. */
+  margin-inline: 0;
+  accent-color: var(--ink);
+}
+
+.horizon-control__input::-webkit-slider-thumb {
+  min-width: calc(var(--hit-min) + var(--space-3));
+  min-height: calc(var(--hit-min) + var(--space-3));
+}
+
+.horizon-control__input::-moz-range-thumb {
+  min-width: calc(var(--hit-min) + var(--space-3));
+  min-height: calc(var(--hit-min) + var(--space-3));
+}
+
+.horizon-control__stops {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.horizon-control__stops-label {
+  flex: 0 0 100%;
+}
+
+.horizon-control__stop[aria-current="true"] {
+  border-style: double;
+}
+
+.horizon-control__status {
+  min-height: var(--hit-min);
+  overflow-wrap: anywhere;
+}
+
+.horizon-control[data-state="loading"] .horizon-control__status {
+  color: var(--ink);
+}
+
+.horizon-control[data-state="error"] .horizon-control__status {
+  color: var(--ink);
+  font-weight: var(--weight-semi);
+}
+
+.horizon-control__live-ledger {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+  padding-block: var(--space-2);
+  border-block: var(--border);
+  font-size: var(--size-data);
+}
+
+.horizon-control__live-ledger > div {
+  min-width: 0;
+}
+
+.horizon-control__live-ledger dt {
+  color: var(--ink-muted);
+  font-weight: var(--weight-semi);
+}
+
+.horizon-control__live-ledger dd {
+  margin: var(--space-1) 0 0;
+  overflow-wrap: anywhere;
+  text-align: end;
+}
+
+.horizon-control__live-ledger [data-suppressed="true"] {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-variant-numeric: normal;
+  text-align: start;
+}
+
+.horizon-control__drivers {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.horizon-control__drivers ul {
+  display: grid;
+  gap: var(--space-1);
+  padding-inline-start: var(--space-6);
+}
+
+.horizon-control__drivers li {
+  overflow-wrap: anywhere;
+}
+
+.horizon-control__drivers [data-driver-share] {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.trajectory__selected-day {
+  stroke: var(--hairline);
+  stroke-dasharray: var(--space-1) var(--space-1);
+  stroke-width: var(--space-1);
+  vector-effect: non-scaling-stroke;
+}
+
+.trajectory__crossing-tick {
+  stroke: var(--breach);
+  stroke-width: var(--space-1);
+  vector-effect: non-scaling-stroke;
+}
+
+.trajectory__crossing {
+  fill: var(--paper);
+  stroke: var(--breach);
+  stroke-width: var(--space-1);
+  vector-effect: non-scaling-stroke;
+}
+
+@media (max-width: 45rem) {
+  .horizon-control__input {
+    min-height: calc(var(--hit-min) + var(--space-3));
+  }
+
+  .horizon-control__live-ledger {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .horizon-control[data-horizon-mode="interactive"] .horizon-control__range {
+    display: none;
+  }
+
+  .horizon-control[data-horizon-mode="interactive"] .horizon-control__stops {
+    display: flex;
+  }
+}

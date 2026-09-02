@@ -1,0 +1,4 @@
+{% macro degraded_note(capability, message) -%}
+  {% set state_capability = capability %}{% set state_message = message %}
+  {% include "_states/degraded.html" %}
+{%- endmacro %}

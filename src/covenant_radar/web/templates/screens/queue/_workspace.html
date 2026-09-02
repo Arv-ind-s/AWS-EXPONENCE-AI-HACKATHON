@@ -1,0 +1,17 @@
+{#
+  The queue's single swap region.
+
+  Counts, active-filter chips and rows all derive from one request, so a
+  filter change replaces them together and the strip can never describe a
+  different slice than the rows beneath it. The background polls keep their
+  own narrower targets (`#queue-summary`, `#queue-ledger`) so a passive
+  refresh does not disturb an open filter or an expanded row.
+#}
+<div class="queue-workspace{% if live_workspace_enabled %} queue-workspace--live{% endif %}"
+     id="queue-workspace"
+     data-queue-workspace>
+  {% include "screens/queue/_summary.html" %}
+  {% include "screens/queue/_filters.html" %}
+  {% include "screens/queue/_ledger.html" %}
+  {% include "screens/queue/_selection_bar.html" %}
+</div>

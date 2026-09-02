@@ -1,0 +1,39 @@
+{
+  "id": "EX-0011",
+  "kind": "boundary",
+  "title": "A max-direction covenant breaches exactly at the threshold boundary",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "breach",
+    "at_boundary"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "3.00",
+      "direction": "max"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "3.00"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "breach",
+    "headroom_pct": "0",
+    "threshold_used": "3.00"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "The boundary convention is inclusive on the breach side: a max covenant breaches at value >= threshold. value equals threshold exactly (3.00 == 3.00), so headroom is 0 and the verdict is breach, not pass or warning."
+}

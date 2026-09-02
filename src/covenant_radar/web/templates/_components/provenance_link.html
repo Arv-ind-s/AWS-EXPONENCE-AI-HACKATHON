@@ -1,0 +1,8 @@
+{% macro provenance_link(label, state="resolvable", href="", purged_message="Source no longer retained.") -%}
+  {% set safe_href = href if href and href.startswith("/") and not href.startswith("//") else "" %}
+  {% if state == "resolvable" and safe_href %}
+    <a class="provenance-link provenance-link--resolvable" href="{{ safe_href }}">{{ label }}</a>
+  {% else %}
+    <span class="provenance-link provenance-link--purged" aria-label="{{ purged_message }}">{{ label }} <span class="provenance-link__status">({{ purged_message }})</span></span>
+  {% endif %}
+{%- endmacro %}

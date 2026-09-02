@@ -1,0 +1,35 @@
+[
+  {
+    "borrower_key": "B-ST-001",
+    "fy_label": "FY26Q4",
+    "period_type": "annual",
+    "period_start": "2025-04-01",
+    "period_end": "2026-03-31",
+    "is_audited": true,
+    "revenue_lakh": 10000,
+    "total_assets_lakh": 50000,
+    "tangible_net_worth_lakh": 20000
+  },
+  {
+    "borrower_key": "B-ST-002",
+    "fy_label": "FY26Q4",
+    "period_type": "annual",
+    "period_start": "2025-04-01",
+    "period_end": "2026-03-31",
+    "is_audited": false,
+    "revenue_lakh": 5000,
+    "total_assets_lakh": 25000,
+    "tangible_net_worth_lakh": 10000
+  },
+  {
+    "borrower_key": "TOTAL",
+    "fy_label": "FY26Q4",
+    "period_type": "annual",
+    "period_start": "2025-04-01",
+    "period_end": "2026-03-31",
+    "is_audited": false,
+    "revenue_lakh": 15000,
+    "total_assets_lakh": 75000,
+    "tangible_net_worth_lakh": 30000
+  }
+]

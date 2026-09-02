@@ -1,0 +1,25 @@
+{% macro button(label, href="", type="button", name="", value="", button_id="", form="", disabled=false, loading=false, destructive=false, drawer_target="", variant="primary") -%}
+  {% set button_type = type if type in ("button", "submit", "reset") else "button" %}
+  {% set is_disabled = disabled or loading %}
+  {% set safe_href = href if href and href.startswith("/") and not href.startswith("//") else "" %}
+  {% set classes = "button" %}
+  {% set safe_variant = variant if variant in ("primary", "secondary", "ghost", "danger") else "primary" %}
+  {% if safe_variant != "primary" %}{% set classes = classes ~ " button--" ~ ("destructive" if safe_variant == "danger" else safe_variant) %}{% endif %}
+  {% if destructive %}{% set classes = classes ~ " button--destructive" %}{% endif %}
+  {% if loading %}{% set classes = classes ~ " button--loading" %}{% endif %}
+  {% if safe_href and not is_disabled %}
+    <a class="{{ classes }}" href="{{ safe_href }}"{% if button_id %} id="{{ button_id }}"{% endif %}
+       {% if drawer_target %} data-drawer-open="{{ drawer_target }}" aria-controls="{{ drawer_target }}" aria-expanded="false"{% endif %}
+       {% if loading %}aria-busy="true"{% endif %}>{{ label }}</a>
+  {% elif safe_href and is_disabled %}
+    <span class="{{ classes }}" aria-disabled="true"{% if button_id %} id="{{ button_id }}"{% endif %}{% if drawer_target %} data-drawer-open="{{ drawer_target }}" aria-controls="{{ drawer_target }}" aria-expanded="false"{% endif %}{% if loading %} aria-busy="true"{% endif %}>
+      {{ label }}
+    </span>
+  {% else %}
+    <button class="{{ classes }}" type="{{ button_type }}"{% if button_id %} id="{{ button_id }}"{% endif %}
+            {% if name %} name="{{ name }}"{% endif %}{% if value %} value="{{ value }}"{% endif %}
+            {% if form %} form="{{ form }}"{% endif %}{% if is_disabled %} disabled{% endif %}
+            {% if drawer_target %} data-drawer-open="{{ drawer_target }}" aria-controls="{{ drawer_target }}" aria-expanded="false"{% endif %}
+            {% if loading %} aria-busy="true"{% endif %}>{{ label }}</button>
+  {% endif %}
+{%- endmacro %}

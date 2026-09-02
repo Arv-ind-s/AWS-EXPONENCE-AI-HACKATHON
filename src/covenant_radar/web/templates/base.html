@@ -1,0 +1,208 @@
+{% macro tr(key, values={}) -%}
+  {%- if _ is defined -%}{{ _(key, **values) }}{%- else -%}{{ key }}{%- endif -%}
+{%- endmacro %}
+{% import "_components/icon.html" as icons %}
+{% set current_path = request.url.path if request is defined else "/" %}
+{% macro nav_link(href, label, icon_name, active=false) -%}
+  <a class="shell-nav__link{% if active %} shell-nav__link--active{% endif %}" href="{{ href }}"{% if active %} aria-current="page"{% endif %} title="{{ label }}">
+    {{ icons.icon(icon_name) }}
+    <span class="shell-nav__label">{{ label }}</span>
+  </a>
+{%- endmacro %}
+<!doctype html>
+<html lang="{{ locale }}" data-theme="{{ theme }}" class="no-js" data-sidebar="expanded" dir="{{ text_direction }}">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="htmx-config" content='{"allowEval":false,"includeIndicatorStyles":false,"selfRequestsOnly":true,"historyCacheSize":0}'>
+    <title>{% block page_title %}{{ tr("app.name") }}{% endblock %}</title>
+    <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
+    <script src="/static/js/shell-init.js"></script>
+    <link rel="stylesheet" href="/static/css/tokens.css">
+    <link rel="stylesheet" href="/static/css/app.css">
+    <link rel="stylesheet" href="/static/css/forecast.css">
+    <link rel="stylesheet" href="/static/css/horizon.css">
+    <link rel="stylesheet" href="/static/css/simulator.css">
+    <link rel="stylesheet" href="/static/css/why.css">
+    {% if live_workspace_enabled %}<link rel="stylesheet" href="/static/css/live-workspace.css">{% endif %}
+    {% block head %}{% endblock %}
+    <link rel="stylesheet" href="/static/css/modern.css">
+    <link rel="stylesheet" href="/static/css/print.css" media="print">
+  </head>
+  <body class="{% if principal %}app-shell{% else %}auth-shell{% endif %}">
+    <a class="sr-only skip-link" href="#main-content">{{ tr("shell.skip_to_content") }}</a>
+
+    {% if principal %}
+      <div class="shell-frame" data-shell-frame>
+        <aside class="shell-sidebar" id="shell-sidebar" data-sidebar-panel aria-label="{{ tr('shell.navigation') }}">
+          <div class="shell-sidebar__brand">
+            <a class="brand" href="/" aria-label="{{ tr('app.name') }}">
+              <span class="brand__mark">{{ icons.icon("radar") }}</span>
+              <span class="brand__copy"><strong>{{ tr("app.wordmark_primary") }}</strong><span>{{ tr("app.wordmark_secondary") }}</span></span>
+            </a>
+            <button class="icon-button shell-sidebar__mobile-close" type="button" data-sidebar-close aria-label="{{ tr('shell.close_navigation') }}">
+              {{ icons.icon("close") }}
+            </button>
+          </div>
+
+          <nav class="shell-nav" aria-label="{{ tr('navigation.label') }}">
+            <section class="shell-nav__group" aria-labelledby="nav-monitor">
+              <h2 class="shell-nav__heading" id="nav-monitor">{{ tr("navigation.group_monitor") }}</h2>
+              {{ nav_link("/", tr("navigation.queue"), "queue", current_path == "/") }}
+              {% if principal.has("VIEW_CASE") %}{{ nav_link("/cases", tr("navigation.cases"), "case", current_path.startswith("/cases")) }}{% endif %}
+              {% set notification_label = tr("navigation.notifications") %}
+              {% set notification_aria_label = tr("navigation.notifications_unread", {"count": notification_unread_count(request, principal) if notification_unread_count is defined else 0}) %}
+              {% include "_components/notification_link.html" %}
+              {{ nav_link("/search", tr("navigation.search"), "search", current_path.startswith("/search")) }}
+            </section>
+
+            <section class="shell-nav__group" aria-labelledby="nav-data">
+              <h2 class="shell-nav__heading" id="nav-data">{{ tr("navigation.group_data") }}</h2>
+              {% if principal.has("VIEW_BORROWER") %}{{ nav_link("/borrowers", tr("navigation.borrowers"), "borrower", current_path.startswith("/borrowers")) }}{% endif %}
+              {% if principal.has("VIEW_COVENANT") %}
+                {{ nav_link("/facilities", tr("navigation.facilities"), "facility", current_path.startswith("/facilities")) }}
+                {{ nav_link("/portfolios", tr("navigation.portfolios"), "portfolio", current_path.startswith("/portfolios")) }}
+                {{ nav_link("/covenants", tr("navigation.covenants"), "covenant", current_path.startswith("/covenants")) }}
+              {% endif %}
+              {% if principal.has("VIEW_DOCUMENT") %}{{ nav_link("/certificates", tr("navigation.certificates"), "certificate", current_path.startswith("/certificates")) }}{% endif %}
+            </section>
+
+            <section class="shell-nav__group" aria-labelledby="nav-workflows">
+              <h2 class="shell-nav__heading" id="nav-workflows">{{ tr("navigation.group_workflows") }}</h2>
+              {% if principal.has("RUN_INTAKE") %}{{ nav_link("/intake", tr("navigation.intake"), "upload", current_path.startswith("/intake")) }}{% endif %}
+              {% if principal.has("INGEST_FINANCIAL_STATEMENTS") %}{{ nav_link("/financial-statements", tr("navigation.financial_statements"), "upload", current_path.startswith("/financial-statements")) }}{% endif %}
+              {% if principal.has("VIEW_DOCUMENT") %}{{ nav_link("/documents/review", tr("navigation.document_review"), "document", current_path.startswith("/documents")) }}{% endif %}
+              {% if principal.has("RUN_SIMULATION") %}{{ nav_link("/simulator", tr("navigation.simulator"), "simulate", current_path.startswith("/simulator")) }}{% endif %}
+              {% if principal.has("VIEW_AUDIT") %}{{ nav_link("/audit", tr("navigation.audit"), "audit", current_path.startswith("/audit")) }}{% endif %}
+              {% if principal.has("PROPOSE_THRESHOLDS") or principal.has("APPROVE_THRESHOLDS") or principal.has("APPROVE_MODEL_PROMOTION") %}{{ nav_link("/governance", tr("navigation.governance"), "governance", current_path.startswith("/governance")) }}{% endif %}
+            </section>
+
+            {# The intervention catalogue is a maker-checker configuration
+               surface guarded by PROPOSE_THRESHOLDS, not connector
+               administration: gating its link on MANAGE_CONNECTORS showed it
+               to holders who then met a 403, and hid it from the holders who
+               can actually use it. #}
+            {% if principal.has("MANAGE_USERS") or principal.has("MANAGE_JOBS") or principal.has("PROPOSE_THRESHOLDS") %}
+              <section class="shell-nav__group" aria-labelledby="nav-admin">
+                <h2 class="shell-nav__heading" id="nav-admin">{{ tr("navigation.group_admin") }}</h2>
+                {% if principal.has("PROPOSE_THRESHOLDS") %}{{ nav_link("/admin/catalogue", tr("navigation.catalogue"), "admin", current_path.startswith("/admin/catalogue")) }}{% endif %}
+                {% if principal.has("MANAGE_JOBS") %}
+                  {{ nav_link("/admin/jobs", tr("navigation.operations"), "admin", current_path.startswith("/admin/jobs")) }}
+                  {{ nav_link("/admin/config", tr("navigation.configuration"), "admin", current_path.startswith("/admin/config")) }}
+                {% endif %}
+                {% if principal.has("MANAGE_USERS") %}{{ nav_link("/admin/users", tr("navigation.admin_users"), "user", current_path.startswith("/admin/users")) }}{% endif %}
+              </section>
+            {% endif %}
+          </nav>
+
+          <button class="shell-sidebar__collapse" type="button" data-sidebar-toggle aria-controls="shell-sidebar" aria-expanded="true">
+            {{ icons.icon("collapse") }}<span class="shell-nav__label">{{ tr("shell.collapse_sidebar") }}</span>
+          </button>
+        </aside>
+
+        <button class="shell-scrim" type="button" data-sidebar-close aria-label="{{ tr('shell.close_navigation') }}" tabindex="-1"></button>
+
+        <div class="shell-main">
+          <header class="shell-topbar" data-shell-header>
+            <div class="shell-topbar__context">
+              <button class="icon-button shell-topbar__menu" type="button" data-sidebar-open aria-controls="shell-sidebar" aria-expanded="false" aria-label="{{ tr('shell.open_navigation') }}">
+                {{ icons.icon("menu") }}
+              </button>
+              <div class="shell-breadcrumb">
+                <span class="shell-breadcrumb__root">{{ tr("shell.workspace") }}</span>
+                {{ icons.icon("chevron") }}
+                <span>{% block breadcrumb %}{% block breadcrumb_label %}{{ tr("shell.current_view") }}{% endblock %}{% endblock %}</span>
+              </div>
+            </div>
+
+            <form class="shell-search" method="get" action="/search" role="search">
+              {{ icons.icon("search") }}
+              <label class="sr-only" for="shell-search-query">{{ tr("shell.search_label") }}</label>
+              <input id="shell-search-query" name="q" type="search" placeholder="{{ tr('shell.search_placeholder') }}" maxlength="200" autocomplete="off">
+              <kbd>/</kbd>
+            </form>
+
+            <div class="shell-topbar__actions">
+              {% if live_workspace_enabled %}
+                <button class="live-status" type="button" data-live-activity-toggle aria-controls="live-activity-drawer" aria-expanded="false" aria-label="{{ tr('live.activity') }}">
+                  <span class="live-status__pulse" aria-hidden="true"></span><span data-live-status>{{ tr("live.connected") }}</span>
+                </button>
+              {% endif %}
+              <form method="post" action="/preferences/theme" class="shell-theme">
+                <input type="hidden" name="theme" value="{{ 'light' if theme == 'dark' else 'dark' }}">
+                <input type="hidden" name="next" value="{{ current_path }}">
+                <button class="icon-button" type="submit" aria-label="{% if theme == 'dark' %}{{ tr('navigation.theme_light') }}{% else %}{{ tr('navigation.theme_dark') }}{% endif %}" title="{% if theme == 'dark' %}{{ tr('navigation.theme_light') }}{% else %}{{ tr('navigation.theme_dark') }}{% endif %}">
+                  {% if theme == "dark" %}{{ icons.icon("sun") }}{% else %}{{ icons.icon("moon") }}{% endif %}
+                </button>
+              </form>
+              <form method="post" action="/preferences/locale" class="shell-locale">
+                <input type="hidden" name="locale" value="{{ 'en' if locale == 'hi' else 'hi' }}">
+                <input type="hidden" name="next" value="{{ current_path }}">
+                <button class="icon-button" type="submit" aria-label="{% if locale == 'hi' %}{{ tr('navigation.language_english') }}{% else %}{{ tr('navigation.language_hindi') }}{% endif %}" title="{% if locale == 'hi' %}{{ tr('navigation.language_english') }}{% else %}{{ tr('navigation.language_hindi') }}{% endif %}">
+                  {% if locale == "hi" %}{{ tr("navigation.language_english_short") }}{% else %}{{ tr("navigation.language_hindi_short") }}{% endif %}
+                </button>
+              </form>
+              <div class="shell-user-menu" data-user-menu data-state="closed">
+                <button class="icon-button" type="button" data-user-menu-toggle aria-controls="shell-user-menu-panel" aria-expanded="false" aria-label="{{ tr('shell.open_user_menu') }}">{{ icons.icon("user") }}</button>
+                <div class="shell-user-menu__panel" id="shell-user-menu-panel" hidden>
+                  <div class="shell-user-menu__identity"><strong>{{ principal.display_name if principal.display_name is defined else tr("shell.signed_in_user") }}</strong><span>{{ tr("shell.secure_workspace") }}</span></div>
+                  <a href="/password/change">{{ tr("shell.change_password") }}</a>
+                  <form method="post" action="/sign-out" class="shell-sign-out"><button type="submit">{{ tr("navigation.sign_out") }}</button></form>
+                </div>
+              </div>
+            </div>
+          </header>
+
+          <main id="main-content" tabindex="-1">
+            <header class="page-heading">
+              <div class="page-heading__copy">
+                <p class="page-heading__eyebrow">{% block page_eyebrow %}{{ tr("shell.decision_workspace") }}{% endblock %}</p>
+                <h1>{% block h1 %}{{ tr("app.name") }}{% endblock %}</h1>
+                {% block page_description %}{% endblock %}
+              </div>
+              <div class="page-heading__actions">{% block page_actions %}{% endblock %}</div>
+            </header>
+            <div class="page-content">{% block content %}{% endblock %}</div>
+          </main>
+        </div>
+      </div>
+      {% if live_workspace_enabled %}
+        <aside class="live-activity-drawer" id="live-activity-drawer" data-live-activity-drawer hidden aria-label="{{ tr('live.activity') }}">
+          <header><div><p class="page-heading__eyebrow">{{ tr("live.status") }}</p><h2>{{ tr("live.activity") }}</h2></div><button class="icon-button" type="button" data-live-activity-close aria-label="{{ tr('live.close_activity') }}">{{ icons.icon("close") }}</button></header>
+          <div class="live-activity-drawer__items" data-live-activity-list><p class="muted">{{ tr("live.empty") }}</p></div>
+        </aside>
+        <div class="live-toast-stack" data-live-toasts aria-live="polite" aria-atomic="false"></div>
+      {% endif %}
+    {% else %}
+      <header class="auth-brandbar">
+        <a class="brand" href="/sign-in" aria-label="{{ tr('app.name') }}">
+          <span class="brand__mark">{{ icons.icon("radar") }}</span>
+          <span class="brand__copy"><strong>{{ tr("app.wordmark_primary") }}</strong><span>{{ tr("app.wordmark_secondary") }}</span></span>
+        </a>
+      </header>
+      <div class="auth-layout">
+        <aside class="auth-story" aria-label="{{ tr('auth.product_introduction') }}">
+          <div class="auth-story__visual" aria-hidden="true">
+            <span class="auth-orbit auth-orbit--outer"></span><span class="auth-orbit auth-orbit--inner"></span><span class="auth-orbit__beam"></span><span class="auth-orbit__point"></span>
+          </div>
+          <p class="page-heading__eyebrow">{{ tr("auth.eyebrow") }}</p>
+          <h2>{{ tr("auth.story_title") }}</h2>
+          <p>{{ tr("auth.story_message") }}</p>
+        </aside>
+        <main class="auth-main" id="main-content" tabindex="-1">
+          <div class="auth-main__content">
+            <p class="page-heading__eyebrow">{{ tr("auth.secure_access") }}</p>
+            <h1>{% block auth_h1 %}{{ self.h1() }}{% endblock %}</h1>
+            <div class="page-content">{{ self.content() }}</div>
+          </div>
+        </main>
+      </div>
+    {% endif %}
+
+    {% block body_end %}{% endblock %}
+    <script src="/static/vendor/htmx/htmx.min.js" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous" defer></script>
+    <script src="/static/js/app.js" defer></script>
+    <script src="/static/js/horizon.js" defer></script>
+    {% if live_workspace_enabled %}<script src="/static/js/live-workspace.js" defer></script>{% endif %}
+  </body>
+</html>

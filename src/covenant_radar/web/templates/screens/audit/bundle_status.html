@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ labels.bundle_title }}{% endblock %}
+{% block h1 %}{{ labels.bundle_title }}{% endblock %}
+
+{% block content %}
+  <section class="panel audit-bundle-status" id="audit-bundle-status" data-state="{{ bundle_status }}" aria-live="polite">
+    <h2 class="panel__title">{{ labels.bundle_title }}</h2>
+    <p><strong>{{ labels.status }}:</strong>
+      {% if bundle_status == "complete" %}{{ labels.bundle_ready }}{% else %}{{ labels.bundle_queued }}{% endif %}
+    </p>
+    <p><strong>{{ labels.event_id_column }}:</strong> <code>{{ bundle_id }}</code></p>
+    {% if manifest_hash %}<p><strong>{{ labels.manifest_hash }}:</strong> <code>{{ manifest_hash }}</code></p>{% endif %}
+    {% if bundle_status == "complete" %}
+      <p><a class="button" href="{{ bundle_location }}">{{ labels.download_bundle }}</a></p>
+    {% else %}
+      <p><a class="button" href="{{ bundle_location }}">{{ labels.refresh_bundle }}</a></p>
+    {% endif %}
+  </section>
+{% endblock %}

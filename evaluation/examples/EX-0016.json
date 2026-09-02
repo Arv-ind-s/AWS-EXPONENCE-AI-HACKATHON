@@ -1,0 +1,44 @@
+{
+  "id": "EX-0016",
+  "kind": "boundary",
+  "title": "An approved waiver overrides what would otherwise be a breach",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "waiver",
+    "pass"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "5.00"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    },
+    "waiver": {
+      "from_date": "2026-01-01",
+      "state": "approved",
+      "to_date": "2026-12-31"
+    }
+  },
+  "expected": {
+    "verdict": "pass",
+    "headroom_pct": "-25.00",
+    "threshold_used": "4.00"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "5.00 >= 4.00 would ordinarily breach. An approved waiver covering the test date is in force, and an approved waiver forces the verdict to pass regardless of the underlying headroom -- the headroom is still reported (negative, honestly) so the why-panel never hides how close the waived breach actually was."
+}

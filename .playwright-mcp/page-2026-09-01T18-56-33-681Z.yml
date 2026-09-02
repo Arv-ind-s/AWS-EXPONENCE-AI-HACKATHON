@@ -1,0 +1,1034 @@
+- generic [active] [ref=f38e1]:
+  - link "Skip to content" [ref=f38e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f38e3]:
+    - complementary "Workspace navigation" [ref=f38e4]:
+      - link "Covenant Radar" [ref=f38e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f38e13]:
+          - strong [ref=f38e14]: Covenant
+          - generic [ref=f38e15]: Radar
+      - navigation "Primary navigation" [ref=f38e16]:
+        - region [ref=f38e17]:
+          - heading "Monitor" [level=2] [ref=f38e18]
+          - link "Portfolio queue" [ref=f38e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f38e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f38e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f38e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f38e31]: "0"
+          - link "Search" [ref=f38e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f38e37]:
+          - heading "Portfolio data" [level=2] [ref=f38e38]
+          - link "Borrowers" [ref=f38e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f38e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f38e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f38e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f38e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f38e61]:
+          - heading "Workflows" [level=2] [ref=f38e62]
+          - link "Intake" [ref=f38e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f38e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f38e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f38e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f38e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f38e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f38e87]:
+          - heading "Administration" [level=2] [ref=f38e88]
+          - link "Action catalogue" [ref=f38e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f38e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f38e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f38e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f38e109] [cursor=pointer]
+    - generic [ref=f38e113]:
+      - banner [ref=f38e114]:
+        - generic [ref=f38e116]:
+          - generic [ref=f38e117]: Workspace
+          - generic [ref=f38e120]: Current view
+        - search [ref=f38e121]:
+          - generic [ref=f38e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f38e123]
+          - generic: /
+        - generic [ref=f38e124]:
+          - button "Live activity" [ref=f38e125]:
+            - generic [ref=f38e127]: Live
+          - button "Use light theme" [ref=f38e129] [cursor=pointer]
+          - button "Open user menu" [ref=f38e134] [cursor=pointer]
+      - main [ref=f38e138]:
+        - generic [ref=f38e140]:
+          - paragraph [ref=f38e141]: Decision workspace
+          - heading "Admin operations" [level=1] [ref=f38e142]
+        - generic [ref=f38e144]:
+          - paragraph [ref=f38e145]: Operational state is read from the durable run ledger and purge evidence.
+          - region [ref=f38e146]:
+            - generic [ref=f38e147]:
+              - generic [ref=f38e148]:
+                - paragraph [ref=f38e149]: System status
+                - heading "Health and capabilities" [level=2] [ref=f38e150]
+              - paragraph [ref=f38e151]: Version 0.1.0
+            - table [ref=f38e153]:
+              - caption [ref=f38e154]: Configured product capabilities
+              - rowgroup [ref=f38e155]:
+                - row [ref=f38e156]:
+                  - columnheader "Capability" [ref=f38e157]
+                  - columnheader "Status" [ref=f38e158]
+                  - columnheader "Detail" [ref=f38e159]
+                  - columnheader "What configuration enables" [ref=f38e160]
+              - rowgroup [ref=f38e161]:
+                - row [ref=f38e162]:
+                  - rowheader "Model Provider" [ref=f38e163]
+                  - cell "configured" [ref=f38e164]
+                  - cell "tcs" [ref=f38e165]
+                  - cell "Available for use." [ref=f38e166]
+                - row [ref=f38e167]:
+                  - rowheader "Sso" [ref=f38e168]
+                  - cell "not configured" [ref=f38e169]
+                  - cell "none" [ref=f38e170]
+                  - cell "Configure this capability to enable single sign-on identity mapping." [ref=f38e171]
+                - row [ref=f38e172]:
+                  - rowheader "Ocr" [ref=f38e173]
+                  - cell "not configured" [ref=f38e174]
+                  - cell "not configured" [ref=f38e175]
+                  - cell "Configure this capability to enable scanned-document text extraction." [ref=f38e176]
+                - row [ref=f38e177]:
+                  - rowheader "Smtp" [ref=f38e178]
+                  - cell "not configured" [ref=f38e179]
+                  - cell "not configured" [ref=f38e180]
+                  - cell "Configure this capability to enable email digests and job-failure delivery." [ref=f38e181]
+                - row [ref=f38e182]:
+                  - rowheader "Webhooks" [ref=f38e183]
+                  - cell "not configured" [ref=f38e184]
+                  - cell "not configured" [ref=f38e185]
+                  - cell "Configure this capability to enable signed webhook delivery." [ref=f38e186]
+                - row [ref=f38e187]:
+                  - rowheader "Document Store" [ref=f38e188]
+                  - cell "configured" [ref=f38e189]
+                  - cell "local" [ref=f38e190]
+                  - cell "Available for use." [ref=f38e191]
+            - table [ref=f38e193]:
+              - caption [ref=f38e194]: Dependency checks
+              - rowgroup [ref=f38e195]:
+                - row [ref=f38e196]:
+                  - columnheader "Dependency" [ref=f38e197]
+                  - columnheader "Status" [ref=f38e198]
+                  - columnheader "Detail" [ref=f38e199]
+              - rowgroup [ref=f38e200]:
+                - row [ref=f38e201]:
+                  - rowheader "Database" [ref=f38e202]
+                  - cell "healthy" [ref=f38e203]
+                  - cell "Database connection is responding." [ref=f38e204]
+                - row [ref=f38e205]:
+                  - rowheader "Scheduler" [ref=f38e206]
+                  - cell "healthy" [ref=f38e207]
+                  - cell "Job registry and asynchronous runner are available." [ref=f38e208]
+          - region [ref=f38e209]:
+            - heading "Queues" [level=2] [ref=f38e210]
+            - generic [ref=f38e211]:
+              - generic [ref=f38e212]:
+                - term [ref=f38e213]: Quarantine
+                - definition [ref=f38e214]: "1195"
+                - paragraph [ref=f38e215]: Unresolved source rows awaiting steward action.
+              - generic [ref=f38e216]:
+                - term [ref=f38e217]: Entity Matches
+                - definition [ref=f38e218]: "0"
+                - paragraph [ref=f38e219]: Candidate matches awaiting a human decision.
+          - region [ref=f38e220]:
+            - generic [ref=f38e221]:
+              - generic [ref=f38e222]:
+                - paragraph [ref=f38e223]: Scheduler
+                - heading "Registered jobs" [level=2] [ref=f38e224]
+              - paragraph [ref=f38e225]: A running job cannot be triggered a second time.
+            - table [ref=f38e227]:
+              - caption [ref=f38e228]: Job definitions and declared failure policy
+              - rowgroup [ref=f38e229]:
+                - row [ref=f38e230]:
+                  - columnheader "Job" [ref=f38e231]
+                  - columnheader "Schedule" [ref=f38e232]
+                  - columnheader "Attempts" [ref=f38e233]
+                  - columnheader "Timeout" [ref=f38e234]
+                  - columnheader "Action" [ref=f38e235]
+              - rowgroup [ref=f38e236]:
+                - row [ref=f38e237]:
+                  - rowheader "nightly.ingest" [ref=f38e238]
+                  - cell "Manual only" [ref=f38e239]
+                  - cell "3" [ref=f38e240]
+                  - cell "1800.0 seconds" [ref=f38e241]
+                  - cell [ref=f38e242]:
+                    - button "Run now" [ref=f38e244] [cursor=pointer]
+                - row [ref=f38e245]:
+                  - rowheader "nightly.test" [ref=f38e246]
+                  - cell "Manual only" [ref=f38e247]
+                  - cell "3" [ref=f38e248]
+                  - cell "1800.0 seconds" [ref=f38e249]
+                  - cell [ref=f38e250]:
+                    - button "Run now" [ref=f38e252] [cursor=pointer]
+                - row [ref=f38e253]:
+                  - rowheader "nightly.score" [ref=f38e254]
+                  - cell "Manual only" [ref=f38e255]
+                  - cell "3" [ref=f38e256]
+                  - cell "1800.0 seconds" [ref=f38e257]
+                  - cell [ref=f38e258]:
+                    - button "Run now" [ref=f38e260] [cursor=pointer]
+                - row [ref=f38e261]:
+                  - rowheader "nightly.rank" [ref=f38e262]
+                  - cell "Manual only" [ref=f38e263]
+                  - cell "3" [ref=f38e264]
+                  - cell "1800.0 seconds" [ref=f38e265]
+                  - cell [ref=f38e266]:
+                    - button "Run now" [ref=f38e268] [cursor=pointer]
+                - row [ref=f38e269]:
+                  - rowheader "nightly.update_cases" [ref=f38e270]
+                  - cell "Manual only" [ref=f38e271]
+                  - cell "3" [ref=f38e272]
+                  - cell "1800.0 seconds" [ref=f38e273]
+                  - cell [ref=f38e274]:
+                    - button "Run now" [ref=f38e276] [cursor=pointer]
+                - row [ref=f38e277]:
+                  - rowheader "nightly.dispatch" [ref=f38e278]
+                  - cell "Manual only" [ref=f38e279]
+                  - cell "3" [ref=f38e280]
+                  - cell "1800.0 seconds" [ref=f38e281]
+                  - cell [ref=f38e282]:
+                    - button "Run now" [ref=f38e284] [cursor=pointer]
+                - row [ref=f38e285]:
+                  - rowheader "nightly.pipeline" [ref=f38e286]
+                  - cell "0 1 * * *" [ref=f38e287]
+                  - cell "3" [ref=f38e288]
+                  - cell "1800.0 seconds" [ref=f38e289]
+                  - cell [ref=f38e290]:
+                    - button "Run now" [ref=f38e292] [cursor=pointer]
+          - region [ref=f38e293]:
+            - heading "Job history" [level=2] [ref=f38e294]
+            - table [ref=f38e296]:
+              - caption [ref=f38e297]: Recent job attempts
+              - rowgroup [ref=f38e298]:
+                - row [ref=f38e299]:
+                  - columnheader "Job" [ref=f38e300]
+                  - columnheader "Run" [ref=f38e301]
+                  - columnheader "Attempt" [ref=f38e302]
+                  - columnheader "Trigger" [ref=f38e303]
+                  - columnheader "Outcome" [ref=f38e304]
+                  - columnheader "Duration" [ref=f38e305]
+                  - columnheader "Error or action" [ref=f38e306]
+              - rowgroup [ref=f38e307]:
+                - row [ref=f38e308]:
+                  - rowheader "nightly.dispatch" [ref=f38e309]
+                  - cell [ref=f38e310]:
+                    - code [ref=f38e311]: jr-cd81a1a4659ccb07
+                  - cell "1" [ref=f38e312]
+                  - cell "manual" [ref=f38e313]
+                  - cell "succeeded" [ref=f38e314]
+                  - cell "0.02 seconds" [ref=f38e315]
+                  - cell [ref=f38e316]
+                - row [ref=f38e317]:
+                  - rowheader "nightly.dispatch" [ref=f38e318]
+                  - cell [ref=f38e319]:
+                    - code [ref=f38e320]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e321]
+                  - cell "manual" [ref=f38e322]
+                  - cell "succeeded" [ref=f38e323]
+                  - cell "0.01 seconds" [ref=f38e324]
+                  - cell [ref=f38e325]
+                - row [ref=f38e326]:
+                  - rowheader "nightly.update_cases" [ref=f38e327]
+                  - cell [ref=f38e328]:
+                    - code [ref=f38e329]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e330]
+                  - cell "manual" [ref=f38e331]
+                  - cell "succeeded" [ref=f38e332]
+                  - cell "0.01 seconds" [ref=f38e333]
+                  - cell [ref=f38e334]
+                - row [ref=f38e335]:
+                  - rowheader "nightly.rank" [ref=f38e336]
+                  - cell [ref=f38e337]:
+                    - code [ref=f38e338]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e339]
+                  - cell "manual" [ref=f38e340]
+                  - cell "succeeded" [ref=f38e341]
+                  - cell "0.12 seconds" [ref=f38e342]
+                  - cell [ref=f38e343]
+                - row [ref=f38e344]:
+                  - rowheader "nightly.score" [ref=f38e345]
+                  - cell [ref=f38e346]:
+                    - code [ref=f38e347]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e348]
+                  - cell "manual" [ref=f38e349]
+                  - cell "succeeded" [ref=f38e350]
+                  - cell "19.95 seconds" [ref=f38e351]
+                  - cell [ref=f38e352]
+                - row [ref=f38e353]:
+                  - rowheader "nightly.test" [ref=f38e354]
+                  - cell [ref=f38e355]:
+                    - code [ref=f38e356]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e357]
+                  - cell "manual" [ref=f38e358]
+                  - cell "succeeded" [ref=f38e359]
+                  - cell "0.07 seconds" [ref=f38e360]
+                  - cell [ref=f38e361]
+                - row [ref=f38e362]:
+                  - rowheader "nightly.ingest" [ref=f38e363]
+                  - cell [ref=f38e364]:
+                    - code [ref=f38e365]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e366]
+                  - cell "manual" [ref=f38e367]
+                  - cell "succeeded" [ref=f38e368]
+                  - cell "2.22 seconds" [ref=f38e369]
+                  - cell [ref=f38e370]
+                - row [ref=f38e371]:
+                  - rowheader "nightly.pipeline" [ref=f38e372]
+                  - cell [ref=f38e373]:
+                    - code [ref=f38e374]: jr-178c1287438af6c5
+                  - cell "1" [ref=f38e375]
+                  - cell "manual" [ref=f38e376]
+                  - cell "succeeded" [ref=f38e377]
+                  - cell "22.45 seconds" [ref=f38e378]
+                  - cell [ref=f38e379]
+                - row [ref=f38e380]:
+                  - rowheader "nightly.ingest" [ref=f38e381]
+                  - cell [ref=f38e382]:
+                    - code [ref=f38e383]: jr-1f3640a0350767bd
+                  - cell "1" [ref=f38e384]
+                  - cell "manual" [ref=f38e385]
+                  - cell "succeeded" [ref=f38e386]
+                  - cell "9.85 seconds" [ref=f38e387]
+                  - cell [ref=f38e388]
+                - row [ref=f38e389]:
+                  - rowheader "nightly.dispatch" [ref=f38e390]
+                  - cell [ref=f38e391]:
+                    - code [ref=f38e392]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e393]
+                  - cell "manual" [ref=f38e394]
+                  - cell "succeeded" [ref=f38e395]
+                  - cell "0.0 seconds" [ref=f38e396]
+                  - cell [ref=f38e397]
+                - row [ref=f38e398]:
+                  - rowheader "nightly.update_cases" [ref=f38e399]
+                  - cell [ref=f38e400]:
+                    - code [ref=f38e401]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e402]
+                  - cell "manual" [ref=f38e403]
+                  - cell "succeeded" [ref=f38e404]
+                  - cell "0.03 seconds" [ref=f38e405]
+                  - cell [ref=f38e406]
+                - row [ref=f38e407]:
+                  - rowheader "nightly.rank" [ref=f38e408]
+                  - cell [ref=f38e409]:
+                    - code [ref=f38e410]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e411]
+                  - cell "manual" [ref=f38e412]
+                  - cell "succeeded" [ref=f38e413]
+                  - cell "0.18 seconds" [ref=f38e414]
+                  - cell [ref=f38e415]
+                - row [ref=f38e416]:
+                  - rowheader "nightly.score" [ref=f38e417]
+                  - cell [ref=f38e418]:
+                    - code [ref=f38e419]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e420]
+                  - cell "manual" [ref=f38e421]
+                  - cell "succeeded" [ref=f38e422]
+                  - cell "16.96 seconds" [ref=f38e423]
+                  - cell [ref=f38e424]
+                - row [ref=f38e425]:
+                  - rowheader "nightly.test" [ref=f38e426]
+                  - cell [ref=f38e427]:
+                    - code [ref=f38e428]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e429]
+                  - cell "manual" [ref=f38e430]
+                  - cell "succeeded" [ref=f38e431]
+                  - cell "0.1 seconds" [ref=f38e432]
+                  - cell [ref=f38e433]
+                - row [ref=f38e434]:
+                  - rowheader "nightly.ingest" [ref=f38e435]
+                  - cell [ref=f38e436]:
+                    - code [ref=f38e437]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e438]
+                  - cell "manual" [ref=f38e439]
+                  - cell "succeeded" [ref=f38e440]
+                  - cell "5.12 seconds" [ref=f38e441]
+                  - cell [ref=f38e442]
+                - row [ref=f38e443]:
+                  - rowheader "nightly.pipeline" [ref=f38e444]
+                  - cell [ref=f38e445]:
+                    - code [ref=f38e446]: jr-a3bfe09fada9b712
+                  - cell "1" [ref=f38e447]
+                  - cell "manual" [ref=f38e448]
+                  - cell "succeeded" [ref=f38e449]
+                  - cell "22.48 seconds" [ref=f38e450]
+                  - cell [ref=f38e451]
+                - row [ref=f38e452]:
+                  - rowheader "nightly.dispatch" [ref=f38e453]
+                  - cell [ref=f38e454]:
+                    - code [ref=f38e455]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e456]
+                  - cell "manual" [ref=f38e457]
+                  - cell "succeeded" [ref=f38e458]
+                  - cell "0.01 seconds" [ref=f38e459]
+                  - cell [ref=f38e460]
+                - row [ref=f38e461]:
+                  - rowheader "nightly.update_cases" [ref=f38e462]
+                  - cell [ref=f38e463]:
+                    - code [ref=f38e464]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e465]
+                  - cell "manual" [ref=f38e466]
+                  - cell "succeeded" [ref=f38e467]
+                  - cell "0.04 seconds" [ref=f38e468]
+                  - cell [ref=f38e469]
+                - row [ref=f38e470]:
+                  - rowheader "nightly.rank" [ref=f38e471]
+                  - cell [ref=f38e472]:
+                    - code [ref=f38e473]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e474]
+                  - cell "manual" [ref=f38e475]
+                  - cell "succeeded" [ref=f38e476]
+                  - cell "0.2 seconds" [ref=f38e477]
+                  - cell [ref=f38e478]
+                - row [ref=f38e479]:
+                  - rowheader "nightly.score" [ref=f38e480]
+                  - cell [ref=f38e481]:
+                    - code [ref=f38e482]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e483]
+                  - cell "manual" [ref=f38e484]
+                  - cell "succeeded" [ref=f38e485]
+                  - cell "18.57 seconds" [ref=f38e486]
+                  - cell [ref=f38e487]
+                - row [ref=f38e488]:
+                  - rowheader "nightly.test" [ref=f38e489]
+                  - cell [ref=f38e490]:
+                    - code [ref=f38e491]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e492]
+                  - cell "manual" [ref=f38e493]
+                  - cell "succeeded" [ref=f38e494]
+                  - cell "0.1 seconds" [ref=f38e495]
+                  - cell [ref=f38e496]
+                - row [ref=f38e497]:
+                  - rowheader "nightly.ingest" [ref=f38e498]
+                  - cell [ref=f38e499]:
+                    - code [ref=f38e500]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e501]
+                  - cell "manual" [ref=f38e502]
+                  - cell "succeeded" [ref=f38e503]
+                  - cell "6.06 seconds" [ref=f38e504]
+                  - cell [ref=f38e505]
+                - row [ref=f38e506]:
+                  - rowheader "nightly.pipeline" [ref=f38e507]
+                  - cell [ref=f38e508]:
+                    - code [ref=f38e509]: jr-6ffab10317052a22
+                  - cell "1" [ref=f38e510]
+                  - cell "manual" [ref=f38e511]
+                  - cell "succeeded" [ref=f38e512]
+                  - cell "25.05 seconds" [ref=f38e513]
+                  - cell [ref=f38e514]
+                - row [ref=f38e515]:
+                  - rowheader "nightly.dispatch" [ref=f38e516]
+                  - cell [ref=f38e517]:
+                    - code [ref=f38e518]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e519]
+                  - cell "manual" [ref=f38e520]
+                  - cell "succeeded" [ref=f38e521]
+                  - cell "0.02 seconds" [ref=f38e522]
+                  - cell [ref=f38e523]
+                - row [ref=f38e524]:
+                  - rowheader "nightly.update_cases" [ref=f38e525]
+                  - cell [ref=f38e526]:
+                    - code [ref=f38e527]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e528]
+                  - cell "manual" [ref=f38e529]
+                  - cell "succeeded" [ref=f38e530]
+                  - cell "0.03 seconds" [ref=f38e531]
+                  - cell [ref=f38e532]
+                - row [ref=f38e533]:
+                  - rowheader "nightly.rank" [ref=f38e534]
+                  - cell [ref=f38e535]:
+                    - code [ref=f38e536]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e537]
+                  - cell "manual" [ref=f38e538]
+                  - cell "succeeded" [ref=f38e539]
+                  - cell "0.19 seconds" [ref=f38e540]
+                  - cell [ref=f38e541]
+                - row [ref=f38e542]:
+                  - rowheader "nightly.score" [ref=f38e543]
+                  - cell [ref=f38e544]:
+                    - code [ref=f38e545]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e546]
+                  - cell "manual" [ref=f38e547]
+                  - cell "succeeded" [ref=f38e548]
+                  - cell "14.59 seconds" [ref=f38e549]
+                  - cell [ref=f38e550]
+                - row [ref=f38e551]:
+                  - rowheader "nightly.test" [ref=f38e552]
+                  - cell [ref=f38e553]:
+                    - code [ref=f38e554]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e555]
+                  - cell "manual" [ref=f38e556]
+                  - cell "succeeded" [ref=f38e557]
+                  - cell "0.07 seconds" [ref=f38e558]
+                  - cell [ref=f38e559]
+                - row [ref=f38e560]:
+                  - rowheader "nightly.ingest" [ref=f38e561]
+                  - cell [ref=f38e562]:
+                    - code [ref=f38e563]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e564]
+                  - cell "manual" [ref=f38e565]
+                  - cell "succeeded" [ref=f38e566]
+                  - cell "2.48 seconds" [ref=f38e567]
+                  - cell [ref=f38e568]
+                - row [ref=f38e569]:
+                  - rowheader "nightly.pipeline" [ref=f38e570]
+                  - cell [ref=f38e571]:
+                    - code [ref=f38e572]: jr-07ed6280d765dadf
+                  - cell "1" [ref=f38e573]
+                  - cell "manual" [ref=f38e574]
+                  - cell "succeeded" [ref=f38e575]
+                  - cell "17.53 seconds" [ref=f38e576]
+                  - cell [ref=f38e577]
+                - row [ref=f38e578]:
+                  - rowheader "nightly.score" [ref=f38e579]
+                  - cell [ref=f38e580]:
+                    - code [ref=f38e581]: jr-4d387a6ca7f1db23
+                  - cell "3" [ref=f38e582]
+                  - cell "retry" [ref=f38e583]
+                  - cell "failed" [ref=f38e584]
+                  - cell "0.14 seconds" [ref=f38e585]
+                  - cell [ref=f38e586]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e588] [cursor=pointer]
+                - row [ref=f38e589]:
+                  - rowheader "nightly.score" [ref=f38e590]
+                  - cell [ref=f38e591]:
+                    - code [ref=f38e592]: jr-4d387a6ca7f1db23
+                  - cell "2" [ref=f38e593]
+                  - cell "retry" [ref=f38e594]
+                  - cell "failed" [ref=f38e595]
+                  - cell "0.08 seconds" [ref=f38e596]
+                  - cell [ref=f38e597]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e599] [cursor=pointer]
+                - row [ref=f38e600]:
+                  - rowheader "nightly.score" [ref=f38e601]
+                  - cell [ref=f38e602]:
+                    - code [ref=f38e603]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e604]
+                  - cell "retry" [ref=f38e605]
+                  - cell "failed" [ref=f38e606]
+                  - cell "0.07 seconds" [ref=f38e607]
+                  - cell [ref=f38e608]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e610] [cursor=pointer]
+                - row [ref=f38e611]:
+                  - rowheader "nightly.test" [ref=f38e612]
+                  - cell [ref=f38e613]:
+                    - code [ref=f38e614]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e615]
+                  - cell "retry" [ref=f38e616]
+                  - cell "succeeded" [ref=f38e617]
+                  - cell "0.07 seconds" [ref=f38e618]
+                  - cell [ref=f38e619]
+                - row [ref=f38e620]:
+                  - rowheader "nightly.ingest" [ref=f38e621]
+                  - cell [ref=f38e622]:
+                    - code [ref=f38e623]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e624]
+                  - cell "retry" [ref=f38e625]
+                  - cell "succeeded" [ref=f38e626]
+                  - cell "4.85 seconds" [ref=f38e627]
+                  - cell [ref=f38e628]
+                - row [ref=f38e629]:
+                  - rowheader "nightly.pipeline" [ref=f38e630]
+                  - cell [ref=f38e631]:
+                    - code [ref=f38e632]: jr-4d387a6ca7f1db23
+                  - cell "3" [ref=f38e633]
+                  - cell "retry" [ref=f38e634]
+                  - cell "failed" [ref=f38e635]
+                  - cell "5.29 seconds" [ref=f38e636]
+                  - cell [ref=f38e637]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.score'; completed steps: nightly.ingest, nightly.test."
+                    - button "Retry failed run" [ref=f38e639] [cursor=pointer]
+                - row [ref=f38e640]:
+                  - rowheader "nightly.score" [ref=f38e641]
+                  - cell [ref=f38e642]:
+                    - code [ref=f38e643]: jr-4d387a6ca7f1db23
+                  - cell "3" [ref=f38e644]
+                  - cell "retry" [ref=f38e645]
+                  - cell "failed" [ref=f38e646]
+                  - cell "0.09 seconds" [ref=f38e647]
+                  - cell [ref=f38e648]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e650] [cursor=pointer]
+                - row [ref=f38e651]:
+                  - rowheader "nightly.score" [ref=f38e652]
+                  - cell [ref=f38e653]:
+                    - code [ref=f38e654]: jr-4d387a6ca7f1db23
+                  - cell "2" [ref=f38e655]
+                  - cell "retry" [ref=f38e656]
+                  - cell "failed" [ref=f38e657]
+                  - cell "0.09 seconds" [ref=f38e658]
+                  - cell [ref=f38e659]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e661] [cursor=pointer]
+                - row [ref=f38e662]:
+                  - rowheader "nightly.score" [ref=f38e663]
+                  - cell [ref=f38e664]:
+                    - code [ref=f38e665]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e666]
+                  - cell "retry" [ref=f38e667]
+                  - cell "failed" [ref=f38e668]
+                  - cell "0.09 seconds" [ref=f38e669]
+                  - cell [ref=f38e670]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e672] [cursor=pointer]
+                - row [ref=f38e673]:
+                  - rowheader "nightly.test" [ref=f38e674]
+                  - cell [ref=f38e675]:
+                    - code [ref=f38e676]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e677]
+                  - cell "retry" [ref=f38e678]
+                  - cell "succeeded" [ref=f38e679]
+                  - cell "0.06 seconds" [ref=f38e680]
+                  - cell [ref=f38e681]
+                - row [ref=f38e682]:
+                  - rowheader "nightly.ingest" [ref=f38e683]
+                  - cell [ref=f38e684]:
+                    - code [ref=f38e685]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e686]
+                  - cell "retry" [ref=f38e687]
+                  - cell "succeeded" [ref=f38e688]
+                  - cell "5.28 seconds" [ref=f38e689]
+                  - cell [ref=f38e690]
+                - row [ref=f38e691]:
+                  - rowheader "nightly.pipeline" [ref=f38e692]
+                  - cell [ref=f38e693]:
+                    - code [ref=f38e694]: jr-4d387a6ca7f1db23
+                  - cell "2" [ref=f38e695]
+                  - cell "retry" [ref=f38e696]
+                  - cell "failed" [ref=f38e697]
+                  - cell "5.68 seconds" [ref=f38e698]
+                  - cell [ref=f38e699]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.score'; completed steps: nightly.ingest, nightly.test."
+                    - button "Retry failed run" [ref=f38e701] [cursor=pointer]
+                - row [ref=f38e702]:
+                  - rowheader "nightly.score" [ref=f38e703]
+                  - cell [ref=f38e704]:
+                    - code [ref=f38e705]: jr-4d387a6ca7f1db23
+                  - cell "3" [ref=f38e706]
+                  - cell "retry" [ref=f38e707]
+                  - cell "failed" [ref=f38e708]
+                  - cell "0.1 seconds" [ref=f38e709]
+                  - cell [ref=f38e710]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e712] [cursor=pointer]
+                - row [ref=f38e713]:
+                  - rowheader "nightly.score" [ref=f38e714]
+                  - cell [ref=f38e715]:
+                    - code [ref=f38e716]: jr-4d387a6ca7f1db23
+                  - cell "2" [ref=f38e717]
+                  - cell "retry" [ref=f38e718]
+                  - cell "failed" [ref=f38e719]
+                  - cell "0.1 seconds" [ref=f38e720]
+                  - cell [ref=f38e721]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e723] [cursor=pointer]
+                - row [ref=f38e724]:
+                  - rowheader "nightly.score" [ref=f38e725]
+                  - cell [ref=f38e726]:
+                    - code [ref=f38e727]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e728]
+                  - cell "manual" [ref=f38e729]
+                  - cell "failed" [ref=f38e730]
+                  - cell "0.11 seconds" [ref=f38e731]
+                  - cell [ref=f38e732]:
+                    - text: "ValueError: The superseded evidence item is absent or outside the scope."
+                    - button "Retry failed run" [ref=f38e734] [cursor=pointer]
+                - row [ref=f38e735]:
+                  - rowheader "nightly.test" [ref=f38e736]
+                  - cell [ref=f38e737]:
+                    - code [ref=f38e738]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e739]
+                  - cell "manual" [ref=f38e740]
+                  - cell "succeeded" [ref=f38e741]
+                  - cell "3.57 seconds" [ref=f38e742]
+                  - cell [ref=f38e743]
+                - row [ref=f38e744]:
+                  - rowheader "nightly.ingest" [ref=f38e745]
+                  - cell [ref=f38e746]:
+                    - code [ref=f38e747]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e748]
+                  - cell "manual" [ref=f38e749]
+                  - cell "succeeded" [ref=f38e750]
+                  - cell "5.83 seconds" [ref=f38e751]
+                  - cell [ref=f38e752]
+                - row [ref=f38e753]:
+                  - rowheader "nightly.pipeline" [ref=f38e754]
+                  - cell [ref=f38e755]:
+                    - code [ref=f38e756]: jr-4d387a6ca7f1db23
+                  - cell "1" [ref=f38e757]
+                  - cell "manual" [ref=f38e758]
+                  - cell "failed" [ref=f38e759]
+                  - cell "9.82 seconds" [ref=f38e760]
+                  - cell [ref=f38e761]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.score'; completed steps: nightly.ingest, nightly.test."
+                    - button "Retry failed run" [ref=f38e763] [cursor=pointer]
+                - row [ref=f38e764]:
+                  - rowheader "nightly.ingest" [ref=f38e765]
+                  - cell [ref=f38e766]:
+                    - code [ref=f38e767]: jr-b4ac548795ef2c83
+                  - cell "3" [ref=f38e768]
+                  - cell "retry" [ref=f38e769]
+                  - cell "failed" [ref=f38e770]
+                  - cell "2.67 seconds" [ref=f38e771]
+                  - cell [ref=f38e772]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e774] [cursor=pointer]
+                - row [ref=f38e775]:
+                  - rowheader "nightly.ingest" [ref=f38e776]
+                  - cell [ref=f38e777]:
+                    - code [ref=f38e778]: jr-b4ac548795ef2c83
+                  - cell "2" [ref=f38e779]
+                  - cell "retry" [ref=f38e780]
+                  - cell "failed" [ref=f38e781]
+                  - cell "3.03 seconds" [ref=f38e782]
+                  - cell [ref=f38e783]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e785] [cursor=pointer]
+                - row [ref=f38e786]:
+                  - rowheader "nightly.ingest" [ref=f38e787]
+                  - cell [ref=f38e788]:
+                    - code [ref=f38e789]: jr-b4ac548795ef2c83
+                  - cell "1" [ref=f38e790]
+                  - cell "retry" [ref=f38e791]
+                  - cell "failed" [ref=f38e792]
+                  - cell "2.53 seconds" [ref=f38e793]
+                  - cell [ref=f38e794]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e796] [cursor=pointer]
+                - row [ref=f38e797]:
+                  - rowheader "nightly.pipeline" [ref=f38e798]
+                  - cell [ref=f38e799]:
+                    - code [ref=f38e800]: jr-b4ac548795ef2c83
+                  - cell "3" [ref=f38e801]
+                  - cell "retry" [ref=f38e802]
+                  - cell "failed" [ref=f38e803]
+                  - cell "8.28 seconds" [ref=f38e804]
+                  - cell [ref=f38e805]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.ingest'; completed steps: none."
+                    - button "Retry failed run" [ref=f38e807] [cursor=pointer]
+                - row [ref=f38e808]:
+                  - rowheader "nightly.ingest" [ref=f38e809]
+                  - cell [ref=f38e810]:
+                    - code [ref=f38e811]: jr-b4ac548795ef2c83
+                  - cell "3" [ref=f38e812]
+                  - cell "retry" [ref=f38e813]
+                  - cell "failed" [ref=f38e814]
+                  - cell "2.98 seconds" [ref=f38e815]
+                  - cell [ref=f38e816]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e818] [cursor=pointer]
+                - row [ref=f38e819]:
+                  - rowheader "nightly.ingest" [ref=f38e820]
+                  - cell [ref=f38e821]:
+                    - code [ref=f38e822]: jr-b4ac548795ef2c83
+                  - cell "2" [ref=f38e823]
+                  - cell "retry" [ref=f38e824]
+                  - cell "failed" [ref=f38e825]
+                  - cell "2.47 seconds" [ref=f38e826]
+                  - cell [ref=f38e827]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e829] [cursor=pointer]
+                - row [ref=f38e830]:
+                  - rowheader "nightly.ingest" [ref=f38e831]
+                  - cell [ref=f38e832]:
+                    - code [ref=f38e833]: jr-b4ac548795ef2c83
+                  - cell "1" [ref=f38e834]
+                  - cell "retry" [ref=f38e835]
+                  - cell "failed" [ref=f38e836]
+                  - cell "2.93 seconds" [ref=f38e837]
+                  - cell [ref=f38e838]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e840] [cursor=pointer]
+                - row [ref=f38e841]:
+                  - rowheader "nightly.pipeline" [ref=f38e842]
+                  - cell [ref=f38e843]:
+                    - code [ref=f38e844]: jr-b4ac548795ef2c83
+                  - cell "2" [ref=f38e845]
+                  - cell "retry" [ref=f38e846]
+                  - cell "failed" [ref=f38e847]
+                  - cell "8.45 seconds" [ref=f38e848]
+                  - cell [ref=f38e849]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.ingest'; completed steps: none."
+                    - button "Retry failed run" [ref=f38e851] [cursor=pointer]
+                - row [ref=f38e852]:
+                  - rowheader "nightly.ingest" [ref=f38e853]
+                  - cell [ref=f38e854]:
+                    - code [ref=f38e855]: jr-b4ac548795ef2c83
+                  - cell "3" [ref=f38e856]
+                  - cell "retry" [ref=f38e857]
+                  - cell "failed" [ref=f38e858]
+                  - cell "2.48 seconds" [ref=f38e859]
+                  - cell [ref=f38e860]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e862] [cursor=pointer]
+                - row [ref=f38e863]:
+                  - rowheader "nightly.ingest" [ref=f38e864]
+                  - cell [ref=f38e865]:
+                    - code [ref=f38e866]: jr-b4ac548795ef2c83
+                  - cell "2" [ref=f38e867]
+                  - cell "retry" [ref=f38e868]
+                  - cell "failed" [ref=f38e869]
+                  - cell "2.82 seconds" [ref=f38e870]
+                  - cell [ref=f38e871]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e873] [cursor=pointer]
+                - row [ref=f38e874]:
+                  - rowheader "nightly.ingest" [ref=f38e875]
+                  - cell [ref=f38e876]:
+                    - code [ref=f38e877]: jr-b4ac548795ef2c83
+                  - cell "1" [ref=f38e878]
+                  - cell "manual" [ref=f38e879]
+                  - cell "failed" [ref=f38e880]
+                  - cell "2.05 seconds" [ref=f38e881]
+                  - cell [ref=f38e882]:
+                    - text: "ExternalServiceError: Signal batch could not be persisted atomically."
+                    - button "Retry failed run" [ref=f38e884] [cursor=pointer]
+                - row [ref=f38e885]:
+                  - rowheader "nightly.pipeline" [ref=f38e886]
+                  - cell [ref=f38e887]:
+                    - code [ref=f38e888]: jr-b4ac548795ef2c83
+                  - cell "1" [ref=f38e889]
+                  - cell "manual" [ref=f38e890]
+                  - cell "failed" [ref=f38e891]
+                  - cell "7.42 seconds" [ref=f38e892]
+                  - cell [ref=f38e893]:
+                    - text: "RuntimeError: Nightly pipeline halted at 'nightly.ingest'; completed steps: none."
+                    - button "Retry failed run" [ref=f38e895] [cursor=pointer]
+                - row [ref=f38e896]:
+                  - rowheader "nightly.dispatch" [ref=f38e897]
+                  - cell [ref=f38e898]:
+                    - code [ref=f38e899]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e900]
+                  - cell "manual" [ref=f38e901]
+                  - cell "succeeded" [ref=f38e902]
+                  - cell "0.01 seconds" [ref=f38e903]
+                  - cell [ref=f38e904]
+                - row [ref=f38e905]:
+                  - rowheader "nightly.update_cases" [ref=f38e906]
+                  - cell [ref=f38e907]:
+                    - code [ref=f38e908]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e909]
+                  - cell "manual" [ref=f38e910]
+                  - cell "succeeded" [ref=f38e911]
+                  - cell "0.14 seconds" [ref=f38e912]
+                  - cell [ref=f38e913]
+                - row [ref=f38e914]:
+                  - rowheader "nightly.rank" [ref=f38e915]
+                  - cell [ref=f38e916]:
+                    - code [ref=f38e917]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e918]
+                  - cell "manual" [ref=f38e919]
+                  - cell "succeeded" [ref=f38e920]
+                  - cell "0.07 seconds" [ref=f38e921]
+                  - cell [ref=f38e922]
+                - row [ref=f38e923]:
+                  - rowheader "nightly.score" [ref=f38e924]
+                  - cell [ref=f38e925]:
+                    - code [ref=f38e926]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e927]
+                  - cell "manual" [ref=f38e928]
+                  - cell "succeeded" [ref=f38e929]
+                  - cell "4.97 seconds" [ref=f38e930]
+                  - cell [ref=f38e931]
+                - row [ref=f38e932]:
+                  - rowheader "nightly.test" [ref=f38e933]
+                  - cell [ref=f38e934]:
+                    - code [ref=f38e935]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e936]
+                  - cell "manual" [ref=f38e937]
+                  - cell "succeeded" [ref=f38e938]
+                  - cell "1.35 seconds" [ref=f38e939]
+                  - cell [ref=f38e940]
+                - row [ref=f38e941]:
+                  - rowheader "nightly.ingest" [ref=f38e942]
+                  - cell [ref=f38e943]:
+                    - code [ref=f38e944]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e945]
+                  - cell "manual" [ref=f38e946]
+                  - cell "succeeded" [ref=f38e947]
+                  - cell "0.01 seconds" [ref=f38e948]
+                  - cell [ref=f38e949]
+                - row [ref=f38e950]:
+                  - rowheader "nightly.pipeline" [ref=f38e951]
+                  - cell [ref=f38e952]:
+                    - code [ref=f38e953]: jr-83411eb71f4830e3
+                  - cell "1" [ref=f38e954]
+                  - cell "manual" [ref=f38e955]
+                  - cell "succeeded" [ref=f38e956]
+                  - cell "6.64 seconds" [ref=f38e957]
+                  - cell [ref=f38e958]
+          - region [ref=f38e959]:
+            - generic [ref=f38e960]:
+              - generic [ref=f38e961]:
+                - paragraph [ref=f38e962]: Data lifecycle
+                - heading "Retention policy" [level=2] [ref=f38e963]
+              - paragraph [ref=f38e964]: The regulatory floor is eight years and the log floor is 180 days.
+            - generic [ref=f38e965]:
+              - generic [ref=f38e966]:
+                - term [ref=f38e967]: Regulatory period
+                - definition [ref=f38e968]: 8 years
+              - generic [ref=f38e969]:
+                - term [ref=f38e970]: Logs minimum
+                - definition [ref=f38e971]: 180 days
+              - generic [ref=f38e972]:
+                - term [ref=f38e973]: Raw signals
+                - definition [ref=f38e974]: 24 months
+              - generic [ref=f38e975]:
+                - term [ref=f38e976]: Forecasts
+                - definition [ref=f38e977]: 24 months
+              - generic [ref=f38e978]:
+                - term [ref=f38e979]: Notifications
+                - definition [ref=f38e980]: 12 months
+              - generic [ref=f38e981]:
+                - term [ref=f38e982]: Resolved quarantine
+                - definition [ref=f38e983]: 90 days
+            - paragraph [ref=f38e984]: Current policy version 01a05e4c-4562-73fd-9386-8abe51c44245 was applied 02 Sep 2026 by 01a05bad-3624-7411-89b1-51f265db5c2a.
+            - generic [ref=f38e985]:
+              - generic [ref=f38e986]:
+                - text: Regulatory period (years)
+                - spinbutton "Regulatory period (years)" [ref=f38e987]: "8"
+              - generic [ref=f38e988]:
+                - text: Log minimum (days)
+                - spinbutton "Log minimum (days)" [ref=f38e989]: "180"
+              - generic [ref=f38e990]:
+                - text: Raw signal window (months; fixed by policy)
+                - spinbutton "Raw signal window (months; fixed by policy)" [ref=f38e991]: "24"
+              - generic [ref=f38e992]:
+                - text: Forecast window (months; fixed by policy)
+                - spinbutton "Forecast window (months; fixed by policy)" [ref=f38e993]: "24"
+              - generic [ref=f38e994]:
+                - text: Notification window (months; fixed by policy)
+                - spinbutton "Notification window (months; fixed by policy)" [ref=f38e995]: "12"
+              - generic [ref=f38e996]:
+                - text: Resolved quarantine window (days; fixed by policy)
+                - spinbutton "Resolved quarantine window (days; fixed by policy)" [ref=f38e997]: "90"
+              - button "Preview purge impact" [ref=f38e998] [cursor=pointer]
+            - region [ref=f38e999]:
+              - heading "Next purge preview" [level=3] [ref=f38e1000]
+              - paragraph [ref=f38e1001]: 0 rows would be eligible under this policy.
+              - table [ref=f38e1003]:
+                - caption [ref=f38e1004]: Eligible rows by entity and rule
+                - rowgroup [ref=f38e1005]:
+                  - row [ref=f38e1006]:
+                    - columnheader "Entity" [ref=f38e1007]
+                    - columnheader "Rule" [ref=f38e1008]
+                    - columnheader "Eligible rows" [ref=f38e1009]
+                    - columnheader "Cutoff" [ref=f38e1010]
+                - rowgroup [ref=f38e1011]:
+                  - row [ref=f38e1012]:
+                    - rowheader "audit events" [ref=f38e1013]
+                    - cell "regulatory period (8 years)" [ref=f38e1014]
+                    - cell "0" [ref=f38e1015]
+                    - cell "01 Sep 2018" [ref=f38e1016]
+                  - row [ref=f38e1017]:
+                    - rowheader "trace rows" [ref=f38e1018]
+                    - cell "regulatory period (8 years)" [ref=f38e1019]
+                    - cell "0" [ref=f38e1020]
+                    - cell "01 Sep 2018" [ref=f38e1021]
+                  - row [ref=f38e1022]:
+                    - rowheader "covenant versions" [ref=f38e1023]
+                    - cell "regulatory period (8 years)" [ref=f38e1024]
+                    - cell "0" [ref=f38e1025]
+                    - cell "01 Sep 2018" [ref=f38e1026]
+                  - row [ref=f38e1027]:
+                    - rowheader "covenant tests" [ref=f38e1028]
+                    - cell "regulatory period (8 years)" [ref=f38e1029]
+                    - cell "0" [ref=f38e1030]
+                    - cell "01 Sep 2018" [ref=f38e1031]
+                  - row [ref=f38e1032]:
+                    - rowheader "financial periods" [ref=f38e1033]
+                    - cell "regulatory period (8 years)" [ref=f38e1034]
+                    - cell "0" [ref=f38e1035]
+                    - cell "01 Sep 2018" [ref=f38e1036]
+                  - row [ref=f38e1037]:
+                    - rowheader "memos" [ref=f38e1038]
+                    - cell "regulatory period (8 years)" [ref=f38e1039]
+                    - cell "0" [ref=f38e1040]
+                    - cell "01 Sep 2018" [ref=f38e1041]
+                  - row [ref=f38e1042]:
+                    - rowheader "overrides" [ref=f38e1043]
+                    - cell "regulatory period (8 years)" [ref=f38e1044]
+                    - cell "0" [ref=f38e1045]
+                    - cell "01 Sep 2018" [ref=f38e1046]
+                  - row [ref=f38e1047]:
+                    - rowheader "dispositions" [ref=f38e1048]
+                    - cell "regulatory period (8 years)" [ref=f38e1049]
+                    - cell "0" [ref=f38e1050]
+                    - cell "01 Sep 2018" [ref=f38e1051]
+                  - row [ref=f38e1052]:
+                    - rowheader "statement lines" [ref=f38e1053]
+                    - cell "regulatory period (8 years)" [ref=f38e1054]
+                    - cell "0" [ref=f38e1055]
+                    - cell "01 Sep 2018" [ref=f38e1056]
+                  - row [ref=f38e1057]:
+                    - rowheader "documents" [ref=f38e1058]
+                    - cell "document purge date" [ref=f38e1059]
+                    - cell "0" [ref=f38e1060]
+                    - cell "01 Sep 2026" [ref=f38e1061]
+                  - row [ref=f38e1062]:
+                    - rowheader "raw signal events" [ref=f38e1063]
+                    - cell "raw signal window (24 months)" [ref=f38e1064]
+                    - cell "0" [ref=f38e1065]
+                    - cell "01 Sep 2024" [ref=f38e1066]
+                  - row [ref=f38e1067]:
+                    - rowheader "forecasts" [ref=f38e1068]
+                    - cell "forecast window (24 months)" [ref=f38e1069]
+                    - cell "0" [ref=f38e1070]
+                    - cell "01 Sep 2024" [ref=f38e1071]
+                  - row [ref=f38e1072]:
+                    - rowheader "forecast paths" [ref=f38e1073]
+                    - cell "forecast window (24 months)" [ref=f38e1074]
+                    - cell "0" [ref=f38e1075]
+                    - cell "01 Sep 2024" [ref=f38e1076]
+                  - row [ref=f38e1077]:
+                    - rowheader "notifications" [ref=f38e1078]
+                    - cell "notification window (12 months)" [ref=f38e1079]
+                    - cell "0" [ref=f38e1080]
+                    - cell "01 Sep 2025" [ref=f38e1081]
+                  - row [ref=f38e1082]:
+                    - rowheader "sessions" [ref=f38e1083]
+                    - cell "expiry plus 30 days" [ref=f38e1084]
+                    - cell "0" [ref=f38e1085]
+                    - cell "02 Aug 2026" [ref=f38e1086]
+                  - row [ref=f38e1087]:
+                    - rowheader "quarantine rows" [ref=f38e1088]
+                    - cell "resolved quarantine window (90 days)" [ref=f38e1089]
+                    - cell "0" [ref=f38e1090]
+                    - cell "03 Jun 2026" [ref=f38e1091]
+                  - row [ref=f38e1092]:
+                    - rowheader "model-call logs" [ref=f38e1093]
+                    - cell "log window (180 days)" [ref=f38e1094]
+                    - cell "0" [ref=f38e1095]
+                    - cell "05 Mar 2026" [ref=f38e1096]
+                  - row [ref=f38e1097]:
+                    - rowheader "job runs" [ref=f38e1098]
+                    - cell "job-history window (180 days)" [ref=f38e1099]
+                    - cell "0" [ref=f38e1100]
+                    - cell "05 Mar 2026" [ref=f38e1101]
+              - button "Apply retention policy" [ref=f38e1103] [cursor=pointer]
+          - region [ref=f38e1104]:
+            - heading "Purge log" [level=2] [ref=f38e1105]
+            - paragraph [ref=f38e1106]: No retention purge has been executed.

@@ -1,0 +1,515 @@
+- generic [ref=f29e1]:
+  - link "Skip to content" [ref=f29e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f29e3]:
+    - complementary "Workspace navigation" [ref=f29e4]:
+      - link "Covenant Radar" [ref=f29e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f29e13]:
+          - strong [ref=f29e14]: Covenant
+          - generic [ref=f29e15]: Radar
+      - navigation "Primary navigation" [ref=f29e16]:
+        - region [ref=f29e17]:
+          - heading "Monitor" [level=2] [ref=f29e18]
+          - link "Portfolio queue" [ref=f29e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f29e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f29e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f29e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f29e31]: "0"
+          - link "Search" [ref=f29e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f29e37]:
+          - heading "Portfolio data" [level=2] [ref=f29e38]
+          - link "Borrowers" [ref=f29e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f29e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f29e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f29e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f29e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f29e61]:
+          - heading "Workflows" [level=2] [ref=f29e62]
+          - link "Intake" [ref=f29e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f29e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f29e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f29e75] [cursor=pointer]:
+            - /url: /governance
+      - button "Collapse sidebar" [expanded] [ref=f29e79] [cursor=pointer]
+    - generic [ref=f29e83]:
+      - banner [ref=f29e84]:
+        - generic [ref=f29e86]:
+          - generic [ref=f29e87]: Workspace
+          - generic [ref=f29e90]: Current view
+        - search [ref=f29e91]:
+          - generic [ref=f29e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f29e93]
+          - generic: /
+        - generic [ref=f29e94]:
+          - button "Use dark theme" [ref=f29e96] [cursor=pointer]
+          - button "Open user menu" [ref=f29e100] [cursor=pointer]
+      - main [ref=f29e104]:
+        - generic [ref=f29e106]:
+          - paragraph [ref=f29e107]: Decision workspace
+          - heading "Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [level=1] [ref=f29e108]
+        - generic [ref=f29e110]:
+          - region [ref=f29e111]:
+            - heading "Borrower facts" [level=2] [ref=f29e112]
+            - generic [ref=f29e113]:
+              - paragraph [ref=f29e114]: "Borrower reference: B-000008"
+              - generic "Borrower facts" [ref=f29e115]:
+                - generic [ref=f29e116]:
+                  - generic [ref=f29e117]: Borrower
+                  - generic [ref=f29e118]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                - generic [ref=f29e119]:
+                  - generic [ref=f29e120]: Exposure
+                  - generic [ref=f29e121]: ₹636.30
+                - generic [ref=f29e122]:
+                  - generic [ref=f29e123]: Worst covenant
+                  - generic [ref=f29e124]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant ≤ 3x
+                - generic [ref=f29e125]:
+                  - generic [ref=f29e126]: Dated risk
+                  - generic [ref=f29e127]: "Projected crossing: 01 Oct 2026"
+          - generic [ref=f29e129]:
+            - region [ref=f29e130]:
+              - generic [ref=f29e131]:
+                - heading "Covenant position" [level=2] [ref=f29e132]
+                - link "Why this contractual status?" [ref=f29e133] [cursor=pointer]:
+                  - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+              - table [ref=f29e135]:
+                - caption [ref=f29e136]: Covenant position
+                - rowgroup [ref=f29e137]:
+                  - row [ref=f29e138]:
+                    - columnheader "Covenant" [ref=f29e139]
+                    - columnheader "Facility" [ref=f29e140]
+                    - columnheader "Value" [ref=f29e141]
+                    - columnheader "Threshold in force" [ref=f29e142]
+                    - columnheader "Headroom" [ref=f29e143]
+                    - columnheader "Verdict" [ref=f29e144]
+                    - columnheader "Next test" [ref=f29e145]
+                    - columnheader "Trajectory" [ref=f29e146]
+                - rowgroup [ref=f29e147]:
+                  - row [ref=f29e148]:
+                    - rowheader "Deshmukh Precision Materials and Components Kavya 00008 Private Limited cov covenant D08COV" [ref=f29e149]:
+                      - text: Deshmukh Precision Materials and Components Kavya 00008 Private Limited cov covenant
+                      - generic [ref=f29e150]: D08COV
+                    - cell "F-000008-01" [ref=f29e151]
+                    - cell "2.25x" [ref=f29e152]
+                    - cell "1.5x" [ref=f29e153]
+                    - cell "50.0000%" [ref=f29e154]
+                    - cell "Pass Why?" [ref=f29e155]:
+                      - generic [ref=f29e156]: Pass
+                      - link "Why?" [ref=f29e157] [cursor=pointer]:
+                        - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+                    - cell "No next test is recorded in the covenant schedule." [ref=f29e158]
+                    - cell "Trajectory toward the minimum threshold" [ref=f29e159]: ↓
+                  - row [ref=f29e160]:
+                    - rowheader "Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant D08LEV" [ref=f29e161]:
+                      - text: Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant
+                      - generic [ref=f29e162]: D08LEV
+                    - cell "F-000008-01" [ref=f29e163]
+                    - cell "2.9x" [ref=f29e164]
+                    - cell "3x" [ref=f29e165]
+                    - cell "3.3333%" [ref=f29e166]
+                    - cell "Warning Why?" [ref=f29e167]:
+                      - generic [ref=f29e168]: Warning
+                      - link "Why?" [ref=f29e169] [cursor=pointer]:
+                        - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+                    - cell "No next test is recorded in the covenant schedule." [ref=f29e170]
+                    - cell "Trajectory toward the maximum threshold" [ref=f29e171]: ↑
+                  - row [ref=f29e172]:
+                    - rowheader "Deshmukh Precision Materials and Components Kavya 00008 Private Limited liq covenant D08LIQ" [ref=f29e173]:
+                      - text: Deshmukh Precision Materials and Components Kavya 00008 Private Limited liq covenant
+                      - generic [ref=f29e174]: D08LIQ
+                    - cell "F-000008-01" [ref=f29e175]
+                    - cell "1.475x" [ref=f29e176]
+                    - cell "1.2x" [ref=f29e177]
+                    - cell "22.9167%" [ref=f29e178]
+                    - cell "Pass Why?" [ref=f29e179]:
+                      - generic [ref=f29e180]: Pass
+                      - link "Why?" [ref=f29e181] [cursor=pointer]:
+                        - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+                    - cell "No next test is recorded in the covenant schedule." [ref=f29e182]
+                    - cell "Trajectory toward the minimum threshold" [ref=f29e183]: ↓
+            - region [ref=f29e184]:
+              - generic [ref=f29e185]:
+                - generic [ref=f29e186]:
+                  - paragraph [ref=f29e187]: Early-warning evidence
+                  - heading "Seven signal families" [level=2] [ref=f29e188]
+                  - paragraph [ref=f29e189]: Behavioural and external indicators are shown separately from contractual covenant status. Each card is backed by dated source events.
+                - link "Why these signals?" [ref=f29e190] [cursor=pointer]:
+                  - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+              - list "Signal family trends" [ref=f29e191]:
+                - listitem [ref=f29e192]:
+                  - generic "Account activity Worsening" [ref=f29e193] [cursor=pointer]:
+                    - generic [ref=f29e194]: Account activity
+                    - generic [ref=f29e196]: Worsening
+                - listitem [ref=f29e197]:
+                  - generic "Payment behaviour Worsening" [ref=f29e198] [cursor=pointer]:
+                    - generic [ref=f29e199]: Payment behaviour
+                    - generic [ref=f29e201]: Worsening
+                - listitem [ref=f29e202]:
+                  - generic "Facility utilisation Worsening" [ref=f29e203] [cursor=pointer]:
+                    - generic [ref=f29e204]: Facility utilisation
+                    - generic [ref=f29e206]: Worsening
+                - listitem [ref=f29e207]:
+                  - generic "Treasury flows Worsening" [ref=f29e208] [cursor=pointer]:
+                    - generic [ref=f29e209]: Treasury flows
+                    - generic [ref=f29e211]: Worsening
+                - listitem [ref=f29e212]:
+                  - generic "Concentration exposure Worsening" [ref=f29e213] [cursor=pointer]:
+                    - generic [ref=f29e214]: Concentration exposure
+                    - generic [ref=f29e216]: Worsening
+                - listitem [ref=f29e217]:
+                  - generic "Industry conditions Worsening" [ref=f29e218] [cursor=pointer]:
+                    - generic [ref=f29e219]: Industry conditions
+                    - generic [ref=f29e221]: Worsening
+                - listitem [ref=f29e222]:
+                  - generic "News deterioration Worsening" [ref=f29e223] [cursor=pointer]:
+                    - generic [ref=f29e224]: News deterioration
+                    - generic [ref=f29e226]: Worsening
+            - region [ref=f29e227]:
+              - generic [ref=f29e228]:
+                - heading "Forecast trajectory" [level=2] [ref=f29e229]
+                - link "Why this forecast?" [ref=f29e230] [cursor=pointer]:
+                  - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+              - generic [ref=f29e231]:
+                - article [ref=f29e232]:
+                  - generic [ref=f29e233]:
+                    - heading "Deshmukh Precision Materials and Components Kavya 00008 Private Limited cov covenant" [level=3] [ref=f29e234]
+                    - paragraph [ref=f29e235]: D08COV · F-000008-01
+                  - generic [ref=f29e236]:
+                    - generic [ref=f29e237]:
+                      - heading "Horizon" [level=4] [ref=f29e238]
+                      - paragraph [ref=f29e239]:
+                        - text: "Selected day:"
+                        - status [ref=f29e240]: "0"
+                    - generic [ref=f29e241]:
+                      - generic [ref=f29e242]: Move through stored days
+                      - slider "Move through stored days" [ref=f29e243]: "0"
+                    - status [ref=f29e244]: Stored forecast day 0 loaded.
+                    - generic [ref=f29e245]:
+                      - generic [ref=f29e246]:
+                        - term [ref=f29e247]: Projected value
+                        - definition [ref=f29e248]: 2.25x
+                      - generic [ref=f29e249]:
+                        - term [ref=f29e250]: Headroom
+                        - definition [ref=f29e251]: 50%
+                      - generic [ref=f29e252]:
+                        - term [ref=f29e253]: Probability
+                        - definition [ref=f29e254]: 29%
+                      - generic [ref=f29e255]:
+                        - term [ref=f29e256]: Confidence
+                        - definition [ref=f29e257]: 100%
+                      - generic [ref=f29e258]:
+                        - term [ref=f29e259]: Crossing
+                        - definition [ref=f29e260]: No projected crossing in the stored horizon; toward the minimum threshold.
+                    - generic [ref=f29e261]:
+                      - heading "Drivers at selected day" [level=5] [ref=f29e262]
+                      - list [ref=f29e263]:
+                        - listitem [ref=f29e264]: distance (100%)
+                        - listitem [ref=f29e265]: other (0%)
+                  - generic [ref=f29e266]:
+                    - table [ref=f29e268]:
+                      - caption [ref=f29e269]: Forecast figures
+                      - rowgroup [ref=f29e270]:
+                        - row [ref=f29e271]:
+                          - columnheader "Horizon" [ref=f29e272]
+                          - columnheader "Probability" [ref=f29e273]
+                          - columnheader "Confidence" [ref=f29e274]
+                          - columnheader "Crossing" [ref=f29e275]
+                      - rowgroup [ref=f29e276]:
+                        - row [ref=f29e277]:
+                          - rowheader "30-day" [ref=f29e278]
+                          - cell "29%" [ref=f29e279]
+                          - cell "100%" [ref=f29e280]
+                          - cell [ref=f29e281]:
+                            - text: "No projected crossing in 30 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e282] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16e3-72c6-aadf-24d220ac2919
+                        - row [ref=f29e283]:
+                          - rowheader "60-day" [ref=f29e284]
+                          - cell "29%" [ref=f29e285]
+                          - cell "100%" [ref=f29e286]
+                          - cell [ref=f29e287]:
+                            - text: "No projected crossing in 60 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e288] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16e3-72c7-864a-79e95315933a
+                        - row [ref=f29e289]:
+                          - rowheader "90-day" [ref=f29e290]
+                          - cell "29%" [ref=f29e291]
+                          - cell "100%" [ref=f29e292]
+                          - cell [ref=f29e293]:
+                            - text: "No projected crossing in 90 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e294] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16e3-72c8-a2f4-0ea421e230c9
+                    - generic [ref=f29e295]:
+                      - figure "Stored daily trajectory" [ref=f29e296]:
+                        - img "Deshmukh Precision Materials and Components Kavya 00008 Private Limited cov covenant trajectory" [ref=f29e298]
+                      - paragraph [ref=f29e300]: Stored daily path rendered.
+                - article [ref=f29e301]:
+                  - generic [ref=f29e302]:
+                    - heading "Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant" [level=3] [ref=f29e303]
+                    - paragraph [ref=f29e304]: D08LEV · F-000008-01
+                  - generic [ref=f29e305]:
+                    - generic [ref=f29e306]:
+                      - heading "Horizon" [level=4] [ref=f29e307]
+                      - paragraph [ref=f29e308]:
+                        - text: "Selected day:"
+                        - status [ref=f29e309]: "0"
+                    - generic [ref=f29e310]:
+                      - generic [ref=f29e311]: Move through stored days
+                      - slider "Move through stored days" [ref=f29e312]: "0"
+                    - status [ref=f29e313]: Stored forecast day 0 loaded.
+                    - generic [ref=f29e314]:
+                      - generic [ref=f29e315]:
+                        - term [ref=f29e316]: Projected value
+                        - definition [ref=f29e317]: 2.9x
+                      - generic [ref=f29e318]:
+                        - term [ref=f29e319]: Headroom
+                        - definition [ref=f29e320]: 3.3333%
+                      - generic [ref=f29e321]:
+                        - term [ref=f29e322]: Probability
+                        - definition [ref=f29e323]: 99%
+                      - generic [ref=f29e324]:
+                        - term [ref=f29e325]: Confidence
+                        - definition [ref=f29e326]: 100%
+                      - generic [ref=f29e327]:
+                        - term [ref=f29e328]: Crossing
+                        - definition [ref=f29e329]: "Projected crossing: 01 Oct 2026"
+                    - generic [ref=f29e330]:
+                      - heading "Drivers at selected day" [level=5] [ref=f29e331]
+                      - list [ref=f29e332]:
+                        - listitem [ref=f29e333]: distance (100%)
+                        - listitem [ref=f29e334]: other (0%)
+                  - generic [ref=f29e335]:
+                    - table [ref=f29e337]:
+                      - caption [ref=f29e338]: Forecast figures
+                      - rowgroup [ref=f29e339]:
+                        - row [ref=f29e340]:
+                          - columnheader "Horizon" [ref=f29e341]
+                          - columnheader "Probability" [ref=f29e342]
+                          - columnheader "Confidence" [ref=f29e343]
+                          - columnheader "Crossing" [ref=f29e344]
+                      - rowgroup [ref=f29e345]:
+                        - row [ref=f29e346]:
+                          - rowheader "30-day" [ref=f29e347]
+                          - cell "99%" [ref=f29e348]
+                          - cell "100%" [ref=f29e349]
+                          - cell [ref=f29e350]:
+                            - text: 01 Oct 2026
+                            - link "Why?" [ref=f29e351] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16b2-72ee-a913-09a8aeb6f4f9
+                        - row [ref=f29e352]:
+                          - rowheader "60-day" [ref=f29e353]
+                          - cell "99%" [ref=f29e354]
+                          - cell "100%" [ref=f29e355]
+                          - cell [ref=f29e356]:
+                            - text: 01 Oct 2026
+                            - link "Why?" [ref=f29e357] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16b2-72ef-9e22-364fd68795f1
+                        - row [ref=f29e358]:
+                          - rowheader "90-day" [ref=f29e359]
+                          - cell "99%" [ref=f29e360]
+                          - cell "100%" [ref=f29e361]
+                          - cell [ref=f29e362]:
+                            - text: 01 Oct 2026
+                            - link "Why?" [ref=f29e363] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-16b2-72f0-84d3-4066908ec184
+                    - generic [ref=f29e364]:
+                      - figure "Stored daily trajectory" [ref=f29e365]:
+                        - img "Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant trajectory" [ref=f29e367]:
+                          - generic: "Crossing day 30 · 01 Oct 2026 · Dominant driver: distance"
+                      - paragraph [ref=f29e369]: Stored daily path rendered.
+                - article [ref=f29e370]:
+                  - generic [ref=f29e371]:
+                    - heading "Deshmukh Precision Materials and Components Kavya 00008 Private Limited liq covenant" [level=3] [ref=f29e372]
+                    - paragraph [ref=f29e373]: D08LIQ · F-000008-01
+                  - generic [ref=f29e374]:
+                    - generic [ref=f29e375]:
+                      - heading "Horizon" [level=4] [ref=f29e376]
+                      - paragraph [ref=f29e377]:
+                        - text: "Selected day:"
+                        - status [ref=f29e378]: "0"
+                    - generic [ref=f29e379]:
+                      - generic [ref=f29e380]: Move through stored days
+                      - slider "Move through stored days" [ref=f29e381]: "0"
+                    - status [ref=f29e382]: Stored forecast day 0 loaded.
+                    - generic [ref=f29e383]:
+                      - generic [ref=f29e384]:
+                        - term [ref=f29e385]: Projected value
+                        - definition [ref=f29e386]: 1.475x
+                      - generic [ref=f29e387]:
+                        - term [ref=f29e388]: Headroom
+                        - definition [ref=f29e389]: 22.9167%
+                      - generic [ref=f29e390]:
+                        - term [ref=f29e391]: Probability
+                        - definition [ref=f29e392]: 39%
+                      - generic [ref=f29e393]:
+                        - term [ref=f29e394]: Confidence
+                        - definition [ref=f29e395]: 100%
+                      - generic [ref=f29e396]:
+                        - term [ref=f29e397]: Crossing
+                        - definition [ref=f29e398]: No projected crossing in the stored horizon; toward the minimum threshold.
+                    - generic [ref=f29e399]:
+                      - heading "Drivers at selected day" [level=5] [ref=f29e400]
+                      - list [ref=f29e401]:
+                        - listitem [ref=f29e402]: distance (100%)
+                        - listitem [ref=f29e403]: other (0%)
+                  - generic [ref=f29e404]:
+                    - table [ref=f29e406]:
+                      - caption [ref=f29e407]: Forecast figures
+                      - rowgroup [ref=f29e408]:
+                        - row [ref=f29e409]:
+                          - columnheader "Horizon" [ref=f29e410]
+                          - columnheader "Probability" [ref=f29e411]
+                          - columnheader "Confidence" [ref=f29e412]
+                          - columnheader "Crossing" [ref=f29e413]
+                      - rowgroup [ref=f29e414]:
+                        - row [ref=f29e415]:
+                          - rowheader "30-day" [ref=f29e416]
+                          - cell "39%" [ref=f29e417]
+                          - cell "100%" [ref=f29e418]
+                          - cell [ref=f29e419]:
+                            - text: "No projected crossing in 30 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e420] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-1714-790e-bb94-8509ccd677c3
+                        - row [ref=f29e421]:
+                          - rowheader "60-day" [ref=f29e422]
+                          - cell "40%" [ref=f29e423]
+                          - cell "100%" [ref=f29e424]
+                          - cell [ref=f29e425]:
+                            - text: "No projected crossing in 60 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e426] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-1714-790f-9e30-b9f80370ce99
+                        - row [ref=f29e427]:
+                          - rowheader "90-day" [ref=f29e428]
+                          - cell "40%" [ref=f29e429]
+                          - cell "100%" [ref=f29e430]
+                          - cell [ref=f29e431]:
+                            - text: "No projected crossing in 90 days; direction: toward the minimum threshold."
+                            - link "Why?" [ref=f29e432] [cursor=pointer]:
+                              - /url: /why/forecast/01a05bb1-1714-7910-b270-e53f339a6dc2
+                    - generic [ref=f29e433]:
+                      - figure "Stored daily trajectory" [ref=f29e434]:
+                        - img "Deshmukh Precision Materials and Components Kavya 00008 Private Limited liq covenant trajectory" [ref=f29e436]
+                      - paragraph [ref=f29e438]: Stored daily path rendered.
+            - region [ref=f29e439]:
+              - generic [ref=f29e440]:
+                - heading "Evidence" [level=2] [ref=f29e441]
+                - link "Why this evidence?" [ref=f29e442] [cursor=pointer]:
+                  - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+              - table [ref=f29e444]:
+                - caption [ref=f29e445]: Evidence has been recorded for this borrower.
+                - rowgroup [ref=f29e446]:
+                  - row [ref=f29e447]:
+                    - columnheader "Evidence type" [ref=f29e448]
+                    - columnheader "First / last seen" [ref=f29e449]
+                    - columnheader "Persistence" [ref=f29e450]
+                    - columnheader "Materiality" [ref=f29e451]
+                    - columnheader "Decay" [ref=f29e452]
+                    - columnheader "Pressure" [ref=f29e453]
+                    - columnheader "State" [ref=f29e454]
+                - rowgroup [ref=f29e455]:
+                  - row [ref=f29e456]:
+                    - rowheader "Account Activity" [ref=f29e457]
+                  - row [ref=f29e458]:
+                    - rowheader "Account Activity Change" [ref=f29e459]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e460]
+                    - cell "35 days / 30 events" [ref=f29e461]
+                    - cell "18.1500%" [ref=f29e462]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e463]
+                    - cell "Counts toward pressure" [ref=f29e464]
+                    - cell "Sustained" [ref=f29e465]
+                - rowgroup [ref=f29e466]:
+                  - row [ref=f29e467]:
+                    - rowheader "Concentration" [ref=f29e468]
+                  - row [ref=f29e469]:
+                    - rowheader "Concentration Exposure" [ref=f29e470]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e471]
+                    - cell "35 days / 30 events" [ref=f29e472]
+                    - cell "58.2300%" [ref=f29e473]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e474]
+                    - cell "Counts toward pressure" [ref=f29e475]
+                    - cell "Sustained" [ref=f29e476]
+                - rowgroup [ref=f29e477]:
+                  - row [ref=f29e478]:
+                    - rowheader "Industry" [ref=f29e479]
+                  - row [ref=f29e480]:
+                    - rowheader "Industry Indicator" [ref=f29e481]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e482]
+                    - cell "35 days / 30 events" [ref=f29e483]
+                    - cell "95.6000%" [ref=f29e484]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e485]
+                    - cell "Counts toward pressure" [ref=f29e486]
+                    - cell "Sustained" [ref=f29e487]
+                - rowgroup [ref=f29e488]:
+                  - row [ref=f29e489]:
+                    - rowheader "News" [ref=f29e490]
+                  - row [ref=f29e491]:
+                    - rowheader "News Event" [ref=f29e492]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e493]
+                    - cell "35 days / 30 events" [ref=f29e494]
+                    - cell "98.4000%" [ref=f29e495]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e496]
+                    - cell "Counts toward pressure" [ref=f29e497]
+                    - cell "Sustained" [ref=f29e498]
+                - rowgroup [ref=f29e499]:
+                  - row [ref=f29e500]:
+                    - rowheader "Payment" [ref=f29e501]
+                  - row [ref=f29e502]:
+                    - rowheader "Payment Delay" [ref=f29e503]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e504]
+                    - cell "35 days / 30 events" [ref=f29e505]
+                    - cell "24.0000%" [ref=f29e506]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e507]
+                    - cell "Counts toward pressure" [ref=f29e508]
+                    - cell "Sustained" [ref=f29e509]
+                - rowgroup [ref=f29e510]:
+                  - row [ref=f29e511]:
+                    - rowheader "Treasury" [ref=f29e512]
+                  - row [ref=f29e513]:
+                    - rowheader "Treasury Outflow" [ref=f29e514]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e515]
+                    - cell "35 days / 30 events" [ref=f29e516]
+                    - cell "58.2000%" [ref=f29e517]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e518]
+                    - cell "Counts toward pressure" [ref=f29e519]
+                    - cell "Sustained" [ref=f29e520]
+                - rowgroup [ref=f29e521]:
+                  - row [ref=f29e522]:
+                    - rowheader "Utilisation" [ref=f29e523]
+                  - row [ref=f29e524]:
+                    - rowheader "Facility Utilisation" [ref=f29e525]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f29e526]
+                    - cell "35 days / 30 events" [ref=f29e527]
+                    - cell "89.9300%" [ref=f29e528]
+                    - cell "Fresh — retained weight 1.0000" [ref=f29e529]
+                    - cell "Counts toward pressure" [ref=f29e530]
+                    - cell "Sustained" [ref=f29e531]
+            - region [ref=f29e532]:
+              - heading "Source documents" [level=2] [ref=f29e533]
+              - region [ref=f29e534]:
+                - heading "Source documents" [level=2] [ref=f29e535]
+                - paragraph [ref=f29e536]: No source documents are available for this borrower.
+                - link "Upload a document" [ref=f29e537] [cursor=pointer]:
+                  - /url: /intake
+            - region [ref=f29e538]:
+              - heading "Case actions" [level=2] [ref=f29e539]
+              - generic [ref=f29e540]:
+                - link "Why this decision" [ref=f29e542] [cursor=pointer]:
+                  - /url: /why/borrower/018cf0ae-3d48-7449-aecf-15a96bfb6535
+                - button "Prepare memo" [active] [ref=f29e545] [cursor=pointer]
+                - link "Run simulation" [ref=f29e547] [cursor=pointer]:
+                  - /url: /simulator/01a05bb1-16b2-72ee-a913-09a8aeb6f4f9
+                - generic [ref=f29e548]:
+                  - generic [ref=f29e549]: Log action
+                  - paragraph [ref=f29e550]: Action logging opens from the case workspace, available in a later release.

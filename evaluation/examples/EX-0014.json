@@ -1,0 +1,38 @@
+{
+  "id": "EX-0014",
+  "kind": "boundary",
+  "title": "An incomplete period yields a stale verdict rather than a computed one",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "stale"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "3.00"
+    },
+    "period": {
+      "is_complete": false,
+      "last_complete_period": "FY25Q4"
+    }
+  },
+  "expected": {
+    "verdict": "stale",
+    "threshold_used": "4.00",
+    "stale_reason": "last complete period: FY25Q4"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "period.is_complete is False, so the evaluator short-circuits before any ratio-value comparison: the verdict is stale and stale_reason names the last complete period the covenant can still be honestly tested against."
+}

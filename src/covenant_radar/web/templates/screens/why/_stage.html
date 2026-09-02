@@ -1,0 +1,152 @@
+{#
+  Stage rendering for the why-panel (T-071). Every macro here is driven
+  entirely by the ExplainStage record handed in from web/routes/why.py — no
+  stage name, field or column is hardcoded, so a future statistical stage
+  (spec §17.6) needs no template change.
+#}
+
+{% macro render_value(value, labels) -%}
+  {%- if value is none -%}
+    <span class="why-value why-value--empty">{{ labels.empty_value }}</span>
+  {%- elif value is mapping -%}
+    {%- if value|length == 0 -%}
+      <span class="why-value why-value--empty">{{ labels.empty_value }}</span>
+    {%- else -%}
+      <dl class="why-value-list">
+        {%- for key, item in value.items() -%}
+          <div class="why-value-list__row"><dt>{{ key }}</dt><dd>{{ render_value(item, labels) }}</dd></div>
+        {%- endfor -%}
+      </dl>
+    {%- endif -%}
+  {%- elif value is sequence and value is not string -%}
+    {%- if value|length == 0 -%}
+      <span class="why-value why-value--empty">{{ labels.empty_value }}</span>
+    {%- else -%}
+      <ul class="why-value-list why-value-list--sequence">
+        {%- for item in value -%}<li>{{ render_value(item, labels) }}</li>{%- endfor -%}
+      </ul>
+    {%- endif -%}
+  {%- elif value is sameas true -%}
+    <span class="why-value">{{ labels.value_yes }}</span>
+  {%- elif value is sameas false -%}
+    <span class="why-value">{{ labels.value_no }}</span>
+  {%- else -%}
+    <span class="why-value">{{ value }}</span>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro render_outputs(outputs, is_model, labels) -%}
+  {%- if outputs|length == 0 -%}
+    <span class="why-value why-value--empty">{{ labels.empty_value }}</span>
+  {%- else -%}
+    <dl class="why-value-list">
+      {%- for key, item in outputs.items() -%}
+        <div class="why-value-list__row">
+          <dt>{{ key }}</dt>
+          <dd>
+            {%- if is_model and item is string and " " in item.strip() -%}
+              <blockquote class="why-model-text">{{ item }}</blockquote>
+            {%- else -%}
+              {{ render_value(item, labels) }}
+            {%- endif -%}
+          </dd>
+        </div>
+      {%- endfor -%}
+    </dl>
+  {%- endif -%}
+{%- endmacro %}
+
+{% macro why_stage(stage, labels, components) -%}
+  <details class="why-stage" id="why-stage-{{ stage.stage }}" data-stage="{{ stage.stage }}" data-state="{{ 'not-run' if stage.not_run else stage.decider }}" open>
+    <summary class="why-stage__summary">
+      <span class="why-stage__number" aria-hidden="true">{{ stage.stage }}</span>
+      <span class="why-stage__name">{{ stage.name }}</span>
+      {%- if not stage.not_run %}<span class="why-stage__decider">{{ stage.decider_label }}</span>{% endif -%}
+    </summary>
+    <div class="why-stage__body">
+      {%- if stage.not_run %}
+        <p class="why-stage__not-run">{{ labels.stage_not_run }}</p>
+      {%- else %}
+        {%- if stage.suppressed %}
+          <div class="why-stage__suppressed" role="note">
+            <p class="why-stage__suppressed-heading">{{ labels.suppressed_heading }}</p>
+            <p>{{ stage.suppression_reason or labels.suppressed_default }}</p>
+            {%- if stage.limiting_factor %}
+              <p>{{ labels.suppressed_limiting_factor.format(name=stage.limiting_factor) }}</p>
+            {%- endif %}
+          </div>
+        {%- endif %}
+
+        <dl class="why-stage__meta">
+          <div class="why-stage__meta-row"><dt>{{ labels.stage_decided_by }}</dt><dd>{{ stage.decider_label }}</dd></div>
+          {%- if stage.rule_or_prompt_version %}
+            <div class="why-stage__meta-row"><dt>{{ stage.version_label }}</dt><dd>{{ stage.rule_or_prompt_version }}</dd></div>
+          {%- endif %}
+          {%- if stage.confidence_display %}
+            <div class="why-stage__meta-row"><dt>{{ labels.stage_confidence }}</dt><dd>{{ stage.confidence_display }}</dd></div>
+          {%- endif %}
+        </dl>
+
+        {%- if stage.decision_summary or stage.reasoning_summary %}
+          <section class="why-stage__plain-summary" aria-labelledby="why-stage-{{ stage.stage }}-decision-summary">
+            <h3 id="why-stage-{{ stage.stage }}-decision-summary">{{ labels.decision_summary }}</h3>
+            {%- if stage.decision_summary %}<p><strong>{{ stage.decision_summary }}</strong></p>{% endif %}
+            {%- if stage.reasoning_summary %}<h4>{{ labels.reasoning_summary }}</h4><p>{{ stage.reasoning_summary }}</p>{% endif %}
+          </section>
+        {%- endif %}
+
+        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-received">
+          <h3 id="why-stage-{{ stage.stage }}-received">{{ labels.stage_received }}</h3>
+          {{ render_value(stage.inputs, labels) }}
+        </section>
+
+        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-produced">
+          <h3 id="why-stage-{{ stage.stage }}-produced">{{ labels.stage_produced }}</h3>
+          {{ render_outputs(stage.outputs, stage.decider == "model", labels) }}
+        </section>
+
+        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-thresholds">
+          <h3 id="why-stage-{{ stage.stage }}-thresholds">{{ labels.thresholds_heading }}</h3>
+          {%- if stage.thresholds %}
+            <table class="why-threshold-table">
+              <caption class="sr-only">{{ labels.thresholds_heading }}</caption>
+              <thead>
+                <tr>
+                  <th scope="col">{{ labels.threshold_col_name }}</th>
+                  <th scope="col">{{ labels.threshold_col_value }}</th>
+                  <th scope="col">{{ labels.threshold_col_observed }}</th>
+                  <th scope="col">{{ labels.threshold_col_side }}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%- for row in stage.thresholds %}
+                  <tr>
+                    <td>{{ row.name }}</td>
+                    <td>{{ row.value_display }}</td>
+                    <td>{{ row.observed_display }}</td>
+                    <td>{{ row.side_display }}</td>
+                  </tr>
+                {%- endfor %}
+              </tbody>
+            </table>
+          {%- else %}
+            <p>{{ labels.thresholds_empty }}</p>
+          {%- endif %}
+        </section>
+
+        <section class="why-stage__section" aria-labelledby="why-stage-{{ stage.stage }}-sources">
+          <h3 id="why-stage-{{ stage.stage }}-sources">{{ labels.sources_heading }}</h3>
+          {%- if stage.sources %}
+            <ul class="why-source-list">
+              {%- for source in stage.sources %}
+                <li>{{ components.provenance_link(source.label, state=("resolvable" if source.href else "unresolvable"), href=source.href, purged_message=labels.source_unresolvable) }}</li>
+              {%- endfor %}
+            </ul>
+          {%- else %}
+            <p>{{ labels.no_sources }}</p>
+          {%- endif %}
+        </section>
+      {%- endif %}
+    </div>
+  </details>
+{%- endmacro %}

@@ -1,0 +1,31 @@
+{
+  "id": "EX-0005",
+  "kind": "engine",
+  "title": "DSCR refuses closed on a zero finance-cost denominator",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "not_computable",
+    "zero_denominator"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "dscr",
+    "lines": {
+      "cash_flow_debt_service": "50",
+      "finance_cost": "0"
+    }
+  },
+  "expected": {
+    "computable": false,
+    "reason": "zero_denominator"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "dscr = cash_flow_debt_service / finance_cost. finance_cost is exactly zero, so the division is refused as NotComputableReason.ZERO_DENOMINATOR instead of raising a ZeroDivisionError."
+}

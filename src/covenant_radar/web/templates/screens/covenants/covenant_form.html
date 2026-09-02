@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set error = error|default("") %}
+{% set form = form|default({}) %}
+
+{% block page_title %}{{ labels.new }}{% endblock %}
+{% block h1 %}{{ labels.new }}{% endblock %}
+
+{% block content %}
+  {% call components.panel(title=labels.new, panel_id="covenant-form") %}
+    {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+    <form method="post" action="{{ action }}" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      {{ components.field("facility_id", labels.facility, value=form.get("facility_id", ""), required=true) }}
+      {{ components.field("reference", labels.reference, value=form.get("reference", ""), required=true) }}
+      {{ components.field("name", labels.name, value=form.get("name", ""), required=true) }}
+      {{ components.field("covenant_class", labels.class, value=form.get("covenant_class", ""), required=true) }}
+      {{ components.field("definition_ref", labels.definition, value=form.get("definition_ref", "")) }}
+      {{ components.field("custom_formula", labels.formula, type="textarea", value=form.get("custom_formula", "")) }}
+      {{ components.field("threshold", labels.threshold, type="number", value=form.get("threshold", ""), required=true) }}
+      {{ components.field("direction", labels.direction, type="select", value=form.get("direction", "max"), options=(("min", "min"), ("max", "max")), required=true) }}
+      {{ components.field("unit", labels.unit, value=form.get("unit", "x"), required=true) }}
+      {{ components.field("frequency", labels.frequency, type="select", value=form.get("frequency", "quarterly"), options=(("monthly", "monthly"), ("quarterly", "quarterly"), ("half_yearly", "half_yearly"), ("annual", "annual"), ("on_event", "on_event")), required=true) }}
+      {{ components.field("test_basis", labels.test_basis, value=form.get("test_basis", "standalone"), required=true) }}
+      {{ components.field("effective_from", labels.effective_from, type="date", value=form.get("effective_from", ""), required=true) }}
+      {{ components.field("effective_to", labels.effective_to, type="date", value=form.get("effective_to", "")) }}
+      {{ components.field("warning_headroom_pct", labels.warning_headroom, type="number", value=form.get("warning_headroom_pct", "")) }}
+      {{ components.field("cure_days", labels.cure_days, type="number", value=form.get("cure_days", "")) }}
+      {{ components.field("grace_days", labels.grace_days, type="number", value=form.get("grace_days", "")) }}
+      {{ components.button(labels.save, type="submit") }}
+    </form>
+  {% endcall %}
+{% endblock %}

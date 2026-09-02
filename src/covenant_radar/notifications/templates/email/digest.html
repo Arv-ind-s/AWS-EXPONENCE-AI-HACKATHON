@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <body>
+    <h1>{{ subject }}</h1>
+    <p>Window: <time>{{ window_start }}</time> to <time>{{ window_end }}</time></p>
+    <ol>
+      {% for entry in entries %}
+      <li>
+        <p><strong>{{ entry.title }}</strong></p>
+        <p style="white-space: pre-line">{{ entry.summary }}</p>
+        <p><a href="{{ entry.deep_link }}">Open in Covenant Radar</a></p>
+      </li>
+      {% endfor %}
+    </ol>
+    <p>This digest contains {{ entries | length }} notification item(s). Each item remains available in Covenant Radar for review and audit.</p>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+[   60147ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://127.0.0.1:8000/notifications?status=all&template=:0
+[   60160ms] [ERROR] Response Status Error Code 422 from /notifications @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  120157ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://127.0.0.1:8000/notifications?status=all&template=:0
+[  120160ms] [ERROR] Response Status Error Code 422 from /notifications @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  686900ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8000/sign-in:0

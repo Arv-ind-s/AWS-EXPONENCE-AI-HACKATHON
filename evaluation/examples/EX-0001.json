@@ -1,0 +1,31 @@
+{
+  "id": "EX-0001",
+  "kind": "engine",
+  "title": "Leverage ratio recomputes exactly from total debt and tangible net worth",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "computable"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "leverage_ratio",
+    "lines": {
+      "total_debt": "120.50",
+      "tangible_net_worth": "40.00"
+    }
+  },
+  "expected": {
+    "computable": true,
+    "value": "3.0125",
+    "band_breached": false
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "leverage_ratio = total_debt / tangible_net_worth = 120.50 / 40.00 = 3.0125x. The plausible band for leverage_ratio is [0, 6], so 3.0125 does not breach it."
+}

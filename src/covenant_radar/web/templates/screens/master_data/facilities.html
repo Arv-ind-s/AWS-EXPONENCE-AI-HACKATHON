@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set table_rows = table_rows|default(()) %}
+{% set pagination = pagination|default(none) %}
+{% set filters = filters|default({}) %}
+{% set filters_active = filters_active|default(false) %}
+{% set type_options = type_options|default(()) %}
+{% set currency_options = currency_options|default(()) %}
+{% set status_options = status_options|default(()) %}
+{% set result_summary = result_summary|default("") %}
+
+{% block page_title %}{{ labels.facilities_title }}{% endblock %}
+{% block h1 %}{{ labels.facilities_heading }}{% endblock %}
+{% block breadcrumb_label %}{{ labels.facilities_title }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="/static/css/master-data.css">{% endblock %}
+
+{% block page_actions %}
+  {{ components.button(labels.facilities_insights_link, href="/facilities/insights", variant="secondary") }}
+  {% if principal.has("CORRECT_SOURCE_DATA") %}
+    {{ components.button(labels.facilities_new, href="/facilities/new") }}
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% call components.filter_bar(
+    "facility-filters",
+    "/facilities",
+    state="active" if filters_active else "rest",
+    submit_label=labels.facilities_filter_apply,
+    clear_href="/facilities" if filters_active else ""
+  ) %}
+    {{ components.field("q", labels.facilities_filter_search, type="search", value=filters.get("q", ""), placeholder=labels.facilities_filter_search_placeholder) }}
+    {{ components.field("type", labels.facilities_type, type="select", value=filters.get("type", ""), options=type_options) }}
+    {{ components.field("currency", labels.facilities_currency, type="select", value=filters.get("currency", ""), options=currency_options) }}
+    {{ components.field("status", labels.facilities_status, type="select", value=filters.get("status", ""), options=status_options) }}
+  {% endcall %}
+
+  {# The panel carries no title of its own: the page heading and the table's
+     own caption already name this list, and a third copy of the same words
+     was the loudest thing on the screen. #}
+  {% call components.panel(panel_id="facility-list") %}
+    <p class="md-list__summary">
+      <span class="md-list__count">{{ result_summary }}</span>
+      <span class="md-list__unit">{{ labels.facilities_amount_unit }}</span>
+    </p>
+    {{ components.ledger_table(
+      labels.facilities_heading,
+      [
+        {"key": "reference", "label": labels.facilities_reference},
+        {"key": "borrower", "label": labels.facilities_borrower},
+        {"key": "facility_type", "label": labels.facilities_type},
+        {"key": "limit", "label": labels.facilities_limit, "align": "right"},
+        {"key": "outstanding", "label": labels.facilities_outstanding, "align": "right"},
+        {"key": "utilisation", "label": labels.facilities_utilisation, "align": "right"},
+        {"key": "maturity", "label": labels.facilities_maturity},
+        {"key": "status", "label": labels.facilities_status}
+      ],
+      table_rows,
+      table_id="facilities-ledger",
+      empty_title=labels.facilities_no_matches if filters_active else labels.facilities_empty,
+      empty_message=labels.facilities_no_matches if filters_active else labels.facilities_empty
+    ) }}
+    {% include "_components/_pagination.html" %}
+  {% endcall %}
+{% endblock %}

@@ -1,0 +1,23 @@
+{% macro trajectory(trajectory_id, points, ledger_figures, threshold_y="", crossing=none, label="Covenant trajectory") -%}
+  {% if not ledger_figures or not points %}
+    {% set state_message = "Trajectory unavailable: ledger figures are required before a chart can be shown." %}
+    {% include "_states/refused.html" %}
+  {% else %}
+    <figure class="trajectory" id="{{ trajectory_id }}" aria-labelledby="{{ trajectory_id }}-title" aria-describedby="{{ trajectory_id }}-ledger">
+      <figcaption class="trajectory__caption" id="{{ trajectory_id }}-title">{{ label }}</figcaption>
+      <svg class="trajectory__plot" viewBox="0 0 100 40" role="img" aria-labelledby="{{ trajectory_id }}-title" aria-describedby="{{ trajectory_id }}-ledger" focusable="false">
+        {% if threshold_y %}<line class="trajectory__threshold" x1="0" y1="{{ threshold_y }}" x2="100" y2="{{ threshold_y }}"></line>{% endif %}
+        <polyline class="trajectory__line" points="{{ points }}"></polyline>
+        {% if crossing %}<circle class="trajectory__crossing" cx="{{ crossing.x }}" cy="{{ crossing.y }}"></circle>{% endif %}
+      </svg>
+      <dl class="trajectory__ledger" id="{{ trajectory_id }}-ledger">
+        {% for figure in ledger_figures %}
+          {% if figure is mapping %}{% set figure_label = figure.get("label", "Figure") %}{% set figure_value = figure.get("value", "") %}{% set figure_detail = figure.get("detail", "") %}
+          {% else %}{% set figure_label = figure[0] %}{% set figure_value = figure[1] %}{% set figure_detail = "" %}{% endif %}
+          <div class="trajectory__ledger-line"><dt>{{ figure_label }}</dt><dd>{{ figure_value }}{% if figure_detail %}<span class="trajectory__ledger-detail">{{ figure_detail }}</span>{% endif %}</dd></div>
+        {% endfor %}
+      </dl>
+      {% if crossing %}<p class="trajectory__crossing-label">Crossing: {{ crossing.date }}{% if crossing.label %} — {{ crossing.label }}{% endif %}</p>{% endif %}
+    </figure>
+  {% endif %}
+{%- endmacro %}

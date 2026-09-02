@@ -1,0 +1,41 @@
+{
+  "id": "EX-0030",
+  "kind": "grounding",
+  "title": "A memo draft that states a figure absent from every slot is refused, not shown",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "grounding"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "slots": {
+      "ratio_name": "Leverage ratio",
+      "current_value": "3.25",
+      "threshold": "3.00",
+      "breach_date": "2026-08-04"
+    },
+    "draft": {
+      "headline": "Leverage ratio breach dated 2026-08-04",
+      "summary": "Leverage ratio stands at 3.25x, projected to reach 4.10x within the quarter against a threshold of 3.00x.",
+      "drivers": [
+        "Leverage ratio"
+      ],
+      "recommended_next_step": "Not available from the recorded evidence.",
+      "disclaimer": "human credit review is required before action"
+    }
+  },
+  "expected": {
+    "grounding_passed": false,
+    "fabricated_tokens": [
+      "4.10"
+    ]
+  },
+  "pass_mark": {
+    "type": "zero_ungrounded_figures"
+  },
+  "note": "'4.10' appears in the drafted summary but is not present in any supplied slot value -- the model has stated a projection nothing in the record supports. ai.shapes.check_stage7_shapes's grounding check names exactly this token as fabricated (hand-verified against _grounding_failures's allowed-token set built from the slots), and spec §17.7's pass mark is zero ungrounded figures across the whole example set, so this single draft alone fails the memo and must be refused rather than shown."
+}

@@ -1,0 +1,82 @@
+{% import "_components/components.html" as components %}
+{#
+  The triage bar: one freshness line, then the band distribution as
+  navigation.
+
+  The tiles are real links carrying every other active filter, so they work
+  without JavaScript, survive a bookmark, and stay reachable from inside the
+  slice they lead to — their counts come from a facet that ignores the band
+  filter for exactly that reason.
+#}
+<section class="queue-triage-bar"
+         id="queue-summary"
+         aria-labelledby="queue-summary-title"
+         aria-live="polite"
+         hx-get="/"
+         hx-trigger="every 30s, refresh"
+         hx-include="#queue-filters"
+         hx-target="this"
+         hx-swap="outerHTML transition:true"
+         data-live-poll>
+  <h2 class="sr-only" id="queue-summary-title">{{ labels.snapshot_title }}</h2>
+
+  <p class="queue-freshness">
+    <span class="queue-freshness__rank">{{ labels.ranked_by }}</span>
+    <span class="queue-freshness__separator" aria-hidden="true">·</span>
+    <span class="queue-freshness__run">{{ labels.summary_as_of }}{% if summary.as_of_date %} {{ summary.as_of_date|ist_date }}{% endif %}</span>
+    <span class="queue-freshness__separator" aria-hidden="true">·</span>
+    <span class="queue-freshness__checked">{{ labels.freshness_checked }} <time data-last-updated>just now</time></span>
+    <button class="text-action queue-freshness__check"
+            type="button"
+            hx-get="/"
+            hx-target="#queue-workspace"
+            hx-include="#queue-filters"
+            hx-swap="outerHTML transition:true">{{ labels.freshness_check_now }}</button>
+  </p>
+
+  <div class="queue-update-notice" data-queue-update-notice hidden role="status" aria-live="polite">
+    <span>{{ labels.freshness_newer }}</span>
+    <button class="button button--secondary" type="button" data-queue-update-refresh>{{ labels.freshness_review }}</button>
+  </div>
+
+  <nav class="queue-bands" aria-label="{{ labels.column_band }}">
+    <a class="queue-band-tile queue-band-tile--all"
+       href="{{ band_hrefs.all }}"
+       hx-get="{{ band_hrefs.all }}"
+       hx-target="#queue-workspace"
+       hx-swap="outerHTML transition:true"
+       hx-push-url="true"
+       {% if not filters.band %}aria-current="true" data-active="true"{% endif %}>
+      <span class="queue-band-tile__label">{{ labels.summary_all }}</span>
+      <strong class="queue-band-tile__value" data-live-value="total">{{ summary.total }}</strong>
+    </a>
+    {% for band, label, count in (
+         ("act", labels.summary_act, summary.act),
+         ("amber", labels.summary_amber, summary.amber),
+         ("watch", labels.summary_watch, summary.watch),
+       ) %}
+      <a class="queue-band-tile"
+         href="{{ band_hrefs[band] }}"
+         hx-get="{{ band_hrefs[band] }}"
+         hx-target="#queue-workspace"
+         hx-swap="outerHTML transition:true"
+         hx-push-url="true"
+         data-band="{{ band }}"
+         {% if filters.band == band %}aria-current="true" data-active="true"{% endif %}>
+        {{ components.band_chip(band, label, variant="queue-summary-chip") }}
+        <strong class="queue-band-tile__value" data-live-value="{{ band }}">{{ count }}</strong>
+      </a>
+    {% endfor %}
+  </nav>
+
+  <dl class="queue-triage-bar__facts">
+    <div>
+      <dt>{{ labels.summary_exposure }}</dt>
+      <dd>{{ summary.exposure_total }}</dd>
+    </div>
+    <div>
+      <dt>{{ labels.summary_changed }}</dt>
+      <dd data-live-value="changed">{{ summary.what_changed }}</dd>
+    </div>
+  </dl>
+</section>

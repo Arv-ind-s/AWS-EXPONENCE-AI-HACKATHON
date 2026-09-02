@@ -1,0 +1,28 @@
+{
+  "id": "EX-0032",
+  "kind": "refusal",
+  "title": "A syntactically valid reply missing a required field is refused, not defaulted",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "refusal",
+    "missing_field"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "model_reply_raw": "{\"headline\": \"Leverage ratio breach dated 2026-08-04\", \"summary\": \"Leverage ratio stands at 3.25x against a threshold of 3.00x.\", \"drivers\": [\"Leverage ratio\"], \"recommended_next_step\": \"Not available from the recorded evidence.\"}"
+  },
+  "expected": {
+    "refused": true,
+    "reasons": [
+      "reply is missing required field(s): disclaimer"
+    ]
+  },
+  "pass_mark": {
+    "type": "exact_refusal"
+  },
+  "note": "The reply is valid JSON but omits 'disclaimer', one of _reply_shape_failures's five required fields (headline, summary, drivers, recommended_next_step, disclaimer). A missing mandatory disclaimer is never filled in with a default sentence on the caller's behalf -- the whole draft is refused so the one permitted regeneration can be told exactly what to add."
+}

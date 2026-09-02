@@ -1,0 +1,17 @@
+[ 3439045ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3439046ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3439046ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/admin/jobs:0
+[ 3439320ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6MzQ6NTYuNTAzNTc2KzAwOjAwIn0utns2Qolq9J6J8pTli2ro1E8ygLZR6QwxlaQYn1RPxas&context=%2Fadmin%2Fjobs:0
+[ 3449187ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3449187ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3449188ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[ 3454059ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3454060ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3454060ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/admin/jobs:0
+[ 3456361ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6MzQ6NTYuNTAzNTc2KzAwOjAwIn0utns2Qolq9J6J8pTli2ro1E8ygLZR6QwxlaQYn1RPxas&context=%2Fadmin%2Fjobs:0
+[ 3469057ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3469063ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[ 3469064ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/admin/jobs:0
+[ 3473411ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6MzQ6NTYuNTAzNTc2KzAwOjAwIn0utns2Qolq9J6J8pTli2ro1E8ygLZR6QwxlaQYn1RPxas&context=%2Fadmin%2Fjobs:0
+[ 3490444ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6MzQ6NTYuNTAzNTc2KzAwOjAwIn0utns2Qolq9J6J8pTli2ro1E8ygLZR6QwxlaQYn1RPxas&context=%2Fadmin%2Fjobs:0
+[ 3507488ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6MzQ6NTYuNTAzNTc2KzAwOjAwIn0utns2Qolq9J6J8pTli2ro1E8ygLZR6QwxlaQYn1RPxas&context=%2Fadmin%2Fjobs:0

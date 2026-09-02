@@ -1,0 +1,125 @@
+[importlinter]
+root_package = covenant_radar
+include_external_packages = True
+
+[importlinter:contract:domain-purity]
+name = Domain purity
+type = forbidden
+source_modules =
+    covenant_radar.domain
+forbidden_modules =
+    alembic
+    apscheduler
+    argon2
+    authlib
+    cryptography
+    fastapi
+    httpx
+    jinja2
+    numpy
+    pandas
+    pydantic
+    sqlalchemy
+    structlog
+    uvicorn
+    weasyprint
+    covenant_radar.ai
+    covenant_radar.api
+    covenant_radar.audit
+    covenant_radar.config
+    covenant_radar.db
+    covenant_radar.documents
+    covenant_radar.ingestion
+    covenant_radar.notifications
+    covenant_radar.observability
+    covenant_radar.scheduler
+    covenant_radar.security
+    covenant_radar.services
+    covenant_radar.web
+
+[importlinter:contract:services-adapter-boundary]
+name = Services use ports rather than adapters
+type = forbidden
+source_modules =
+    covenant_radar.services
+forbidden_modules =
+    covenant_radar.ai
+    covenant_radar.api
+    covenant_radar.db
+    covenant_radar.documents
+    covenant_radar.ingestion
+    covenant_radar.notifications
+    covenant_radar.scheduler
+    covenant_radar.web
+
+[importlinter:contract:ai-provider-boundary]
+name = Only the AI client imports providers
+type = forbidden
+source_modules =
+    covenant_radar.api
+    covenant_radar.audit
+    covenant_radar.config
+    covenant_radar.db
+    covenant_radar.domain
+    covenant_radar.documents
+    covenant_radar.ingestion
+    covenant_radar.notifications
+    covenant_radar.observability
+    covenant_radar.scheduler
+    covenant_radar.security
+    covenant_radar.services
+    covenant_radar.web
+forbidden_modules =
+    covenant_radar.ai.providers
+
+[importlinter:contract:presentation-boundary]
+name = Presentation uses services rather than domain internals or adapters
+type = forbidden
+source_modules =
+    covenant_radar.api
+    covenant_radar.web
+forbidden_modules =
+    covenant_radar.ai
+    covenant_radar.db
+    covenant_radar.domain
+
+[importlinter:contract:session-boundary]
+name = SQLAlchemy sessions stay inside the database adapter
+type = forbidden
+source_modules =
+    covenant_radar.ai
+    covenant_radar.api
+    covenant_radar.audit
+    covenant_radar.config
+    covenant_radar.domain
+    covenant_radar.documents
+    covenant_radar.ingestion
+    covenant_radar.notifications
+    covenant_radar.observability
+    covenant_radar.scheduler
+    covenant_radar.security
+    covenant_radar.services
+    covenant_radar.web
+forbidden_modules =
+    covenant_radar.db.session
+    sqlalchemy
+
+[importlinter:contract:audit-write-boundary]
+name = Audit writes go through audit.record
+type = forbidden
+source_modules =
+    covenant_radar.ai
+    covenant_radar.api
+    covenant_radar.config
+    covenant_radar.db
+    covenant_radar.domain
+    covenant_radar.documents
+    covenant_radar.ingestion
+    covenant_radar.notifications
+    covenant_radar.observability
+    covenant_radar.scheduler
+    covenant_radar.security
+    covenant_radar.services
+    covenant_radar.web
+forbidden_modules =
+    covenant_radar.audit.store

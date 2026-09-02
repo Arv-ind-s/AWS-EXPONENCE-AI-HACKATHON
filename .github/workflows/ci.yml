@@ -1,0 +1,206 @@
+name: Continuous integration
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  PIP_DISABLE_PIP_VERSION_CHECK: "1"
+  PIP_NO_INPUT: "1"
+  PYTHONUNBUFFERED: "1"
+
+jobs:
+  fast-gate:
+    name: Fast gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Run fast gate
+        run: python -m radarctl gate --fast
+
+  integration:
+    name: Integration gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: covenant_radar
+          POSTGRES_PASSWORD: covenant_radar_ci
+          POSTGRES_USER: covenant_radar
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U covenant_radar -d covenant_radar"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      COVENANT_RADAR_DATABASE_URL: postgresql://covenant_radar:covenant_radar_ci@127.0.0.1:5432/covenant_radar
+      POSTGRES_HOST: 127.0.0.1
+      POSTGRES_PORT: "5432"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Require PostgreSQL
+        env:
+          PGPASSWORD: covenant_radar_ci
+        run: |
+          for attempt in {1..30}; do
+            if psql --host "$POSTGRES_HOST" --port "$POSTGRES_PORT" --username covenant_radar --dbname covenant_radar --command "SELECT 1"; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo "::error title=PostgreSQL unavailable::PostgreSQL did not become reachable at ${POSTGRES_HOST}:${POSTGRES_PORT}."
+          exit 1
+      - name: Run integration suite
+        run: python -m nox -s integration
+
+  evaluation:
+    name: Evaluation gate
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Run evaluation suite
+        run: python -m evaluation.run --both-arms --gate --floors evaluation/floors.json
+      - name: Publish evaluation scoreboard
+        uses: actions/upload-artifact@v4
+        with:
+          name: evaluation-scoreboard
+          path: var/evaluation/runs/*.scoreboard.json
+          if-no-files-found: warn
+
+  browser:
+    name: Browser and accessibility gates
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Run browser suite
+        run: python -m nox -s e2e -s a11y
+      - name: Publish browser screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-screenshots
+          path: test-results/screenshots
+          if-no-files-found: warn
+      - name: Publish accessibility report
+        uses: actions/upload-artifact@v4
+        with:
+          name: accessibility-report
+          path: var/accessibility/report.json
+          if-no-files-found: warn
+
+  scanning:
+    name: Security scanning
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Scan dependencies
+        run: python -m pip_audit --requirement requirements.lock --strict
+      - name: Scan source code
+        run: python -m bandit --recursive src --severity-level high
+      - name: Scan for secrets
+        run: python -m pre_commit run detect-secrets --all-files --show-diff-on-failure
+
+  full-gate:
+    name: Full gate and evidence
+    needs: [fast-gate, integration, evaluation, browser, scanning]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_DB: covenant_radar
+          POSTGRES_PASSWORD: covenant_radar_ci
+          POSTGRES_USER: covenant_radar
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U covenant_radar -d covenant_radar"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 12
+    env:
+      COVENANT_RADAR_DATABASE_URL: postgresql://covenant_radar:covenant_radar_ci@127.0.0.1:5432/covenant_radar
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version-file: .python-version
+          cache: pip
+          cache-dependency-path: requirements.lock
+      - name: Install locked dependencies
+        run: |
+          python -m pip install --requirement requirements.lock
+          python -m pip install --no-deps --editable .
+      - name: Run full gate
+        run: python -m radarctl gate
+      - name: Generate coverage report
+        run: python -m pytest -q --cov=covenant_radar --cov-report=xml:coverage.xml
+      - name: Publish coverage report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage.xml
+          if-no-files-found: error
+      - name: Publish performance table
+        uses: actions/upload-artifact@v4
+        with:
+          name: performance-table
+          path: var/performance/report.md
+          if-no-files-found: warn

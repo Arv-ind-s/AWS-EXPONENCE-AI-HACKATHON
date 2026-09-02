@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}Set up verification · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}Set up verification{% endblock %}
+
+{% block content %}
+  <section class="panel auth-panel">
+    <p>Add this account to your authenticator app using the provisioning link or the secret.</p>
+    <p><a href="{{ provisioning_uri }}">Open authenticator setup</a></p>
+    <p>Manual setup secret: <code>{{ secret }}</code></p>
+    {% if error %}
+      <div class="state state--error" role="alert">
+        <p class="state__message">{{ error }}</p>
+      </div>
+    {% endif %}
+    <form method="post" action="/mfa/enrol" autocomplete="off">
+      <input type="hidden" name="next" value="{{ next }}">
+      {{ components.field("code", "Verification code", field_id="code", autocomplete="one-time-code", required=true) }}
+      {{ components.button("Finish setup", type="submit") }}
+    </form>
+  </section>
+{% endblock %}

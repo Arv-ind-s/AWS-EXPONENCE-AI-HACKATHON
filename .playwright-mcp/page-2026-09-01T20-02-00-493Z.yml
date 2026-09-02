@@ -1,0 +1,172 @@
+- generic [active] [ref=f70e1]:
+  - link "Skip to content" [ref=f70e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f70e3]:
+    - complementary "Workspace navigation" [ref=f70e4]:
+      - link "Covenant Radar" [ref=f70e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f70e13]:
+          - strong [ref=f70e14]: Covenant
+          - generic [ref=f70e15]: Radar
+      - navigation "Primary navigation" [ref=f70e16]:
+        - region [ref=f70e17]:
+          - heading "Monitor" [level=2] [ref=f70e18]
+          - link "Portfolio queue" [ref=f70e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f70e23] [cursor=pointer]:
+            - /url: /cases
+          - link "13 unread notifications" [ref=f70e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f70e30]: Notifications (13)
+            - generic [aria-hidden] [ref=f70e31]: "13"
+          - link "Search" [ref=f70e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f70e37]:
+          - heading "Portfolio data" [level=2] [ref=f70e38]
+          - link "Borrowers" [ref=f70e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f70e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f70e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f70e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f70e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f70e61]:
+          - heading "Workflows" [level=2] [ref=f70e62]
+          - link "Document review" [ref=f70e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f70e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f70e71] [cursor=pointer]
+    - generic [ref=f70e75]:
+      - banner [ref=f70e76]:
+        - generic [ref=f70e78]:
+          - generic [ref=f70e79]: Workspace
+          - generic [ref=f70e82]: Current view
+        - search [ref=f70e83]:
+          - generic [ref=f70e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f70e85]
+          - generic: /
+        - generic [ref=f70e86]:
+          - button "Live activity" [ref=f70e87]:
+            - generic [ref=f70e89]: Live
+          - button "Use dark theme" [ref=f70e91] [cursor=pointer]
+          - button "Open user menu" [ref=f70e95] [cursor=pointer]
+      - main [ref=f70e99]:
+        - generic [ref=f70e101]:
+          - paragraph [ref=f70e102]: Decision workspace
+          - heading "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [level=1] [ref=f70e103]
+        - generic [ref=f70e105]:
+          - region [ref=f70e106]:
+            - generic [ref=f70e107]:
+              - paragraph [ref=f70e108]: Case workspace · C-018CA12C8A62-2
+              - heading "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [level=2] [ref=f70e109]
+              - paragraph [ref=f70e110]: B-000002 · REF-PORTFOLIO
+            - generic "Case status" [ref=f70e111]:
+              - generic [ref=f70e112]:
+                - generic [ref=f70e113]: Open
+                - generic [ref=f70e114]: State
+              - generic [ref=f70e115]:
+                - generic [ref=f70e116]: Act now
+                - generic [ref=f70e117]: Risk band
+              - generic [ref=f70e118]:
+                - generic [ref=f70e119]: Within SLA
+                - generic [ref=f70e120]: SLA due
+          - paragraph [ref=f70e121]:
+            - link "← Back to case register" [ref=f70e122] [cursor=pointer]:
+              - /url: /cases
+          - generic [ref=f70e123]:
+            - generic [ref=f70e124]:
+              - heading "Ownership and state" [level=2] [ref=f70e125]
+              - generic [ref=f70e126]:
+                - generic [ref=f70e127]:
+                  - generic [ref=f70e128]:
+                    - term [ref=f70e129]: Case reference
+                    - definition [ref=f70e130]: C-018CA12C8A62-2
+                  - generic [ref=f70e131]:
+                    - term [ref=f70e132]: Assignee
+                    - definition [ref=f70e133]: Relationship Manager
+                  - generic [ref=f70e134]:
+                    - term [ref=f70e135]: SLA due
+                    - definition [ref=f70e136]: No SLA recorded
+                  - generic [ref=f70e137]:
+                    - term [ref=f70e138]: Opened
+                    - definition [ref=f70e139]: 02 Sep 2026 · 01:23 IST
+                  - generic [ref=f70e140]:
+                    - term [ref=f70e141]: Last updated
+                    - definition [ref=f70e142]: 02 Sep 2026 · 01:23 IST
+                  - generic [ref=f70e143]:
+                    - term [ref=f70e144]: Record version
+                    - definition [ref=f70e145]: "1"
+                - generic [ref=f70e146]:
+                  - generic [ref=f70e147]:
+                    - generic [ref=f70e148]:
+                      - generic [ref=f70e149]: Assign to *
+                      - combobox "Assign to" [ref=f70e150]:
+                        - option "Assign to" [selected]
+                    - button "Save ownership" [ref=f70e151] [cursor=pointer]
+                  - generic [ref=f70e152]:
+                    - generic [ref=f70e153]:
+                      - generic [ref=f70e154]: Move to *
+                      - combobox "Move to" [ref=f70e155]:
+                        - option "Open" [selected]
+                      - paragraph [ref=f70e156]: Only permitted next states are offered.
+                    - generic [ref=f70e157]:
+                      - generic [ref=f70e158]: Closure reason
+                      - textbox "Closure reason" [ref=f70e159]:
+                        - /placeholder: Explain why this case is being closed.
+                      - paragraph [ref=f70e160]: Required when moving to Closed.
+                    - button "Save state" [ref=f70e161] [cursor=pointer]
+            - generic [ref=f70e162]:
+              - heading "Immutable case history" [level=2] [ref=f70e163]
+              - paragraph [ref=f70e165]: No history events are recorded for this case.
+            - generic [ref=f70e166]:
+              - heading "Desk notes" [level=2] [ref=f70e167]
+              - generic [ref=f70e168]:
+                - paragraph [ref=f70e169]: No comments have been added to this case.
+                - generic [ref=f70e170]:
+                  - generic [ref=f70e171]:
+                    - generic [ref=f70e172]: Add a desk note *
+                    - textbox "Add a desk note" [ref=f70e173]:
+                      - /placeholder: What changed, and what should the next reviewer know?
+                    - paragraph [ref=f70e174]: Use @username to mention a colleague. Mentions outside this case scope are stored but never notified.
+                  - button "Add note" [ref=f70e175] [cursor=pointer]
+            - generic [ref=f70e176]:
+              - heading "Actions taken" [level=2] [ref=f70e177]
+              - generic [ref=f70e178]:
+                - paragraph [ref=f70e179]: No intervention has been recorded yet.
+                - generic [ref=f70e180]:
+                  - generic [ref=f70e181]:
+                    - generic [ref=f70e182]: Catalogue intervention
+                    - combobox "Catalogue intervention" [ref=f70e183]:
+                      - option "Choose an intervention" [selected]
+                  - generic [ref=f70e184]:
+                    - generic [ref=f70e185]: Additional detail
+                    - textbox "Additional detail" [ref=f70e186]:
+                      - /placeholder: Record the intervention, decision or follow-up.
+                    - paragraph [ref=f70e187]: Required for a free-text action; optional when citing the catalogue.
+                  - button "Log action" [ref=f70e188] [cursor=pointer]
+            - generic [ref=f70e189]:
+              - heading "Linked warning memos" [level=2] [ref=f70e190]
+              - table [ref=f70e193]:
+                - caption [ref=f70e194]: Linked warning memos
+                - rowgroup [ref=f70e195]:
+                  - row [ref=f70e196]:
+                    - columnheader "Run" [ref=f70e197]
+                    - columnheader "Status" [ref=f70e198]
+                    - columnheader "Memo excerpt" [ref=f70e199]
+                - rowgroup [ref=f70e200]:
+                  - row [ref=f70e201]:
+                    - rowheader "01 Sep 2026" [ref=f70e202]
+                    - cell "Complete" [ref=f70e203]
+                    - cell [ref=f70e204]:
+                      - strong [ref=f70e205]: Grounded warning memo
+                      - text: Leverage ratio projected breach warning The current leverage ratio stands at 3.22000000, exceeding the contractual threshold of 3.00000000, resulting in a headroom of -7.3333. There is a projected breach probability o…
+            - generic [ref=f70e206]:
+              - heading "Linked simulations" [level=2] [ref=f70e207]
+              - paragraph [ref=f70e209]: No persisted simulation is linked to this borrower.
+            - generic [ref=f70e210]:
+              - heading "Source documents" [level=2] [ref=f70e211]
+              - paragraph [ref=f70e213]: No source documents are linked to this borrower.

@@ -1,0 +1,112 @@
+- generic [active] [ref=f41e1]:
+  - link "Skip to content" [ref=f41e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f41e3]:
+    - complementary "Workspace navigation" [ref=f41e4]:
+      - link "Covenant Radar" [ref=f41e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f41e13]:
+          - strong [ref=f41e14]: Covenant
+          - generic [ref=f41e15]: Radar
+      - navigation "Primary navigation" [ref=f41e16]:
+        - region [ref=f41e17]:
+          - heading "Monitor" [level=2] [ref=f41e18]
+          - link "Portfolio queue" [ref=f41e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f41e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f41e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f41e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f41e31]: "0"
+          - link "Search" [ref=f41e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f41e37]:
+          - heading "Portfolio data" [level=2] [ref=f41e38]
+          - link "Borrowers" [ref=f41e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f41e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f41e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f41e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f41e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f41e61]:
+          - heading "Workflows" [level=2] [ref=f41e62]
+          - link "Intake" [ref=f41e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f41e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f41e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f41e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f41e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f41e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f41e87]:
+          - heading "Administration" [level=2] [ref=f41e88]
+          - link "Action catalogue" [ref=f41e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f41e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f41e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f41e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f41e109] [cursor=pointer]
+    - generic [ref=f41e113]:
+      - banner [ref=f41e114]:
+        - generic [ref=f41e116]:
+          - generic [ref=f41e117]: Workspace
+          - generic [ref=f41e120]: Current view
+        - search [ref=f41e121]:
+          - generic [ref=f41e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f41e123]
+          - generic: /
+        - generic [ref=f41e124]:
+          - button "Live activity" [ref=f41e125]:
+            - generic [ref=f41e127]: Live
+          - button "Use light theme" [ref=f41e129] [cursor=pointer]
+          - button "Open user menu" [ref=f41e134] [cursor=pointer]
+      - main [ref=f41e138]:
+        - generic [ref=f41e140]:
+          - paragraph [ref=f41e141]: Decision workspace
+          - heading "Notification centre" [level=1] [ref=f41e142]
+        - generic [ref=f41e143]:
+          - region [ref=f41e144]:
+            - generic [ref=f41e145]:
+              - paragraph [ref=f41e146]: "Unread notifications: 0"
+              - heading "Durable notices for the work in your queue." [level=2] [ref=f41e147]
+          - group "Notification centre" [ref=f41e149]:
+            - generic [ref=f41e151]:
+              - generic [ref=f41e152]: Status
+              - combobox "Status" [ref=f41e153]:
+                - option "All" [selected]
+                - option "Unread"
+                - option "Read"
+            - generic [ref=f41e154]:
+              - generic [ref=f41e155]: Notification type
+              - combobox "Notification type" [ref=f41e156]:
+                - option "All notification types" [selected]
+                - option "band_change"
+                - option "morning_queue"
+                - option "sla_breach"
+                - option "certificate_due"
+                - option "job_failure"
+                - option "security_alert"
+                - option "system_failure"
+            - button "Apply filters" [ref=f41e157] [cursor=pointer]
+          - region [ref=f41e158]:
+            - generic [ref=f41e160]:
+              - paragraph [ref=f41e161]: "Unread notifications: 0"
+              - heading "Notification centre" [level=2] [ref=f41e162]
+            - generic [ref=f41e163]:
+              - heading "No notifications in this view" [level=3] [ref=f41e164]
+              - paragraph [ref=f41e165]: New scoped warnings and workflow notices will appear here.
+            - generic [ref=f41e166]:
+              - text: Last updated
+              - time [ref=f41e167]: just now

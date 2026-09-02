@@ -1,0 +1,52 @@
+{% macro field(name, label, type="text", value="", field_id="", options=(), placeholder="", hint="", error="", required=false, disabled=false, autocomplete="", accept="", multiple=false, describedby="", reveal=false) -%}
+  {% set control_id = field_id or "field-" ~ name %}
+  {% set kind = type if type in ("textarea", "select", "file") else "input" %}
+  {% set input_type = type if type in ("text", "email", "password", "number", "date", "search", "url", "tel") else "text" %}
+  {% set error_id = control_id ~ "-error" %}
+  {% set hint_id = control_id ~ "-hint" %}
+  {% set described_id = describedby %}
+  {% if hint %}{% set described_id = (described_id ~ " " if described_id else "") ~ hint_id %}{% endif %}
+  {% if error %}{% set described_id = (described_id ~ " " if described_id else "") ~ error_id %}{% endif %}
+  {% set classes = "field" %}
+  {% if error %}{% set classes = classes ~ " field--error" %}{% endif %}
+  {% if disabled %}{% set classes = classes ~ " field--disabled" %}{% endif %}
+  <div class="{{ classes }}">
+    <label class="field__label" for="{{ control_id }}">{{ label }}{% if required %}<span aria-hidden="true"> *</span>{% endif %}</label>
+    {% if kind == "textarea" %}
+      <textarea class="field__control" id="{{ control_id }}" name="{{ name }}"{% if placeholder %} placeholder="{{ placeholder }}"{% endif %}
+                {% if required %} required{% endif %}{% if disabled %} disabled{% endif %}
+                {% if autocomplete %} autocomplete="{{ autocomplete }}"{% endif %}{% if described_id %} aria-describedby="{{ described_id }}"{% endif %}
+                {% if error %} aria-invalid="true"{% endif %}>{{ value }}</textarea>
+    {% elif kind == "select" %}
+      <select class="field__control" id="{{ control_id }}" name="{{ name }}"{% if required %} required{% endif %}
+              {% if disabled %} disabled{% endif %}{% if autocomplete %} autocomplete="{{ autocomplete }}"{% endif %}
+              {% if described_id %} aria-describedby="{{ described_id }}"{% endif %}{% if error %} aria-invalid="true"{% endif %}>
+        {% for option in options %}
+          {% if option is mapping %}
+            {% set option_value = option.get("value", "") %}
+            {% set option_label = option.get("label", option_value) %}
+            {% set option_disabled = option.get("disabled", false) %}
+          {% else %}
+            {% set option_value = option[0] %}
+            {% set option_label = option[1] %}
+            {% set option_disabled = false %}
+          {% endif %}
+          <option value="{{ option_value }}"{% if option_value|string == value|string %} selected{% endif %}{% if option_disabled %} disabled{% endif %}>{{ option_label }}</option>
+        {% endfor %}
+      </select>
+    {% elif kind == "file" %}
+      <input class="field__control" id="{{ control_id }}" name="{{ name }}" type="file"{% if accept %} accept="{{ accept }}"{% endif %}
+             {% if multiple %} multiple{% endif %}{% if required %} required{% endif %}{% if disabled %} disabled{% endif %}
+             {% if described_id %} aria-describedby="{{ described_id }}"{% endif %}{% if error %} aria-invalid="true"{% endif %}>
+    {% else %}
+      {% if reveal and input_type == "password" %}<div class="password-control">{% endif %}
+      <input class="field__control" id="{{ control_id }}" name="{{ name }}" type="{{ input_type }}" value="{{ value }}"
+             {% if placeholder %} placeholder="{{ placeholder }}"{% endif %}{% if required %} required{% endif %}{% if disabled %} disabled{% endif %}
+             {% if autocomplete %} autocomplete="{{ autocomplete }}"{% endif %}{% if described_id %} aria-describedby="{{ described_id }}"{% endif %}
+             {% if error %} aria-invalid="true"{% endif %}>
+      {% if reveal and input_type == "password" %}<button class="icon-button password-control__toggle" type="button" data-password-toggle="{{ control_id }}" aria-controls="{{ control_id }}" aria-pressed="false">Show</button></div>{% endif %}
+    {% endif %}
+    {% if hint %}<p class="field__hint" id="{{ hint_id }}">{{ hint }}</p>{% endif %}
+    {% if error %}<p class="field__error" id="{{ error_id }}">{{ error }}</p>{% endif %}
+  </div>
+{%- endmacro %}

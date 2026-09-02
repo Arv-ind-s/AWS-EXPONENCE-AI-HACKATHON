@@ -1,0 +1,17 @@
+{% import "_components/icon.html" as notification_icons %}
+{% set notification_path = request.url.path if request is defined else "" %}
+{% set shell_notification_count = unread_count if unread_count is defined else (notification_unread_count(request, principal) if notification_unread_count is defined and principal else 0) %}
+<a class="shell-nav__link shell-nav__notification{% if notification_path.startswith('/notifications') %} shell-nav__link--active{% endif %}"
+   id="shell-notification-link"
+   href="/notifications"
+   title="{{ notification_label }}"
+   aria-label="{{ notification_aria_label }}"
+   hx-get="/notifications/unread-count"
+   hx-trigger="every 60s"
+   hx-target="this"
+   hx-swap="outerHTML"
+   data-live-poll>
+  {{ notification_icons.icon("bell") }}
+  <span class="shell-nav__label">{{ notification_label }} ({{ shell_notification_count }})</span>
+  <span class="shell-nav__badge" aria-hidden="true">{{ shell_notification_count }}</span>
+</a>

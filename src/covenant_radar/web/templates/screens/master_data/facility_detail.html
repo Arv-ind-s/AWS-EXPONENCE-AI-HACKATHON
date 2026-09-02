@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set facility = facility|default(namespace(reference="unknown", borrower_id="unknown", sanctioned_limit="", effective_from="", version=0)) %}
+{% set detail_fields = detail_fields|default(()) %}
+{% set revision_rows = revision_rows|default(()) %}
+{% set form = form|default({}) %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.facility_title }}{% endblock %}
+{% block h1 %}{{ labels.facility_heading }}{% endblock %}
+{% block breadcrumb_label %}{{ facility.reference }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="/static/css/master-data.css">{% endblock %}
+
+{% block page_actions %}
+  {{ components.button(labels.insights_back, href="/facilities", variant="secondary") }}
+{% endblock %}
+
+{% block content %}
+  {% call components.panel(title=facility.reference, panel_id="facility-summary") %}
+    <p class="md-note">{{ labels.facilities_amount_unit }}</p>
+    <div class="ledger-table ledger-table--rest" id="facility-record" data-state="rest">
+      <table class="ledger-table__table md-record">
+        <caption class="ledger-table__caption sr-only">{{ labels.facility_record }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.common_field }}</th>
+            <th scope="col">{{ labels.common_value }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for field in detail_fields %}
+            <tr class="ledger-row" id="record-{{ field.name }}">
+              <th scope="row" class="ledger-row__cell md-record__label">{{ field.label }}</th>
+              <td class="ledger-row__cell md-record__value">
+                {% if field.band %}
+                  <span class="md-band md-band--{{ field.band }}">{{ field.value }}</span>
+                {% else %}
+                  {{ field.value }}
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endcall %}
+
+  {% call components.panel(title=labels.facility_history, panel_id="facility-history") %}
+    <p class="md-note">{{ labels.facility_history_intro }}</p>
+    {% if revision_rows|length > 1 %}
+      {{ components.ledger_table(
+        labels.facility_history,
+        [
+          {"key": "reference", "label": labels.facilities_reference},
+          {"key": "effective_from", "label": labels.facilities_effective},
+          {"key": "effective_to", "label": labels.facilities_effective_to},
+          {"key": "limit", "label": labels.facilities_limit, "align": "right"},
+          {"key": "change", "label": labels.facility_history_change, "align": "right"},
+          {"key": "status", "label": labels.facilities_status}
+        ],
+        revision_rows,
+        table_id="facility-history-ledger",
+        empty_title=labels.facility_history_empty,
+        empty_message=labels.facility_history_empty
+      ) }}
+    {% else %}
+      <p class="md-empty">{{ labels.facility_history_empty }}</p>
+    {% endif %}
+  {% endcall %}
+
+  {% if principal.has("CORRECT_SOURCE_DATA") %}
+  {% call components.panel(title=labels.facility_save, panel_id="facility-edit") %}
+    <form method="post" action="/facilities/{{ facility.reference }}/edit" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <input type="hidden" name="expected_version" value="{{ form.expected_version }}">
+      {{ components.field("sanctioned_limit", labels.facilities_limit, type="number", value=form.get("sanctioned_limit", facility.sanctioned_limit), required=true) }}
+      {{ components.field("effective_from", labels.facilities_effective, type="date", value=form.get("effective_from", "")) }}
+      {{ components.button(labels.facility_save, type="submit") }}
+    </form>
+    <form method="post" action="/facilities/{{ facility.reference }}/deactivate" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <input type="hidden" name="expected_version" value="{{ facility.version }}">
+      {{ components.button(labels.facility_deactivate, type="submit", destructive=true) }}
+    </form>
+  {% endcall %}
+  {% endif %}
+{% endblock %}

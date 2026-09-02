@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set error = error|default("") %}
+{% set report = report|default(none) %}
+{% set source_type_options = source_type_options|default(()) %}
+
+{% block page_title %}{{ labels.import_title }}{% endblock %}
+{% block h1 %}{{ labels.import_heading }}{% endblock %}
+
+{% block content %}
+  <p>{{ labels.import_help }}</p>
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+
+  <form method="post" action="/financial-statements" enctype="multipart/form-data" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {{ components.field("source_type", labels.source_type, type="select", options=source_type_options, required=true) }}
+    {{ components.field("mapping_name", labels.mapping_name, required=true) }}
+    {{ components.field("file", labels.file, type="file", accept=".csv,.xlsx,.json", required=true) }}
+    {{ components.button(labels.import_submit, type="submit") }}
+  </form>
+
+  {% if report %}
+    <h2>{{ labels.import_result_heading }}</h2>
+    <dl>
+      <dt>{{ labels.import_batch }}</dt>
+      <dd>{{ report.batch_id }}</dd>
+      <dt>{{ labels.mapping_name }}</dt>
+      <dd>{{ report.mapping_name }} (version {{ report.mapping_version }})</dd>
+      <dt>{{ labels.import_rows }}</dt>
+      <dd>{{ report.received }}</dd>
+      <dt>{{ labels.import_accepted }}</dt>
+      <dd>{{ report.accepted }}</dd>
+      <dt>{{ labels.import_quarantined }}</dt>
+      <dd>{{ report.quarantined }}</dd>
+    </dl>
+
+    {% if report.quarantine %}
+      <table>
+        <caption>{{ labels.import_quarantined }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.row_number }}</th>
+            <th scope="col">{{ labels.rule_failed }}</th>
+            <th scope="col">{{ labels.message }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in report.quarantine %}
+            <tr>
+              <td>{{ row.row_number }}</td>
+              <td>{{ row.rule_failed }}</td>
+              <td>{{ row.message }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {{ components.button(labels.back_to_quarantine, href="/statements/quarantine") }}
+    {% endif %}
+  {% endif %}
+{% endblock %}

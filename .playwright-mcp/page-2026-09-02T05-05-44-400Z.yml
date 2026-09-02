@@ -1,0 +1,470 @@
+- generic [active] [ref=f24e1]:
+  - link "Skip to content" [ref=f24e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f24e3]:
+    - complementary "Workspace navigation" [ref=f24e4]:
+      - link "Covenant Radar" [ref=f24e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f24e13]:
+          - strong [ref=f24e14]: Covenant
+          - generic [ref=f24e15]: Radar
+      - navigation "Primary navigation" [ref=f24e16]:
+        - region [ref=f24e17]:
+          - heading "Monitor" [level=2] [ref=f24e18]
+          - link "Portfolio queue" [ref=f24e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f24e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f24e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f24e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f24e31]: "0"
+          - link "Search" [ref=f24e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f24e37]:
+          - heading "Portfolio data" [level=2] [ref=f24e38]
+          - link "Borrowers" [ref=f24e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f24e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f24e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f24e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f24e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f24e61]:
+          - heading "Workflows" [level=2] [ref=f24e62]
+          - link "Intake" [ref=f24e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f24e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f24e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f24e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f24e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f24e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f24e87]:
+          - heading "Administration" [level=2] [ref=f24e88]
+          - link "Action catalogue" [ref=f24e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f24e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f24e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f24e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f24e109] [cursor=pointer]
+    - generic [ref=f24e113]:
+      - banner [ref=f24e114]:
+        - generic [ref=f24e116]:
+          - generic [ref=f24e117]: Workspace
+          - generic [ref=f24e120]: Current view
+        - search [ref=f24e121]:
+          - generic [ref=f24e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f24e123]
+          - generic: /
+        - generic [ref=f24e124]:
+          - button "Live activity" [ref=f24e125]:
+            - generic [ref=f24e127]: Live
+          - button "Use dark theme" [ref=f24e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f24e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f24e135] [cursor=pointer]
+      - main [ref=f24e139]:
+        - generic [ref=f24e141]:
+          - paragraph [ref=f24e142]: Decision workspace
+          - heading "Case register" [level=1] [ref=f24e143]
+        - generic [ref=f24e145]:
+          - region [ref=f24e146]:
+            - generic [ref=f24e147]:
+              - paragraph [ref=f24e148]: Work the warning
+              - heading "Every open warning has one owner, one clock and one durable history." [level=2] [ref=f24e149]
+            - generic "Case register summary" [ref=f24e150]:
+              - generic [ref=f24e151]:
+                - generic [ref=f24e152]: "26"
+                - generic [ref=f24e153]: Case
+              - generic [ref=f24e154]:
+                - generic [ref=f24e155]: "13"
+                - generic [ref=f24e156]: State
+              - generic [ref=f24e157]:
+                - generic [ref=f24e158]: "0"
+                - generic [ref=f24e159]: Overdue
+          - generic [ref=f24e160]:
+            - generic [ref=f24e161]:
+              - generic [ref=f24e162]:
+                - generic [ref=f24e163]: State
+                - combobox "State" [ref=f24e164]:
+                  - option "All states" [selected]
+                  - option "Open"
+                  - option "In progress"
+                  - option "Monitoring"
+                  - option "Escalated"
+                  - option "Closed"
+              - generic [ref=f24e165]:
+                - generic [ref=f24e166]: Assignee
+                - textbox "Assignee" [ref=f24e167]:
+                  - /placeholder: UUID
+              - generic [ref=f24e168]:
+                - generic [ref=f24e169]: Borrower
+                - searchbox "Borrower" [ref=f24e170]
+              - generic [ref=f24e171]:
+                - generic [ref=f24e172]: Overdue
+                - generic [ref=f24e173]:
+                  - checkbox "Overdue Overdue" [ref=f24e174]
+                  - text: Overdue
+            - button "Apply filters" [ref=f24e176] [cursor=pointer]
+          - region [ref=f24e177]:
+            - heading "Case register" [level=2] [ref=f24e178]
+            - table [ref=f24e180]:
+              - caption [ref=f24e181]: Case register
+              - rowgroup [ref=f24e182]:
+                - row [ref=f24e183]:
+                  - columnheader "Case" [ref=f24e184]
+                  - columnheader "Borrower" [ref=f24e185]
+                  - columnheader "State" [ref=f24e186]
+                  - columnheader "Band" [ref=f24e187]
+                  - columnheader "Assignee" [ref=f24e188]
+                  - columnheader "SLA due" [ref=f24e189]
+                  - columnheader "Updated" [ref=f24e190]
+              - rowgroup [ref=f24e191]:
+                - row [ref=f24e192]:
+                  - rowheader [ref=f24e193]:
+                    - link "C-018CA12C8A62-2" [ref=f24e194] [cursor=pointer]:
+                      - /url: /cases/C-018CA12C8A62-2
+                  - cell "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited B-000002" [ref=f24e195]:
+                    - link "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f24e196] [cursor=pointer]:
+                      - /url: /borrowers/B-000002
+                    - generic [ref=f24e197]: B-000002
+                  - cell "Open" [ref=f24e198]
+                  - cell "Act now" [ref=f24e199]
+                  - cell "Relationship Manager" [ref=f24e201]
+                  - cell "No SLA recorded" [ref=f24e202]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e203]
+                - row [ref=f24e204]:
+                  - rowheader [ref=f24e205]:
+                    - link "C-018CC00C97E5-2" [ref=f24e206] [cursor=pointer]:
+                      - /url: /cases/C-018CC00C97E5-2
+                  - cell "Patel Precision Materials and Components Kavya 00005 Private Limited B-000005" [ref=f24e207]:
+                    - link "Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f24e208] [cursor=pointer]:
+                      - /url: /borrowers/B-000005
+                    - generic [ref=f24e209]: B-000005
+                  - cell "Open" [ref=f24e210]
+                  - cell "Act now" [ref=f24e211]
+                  - cell "Relationship Manager" [ref=f24e213]
+                  - cell "No SLA recorded" [ref=f24e214]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e215]
+                - row [ref=f24e216]:
+                  - rowheader [ref=f24e217]:
+                    - link "C-018C9EEBC221-2" [ref=f24e218] [cursor=pointer]:
+                      - /url: /cases/C-018C9EEBC221-2
+                  - cell "Subramanian Precision Materials and Components Kavya 00001 Private Limited B-000001" [ref=f24e219]:
+                    - link "Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f24e220] [cursor=pointer]:
+                      - /url: /borrowers/B-000001
+                    - generic [ref=f24e221]: B-000001
+                  - cell "Open" [ref=f24e222]
+                  - cell "Act now" [ref=f24e223]
+                  - cell "Relationship Manager" [ref=f24e225]
+                  - cell "No SLA recorded" [ref=f24e226]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e227]
+                - row [ref=f24e228]:
+                  - rowheader [ref=f24e229]:
+                    - link "C-018CE77BCEE7-2" [ref=f24e230] [cursor=pointer]:
+                      - /url: /cases/C-018CE77BCEE7-2
+                  - cell "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited B-000007" [ref=f24e231]:
+                    - link "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f24e232] [cursor=pointer]:
+                      - /url: /borrowers/B-000007
+                    - generic [ref=f24e233]: B-000007
+                  - cell "Open" [ref=f24e234]
+                  - cell "Act now" [ref=f24e235]
+                  - cell "Relationship Manager" [ref=f24e237]
+                  - cell "No SLA recorded" [ref=f24e238]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e239]
+                - row [ref=f24e240]:
+                  - rowheader [ref=f24e241]:
+                    - link "C-018D54863CAA-2" [ref=f24e242] [cursor=pointer]:
+                      - /url: /cases/C-018D54863CAA-2
+                  - cell "Sharma Applied Engineering Systems Arjun 00010 Private Limited B-000010" [ref=f24e243]:
+                    - link "Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f24e244] [cursor=pointer]:
+                      - /url: /borrowers/B-000010
+                    - generic [ref=f24e245]: B-000010
+                  - cell "Open" [ref=f24e246]
+                  - cell "Act now" [ref=f24e247]
+                  - cell "Relationship Manager" [ref=f24e249]
+                  - cell "No SLA recorded" [ref=f24e250]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e251]
+                - row [ref=f24e252]:
+                  - rowheader [ref=f24e253]:
+                    - link "C-018D431EABAC-2" [ref=f24e254] [cursor=pointer]:
+                      - /url: /cases/C-018D431EABAC-2
+                  - cell "Nair Integrated Manufacturing Systems Devika 00012 Private Limited B-000012" [ref=f24e255]:
+                    - link "Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f24e256] [cursor=pointer]:
+                      - /url: /borrowers/B-000012
+                    - generic [ref=f24e257]: B-000012
+                  - cell "Open" [ref=f24e258]
+                  - cell "Act now" [ref=f24e259]
+                  - cell "Relationship Manager" [ref=f24e261]
+                  - cell "No SLA recorded" [ref=f24e262]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e263]
+                - row [ref=f24e264]:
+                  - rowheader [ref=f24e265]:
+                    - link "C-018C799299EB-2" [ref=f24e266] [cursor=pointer]:
+                      - /url: /cases/C-018C799299EB-2
+                  - cell "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited B-000011" [ref=f24e267]:
+                    - link "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f24e268] [cursor=pointer]:
+                      - /url: /borrowers/B-000011
+                    - generic [ref=f24e269]: B-000011
+                  - cell "Open" [ref=f24e270]
+                  - cell "Act now" [ref=f24e271]
+                  - cell "Relationship Manager" [ref=f24e273]
+                  - cell "No SLA recorded" [ref=f24e274]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e275]
+                - row [ref=f24e276]:
+                  - rowheader [ref=f24e277]:
+                    - link "C-018C2AE68684-2" [ref=f24e278] [cursor=pointer]:
+                      - /url: /cases/C-018C2AE68684-2
+                  - cell "Menon Energy Transition Technologies Saanvi 00004 Private Limited B-000004" [ref=f24e279]:
+                    - link "Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f24e280] [cursor=pointer]:
+                      - /url: /borrowers/B-000004
+                    - generic [ref=f24e281]: B-000004
+                  - cell "Open" [ref=f24e282]
+                  - cell "Act now" [ref=f24e283]
+                  - cell "Relationship Manager" [ref=f24e285]
+                  - cell "No SLA recorded" [ref=f24e286]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e287]
+                - row [ref=f24e288]:
+                  - rowheader [ref=f24e289]:
+                    - link "C-018D46C608C9-2" [ref=f24e290] [cursor=pointer]:
+                      - /url: /cases/C-018D46C608C9-2
+                  - cell "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited B-000009" [ref=f24e291]:
+                    - link "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f24e292] [cursor=pointer]:
+                      - /url: /borrowers/B-000009
+                    - generic [ref=f24e293]: B-000009
+                  - cell "Open" [ref=f24e294]
+                  - cell "Act now" [ref=f24e295]
+                  - cell "Relationship Manager" [ref=f24e297]
+                  - cell "No SLA recorded" [ref=f24e298]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e299]
+                - row [ref=f24e300]:
+                  - rowheader [ref=f24e301]:
+                    - link "C-018CA99BA8CD-2" [ref=f24e302] [cursor=pointer]:
+                      - /url: /cases/C-018CA99BA8CD-2
+                  - cell "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited B-000013" [ref=f24e303]:
+                    - link "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f24e304] [cursor=pointer]:
+                      - /url: /borrowers/B-000013
+                    - generic [ref=f24e305]: B-000013
+                  - cell "Open" [ref=f24e306]
+                  - cell "Act now" [ref=f24e307]
+                  - cell "Relationship Manager" [ref=f24e309]
+                  - cell "No SLA recorded" [ref=f24e310]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e311]
+                - row [ref=f24e312]:
+                  - rowheader [ref=f24e313]:
+                    - link "C-018D4EF38A43-2" [ref=f24e314] [cursor=pointer]:
+                      - /url: /cases/C-018D4EF38A43-2
+                  - cell "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited B-000003" [ref=f24e315]:
+                    - link "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f24e316] [cursor=pointer]:
+                      - /url: /borrowers/B-000003
+                    - generic [ref=f24e317]: B-000003
+                  - cell "Open" [ref=f24e318]
+                  - cell "Act now" [ref=f24e319]
+                  - cell "Relationship Manager" [ref=f24e321]
+                  - cell "No SLA recorded" [ref=f24e322]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e323]
+                - row [ref=f24e324]:
+                  - rowheader [ref=f24e325]:
+                    - link "C-018CECBF28C6-2" [ref=f24e326] [cursor=pointer]:
+                      - /url: /cases/C-018CECBF28C6-2
+                  - cell "Patel Applied Engineering Systems Aarav 00006 Private Limited B-000006" [ref=f24e327]:
+                    - link "Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f24e328] [cursor=pointer]:
+                      - /url: /borrowers/B-000006
+                    - generic [ref=f24e329]: B-000006
+                  - cell "Open" [ref=f24e330]
+                  - cell "Act now" [ref=f24e331]
+                  - cell "Relationship Manager" [ref=f24e333]
+                  - cell "No SLA recorded" [ref=f24e334]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e335]
+                - row [ref=f24e336]:
+                  - rowheader [ref=f24e337]:
+                    - link "C-018CF0AE3D48-2" [ref=f24e338] [cursor=pointer]:
+                      - /url: /cases/C-018CF0AE3D48-2
+                  - cell "Deshmukh Precision Materials and Components Kavya 00008 Private Limited B-000008" [ref=f24e339]:
+                    - link "Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f24e340] [cursor=pointer]:
+                      - /url: /borrowers/B-000008
+                    - generic [ref=f24e341]: B-000008
+                  - cell "Open" [ref=f24e342]
+                  - cell "Act now" [ref=f24e343]
+                  - cell "Relationship Manager" [ref=f24e345]
+                  - cell "No SLA recorded" [ref=f24e346]
+                  - cell "02 Sep 2026 · 01:23 IST" [ref=f24e347]
+                - row [ref=f24e348]:
+                  - rowheader [ref=f24e349]:
+                    - link "C-018CA12C8A62" [ref=f24e350] [cursor=pointer]:
+                      - /url: /cases/C-018CA12C8A62
+                  - cell "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited B-000002" [ref=f24e351]:
+                    - link "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f24e352] [cursor=pointer]:
+                      - /url: /borrowers/B-000002
+                    - generic [ref=f24e353]: B-000002
+                  - cell "Closed" [ref=f24e354]
+                  - cell "Act now" [ref=f24e355]
+                  - cell "Unassigned" [ref=f24e357]
+                  - cell "No SLA recorded" [ref=f24e358]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e359]
+                - row [ref=f24e360]:
+                  - rowheader [ref=f24e361]:
+                    - link "C-018CC00C97E5" [ref=f24e362] [cursor=pointer]:
+                      - /url: /cases/C-018CC00C97E5
+                  - cell "Patel Precision Materials and Components Kavya 00005 Private Limited B-000005" [ref=f24e363]:
+                    - link "Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f24e364] [cursor=pointer]:
+                      - /url: /borrowers/B-000005
+                    - generic [ref=f24e365]: B-000005
+                  - cell "Closed" [ref=f24e366]
+                  - cell "Act now" [ref=f24e367]
+                  - cell "Unassigned" [ref=f24e369]
+                  - cell "No SLA recorded" [ref=f24e370]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e371]
+                - row [ref=f24e372]:
+                  - rowheader [ref=f24e373]:
+                    - link "C-018C9EEBC221" [ref=f24e374] [cursor=pointer]:
+                      - /url: /cases/C-018C9EEBC221
+                  - cell "Subramanian Precision Materials and Components Kavya 00001 Private Limited B-000001" [ref=f24e375]:
+                    - link "Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f24e376] [cursor=pointer]:
+                      - /url: /borrowers/B-000001
+                    - generic [ref=f24e377]: B-000001
+                  - cell "Closed" [ref=f24e378]
+                  - cell "Act now" [ref=f24e379]
+                  - cell "Unassigned" [ref=f24e381]
+                  - cell "No SLA recorded" [ref=f24e382]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e383]
+                - row [ref=f24e384]:
+                  - rowheader [ref=f24e385]:
+                    - link "C-018CE77BCEE7" [ref=f24e386] [cursor=pointer]:
+                      - /url: /cases/C-018CE77BCEE7
+                  - cell "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited B-000007" [ref=f24e387]:
+                    - link "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f24e388] [cursor=pointer]:
+                      - /url: /borrowers/B-000007
+                    - generic [ref=f24e389]: B-000007
+                  - cell "Closed" [ref=f24e390]
+                  - cell "Act now" [ref=f24e391]
+                  - cell "Unassigned" [ref=f24e393]
+                  - cell "No SLA recorded" [ref=f24e394]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e395]
+                - row [ref=f24e396]:
+                  - rowheader [ref=f24e397]:
+                    - link "C-018D54863CAA" [ref=f24e398] [cursor=pointer]:
+                      - /url: /cases/C-018D54863CAA
+                  - cell "Sharma Applied Engineering Systems Arjun 00010 Private Limited B-000010" [ref=f24e399]:
+                    - link "Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f24e400] [cursor=pointer]:
+                      - /url: /borrowers/B-000010
+                    - generic [ref=f24e401]: B-000010
+                  - cell "Closed" [ref=f24e402]
+                  - cell "Act now" [ref=f24e403]
+                  - cell "Unassigned" [ref=f24e405]
+                  - cell "No SLA recorded" [ref=f24e406]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e407]
+                - row [ref=f24e408]:
+                  - rowheader [ref=f24e409]:
+                    - link "C-018D431EABAC" [ref=f24e410] [cursor=pointer]:
+                      - /url: /cases/C-018D431EABAC
+                  - cell "Nair Integrated Manufacturing Systems Devika 00012 Private Limited B-000012" [ref=f24e411]:
+                    - link "Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f24e412] [cursor=pointer]:
+                      - /url: /borrowers/B-000012
+                    - generic [ref=f24e413]: B-000012
+                  - cell "Closed" [ref=f24e414]
+                  - cell "Act now" [ref=f24e415]
+                  - cell "Unassigned" [ref=f24e417]
+                  - cell "No SLA recorded" [ref=f24e418]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e419]
+                - row [ref=f24e420]:
+                  - rowheader [ref=f24e421]:
+                    - link "C-018C799299EB" [ref=f24e422] [cursor=pointer]:
+                      - /url: /cases/C-018C799299EB
+                  - cell "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited B-000011" [ref=f24e423]:
+                    - link "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f24e424] [cursor=pointer]:
+                      - /url: /borrowers/B-000011
+                    - generic [ref=f24e425]: B-000011
+                  - cell "Closed" [ref=f24e426]
+                  - cell "Act now" [ref=f24e427]
+                  - cell "Unassigned" [ref=f24e429]
+                  - cell "No SLA recorded" [ref=f24e430]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e431]
+                - row [ref=f24e432]:
+                  - rowheader [ref=f24e433]:
+                    - link "C-018C2AE68684" [ref=f24e434] [cursor=pointer]:
+                      - /url: /cases/C-018C2AE68684
+                  - cell "Menon Energy Transition Technologies Saanvi 00004 Private Limited B-000004" [ref=f24e435]:
+                    - link "Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f24e436] [cursor=pointer]:
+                      - /url: /borrowers/B-000004
+                    - generic [ref=f24e437]: B-000004
+                  - cell "Closed" [ref=f24e438]
+                  - cell "Act now" [ref=f24e439]
+                  - cell "Unassigned" [ref=f24e441]
+                  - cell "No SLA recorded" [ref=f24e442]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e443]
+                - row [ref=f24e444]:
+                  - rowheader [ref=f24e445]:
+                    - link "C-018D46C608C9" [ref=f24e446] [cursor=pointer]:
+                      - /url: /cases/C-018D46C608C9
+                  - cell "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited B-000009" [ref=f24e447]:
+                    - link "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f24e448] [cursor=pointer]:
+                      - /url: /borrowers/B-000009
+                    - generic [ref=f24e449]: B-000009
+                  - cell "Closed" [ref=f24e450]
+                  - cell "Act now" [ref=f24e451]
+                  - cell "Unassigned" [ref=f24e453]
+                  - cell "No SLA recorded" [ref=f24e454]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e455]
+                - row [ref=f24e456]:
+                  - rowheader [ref=f24e457]:
+                    - link "C-018CA99BA8CD" [ref=f24e458] [cursor=pointer]:
+                      - /url: /cases/C-018CA99BA8CD
+                  - cell "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited B-000013" [ref=f24e459]:
+                    - link "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f24e460] [cursor=pointer]:
+                      - /url: /borrowers/B-000013
+                    - generic [ref=f24e461]: B-000013
+                  - cell "Closed" [ref=f24e462]
+                  - cell "Act now" [ref=f24e463]
+                  - cell "Unassigned" [ref=f24e465]
+                  - cell "No SLA recorded" [ref=f24e466]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e467]
+                - row [ref=f24e468]:
+                  - rowheader [ref=f24e469]:
+                    - link "C-018D4EF38A43" [ref=f24e470] [cursor=pointer]:
+                      - /url: /cases/C-018D4EF38A43
+                  - cell "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited B-000003" [ref=f24e471]:
+                    - link "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f24e472] [cursor=pointer]:
+                      - /url: /borrowers/B-000003
+                    - generic [ref=f24e473]: B-000003
+                  - cell "Closed" [ref=f24e474]
+                  - cell "Act now" [ref=f24e475]
+                  - cell "Unassigned" [ref=f24e477]
+                  - cell "No SLA recorded" [ref=f24e478]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e479]
+                - row [ref=f24e480]:
+                  - rowheader [ref=f24e481]:
+                    - link "C-018CECBF28C6" [ref=f24e482] [cursor=pointer]:
+                      - /url: /cases/C-018CECBF28C6
+                  - cell "Patel Applied Engineering Systems Aarav 00006 Private Limited B-000006" [ref=f24e483]:
+                    - link "Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f24e484] [cursor=pointer]:
+                      - /url: /borrowers/B-000006
+                    - generic [ref=f24e485]: B-000006
+                  - cell "Closed" [ref=f24e486]
+                  - cell "Act now" [ref=f24e487]
+                  - cell "Unassigned" [ref=f24e489]
+                  - cell "No SLA recorded" [ref=f24e490]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e491]
+                - row [ref=f24e492]:
+                  - rowheader [ref=f24e493]:
+                    - link "C-018CF0AE3D48" [ref=f24e494] [cursor=pointer]:
+                      - /url: /cases/C-018CF0AE3D48
+                  - cell "Deshmukh Precision Materials and Components Kavya 00008 Private Limited B-000008" [ref=f24e495]:
+                    - link "Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f24e496] [cursor=pointer]:
+                      - /url: /borrowers/B-000008
+                    - generic [ref=f24e497]: B-000008
+                  - cell "Closed" [ref=f24e498]
+                  - cell "Act now" [ref=f24e499]
+                  - cell "Unassigned" [ref=f24e501]
+                  - cell "No SLA recorded" [ref=f24e502]
+                  - cell "02 Sep 2026 · 01:21 IST" [ref=f24e503]

@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set versions = versions|default(()) %}
+{% set error = error|default("") %}
+{% set covenant = covenant|default({}) %}
+{% set amend_form = amend_form|default({}) %}
+
+{% block page_title %}{{ covenant.reference }}{% endblock %}
+{% block h1 %}{{ covenant.name }}{% endblock %}
+
+{% block content %}
+  {% call components.panel(title=covenant.reference, panel_id="covenant-summary") %}
+    <p>{{ labels.class }}: {{ covenant.covenant_class }}</p>
+    <p>{{ labels.facility }}: {{ covenant.facility_id }}</p>
+    <p>{{ labels.status }}: {{ labels.active if covenant.is_active else labels.retired }}</p>
+  {% endcall %}
+
+  {% call components.panel(title=labels.versions, panel_id="covenant-versions") %}
+    {% for version in versions %}
+      <article class="panel" data-version="{{ version.version_no }}">
+        <h2>{{ labels.versions }} {{ version.version_no }}</h2>
+        <p>{{ labels.definition }}: {{ version.definition_ref or version.custom_formula }}</p>
+        <p>{{ labels.threshold }}: {{ version.threshold }} {{ version.unit }}</p>
+        <p>{{ labels.direction }}: {{ version.direction }}</p>
+        <p>{{ labels.frequency }}: {{ version.frequency }}</p>
+        <p>{{ labels.effective_from }}: {{ version.effective_from }}</p>
+        <p>{{ labels.status }}: {{ version.status }}</p>
+      </article>
+    {% endfor %}
+  {% endcall %}
+
+  {% if covenant.is_active and principal.has("REGISTER_COVENANT") %}
+    {% call components.panel(title=labels.amend, panel_id="covenant-amend") %}
+      {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+      <form method="post" action="/covenants/{{ covenant.reference }}/amend" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        {{ components.field("definition_ref", labels.definition, value=amend_form.get("definition_ref", "")) }}
+        {{ components.field("custom_formula", labels.formula, type="textarea", value=amend_form.get("custom_formula", "")) }}
+        {{ components.field("threshold", labels.threshold, type="number", value=amend_form.get("threshold", ""), required=true) }}
+        {{ components.field("direction", labels.direction, type="select", value=amend_form.get("direction", "max"), options=(("min", "min"), ("max", "max")), required=true) }}
+        {{ components.field("unit", labels.unit, value=amend_form.get("unit", "x"), required=true) }}
+        {{ components.field("frequency", labels.frequency, type="select", value=amend_form.get("frequency", "quarterly"), options=(("monthly", "monthly"), ("quarterly", "quarterly"), ("half_yearly", "half_yearly"), ("annual", "annual"), ("on_event", "on_event")), required=true) }}
+        {{ components.field("test_basis", labels.test_basis, value=amend_form.get("test_basis", "standalone"), required=true) }}
+        {{ components.field("effective_from", labels.effective_from, type="date", value=amend_form.get("effective_from", ""), required=true) }}
+        {{ components.field("effective_to", labels.effective_to, type="date", value=amend_form.get("effective_to", "")) }}
+        {{ components.field("warning_headroom_pct", labels.warning_headroom, type="number", value=amend_form.get("warning_headroom_pct", "")) }}
+        {{ components.field("cure_days", labels.cure_days, type="number", value=amend_form.get("cure_days", "")) }}
+        {{ components.field("grace_days", labels.grace_days, type="number", value=amend_form.get("grace_days", "")) }}
+        {{ components.button(labels.amend, type="submit") }}
+      </form>
+    {% endcall %}
+    <form method="post" action="/covenants/{{ covenant.reference }}/retire" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      {{ components.button(labels.retire, type="submit", destructive=true) }}
+    </form>
+  {% endif %}
+  {% if covenant.is_active and principal.has("RECORD_WAIVER") %}
+    {% call components.panel(title=labels.waiver, panel_id="covenant-waiver") %}
+      <form method="post" action="/covenants/{{ covenant.reference }}/waivers" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        {{ components.field("from_date", labels.effective_from, type="date", required=true) }}
+        {{ components.field("to_date", labels.effective_to, type="date") }}
+        {{ components.field("reason", labels.reason, type="textarea", required=true) }}
+        {{ components.button(labels.waiver, type="submit") }}
+      </form>
+    {% endcall %}
+  {% endif %}
+{% endblock %}

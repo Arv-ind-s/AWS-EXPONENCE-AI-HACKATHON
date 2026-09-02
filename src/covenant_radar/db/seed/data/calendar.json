@@ -1,0 +1,9 @@
+{
+  "taxonomy_version": "1.0",
+  "calendar": {
+    "fiscal_year_start_month": 4,
+    "weekend_adjustment": "next_business_day",
+    "holiday_adjustment": "next_business_day",
+    "holidays": []
+  }
+}

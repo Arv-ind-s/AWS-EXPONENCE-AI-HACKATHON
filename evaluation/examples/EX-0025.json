@@ -1,0 +1,35 @@
+{
+  "id": "EX-0025",
+  "kind": "extraction",
+  "title": "A plain leverage-ratio covenant clause extracts cleanly",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "extraction",
+    "leverage_ratio"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "clause_text": "The Borrower shall maintain a leverage ratio not exceeding 3.00x at all times during the currency of the facility."
+  },
+  "expected": {
+    "refused": false,
+    "definition_code": "leverage_ratio",
+    "direction": "max",
+    "threshold": "3.00",
+    "unit": "ratio",
+    "plausible": true,
+    "refusal_reason": null
+  },
+  "pass_mark": {
+    "type": "field_precision_recall",
+    "precision_floor": 0.95,
+    "recall_floor": 0.95,
+    "fail_closed_adversarial": true
+  },
+  "note": "detect_candidates scores this line above the 0.50 match floor on the ratio_name('leverage_ratio'), comparison('not exceeding') and threshold ('3.00x') categories. The proposed threshold 3.00 sits inside leverage_ratio's plausible band [0, 6], so all six stage-1 checks and the narrowing step agree: definition leverage_ratio, direction max, threshold 3.00."
+}

@@ -1,0 +1,870 @@
+- generic [active] [ref=f23e1]:
+  - link "Skip to content" [ref=f23e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f23e3]:
+    - complementary "Workspace navigation" [ref=f23e4]:
+      - link "Covenant Radar" [ref=f23e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f23e13]:
+          - strong [ref=f23e14]: Covenant
+          - generic [ref=f23e15]: Radar
+      - navigation "Primary navigation" [ref=f23e16]:
+        - region [ref=f23e17]:
+          - heading "Monitor" [level=2] [ref=f23e18]
+          - link "Portfolio queue" [ref=f23e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f23e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f23e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f23e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f23e31]: "0"
+          - link "Search" [ref=f23e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f23e37]:
+          - heading "Portfolio data" [level=2] [ref=f23e38]
+          - link "Borrowers" [ref=f23e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f23e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f23e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f23e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f23e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f23e61]:
+          - heading "Workflows" [level=2] [ref=f23e62]
+          - link "Intake" [ref=f23e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f23e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f23e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f23e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f23e79]:
+          - heading "Administration" [level=2] [ref=f23e80]
+          - link "Action catalogue" [ref=f23e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f23e86] [cursor=pointer]
+    - generic [ref=f23e90]:
+      - banner [ref=f23e91]:
+        - generic [ref=f23e93]:
+          - generic [ref=f23e94]: Workspace
+          - generic [ref=f23e97]: Facilities
+        - search [ref=f23e98]:
+          - generic [ref=f23e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f23e100]
+          - generic: /
+        - generic [ref=f23e101]:
+          - button "Live activity" [ref=f23e102]:
+            - generic [ref=f23e104]: Live
+          - button "Use dark theme" [ref=f23e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f23e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f23e112] [cursor=pointer]
+      - main [ref=f23e116]:
+        - generic [ref=f23e117]:
+          - generic [ref=f23e118]:
+            - paragraph [ref=f23e119]: Decision workspace
+            - heading "Facility master data" [level=1] [ref=f23e120]
+          - link "Book insights" [ref=f23e122] [cursor=pointer]:
+            - /url: /facilities/insights
+        - generic [ref=f23e123]:
+          - generic [ref=f23e124]:
+            - generic [ref=f23e125]:
+              - generic [ref=f23e126]:
+                - generic [ref=f23e127]: Search facilities
+                - searchbox "Search facilities" [ref=f23e128]
+              - generic [ref=f23e129]:
+                - generic [ref=f23e130]: Facility type
+                - combobox "Facility type" [ref=f23e131]:
+                  - option "All facility types" [selected]
+                  - option "Cash credit"
+                  - option "Term loan"
+              - generic [ref=f23e132]:
+                - generic [ref=f23e133]: Currency
+                - combobox "Currency" [ref=f23e134]:
+                  - option "All currencies" [selected]
+                  - option "INR"
+              - generic [ref=f23e135]:
+                - generic [ref=f23e136]: Version status
+                - combobox "Version status" [ref=f23e137]:
+                  - option "Current versions" [selected]
+                  - option "Superseded versions"
+                  - option "All versions"
+            - button "Apply filters" [ref=f23e139] [cursor=pointer]
+          - generic [ref=f23e141]:
+            - paragraph [ref=f23e142]:
+              - generic [ref=f23e143]: Showing 1–50 of 12,000 facilities
+              - generic [ref=f23e144]: Amounts in ₹ crore
+            - table [ref=f23e146]:
+              - caption [ref=f23e147]: Facility master data
+              - rowgroup [ref=f23e148]:
+                - row [ref=f23e149]:
+                  - columnheader "Reference" [ref=f23e150]
+                  - columnheader "Borrower" [ref=f23e151]
+                  - columnheader "Facility type" [ref=f23e152]
+                  - columnheader "Sanctioned limit" [ref=f23e153]
+                  - columnheader "Outstanding" [ref=f23e154]
+                  - columnheader "Utilisation" [ref=f23e155]
+                  - columnheader "Maturity date" [ref=f23e156]
+                  - columnheader "Version status" [ref=f23e157]
+              - rowgroup [ref=f23e158]:
+                - row [ref=f23e159]:
+                  - cell [ref=f23e160]:
+                    - link "F-000001-01" [ref=f23e161] [cursor=pointer]:
+                      - /url: /facilities/F-000001-01
+                  - cell "B-000001 Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f23e162]:
+                    - link "B-000001" [ref=f23e163] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                    - generic [ref=f23e164]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                  - cell "Cash credit" [ref=f23e165]
+                  - cell "148.83" [ref=f23e166]
+                  - cell "103.53" [ref=f23e167]
+                  - cell "69.6%" [ref=f23e168]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e170]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e171]: matured 520 days ago
+                  - cell "Current" [ref=f23e172]
+                - row [ref=f23e174]:
+                  - cell [ref=f23e175]:
+                    - link "F-000001-02" [ref=f23e176] [cursor=pointer]:
+                      - /url: /facilities/F-000001-02
+                  - cell "B-000001 Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f23e177]:
+                    - link "B-000001" [ref=f23e178] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                    - generic [ref=f23e179]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                  - cell "Term loan" [ref=f23e180]
+                  - cell "79.13" [ref=f23e181]
+                  - cell "55.39" [ref=f23e182]
+                  - cell "70.0%" [ref=f23e183]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e185]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e186]: matured 155 days ago
+                  - cell "Current" [ref=f23e187]
+                - row [ref=f23e189]:
+                  - cell [ref=f23e190]:
+                    - link "F-000002-01" [ref=f23e191] [cursor=pointer]:
+                      - /url: /facilities/F-000002-01
+                  - cell "B-000002 Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f23e192]:
+                    - link "B-000002" [ref=f23e193] [cursor=pointer]:
+                      - /url: /borrowers/B-000002/master-data
+                    - generic [ref=f23e194]: Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited
+                  - cell "Cash credit" [ref=f23e195]
+                  - cell "166.53" [ref=f23e196]
+                  - cell "133.54" [ref=f23e197]
+                  - cell "80.2%" [ref=f23e198]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e200]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e201]: matured 155 days ago
+                  - cell "Current" [ref=f23e202]
+                - row [ref=f23e204]:
+                  - cell [ref=f23e205]:
+                    - link "F-000003-01" [ref=f23e206] [cursor=pointer]:
+                      - /url: /facilities/F-000003-01
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f23e207]:
+                    - link "B-000003" [ref=f23e208] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f23e209]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Cash credit" [ref=f23e210]
+                  - cell "226.60" [ref=f23e211]
+                  - cell "166.78" [ref=f23e212]
+                  - cell "73.6%" [ref=f23e213]
+                  - cell "31 Mar 2027" [ref=f23e215]
+                  - cell "Current" [ref=f23e216]
+                - row [ref=f23e218]:
+                  - cell [ref=f23e219]:
+                    - link "F-000003-02" [ref=f23e220] [cursor=pointer]:
+                      - /url: /facilities/F-000003-02
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f23e221]:
+                    - link "B-000003" [ref=f23e222] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f23e223]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Term loan" [ref=f23e224]
+                  - cell "35.85" [ref=f23e225]
+                  - cell "28.95" [ref=f23e226]
+                  - cell "80.8%" [ref=f23e227]
+                  - cell "31 Mar 2028" [ref=f23e229]
+                  - cell "Current" [ref=f23e230]
+                - row [ref=f23e232]:
+                  - cell [ref=f23e233]:
+                    - link "F-000003-03" [ref=f23e234] [cursor=pointer]:
+                      - /url: /facilities/F-000003-03
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f23e235]:
+                    - link "B-000003" [ref=f23e236] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f23e237]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Cash credit" [ref=f23e238]
+                  - cell "26.09" [ref=f23e239]
+                  - cell "12.12" [ref=f23e240]
+                  - cell "46.5%" [ref=f23e241]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e243]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e244]: matured 155 days ago
+                  - cell "Current" [ref=f23e245]
+                - row [ref=f23e247]:
+                  - cell [ref=f23e248]:
+                    - link "F-000003-04" [ref=f23e249] [cursor=pointer]:
+                      - /url: /facilities/F-000003-04
+                  - cell "B-000003 Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f23e250]:
+                    - link "B-000003" [ref=f23e251] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f23e252]: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited
+                  - cell "Term loan" [ref=f23e253]
+                  - cell "212.22" [ref=f23e254]
+                  - cell "142.61" [ref=f23e255]
+                  - cell "67.2%" [ref=f23e256]
+                  - cell "31 Mar 2027" [ref=f23e258]
+                  - cell "Current" [ref=f23e259]
+                - row [ref=f23e261]:
+                  - cell [ref=f23e262]:
+                    - link "F-000004-01" [ref=f23e263] [cursor=pointer]:
+                      - /url: /facilities/F-000004-01
+                  - cell "B-000004 Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f23e264]:
+                    - link "B-000004" [ref=f23e265] [cursor=pointer]:
+                      - /url: /borrowers/B-000004/master-data
+                    - generic [ref=f23e266]: Menon Energy Transition Technologies Saanvi 00004 Private Limited
+                  - cell "Cash credit" [ref=f23e267]
+                  - cell "331.05" [ref=f23e268]
+                  - cell "241.67" [ref=f23e269]
+                  - cell "73.0%" [ref=f23e270]
+                  - cell "31 Mar 2028" [ref=f23e272]
+                  - cell "Current" [ref=f23e273]
+                - row [ref=f23e275]:
+                  - cell [ref=f23e276]:
+                    - link "F-000005-01" [ref=f23e277] [cursor=pointer]:
+                      - /url: /facilities/F-000005-01
+                  - cell "B-000005 Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f23e278]:
+                    - link "B-000005" [ref=f23e279] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                    - generic [ref=f23e280]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                  - cell "Cash credit" [ref=f23e281]
+                  - cell "59.29" [ref=f23e282]
+                  - cell "45.82" [ref=f23e283]
+                  - cell "77.3%" [ref=f23e284]
+                  - cell "31 Mar 2029" [ref=f23e286]
+                  - cell "Current" [ref=f23e287]
+                - row [ref=f23e289]:
+                  - cell [ref=f23e290]:
+                    - link "F-000005-02" [ref=f23e291] [cursor=pointer]:
+                      - /url: /facilities/F-000005-02
+                  - cell "B-000005 Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f23e292]:
+                    - link "B-000005" [ref=f23e293] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                    - generic [ref=f23e294]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                  - cell "Term loan" [ref=f23e295]
+                  - cell "104.97" [ref=f23e296]
+                  - cell "88.58" [ref=f23e297]
+                  - cell "84.4%" [ref=f23e298]
+                  - cell "31 Mar 2030" [ref=f23e300]
+                  - cell "Current" [ref=f23e301]
+                - row [ref=f23e303]:
+                  - cell [ref=f23e304]:
+                    - link "F-000005-03" [ref=f23e305] [cursor=pointer]:
+                      - /url: /facilities/F-000005-03
+                  - cell "B-000005 Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f23e306]:
+                    - link "B-000005" [ref=f23e307] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                    - generic [ref=f23e308]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                  - cell "Cash credit" [ref=f23e309]
+                  - cell "16.95" [ref=f23e310]
+                  - cell "6.34" [ref=f23e311]
+                  - cell "37.4%" [ref=f23e312]
+                  - cell "31 Mar 2028" [ref=f23e314]
+                  - cell "Current" [ref=f23e315]
+                - row [ref=f23e317]:
+                  - cell [ref=f23e318]:
+                    - link "F-000005-04" [ref=f23e319] [cursor=pointer]:
+                      - /url: /facilities/F-000005-04
+                  - cell "B-000005 Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f23e320]:
+                    - link "B-000005" [ref=f23e321] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                    - generic [ref=f23e322]: Patel Precision Materials and Components Kavya 00005 Private Limited
+                  - cell "Term loan" [ref=f23e323]
+                  - cell "9.88" [ref=f23e324]
+                  - cell "6.78" [ref=f23e325]
+                  - cell "68.6%" [ref=f23e326]
+                  - cell "31 Mar 2029" [ref=f23e328]
+                  - cell "Current" [ref=f23e329]
+                - row [ref=f23e331]:
+                  - cell [ref=f23e332]:
+                    - link "F-000006-01" [ref=f23e333] [cursor=pointer]:
+                      - /url: /facilities/F-000006-01
+                  - cell "B-000006 Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f23e334]:
+                    - link "B-000006" [ref=f23e335] [cursor=pointer]:
+                      - /url: /borrowers/B-000006/master-data
+                    - generic [ref=f23e336]: Patel Applied Engineering Systems Aarav 00006 Private Limited
+                  - cell "Cash credit" [ref=f23e337]
+                  - cell "178.65" [ref=f23e338]
+                  - cell "115.76" [ref=f23e339]
+                  - cell "64.8%" [ref=f23e340]
+                  - cell "31 Mar 2030" [ref=f23e342]
+                  - cell "Current" [ref=f23e343]
+                - row [ref=f23e345]:
+                  - cell [ref=f23e346]:
+                    - link "F-000006-02" [ref=f23e347] [cursor=pointer]:
+                      - /url: /facilities/F-000006-02
+                  - cell "B-000006 Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f23e348]:
+                    - link "B-000006" [ref=f23e349] [cursor=pointer]:
+                      - /url: /borrowers/B-000006/master-data
+                    - generic [ref=f23e350]: Patel Applied Engineering Systems Aarav 00006 Private Limited
+                  - cell "Term loan" [ref=f23e351]
+                  - cell "464.78" [ref=f23e352]
+                  - cell "341.48" [ref=f23e353]
+                  - cell "73.5%" [ref=f23e354]
+                  - cell "31 Mar 2031" [ref=f23e356]
+                  - cell "Current" [ref=f23e357]
+                - row [ref=f23e359]:
+                  - cell [ref=f23e360]:
+                    - link "F-000007-01" [ref=f23e361] [cursor=pointer]:
+                      - /url: /facilities/F-000007-01
+                  - cell "B-000007 Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f23e362]:
+                    - link "B-000007" [ref=f23e363] [cursor=pointer]:
+                      - /url: /borrowers/B-000007/master-data
+                    - generic [ref=f23e364]: Menon Integrated Manufacturing Systems Vikram 00007 Private Limited
+                  - cell "Cash credit" [ref=f23e365]
+                  - cell "239.58" [ref=f23e366]
+                  - cell "164.35" [ref=f23e367]
+                  - cell "68.6%" [ref=f23e368]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e370]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e371]: matured 885 days ago
+                  - cell "Current" [ref=f23e372]
+                - row [ref=f23e374]:
+                  - cell [ref=f23e375]:
+                    - link "F-000008-01" [ref=f23e376] [cursor=pointer]:
+                      - /url: /facilities/F-000008-01
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e377]:
+                    - link "B-000008" [ref=f23e378] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e379]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Cash credit" [ref=f23e380]
+                  - cell "401.72" [ref=f23e381]
+                  - cell "192.91" [ref=f23e382]
+                  - cell "48.0%" [ref=f23e383]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e385]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e386]: matured 520 days ago
+                  - cell "Current" [ref=f23e387]
+                - row [ref=f23e389]:
+                  - cell [ref=f23e390]:
+                    - link "F-000008-02" [ref=f23e391] [cursor=pointer]:
+                      - /url: /facilities/F-000008-02
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e392]:
+                    - link "B-000008" [ref=f23e393] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e394]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Term loan" [ref=f23e395]
+                  - cell "16.09" [ref=f23e396]
+                  - cell "7.03" [ref=f23e397]
+                  - cell "43.7%" [ref=f23e398]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e400]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e401]: matured 155 days ago
+                  - cell "Current" [ref=f23e402]
+                - row [ref=f23e404]:
+                  - cell [ref=f23e405]:
+                    - link "F-000008-03" [ref=f23e406] [cursor=pointer]:
+                      - /url: /facilities/F-000008-03
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e407]:
+                    - link "B-000008" [ref=f23e408] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e409]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Cash credit" [ref=f23e410]
+                  - cell "162.74" [ref=f23e411]
+                  - cell "121.08" [ref=f23e412]
+                  - cell "74.4%" [ref=f23e413]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e415]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e416]: matured 885 days ago
+                  - cell "Current" [ref=f23e417]
+                - row [ref=f23e419]:
+                  - cell [ref=f23e420]:
+                    - link "F-000008-04" [ref=f23e421] [cursor=pointer]:
+                      - /url: /facilities/F-000008-04
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e422]:
+                    - link "B-000008" [ref=f23e423] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e424]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Term loan" [ref=f23e425]
+                  - cell "71.92" [ref=f23e426]
+                  - cell "24.67" [ref=f23e427]
+                  - cell "34.3%" [ref=f23e428]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e430]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e431]: matured 520 days ago
+                  - cell "Current" [ref=f23e432]
+                - row [ref=f23e434]:
+                  - cell [ref=f23e435]:
+                    - link "F-000008-05" [ref=f23e436] [cursor=pointer]:
+                      - /url: /facilities/F-000008-05
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e437]:
+                    - link "B-000008" [ref=f23e438] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e439]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Cash credit" [ref=f23e440]
+                  - cell "251.73" [ref=f23e441]
+                  - cell "152.35" [ref=f23e442]
+                  - cell "60.5%" [ref=f23e443]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e445]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e446]: matured 155 days ago
+                  - cell "Current" [ref=f23e447]
+                - row [ref=f23e449]:
+                  - cell [ref=f23e450]:
+                    - link "F-000008-06" [ref=f23e451] [cursor=pointer]:
+                      - /url: /facilities/F-000008-06
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e452]:
+                    - link "B-000008" [ref=f23e453] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e454]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Term loan" [ref=f23e455]
+                  - cell "333.77" [ref=f23e456]
+                  - cell "135.11" [ref=f23e457]
+                  - cell "40.5%" [ref=f23e458]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e460]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e461]: matured 885 days ago
+                  - cell "Current" [ref=f23e462]
+                - row [ref=f23e464]:
+                  - cell [ref=f23e465]:
+                    - link "F-000008-07" [ref=f23e466] [cursor=pointer]:
+                      - /url: /facilities/F-000008-07
+                  - cell "B-000008 Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f23e467]:
+                    - link "B-000008" [ref=f23e468] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f23e469]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+                  - cell "Cash credit" [ref=f23e470]
+                  - cell "6.24" [ref=f23e471]
+                  - cell "3.15" [ref=f23e472]
+                  - cell "50.5%" [ref=f23e473]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e475]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e476]: matured 520 days ago
+                  - cell "Current" [ref=f23e477]
+                - row [ref=f23e479]:
+                  - cell [ref=f23e480]:
+                    - link "F-000009-01" [ref=f23e481] [cursor=pointer]:
+                      - /url: /facilities/F-000009-01
+                  - cell "B-000009 Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f23e482]:
+                    - link "B-000009" [ref=f23e483] [cursor=pointer]:
+                      - /url: /borrowers/B-000009/master-data
+                    - generic [ref=f23e484]: Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited
+                  - cell "Cash credit" [ref=f23e485]
+                  - cell "221.68" [ref=f23e486]
+                  - cell "133.79" [ref=f23e487]
+                  - cell "60.4%" [ref=f23e488]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e490]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e491]: matured 155 days ago
+                  - cell "Current" [ref=f23e492]
+                - row [ref=f23e494]:
+                  - cell [ref=f23e495]:
+                    - link "F-000009-02" [ref=f23e496] [cursor=pointer]:
+                      - /url: /facilities/F-000009-02
+                  - cell "B-000009 Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f23e497]:
+                    - link "B-000009" [ref=f23e498] [cursor=pointer]:
+                      - /url: /borrowers/B-000009/master-data
+                    - generic [ref=f23e499]: Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited
+                  - cell "Term loan" [ref=f23e500]
+                  - cell "157.96" [ref=f23e501]
+                  - cell "85.74" [ref=f23e502]
+                  - cell "54.3%" [ref=f23e503]
+                  - cell "31 Mar 2027" [ref=f23e505]
+                  - cell "Current" [ref=f23e506]
+                - row [ref=f23e508]:
+                  - cell [ref=f23e509]:
+                    - link "F-000009-03" [ref=f23e510] [cursor=pointer]:
+                      - /url: /facilities/F-000009-03
+                  - cell "B-000009 Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f23e511]:
+                    - link "B-000009" [ref=f23e512] [cursor=pointer]:
+                      - /url: /borrowers/B-000009/master-data
+                    - generic [ref=f23e513]: Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited
+                  - cell "Cash credit" [ref=f23e514]
+                  - cell "39.47" [ref=f23e515]
+                  - cell "26.22" [ref=f23e516]
+                  - cell "66.4%" [ref=f23e517]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e519]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e520]: matured 520 days ago
+                  - cell "Current" [ref=f23e521]
+                - row [ref=f23e523]:
+                  - cell [ref=f23e524]:
+                    - link "F-000010-01" [ref=f23e525] [cursor=pointer]:
+                      - /url: /facilities/F-000010-01
+                  - cell "B-000010 Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f23e526]:
+                    - link "B-000010" [ref=f23e527] [cursor=pointer]:
+                      - /url: /borrowers/B-000010/master-data
+                    - generic [ref=f23e528]: Sharma Applied Engineering Systems Arjun 00010 Private Limited
+                  - cell "Cash credit" [ref=f23e529]
+                  - cell "279.43" [ref=f23e530]
+                  - cell "159.28" [ref=f23e531]
+                  - cell "57.0%" [ref=f23e532]
+                  - cell "31 Mar 2027" [ref=f23e534]
+                  - cell "Current" [ref=f23e535]
+                - row [ref=f23e537]:
+                  - cell [ref=f23e538]:
+                    - link "F-000010-02" [ref=f23e539] [cursor=pointer]:
+                      - /url: /facilities/F-000010-02
+                  - cell "B-000010 Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f23e540]:
+                    - link "B-000010" [ref=f23e541] [cursor=pointer]:
+                      - /url: /borrowers/B-000010/master-data
+                    - generic [ref=f23e542]: Sharma Applied Engineering Systems Arjun 00010 Private Limited
+                  - cell "Term loan" [ref=f23e543]
+                  - cell "11.84" [ref=f23e544]
+                  - cell "5.12" [ref=f23e545]
+                  - cell "43.2%" [ref=f23e546]
+                  - cell "31 Mar 2028" [ref=f23e548]
+                  - cell "Current" [ref=f23e549]
+                - row [ref=f23e551]:
+                  - cell [ref=f23e552]:
+                    - link "F-000011-01" [ref=f23e553] [cursor=pointer]:
+                      - /url: /facilities/F-000011-01
+                  - cell "B-000011 Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f23e554]:
+                    - link "B-000011" [ref=f23e555] [cursor=pointer]:
+                      - /url: /borrowers/B-000011/master-data
+                    - generic [ref=f23e556]: Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited
+                  - cell "Cash credit" [ref=f23e557]
+                  - cell "366.08" [ref=f23e558]
+                  - cell "196.04" [ref=f23e559]
+                  - cell "53.6%" [ref=f23e560]
+                  - cell "31 Mar 2028" [ref=f23e562]
+                  - cell "Current" [ref=f23e563]
+                - row [ref=f23e565]:
+                  - cell [ref=f23e566]:
+                    - link "F-000012-01" [ref=f23e567] [cursor=pointer]:
+                      - /url: /facilities/F-000012-01
+                  - cell "B-000012 Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f23e568]:
+                    - link "B-000012" [ref=f23e569] [cursor=pointer]:
+                      - /url: /borrowers/B-000012/master-data
+                    - generic [ref=f23e570]: Nair Integrated Manufacturing Systems Devika 00012 Private Limited
+                  - cell "Cash credit" [ref=f23e571]
+                  - cell "9.59" [ref=f23e572]
+                  - cell "5.34" [ref=f23e573]
+                  - cell "55.7%" [ref=f23e574]
+                  - cell "31 Mar 2029" [ref=f23e576]
+                  - cell "Current" [ref=f23e577]
+                - row [ref=f23e579]:
+                  - cell [ref=f23e580]:
+                    - link "F-000012-02" [ref=f23e581] [cursor=pointer]:
+                      - /url: /facilities/F-000012-02
+                  - cell "B-000012 Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f23e582]:
+                    - link "B-000012" [ref=f23e583] [cursor=pointer]:
+                      - /url: /borrowers/B-000012/master-data
+                    - generic [ref=f23e584]: Nair Integrated Manufacturing Systems Devika 00012 Private Limited
+                  - cell "Term loan" [ref=f23e585]
+                  - cell "222.81" [ref=f23e586]
+                  - cell "190.37" [ref=f23e587]
+                  - cell "85.4%" [ref=f23e588]
+                  - cell "31 Mar 2030" [ref=f23e590]
+                  - cell "Current" [ref=f23e591]
+                - row [ref=f23e593]:
+                  - cell [ref=f23e594]:
+                    - link "F-000013-01" [ref=f23e595] [cursor=pointer]:
+                      - /url: /facilities/F-000013-01
+                  - cell "B-000013 Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f23e596]:
+                    - link "B-000013" [ref=f23e597] [cursor=pointer]:
+                      - /url: /borrowers/B-000013/master-data
+                    - generic [ref=f23e598]: Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited
+                  - cell "Cash credit" [ref=f23e599]
+                  - cell "82.79" [ref=f23e600]
+                  - cell "61.22" [ref=f23e601]
+                  - cell "73.9%" [ref=f23e602]
+                  - cell "31 Mar 2030" [ref=f23e604]
+                  - cell "Current" [ref=f23e605]
+                - row [ref=f23e607]:
+                  - cell [ref=f23e608]:
+                    - link "F-000013-02" [ref=f23e609] [cursor=pointer]:
+                      - /url: /facilities/F-000013-02
+                  - cell "B-000013 Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f23e610]:
+                    - link "B-000013" [ref=f23e611] [cursor=pointer]:
+                      - /url: /borrowers/B-000013/master-data
+                    - generic [ref=f23e612]: Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited
+                  - cell "Term loan" [ref=f23e613]
+                  - cell "451.76" [ref=f23e614]
+                  - cell "199.59" [ref=f23e615]
+                  - cell "44.2%" [ref=f23e616]
+                  - cell "31 Mar 2031" [ref=f23e618]
+                  - cell "Current" [ref=f23e619]
+                - row [ref=f23e621]:
+                  - cell [ref=f23e622]:
+                    - link "F-000014-01" [ref=f23e623] [cursor=pointer]:
+                      - /url: /facilities/F-000014-01
+                  - cell "B-000014 Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f23e624]:
+                    - link "B-000014" [ref=f23e625] [cursor=pointer]:
+                      - /url: /borrowers/B-000014/master-data
+                    - generic [ref=f23e626]: Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited
+                  - cell "Cash credit" [ref=f23e627]
+                  - cell "41.87" [ref=f23e628]
+                  - cell "28.37" [ref=f23e629]
+                  - cell "67.8%" [ref=f23e630]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e632]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e633]: matured 885 days ago
+                  - cell "Current" [ref=f23e634]
+                - row [ref=f23e636]:
+                  - cell [ref=f23e637]:
+                    - link "F-000014-02" [ref=f23e638] [cursor=pointer]:
+                      - /url: /facilities/F-000014-02
+                  - cell "B-000014 Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f23e639]:
+                    - link "B-000014" [ref=f23e640] [cursor=pointer]:
+                      - /url: /borrowers/B-000014/master-data
+                    - generic [ref=f23e641]: Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited
+                  - cell "Term loan" [ref=f23e642]
+                  - cell "488.19" [ref=f23e643]
+                  - cell "372.78" [ref=f23e644]
+                  - cell "76.4%" [ref=f23e645]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e647]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e648]: matured 520 days ago
+                  - cell "Current" [ref=f23e649]
+                - row [ref=f23e651]:
+                  - cell [ref=f23e652]:
+                    - link "F-000014-03" [ref=f23e653] [cursor=pointer]:
+                      - /url: /facilities/F-000014-03
+                  - cell "B-000014 Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f23e654]:
+                    - link "B-000014" [ref=f23e655] [cursor=pointer]:
+                      - /url: /borrowers/B-000014/master-data
+                    - generic [ref=f23e656]: Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited
+                  - cell "Cash credit" [ref=f23e657]
+                  - cell "457.52" [ref=f23e658]
+                  - cell "161.69" [ref=f23e659]
+                  - cell "35.3%" [ref=f23e660]
+                  - cell "31 Mar 2023 matured 1251 days ago" [ref=f23e662]:
+                    - text: 31 Mar 2023
+                    - generic [ref=f23e663]: matured 1251 days ago
+                  - cell "Current" [ref=f23e664]
+                - row [ref=f23e666]:
+                  - cell [ref=f23e667]:
+                    - link "F-000015-01" [ref=f23e668] [cursor=pointer]:
+                      - /url: /facilities/F-000015-01
+                  - cell "B-000015 Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f23e669]:
+                    - link "B-000015" [ref=f23e670] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                    - generic [ref=f23e671]: Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited
+                  - cell "Cash credit" [ref=f23e672]
+                  - cell "205.15" [ref=f23e673]
+                  - cell "143.28" [ref=f23e674]
+                  - cell "69.8%" [ref=f23e675]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e677]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e678]: matured 520 days ago
+                  - cell "Current" [ref=f23e679]
+                - row [ref=f23e681]:
+                  - cell [ref=f23e682]:
+                    - link "F-000015-02" [ref=f23e683] [cursor=pointer]:
+                      - /url: /facilities/F-000015-02
+                  - cell "B-000015 Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f23e684]:
+                    - link "B-000015" [ref=f23e685] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                    - generic [ref=f23e686]: Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited
+                  - cell "Term loan" [ref=f23e687]
+                  - cell "341.40" [ref=f23e688]
+                  - cell "198.01" [ref=f23e689]
+                  - cell "58.0%" [ref=f23e690]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e692]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e693]: matured 155 days ago
+                  - cell "Current" [ref=f23e694]
+                - row [ref=f23e696]:
+                  - cell [ref=f23e697]:
+                    - link "F-000015-03" [ref=f23e698] [cursor=pointer]:
+                      - /url: /facilities/F-000015-03
+                  - cell "B-000015 Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f23e699]:
+                    - link "B-000015" [ref=f23e700] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                    - generic [ref=f23e701]: Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited
+                  - cell "Cash credit" [ref=f23e702]
+                  - cell "140.13" [ref=f23e703]
+                  - cell "95.40" [ref=f23e704]
+                  - cell "68.1%" [ref=f23e705]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e707]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e708]: matured 885 days ago
+                  - cell "Current" [ref=f23e709]
+                - row [ref=f23e711]:
+                  - cell [ref=f23e712]:
+                    - link "F-000015-04" [ref=f23e713] [cursor=pointer]:
+                      - /url: /facilities/F-000015-04
+                  - cell "B-000015 Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f23e714]:
+                    - link "B-000015" [ref=f23e715] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                    - generic [ref=f23e716]: Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited
+                  - cell "Term loan" [ref=f23e717]
+                  - cell "322.75" [ref=f23e718]
+                  - cell "219.99" [ref=f23e719]
+                  - cell "68.2%" [ref=f23e720]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e722]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e723]: matured 520 days ago
+                  - cell "Current" [ref=f23e724]
+                - row [ref=f23e726]:
+                  - cell [ref=f23e727]:
+                    - link "F-000016-01" [ref=f23e728] [cursor=pointer]:
+                      - /url: /facilities/F-000016-01
+                  - cell "B-000016 Nair Integrated Manufacturing Systems Rohan 00016 Private Limited" [ref=f23e729]:
+                    - link "B-000016" [ref=f23e730] [cursor=pointer]:
+                      - /url: /borrowers/B-000016/master-data
+                    - generic [ref=f23e731]: Nair Integrated Manufacturing Systems Rohan 00016 Private Limited
+                  - cell "Cash credit" [ref=f23e732]
+                  - cell "151.16" [ref=f23e733]
+                  - cell "95.59" [ref=f23e734]
+                  - cell "63.2%" [ref=f23e735]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e737]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e738]: matured 155 days ago
+                  - cell "Current" [ref=f23e739]
+                - row [ref=f23e741]:
+                  - cell [ref=f23e742]:
+                    - link "F-000017-01" [ref=f23e743] [cursor=pointer]:
+                      - /url: /facilities/F-000017-01
+                  - cell "B-000017 Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f23e744]:
+                    - link "B-000017" [ref=f23e745] [cursor=pointer]:
+                      - /url: /borrowers/B-000017/master-data
+                    - generic [ref=f23e746]: Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited
+                  - cell "Cash credit" [ref=f23e747]
+                  - cell "277.48" [ref=f23e748]
+                  - cell "125.01" [ref=f23e749]
+                  - cell "45.1%" [ref=f23e750]
+                  - cell "31 Mar 2027" [ref=f23e752]
+                  - cell "Current" [ref=f23e753]
+                - row [ref=f23e755]:
+                  - cell [ref=f23e756]:
+                    - link "F-000017-02" [ref=f23e757] [cursor=pointer]:
+                      - /url: /facilities/F-000017-02
+                  - cell "B-000017 Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f23e758]:
+                    - link "B-000017" [ref=f23e759] [cursor=pointer]:
+                      - /url: /borrowers/B-000017/master-data
+                    - generic [ref=f23e760]: Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited
+                  - cell "Term loan" [ref=f23e761]
+                  - cell "31.05" [ref=f23e762]
+                  - cell "19.08" [ref=f23e763]
+                  - cell "61.4%" [ref=f23e764]
+                  - cell "31 Mar 2028" [ref=f23e766]
+                  - cell "Current" [ref=f23e767]
+                - row [ref=f23e769]:
+                  - cell [ref=f23e770]:
+                    - link "F-000018-01" [ref=f23e771] [cursor=pointer]:
+                      - /url: /facilities/F-000018-01
+                  - cell "B-000018 Iyer National Supply Chain Services Ishaan 00018 Private Limited" [ref=f23e772]:
+                    - link "B-000018" [ref=f23e773] [cursor=pointer]:
+                      - /url: /borrowers/B-000018/master-data
+                    - generic [ref=f23e774]: Iyer National Supply Chain Services Ishaan 00018 Private Limited
+                  - cell "Cash credit" [ref=f23e775]
+                  - cell "114.41" [ref=f23e776]
+                  - cell "53.54" [ref=f23e777]
+                  - cell "46.8%" [ref=f23e778]
+                  - cell "31 Mar 2028" [ref=f23e780]
+                  - cell "Current" [ref=f23e781]
+                - row [ref=f23e783]:
+                  - cell [ref=f23e784]:
+                    - link "F-000019-01" [ref=f23e785] [cursor=pointer]:
+                      - /url: /facilities/F-000019-01
+                  - cell "B-000019 Subramanian Precision Materials and Components Saanvi 00019 Private Limited" [ref=f23e786]:
+                    - link "B-000019" [ref=f23e787] [cursor=pointer]:
+                      - /url: /borrowers/B-000019/master-data
+                    - generic [ref=f23e788]: Subramanian Precision Materials and Components Saanvi 00019 Private Limited
+                  - cell "Cash credit" [ref=f23e789]
+                  - cell "386.27" [ref=f23e790]
+                  - cell "163.16" [ref=f23e791]
+                  - cell "42.2%" [ref=f23e792]
+                  - cell "31 Mar 2029" [ref=f23e794]
+                  - cell "Current" [ref=f23e795]
+                - row [ref=f23e797]:
+                  - cell [ref=f23e798]:
+                    - link "F-000020-01" [ref=f23e799] [cursor=pointer]:
+                      - /url: /facilities/F-000020-01
+                  - cell "B-000020 Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f23e800]:
+                    - link "B-000020" [ref=f23e801] [cursor=pointer]:
+                      - /url: /borrowers/B-000020/master-data
+                    - generic [ref=f23e802]: Bhatia Capital Equipment and Services Ananya 00020 Private Limited
+                  - cell "Cash credit" [ref=f23e803]
+                  - cell "432.60" [ref=f23e804]
+                  - cell "293.73" [ref=f23e805]
+                  - cell "67.9%" [ref=f23e806]
+                  - cell "31 Mar 2030" [ref=f23e808]
+                  - cell "Current" [ref=f23e809]
+                - row [ref=f23e811]:
+                  - cell [ref=f23e812]:
+                    - link "F-000020-02" [ref=f23e813] [cursor=pointer]:
+                      - /url: /facilities/F-000020-02
+                  - cell "B-000020 Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f23e814]:
+                    - link "B-000020" [ref=f23e815] [cursor=pointer]:
+                      - /url: /borrowers/B-000020/master-data
+                    - generic [ref=f23e816]: Bhatia Capital Equipment and Services Ananya 00020 Private Limited
+                  - cell "Term loan" [ref=f23e817]
+                  - cell "411.60" [ref=f23e818]
+                  - cell "177.81" [ref=f23e819]
+                  - cell "43.2%" [ref=f23e820]
+                  - cell "31 Mar 2031" [ref=f23e822]
+                  - cell "Current" [ref=f23e823]
+                - row [ref=f23e825]:
+                  - cell [ref=f23e826]:
+                    - link "F-000021-01" [ref=f23e827] [cursor=pointer]:
+                      - /url: /facilities/F-000021-01
+                  - cell "B-000021 Malhotra Capital Equipment and Services Aarav 00021 Private Limited" [ref=f23e828]:
+                    - link "B-000021" [ref=f23e829] [cursor=pointer]:
+                      - /url: /borrowers/B-000021/master-data
+                    - generic [ref=f23e830]: Malhotra Capital Equipment and Services Aarav 00021 Private Limited
+                  - cell "Cash credit" [ref=f23e831]
+                  - cell "264.93" [ref=f23e832]
+                  - cell "196.71" [ref=f23e833]
+                  - cell "74.2%" [ref=f23e834]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e836]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e837]: matured 885 days ago
+                  - cell "Current" [ref=f23e838]
+                - row [ref=f23e840]:
+                  - cell [ref=f23e841]:
+                    - link "F-000022-01" [ref=f23e842] [cursor=pointer]:
+                      - /url: /facilities/F-000022-01
+                  - cell "B-000022 Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f23e843]:
+                    - link "B-000022" [ref=f23e844] [cursor=pointer]:
+                      - /url: /borrowers/B-000022/master-data
+                    - generic [ref=f23e845]: Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited
+                  - cell "Cash credit" [ref=f23e846]
+                  - cell "486.83" [ref=f23e847]
+                  - cell "282.36" [ref=f23e848]
+                  - cell "58.0%" [ref=f23e849]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f23e851]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f23e852]: matured 520 days ago
+                  - cell "Current" [ref=f23e853]
+                - row [ref=f23e855]:
+                  - cell [ref=f23e856]:
+                    - link "F-000022-02" [ref=f23e857] [cursor=pointer]:
+                      - /url: /facilities/F-000022-02
+                  - cell "B-000022 Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f23e858]:
+                    - link "B-000022" [ref=f23e859] [cursor=pointer]:
+                      - /url: /borrowers/B-000022/master-data
+                    - generic [ref=f23e860]: Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited
+                  - cell "Term loan" [ref=f23e861]
+                  - cell "464.14" [ref=f23e862]
+                  - cell "355.34" [ref=f23e863]
+                  - cell "76.6%" [ref=f23e864]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f23e866]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f23e867]: matured 155 days ago
+                  - cell "Current" [ref=f23e868]
+                - row [ref=f23e870]:
+                  - cell [ref=f23e871]:
+                    - link "F-000022-03" [ref=f23e872] [cursor=pointer]:
+                      - /url: /facilities/F-000022-03
+                  - cell "B-000022 Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f23e873]:
+                    - link "B-000022" [ref=f23e874] [cursor=pointer]:
+                      - /url: /borrowers/B-000022/master-data
+                    - generic [ref=f23e875]: Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited
+                  - cell "Cash credit" [ref=f23e876]
+                  - cell "381.32" [ref=f23e877]
+                  - cell "320.88" [ref=f23e878]
+                  - cell "84.1%" [ref=f23e879]
+                  - cell "31 Mar 2024 matured 885 days ago" [ref=f23e881]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f23e882]: matured 885 days ago
+                  - cell "Current" [ref=f23e883]
+            - navigation "Pagination" [ref=f23e885]:
+              - generic [ref=f23e886]: Previous
+              - generic [ref=f23e887]: Page 1
+              - link "Next" [ref=f23e888] [cursor=pointer]:
+                - /url: /facilities?page=2

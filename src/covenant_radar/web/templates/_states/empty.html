@@ -1,0 +1,8 @@
+<section class="state state--empty" aria-labelledby="{{ state_id }}-title">
+  <h2 id="{{ state_id }}-title" class="state__title">{{ state_title }}</h2>
+  <p class="state__message">{{ state_message }}</p>
+  {% set safe_action_href = state_action_href if state_action_href and state_action_href.startswith("/") and not state_action_href.startswith("//") else "" %}
+  {% if state_action_label and safe_action_href %}
+    <a class="text-action" href="{{ safe_action_href }}">{{ state_action_label }}</a>
+  {% endif %}
+</section>

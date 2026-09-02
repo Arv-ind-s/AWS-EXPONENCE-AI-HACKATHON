@@ -1,0 +1,34 @@
+[database]
+url = "postgresql+psycopg://database-host:5432/covenant_radar"
+pool_size = 10
+max_overflow = 20
+connect_timeout_seconds = 5
+
+[security]
+session_cookie_name = "covenant_radar_session"
+sso_provider = "none"
+
+[documents]
+store = "none"
+ocr_enabled = false
+
+[ai]
+provider = "none"
+
+[notifications]
+smtp_port = 587
+webhooks_enabled = false
+
+[ingestion]
+file_drop_path = "/var/lib/covenant-radar/inbox"
+poll_interval_seconds = 60
+
+[observability]
+log_level = "INFO"
+metrics_enabled = true
+tracing_enabled = false
+
+[web]
+host = "0.0.0.0"
+port = 8000
+workers = 4

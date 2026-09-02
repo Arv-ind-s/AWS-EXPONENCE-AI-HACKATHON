@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set form = form|default({}) %}
+{% set error = error|default("") %}
+{% set error_field = error_field|default("") %}
+{% set action = action|default("") %}
+{% set csrf_token = csrf_token|default("") %}
+{% set portfolio_options = portfolio_options|default(()) %}
+
+{% block page_title %}{{ labels.borrowers_new }}{% endblock %}
+{% block h1 %}{{ labels.borrowers_new }}{% endblock %}
+
+{% block content %}
+  {% if error %}
+    {% call components.panel(title=labels.form_error, panel_id="borrower-form-error", state="error", error_title=labels.form_error, error_message=error) %}{% endcall %}
+  {% endif %}
+  <form method="post" action="{{ action }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {{ components.field("reference", labels.borrowers_reference, value=form.get("reference", ""), required=true, error=error if error_field == "borrower.reference" else "") }}
+    {{ components.field("legal_name", labels.borrowers_legal_name, value=form.get("legal_name", ""), required=true, error=error if error_field == "borrower.legal_name" else "") }}
+    {{ components.field("portfolio_id", labels.borrowers_portfolio, type="select", value=form.get("portfolio_id", ""), options=portfolio_options, required=true, error=error if error_field == "borrower.portfolio_id" else "") }}
+    {{ components.field("cin", labels.borrower_cin_present, value=form.get("cin", ""), error=error if error_field == "borrower.cin" else "") }}
+    {{ components.button(labels.borrower_save, type="submit") }}
+  </form>
+{% endblock %}

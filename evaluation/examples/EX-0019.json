@@ -1,0 +1,37 @@
+{
+  "id": "EX-0019",
+  "kind": "materiality",
+  "title": "A 10-point projected headroom erosion clears the T4 pressure threshold",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "materiality",
+    "counts_toward_pressure"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant_headrooms": [
+      {
+        "covenant_id": "COV-1",
+        "threshold": "4.00",
+        "current_headroom_pct": "25.00",
+        "projected_headroom_pct": "15.00"
+      }
+    ],
+    "thresholds": {
+      "headroom_erosion_pct": "0.05"
+    }
+  },
+  "expected": {
+    "materiality_pct": "10.00",
+    "counts_toward_pressure": true,
+    "driving_covenant_id": "COV-1"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "erosion = current_headroom - projected_headroom = 25.00 - 15.00 = 10.00 points. T4's threshold_pct = headroom_erosion_pct(0.05) * 100 = 5.00 points. 10.00 >= 5.00, so this covenant's erosion counts toward forecast pressure and it is the (only, hence maximum) driving covenant."
+}

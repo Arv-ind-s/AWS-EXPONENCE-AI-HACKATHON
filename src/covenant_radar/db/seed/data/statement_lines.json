@@ -1,0 +1,33 @@
+{
+  "taxonomy_version": "1.0",
+  "statement_lines": [
+    {"code": "revenue", "name": "Revenue", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "cost_of_goods_sold", "name": "Cost of goods sold", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "operating_expenses", "name": "Operating expenses", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "ebitda", "name": "EBITDA", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": true, "derivation": "ebit + depreciation"},
+    {"code": "ebit", "name": "EBIT", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": true, "derivation": "profit_after_tax + tax_expense + finance_cost"},
+    {"code": "depreciation", "name": "Depreciation and amortisation", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "finance_cost", "name": "Finance cost", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "tax_expense", "name": "Tax expense", "statement": "profit_and_loss", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "profit_after_tax", "name": "Profit after tax", "statement": "profit_and_loss", "sign_convention": "signed", "is_derived": false, "derivation": null},
+    {"code": "current_assets", "name": "Current assets", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": true, "derivation": "cash_and_bank + inventory + receivables + other_current_assets"},
+    {"code": "cash_and_bank", "name": "Cash and bank balances", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "inventory", "name": "Inventory", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "receivables", "name": "Trade receivables", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "other_current_assets", "name": "Other current assets", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "current_liabilities", "name": "Current liabilities", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": true, "derivation": "payables + short_term_debt + other_current_liabilities"},
+    {"code": "payables", "name": "Trade payables", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "short_term_debt", "name": "Short-term debt", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "other_current_liabilities", "name": "Other current liabilities", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "long_term_debt", "name": "Long-term debt", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "total_debt", "name": "Total debt", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": true, "derivation": "short_term_debt + long_term_debt"},
+    {"code": "total_liabilities", "name": "Total liabilities", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "tangible_net_worth", "name": "Tangible net worth", "statement": "balance_sheet", "sign_convention": "signed", "is_derived": false, "derivation": null},
+    {"code": "total_assets", "name": "Total assets", "statement": "balance_sheet", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "capex", "name": "Capital expenditure", "statement": "cash_flow", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "cash_flow_operations", "name": "Cash flow from operations", "statement": "cash_flow", "sign_convention": "signed", "is_derived": false, "derivation": null},
+    {"code": "cash_flow_debt_service", "name": "Cash flow available for debt service", "statement": "cash_flow", "sign_convention": "signed", "is_derived": false, "derivation": null},
+    {"code": "dividend_paid", "name": "Dividend paid", "statement": "cash_flow", "sign_convention": "positive", "is_derived": false, "derivation": null},
+    {"code": "promoter_shareholding", "name": "Promoter shareholding", "statement": "ownership", "sign_convention": "percentage", "is_derived": false, "derivation": null}
+  ]
+}

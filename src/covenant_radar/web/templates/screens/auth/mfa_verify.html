@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}Verification code · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}Verification code{% endblock %}
+
+{% block content %}
+  <section class="panel auth-panel">
+    <p>Enter the current code from your authenticator app.</p>
+    {% if error %}
+      <div class="state state--error" role="alert">
+        <p class="state__message">{{ error }}</p>
+      </div>
+    {% endif %}
+    <form method="post" action="/mfa/verify" autocomplete="off">
+      <input type="hidden" name="next" value="{{ next }}">
+      {{ components.field("code", "Verification code", field_id="code", autocomplete="one-time-code", required=true) }}
+      {{ components.button("Verify", type="submit") }}
+    </form>
+  </section>
+{% endblock %}

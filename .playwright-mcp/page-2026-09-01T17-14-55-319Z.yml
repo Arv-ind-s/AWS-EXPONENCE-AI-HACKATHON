@@ -1,0 +1,1237 @@
+- generic [active] [ref=f33e1]:
+  - link "Skip to content" [ref=f33e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f33e3]:
+    - complementary "Workspace navigation" [ref=f33e4]:
+      - link "Covenant Radar" [ref=f33e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f33e13]:
+          - strong [ref=f33e14]: Covenant
+          - generic [ref=f33e15]: Radar
+      - navigation "Primary navigation" [ref=f33e16]:
+        - region [ref=f33e17]:
+          - heading "Monitor" [level=2] [ref=f33e18]
+          - link "Portfolio queue" [ref=f33e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f33e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f33e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f33e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f33e31]: "0"
+          - link "Search" [ref=f33e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f33e37]:
+          - heading "Portfolio data" [level=2] [ref=f33e38]
+          - link "Borrowers" [ref=f33e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f33e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f33e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f33e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f33e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f33e61]:
+          - heading "Workflows" [level=2] [ref=f33e62]
+          - link "Intake" [ref=f33e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f33e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f33e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f33e75] [cursor=pointer]:
+            - /url: /governance
+      - button "Collapse sidebar" [expanded] [ref=f33e79] [cursor=pointer]
+    - generic [ref=f33e83]:
+      - banner [ref=f33e84]:
+        - generic [ref=f33e86]:
+          - generic [ref=f33e87]: Workspace
+          - generic [ref=f33e90]: Current view
+        - search [ref=f33e91]:
+          - generic [ref=f33e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f33e93]
+          - generic: /
+        - generic [ref=f33e94]:
+          - button "Use dark theme" [ref=f33e96] [cursor=pointer]
+          - button "Open user menu" [ref=f33e100] [cursor=pointer]
+      - main [ref=f33e104]:
+        - generic [ref=f33e106]:
+          - paragraph [ref=f33e107]: Decision workspace
+          - heading "Portfolio queue" [level=1] [ref=f33e108]
+        - generic [ref=f33e109]:
+          - region [ref=f33e110]:
+            - generic [ref=f33e111]:
+              - paragraph [ref=f33e112]: Daily risk review
+              - heading "A calm, decision-ready view of projected covenant pressure." [level=2] [ref=f33e113]
+          - region [ref=f33e114]:
+            - heading "Portfolio snapshot" [level=2] [ref=f33e115]
+            - generic [ref=f33e116]:
+              - generic [ref=f33e117]: Visible borrowers
+              - strong [ref=f33e118]: "36"
+            - generic [ref=f33e120]:
+              - generic "Act now" [ref=f33e121]
+              - strong [ref=f33e122]: "13"
+            - generic [ref=f33e124]:
+              - generic "Amber" [ref=f33e125]
+              - strong [ref=f33e126]: "12"
+            - generic [ref=f33e128]:
+              - generic "Watch" [ref=f33e129]
+              - strong [ref=f33e130]: "11"
+            - generic [ref=f33e131]:
+              - generic [ref=f33e132]: Changed today
+              - strong [ref=f33e133]: "0"
+            - generic [ref=f33e134]:
+              - generic [ref=f33e135]: Portfolio exposure
+              - strong [ref=f33e136]: ₹13,471.43
+            - generic [ref=f33e137]:
+              - generic [ref=f33e138]: Latest completed run · 01 Sep 2026
+              - button "Refresh assessment" [ref=f33e139] [cursor=pointer]
+              - status [ref=f33e140]: Auto-checks every 60 seconds
+            - status [ref=f33e141]:
+              - generic [ref=f33e142]: A newer completed assessment is ready.
+              - button "Review latest assessment" [ref=f33e143] [cursor=pointer]
+            - generic [ref=f33e144]:
+              - text: Last updated
+              - time [ref=f33e145]: just now
+          - group "Filter queue" [ref=f33e147]:
+            - generic [ref=f33e149]:
+              - generic [ref=f33e150]: Band
+              - combobox "Band" [ref=f33e151]:
+                - option "All" [selected]
+                - option "ACT"
+                - option "Amber"
+                - option "Watch"
+            - generic [ref=f33e152]:
+              - generic [ref=f33e153]: SMA Band
+              - combobox "SMA Band" [ref=f33e154]:
+                - option "All" [selected]
+                - option "None"
+                - option "SMA-0"
+                - option "SMA-1"
+                - option "SMA-2"
+                - option "Beyond"
+            - generic [ref=f33e155]:
+              - generic [ref=f33e156]: Case State
+              - combobox "Case State" [ref=f33e157]:
+                - option "All" [selected]
+                - option "Open"
+                - option "In Progress"
+                - option "Monitoring"
+                - option "Escalated"
+                - option "Closed"
+            - generic [ref=f33e158]:
+              - generic [ref=f33e159]: Signal family
+              - combobox "Signal family" [ref=f33e160]:
+                - option "All signal families" [selected]
+                - option "Account activity"
+                - option "Payment behaviour"
+                - option "Facility utilisation"
+                - option "Treasury flows"
+                - option "Concentration exposure"
+                - option "Industry conditions"
+                - option "News deterioration"
+            - button "Apply Filters" [ref=f33e161] [cursor=pointer]
+          - region "Portfolio queue results" [ref=f33e162]:
+            - table [ref=f33e164]:
+              - caption [ref=f33e165]: Portfolio queue — 01 Sep 2026
+              - rowgroup [ref=f33e166]:
+                - row [ref=f33e167]:
+                  - columnheader [ref=f33e168]:
+                    - checkbox "Select all rows" [ref=f33e169]
+                  - columnheader "Borrower" [ref=f33e170]
+                  - columnheader "Exposure" [ref=f33e171]
+                  - columnheader "Worst covenant" [ref=f33e172]
+                  - columnheader "Dated risk" [ref=f33e173]
+                  - columnheader "30 / 60 / 90 days" [ref=f33e174]
+                  - columnheader "Trajectory" [ref=f33e175]
+                  - columnheader "Band" [ref=f33e176]
+                  - columnheader "SMA band" [ref=f33e177]
+                  - columnheader "Assignee" [ref=f33e178]
+                  - columnheader "Case state" [ref=f33e179]
+                  - columnheader "What changed" [ref=f33e180]
+              - rowgroup [ref=f33e181]:
+                - row [ref=f33e182]:
+                  - cell [ref=f33e183]:
+                    - checkbox "Select Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f33e184]
+                  - cell [ref=f33e185]:
+                    - link "Deshmukh Precision Materials and Components Kavya 00008 Private Limited" [ref=f33e186] [cursor=pointer]:
+                      - /url: /borrowers/B-000008
+                  - cell "₹636.30" [ref=f33e187]
+                  - 'cell "Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e188]':
+                    - text: Deshmukh Precision Materials and Components Kavya 00008 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e189]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e190] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-16b2-72ee-a913-09a8aeb6f4f9
+                      - text: Why?
+                  - cell "99% by 01 Oct 2026 Confidence 100%" [ref=f33e191]:
+                    - text: 99% by 01 Oct 2026
+                    - generic [ref=f33e192]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e193]:
+                    - generic [ref=f33e194]: 30d 99%
+                    - generic [ref=f33e195]: 60d 99%
+                    - generic [ref=f33e196]: 90d 99%
+                  - cell [ref=f33e197]:
+                    - generic "Deshmukh Precision Materials and Components Kavya 00008 Private Limited stored risk trajectory" [ref=f33e198]:
+                      - img "Deshmukh Precision Materials and Components Kavya 00008 Private Limited stored risk trajectory" [ref=f33e199]
+                  - cell "Act Urgency 630" [ref=f33e201]:
+                    - generic "Act" [ref=f33e202]
+                    - generic [ref=f33e203]: Urgency 630
+                  - cell "—" [ref=f33e204]
+                  - cell "Unassigned" [ref=f33e205]
+                  - cell "Open" [ref=f33e206]
+                  - cell "Not yet compared with a prior run." [ref=f33e207]
+                - row [ref=f33e208]:
+                  - cell [ref=f33e209]:
+                    - checkbox "Select Kapoor Precision Materials and Components Nandini 00025 Private Limited" [ref=f33e210]
+                  - cell [ref=f33e211]:
+                    - link "Kapoor Precision Materials and Components Nandini 00025 Private Limited" [ref=f33e212] [cursor=pointer]:
+                      - /url: /borrowers/B-000025
+                  - cell "₹1,205.31" [ref=f33e213]
+                  - 'cell "Kapoor Precision Materials and Components Nandini 00025 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e214]':
+                    - text: Kapoor Precision Materials and Components Nandini 00025 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e215]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e216] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1ed4-7600-8587-64c64b2aa1b1
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e217]:
+                    - text: 40%
+                    - generic [ref=f33e218]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e219]:
+                    - generic [ref=f33e220]: 30d 39%
+                    - generic [ref=f33e221]: 60d 40%
+                    - generic [ref=f33e222]: 90d 40%
+                  - cell [ref=f33e223]:
+                    - generic "Kapoor Precision Materials and Components Nandini 00025 Private Limited stored risk trajectory" [ref=f33e224]:
+                      - img "Kapoor Precision Materials and Components Nandini 00025 Private Limited stored risk trajectory" [ref=f33e225]
+                  - cell "Amber Urgency 487" [ref=f33e227]:
+                    - generic "Amber" [ref=f33e228]
+                    - generic [ref=f33e229]: Urgency 487
+                  - cell "—" [ref=f33e230]
+                  - cell "Unassigned" [ref=f33e231]
+                  - cell "No case opened" [ref=f33e232]
+                  - cell "Not yet compared with a prior run." [ref=f33e233]
+                - row [ref=f33e234]:
+                  - cell [ref=f33e235]:
+                    - checkbox "Select Reddy Capital Equipment and Services Arjun 00023 Private Limited" [ref=f33e236]
+                  - cell [ref=f33e237]:
+                    - link "Reddy Capital Equipment and Services Arjun 00023 Private Limited" [ref=f33e238] [cursor=pointer]:
+                      - /url: /borrowers/B-000023
+                  - cell "₹1,180.46" [ref=f33e239]
+                  - 'cell "Reddy Capital Equipment and Services Arjun 00023 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e240]':
+                    - text: Reddy Capital Equipment and Services Arjun 00023 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e241]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e242] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1de1-7cf6-8756-a5594b30784e
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e243]:
+                    - text: 40%
+                    - generic [ref=f33e244]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e245]:
+                    - generic [ref=f33e246]: 30d 39%
+                    - generic [ref=f33e247]: 60d 40%
+                    - generic [ref=f33e248]: 90d 40%
+                  - cell [ref=f33e249]:
+                    - generic "Reddy Capital Equipment and Services Arjun 00023 Private Limited stored risk trajectory" [ref=f33e250]:
+                      - img "Reddy Capital Equipment and Services Arjun 00023 Private Limited stored risk trajectory" [ref=f33e251]
+                  - cell "Amber Urgency 477" [ref=f33e253]:
+                    - generic "Amber" [ref=f33e254]
+                    - generic [ref=f33e255]: Urgency 477
+                  - cell "—" [ref=f33e256]
+                  - cell "Unassigned" [ref=f33e257]
+                  - cell "No case opened" [ref=f33e258]
+                  - cell "Not yet compared with a prior run." [ref=f33e259]
+                - row [ref=f33e260]:
+                  - cell [ref=f33e261]:
+                    - checkbox "Select Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f33e262]
+                  - cell [ref=f33e263]:
+                    - link "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited" [ref=f33e264] [cursor=pointer]:
+                      - /url: /borrowers/B-000022
+                  - cell "₹1,138.28" [ref=f33e265]
+                  - 'cell "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e266]':
+                    - text: Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e267]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e268] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1d68-7275-91a9-bd4b5a2b7819
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e269]:
+                    - text: 40%
+                    - generic [ref=f33e270]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e271]:
+                    - generic [ref=f33e272]: 30d 39%
+                    - generic [ref=f33e273]: 60d 40%
+                    - generic [ref=f33e274]: 90d 40%
+                  - cell [ref=f33e275]:
+                    - generic "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited stored risk trajectory" [ref=f33e276]:
+                      - img "Mukherjee Renewable Infrastructure Projects Aditi 00022 Private Limited stored risk trajectory" [ref=f33e277]
+                  - cell "Amber Urgency 460" [ref=f33e279]:
+                    - generic "Amber" [ref=f33e280]
+                    - generic [ref=f33e281]: Urgency 460
+                  - cell "—" [ref=f33e282]
+                  - cell "Unassigned" [ref=f33e283]
+                  - cell "No case opened" [ref=f33e284]
+                  - cell "Not yet compared with a prior run." [ref=f33e285]
+                - row [ref=f33e286]:
+                  - cell [ref=f33e287]:
+                    - checkbox "Select Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f33e288]
+                  - cell [ref=f33e289]:
+                    - link "Patel Applied Engineering Systems Aarav 00006 Private Limited" [ref=f33e290] [cursor=pointer]:
+                      - /url: /borrowers/B-000006
+                  - cell "₹457.24" [ref=f33e291]
+                  - 'cell "Patel Applied Engineering Systems Aarav 00006 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e292]':
+                    - text: Patel Applied Engineering Systems Aarav 00006 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e293]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e294] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-15cd-7e20-85e3-5a82b4333ffe
+                      - text: Why?
+                  - cell "99% by 01 Oct 2026 Confidence 100%" [ref=f33e295]:
+                    - text: 99% by 01 Oct 2026
+                    - generic [ref=f33e296]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e297]:
+                    - generic [ref=f33e298]: 30d 99%
+                    - generic [ref=f33e299]: 60d 99%
+                    - generic [ref=f33e300]: 90d 99%
+                  - cell [ref=f33e301]:
+                    - generic "Patel Applied Engineering Systems Aarav 00006 Private Limited stored risk trajectory" [ref=f33e302]:
+                      - img "Patel Applied Engineering Systems Aarav 00006 Private Limited stored risk trajectory" [ref=f33e303]
+                  - cell "Act Urgency 453" [ref=f33e305]:
+                    - generic "Act" [ref=f33e306]
+                    - generic [ref=f33e307]: Urgency 453
+                  - cell "—" [ref=f33e308]
+                  - cell "Unassigned" [ref=f33e309]
+                  - cell "Open" [ref=f33e310]
+                  - cell "Not yet compared with a prior run." [ref=f33e311]
+                - row [ref=f33e312]:
+                  - cell [ref=f33e313]:
+                    - checkbox "Select Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f33e314]
+                  - cell [ref=f33e315]:
+                    - link "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited" [ref=f33e316] [cursor=pointer]:
+                      - /url: /borrowers/B-000003
+                  - cell "₹350.46" [ref=f33e317]
+                  - 'cell "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e318]':
+                    - text: Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e319]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e320] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-143f-75c6-82f4-a14f01599c7b
+                      - text: Why?
+                  - cell "99% by 01 Sep 2026 Confidence 100%" [ref=f33e321]:
+                    - text: 99% by 01 Sep 2026
+                    - generic [ref=f33e322]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e323]:
+                    - generic [ref=f33e324]: 30d 99%
+                    - generic [ref=f33e325]: 60d 99%
+                    - generic [ref=f33e326]: 90d 99%
+                  - cell [ref=f33e327]:
+                    - generic "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited stored risk trajectory" [ref=f33e328]:
+                      - img "Chatterjee Consumer Products and Distribution Rohan 00003 Private Limited stored risk trajectory" [ref=f33e329]
+                  - cell "Act Urgency 347" [ref=f33e331]:
+                    - generic "Act" [ref=f33e332]
+                    - generic [ref=f33e333]: Urgency 347
+                  - cell "—" [ref=f33e334]
+                  - cell "Unassigned" [ref=f33e335]
+                  - cell "Open" [ref=f33e336]
+                  - cell "Not yet compared with a prior run." [ref=f33e337]
+                - row [ref=f33e338]:
+                  - cell [ref=f33e339]:
+                    - checkbox "Select Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f33e340]
+                  - cell [ref=f33e341]:
+                    - link "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited" [ref=f33e342] [cursor=pointer]:
+                      - /url: /borrowers/B-000015
+                  - cell "₹656.68" [ref=f33e343]
+                  - 'cell "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e344]':
+                    - text: Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e345]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e346] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1a15-7deb-ab35-a370c12ec97e
+                      - text: Why?
+                  - cell "49% Confidence 100%" [ref=f33e347]:
+                    - text: 49%
+                    - generic [ref=f33e348]: Confidence 100%
+                  - cell "30d 39% 60d 44% 90d 49%" [ref=f33e349]:
+                    - generic [ref=f33e350]: 30d 39%
+                    - generic [ref=f33e351]: 60d 44%
+                    - generic [ref=f33e352]: 90d 49%
+                  - cell [ref=f33e353]:
+                    - generic "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited stored risk trajectory" [ref=f33e354]:
+                      - img "Nair Integrated Manufacturing Systems Ishaan 00015 Private Limited stored risk trajectory" [ref=f33e355]
+                  - cell "Amber Urgency 325" [ref=f33e357]:
+                    - generic "Amber" [ref=f33e358]
+                    - generic [ref=f33e359]: Urgency 325
+                  - cell "—" [ref=f33e360]
+                  - cell "Unassigned" [ref=f33e361]
+                  - cell "No case opened" [ref=f33e362]
+                  - cell "Not yet compared with a prior run." [ref=f33e363]
+                - row [ref=f33e364]:
+                  - cell [ref=f33e365]:
+                    - checkbox "Select Bhatia Advanced Industrial Components Rohan 00036 Private Limited" [ref=f33e366]
+                  - cell [ref=f33e367]:
+                    - link "Bhatia Advanced Industrial Components Rohan 00036 Private Limited" [ref=f33e368] [cursor=pointer]:
+                      - /url: /borrowers/B-000036
+                  - cell "₹709.14" [ref=f33e369]
+                  - 'cell "Bhatia Advanced Industrial Components Rohan 00036 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e370]':
+                    - text: Bhatia Advanced Industrial Components Rohan 00036 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e371]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e372] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-24ea-7339-ad8b-d61e7a6c5358
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e373]:
+                    - text: 40%
+                    - generic [ref=f33e374]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e375]:
+                    - generic [ref=f33e376]: 30d 39%
+                    - generic [ref=f33e377]: 60d 40%
+                    - generic [ref=f33e378]: 90d 40%
+                  - cell [ref=f33e379]:
+                    - generic "Bhatia Advanced Industrial Components Rohan 00036 Private Limited stored risk trajectory" [ref=f33e380]:
+                      - img "Bhatia Advanced Industrial Components Rohan 00036 Private Limited stored risk trajectory" [ref=f33e381]
+                  - cell "Watch Urgency 283" [ref=f33e383]:
+                    - generic "Watch" [ref=f33e384]
+                    - generic [ref=f33e385]: Urgency 283
+                  - cell "—" [ref=f33e386]
+                  - cell "Unassigned" [ref=f33e387]
+                  - cell "No case opened" [ref=f33e388]
+                  - cell "Not yet compared with a prior run." [ref=f33e389]
+                - row [ref=f33e390]:
+                  - cell [ref=f33e391]:
+                    - checkbox "Select Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f33e392]
+                  - cell [ref=f33e393]:
+                    - link "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited" [ref=f33e394] [cursor=pointer]:
+                      - /url: /borrowers/B-000014
+                  - cell "₹562.84" [ref=f33e395]
+                  - 'cell "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e396]':
+                    - text: Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e397]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e398] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-199a-7785-997a-3649e66da72d
+                      - text: Why?
+                  - cell "49% Confidence 100%" [ref=f33e399]:
+                    - text: 49%
+                    - generic [ref=f33e400]: Confidence 100%
+                  - cell "30d 39% 60d 44% 90d 49%" [ref=f33e401]:
+                    - generic [ref=f33e402]: 30d 39%
+                    - generic [ref=f33e403]: 60d 44%
+                    - generic [ref=f33e404]: 90d 49%
+                  - cell [ref=f33e405]:
+                    - generic "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited stored risk trajectory" [ref=f33e406]:
+                      - img "Mukherjee Agro Processing and Logistics Aarav 00014 Private Limited stored risk trajectory" [ref=f33e407]
+                  - cell "Amber Urgency 278" [ref=f33e409]:
+                    - generic "Amber" [ref=f33e410]
+                    - generic [ref=f33e411]: Urgency 278
+                  - cell "—" [ref=f33e412]
+                  - cell "Unassigned" [ref=f33e413]
+                  - cell "No case opened" [ref=f33e414]
+                  - cell "Not yet compared with a prior run." [ref=f33e415]
+                - row [ref=f33e416]:
+                  - cell [ref=f33e417]:
+                    - checkbox "Select Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f33e418]
+                  - cell [ref=f33e419]:
+                    - link "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited" [ref=f33e420] [cursor=pointer]:
+                      - /url: /borrowers/B-000013
+                  - cell "₹260.81" [ref=f33e421]
+                  - 'cell "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e422]':
+                    - text: Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e423]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e424] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1923-7eed-9473-c3b4bbd642d9
+                      - text: Why?
+                  - cell "99% by 31 Oct 2026 Confidence 100%" [ref=f33e425]:
+                    - text: 99% by 31 Oct 2026
+                    - generic [ref=f33e426]: Confidence 100%
+                  - cell "30d 44% 60d 99% 90d 99%" [ref=f33e427]:
+                    - generic [ref=f33e428]: 30d 44%
+                    - generic [ref=f33e429]: 60d 99%
+                    - generic [ref=f33e430]: 90d 99%
+                  - cell [ref=f33e431]:
+                    - generic "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited stored risk trajectory" [ref=f33e432]:
+                      - img "Chatterjee Renewable Infrastructure Projects Arjun 00013 Private Limited stored risk trajectory" [ref=f33e433]
+                  - cell "Act Urgency 258" [ref=f33e435]:
+                    - generic "Act" [ref=f33e436]
+                    - generic [ref=f33e437]: Urgency 258
+                  - cell "—" [ref=f33e438]
+                  - cell "Unassigned" [ref=f33e439]
+                  - cell "Open" [ref=f33e440]
+                  - cell "Not yet compared with a prior run." [ref=f33e441]
+                - row [ref=f33e442]:
+                  - cell [ref=f33e443]:
+                    - checkbox "Select Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f33e444]
+                  - cell [ref=f33e445]:
+                    - link "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited" [ref=f33e446] [cursor=pointer]:
+                      - /url: /borrowers/B-000009
+                  - cell "₹245.75" [ref=f33e447]
+                  - 'cell "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e448]':
+                    - text: Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e449]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e450] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-173a-7d4a-bc6c-0f05b89bc844
+                      - text: Why?
+                  - cell "99% by 31 Oct 2026 Confidence 100%" [ref=f33e451]:
+                    - text: 99% by 31 Oct 2026
+                    - generic [ref=f33e452]: Confidence 100%
+                  - cell "30d 44% 60d 99% 90d 99%" [ref=f33e453]:
+                    - generic [ref=f33e454]: 30d 44%
+                    - generic [ref=f33e455]: 60d 99%
+                    - generic [ref=f33e456]: 90d 99%
+                  - cell [ref=f33e457]:
+                    - generic "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited stored risk trajectory" [ref=f33e458]:
+                      - img "Menon Speciality Chemicals and Technologies Ishaan 00009 Private Limited stored risk trajectory" [ref=f33e459]
+                  - cell "Act Urgency 243" [ref=f33e461]:
+                    - generic "Act" [ref=f33e462]
+                    - generic [ref=f33e463]: Urgency 243
+                  - cell "—" [ref=f33e464]
+                  - cell "Unassigned" [ref=f33e465]
+                  - cell "Open" [ref=f33e466]
+                  - cell "Not yet compared with a prior run." [ref=f33e467]
+                - row [ref=f33e468]:
+                  - cell [ref=f33e469]:
+                    - checkbox "Select Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f33e470]
+                  - cell [ref=f33e471]:
+                    - link "Menon Energy Transition Technologies Saanvi 00004 Private Limited" [ref=f33e472] [cursor=pointer]:
+                      - /url: /borrowers/B-000004
+                  - cell "₹241.67" [ref=f33e473]
+                  - 'cell "Menon Energy Transition Technologies Saanvi 00004 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e474]':
+                    - text: Menon Energy Transition Technologies Saanvi 00004 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e475]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e476] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-14be-7288-b3c7-09f945102840
+                      - text: Why?
+                  - cell "99% by 01 Oct 2026 Confidence 100%" [ref=f33e477]:
+                    - text: 99% by 01 Oct 2026
+                    - generic [ref=f33e478]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e479]:
+                    - generic [ref=f33e480]: 30d 99%
+                    - generic [ref=f33e481]: 60d 99%
+                    - generic [ref=f33e482]: 90d 99%
+                  - cell [ref=f33e483]:
+                    - generic "Menon Energy Transition Technologies Saanvi 00004 Private Limited stored risk trajectory" [ref=f33e484]:
+                      - img "Menon Energy Transition Technologies Saanvi 00004 Private Limited stored risk trajectory" [ref=f33e485]
+                  - cell "Act Urgency 239" [ref=f33e487]:
+                    - generic "Act" [ref=f33e488]
+                    - generic [ref=f33e489]: Urgency 239
+                  - cell "—" [ref=f33e490]
+                  - cell "Unassigned" [ref=f33e491]
+                  - cell "Open" [ref=f33e492]
+                  - cell "Not yet compared with a prior run." [ref=f33e493]
+                - row [ref=f33e494]:
+                  - cell [ref=f33e495]:
+                    - checkbox "Select Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f33e496]
+                  - cell [ref=f33e497]:
+                    - link "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited" [ref=f33e498] [cursor=pointer]:
+                      - /url: /borrowers/B-000034
+                  - cell "₹521.21" [ref=f33e499]
+                  - 'cell "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e500]':
+                    - text: Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e501]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e502] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-23e6-74ea-b539-57edbef4f961
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e503]:
+                    - text: 40%
+                    - generic [ref=f33e504]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e505]:
+                    - generic [ref=f33e506]: 30d 39%
+                    - generic [ref=f33e507]: 60d 40%
+                    - generic [ref=f33e508]: 90d 40%
+                  - cell [ref=f33e509]:
+                    - generic "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited stored risk trajectory" [ref=f33e510]:
+                      - img "Chatterjee Commercial Infrastructure Solutions Meera 00034 Private Limited stored risk trajectory" [ref=f33e511]
+                  - cell "Watch Urgency 208" [ref=f33e513]:
+                    - generic "Watch" [ref=f33e514]
+                    - generic [ref=f33e515]: Urgency 208
+                  - cell "—" [ref=f33e516]
+                  - cell "Unassigned" [ref=f33e517]
+                  - cell "No case opened" [ref=f33e518]
+                  - cell "Not yet compared with a prior run." [ref=f33e519]
+                - row [ref=f33e520]:
+                  - cell [ref=f33e521]:
+                    - checkbox "Select Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f33e522]
+                  - cell [ref=f33e523]:
+                    - link "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited" [ref=f33e524] [cursor=pointer]:
+                      - /url: /borrowers/B-000030
+                  - cell "₹512.57" [ref=f33e525]
+                  - 'cell "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e526]':
+                    - text: Chatterjee Energy Transition Technologies Rohan 00030 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e527]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e528] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-21f2-7c85-86c2-e4013fbcd194
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e529]:
+                    - text: 40%
+                    - generic [ref=f33e530]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e531]:
+                    - generic [ref=f33e532]: 30d 39%
+                    - generic [ref=f33e533]: 60d 40%
+                    - generic [ref=f33e534]: 90d 40%
+                  - cell [ref=f33e535]:
+                    - generic "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited stored risk trajectory" [ref=f33e536]:
+                      - img "Chatterjee Energy Transition Technologies Rohan 00030 Private Limited stored risk trajectory" [ref=f33e537]
+                  - cell "Watch Urgency 204" [ref=f33e539]:
+                    - generic "Watch" [ref=f33e540]
+                    - generic [ref=f33e541]: Urgency 204
+                  - cell "—" [ref=f33e542]
+                  - cell "Unassigned" [ref=f33e543]
+                  - cell "No case opened" [ref=f33e544]
+                  - cell "Not yet compared with a prior run." [ref=f33e545]
+                - row [ref=f33e546]:
+                  - cell [ref=f33e547]:
+                    - checkbox "Select Chatterjee Applied Engineering Systems Meera 00029 Private Limited" [ref=f33e548]
+                  - cell [ref=f33e549]:
+                    - link "Chatterjee Applied Engineering Systems Meera 00029 Private Limited" [ref=f33e550] [cursor=pointer]:
+                      - /url: /borrowers/B-000029
+                  - cell "₹494.09" [ref=f33e551]
+                  - 'cell "Chatterjee Applied Engineering Systems Meera 00029 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e552]':
+                    - text: Chatterjee Applied Engineering Systems Meera 00029 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e553]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e554] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-2162-77c0-8786-80644c6d0cd6
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e555]:
+                    - text: 40%
+                    - generic [ref=f33e556]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e557]:
+                    - generic [ref=f33e558]: 30d 39%
+                    - generic [ref=f33e559]: 60d 40%
+                    - generic [ref=f33e560]: 90d 40%
+                  - cell [ref=f33e561]:
+                    - generic "Chatterjee Applied Engineering Systems Meera 00029 Private Limited stored risk trajectory" [ref=f33e562]:
+                      - img "Chatterjee Applied Engineering Systems Meera 00029 Private Limited stored risk trajectory" [ref=f33e563]
+                  - cell "Watch Urgency 197" [ref=f33e565]:
+                    - generic "Watch" [ref=f33e566]
+                    - generic [ref=f33e567]: Urgency 197
+                  - cell "—" [ref=f33e568]
+                  - cell "Unassigned" [ref=f33e569]
+                  - cell "No case opened" [ref=f33e570]
+                  - cell "Not yet compared with a prior run." [ref=f33e571]
+                - row [ref=f33e572]:
+                  - cell [ref=f33e573]:
+                    - checkbox "Select Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f33e574]
+                  - cell [ref=f33e575]:
+                    - link "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited" [ref=f33e576] [cursor=pointer]:
+                      - /url: /borrowers/B-000011
+                  - cell "₹196.04" [ref=f33e577]
+                  - 'cell "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e578]':
+                    - text: Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e579]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e580] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-182e-73f4-a651-f56ff54a3581
+                      - text: Why?
+                  - cell "99% by 31 Oct 2026 Confidence 100%" [ref=f33e581]:
+                    - text: 99% by 31 Oct 2026
+                    - generic [ref=f33e582]: Confidence 100%
+                  - cell "30d 44% 60d 99% 90d 99%" [ref=f33e583]:
+                    - generic [ref=f33e584]: 30d 44%
+                    - generic [ref=f33e585]: 60d 99%
+                    - generic [ref=f33e586]: 90d 99%
+                  - cell [ref=f33e587]:
+                    - generic "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited stored risk trajectory" [ref=f33e588]:
+                      - img "Malhotra Commercial Infrastructure Solutions Devika 00011 Private Limited stored risk trajectory" [ref=f33e589]
+                  - cell "Act Urgency 194" [ref=f33e591]:
+                    - generic "Act" [ref=f33e592]
+                    - generic [ref=f33e593]: Urgency 194
+                  - cell "—" [ref=f33e594]
+                  - cell "Unassigned" [ref=f33e595]
+                  - cell "Open" [ref=f33e596]
+                  - cell "Not yet compared with a prior run." [ref=f33e597]
+                - row [ref=f33e598]:
+                  - cell [ref=f33e599]:
+                    - checkbox "Select Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f33e600]
+                  - cell [ref=f33e601]:
+                    - link "Nair Integrated Manufacturing Systems Devika 00012 Private Limited" [ref=f33e602] [cursor=pointer]:
+                      - /url: /borrowers/B-000012
+                  - cell "₹195.71" [ref=f33e603]
+                  - 'cell "Nair Integrated Manufacturing Systems Devika 00012 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e604]':
+                    - text: Nair Integrated Manufacturing Systems Devika 00012 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e605]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e606] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-18a8-7b38-8ddb-02f96dfb27b4
+                      - text: Why?
+                  - cell "99% by 31 Oct 2026 Confidence 100%" [ref=f33e607]:
+                    - text: 99% by 31 Oct 2026
+                    - generic [ref=f33e608]: Confidence 100%
+                  - cell "30d 44% 60d 99% 90d 99%" [ref=f33e609]:
+                    - generic [ref=f33e610]: 30d 44%
+                    - generic [ref=f33e611]: 60d 99%
+                    - generic [ref=f33e612]: 90d 99%
+                  - cell [ref=f33e613]:
+                    - generic "Nair Integrated Manufacturing Systems Devika 00012 Private Limited stored risk trajectory" [ref=f33e614]:
+                      - img "Nair Integrated Manufacturing Systems Devika 00012 Private Limited stored risk trajectory" [ref=f33e615]
+                  - cell "Act Urgency 194" [ref=f33e617]:
+                    - generic "Act" [ref=f33e618]
+                    - generic [ref=f33e619]: Urgency 194
+                  - cell "—" [ref=f33e620]
+                  - cell "Unassigned" [ref=f33e621]
+                  - cell "Open" [ref=f33e622]
+                  - cell "Not yet compared with a prior run." [ref=f33e623]
+                - row [ref=f33e624]:
+                  - cell [ref=f33e625]:
+                    - checkbox "Select Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f33e626]
+                  - cell [ref=f33e627]:
+                    - link "Bhatia Capital Equipment and Services Ananya 00020 Private Limited" [ref=f33e628] [cursor=pointer]:
+                      - /url: /borrowers/B-000020
+                  - cell "₹471.54" [ref=f33e629]
+                  - 'cell "Bhatia Capital Equipment and Services Ananya 00020 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e630]':
+                    - text: Bhatia Capital Equipment and Services Ananya 00020 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e631]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e632] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1c6b-76b9-ab95-1ada238d9de1
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e633]:
+                    - text: 40%
+                    - generic [ref=f33e634]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e635]:
+                    - generic [ref=f33e636]: 30d 39%
+                    - generic [ref=f33e637]: 60d 40%
+                    - generic [ref=f33e638]: 90d 40%
+                  - cell [ref=f33e639]:
+                    - generic "Bhatia Capital Equipment and Services Ananya 00020 Private Limited stored risk trajectory" [ref=f33e640]:
+                      - img "Bhatia Capital Equipment and Services Ananya 00020 Private Limited stored risk trajectory" [ref=f33e641]
+                  - cell "Amber Urgency 191" [ref=f33e643]:
+                    - generic "Amber" [ref=f33e644]
+                    - generic [ref=f33e645]: Urgency 191
+                  - cell "—" [ref=f33e646]
+                  - cell "Unassigned" [ref=f33e647]
+                  - cell "No case opened" [ref=f33e648]
+                  - cell "Not yet compared with a prior run." [ref=f33e649]
+                - row [ref=f33e650]:
+                  - cell [ref=f33e651]:
+                    - checkbox "Select Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited" [ref=f33e652]
+                  - cell [ref=f33e653]:
+                    - link "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited" [ref=f33e654] [cursor=pointer]:
+                      - /url: /borrowers/B-000035
+                  - cell "₹465.11" [ref=f33e655]
+                  - 'cell "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e656]':
+                    - text: Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e657]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e658] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-2467-7df6-9350-269917928e4a
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e659]:
+                    - text: 40%
+                    - generic [ref=f33e660]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e661]:
+                    - generic [ref=f33e662]: 30d 39%
+                    - generic [ref=f33e663]: 60d 40%
+                    - generic [ref=f33e664]: 90d 40%
+                  - cell [ref=f33e665]:
+                    - generic "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited stored risk trajectory" [ref=f33e666]:
+                      - img "Mukherjee Integrated Manufacturing Systems Ishaan 00035 Private Limited stored risk trajectory" [ref=f33e667]
+                  - cell "Watch Urgency 186" [ref=f33e669]:
+                    - generic "Watch" [ref=f33e670]
+                    - generic [ref=f33e671]: Urgency 186
+                  - cell "—" [ref=f33e672]
+                  - cell "Unassigned" [ref=f33e673]
+                  - cell "No case opened" [ref=f33e674]
+                  - cell "Not yet compared with a prior run." [ref=f33e675]
+                - row [ref=f33e676]:
+                  - cell [ref=f33e677]:
+                    - checkbox "Select Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f33e678]
+                  - cell [ref=f33e679]:
+                    - link "Sharma Applied Engineering Systems Arjun 00010 Private Limited" [ref=f33e680] [cursor=pointer]:
+                      - /url: /borrowers/B-000010
+                  - cell "₹164.40" [ref=f33e681]
+                  - 'cell "Sharma Applied Engineering Systems Arjun 00010 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e682]':
+                    - text: Sharma Applied Engineering Systems Arjun 00010 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e683]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e684] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-17b3-7a38-867b-2afe89c75f5a
+                      - text: Why?
+                  - cell "99% by 31 Oct 2026 Confidence 100%" [ref=f33e685]:
+                    - text: 99% by 31 Oct 2026
+                    - generic [ref=f33e686]: Confidence 100%
+                  - cell "30d 44% 60d 99% 90d 99%" [ref=f33e687]:
+                    - generic [ref=f33e688]: 30d 44%
+                    - generic [ref=f33e689]: 60d 99%
+                    - generic [ref=f33e690]: 90d 99%
+                  - cell [ref=f33e691]:
+                    - generic "Sharma Applied Engineering Systems Arjun 00010 Private Limited stored risk trajectory" [ref=f33e692]:
+                      - img "Sharma Applied Engineering Systems Arjun 00010 Private Limited stored risk trajectory" [ref=f33e693]
+                  - cell "Act Urgency 163" [ref=f33e695]:
+                    - generic "Act" [ref=f33e696]
+                    - generic [ref=f33e697]: Urgency 163
+                  - cell "—" [ref=f33e698]
+                  - cell "Unassigned" [ref=f33e699]
+                  - cell "Open" [ref=f33e700]
+                  - cell "Not yet compared with a prior run." [ref=f33e701]
+                - row [ref=f33e702]:
+                  - cell [ref=f33e703]:
+                    - checkbox "Select Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f33e704]
+                  - cell [ref=f33e705]:
+                    - link "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited" [ref=f33e706] [cursor=pointer]:
+                      - /url: /borrowers/B-000007
+                  - cell "₹164.35" [ref=f33e707]
+                  - 'cell "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e708]':
+                    - text: Menon Integrated Manufacturing Systems Vikram 00007 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e709]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e710] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1644-7af5-a1e4-3d793f37c078
+                      - text: Why?
+                  - cell "99% by 01 Oct 2026 Confidence 100%" [ref=f33e711]:
+                    - text: 99% by 01 Oct 2026
+                    - generic [ref=f33e712]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e713]:
+                    - generic [ref=f33e714]: 30d 99%
+                    - generic [ref=f33e715]: 60d 99%
+                    - generic [ref=f33e716]: 90d 99%
+                  - cell [ref=f33e717]:
+                    - generic "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited stored risk trajectory" [ref=f33e718]:
+                      - img "Menon Integrated Manufacturing Systems Vikram 00007 Private Limited stored risk trajectory" [ref=f33e719]
+                  - cell "Act Urgency 163" [ref=f33e721]:
+                    - generic "Act" [ref=f33e722]
+                    - generic [ref=f33e723]: Urgency 163
+                  - cell "—" [ref=f33e724]
+                  - cell "Unassigned" [ref=f33e725]
+                  - cell "Open" [ref=f33e726]
+                  - cell "Not yet compared with a prior run." [ref=f33e727]
+                - row [ref=f33e728]:
+                  - cell [ref=f33e729]:
+                    - checkbox "Select Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f33e730]
+                  - cell [ref=f33e731]:
+                    - link "Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f33e732] [cursor=pointer]:
+                      - /url: /borrowers/B-000001
+                  - cell "₹158.92" [ref=f33e733]
+                  - 'cell "Subramanian Precision Materials and Components Kavya 00001 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e734]':
+                    - text: Subramanian Precision Materials and Components Kavya 00001 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e735]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e736] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-130d-7db8-90c0-1885cfebe8c9
+                      - text: Why?
+                  - cell "99% by 01 Sep 2026 Confidence 100%" [ref=f33e737]:
+                    - text: 99% by 01 Sep 2026
+                    - generic [ref=f33e738]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e739]:
+                    - generic [ref=f33e740]: 30d 99%
+                    - generic [ref=f33e741]: 60d 99%
+                    - generic [ref=f33e742]: 90d 99%
+                  - cell [ref=f33e743]:
+                    - generic "Subramanian Precision Materials and Components Kavya 00001 Private Limited stored risk trajectory" [ref=f33e744]:
+                      - img "Subramanian Precision Materials and Components Kavya 00001 Private Limited stored risk trajectory" [ref=f33e745]
+                  - cell "Act Urgency 157" [ref=f33e747]:
+                    - generic "Act" [ref=f33e748]
+                    - generic [ref=f33e749]: Urgency 157
+                  - cell "—" [ref=f33e750]
+                  - cell "Unassigned" [ref=f33e751]
+                  - cell "Open" [ref=f33e752]
+                  - cell "Not yet compared with a prior run." [ref=f33e753]
+                - row [ref=f33e754]:
+                  - cell [ref=f33e755]:
+                    - checkbox "Select Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f33e756]
+                  - cell [ref=f33e757]:
+                    - link "Patel Precision Materials and Components Kavya 00005 Private Limited" [ref=f33e758] [cursor=pointer]:
+                      - /url: /borrowers/B-000005
+                  - cell "₹147.52" [ref=f33e759]
+                  - 'cell "Patel Precision Materials and Components Kavya 00005 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e760]':
+                    - text: Patel Precision Materials and Components Kavya 00005 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e761]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e762] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1556-71c8-9a26-3dd3f2d29861
+                      - text: Why?
+                  - cell "99% by 01 Oct 2026 Confidence 100%" [ref=f33e763]:
+                    - text: 99% by 01 Oct 2026
+                    - generic [ref=f33e764]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e765]:
+                    - generic [ref=f33e766]: 30d 99%
+                    - generic [ref=f33e767]: 60d 99%
+                    - generic [ref=f33e768]: 90d 99%
+                  - cell [ref=f33e769]:
+                    - generic "Patel Precision Materials and Components Kavya 00005 Private Limited stored risk trajectory" [ref=f33e770]:
+                      - img "Patel Precision Materials and Components Kavya 00005 Private Limited stored risk trajectory" [ref=f33e771]
+                  - cell "Act Urgency 146" [ref=f33e773]:
+                    - generic "Act" [ref=f33e774]
+                    - generic [ref=f33e775]: Urgency 146
+                  - cell "—" [ref=f33e776]
+                  - cell "Unassigned" [ref=f33e777]
+                  - cell "Open" [ref=f33e778]
+                  - cell "Not yet compared with a prior run." [ref=f33e779]
+                - row [ref=f33e780]:
+                  - cell [ref=f33e781]:
+                    - checkbox "Select Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f33e782]
+                  - cell [ref=f33e783]:
+                    - link "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [ref=f33e784] [cursor=pointer]:
+                      - /url: /borrowers/B-000002
+                  - cell "₹133.54" [ref=f33e785]
+                  - 'cell "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e786]':
+                    - text: Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e787]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e788] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-13c5-733b-afcd-ed7e8a70b735
+                      - text: Why?
+                  - cell "99% by 01 Sep 2026 Confidence 100%" [ref=f33e789]:
+                    - text: 99% by 01 Sep 2026
+                    - generic [ref=f33e790]: Confidence 100%
+                  - cell "30d 99% 60d 99% 90d 99%" [ref=f33e791]:
+                    - generic [ref=f33e792]: 30d 99%
+                    - generic [ref=f33e793]: 60d 99%
+                    - generic [ref=f33e794]: 90d 99%
+                  - cell [ref=f33e795]:
+                    - generic "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited stored risk trajectory" [ref=f33e796]:
+                      - img "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited stored risk trajectory" [ref=f33e797]
+                  - cell "Act Urgency 132" [ref=f33e799]:
+                    - generic "Act" [ref=f33e800]
+                    - generic [ref=f33e801]: Urgency 132
+                  - cell "—" [ref=f33e802]
+                  - cell "Unassigned" [ref=f33e803]
+                  - cell "Open" [ref=f33e804]
+                  - cell "Not yet compared with a prior run." [ref=f33e805]
+                - row [ref=f33e806]:
+                  - cell [ref=f33e807]:
+                    - checkbox "Select Mukherjee National Supply Chain Services Devika 00028 Private Limited" [ref=f33e808]
+                  - cell [ref=f33e809]:
+                    - link "Mukherjee National Supply Chain Services Devika 00028 Private Limited" [ref=f33e810] [cursor=pointer]:
+                      - /url: /borrowers/B-000028
+                  - cell "₹319.25" [ref=f33e811]
+                  - 'cell "Mukherjee National Supply Chain Services Devika 00028 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e812]':
+                    - text: Mukherjee National Supply Chain Services Devika 00028 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e813]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e814] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-20db-72e0-adb1-1518cd68a310
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e815]:
+                    - text: 40%
+                    - generic [ref=f33e816]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e817]:
+                    - generic [ref=f33e818]: 30d 39%
+                    - generic [ref=f33e819]: 60d 40%
+                    - generic [ref=f33e820]: 90d 40%
+                  - cell [ref=f33e821]:
+                    - generic "Mukherjee National Supply Chain Services Devika 00028 Private Limited stored risk trajectory" [ref=f33e822]:
+                      - img "Mukherjee National Supply Chain Services Devika 00028 Private Limited stored risk trajectory" [ref=f33e823]
+                  - cell "Watch Urgency 127" [ref=f33e825]:
+                    - generic "Watch" [ref=f33e826]
+                    - generic [ref=f33e827]: Urgency 127
+                  - cell "—" [ref=f33e828]
+                  - cell "Unassigned" [ref=f33e829]
+                  - cell "No case opened" [ref=f33e830]
+                  - cell "Not yet compared with a prior run." [ref=f33e831]
+                - row [ref=f33e832]:
+                  - cell [ref=f33e833]:
+                    - checkbox "Select Kapoor Precision Materials and Components Kavya 00032 Private Limited" [ref=f33e834]
+                  - cell [ref=f33e835]:
+                    - link "Kapoor Precision Materials and Components Kavya 00032 Private Limited" [ref=f33e836] [cursor=pointer]:
+                      - /url: /borrowers/B-000032
+                  - cell "₹318.85" [ref=f33e837]
+                  - 'cell "Kapoor Precision Materials and Components Kavya 00032 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e838]':
+                    - text: Kapoor Precision Materials and Components Kavya 00032 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e839]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e840] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-22ec-7885-b53c-b455a3ce1300
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e841]:
+                    - text: 40%
+                    - generic [ref=f33e842]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e843]:
+                    - generic [ref=f33e844]: 30d 39%
+                    - generic [ref=f33e845]: 60d 40%
+                    - generic [ref=f33e846]: 90d 40%
+                  - cell [ref=f33e847]:
+                    - generic "Kapoor Precision Materials and Components Kavya 00032 Private Limited stored risk trajectory" [ref=f33e848]:
+                      - img "Kapoor Precision Materials and Components Kavya 00032 Private Limited stored risk trajectory" [ref=f33e849]
+                  - cell "Watch Urgency 127" [ref=f33e851]:
+                    - generic "Watch" [ref=f33e852]
+                    - generic [ref=f33e853]: Urgency 127
+                  - cell "—" [ref=f33e854]
+                  - cell "Unassigned" [ref=f33e855]
+                  - cell "No case opened" [ref=f33e856]
+                  - cell "Not yet compared with a prior run." [ref=f33e857]
+                - row [ref=f33e858]:
+                  - cell [ref=f33e859]:
+                    - checkbox "Select Nair Agro Processing and Logistics Meera 00027 Private Limited" [ref=f33e860]
+                  - cell [ref=f33e861]:
+                    - link "Nair Agro Processing and Logistics Meera 00027 Private Limited" [ref=f33e862] [cursor=pointer]:
+                      - /url: /borrowers/B-000027
+                  - cell "₹262.70" [ref=f33e863]
+                  - 'cell "Nair Agro Processing and Logistics Meera 00027 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e864]':
+                    - text: Nair Agro Processing and Logistics Meera 00027 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e865]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e866] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-2049-794c-9721-c6912ab9390f
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e867]:
+                    - text: 40%
+                    - generic [ref=f33e868]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e869]:
+                    - generic [ref=f33e870]: 30d 39%
+                    - generic [ref=f33e871]: 60d 40%
+                    - generic [ref=f33e872]: 90d 40%
+                  - cell [ref=f33e873]:
+                    - generic "Nair Agro Processing and Logistics Meera 00027 Private Limited stored risk trajectory" [ref=f33e874]:
+                      - img "Nair Agro Processing and Logistics Meera 00027 Private Limited stored risk trajectory" [ref=f33e875]
+                  - cell "Watch Urgency 105" [ref=f33e877]:
+                    - generic "Watch" [ref=f33e878]
+                    - generic [ref=f33e879]: Urgency 105
+                  - cell "—" [ref=f33e880]
+                  - cell "Unassigned" [ref=f33e881]
+                  - cell "No case opened" [ref=f33e882]
+                  - cell "Not yet compared with a prior run." [ref=f33e883]
+                - row [ref=f33e884]:
+                  - cell [ref=f33e885]:
+                    - checkbox "Select Subramanian Agro Processing and Logistics Kavya 00026 Private Limited" [ref=f33e886]
+                  - cell [ref=f33e887]:
+                    - link "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited" [ref=f33e888] [cursor=pointer]:
+                      - /url: /borrowers/B-000026
+                  - cell "₹205.25" [ref=f33e889]
+                  - 'cell "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e890]':
+                    - text: Subramanian Agro Processing and Logistics Kavya 00026 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e891]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e892] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1f9f-7b32-af72-5d753d5bccec
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e893]:
+                    - text: 40%
+                    - generic [ref=f33e894]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e895]:
+                    - generic [ref=f33e896]: 30d 39%
+                    - generic [ref=f33e897]: 60d 40%
+                    - generic [ref=f33e898]: 90d 40%
+                  - cell [ref=f33e899]:
+                    - generic "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited stored risk trajectory" [ref=f33e900]:
+                      - img "Subramanian Agro Processing and Logistics Kavya 00026 Private Limited stored risk trajectory" [ref=f33e901]
+                  - cell "Watch Urgency 82" [ref=f33e903]:
+                    - generic "Watch" [ref=f33e904]
+                    - generic [ref=f33e905]: Urgency 82
+                  - cell "—" [ref=f33e906]
+                  - cell "Unassigned" [ref=f33e907]
+                  - cell "No case opened" [ref=f33e908]
+                  - cell "Not yet compared with a prior run." [ref=f33e909]
+                - row [ref=f33e910]:
+                  - cell [ref=f33e911]:
+                    - checkbox "Select Malhotra Capital Equipment and Services Aarav 00021 Private Limited" [ref=f33e912]
+                  - cell [ref=f33e913]:
+                    - link "Malhotra Capital Equipment and Services Aarav 00021 Private Limited" [ref=f33e914] [cursor=pointer]:
+                      - /url: /borrowers/B-000021
+                  - cell "₹196.71" [ref=f33e915]
+                  - 'cell "Malhotra Capital Equipment and Services Aarav 00021 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e916]':
+                    - text: Malhotra Capital Equipment and Services Aarav 00021 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e917]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e918] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1cef-7389-a697-c586cc50a535
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e919]:
+                    - text: 40%
+                    - generic [ref=f33e920]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e921]:
+                    - generic [ref=f33e922]: 30d 39%
+                    - generic [ref=f33e923]: 60d 40%
+                    - generic [ref=f33e924]: 90d 40%
+                  - cell [ref=f33e925]:
+                    - generic "Malhotra Capital Equipment and Services Aarav 00021 Private Limited stored risk trajectory" [ref=f33e926]:
+                      - img "Malhotra Capital Equipment and Services Aarav 00021 Private Limited stored risk trajectory" [ref=f33e927]
+                  - cell "Amber Urgency 79" [ref=f33e929]:
+                    - generic "Amber" [ref=f33e930]
+                    - generic [ref=f33e931]: Urgency 79
+                  - cell "—" [ref=f33e932]
+                  - cell "Unassigned" [ref=f33e933]
+                  - cell "No case opened" [ref=f33e934]
+                  - cell "Not yet compared with a prior run." [ref=f33e935]
+                - row [ref=f33e936]:
+                  - cell [ref=f33e937]:
+                    - checkbox "Select Menon Precision Materials and Components Rohan 00031 Private Limited" [ref=f33e938]
+                  - cell [ref=f33e939]:
+                    - link "Menon Precision Materials and Components Rohan 00031 Private Limited" [ref=f33e940] [cursor=pointer]:
+                      - /url: /borrowers/B-000031
+                  - cell "₹186.48" [ref=f33e941]
+                  - 'cell "Menon Precision Materials and Components Rohan 00031 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e942]':
+                    - text: Menon Precision Materials and Components Rohan 00031 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e943]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e944] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-226b-78d2-abe9-d84ccf00468c
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e945]:
+                    - text: 40%
+                    - generic [ref=f33e946]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e947]:
+                    - generic [ref=f33e948]: 30d 39%
+                    - generic [ref=f33e949]: 60d 40%
+                    - generic [ref=f33e950]: 90d 40%
+                  - cell [ref=f33e951]:
+                    - generic "Menon Precision Materials and Components Rohan 00031 Private Limited stored risk trajectory" [ref=f33e952]:
+                      - img "Menon Precision Materials and Components Rohan 00031 Private Limited stored risk trajectory" [ref=f33e953]
+                  - cell "Watch Urgency 74" [ref=f33e955]:
+                    - generic "Watch" [ref=f33e956]
+                    - generic [ref=f33e957]: Urgency 74
+                  - cell "—" [ref=f33e958]
+                  - cell "Unassigned" [ref=f33e959]
+                  - cell "No case opened" [ref=f33e960]
+                  - cell "Not yet compared with a prior run." [ref=f33e961]
+                - row [ref=f33e962]:
+                  - cell [ref=f33e963]:
+                    - checkbox "Select Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f33e964]
+                  - cell [ref=f33e965]:
+                    - link "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited" [ref=f33e966] [cursor=pointer]:
+                      - /url: /borrowers/B-000017
+                  - cell "₹144.09" [ref=f33e967]
+                  - 'cell "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e968]':
+                    - text: Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e969]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e970] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1b09-7246-898e-52701b4e4cb9
+                      - text: Why?
+                  - cell "49% Confidence 100%" [ref=f33e971]:
+                    - text: 49%
+                    - generic [ref=f33e972]: Confidence 100%
+                  - cell "30d 39% 60d 44% 90d 49%" [ref=f33e973]:
+                    - generic [ref=f33e974]: 30d 39%
+                    - generic [ref=f33e975]: 60d 44%
+                    - generic [ref=f33e976]: 90d 49%
+                  - cell [ref=f33e977]:
+                    - generic "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited stored risk trajectory" [ref=f33e978]:
+                      - img "Menon Renewable Infrastructure Projects Saanvi 00017 Private Limited stored risk trajectory" [ref=f33e979]
+                  - cell "Amber Urgency 71" [ref=f33e981]:
+                    - generic "Amber" [ref=f33e982]
+                    - generic [ref=f33e983]: Urgency 71
+                  - cell "—" [ref=f33e984]
+                  - cell "Unassigned" [ref=f33e985]
+                  - cell "No case opened" [ref=f33e986]
+                  - cell "Not yet compared with a prior run." [ref=f33e987]
+                - row [ref=f33e988]:
+                  - cell [ref=f33e989]:
+                    - checkbox "Select Subramanian Precision Materials and Components Saanvi 00019 Private Limited" [ref=f33e990]
+                  - cell [ref=f33e991]:
+                    - link "Subramanian Precision Materials and Components Saanvi 00019 Private Limited" [ref=f33e992] [cursor=pointer]:
+                      - /url: /borrowers/B-000019
+                  - cell "₹163.16" [ref=f33e993]
+                  - 'cell "Subramanian Precision Materials and Components Saanvi 00019 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e994]':
+                    - text: Subramanian Precision Materials and Components Saanvi 00019 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e995]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e996] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1bf7-71f4-a591-59e907f9d2d1
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e997]:
+                    - text: 40%
+                    - generic [ref=f33e998]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e999]:
+                    - generic [ref=f33e1000]: 30d 39%
+                    - generic [ref=f33e1001]: 60d 40%
+                    - generic [ref=f33e1002]: 90d 40%
+                  - cell [ref=f33e1003]:
+                    - generic "Subramanian Precision Materials and Components Saanvi 00019 Private Limited stored risk trajectory" [ref=f33e1004]:
+                      - img "Subramanian Precision Materials and Components Saanvi 00019 Private Limited stored risk trajectory" [ref=f33e1005]
+                  - cell "Amber Urgency 66" [ref=f33e1007]:
+                    - generic "Amber" [ref=f33e1008]
+                    - generic [ref=f33e1009]: Urgency 66
+                  - cell "—" [ref=f33e1010]
+                  - cell "Unassigned" [ref=f33e1011]
+                  - cell "No case opened" [ref=f33e1012]
+                  - cell "Not yet compared with a prior run." [ref=f33e1013]
+                - row [ref=f33e1014]:
+                  - cell [ref=f33e1015]:
+                    - checkbox "Select Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited" [ref=f33e1016]
+                  - cell [ref=f33e1017]:
+                    - link "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited" [ref=f33e1018] [cursor=pointer]:
+                      - /url: /borrowers/B-000033
+                  - cell "₹153.29" [ref=f33e1019]
+                  - 'cell "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited liq covenant ≥ 1.2x Driver: distance Why this borrower is ranked" [ref=f33e1020]':
+                    - text: Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited liq covenant ≥ 1.2x
+                    - generic [ref=f33e1021]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e1022] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-2369-7b92-af10-1950833d5482
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e1023]:
+                    - text: 40%
+                    - generic [ref=f33e1024]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e1025]:
+                    - generic [ref=f33e1026]: 30d 39%
+                    - generic [ref=f33e1027]: 60d 40%
+                    - generic [ref=f33e1028]: 90d 40%
+                  - cell [ref=f33e1029]:
+                    - generic "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited stored risk trajectory" [ref=f33e1030]:
+                      - img "Malhotra Commercial Infrastructure Solutions Aditi 00033 Private Limited stored risk trajectory" [ref=f33e1031]
+                  - cell "Watch Urgency 61" [ref=f33e1033]:
+                    - generic "Watch" [ref=f33e1034]
+                    - generic [ref=f33e1035]: Urgency 61
+                  - cell "—" [ref=f33e1036]
+                  - cell "Unassigned" [ref=f33e1037]
+                  - cell "No case opened" [ref=f33e1038]
+                  - cell "Not yet compared with a prior run." [ref=f33e1039]
+                - row [ref=f33e1040]:
+                  - cell [ref=f33e1041]:
+                    - checkbox "Select Nair Integrated Manufacturing Systems Rohan 00016 Private Limited" [ref=f33e1042]
+                  - cell [ref=f33e1043]:
+                    - link "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited" [ref=f33e1044] [cursor=pointer]:
+                      - /url: /borrowers/B-000016
+                  - cell "₹95.59" [ref=f33e1045]
+                  - 'cell "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e1046]':
+                    - text: Nair Integrated Manufacturing Systems Rohan 00016 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e1047]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e1048] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1a8d-716a-96ff-428fdc24bb81
+                      - text: Why?
+                  - cell "49% Confidence 100%" [ref=f33e1049]:
+                    - text: 49%
+                    - generic [ref=f33e1050]: Confidence 100%
+                  - cell "30d 39% 60d 44% 90d 49%" [ref=f33e1051]:
+                    - generic [ref=f33e1052]: 30d 39%
+                    - generic [ref=f33e1053]: 60d 44%
+                    - generic [ref=f33e1054]: 90d 49%
+                  - cell [ref=f33e1055]:
+                    - generic "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited stored risk trajectory" [ref=f33e1056]:
+                      - img "Nair Integrated Manufacturing Systems Rohan 00016 Private Limited stored risk trajectory" [ref=f33e1057]
+                  - cell "Amber Urgency 47" [ref=f33e1059]:
+                    - generic "Amber" [ref=f33e1060]
+                    - generic [ref=f33e1061]: Urgency 47
+                  - cell "—" [ref=f33e1062]
+                  - cell "Unassigned" [ref=f33e1063]
+                  - cell "No case opened" [ref=f33e1064]
+                  - cell "Not yet compared with a prior run." [ref=f33e1065]
+                - row [ref=f33e1066]:
+                  - cell [ref=f33e1067]:
+                    - checkbox "Select Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited" [ref=f33e1068]
+                  - cell [ref=f33e1069]:
+                    - link "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited" [ref=f33e1070] [cursor=pointer]:
+                      - /url: /borrowers/B-000024
+                  - cell "₹102.58" [ref=f33e1071]
+                  - 'cell "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e1072]':
+                    - text: Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e1073]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e1074] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1e5c-7b32-84d3-201d56e10f8f
+                      - text: Why?
+                  - cell "40% Confidence 100%" [ref=f33e1075]:
+                    - text: 40%
+                    - generic [ref=f33e1076]: Confidence 100%
+                  - cell "30d 39% 60d 40% 90d 40%" [ref=f33e1077]:
+                    - generic [ref=f33e1078]: 30d 39%
+                    - generic [ref=f33e1079]: 60d 40%
+                    - generic [ref=f33e1080]: 90d 40%
+                  - cell [ref=f33e1081]:
+                    - generic "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited stored risk trajectory" [ref=f33e1082]:
+                      - img "Subramanian Commercial Infrastructure Solutions Rohan 00024 Private Limited stored risk trajectory" [ref=f33e1083]
+                  - cell "Amber Urgency 41" [ref=f33e1085]:
+                    - generic "Amber" [ref=f33e1086]
+                    - generic [ref=f33e1087]: Urgency 41
+                  - cell "—" [ref=f33e1088]
+                  - cell "Unassigned" [ref=f33e1089]
+                  - cell "No case opened" [ref=f33e1090]
+                  - cell "Not yet compared with a prior run." [ref=f33e1091]
+                - row [ref=f33e1092]:
+                  - cell [ref=f33e1093]:
+                    - checkbox "Select Iyer National Supply Chain Services Ishaan 00018 Private Limited" [ref=f33e1094]
+                  - cell [ref=f33e1095]:
+                    - link "Iyer National Supply Chain Services Ishaan 00018 Private Limited" [ref=f33e1096] [cursor=pointer]:
+                      - /url: /borrowers/B-000018
+                  - cell "₹53.54" [ref=f33e1097]
+                  - 'cell "Iyer National Supply Chain Services Ishaan 00018 Private Limited lev covenant ≤ 3x Driver: distance Why this borrower is ranked" [ref=f33e1098]':
+                    - text: Iyer National Supply Chain Services Ishaan 00018 Private Limited lev covenant ≤ 3x
+                    - generic [ref=f33e1099]: "Driver: distance"
+                    - link "Why this borrower is ranked" [ref=f33e1100] [cursor=pointer]:
+                      - /url: /why/forecast/01a05bb1-1b84-7dd4-8b6d-0cbcc5c5d972
+                      - text: Why?
+                  - cell "49% Confidence 100%" [ref=f33e1101]:
+                    - text: 49%
+                    - generic [ref=f33e1102]: Confidence 100%
+                  - cell "30d 39% 60d 44% 90d 49%" [ref=f33e1103]:
+                    - generic [ref=f33e1104]: 30d 39%
+                    - generic [ref=f33e1105]: 60d 44%
+                    - generic [ref=f33e1106]: 90d 49%
+                  - cell [ref=f33e1107]:
+                    - generic "Iyer National Supply Chain Services Ishaan 00018 Private Limited stored risk trajectory" [ref=f33e1108]:
+                      - img "Iyer National Supply Chain Services Ishaan 00018 Private Limited stored risk trajectory" [ref=f33e1109]
+                  - cell "Amber Urgency 26" [ref=f33e1111]:
+                    - generic "Amber" [ref=f33e1112]
+                    - generic [ref=f33e1113]: Urgency 26
+                  - cell "—" [ref=f33e1114]
+                  - cell "Unassigned" [ref=f33e1115]
+                  - cell "No case opened" [ref=f33e1116]
+                  - cell "Not yet compared with a prior run." [ref=f33e1117]
+            - generic [ref=f33e1118]:
+              - text: Last updated
+              - time [ref=f33e1119]: just now

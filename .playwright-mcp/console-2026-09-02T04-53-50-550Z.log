@@ -1,0 +1,4 @@
+[  235690ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDJUMDE6MDA6MTguMjYwMjg5KzAwOjAwIn0uJMeW0lMSI7Wc00TsK503W3NIj43uAJ1K4ntSxlp0AKM&context=%2F:0
+[  235938ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  235942ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  235942ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/?band=&sma_band=&case_state=&signal_family=:0

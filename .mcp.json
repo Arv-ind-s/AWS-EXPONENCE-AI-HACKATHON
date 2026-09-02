@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["-y", "@playwright/mcp@latest", "--browser", "chromium"],
+      "env": {
+        "NODE_EXTRA_CA_CERTS": "C:\\Users\\GenAICHNSIRUSR35\\.certs\\corp-ca.pem"
+      }
+    }
+  }
+}

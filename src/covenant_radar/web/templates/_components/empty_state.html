@@ -1,0 +1,4 @@
+{% macro empty_state(state_id, title, message, action_label="", action_href="") -%}
+  {% set state_title = title %}{% set state_message = message %}{% set state_action_label = action_label %}{% set state_action_href = action_href %}
+  {% include "_states/empty.html" %}
+{%- endmacro %}

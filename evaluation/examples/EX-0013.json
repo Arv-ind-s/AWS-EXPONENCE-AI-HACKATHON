@@ -1,0 +1,40 @@
+{
+  "id": "EX-0013",
+  "kind": "boundary",
+  "title": "A breached covenant with a configured cure period opens a cure window",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "breach_cure_open"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max",
+      "cure_days": 30
+    },
+    "ratio": {
+      "computable": true,
+      "value": "4.50"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "breach_cure_open",
+    "headroom_pct": "-12.500",
+    "threshold_used": "4.00",
+    "cure_ends_on": "2026-04-30"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "4.50 >= 4.00 breaches the max-direction covenant. cure_days=30 is configured and the test date is known, so the verdict is breach_cure_open with cure_ends_on = 2026-03-31 + 30 days = 2026-04-30, rather than a bare breach."
+}

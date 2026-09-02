@@ -1,0 +1,32 @@
+{
+  "id": "EX-0006",
+  "kind": "engine",
+  "title": "Net debt / EBITDA refuses closed on a negative EBITDA denominator",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "not_computable",
+    "sign_meaningless_denominator"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "net_debt_to_ebitda",
+    "lines": {
+      "total_debt": "50",
+      "cash_and_bank": "10",
+      "ebitda": "-5"
+    }
+  },
+  "expected": {
+    "computable": false,
+    "reason": "sign_meaningless_denominator"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "net_debt_to_ebitda = (total_debt - cash_and_bank) / ebitda. ebitda is negative (-5), and a negative denominator makes the ratio's sign meaningless as a leverage multiple, so the formula refuses with SIGN_MEANINGLESS_DENOMINATOR rather than returning a negative multiple that would read as deleveraged."
+}

@@ -1,0 +1,148 @@
+- generic [active] [ref=f7e1]:
+  - link "Skip to content" [ref=f7e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f7e3]:
+    - complementary "Workspace navigation" [ref=f7e4]:
+      - link "Covenant Radar" [ref=f7e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f7e13]:
+          - strong [ref=f7e14]: Covenant
+          - generic [ref=f7e15]: Radar
+      - navigation "Primary navigation" [ref=f7e16]:
+        - region [ref=f7e17]:
+          - heading "Monitor" [level=2] [ref=f7e18]
+          - link "Portfolio queue" [ref=f7e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f7e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f7e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f7e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f7e31]: "0"
+          - link "Search" [ref=f7e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f7e37]:
+          - heading "Portfolio data" [level=2] [ref=f7e38]
+          - link "Borrowers" [ref=f7e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f7e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f7e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f7e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f7e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f7e61]:
+          - heading "Workflows" [level=2] [ref=f7e62]
+          - link "Intake" [ref=f7e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f7e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f7e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f7e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f7e79]:
+          - heading "Administration" [level=2] [ref=f7e80]
+          - link "Action catalogue" [ref=f7e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f7e86] [cursor=pointer]
+    - generic [ref=f7e90]:
+      - banner [ref=f7e91]:
+        - generic [ref=f7e93]:
+          - generic [ref=f7e94]: Workspace
+          - generic [ref=f7e97]: Facilities
+        - search [ref=f7e98]:
+          - generic [ref=f7e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f7e100]
+          - generic: /
+        - generic [ref=f7e101]:
+          - button "Live activity" [ref=f7e102]:
+            - generic [ref=f7e104]: Live
+          - button "Use dark theme" [ref=f7e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f7e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f7e112] [cursor=pointer]
+      - main [ref=f7e116]:
+        - generic [ref=f7e117]:
+          - generic [ref=f7e118]:
+            - paragraph [ref=f7e119]: Decision workspace
+            - heading "Facility master data" [level=1] [ref=f7e120]
+          - link "Book insights" [ref=f7e122] [cursor=pointer]:
+            - /url: /facilities/insights
+        - generic [ref=f7e123]:
+          - generic [ref=f7e124]:
+            - generic [ref=f7e125]:
+              - generic [ref=f7e126]:
+                - generic [ref=f7e127]: Search facilities
+                - searchbox "Search facilities" [ref=f7e128]: F-000001
+              - generic [ref=f7e129]:
+                - generic [ref=f7e130]: Facility type
+                - combobox "Facility type" [ref=f7e131]:
+                  - option "All facility types" [selected]
+                  - option "Cash credit"
+                  - option "Term loan"
+              - generic [ref=f7e132]:
+                - generic [ref=f7e133]: Currency
+                - combobox "Currency" [ref=f7e134]:
+                  - option "All currencies" [selected]
+                  - option "INR"
+              - generic [ref=f7e135]:
+                - generic [ref=f7e136]: Version status
+                - combobox "Version status" [ref=f7e137]:
+                  - option "Current versions"
+                  - option "Superseded versions"
+                  - option "All versions" [selected]
+            - generic [ref=f7e138]:
+              - button "Apply filters" [ref=f7e139] [cursor=pointer]
+              - link "Clear" [ref=f7e140] [cursor=pointer]:
+                - /url: /facilities
+          - generic [ref=f7e142]:
+            - paragraph [ref=f7e143]:
+              - generic [ref=f7e144]: Showing 1–2 of 2 facilities
+              - generic [ref=f7e145]: Amounts in ₹ crore
+            - table [ref=f7e147]:
+              - caption [ref=f7e148]: Facility master data
+              - rowgroup [ref=f7e149]:
+                - row [ref=f7e150]:
+                  - columnheader "Reference" [ref=f7e151]
+                  - columnheader "Borrower" [ref=f7e152]
+                  - columnheader "Facility type" [ref=f7e153]
+                  - columnheader "Sanctioned limit" [ref=f7e154]
+                  - columnheader "Outstanding" [ref=f7e155]
+                  - columnheader "Utilisation" [ref=f7e156]
+                  - columnheader "Maturity date" [ref=f7e157]
+                  - columnheader "Version status" [ref=f7e158]
+              - rowgroup [ref=f7e159]:
+                - row [ref=f7e160]:
+                  - cell [ref=f7e161]:
+                    - link "F-000001-01" [ref=f7e162] [cursor=pointer]:
+                      - /url: /facilities/F-000001-01
+                  - cell "B-000001 Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f7e163]:
+                    - link "B-000001" [ref=f7e164] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                    - generic [ref=f7e165]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                  - cell "Cash credit" [ref=f7e166]
+                  - cell "148.83" [ref=f7e167]
+                  - cell "103.53" [ref=f7e168]
+                  - cell "69.6%" [ref=f7e169]
+                  - cell "31 Mar 2025 matured 520 days ago" [ref=f7e171]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f7e172]: matured 520 days ago
+                  - cell "Current" [ref=f7e173]
+                - row [ref=f7e175]:
+                  - cell [ref=f7e176]:
+                    - link "F-000001-02" [ref=f7e177] [cursor=pointer]:
+                      - /url: /facilities/F-000001-02
+                  - cell "B-000001 Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f7e178]:
+                    - link "B-000001" [ref=f7e179] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                    - generic [ref=f7e180]: Subramanian Precision Materials and Components Kavya 00001 Private Limited
+                  - cell "Term loan" [ref=f7e181]
+                  - cell "79.13" [ref=f7e182]
+                  - cell "55.39" [ref=f7e183]
+                  - cell "70.0%" [ref=f7e184]
+                  - cell "31 Mar 2026 matured 155 days ago" [ref=f7e186]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f7e187]: matured 155 days ago
+                  - cell "Current" [ref=f7e188]

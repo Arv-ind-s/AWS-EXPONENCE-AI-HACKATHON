@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>EWS/RFA evidence pack</title>
+    <link rel="stylesheet" href="static/css/tokens.css">
+    <style>
+      @page {
+        size: A4;
+        margin: 18mm 16mm 18mm;
+
+        @bottom-left {
+          color: var(--ink-muted);
+          content: "Advisory only; contains no fraud determination.";
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+        }
+
+        @bottom-right {
+          color: var(--ink-muted);
+          content: "Page " counter(page) " of " counter(pages);
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        color: var(--ink);
+        font-family: var(--font-ui);
+        font-size: 10pt;
+        line-height: 1.45;
+      }
+
+      .letterhead {
+        border-bottom: var(--border);
+        margin-bottom: 14pt;
+        padding-bottom: 8pt;
+      }
+
+      .letterhead__name {
+        font-family: var(--font-head);
+        font-size: 15pt;
+        font-weight: 700;
+      }
+
+      .letterhead__detail,
+      .meta__label,
+      .state,
+      .gap__reason {
+        color: var(--ink-muted);
+        font-size: 8pt;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-head);
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 20pt;
+        margin: 0 0 6pt;
+      }
+
+      h2 {
+        border-bottom: var(--border);
+        font-size: 13pt;
+        margin: 18pt 0 7pt;
+        padding-bottom: 3pt;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 11pt;
+        margin: 10pt 0 4pt;
+        page-break-after: avoid;
+      }
+
+      p {
+        margin: 0 0 8pt;
+        white-space: pre-wrap;
+      }
+
+      .notices {
+        background: var(--surface-subtle);
+        border: var(--border);
+        margin: 0 0 14pt;
+        padding: 8pt 10pt;
+      }
+
+      .notices p {
+        font-size: 9pt;
+        margin: 0 0 4pt;
+      }
+
+      .notices p:last-child {
+        margin-bottom: 0;
+      }
+
+      .meta,
+      .figures,
+      .collection {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .meta {
+        margin-bottom: 10pt;
+      }
+
+      .meta td,
+      .collection td {
+        border-bottom: var(--border);
+        padding: 5pt 6pt;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      .meta__label {
+        width: 32%;
+      }
+
+      .collection td:first-child {
+        width: 30%;
+        color: var(--ink-muted);
+      }
+
+      .collection td:last-child {
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .collection-block {
+        page-break-inside: avoid;
+      }
+
+      .empty-note {
+        color: var(--ink-muted);
+        font-size: 9pt;
+        font-style: italic;
+      }
+
+      .gaps {
+        border: 1pt solid var(--ink-muted);
+        margin: 0 0 14pt;
+        padding: 8pt 10pt;
+      }
+
+      .gaps h2 {
+        border: none;
+        font-size: 11pt;
+        margin: 0 0 6pt;
+        padding: 0;
+      }
+
+      .gap {
+        margin: 0 0 4pt;
+      }
+
+      .gap__section {
+        font-weight: 700;
+      }
+
+      .memo-marker {
+        background: var(--surface-subtle);
+        border-left: 3pt solid var(--ink-muted);
+        font-size: 8pt;
+        margin: 0 0 8pt;
+        padding: 4pt 8pt;
+      }
+
+      .prose {
+        page-break-inside: avoid;
+      }
+
+      .advisory {
+        border-top: var(--border);
+        color: var(--ink-muted);
+        font-size: 8pt;
+        margin-top: 16pt;
+        padding-top: 8pt;
+      }
+
+      .advisory p {
+        margin: 0 0 4pt;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="letterhead">
+      <div class="letterhead__name">Covenant Radar</div>
+      <div class="letterhead__detail">EWS / RFA evidence pack</div>
+    </header>
+
+    <h1>EWS/RFA evidence pack</h1>
+
+    <div class="notices">
+      <p>{{ advisory_statement }}</p>
+      <p>{{ no_fraud_determination_statement }}</p>
+    </div>
+
+    <table class="meta" aria-label="Pack provenance">
+      <tbody>
+        {% for label, value in metadata %}
+        <tr>
+          <td class="meta__label">{{ label }}</td>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% if gaps %}
+    <section class="gaps" aria-label="Sections with no recorded data">
+      <h2>Gaps in this pack</h2>
+      {% for gap in gaps %}
+      <p class="gap">
+        <span class="gap__section">{{ gap.section }}</span> (as of {{ gap.as_of }}) —
+        <span class="gap__reason">{{ gap.reason }}</span>
+      </p>
+      {% endfor %}
+    </section>
+    {% endif %}
+
+    <h2>Exposure and facility summary</h2>
+    <table class="meta" aria-label="Exposure summary">
+      <tbody>
+        {% for label, value in exposure_meta %}
+        <tr>
+          <td class="meta__label">{{ label }}</td>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    {% for collection in collections %}
+    <section class="collection-block">
+      <h2>{{ collection.title }}</h2>
+      {% if collection.entries %}
+      {% for entry in collection.entries %}
+      <h3>{{ collection.title }} {{ loop.index }}</h3>
+      <table class="collection" aria-label="{{ collection.title }} {{ loop.index }}">
+        <tbody>
+          {% for field_label, field_value in entry %}
+          <tr><td>{{ field_label }}</td><td>{{ field_value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% endfor %}
+      {% else %}
+      <p class="empty-note">No {{ collection.title.lower() }} are recorded — see the gap noted above.</p>
+      {% endif %}
+    </section>
+    {% endfor %}
+
+    <section class="collection-block">
+      <h2>Latest memo</h2>
+      {% if memo_is_drafted %}
+      <div class="memo-marker">
+        Model-drafted connecting prose (template {{ memo_template_version }}). This section was
+        generated by the product and has not itself been reviewed by the committee.
+      </div>
+      {% for paragraph in memo_paragraphs %}
+      <p class="prose">{{ paragraph }}</p>
+      {% endfor %}
+      {% else %}
+      <p class="empty-note">No memo has been generated for this borrower.</p>
+      {% endif %}
+    </section>
+
+    <h2>Audit trail summary</h2>
+    <table class="meta" aria-label="Audit trail summary">
+      <tbody>
+        {% for label, value in audit_meta %}
+        <tr>
+          <td class="meta__label">{{ label }}</td>
+          <td>{{ value }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="advisory">
+      <p>{{ advisory_statement }}</p>
+      <p>{{ no_fraud_determination_statement }}</p>
+    </div>
+  </body>
+</html>

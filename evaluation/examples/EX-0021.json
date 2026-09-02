@@ -1,0 +1,34 @@
+{
+  "id": "EX-0021",
+  "kind": "forecast_dating",
+  "title": "A deteriorating-cohort borrower's forecast crossing is dated within the labelled window",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "forecast_dating",
+    "deteriorating"
+  ],
+  "references_reference_portfolio": true,
+  "input": {
+    "reference_dataset": {
+      "seed": 17,
+      "borrower_count": 24,
+      "facility_count": 57,
+      "quarter_count": 4
+    },
+    "cohort": "deteriorating",
+    "borrower_reference": "B-000001"
+  },
+  "expected": {
+    "crossing_within_days_of_label": 10
+  },
+  "pass_mark": {
+    "type": "date_window",
+    "window_days": 10
+  },
+  "note": "Borrower B-000001 is authored into the deteriorating cohort of the reference portfolio (seed 17, 24 borrowers); its labelled utilisation-threshold crossing date is derived from its own generated signal trajectory by evaluation.reference_portfolio.labels.derive_labels, never typed into this file. spec §17.7's forecast-dating pass mark is a first crossing dated within +/-10 days of that label -- the harness resolves the label at run time and this example survives a full portfolio regeneration untouched."
+}

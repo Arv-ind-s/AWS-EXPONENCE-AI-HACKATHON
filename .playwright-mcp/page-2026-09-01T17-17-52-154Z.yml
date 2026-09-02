@@ -1,0 +1,154 @@
+- generic [active] [ref=f36e1]:
+  - link "Skip to content" [ref=f36e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f36e3]:
+    - complementary "Workspace navigation" [ref=f36e4]:
+      - link "Covenant Radar" [ref=f36e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f36e13]:
+          - strong [ref=f36e14]: Covenant
+          - generic [ref=f36e15]: Radar
+      - navigation "Primary navigation" [ref=f36e16]:
+        - region [ref=f36e17]:
+          - heading "Monitor" [level=2] [ref=f36e18]
+          - link "Portfolio queue" [ref=f36e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f36e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f36e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f36e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f36e31]: "0"
+          - link "Search" [ref=f36e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f36e37]:
+          - heading "Portfolio data" [level=2] [ref=f36e38]
+          - link "Borrowers" [ref=f36e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f36e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f36e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f36e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f36e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f36e61]:
+          - heading "Workflows" [level=2] [ref=f36e62]
+          - link "Intake" [ref=f36e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f36e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f36e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f36e75] [cursor=pointer]:
+            - /url: /governance
+      - button "Collapse sidebar" [expanded] [ref=f36e79] [cursor=pointer]
+    - generic [ref=f36e83]:
+      - banner [ref=f36e84]:
+        - generic [ref=f36e86]:
+          - generic [ref=f36e87]: Workspace
+          - generic [ref=f36e90]: Current view
+        - search [ref=f36e91]:
+          - generic [ref=f36e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f36e93]
+          - generic: /
+        - generic [ref=f36e94]:
+          - button "Use dark theme" [ref=f36e96] [cursor=pointer]
+          - button "Open user menu" [ref=f36e100] [cursor=pointer]
+      - main [ref=f36e104]:
+        - generic [ref=f36e106]:
+          - paragraph [ref=f36e107]: Decision workspace
+          - heading "Intervention simulator" [level=1] [ref=f36e108]
+        - generic [ref=f36e110]:
+          - region [ref=f36e111]:
+            - heading "Forecast" [level=2] [ref=f36e112]
+            - paragraph [ref=f36e113]:
+              - strong [ref=f36e114]: Deshmukh Precision Materials and Components Kavya 00008 Private Limited
+              - generic [ref=f36e115]: B-000008
+              - generic [ref=f36e116]: F-000008-01
+              - generic [ref=f36e117]: D08LEV · Leverage ratio
+            - generic [ref=f36e118]:
+              - generic [ref=f36e119]:
+                - term [ref=f36e120]: Covenant class
+                - definition [ref=f36e121]: leverage
+              - generic [ref=f36e122]:
+                - term [ref=f36e123]: Threshold
+                - definition [ref=f36e124]: 3x
+              - generic [ref=f36e125]:
+                - term [ref=f36e126]: Direction
+                - definition [ref=f36e127]: max
+              - generic [ref=f36e128]:
+                - term [ref=f36e129]: Horizon
+                - definition [ref=f36e130]: 30 days
+              - generic [ref=f36e131]:
+                - term [ref=f36e132]: Probability
+                - definition [ref=f36e133]: 99.00%
+              - generic [ref=f36e134]:
+                - term [ref=f36e135]: Confidence
+                - definition [ref=f36e136]: 100.00%
+              - generic [ref=f36e137]:
+                - term [ref=f36e138]: Crossing date
+                - definition [ref=f36e139]: 01 Oct 2026
+              - generic [ref=f36e140]:
+                - term [ref=f36e141]: As of
+                - definition [ref=f36e142]: 01 Sep 2026
+          - region [ref=f36e143]:
+            - generic [ref=f36e145]:
+              - heading "Applicable interventions" [level=2] [ref=f36e146]
+              - paragraph [ref=f36e147]: Select up to four options. Every assumption is shown before you run them.
+            - generic [ref=f36e148]:
+              - generic [ref=f36e149]:
+                - generic [ref=f36e150]: Parameters
+                - textbox "Parameters" [ref=f36e151]: "{\"horizon_days\":30,\"weights\":{\"distance\":\"0.5\",\"max_probability\":\"0.99\",\"pressure\":\"0.2\",\"velocity\":\"0.3\"}}"
+              - generic [ref=f36e152]:
+                - article [ref=f36e153]:
+                  - generic [ref=f36e154] [cursor=pointer]:
+                    - checkbox "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f36e155]
+                    - generic [ref=f36e156]: CREDIT-REDUCE-EXPOSURE
+                    - generic [ref=f36e157]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                  - generic [ref=f36e158]:
+                    - generic [ref=f36e159]:
+                      - term [ref=f36e160]: Effect model
+                      - definition [ref=f36e161]: level_shift
+                    - generic [ref=f36e162]:
+                      - term [ref=f36e163]: Role
+                      - definition [ref=f36e164]: credit
+                    - generic [ref=f36e165]:
+                      - term [ref=f36e166]: Requires approval
+                      - definition [ref=f36e167]: "Yes"
+                  - region [ref=f36e168]:
+                    - heading "Assumptions for this option" [level=3] [ref=f36e169]
+                    - heading "Parameters" [level=4] [ref=f36e170]
+                    - list [ref=f36e171]:
+                      - listitem [ref=f36e172]: "amount: -0.10"
+                    - heading "Assumptions" [level=4] [ref=f36e173]
+                    - list [ref=f36e174]:
+                      - listitem [ref=f36e175]: The approved exposure reduction is available immediately.
+                - article [ref=f36e176]:
+                  - generic [ref=f36e177] [cursor=pointer]:
+                    - checkbox "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f36e178]
+                    - generic [ref=f36e179]: RISK-REVIEW-THRESHOLD
+                    - generic [ref=f36e180]: Review the covenant threshold against the executed facility documents.
+                  - generic [ref=f36e181]:
+                    - generic [ref=f36e182]:
+                      - term [ref=f36e183]: Effect model
+                      - definition [ref=f36e184]: threshold_relaxation
+                    - generic [ref=f36e185]:
+                      - term [ref=f36e186]: Role
+                      - definition [ref=f36e187]: risk
+                    - generic [ref=f36e188]:
+                      - term [ref=f36e189]: Requires approval
+                      - definition [ref=f36e190]: "Yes"
+                  - region [ref=f36e191]:
+                    - heading "Assumptions for this option" [level=3] [ref=f36e192]
+                    - heading "Parameters" [level=4] [ref=f36e193]
+                    - list [ref=f36e194]:
+                      - listitem [ref=f36e195]: "amount: 0.10"
+                    - heading "Assumptions" [level=4] [ref=f36e196]
+                    - list [ref=f36e197]:
+                      - listitem [ref=f36e198]: A separately approved contractual amendment changes the threshold.
+              - button "Compare with baseline" [ref=f36e199] [cursor=pointer]
+          - region [ref=f36e201]:
+            - heading "Select an intervention" [level=2] [ref=f36e202]
+            - paragraph [ref=f36e203]: Select an intervention to compare against doing nothing.

@@ -1,0 +1,64 @@
+- generic [active] [ref=f68e1]:
+  - link "Skip to content" [ref=f68e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f68e3]:
+    - complementary "Workspace navigation" [ref=f68e4]:
+      - link "Covenant Radar" [ref=f68e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f68e13]:
+          - strong [ref=f68e14]: Covenant
+          - generic [ref=f68e15]: Radar
+      - navigation "Primary navigation" [ref=f68e16]:
+        - region [ref=f68e17]:
+          - heading "Monitor" [level=2] [ref=f68e18]
+          - link "Portfolio queue" [ref=f68e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f68e23] [cursor=pointer]:
+            - /url: /cases
+          - link "13 unread notifications" [ref=f68e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f68e30]: Notifications (13)
+            - generic [aria-hidden] [ref=f68e31]: "13"
+          - link "Search" [ref=f68e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f68e37]:
+          - heading "Portfolio data" [level=2] [ref=f68e38]
+          - link "Borrowers" [ref=f68e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f68e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f68e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f68e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f68e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f68e61]:
+          - heading "Workflows" [level=2] [ref=f68e62]
+          - link "Document review" [ref=f68e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f68e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f68e71] [cursor=pointer]
+    - generic [ref=f68e75]:
+      - banner [ref=f68e76]:
+        - generic [ref=f68e78]:
+          - generic [ref=f68e79]: Workspace
+          - generic [ref=f68e82]: Current view
+        - search [ref=f68e83]:
+          - generic [ref=f68e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f68e85]
+          - generic: /
+        - generic [ref=f68e86]:
+          - button "Live activity" [ref=f68e87]:
+            - generic [ref=f68e89]: Live
+          - button "Use dark theme" [ref=f68e91] [cursor=pointer]
+          - button "Open user menu" [ref=f68e95] [cursor=pointer]
+      - main [ref=f68e99]:
+        - generic [ref=f68e101]:
+          - paragraph [ref=f68e102]: Decision workspace
+          - heading "This page is not available" [level=1] [ref=f68e103]
+        - region [ref=f68e105]:
+          - paragraph [ref=f68e106]: The address may be out of date or the page may have moved.
+          - link "Return to the portfolio queue" [ref=f68e107] [cursor=pointer]:
+            - /url: /

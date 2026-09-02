@@ -1,0 +1,6 @@
+{% macro verdict_mark(verdict, label="", mark_id="", aria_label="") -%}
+  {% set requested_verdict = verdict|string|lower %}
+  {% set mark_verdict = requested_verdict if requested_verdict in ("passed", "struck", "pending") else "pending" %}
+  {% set mark_label = label or mark_verdict|title %}
+  <span class="verdict-mark verdict-mark--{{ mark_verdict }}" data-verdict="{{ mark_verdict }}"{% if mark_id %} id="{{ mark_id }}"{% endif %} role="img" aria-label="{{ aria_label or mark_label }}"><span class="verdict-mark__glyph" aria-hidden="true">{% if mark_verdict == "passed" %}✓{% elif mark_verdict == "struck" %}×{% else %}–{% endif %}</span><span class="verdict-mark__label">{{ mark_label }}</span></span>
+{%- endmacro %}

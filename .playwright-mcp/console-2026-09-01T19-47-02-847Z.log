@@ -1,0 +1,16 @@
+[  122214ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  122215ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  122215ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  122248ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  122249ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  122249ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications?status=all&template=:0
+[  122275ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyMy03MDE1LWE1YjYtOWYwYWI5YzA0YjBjIiwidCI6IjIwMjYtMDktMDFUMTk6NDc6MDMuMDA1OTk4KzAwOjAwIn0uUteLzeJ4kQxhHNAnJ2g-eSkgkbSUG8En1SPnB48w7C0&context=%2Fnotifications:0
+[  182255ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  182255ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  182255ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  182256ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  182256ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  182256ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications?status=all&template=:0
+[  182518ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyMy03MDE1LWE1YjYtOWYwYWI5YzA0YjBjIiwidCI6IjIwMjYtMDktMDFUMTk6NDc6MDMuMDA1OTk4KzAwOjAwIn0uUteLzeJ4kQxhHNAnJ2g-eSkgkbSUG8En1SPnB48w7C0&context=%2Fnotifications:0
+[  367257ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:8000/notifications/unread-count:0
+[  367259ms] [ERROR] Response Status Error Code 500 from /notifications/unread-count @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0

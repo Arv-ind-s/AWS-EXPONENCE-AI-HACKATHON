@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block page_title %}{{ tr("error.500.title") }} · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}{{ tr("error.500.heading") }}{% endblock %}
+{% block content %}
+  <section class="state state--error" aria-labelledby="error-message">
+    <p id="error-message">{{ tr("error.500.message") }}</p>
+    <p class="provenance-link">{{ tr("error.500.reference", {"reference": support_reference}) }}</p>
+    <a class="button" href="/">{{ tr("error.500.action") }}</a>
+  </section>
+{% endblock %}

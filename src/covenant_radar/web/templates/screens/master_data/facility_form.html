@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set form = form|default({}) %}
+{% set error = error|default("") %}
+{% set error_field = error_field|default("") %}
+{% set action = action|default("") %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.facilities_new }}{% endblock %}
+{% block h1 %}{{ labels.facilities_new }}{% endblock %}
+
+{% block content %}
+  {% if error %}
+    {% call components.panel(title=labels.form_error, panel_id="facility-form-error", state="error", error_title=labels.form_error, error_message=error) %}{% endcall %}
+  {% endif %}
+  <form method="post" action="{{ action }}" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    {{ components.field("reference", labels.facilities_reference, value=form.get("reference", ""), required=true, error=error if error_field == "facility.reference" else "") }}
+    {{ components.field("borrower_id", labels.facilities_borrower, value=form.get("borrower_id", ""), required=true, error=error if error_field == "facility.borrower_id" else "") }}
+    {{ components.field("facility_type", labels.facilities_type, value=form.get("facility_type", ""), required=true) }}
+    {{ components.field("sanctioned_limit", labels.facilities_limit, type="number", value=form.get("sanctioned_limit", ""), required=true) }}
+    {{ components.field("currency", labels.facilities_currency, value=form.get("currency", "INR"), required=true) }}
+    {{ components.field("sanction_date", labels.facilities_sanction_date, type="date", value=form.get("sanction_date", ""), required=true) }}
+    {{ components.field("effective_from", labels.facilities_effective, type="date", value=form.get("effective_from", ""), required=true) }}
+    {{ components.field("maturity_date", labels.facilities_maturity, type="date", value=form.get("maturity_date", "")) }}
+    {{ components.button(labels.facility_save, type="submit") }}
+  </form>
+{% endblock %}

@@ -1,0 +1,35 @@
+<section
+  class="panel case-documents"
+  id="case-documents"
+  data-state="{{ "rest" if view.documents else "empty" }}"
+  aria-labelledby="case-documents-title"
+>
+  <h2 class="panel__title" id="case-documents-title">{{ labels.documents_title }}</h2>
+  {% if view.financial_statements_href %}
+    <p class="case-documents__toolbar"><a class="text-action" href="{{ view.financial_statements_href }}">Financial statements</a></p>
+  {% endif %}
+  {% if view.documents %}
+    {% if view.documents_upload_href %}
+      <p class="case-documents__toolbar">
+        <a class="text-action" href="{{ view.documents_upload_href }}">{{ labels.documents_upload }}</a>
+      </p>
+    {% endif %}
+    <ul class="case-documents__list" aria-label="{{ labels.documents_title }}">
+      {% for document in view.documents %}
+        <li class="case-documents__item">
+          <a class="case-documents__link" href="{{ document.href }}">{{ document.filename }}</a>
+          <span>{{ document.doc_type }}</span>
+          <span>{{ labels.documents_uploaded }} {{ document.uploaded_on|ist_date }}</span>
+          <span>{{ labels.documents_extraction }}: {{ document.extraction_state }}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {% set state_id = "case-documents-empty" %}
+    {% set state_title = labels.documents_title %}
+    {% set state_message = labels.documents_empty %}
+    {% set state_action_label = labels.documents_upload if view.documents_upload_href else "" %}
+    {% set state_action_href = view.documents_upload_href or "" %}
+    {% include "_states/empty.html" %}
+  {% endif %}
+</section>

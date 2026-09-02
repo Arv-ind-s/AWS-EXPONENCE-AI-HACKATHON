@@ -1,0 +1,184 @@
+{#
+  One row of controls that apply as they change, and a chip for every
+  filter currently in force.
+
+  Each chip's link removes exactly that one filter and keeps the rest, so a
+  reader can undo one decision at a time. The submit button is rendered for
+  a browser without JavaScript and hidden once `shell-init.js` marks the
+  document `.js`; the form is a plain GET either way.
+#}
+<form method="get"
+      action="/"
+      class="queue-filters"
+      id="queue-filters"
+      data-filter-form
+      data-submit-on-change
+      data-state="{{ 'active' if active_filters else 'rest' }}"
+      hx-get="/"
+      hx-target="#queue-workspace"
+      hx-swap="outerHTML transition:true"
+      hx-push-url="true">
+  <fieldset class="queue-filters__fields">
+    <legend class="sr-only">{{ labels.filters_legend }}</legend>
+
+    <div class="filter-group">
+      <label for="band-filter">{{ labels.column_band }}</label>
+      <select name="band" id="band-filter">
+        <option value="">All bands</option>
+        <option value="act" {% if filters.band == 'act' %}selected{% endif %}>{{ labels.summary_act }}</option>
+        <option value="amber" {% if filters.band == 'amber' %}selected{% endif %}>{{ labels.summary_amber }}</option>
+        <option value="watch" {% if filters.band == 'watch' %}selected{% endif %}>{{ labels.summary_watch }}</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="sma-band-filter">{{ labels.column_sma_band }}</label>
+      <select name="sma_band" id="sma-band-filter">
+        <option value="">All SMA bands</option>
+        <option value="none" {% if filters.sma_band == 'none' %}selected{% endif %}>None</option>
+        <option value="SMA-0" {% if filters.sma_band == 'SMA-0' %}selected{% endif %}>SMA-0</option>
+        <option value="SMA-1" {% if filters.sma_band == 'SMA-1' %}selected{% endif %}>SMA-1</option>
+        <option value="SMA-2" {% if filters.sma_band == 'SMA-2' %}selected{% endif %}>SMA-2</option>
+        <option value="beyond" {% if filters.sma_band == 'beyond' %}selected{% endif %}>Beyond</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="case-state-filter">{{ labels.column_case_state }}</label>
+      <select name="case_state" id="case-state-filter">
+        <option value="">All case states</option>
+        <option value="none" {% if filters.case_state == 'none' %}selected{% endif %}>{{ labels.no_case }}</option>
+        <option value="open" {% if filters.case_state == 'open' %}selected{% endif %}>Open</option>
+        <option value="in_progress" {% if filters.case_state == 'in_progress' %}selected{% endif %}>In progress</option>
+        <option value="monitoring" {% if filters.case_state == 'monitoring' %}selected{% endif %}>Monitoring</option>
+        <option value="escalated" {% if filters.case_state == 'escalated' %}selected{% endif %}>Escalated</option>
+        <option value="closed" {% if filters.case_state == 'closed' %}selected{% endif %}>Closed</option>
+      </select>
+    </div>
+
+    <div class="filter-group">
+      <label for="signal-family-filter">{{ labels.signal_family }}</label>
+      <select name="signal_family" id="signal-family-filter">
+        <option value="">All signal families</option>
+        <option value="account_activity" {% if filters.signal_family == 'account_activity' %}selected{% endif %}>Account activity</option>
+        <option value="payment" {% if filters.signal_family == 'payment' %}selected{% endif %}>Payment behaviour</option>
+        <option value="utilisation" {% if filters.signal_family == 'utilisation' %}selected{% endif %}>Facility utilisation</option>
+        <option value="treasury" {% if filters.signal_family == 'treasury' %}selected{% endif %}>Treasury flows</option>
+        <option value="concentration" {% if filters.signal_family == 'concentration' %}selected{% endif %}>Concentration exposure</option>
+        <option value="industry" {% if filters.signal_family == 'industry' %}selected{% endif %}>Industry conditions</option>
+        <option value="news" {% if filters.signal_family == 'news' %}selected{% endif %}>News deterioration</option>
+      </select>
+    </div>
+
+    <button class="button queue-filters__submit" type="submit">{{ labels.filters_apply }}</button>
+  </fieldset>
+</form>
+
+<div class="queue-filters__state">
+  <p class="queue-filters__count" role="status">
+    Showing <strong>{{ summary.visible }}</strong> of {{ summary.total }} borrowers
+  </p>
+
+  {% if active_filters %}
+    <ul class="queue-filters__chips" aria-label="{{ labels.filters_active }}">
+      {% for chip in active_filters %}
+        <li>
+          <a class="queue-filter-chip"
+             href="{{ chip.remove_href }}"
+             hx-get="{{ chip.remove_href }}"
+             hx-target="#queue-workspace"
+             hx-swap="outerHTML transition:true"
+             hx-push-url="true"
+             aria-label="{{ labels.filters_remove }}: {{ chip.label }} {{ chip.value_label }}">
+            <span class="queue-filter-chip__label">{{ chip.label }}</span>
+            <span class="queue-filter-chip__value">{{ chip.value_label }}</span>
+            <span class="queue-filter-chip__remove" aria-hidden="true">&times;</span>
+          </a>
+        </li>
+      {% endfor %}
+      <li>
+        <a class="text-action"
+           href="{{ clear_href }}"
+           hx-get="{{ clear_href }}"
+           hx-target="#queue-workspace"
+           hx-swap="outerHTML transition:true"
+           hx-push-url="true">{{ labels.filters_clear }}</a>
+      </li>
+    </ul>
+  {% endif %}
+
+  {% if saved_views %}
+    <nav class="queue-saved-views" aria-label="{{ labels.filters_saved_view }}">
+      <span class="queue-saved-views__label">{{ labels.filters_saved_view }}</span>
+      <ul>
+        {% for view in saved_views %}
+          <li>
+            <a class="queue-saved-view"
+               href="{{ view.href }}"
+               hx-get="{{ view.href }}"
+               hx-target="#queue-workspace"
+               hx-swap="outerHTML transition:true"
+               hx-push-url="true"
+               {% if view.active == 'true' %}aria-current="true"{% endif %}>{{ view.name }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </nav>
+  {% endif %}
+
+  {#
+    Saving a view needs the JSON `/views` API, which has no no-script
+    equivalent, so the whole region is rendered `hidden` and revealed by
+    `app.js`. Nothing on this screen depends on it: a view is only a
+    shortcut back to a URL the reader can already bookmark.
+  #}
+  <div class="queue-save-view" data-save-view-region hidden>
+    <button class="text-action queue-save-view__toggle"
+            type="button"
+            data-save-view
+            aria-expanded="false"
+            aria-controls="save-view-form">{{ labels.filters_save_view }}</button>
+    <form class="queue-save-view__form" id="save-view-form" data-save-view-form hidden>
+      <label class="sr-only" for="save-view-name">{{ labels.filters_save_view_name }}</label>
+      <input type="text"
+             id="save-view-name"
+             name="name"
+             maxlength="100"
+             required
+             autocomplete="off"
+             placeholder="{{ labels.filters_save_view_placeholder }}">
+      <button class="button button--secondary" type="submit">{{ labels.filters_save_view_submit }}</button>
+    </form>
+    <p class="queue-save-view__status" role="status" data-save-view-status></p>
+  </div>
+</div>
+
+<details class="queue-glossary">
+  <summary>{{ labels.glossary_title }}</summary>
+  <dl class="queue-glossary__terms">
+    <div>
+      <dt>Rank</dt>
+      <dd>Position by urgency — escalation probability multiplied by exposure and confidence. Row 1 is the borrower to open first.</dd>
+    </div>
+    <div>
+      <dt>{{ labels.column_band }}</dt>
+      <dd><strong>Act now</strong> is a 70% or higher chance of crossing a covenant threshold at the worst horizon; <strong>Amber</strong> is 40% or higher; <strong>Watch</strong> is everything below, listed but not escalated.</dd>
+    </div>
+    <div>
+      <dt>{{ labels.column_dated_risk }}</dt>
+      <dd>The probability at the worst covenant and horizon, with the date the projection crosses the threshold. Where confidence sits below the floor, the reason is shown instead of a number.</dd>
+    </div>
+    <div>
+      <dt>30 / 60 / 90</dt>
+      <dd>The same probability at each forecast horizon, so a rising line is visible without opening the case file. A dash means the horizon was suppressed for low confidence.</dd>
+    </div>
+    <div>
+      <dt>{{ labels.column_sma_band }}</dt>
+      <dd>Special Mention Account classification carried from the borrower's account conduct, independent of the covenant forecast.</dd>
+    </div>
+    <div>
+      <dt>{{ labels.column_what_changed }}</dt>
+      <dd>What moved since the previous completed run, naming the prior band and the new one. A dash means this borrower has not yet been compared with a prior run.</dd>
+    </div>
+  </dl>
+</details>

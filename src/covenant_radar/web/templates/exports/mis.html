@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Board MIS</title>
+    <link rel="stylesheet" href="static/css/tokens.css">
+    <style>
+      @page {
+        size: A4;
+        margin: 18mm 16mm 18mm;
+
+        @bottom-right {
+          color: var(--ink-muted);
+          content: "Page " counter(page) " of " counter(pages);
+          font-family: Arial, sans-serif;
+          font-size: 8pt;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        color: var(--ink);
+        font-family: var(--font-ui);
+        font-size: 10pt;
+        line-height: 1.45;
+      }
+
+      .letterhead {
+        border-bottom: var(--border);
+        margin-bottom: 14pt;
+        padding-bottom: 8pt;
+      }
+
+      .letterhead__name {
+        font-family: var(--font-head);
+        font-size: 15pt;
+        font-weight: 700;
+      }
+
+      .letterhead__detail {
+        color: var(--ink-muted);
+        font-size: 8pt;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: var(--font-head);
+        line-height: 1.2;
+      }
+
+      h1 {
+        font-size: 20pt;
+        margin: 0 0 6pt;
+      }
+
+      h2 {
+        border-bottom: var(--border);
+        font-size: 13pt;
+        margin: 18pt 0 7pt;
+        padding-bottom: 3pt;
+        page-break-after: avoid;
+      }
+
+      h3 {
+        font-size: 10.5pt;
+        margin: 10pt 0 4pt;
+        page-break-after: avoid;
+      }
+
+      .metric-block {
+        page-break-inside: avoid;
+        margin-bottom: 10pt;
+      }
+
+      table.figures {
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      table.figures td,
+      table.figures th {
+        border-bottom: var(--border);
+        padding: 4pt 6pt;
+        text-align: left;
+      }
+
+      .bar-row {
+        align-items: center;
+        display: flex;
+        gap: 6pt;
+        margin: 2pt 0;
+      }
+
+      .bar-row__label {
+        font-size: 8.5pt;
+        width: 34%;
+      }
+
+      .bar-row__track {
+        background: var(--surface-subtle);
+        flex: 1;
+        height: 8pt;
+      }
+
+      .bar-row__fill {
+        background: var(--ink-muted);
+        height: 100%;
+      }
+
+      .bar-row__value {
+        font-size: 8.5pt;
+        text-align: right;
+        white-space: nowrap;
+        width: 16%;
+      }
+
+      .absent-note {
+        color: var(--ink-muted);
+        font-size: 9pt;
+        font-style: italic;
+      }
+
+      .meta {
+        border-collapse: collapse;
+        margin-bottom: 10pt;
+        width: 100%;
+      }
+
+      .meta td {
+        border-bottom: var(--border);
+        padding: 5pt 6pt;
+        text-align: left;
+      }
+
+      .meta td:first-child {
+        color: var(--ink-muted);
+        width: 32%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="letterhead">
+      <div class="letterhead__name">Covenant Radar</div>
+      <div class="letterhead__detail">Board MIS</div>
+    </header>
+
+    <h1>Board MIS — {{ period_label }}</h1>
+    <p class="letterhead__detail">Portfolio distribution as of {{ distribution_as_of }}.</p>
+
+    {% for section in sections %}
+    <section aria-label="{{ section.title }}">
+      <h2>{{ section.title }}</h2>
+      {% for metric in section.metrics %}
+      <div class="metric-block">
+        <h3>{{ metric.name }}{% if metric.is_present %} ({{ metric.unit }}){% endif %}</h3>
+        {% if metric.is_present %}
+          {% set max_value = metric.points | map(attribute="value") | map("float") | max %}
+          {% for point in metric.points %}
+          <div class="bar-row">
+            <span class="bar-row__label">{{ point.label }}</span>
+            <span class="bar-row__track">
+              <span class="bar-row__fill" style="width: {{ ((point.value | float) / max_value * 100) if max_value else 0 }}%;"></span>
+            </span>
+            <span class="bar-row__value">{{ point.value }} {{ metric.unit }}</span>
+          </div>
+          {% endfor %}
+        {% else %}
+        <p class="absent-note">Not available — {{ metric.absent_reason }}</p>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </section>
+    {% endfor %}
+
+    <section aria-label="Model performance detail">
+      <h2>Model performance detail</h2>
+      <table class="meta" aria-label="Latest evaluation run">
+        <tbody>
+          {% for label, value in model_performance_meta %}
+          <tr><td>{{ label }}</td><td>{{ value }}</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </section>
+
+    <section aria-label="Connector detail">
+      <h2>Connector detail</h2>
+      {% if connector_entries %}
+      <table class="figures" aria-label="Connector reconciliation detail">
+        <thead>
+          <tr>
+            <th>Connector</th>
+            <th>Type</th>
+            <th>Status</th>
+            <th>Latest run</th>
+            <th>Records</th>
+            <th>Rejects</th>
+            <th>Lag (s)</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for entry in connector_entries %}
+          <tr>
+            <td>{{ entry.name }}</td>
+            <td>{{ entry.connector_type }}</td>
+            <td>{{ entry.is_active }}</td>
+            <td>{{ entry.latest_run_state }}</td>
+            <td>{{ entry.record_count }}</td>
+            <td>{{ entry.reject_count }}</td>
+            <td>{{ entry.lag_seconds }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      {% else %}
+      <p class="absent-note">No connectors are configured.</p>
+      {% endif %}
+    </section>
+  </body>
+</html>

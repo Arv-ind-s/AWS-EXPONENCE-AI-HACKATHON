@@ -1,0 +1,33 @@
+{
+  "id": "EX-0008",
+  "kind": "engine",
+  "title": "Payable days computes exactly, though the definition itself carries no direction",
+  "arms": [
+    "product"
+  ],
+  "status": "disputed",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "computable",
+    "disputed"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "payable_days",
+    "lines": {
+      "payables": "30",
+      "cost_of_goods_sold": "120"
+    }
+  },
+  "expected": {
+    "computable": true,
+    "value": "91.25",
+    "band_breached": false
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "payable_days = payables / cost_of_goods_sold * 365 = 30 / 120 * 365 = 91.25 days, within the plausible band [0, 180]. The arithmetic here is not in dispute -- see disputed_reason for what is.",
+  "disputed_reason": "RatioDefinition('payable_days').direction_hint is None in domain/ratios/definitions.py, i.e. the library takes no position on which side of a payable-days covenant is a breach. Indian sanction letters that covenant payable days always cap it as a maximum (a lengthening payable cycle is the deterioration signal), so this example's hand label is that a bank-authored payable_days covenant should default to direction='max' when intake proposes one. The implementation is right until this is decided by a human: it is a considered 'no opinion' for a value the library also does not itself compare against a threshold, so it is recorded here rather than silently patched."
+}

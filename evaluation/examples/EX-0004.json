@@ -1,0 +1,30 @@
+{
+  "id": "EX-0004",
+  "kind": "engine",
+  "title": "Current ratio refuses closed when current_liabilities is absent from the period",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "not_computable",
+    "missing_line"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "current_ratio",
+    "lines": {
+      "current_assets": "100.00"
+    }
+  },
+  "expected": {
+    "computable": false,
+    "reason": "missing_line"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "current_ratio needs current_assets and current_liabilities. Only current_assets is supplied, so the formula names current_liabilities missing via NotComputableReason.MISSING_LINE rather than raising or guessing a value."
+}

@@ -1,0 +1,49 @@
+[database]
+url = "sqlite:///var/covenant-radar.db"
+pool_size = 5
+max_overflow = 10
+connect_timeout_seconds = 5
+
+[security]
+session_cookie_name = "covenant_radar_session"
+sso_provider = "none"
+
+[documents]
+store = "none"
+ocr_enabled = false
+
+[ai]
+provider = "none"
+
+[notifications]
+smtp_port = 587
+webhooks_enabled = false
+
+[ingestion]
+file_drop_path = "var/inbox"
+poll_interval_seconds = 60
+
+[observability]
+log_level = "INFO"
+metrics_enabled = true
+tracing_enabled = false
+
+[web]
+host = "127.0.0.1"
+port = 8000
+workers = 1
+live_workspace_enabled = true
+
+[forecast]
+horizons = [30, 60, 90]
+distance_weight = 0.50
+velocity_weight = 0.30
+pressure_weight = 0.20
+max_probability = 0.99
+ml_enabled = true
+ml_artifact_path = "var/ml-reference/stage4-gradient_boosted-ff9af19f21f7.pkl"
+# The challenger runs beside the deterministic model and its prediction is
+# recorded on every forecast, but the deterministic probability is what the
+# queue, the band and the case are built from. Promoting it to "champion" also
+# requires an approved model_registration row for forecast.ml_challenger.
+ml_mode = "shadow"

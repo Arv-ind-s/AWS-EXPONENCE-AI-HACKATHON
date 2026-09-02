@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}Sign in · {{ tr("app.name") }}{% endblock %}
+{% block h1 %}Sign in{% endblock %}
+
+{% block content %}
+  <section class="panel auth-panel">
+    {% if error %}
+      <div class="state state--error" role="alert">
+        <p class="state__message">{{ error }}</p>
+      </div>
+    {% endif %}
+    <form method="post" action="/sign-in" autocomplete="on">
+      <input type="hidden" name="next" value="{{ next }}">
+      {{ components.field("username", "Username", value=username, autocomplete="username", required=true) }}
+      {{ components.field("password", "Password", type="password", autocomplete="current-password", required=true, reveal=true) }}
+      {{ components.button("Sign in", type="submit") }}
+    </form>
+  </section>
+{% endblock %}

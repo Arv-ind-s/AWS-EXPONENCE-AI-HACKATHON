@@ -1,0 +1,7 @@
+{% macro skeleton(label="Loading", rows=1, columns=4) -%}
+  {% set safe_rows = rows if rows > 0 else 1 %}{% set safe_columns = columns if columns > 0 else 1 %}
+  <div class="skeleton" role="status" aria-live="polite" aria-label="{{ label }}">
+    {% for _ in range(safe_rows) %}<div class="skeleton-row" aria-hidden="true">{% for _ in range(safe_columns) %}<span class="skeleton-row__cell"></span>{% endfor %}</div>{% endfor %}
+    <span class="sr-only">{{ label }}</span>
+  </div>
+{%- endmacro %}

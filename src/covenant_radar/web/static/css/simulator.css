@@ -1,0 +1,245 @@
+/* The simulator keeps the baseline and assumptions visually adjacent to each option. */
+
+.simulator {
+  display: grid;
+  gap: var(--space-6);
+  min-width: 0;
+}
+
+.simulator__subject,
+.simulator__hint,
+.simulator__memo,
+.simulator__empty-options {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.simulator__subject {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  margin-block-end: var(--space-4);
+  font-family: var(--font-ui);
+}
+
+.simulator__subject span {
+  font-family: var(--font-data);
+  font-size: var(--size-data);
+}
+
+.simulator__facts,
+.simulator-option__facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.simulator__facts div,
+.simulator-option__facts div {
+  min-width: 0;
+}
+
+.simulator__facts dt,
+.simulator-option__facts dt {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator__facts dd,
+.simulator-option__facts dd {
+  margin: 0;
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.simulator__section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-block-end: var(--space-4);
+}
+
+.simulator-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.simulator-form__parameters {
+  display: grid;
+  gap: var(--space-2);
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-form__parameters textarea {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 3rem;
+  padding: var(--space-2);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+  font: var(--size-data) var(--font-data);
+}
+
+.simulator-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: var(--space-4);
+}
+
+.simulator-option {
+  display: grid;
+  align-content: start;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius);
+}
+
+.simulator-option__choice {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-1) var(--space-2);
+  align-items: baseline;
+  cursor: pointer;
+}
+
+.simulator-option__choice input {
+  grid-row: span 2;
+  margin-block-start: 0.2rem;
+}
+
+.simulator-option__code {
+  font-family: var(--font-data);
+  font-weight: var(--weight-bold);
+}
+
+.simulator-option__text {
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-option__assumptions,
+.simulator-table__assumptions {
+  padding-block-start: var(--space-3);
+  border-block-start: var(--border);
+}
+
+.simulator-option__assumptions h3,
+.simulator-option__assumptions h4 {
+  margin: 0 0 var(--space-1);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-option__assumptions h4 {
+  color: var(--ink-muted);
+  font-weight: var(--weight-regular);
+}
+
+.simulator-option__assumptions ul,
+.simulator-table__assumption-list,
+.simulator-table__horizons {
+  margin: 0;
+  padding-inline-start: 1.25rem;
+}
+
+.simulator-option__assumptions li,
+.simulator-table__assumption-list li,
+.simulator-table__horizons li {
+  margin-block-end: var(--space-1);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-table-wrap {
+  overflow-x: auto;
+}
+
+.simulator-table {
+  width: 100%;
+  min-width: 52rem;
+  border-collapse: collapse;
+}
+
+.simulator-table th,
+.simulator-table td {
+  padding: var(--space-3);
+  border-block-end: var(--border);
+  text-align: start;
+  vertical-align: top;
+}
+
+.simulator-table thead th {
+  min-width: 12rem;
+}
+
+.simulator-table thead th:first-child,
+.simulator-table tbody th {
+  width: 8rem;
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+}
+
+.simulator-table__option,
+.simulator-table__status,
+.simulator-table__description,
+.simulator-table__no-effect,
+.simulator-table__assumptions {
+  display: block;
+}
+
+.simulator-table__option {
+  font-family: var(--font-data);
+  font-weight: var(--weight-bold);
+}
+
+.simulator-table__status {
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-table__status--no_effect,
+.simulator-table__no-effect {
+  color: var(--ink-muted);
+}
+
+.simulator-table__description,
+.simulator-table__assumptions,
+.simulator-table__no-effect {
+  margin-block-start: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: var(--size-data);
+}
+
+.simulator-table__assumption-list {
+  margin-block-start: var(--space-1);
+  font-weight: var(--weight-regular);
+}
+
+.simulator-table__horizons--numbers {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+.simulator__alert p {
+  margin: 0;
+}
+
+@media (max-width: 45rem) {
+  .simulator__facts {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}

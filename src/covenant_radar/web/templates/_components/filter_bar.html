@@ -1,0 +1,23 @@
+{% from "_components/field.html" import field as render_field %}
+{% macro filter_bar(filter_id, action, fields=(), state="rest", method="get", submit_label="Apply filters", clear_href="", submit_on_change=false) -%}
+  {% set filter_state = state if state in ("rest", "active", "saved-view") else "rest" %}
+  {% set safe_action = action if action and action.startswith("/") and not action.startswith("//") else "" %}
+  {% set safe_clear_href = clear_href if clear_href and clear_href.startswith("/") and not clear_href.startswith("//") else "" %}
+  <form class="filter-bar filter-bar--{{ filter_state }}" id="{{ filter_id }}" data-filter-form{% if submit_on_change %} data-submit-on-change{% endif %} data-state="{{ filter_state }}" method="{{ method if method in ("get", "post") else "get" }}" action="{{ safe_action }}">
+    <div class="filter-bar__fields">
+      {% if caller is defined %}
+        {{ caller() }}
+      {% else %}
+        {% for item in fields %}
+          {% if item is mapping %}
+            {{ render_field(item.get("name", "filter-" ~ loop.index), item.get("label", "Filter"), type=item.get("type", "text"), value=item.get("value", ""), field_id=item.get("id", ""), options=item.get("options", ()), hint=item.get("hint", ""), required=item.get("required", false)) }}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </div>
+    <div class="filter-bar__actions">
+      <button class="button" type="submit" data-filter-submit>{{ submit_label }}</button>
+      {% if safe_clear_href %}<a class="button filter-bar__clear" href="{{ safe_clear_href }}">Clear</a>{% endif %}
+    </div>
+  </form>
+{%- endmacro %}

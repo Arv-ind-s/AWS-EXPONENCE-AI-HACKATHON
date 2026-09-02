@@ -1,0 +1,50 @@
+<section class="panel notification-results"
+         id="notification-results"
+         aria-labelledby="notification-list-title"
+         aria-live="polite"
+         hx-get="/notifications"
+         hx-trigger="every 60s, refresh"
+         hx-include="#notification-filters"
+         hx-target="this"
+         hx-swap="outerHTML transition:true"
+         data-live-poll>
+  <div class="panel__header">
+    <div>
+      <p class="page-heading__eyebrow">{{ labels.unread_count }}: {{ view.unread_count }}</p>
+      <h2 id="notification-list-title">{{ labels.heading }}</h2>
+    </div>
+    {% if view.items %}
+      <form method="post" action="/notifications/read-all">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <button type="submit">{{ labels.mark_all }}</button>
+      </form>
+    {% endif %}
+  </div>
+  {% if view.items %}
+    <ol class="notification-list">
+      {% for item in view.items %}
+        <li class="panel notification-list__item" data-notification-id="{{ item.id }}" data-accessible="{{ 'true' if item.accessible else 'false' }}">
+          <header class="notification-list__header">
+            <div><h3>{{ item.title }}</h3><p>{{ labels.type }}: {{ item.template or labels.heading }}</p></div>
+            <div><span>{{ labels.read_status if item.read else labels.unread_status }}</span><time datetime="{{ item.created_at.isoformat() }}">{{ item.created_at|ist_date }}</time></div>
+          </header>
+          <p{% if not item.accessible %} role="status"{% endif %}>{{ item.body }}</p>
+          <div class="notification-list__actions">
+            {% if item.accessible and item.deep_link %}<a class="text-action" href="{{ item.deep_link }}">{{ labels.open }}</a>{% endif %}
+            {% if not item.read %}<form method="post" action="/notifications/{{ item.id }}/read"><input type="hidden" name="csrf_token" value="{{ csrf_token }}"><button type="submit">{{ labels.mark_read }}</button></form>{% endif %}
+          </div>
+        </li>
+      {% endfor %}
+    </ol>
+  {% else %}
+    <div class="state state--empty"><h3 class="state__title">{{ labels.empty_title }}</h3><p class="state__message">{{ labels.empty_message }}</p></div>
+  {% endif %}
+  {% if view.page > 1 or view.has_next %}
+    <nav class="pagination" aria-label="{{ labels.heading }}">
+      {% if view.page > 1 %}<a class="text-action" href="/notifications?{{ query }}&amp;page={{ view.page - 1 }}">{{ labels.previous }}</a>{% endif %}
+      <span>{{ labels.page }} {{ view.page }}</span>
+      {% if view.has_next %}<a class="text-action" href="/notifications?{{ query }}&amp;page={{ view.page + 1 }}">{{ labels.next }}</a>{% endif %}
+    </nav>
+  {% endif %}
+  <span class="sr-only">Last updated <time data-last-updated>just now</time></span>
+</section>

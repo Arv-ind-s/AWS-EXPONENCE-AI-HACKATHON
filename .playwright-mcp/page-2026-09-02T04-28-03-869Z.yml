@@ -1,0 +1,322 @@
+- generic [active] [ref=f13e1]:
+  - link "Skip to content" [ref=f13e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f13e3]:
+    - complementary "Workspace navigation" [ref=f13e4]:
+      - link "Covenant Radar" [ref=f13e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f13e13]:
+          - strong [ref=f13e14]: Covenant
+          - generic [ref=f13e15]: Radar
+      - navigation "Primary navigation" [ref=f13e16]:
+        - region [ref=f13e17]:
+          - heading "Monitor" [level=2] [ref=f13e18]
+          - link "Portfolio queue" [ref=f13e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f13e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f13e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f13e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f13e31]: "0"
+          - link "Search" [ref=f13e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f13e37]:
+          - heading "Portfolio data" [level=2] [ref=f13e38]
+          - link "Borrowers" [ref=f13e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f13e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f13e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f13e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f13e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f13e61]:
+          - heading "Workflows" [level=2] [ref=f13e62]
+          - link "Intake" [ref=f13e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f13e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f13e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f13e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f13e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f13e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f13e87]:
+          - heading "Administration" [level=2] [ref=f13e88]
+          - link "Action catalogue" [ref=f13e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f13e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f13e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f13e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f13e109] [cursor=pointer]
+    - generic [ref=f13e113]:
+      - banner [ref=f13e114]:
+        - generic [ref=f13e116]:
+          - generic [ref=f13e117]: Workspace
+          - generic [ref=f13e120]: Current view
+        - search [ref=f13e121]:
+          - generic [ref=f13e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f13e123]
+          - generic: /
+        - generic [ref=f13e124]:
+          - button "Live activity" [ref=f13e125]:
+            - generic [ref=f13e127]: Live
+          - button "Use dark theme" [ref=f13e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f13e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f13e135] [cursor=pointer]
+      - main [ref=f13e139]:
+        - generic [ref=f13e141]:
+          - paragraph [ref=f13e142]: Decision workspace
+          - heading "Users & access" [level=1] [ref=f13e143]
+        - generic [ref=f13e145]:
+          - region [ref=f13e146]:
+            - generic [ref=f13e147]:
+              - paragraph [ref=f13e148]: Access control / M-5
+              - heading "The people behind the radar." [level=2] [ref=f13e149]
+              - paragraph [ref=f13e150]: Manage identity, authority, and reach from one accountable control room.
+            - generic [ref=f13e153]:
+              - strong [ref=f13e154]: Access posture
+              - generic [ref=f13e155]: Changes are live after save.
+          - region "Identity overview" [ref=f13e156]:
+            - generic [ref=f13e157]:
+              - generic [ref=f13e158]: Directory
+              - strong [ref=f13e159]: "10"
+              - generic [ref=f13e160]: 10 active accounts
+            - generic [ref=f13e161]:
+              - generic [ref=f13e162]: Authority
+              - strong [ref=f13e163]: "8"
+              - generic [ref=f13e164]: role definitions in force
+            - generic [ref=f13e165]:
+              - generic [ref=f13e166]: Reach
+              - strong [ref=f13e167]: "1"
+              - generic [ref=f13e168]: portfolios available to scope
+            - generic [ref=f13e169]:
+              - generic [ref=f13e170]: Review queue
+              - strong [ref=f13e171]: "0"
+              - generic [ref=f13e172]: self-escalation requests
+          - generic [ref=f13e173]:
+            - region [ref=f13e174]:
+              - generic [ref=f13e175]:
+                - generic [ref=f13e176]:
+                  - paragraph [ref=f13e177]: Directory
+                  - heading "People and authority" [level=2] [ref=f13e178]
+                - generic [ref=f13e179]: 10 records
+              - table [ref=f13e181]:
+                - caption [ref=f13e182]: Users and assigned roles
+                - rowgroup [ref=f13e183]:
+                  - row [ref=f13e184]:
+                    - columnheader "Person" [ref=f13e185]
+                    - columnheader "Role" [ref=f13e186]
+                    - columnheader "Reach" [ref=f13e187]
+                    - columnheader "Sessions" [ref=f13e188]
+                    - columnheader "Status" [ref=f13e189]
+                    - columnheader "Open" [ref=f13e190]
+                - rowgroup [ref=f13e192]:
+                  - row [ref=f13e193]:
+                    - cell [ref=f13e194]:
+                      - link "Administrator @admin · LOCAL" [ref=f13e195] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-7411-89b1-51f265db5c2a
+                        - generic [aria-hidden] [ref=f13e196]: A
+                        - generic [ref=f13e197]:
+                          - strong [ref=f13e198]: Administrator
+                          - generic [ref=f13e199]: "@admin · LOCAL"
+                    - cell "Administrator" [ref=f13e200]
+                    - cell "1 grant" [ref=f13e203]
+                    - cell "10" [ref=f13e204]
+                    - cell "Active" [ref=f13e205]
+                    - cell [ref=f13e207]:
+                      - link "Open Administrator" [ref=f13e208] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-7411-89b1-51f265db5c2a
+                        - text: Open ↗
+                  - row [ref=f13e209]:
+                    - cell [ref=f13e210]:
+                      - link "Auditor / Inspector @auditor · LOCAL" [ref=f13e211] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-740e-aeba-6d05f6efbb96
+                        - generic [aria-hidden] [ref=f13e212]: A
+                        - generic [ref=f13e213]:
+                          - strong [ref=f13e214]: Auditor / Inspector
+                          - generic [ref=f13e215]: "@auditor · LOCAL"
+                    - cell "Auditor / Inspector" [ref=f13e216]
+                    - cell "1 grant" [ref=f13e219]
+                    - cell "1" [ref=f13e220]
+                    - cell "Active" [ref=f13e221]
+                    - cell [ref=f13e223]:
+                      - link "Open Auditor / Inspector" [ref=f13e224] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-740e-aeba-6d05f6efbb96
+                        - text: Open ↗
+                  - row [ref=f13e225]:
+                    - cell [ref=f13e226]:
+                      - link "Covenant Radar system @covenant-radar-system · LOCAL" [ref=f13e227] [cursor=pointer]:
+                        - /url: /admin/users/01a05b56-2a2b-71f6-8e1f-615d567e105a
+                        - generic [aria-hidden] [ref=f13e228]: C
+                        - generic [ref=f13e229]:
+                          - strong [ref=f13e230]: Covenant Radar system
+                          - generic [ref=f13e231]: "@covenant-radar-system · LOCAL"
+                    - cell "No role" [ref=f13e232]
+                    - cell "0 grants" [ref=f13e235]
+                    - cell "0" [ref=f13e236]
+                    - cell "Active" [ref=f13e237]
+                    - cell [ref=f13e239]:
+                      - link "Open Covenant Radar system" [ref=f13e240] [cursor=pointer]:
+                        - /url: /admin/users/01a05b56-2a2b-71f6-8e1f-615d567e105a
+                        - text: Open ↗
+                  - row [ref=f13e241]:
+                    - cell [ref=f13e242]:
+                      - link "Credit Approver @approver · LOCAL" [ref=f13e243] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3621-71ac-b85f-469de30d5bf3
+                        - generic [aria-hidden] [ref=f13e244]: C
+                        - generic [ref=f13e245]:
+                          - strong [ref=f13e246]: Credit Approver
+                          - generic [ref=f13e247]: "@approver · LOCAL"
+                    - cell "Credit Approver" [ref=f13e248]
+                    - cell "1 grant" [ref=f13e251]
+                    - cell "3" [ref=f13e252]
+                    - cell "Active" [ref=f13e253]
+                    - cell [ref=f13e255]:
+                      - link "Open Credit Approver" [ref=f13e256] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3621-71ac-b85f-469de30d5bf3
+                        - text: Open ↗
+                  - row [ref=f13e257]:
+                    - cell [ref=f13e258]:
+                      - link "Credit Officer @credit · LOCAL" [ref=f13e259] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-361e-74d5-bd14-fa77735a6dd8
+                        - generic [aria-hidden] [ref=f13e260]: C
+                        - generic [ref=f13e261]:
+                          - strong [ref=f13e262]: Credit Officer
+                          - generic [ref=f13e263]: "@credit · LOCAL"
+                    - cell "Credit" [ref=f13e264]
+                    - cell "1 grant" [ref=f13e267]
+                    - cell "6" [ref=f13e268]
+                    - cell "Active" [ref=f13e269]
+                    - cell [ref=f13e271]:
+                      - link "Open Credit Officer" [ref=f13e272] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-361e-74d5-bd14-fa77735a6dd8
+                        - text: Open ↗
+                  - row [ref=f13e273]:
+                    - cell [ref=f13e274]:
+                      - link "Data Steward @steward · LOCAL" [ref=f13e275] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-7414-82b8-8e47640a366f
+                        - generic [aria-hidden] [ref=f13e276]: D
+                        - generic [ref=f13e277]:
+                          - strong [ref=f13e278]: Data Steward
+                          - generic [ref=f13e279]: "@steward · LOCAL"
+                    - cell "Data Steward" [ref=f13e280]
+                    - cell "1 grant" [ref=f13e283]
+                    - cell "6" [ref=f13e284]
+                    - cell "Active" [ref=f13e285]
+                    - cell [ref=f13e287]:
+                      - link "Open Data Steward" [ref=f13e288] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3624-7414-82b8-8e47640a366f
+                        - text: Open ↗
+                  - row [ref=f13e289]:
+                    - cell [ref=f13e290]:
+                      - link "Relationship Manager @rm · LOCAL" [ref=f13e291] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3619-7b59-9e53-616313c3049f
+                        - generic [aria-hidden] [ref=f13e292]: R
+                        - generic [ref=f13e293]:
+                          - strong [ref=f13e294]: Relationship Manager
+                          - generic [ref=f13e295]: "@rm · LOCAL"
+                    - cell "Relationship Manager" [ref=f13e296]
+                    - cell "1 grant" [ref=f13e299]
+                    - cell "2" [ref=f13e300]
+                    - cell "Active" [ref=f13e301]
+                    - cell [ref=f13e303]:
+                      - link "Open Relationship Manager" [ref=f13e304] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3619-7b59-9e53-616313c3049f
+                        - text: Open ↗
+                  - row [ref=f13e305]:
+                    - cell [ref=f13e306]:
+                      - link "Risk Head @riskhead · LOCAL" [ref=f13e307] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3623-7015-a5b6-9f0ab9c04b0c
+                        - generic [aria-hidden] [ref=f13e308]: R
+                        - generic [ref=f13e309]:
+                          - strong [ref=f13e310]: Risk Head
+                          - generic [ref=f13e311]: "@riskhead · LOCAL"
+                    - cell "Risk Head" [ref=f13e312]
+                    - cell "1 grant" [ref=f13e315]
+                    - cell "42" [ref=f13e316]
+                    - cell "Active" [ref=f13e317]
+                    - cell [ref=f13e319]:
+                      - link "Open Risk Head" [ref=f13e320] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3623-7015-a5b6-9f0ab9c04b0c
+                        - text: Open ↗
+                  - row [ref=f13e321]:
+                    - cell [ref=f13e322]:
+                      - link "Risk Officer @risk · LOCAL" [ref=f13e323] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3622-7eb8-8d9e-da9616803185
+                        - generic [aria-hidden] [ref=f13e324]: R
+                        - generic [ref=f13e325]:
+                          - strong [ref=f13e326]: Risk Officer
+                          - generic [ref=f13e327]: "@risk · LOCAL"
+                    - cell "Risk Officer" [ref=f13e328]
+                    - cell "1 grant" [ref=f13e331]
+                    - cell "3" [ref=f13e332]
+                    - cell "Active" [ref=f13e333]
+                    - cell [ref=f13e335]:
+                      - link "Open Risk Officer" [ref=f13e336] [cursor=pointer]:
+                        - /url: /admin/users/01a05bad-3622-7eb8-8d9e-da9616803185
+                        - text: Open ↗
+                  - row [ref=f13e337]:
+                    - cell [ref=f13e338]:
+                      - link "Test User @testuser · LOCAL" [ref=f13e339] [cursor=pointer]:
+                        - /url: /admin/users/01a058f9-ce1f-79ec-9c05-d70074203538
+                        - generic [aria-hidden] [ref=f13e340]: T
+                        - generic [ref=f13e341]:
+                          - strong [ref=f13e342]: Test User
+                          - generic [ref=f13e343]: "@testuser · LOCAL"
+                    - cell "Administrator" [ref=f13e344]
+                    - cell "0 grants" [ref=f13e347]
+                    - cell "8" [ref=f13e348]
+                    - cell "Active" [ref=f13e349]
+                    - cell [ref=f13e351]:
+                      - link "Open Test User" [ref=f13e352] [cursor=pointer]:
+                        - /url: /admin/users/01a058f9-ce1f-79ec-9c05-d70074203538
+                        - text: Open ↗
+            - region [ref=f13e353]:
+              - generic [ref=f13e354]:
+                - generic [ref=f13e355]:
+                  - paragraph [ref=f13e356]: Provision
+                  - heading "Add a person" [level=2] [ref=f13e357]
+                - generic [ref=f13e358]: "01"
+              - generic [ref=f13e359]:
+                - generic [ref=f13e360]:
+                  - generic [ref=f13e361]: Full name
+                  - textbox "Full name" [ref=f13e362]
+                - generic [ref=f13e363]:
+                  - generic [ref=f13e364]:
+                    - generic [ref=f13e365]: Username
+                    - textbox "Username" [ref=f13e366]
+                  - generic [ref=f13e367]:
+                    - generic [ref=f13e368]: Work email
+                    - textbox "Work email" [ref=f13e369]
+                - generic [ref=f13e370]:
+                  - generic [ref=f13e371]: Identity source
+                  - combobox "Identity source" [ref=f13e372]:
+                    - option "Local account" [selected]
+                    - option "OIDC / bank SSO"
+                    - option "SAML / bank SSO"
+                - generic [ref=f13e373]:
+                  - generic [ref=f13e374]: External subject required for SSO
+                  - textbox "External subject required for SSO" [ref=f13e375]
+                - generic [ref=f13e376]:
+                  - generic [ref=f13e377]: Initial password local accounts only
+                  - textbox "Initial password local accounts only" [ref=f13e378]
+                - generic [ref=f13e379]:
+                  - generic [ref=f13e380]: Role codes comma-separated
+                  - textbox "Role codes comma-separated" [ref=f13e381]:
+                    - /placeholder: credit, risk
+                    - text: administrator
+                - generic [ref=f13e382]:
+                  - paragraph [ref=f13e383]: Local users are asked to change the initial password at first sign-in.
+                  - button "Create account" [ref=f13e384] [cursor=pointer]:
+                    - text: Create account
+                    - generic [aria-hidden] [ref=f13e385]: →

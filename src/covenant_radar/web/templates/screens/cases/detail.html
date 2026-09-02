@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}{{ view.reference }} · {{ labels.detail_title }}{% endblock %}
+{% block h1 %}{{ view.borrower_name }}{% endblock %}
+
+{% block content %}
+<div class="case-file case-screen" id="case-workspace" data-state="{{ view.state }}" data-case-reference="{{ view.reference }}">
+  <section class="queue-hero" aria-labelledby="case-workspace-title">
+    <div>
+      <p class="queue-hero__eyebrow">{{ labels.detail_eyebrow }} · {{ view.reference }}</p>
+      <h2 id="case-workspace-title">{{ view.borrower_name }}</h2>
+      <p class="case-file__panel-message">{{ view.borrower_reference }} · {{ view.portfolio_code }}</p>
+    </div>
+    <div class="queue-hero__stats" aria-label="Case status">
+      <div class="queue-stat queue-stat--act"><span class="queue-stat__value">{{ view.state_label }}</span><span class="queue-stat__label">{{ labels.state }}</span></div>
+      <div class="queue-stat queue-stat--amber"><span class="queue-stat__value">{{ view.band_label }}</span><span class="queue-stat__label">{{ labels.band }}</span></div>
+      <div class="queue-stat queue-stat--watch"><span class="queue-stat__value">{% if view.overdue %}{{ labels.overdue }}{% else %}{{ labels.on_track }}{% endif %}</span><span class="queue-stat__label">{{ labels.due_at }}</span></div>
+    </div>
+  </section>
+
+  <p><a class="text-action" href="/cases">← {{ labels.back_to_register }}</a></p>
+
+  {% if error %}
+    <div class="state state--error" role="alert">
+      <strong class="state__title">{{ labels.form_error }}</strong>
+      <p class="state__message">{{ error }}</p>
+    </div>
+  {% endif %}
+  {% if mention_notice %}
+    <div class="state state--degraded" role="status">
+      <strong>{{ labels.mention_notice }}</strong>
+    </div>
+  {% endif %}
+
+  <div class="case-file__panels">
+    {% call components.panel(labels.assignment_title, panel_id='case-workflow') %}
+      <dl class="governance__facts">
+        <div><dt>{{ labels.case_reference }}</dt><dd>{{ view.reference }}</dd></div>
+        <div><dt>{{ labels.assignee }}</dt><dd>{{ view.assignee }}</dd></div>
+        <div><dt>{{ labels.due_at }}</dt><dd>{{ view.due_at }}{% if view.overdue %} · {{ labels.overdue }}{% endif %}</dd></div>
+        <div><dt>{{ labels.opened_at }}</dt><dd>{{ view.opened_at }}</dd></div>
+        <div><dt>{{ labels.updated_at }}</dt><dd>{{ view.updated_at }}</dd></div>
+        <div><dt>{{ labels.version }}</dt><dd>{{ view.version }}</dd></div>
+      </dl>
+      {% if can_update %}
+        <div class="case-actions__row">
+          <form class="case-actions__control" method="post" action="/cases/{{ view.reference }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="action" value="assign">
+            <input type="hidden" name="expected_version" value="{{ view.version }}">
+            {% set assignee_options = [('', labels.assign_to)] %}
+            {% for option in view.assignable_users %}{% set assignee_options = assignee_options + [(option.value, option.label)] %}{% endfor %}
+            {{ components.field('assignee', labels.assign_to, type='select', field_id='case-assign', value=view.assignee_id, options=assignee_options, required=true) }}
+            {{ components.button(labels.save_assignment, type='submit') }}
+          </form>
+          {% if view.permitted_states %}
+          <form class="case-actions__control" method="post" action="/cases/{{ view.reference }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="hidden" name="action" value="state">
+            <input type="hidden" name="expected_version" value="{{ view.version }}">
+            {% set state_options = [(view.state, view.state_label)] %}
+            {% for option in view.permitted_states %}{% set state_options = state_options + [(option.value, option.label)] %}{% endfor %}
+            {{ components.field('state', labels.move_to, type='select', field_id='case-state-change', value=view.state, options=state_options, hint=labels.state_hint, required=true) }}
+            {{ components.field('closure_reason', labels.closure_reason, type='textarea', field_id='case-closure-reason', placeholder=labels.closure_placeholder, hint=labels.closure_hint) }}
+            {{ components.button(labels.save_state, type='submit') }}
+          </form>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.history_title, panel_id='case-history') %}
+      {% if view.history %}
+        <div class="case-evidence__scroll">
+          <table class="case-evidence__table">
+            <caption class="sr-only">{{ labels.history_title }}</caption>
+            <thead><tr><th scope="col">Event</th><th scope="col">Actor</th><th scope="col">When</th><th scope="col">Detail</th></tr></thead>
+            <tbody>
+            {% for event in view.history %}
+              <tr data-history-event="{{ event.event_type }}"><th scope="row">{{ event.event_label }}</th><td>{{ event.actor }}</td><td>{{ event.occurred_at }}</td><td>{{ event.detail }}</td></tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}<p class="case-file__panel-message">{{ labels.history_empty }}</p>{% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.comments_title, panel_id='case-comments') %}
+      {% if view.comments %}
+        <div class="governance__list">
+          {% for comment in view.comments %}
+            <article class="case-comment" data-comment-index="{{ loop.index }}">
+              <p class="case-comment__meta"><strong>{{ comment.author }}</strong> · {{ comment.created_at }}</p>
+              <p class="case-comment__body">{{ comment.body|e|replace('\n', '<br>')|safe }}</p>
+              {% if comment.mentions %}<p class="case-comment__meta">Mentions: {% for mention in comment.mentions %}@{{ mention }}{% if not loop.last %}, {% endif %}{% endfor %}</p>{% endif %}
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}<p class="case-file__panel-message">{{ labels.comments_empty }}</p>{% endif %}
+      {% if can_update %}
+        <form class="case-actions__control" method="post" action="/cases/{{ view.reference }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="hidden" name="action" value="comment">
+          {{ components.field('comment', labels.comment_label, type='textarea', field_id='case-comment', placeholder=labels.comment_placeholder, hint=labels.comment_hint, required=true) }}
+          {{ components.button(labels.comment_submit, type='submit') }}
+        </form>
+      {% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.actions_title, panel_id='case-actions') %}
+      {% if view.actions %}
+        <div class="case-actions__row">
+          {% for action in view.actions %}
+            <article class="case-actions__control" data-action-source="{{ action.source }}">
+              <strong>{{ action.label }}</strong>
+              <span>{{ action.detail }}</span>
+              <span class="case-actions__reason">{{ action.source }} · {{ action.actor }} · {{ action.taken_at }}</span>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}<p class="case-file__panel-message">{{ labels.actions_empty }}</p>{% endif %}
+      {% if can_log_action %}
+        <form class="case-actions__control" method="post" action="/cases/{{ view.reference }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="hidden" name="action" value="log_action">
+          {% set intervention_options = [('', labels.action_select)] %}
+          {% for option in view.interventions %}{% set intervention_options = intervention_options + [(option.value, option.label)] %}{% endfor %}
+          {{ components.field('intervention_code', labels.action_catalogue, type='select', field_id='case-intervention', options=intervention_options) }}
+          {{ components.field('action_detail', labels.action_detail, type='textarea', field_id='case-action-detail', placeholder=labels.action_placeholder, hint=labels.action_detail_hint) }}
+          {{ components.button(labels.action_submit, type='submit') }}
+        </form>
+      {% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.linked_memos_title, panel_id='case-memos') %}
+      {% if view.memos %}
+        <div class="case-evidence__scroll">
+          <table class="case-evidence__table">
+            <caption class="sr-only">{{ labels.linked_memos_title }}</caption>
+            <thead><tr><th scope="col">{{ labels.run }}</th><th scope="col">Status</th><th scope="col">{{ labels.memo_excerpt }}</th></tr></thead>
+            <tbody>
+            {% for memo in view.memos %}
+              <tr{% if memo.is_superseded %} data-memo-state="superseded"{% endif %}><th scope="row">{{ memo.run_date }}</th><td>{{ memo.run_state_label }}{% if memo.is_superseded %} · {{ labels.superseded_run }}{% endif %}</td><td><strong>{{ memo.headline }}</strong><br>{{ memo.excerpt }}</td></tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}<p class="case-file__panel-message">{{ labels.memos_empty }}</p>{% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.simulations_title, panel_id='case-simulations') %}
+      {% if view.simulations %}
+        <div class="case-evidence__scroll">
+          <table class="case-evidence__table">
+            <caption class="sr-only">{{ labels.simulations_title }}</caption>
+            <thead><tr><th scope="col">Intervention</th><th scope="col">{{ labels.sim_probability }}</th><th scope="col">{{ labels.sim_crossing }}</th><th scope="col">{{ labels.sim_delta }}</th></tr></thead>
+            <tbody>
+            {% for simulation in view.simulations %}<tr><th scope="row">{{ simulation.intervention_code }}<span class="case-evidence__reason">{{ simulation.intervention_text }}</span></th><td>{{ simulation.probability }}</td><td>{{ simulation.projected_cross_date }}</td><td>{{ simulation.delta_days }}</td></tr>{% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% else %}<p class="case-file__panel-message">{{ labels.simulations_empty }}</p>{% endif %}
+    {% endcall %}
+
+    {% call components.panel(labels.documents_title, panel_id='case-documents') %}
+      {% if view.documents %}
+        <ul class="case-documents__list">
+          {% for document in view.documents %}
+          <li class="case-documents__item">
+            <a class="case-documents__link" href="{{ document.href }}">{{ document.filename }}</a>
+            <span>{{ document.doc_type }} · {{ document.page_count }} pages</span>
+            <span>{{ document.extraction_state }} · {{ document.scan_result }}</span>
+            <span>{{ document.uploaded_at }}</span>
+            <a class="case-evidence__link" href="{{ document.href }}">{{ labels.document_open }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      {% else %}<p class="case-file__panel-message">{{ labels.documents_empty }}</p>{% endif %}
+    {% endcall %}
+  </div>
+</div>
+{% endblock %}

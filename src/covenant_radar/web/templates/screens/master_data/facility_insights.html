@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set book = book|default(none) %}
+{% set truncated_note = truncated_note|default("") %}
+
+{% block page_title %}{{ labels.insights_title }}{% endblock %}
+{% block h1 %}{{ labels.insights_heading }}{% endblock %}
+{% block breadcrumb_label %}{{ labels.insights_title }}{% endblock %}
+{% block head %}<link rel="stylesheet" href="/static/css/master-data.css">{% endblock %}
+
+{% block page_description %}<p class="page-heading__intro">{{ labels.insights_intro }}</p>{% endblock %}
+
+{% block page_actions %}
+  {{ components.button(labels.insights_back, href="/facilities", variant="secondary") }}
+{% endblock %}
+
+{% block content %}
+  {% if not book or not book.facility_count %}
+    {% call components.panel(title=labels.insights_heading, panel_id="facility-insights") %}
+      <p class="md-empty">{{ labels.insights_empty }}</p>
+    {% endcall %}
+  {% else %}
+    {% if truncated_note %}
+      <p class="md-note" role="status">{{ truncated_note }}</p>
+    {% endif %}
+
+    {% call components.panel(title=labels.insights_headline, panel_id="facility-insights-headline") %}
+      <dl class="md-metrics">
+        {% for metric in book.metrics %}
+          <div class="md-metrics__item" id="metric-{{ metric.key }}">
+            <dt class="md-metrics__label">{{ metric.label }}</dt>
+            <dd class="md-metrics__value">
+              <span class="md-metrics__number">{{ metric.value }}</span>
+              {% if metric.unit %}<span class="md-metrics__unit">{{ metric.unit }}</span>{% endif %}
+              {% if metric.detail %}<span class="md-metrics__detail">{{ metric.detail }}</span>{% endif %}
+            </dd>
+          </div>
+        {% endfor %}
+      </dl>
+    {% endcall %}
+
+    {% for breakdown in book.breakdowns %}
+      {% call components.panel(title=breakdown.title, panel_id="facility-insights-" ~ breakdown.key) %}
+        <p class="md-note">{{ breakdown.description }} <span class="md-list__unit">{{ labels.facilities_amount_unit }}</span></p>
+        <div class="ledger-table ledger-table--rest" id="{{ breakdown.key }}-ledger" data-state="rest">
+          <table class="ledger-table__table">
+            {# The panel heading above already names this table on screen; the
+               caption repeats it for assistive technology without printing the
+               same words twice. #}
+            <caption class="ledger-table__caption sr-only">{{ breakdown.title }} — {{ labels.facilities_amount_unit }}</caption>
+            <thead>
+              <tr>
+                <th scope="col">{{ labels.insights_bucket }}</th>
+                <th scope="col" class="ledger-table__heading--right">{{ labels.insights_count }}</th>
+                <th scope="col" class="ledger-table__heading--right">{{ breakdown.measure_label }}</th>
+                <th scope="col" class="ledger-table__heading--right">{{ labels.facilities_outstanding }}</th>
+                <th scope="col" class="ledger-table__heading--right">{{ labels.facilities_utilisation }}</th>
+                <th scope="col" class="ledger-table__heading--right">{{ labels.insights_share }}</th>
+                <th scope="col">{{ labels.insights_chart }}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for row in breakdown.rows %}
+                {% set bar_id = breakdown.key ~ "-" ~ row.key ~ "-bar" %}
+                <tr class="ledger-row" id="{{ breakdown.key }}-{{ row.key }}">
+                  <th scope="row" class="ledger-row__cell md-cell__bucket">{{ row.label }}</th>
+                  <td class="ledger-row__cell ledger-row__cell--right">{{ row.count }}</td>
+                  <td class="ledger-row__cell ledger-row__cell--right">{{ row.sanctioned }}</td>
+                  <td class="ledger-row__cell ledger-row__cell--right">{{ row.outstanding }}</td>
+                  <td class="ledger-row__cell ledger-row__cell--right">
+                    <span class="md-band md-band--{{ row.band or 'neutral' }}">{{ row.utilisation }}</span>
+                  </td>
+                  <td class="ledger-row__cell ledger-row__cell--right">{{ row.share }}</td>
+                  <td class="ledger-row__cell md-cell__chart">
+                    <svg class="md-bar" viewBox="0 0 100 8" preserveAspectRatio="none" role="img" aria-labelledby="{{ bar_id }}-title" focusable="false">
+                      <title id="{{ bar_id }}-title">{{ row.label }}: {{ row.share }} of the sanctioned book</title>
+                      <rect class="md-bar__track" x="0" y="0" width="100" height="8"></rect>
+                      <rect class="md-bar__fill" x="0" y="0" width="{{ row.bar }}" height="8"></rect>
+                    </svg>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      {% endcall %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

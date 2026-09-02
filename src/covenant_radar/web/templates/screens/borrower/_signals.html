@@ -1,0 +1,36 @@
+{% if view is defined %}
+<section class="panel case-signals" id="case-signals" aria-labelledby="case-signals-title">
+  <div class="panel__heading case-signals__heading">
+    <div>
+      <p class="panel__eyebrow">Early-warning evidence</p>
+      <h2 class="panel__title" id="case-signals-title">Seven signal families</h2>
+      <p class="panel__intro">Behavioural and external indicators are shown separately from contractual covenant status. Each card is backed by dated source events.</p>
+    </div>
+    {% if view.actions %}<a class="button button--secondary" href="{{ view.actions.why_href }}" hx-get="{{ view.actions.why_href }}" hx-target="body" hx-swap="beforeend">Why these signals?</a>{% endif %}
+  </div>
+  <div class="signal-grid" role="list" aria-label="Signal family trends">
+    {% for signal in view.signal_families %}
+      <details class="signal-card signal-card--{{ signal.status }}" role="listitem" data-signal-family="{{ signal.family }}">
+        <summary class="signal-card__summary">
+          <span class="signal-card__title"><span class="signal-card__dot" aria-hidden="true"></span>{{ signal.label }}</span>
+          <span class="signal-card__trend">{{ signal.trend_display }}</span>
+        </summary>
+        <div class="signal-card__body">
+          {% if signal.sparkline_svg %}
+            <figure class="signal-card__chart">{{ signal.sparkline_svg }}<figcaption>Stored observations, latest at right</figcaption></figure>
+          {% else %}
+            <p class="signal-card__empty">No trend is available until at least two source observations arrive.</p>
+          {% endif %}
+          <dl class="signal-card__facts">
+            <div><dt>Latest</dt><dd>{{ signal.current_display }}</dd></div>
+            <div><dt>Prior comparison</dt><dd>{{ signal.prior_display }}</dd></div>
+            <div><dt>Source events</dt><dd>{{ signal.event_count }} <span class="signal-card__adverse">{{ signal.adverse_count }} adverse</span></dd></div>
+            <div><dt>Latest date</dt><dd>{% if signal.latest_date %}{{ signal.latest_date|ist_date }}{% else %}Awaiting source{% endif %}</dd></div>
+          </dl>
+          <a class="text-action signal-card__why" href="{{ signal.why_href }}" hx-get="{{ signal.why_href }}" hx-target="body" hx-swap="beforeend">Why? View source, rule, persistence and forecast contribution →</a>
+        </div>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+{% endif %}

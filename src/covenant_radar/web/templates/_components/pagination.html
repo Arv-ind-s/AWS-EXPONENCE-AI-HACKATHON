@@ -1,0 +1,14 @@
+{% macro pagination(pagination_id, page, page_count, previous_href="", next_href="", state="rest", label="Pagination") -%}
+  {% set pagination_state = state if state in ("rest", "loading", "end") else "rest" %}
+  {% set safe_previous_href = previous_href if previous_href and previous_href.startswith("/") and not previous_href.startswith("//") else "" %}
+  {% set safe_next_href = next_href if next_href and next_href.startswith("/") and not next_href.startswith("//") else "" %}
+  <nav class="pagination pagination--{{ pagination_state }}" id="{{ pagination_id }}" data-state="{{ pagination_state }}" aria-label="{{ label }}">
+    {% if pagination_state == "loading" %}
+      <span class="pagination__status" role="status" aria-live="polite">Loading more records.</span>
+    {% else %}
+      {% if safe_previous_href %}<a class="button pagination__previous" href="{{ safe_previous_href }}">Previous</a>{% else %}<span class="button pagination__previous button--disabled" aria-disabled="true">Previous</span>{% endif %}
+      <span class="pagination__position" aria-current="page">Page {{ page }} of {{ page_count }}</span>
+      {% if pagination_state == "end" or not safe_next_href %}<span class="button pagination__next button--disabled" aria-disabled="true">Next</span>{% else %}<a class="button pagination__next" href="{{ safe_next_href }}">Next</a>{% endif %}
+    {% endif %}
+  </nav>
+{%- endmacro %}

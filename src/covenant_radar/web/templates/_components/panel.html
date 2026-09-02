@@ -1,0 +1,20 @@
+{% macro panel(title="", state="rest", panel_id="", content="", empty_title="Nothing to show", empty_message="There is no information to display.", empty_action_label="", empty_action_href="", error_title="Unable to load this panel", error_message="Try again or contact an administrator.", loading_label="Loading panel", loading_rows=3, loading_columns=3) -%}
+  {% set panel_state = state if state in ("rest", "loading", "error", "empty") else "error" %}
+  <section class="panel panel--{{ panel_state }}"{% if panel_id %} id="{{ panel_id }}"{% endif %} data-state="{{ panel_state }}">
+    {% if title %}<h2 class="panel__title">{{ title }}</h2>{% endif %}
+    {% if panel_state == "loading" %}
+      {% set state_label = loading_label %}{% set state_rows = loading_rows if loading_rows > 0 else 1 %}{% set state_columns = loading_columns if loading_columns > 0 else 1 %}
+      {% include "_states/loading.html" %}
+    {% elif panel_state == "error" %}
+      {% set state_id = (panel_id ~ "-error") if panel_id else "panel-error" %}{% set state_title = error_title %}{% set state_message = error_message %}
+      {% set state_action_label = empty_action_label %}{% set state_action_href = empty_action_href %}
+      {% include "_states/error.html" %}
+    {% elif panel_state == "empty" %}
+      {% set state_id = (panel_id ~ "-empty") if panel_id else "panel-empty" %}{% set state_title = empty_title %}{% set state_message = empty_message %}
+      {% set state_action_label = empty_action_label %}{% set state_action_href = empty_action_href %}
+      {% include "_states/empty.html" %}
+    {% else %}
+      <div class="panel__body">{% if caller is defined %}{{ caller() }}{% else %}{{ content }}{% endif %}</div>
+    {% endif %}
+  </section>
+{%- endmacro %}

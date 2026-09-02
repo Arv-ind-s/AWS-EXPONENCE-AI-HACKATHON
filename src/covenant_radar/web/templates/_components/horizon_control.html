@@ -1,0 +1,19 @@
+{% macro horizon_control(control_id, action, selected_day, minimum_day, maximum_day, stops=(), state="idle", parameter="horizon", selected_label="Selected horizon") -%}
+  {% set control_state = state if state in ("idle", "dragging", "keyboard", "stops-only") else "idle" %}
+  {% set safe_action = action if action and action.startswith("/") and not action.startswith("//") else "" %}
+  <form class="horizon-control horizon-control--{{ control_state }}" id="{{ control_id }}" data-horizon-control data-state="{{ control_state }}" method="get" action="{{ safe_action }}">
+    {% if control_state == "stops-only" %}<span class="horizon-control__label">{{ selected_label }}: <span data-horizon-value>{{ selected_day }}</span></span>{% else %}<label class="horizon-control__label" for="{{ control_id }}-input">{{ selected_label }}: <span data-horizon-value>{{ selected_day }}</span></label>{% endif %}
+    {% if control_state == "stops-only" %}
+      <div class="horizon-control__stops" role="group" aria-label="{{ selected_label }}">
+        {% for stop in stops %}
+          {% if stop is mapping %}{% set stop_value = stop.get("value", "") %}{% set stop_label = stop.get("label", stop_value) %}
+          {% else %}{% set stop_value = stop[0] %}{% set stop_label = stop[1] %}{% endif %}
+          <button class="button horizon-control__stop" type="submit" name="{{ parameter }}" value="{{ stop_value }}"{% if stop_value|string == selected_day|string %} aria-current="true"{% endif %}>{{ stop_label }}</button>
+        {% endfor %}
+      </div>
+    {% else %}
+      <input class="horizon-control__input" id="{{ control_id }}-input" name="{{ parameter }}" type="range" min="{{ minimum_day }}" max="{{ maximum_day }}" value="{{ selected_day }}" step="1" aria-valuemin="{{ minimum_day }}" aria-valuemax="{{ maximum_day }}" aria-valuenow="{{ selected_day }}">
+      <button class="button horizon-control__submit" type="submit">Apply</button>
+    {% endif %}
+  </form>
+{%- endmacro %}

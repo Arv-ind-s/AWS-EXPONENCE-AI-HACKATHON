@@ -1,0 +1,68 @@
+{#
+  The bar the row checkboxes post to.
+
+  It is one real form, not a JavaScript overlay: the checkboxes in the table
+  are bound to it by `form="queue-selection"`, so a selection can be
+  assigned, re-stated, watched or exported with script disabled. The
+  multi-choice controls live here once rather than on every row.
+
+  The active filters ride along as hidden fields so the audit event records
+  the slice the analyst was looking at when they acted; `services/bulk.py`
+  keeps them under `filter` on both the summary and per-item events.
+
+  It carries no `hidden` attribute: without script it must stay reachable,
+  so CSS hides it only once the document is marked `.js` and JavaScript has
+  had its say about whether anything is selected.
+#}
+<form method="post"
+      action="/bulk"
+      class="queue-selection-bar"
+      id="queue-selection"
+      data-selection-bar>
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  {% for name, value in filters.items() %}
+    {% if value %}<input type="hidden" name="{{ name }}" value="{{ value }}">{% endif %}
+  {% endfor %}
+
+  <p class="queue-selection-bar__count" role="status">
+    <strong id="selection-count">0</strong> {{ labels.selection_label }}
+  </p>
+
+  <div class="queue-selection-bar__actions">
+    {% if can_update_case %}
+      <div class="filter-group">
+        <label for="selection-assignee">{{ labels.selection_assign }}</label>
+        <select name="assignee" id="selection-assignee">
+          <option value="">{{ labels.selection_assign }}…</option>
+          {% for option in assignable_users %}
+            <option value="{{ option.value }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+        <button class="button" type="submit" name="action" value="assign">{{ labels.selection_assign_submit }}</button>
+      </div>
+
+      <div class="filter-group">
+        <label for="selection-state">{{ labels.selection_state }}</label>
+        <select name="state" id="selection-state">
+          <option value="">{{ labels.selection_state }}…</option>
+          {% for option in case_states %}
+            <option value="{{ option.value }}">{{ option.label }}</option>
+          {% endfor %}
+        </select>
+        <button class="button" type="submit" name="action" value="state">{{ labels.selection_state_submit }}</button>
+      </div>
+
+      <button class="button button--secondary" type="submit" name="action" value="watchlist">{{ labels.selection_watchlist }}</button>
+    {% endif %}
+
+    {% if can_export %}
+      <button class="button button--secondary"
+              type="submit"
+              name="format"
+              value="csv"
+              formaction="/exports">{{ labels.selection_export }}</button>
+    {% endif %}
+
+    <button class="button button--secondary" id="clear-selection" type="button">{{ labels.selection_clear }}</button>
+  </div>
+</form>

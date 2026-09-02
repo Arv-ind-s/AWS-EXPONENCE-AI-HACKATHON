@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  <div class="audit-screen" id="audit-search" data-state="rest">
+    {% if not view.chain.verified %}
+      <section class="panel audit-chain audit-chain--failed" role="alert" aria-live="assertive">
+        <h2 class="panel__title">{{ labels.chain_failed }}</h2>
+        <p>{{ labels.chain_failure_detail.format(message=view.chain.message) }}</p>
+        {% if view.chain.failure %}
+          <dl>
+            {% for key, value in view.chain.failure.items() %}
+              <div><dt>{{ key }}</dt><dd>{{ value }}</dd></div>
+            {% endfor %}
+          </dl>
+        {% endif %}
+      </section>
+    {% else %}
+      <p class="audit-chain audit-chain--verified" role="status">{{ labels.chain_verified }}</p>
+    {% endif %}
+
+    <section class="panel" aria-labelledby="audit-filters-title">
+      <h2 class="panel__title" id="audit-filters-title">{{ labels.heading }}</h2>
+      <form class="filter-bar" method="get" action="/audit">
+        <div class="filter-bar__fields">
+          <label class="field">
+            <span class="field__label">{{ labels.actor }}</span>
+            <input class="field__control" type="search" name="actor" value="{{ view.filters.actor or '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.subject }}</span>
+            <input class="field__control" type="search" name="subject" value="{{ view.filters.subject or '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.subject_type }}</span>
+            <input class="field__control" type="search" name="subject_type" value="{{ view.filters.subject_type or '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.event_type }}</span>
+            <input class="field__control" type="search" name="event_type" value="{{ view.filters.event_type or '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.event_id }}</span>
+            <input class="field__control" type="search" name="event_id" value="{{ view.filters.event_id or '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.from_date }}</span>
+            <input class="field__control" type="date" name="from_date" value="{{ view.filters.from_date.isoformat() if view.filters.from_date else '' }}">
+          </label>
+          <label class="field">
+            <span class="field__label">{{ labels.to_date }}</span>
+            <input class="field__control" type="date" name="to_date" value="{{ view.filters.to_date.isoformat() if view.filters.to_date else '' }}">
+          </label>
+        </div>
+        <div class="filter-bar__actions">
+          <button class="button" type="submit">{{ labels.search }}</button>
+          {% if can_export %}
+            <a class="button" href="{{ view.export_href }}">{{ labels.export_search }}</a>
+          {% endif %}
+        </div>
+      </form>
+    </section>
+
+    <p class="audit-result-count">{{ labels.result_count.format(count=view.total_count) }}</p>
+    {% if view.empty %}
+      {{ components.empty_state("audit-empty", labels.heading, labels.no_events) }}
+    {% else %}
+      <div class="ledger-table" id="audit-events">
+        <table class="ledger-table__table">
+          <caption class="ledger-table__caption">{{ labels.heading }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ labels.sequence }}</th>
+              <th scope="col">{{ labels.event_id_column }}</th>
+              <th scope="col">{{ labels.occurred_at }}</th>
+              <th scope="col">{{ labels.actor_column }}</th>
+              <th scope="col">{{ labels.type_column }}</th>
+              <th scope="col">{{ labels.subject_column }}</th>
+              <th scope="col">{{ labels.payload_column }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for row in view.rows %}
+              <tr class="ledger-row" id="audit-event-{{ row.event_id }}">
+                <td class="ledger-row__cell">{{ row.sequence }}</td>
+                <td class="ledger-row__cell"><code>{{ row.event_id }}</code></td>
+                <td class="ledger-row__cell"><time datetime="{{ row.occurred_at.isoformat() }}">{{ row.occurred_at_display }}</time></td>
+                <td class="ledger-row__cell">{{ row.actor }}</td>
+                <td class="ledger-row__cell">{{ row.event_type }}</td>
+                <td class="ledger-row__cell">
+                  {{ row.subject_display }}
+                  {% if row.warning_href %}
+                    <a class="text-action" href="{{ row.warning_href }}">{{ labels.open_warning }}</a>
+                  {% endif %}
+                </td>
+                <td class="ledger-row__cell"><code>{{ row.payload_display }}</code></td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      {% if view.next_href %}
+        <p><a class="button" href="{{ view.next_href }}">{{ labels.next }}</a></p>
+      {% endif %}
+    {% endif %}
+  </div>
+{% endblock %}

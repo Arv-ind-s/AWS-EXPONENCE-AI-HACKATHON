@@ -1,0 +1,46 @@
+{
+  "T1": {
+    "act": 0.70,
+    "amber": 0.40
+  },
+  "T2": {
+    "confidence_floor": 0.50
+  },
+  "T3": {
+    "sustained_days": 14,
+    "sustained_events": 3,
+    "event_window_days": 30
+  },
+  "T4": {
+    "headroom_erosion_pct": 0.05
+  },
+  "T5": {
+    "contribution_share": 0.10
+  },
+  "T6": {
+    "max_output_tokens": 1200
+  },
+  "T7": {
+    "calls_per_hour": 200,
+    "calls_per_day": 2000,
+    "monthly_budget": null
+  },
+  "T8": {
+    "bad_shape_retries": 1
+  },
+  "T9": {
+    "ocr_confidence_floor": 0.80
+  },
+  "T10": {
+    "auto_accept": 0.90,
+    "review_floor": 0.60
+  },
+  "T11": {
+    "act_sla_hours": 24,
+    "amber_sla_hours": 72,
+    "watch_sla_hours": 168
+  },
+  "T12": {
+    "deadline_ist": "07:00"
+  }
+}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set table_rows = table_rows|default(()) %}
+
+{% block page_title %}{{ labels.portfolios_title }}{% endblock %}
+{% block h1 %}{{ labels.portfolios_heading }}{% endblock %}
+
+{% block content %}
+  {% if principal.has("CORRECT_SOURCE_DATA") %}
+    <p>{{ components.button(labels.portfolios_new, href="/portfolios/new") }}</p>
+  {% endif %}
+  {% call components.panel(title=labels.portfolios_heading, panel_id="portfolio-list") %}
+    {{ components.ledger_table(
+      labels.portfolios_heading,
+      [
+        {"key": "code", "label": labels.portfolios_code},
+        {"key": "name", "label": labels.portfolios_name},
+        {"key": "branch", "label": labels.portfolios_branch}
+      ],
+      table_rows,
+      table_id="portfolios-ledger",
+      empty_title=labels.portfolios_empty,
+      empty_message=labels.portfolios_empty
+    ) }}
+    {% for row in rows %}
+      <p>{{ components.button(labels.borrowers_open, href="/portfolios/" ~ row.id) }}</p>
+    {% endfor %}
+  {% endcall %}
+{% endblock %}

@@ -1,0 +1,37 @@
+{
+  "id": "EX-0020",
+  "kind": "materiality",
+  "title": "A zero-threshold covenant projection is excluded rather than scored as zero materiality",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "materiality",
+    "excluded"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant_headrooms": [
+      {
+        "covenant_id": "COV-2",
+        "threshold": "0",
+        "current_headroom_pct": "10",
+        "projected_headroom_pct": "2"
+      }
+    ],
+    "thresholds": {
+      "headroom_erosion_pct": "0.05"
+    }
+  },
+  "expected": {
+    "materiality_pct": "0",
+    "counts_toward_pressure": false,
+    "driving_covenant_id": null
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "COV-2's threshold is exactly zero, which T4 defines no meaningful erosion against, so the projection is excluded from scoring entirely. With no eligible covenant, the item's materiality score is zero with no driving covenant -- not the same as a covenant that was scored and happened to erode by zero."
+}

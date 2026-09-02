@@ -1,0 +1,144 @@
+{% extends "base.html" %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set pending = pending|default(()) %}
+{% set form = form|default({}) %}
+{% set error = error|default("") %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+<section class="panel catalogue" aria-labelledby="catalogue-heading">
+  <header class="panel__header">
+    <div>
+      <p class="eyebrow">{{ labels.title }}</p>
+      <h2 id="catalogue-heading" class="sr-only">{{ labels.heading }}</h2>
+    </div>
+    <p class="muted">Recommendations are limited to active actions with a deterministic effect model.</p>
+  </header>
+
+  {% if error %}
+    <div class="state state--error" role="alert">{{ error }}</div>
+  {% endif %}
+
+  <form method="post" action="/admin/catalogue" class="form-grid" novalidate>
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+    <label>
+      {{ labels.code }}
+      <input name="id" value="{{ form.get('id', '') }}" required maxlength="50" autocomplete="off">
+    </label>
+    <label>
+      {{ labels.role_tag }}
+      <select name="role_tag" required>
+        <option value="">Select a role</option>
+        <option value="relationship_manager"{% if form.get('role_tag') == 'relationship_manager' %} selected{% endif %}>RM</option>
+        <option value="credit"{% if form.get('role_tag') == 'credit' %} selected{% endif %}>Credit</option>
+        <option value="risk"{% if form.get('role_tag') == 'risk' %} selected{% endif %}>Risk</option>
+      </select>
+    </label>
+    <label class="form-grid__wide">
+      {{ labels.text }}
+      <textarea name="text" required maxlength="2000">{{ form.get('text', '') }}</textarea>
+    </label>
+    <label>
+      {{ labels.effect_model }}
+      <select name="effect_model" required>
+        <option value="">Select a model</option>
+        <option value="level_shift"{% if form.get('effect_model') == 'level_shift' %} selected{% endif %}>Level shift</option>
+        <option value="rate_change"{% if form.get('effect_model') == 'rate_change' %} selected{% endif %}>Rate change</option>
+        <option value="threshold_relaxation"{% if form.get('effect_model') == 'threshold_relaxation' %} selected{% endif %}>Threshold relaxation</option>
+        <option value="pressure_reduction"{% if form.get('effect_model') == 'pressure_reduction' %} selected{% endif %}>Pressure reduction</option>
+        <option value="combination"{% if form.get('effect_model') == 'combination' %} selected{% endif %}>Combination</option>
+      </select>
+    </label>
+    <label>
+      {{ labels.effect_parameters }}
+      <textarea name="effect_parameters" required spellcheck="false">{{ form.get('effect_parameters', '{}') }}</textarea>
+    </label>
+    <label>
+      {{ labels.classes }}
+      <input name="applicable_covenant_classes" value="{{ form.get('applicable_covenant_classes', '') }}" required>
+    </label>
+    <label>
+      {{ labels.assumptions }}
+      <textarea name="assumptions" required>{{ form.get('assumptions', '') }}</textarea>
+    </label>
+    <label class="checkbox">
+      <input type="checkbox" name="requires_approval" value="true"{% if form.get('requires_approval') %} checked{% endif %}>
+      {{ labels.requires_approval }}
+    </label>
+    <div class="form-actions form-grid__wide">
+      <button type="submit">{{ labels.save }}</button>
+    </div>
+  </form>
+
+  {% if rows %}
+    <div class="table-wrap">
+      <table>
+        <caption class="sr-only">{{ labels.title }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.code }}</th>
+            <th scope="col">{{ labels.role_tag }}</th>
+            <th scope="col">{{ labels.effect_model }}</th>
+            <th scope="col">{{ labels.classes }}</th>
+            <th scope="col">Status</th>
+            <th scope="col">{{ labels.actions }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in rows %}
+            <tr>
+              <th scope="row">{{ row.id }}</th>
+              <td>{{ row.role_tag.value }}</td>
+              <td>{{ row.effect_model.value }}</td>
+              <td>{{ row.applicable_covenant_classes | join(', ') }}</td>
+              <td>
+                {% if row.is_retired %}
+                  <span class="band-chip band-chip--muted">{{ labels.retired }}</span>
+                {% else %}
+                  <span class="band-chip">{{ labels.active }}</span>
+                {% endif %}
+              </td>
+              <td>
+                {% if not row.is_retired %}
+                  <form method="post" action="/admin/catalogue/{{ row.id }}/retire">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <input type="hidden" name="expected_version" value="{{ row.version }}">
+                    <button type="submit">{{ labels.retire }}</button>
+                  </form>
+                {% else %}
+                  <span class="muted">{{ labels.retired }}</span>
+                {% endif %}
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% else %}
+    <p class="state state--empty">{{ labels.empty }}</p>
+  {% endif %}
+
+  {% if pending %}
+    <section aria-labelledby="pending-heading">
+      <h2 id="pending-heading">{{ labels.pending }}</h2>
+      <ul>
+        {% for request in pending %}
+          <li>
+            {{ request.id }}
+            <form method="post" action="/admin/catalogue/approvals/{{ request.id }}">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+              <button type="submit" name="decision" value="approve">{{ labels.approve }}</button>
+              <button type="submit" name="decision" value="reject">{{ labels.reject }}</button>
+              <label>{{ labels.reason }} <input name="reason" maxlength="2000"></label>
+            </form>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</section>
+{% endblock %}

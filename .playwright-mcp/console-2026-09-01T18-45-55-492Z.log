@@ -1,0 +1,10 @@
+[  243771ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6NDU6NDEuNjczNTYzKzAwOjAwIn0uKygGs1lXp35Mgdcz5S-1RR4_9LhnTkPqYX0mSMu9zpk&context=%2Fborrowers%2FB-000023:0
+[  273688ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  273688ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  273688ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  273968ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6NDU6NDEuNjczNTYzKzAwOjAwIn0uKygGs1lXp35Mgdcz5S-1RR4_9LhnTkPqYX0mSMu9zpk&context=%2Fborrowers%2FB-000023:0
+[  306004ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6NDU6NDEuNjczNTYzKzAwOjAwIn0uKygGs1lXp35Mgdcz5S-1RR4_9LhnTkPqYX0mSMu9zpk&context=%2Fborrowers%2FB-000023:0
+[  333734ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  333734ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[  333734ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[  338037ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDViYWQtMzYyNC03NDExLTg5YjEtNTFmMjY1ZGI1YzJhIiwidCI6IjIwMjYtMDktMDFUMTg6NDU6NDEuNjczNTYzKzAwOjAwIn0uKygGs1lXp35Mgdcz5S-1RR4_9LhnTkPqYX0mSMu9zpk&context=%2Fborrowers%2FB-000023:0

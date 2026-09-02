@@ -1,0 +1,247 @@
+/* Master-data screens: facility list, facility record, book insights.
+   Token-only by policy (scripts/check_contrast.py rejects a colour or a
+   pixel literal anywhere under web/ except tokens.css). */
+
+/* `ledger_table`'s per-column `align` emits `--right`, but app.css's
+   `.ledger-table th, .ledger-table td { text-align: start }` is a more
+   specific selector than the single-class modifier, so a right-aligned
+   column never actually right-aligned. Restated here at matching
+   specificity rather than corrected in app.css, which would also move the
+   queue and case-file money columns that this change does not touch. */
+.ledger-table .ledger-table__heading--right,
+.ledger-table .ledger-row__cell--right {
+  text-align: end;
+}
+
+.ledger-table .ledger-row__cell--right {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* A row header is not a column header: modern.css makes every `th` in a
+   ledger table sticky so the column strip survives scrolling, which would
+   otherwise pin each bucket label to the top of the viewport as its own
+   table scrolls past. */
+.ledger-table th[scope="row"] {
+  position: static;
+  z-index: auto;
+  background: var(--surface-raised);
+  font-weight: var(--weight-medium);
+  text-align: start;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* The page heading directly above already names this table; the caption
+   stays in the markup (the accessibility contract requires one on every data
+   table) but does not repeat those words on screen. */
+#facility-list .ledger-table__caption {
+  position: absolute;
+  width: var(--space-1);
+  height: var(--space-1);
+  padding: 0;
+  margin: calc(var(--space-1) * -1);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.md-list__summary {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: baseline;
+  justify-content: space-between;
+  margin-block: 0 var(--space-3);
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+.md-list__count {
+  color: var(--ink);
+  font-weight: var(--weight-medium);
+}
+
+.md-list__unit,
+.md-note {
+  color: var(--ink-muted);
+}
+
+.md-note {
+  margin-block: 0 var(--space-4);
+  font-size: var(--size-caption);
+  max-width: 68ch;
+}
+
+.md-empty {
+  margin: 0;
+  color: var(--ink-muted);
+}
+
+.md-link {
+  color: var(--ink);
+  font-weight: var(--weight-medium);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.md-link:hover,
+.md-link:focus-visible {
+  color: var(--accent-strong);
+}
+
+/* A second line inside one cell: the borrower's name under its reference,
+   or the "in 62 days" note under a maturity date. */
+.md-cell__meta {
+  display: block;
+  margin-block-start: 0.15em;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  font-family: var(--font-ui);
+}
+
+.md-cell__meta--watch {
+  color: var(--watch);
+}
+
+.md-cell__meta--breach {
+  color: var(--breach);
+}
+
+/* Utilisation and status band. Named for the same three states the queue
+   uses, so a reader carries one colour vocabulary across the workspace. */
+.md-band {
+  display: inline-block;
+  padding: 0.1em 0.5em;
+  border: var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.md-band--headroom {
+  border-color: var(--headroom);
+  background: var(--headroom-bg);
+  color: var(--headroom);
+}
+
+.md-band--watch {
+  border-color: var(--watch);
+  background: var(--watch-bg);
+  color: var(--watch);
+}
+
+.md-band--breach {
+  border-color: var(--breach);
+  background: var(--breach-bg);
+  color: var(--breach);
+}
+
+.md-band--neutral {
+  border-color: var(--hairline);
+  background: var(--surface-subtle);
+  color: var(--ink-muted);
+}
+
+/* Headline figures on the insights screen. */
+.md-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.md-metrics__item {
+  padding: var(--space-4);
+  border: var(--border);
+  border-radius: var(--radius);
+  background: var(--surface-raised);
+}
+
+.md-metrics__label {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.md-metrics__value {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 0;
+}
+
+.md-metrics__number {
+  font-family: var(--font-data);
+  font-size: var(--size-case-title);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-semi);
+  color: var(--ink);
+}
+
+.md-metrics__unit {
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+.md-metrics__detail {
+  flex-basis: 100%;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+/* The bar beside each breakdown row. Drawn as SVG rather than a styled
+   div because the content security policy carries no 'unsafe-inline', so a
+   server-computed width cannot travel in a style attribute. */
+.md-cell__chart {
+  width: 30%;
+  min-width: 8rem;
+}
+
+.md-bar {
+  display: block;
+  width: 100%;
+  height: 0.75rem;
+}
+
+.md-bar__track {
+  fill: var(--surface-sunken);
+}
+
+.md-bar__fill {
+  fill: var(--accent-fill);
+}
+
+.md-cell__bucket {
+  font-weight: var(--weight-medium);
+  white-space: nowrap;
+}
+
+/* The facility record: a two-column field/value table. */
+.md-record__label {
+  width: 18rem;
+  color: var(--ink-muted);
+  font-weight: var(--weight-regular);
+}
+
+.md-record__value {
+  font-family: var(--font-data);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 60rem) {
+  .md-cell__chart {
+    display: none;
+  }
+
+  .md-record__label {
+    width: auto;
+  }
+}

@@ -1,0 +1,233 @@
+{% extends "base.html" %}
+
+{% block page_title %}Admin operations — Covenant Radar{% endblock %}
+{% block h1 %}Admin operations{% endblock %}
+
+{% block content %}
+<div class="governance" id="admin-ops-region" data-testid="admin-ops"
+     hx-get="/admin/jobs" hx-trigger="every 15s, refresh" hx-target="this"
+     hx-select="#admin-ops-region" hx-swap="outerHTML transition:true" data-live-poll>
+  <p class="muted">Operational state is read from the durable run ledger and purge evidence.</p>
+  {% if error %}
+    <p class="state state--error" role="alert">{{ error }}</p>
+  {% endif %}
+
+  <section class="panel" aria-labelledby="health-title">
+    <header class="panel__header">
+      <div>
+        <p class="eyebrow">System status</p>
+        <h2 class="panel__title" id="health-title">Health and capabilities</h2>
+      </div>
+      <p class="muted" data-testid="system-version">Version {{ view.health.version }}</p>
+    </header>
+
+    <div class="governance__scroll">
+      <table class="governance__table">
+        <caption>Configured product capabilities</caption>
+        <thead>
+          <tr><th scope="col">Capability</th><th scope="col">Status</th><th scope="col">Detail</th><th scope="col">What configuration enables</th></tr>
+        </thead>
+        <tbody>
+          {% for capability in view.health.capabilities %}
+            <tr data-testid="capability-{{ capability.name|lower|replace(' ', '-') }}">
+              <th scope="row">{{ capability.name }}</th>
+              <td>{{ capability.status }}</td>
+              <td>{{ capability.detail }}</td>
+              <td>{% if capability.configured %}Available for use.{% else %}Configure this capability to enable {{ capability.enables }}.{% endif %}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="governance__scroll">
+      <table class="governance__table">
+        <caption>Dependency checks</caption>
+        <thead><tr><th scope="col">Dependency</th><th scope="col">Status</th><th scope="col">Detail</th></tr></thead>
+        <tbody>
+          {% for dependency in view.health.dependencies %}
+            <tr data-testid="dependency-{{ dependency.name|lower }}">
+              <th scope="row">{{ dependency.name }}</th>
+              <td>{{ dependency.status }}</td>
+              <td>{{ dependency.detail }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="queue-depth-title">
+    <h2 class="panel__title" id="queue-depth-title">Queues</h2>
+    <div class="governance__facts">
+      {% for queue in view.queue_depths %}
+        <div data-testid="queue-depth-{{ queue.name|replace(' ', '-') }}"><dt>{{ queue.name|title }}</dt><dd>{{ queue.count }}</dd><p class="muted">{{ queue.detail }}</p></div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="panel" aria-labelledby="jobs-title">
+    <header class="panel__header">
+      <div>
+        <p class="eyebrow">Scheduler</p>
+        <h2 class="panel__title" id="jobs-title">Registered jobs</h2>
+      </div>
+      <p class="muted">A running job cannot be triggered a second time.</p>
+    </header>
+    {% if view.jobs %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Job definitions and declared failure policy</caption>
+          <thead><tr><th scope="col">Job</th><th scope="col">Schedule</th><th scope="col">Attempts</th><th scope="col">Timeout</th><th scope="col">Action</th></tr></thead>
+          <tbody>
+            {% for job in view.jobs %}
+              <tr>
+                <th scope="row">{{ job.name }}</th>
+                <td>{{ job.schedule or "Manual only" }}</td>
+                <td>{{ job.max_attempts or "—" }}</td>
+                <td>{% if job.timeout_seconds %}{{ job.timeout_seconds|round(1) }} seconds{% else %}—{% endif %}</td>
+                <td>
+                  <form method="post" action="/admin/jobs/{{ job.name }}/run">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                    <button class="button" type="submit">Run now</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="state state--empty">No scheduler jobs are registered in this process.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="history-title">
+    <h2 class="panel__title" id="history-title">Job history</h2>
+    {% if view.job_runs %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Recent job attempts</caption>
+          <thead><tr><th scope="col">Job</th><th scope="col">Run</th><th scope="col">Attempt</th><th scope="col">Trigger</th><th scope="col">Outcome</th><th scope="col">Duration</th><th scope="col">Error or action</th></tr></thead>
+          <tbody>
+            {% for run in view.job_runs %}
+              <tr data-testid="job-run-{{ run.id }}">
+                <th scope="row">{{ run.job_name }}</th>
+                <td><code>{{ run.run_id }}</code></td>
+                <td>{{ run.attempt }}</td>
+                <td>{{ run.trigger }}</td>
+                <td>{{ run.outcome }}</td>
+                <td>{% if run.duration_seconds is not none %}{{ run.duration_seconds|round(2) }} seconds{% else %}—{% endif %}</td>
+                <td>
+                  {% if run.error %}<span>{{ run.error }}</span>{% endif %}
+                  {% if run.can_retry %}
+                    <form method="post" action="/admin/jobs/{{ run.job_name }}/run">
+                      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+                      <input type="hidden" name="retry_run_id" value="{{ run.id }}">
+                      <button class="button" type="submit">Retry failed run</button>
+                    </form>
+                  {% endif %}
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="state state--empty">No job runs have been recorded.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="retention-title">
+    <header class="panel__header">
+      <div>
+        <p class="eyebrow">Data lifecycle</p>
+        <h2 class="panel__title" id="retention-title">Retention policy</h2>
+      </div>
+      <p class="muted">The regulatory floor is eight years and the log floor is 180 days.</p>
+    </header>
+    <dl class="governance__facts" data-testid="retention-policy">
+      <div><dt>Regulatory period</dt><dd>{{ view.retention_policy.policy.regulatory_period_years }} years</dd></div>
+      <div><dt>Logs minimum</dt><dd>{{ view.retention_policy.policy.logs_min_days }} days</dd></div>
+      <div><dt>Raw signals</dt><dd>{{ view.retention_policy.policy.raw_signal_months }} months</dd></div>
+      <div><dt>Forecasts</dt><dd>{{ view.retention_policy.policy.forecast_months }} months</dd></div>
+      <div><dt>Notifications</dt><dd>{{ view.retention_policy.policy.notification_months }} months</dd></div>
+      <div><dt>Resolved quarantine</dt><dd>{{ view.retention_policy.policy.quarantine_days }} days</dd></div>
+    </dl>
+    {% if view.retention_policy.applied_at %}
+      <p class="case-file__panel-message">Current policy version {{ view.retention_policy.config_id }} was applied {{ view.retention_policy.applied_at|ist_date }} by {{ view.retention_policy.applied_by_id }}.</p>
+    {% else %}
+      <p class="case-file__panel-message">The documented default policy is in force; no administrator override has been saved.</p>
+    {% endif %}
+
+    <form method="post" action="/admin/jobs" class="form-grid" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <input type="hidden" name="action" value="preview_retention">
+      <label>Regulatory period (years)
+        <input name="regulatory_period_years" type="number" min="8" max="100" value="{{ form.get('regulatory_period_years', [''])[-1] or view.retention_policy.policy.regulatory_period_years }}" required>
+      </label>
+      <label>Log minimum (days)
+        <input name="logs_min_days" type="number" min="180" max="36500" value="{{ form.get('logs_min_days', [''])[-1] or view.retention_policy.policy.logs_min_days }}" required>
+      </label>
+      <label>Raw signal window (months; fixed by policy)
+        <input name="raw_signal_months" type="number" min="24" max="24" value="{{ form.get('raw_signal_months', [''])[-1] or view.retention_policy.policy.raw_signal_months }}" readonly required>
+      </label>
+      <label>Forecast window (months; fixed by policy)
+        <input name="forecast_months" type="number" min="24" max="24" value="{{ form.get('forecast_months', [''])[-1] or view.retention_policy.policy.forecast_months }}" readonly required>
+      </label>
+      <label>Notification window (months; fixed by policy)
+        <input name="notification_months" type="number" min="12" max="12" value="{{ form.get('notification_months', [''])[-1] or view.retention_policy.policy.notification_months }}" readonly required>
+      </label>
+      <label>Resolved quarantine window (days; fixed by policy)
+      <input name="quarantine_days" type="number" min="90" max="90" value="{{ form.get('quarantine_days', [''])[-1] or view.retention_policy.policy.quarantine_days }}" readonly required>
+      </label>
+      <button class="button" type="submit">Preview purge impact</button>
+    </form>
+
+    {% if view.retention_preview %}
+      <section class="panel" aria-labelledby="retention-preview-title" data-testid="retention-preview">
+        <h3 class="panel__title" id="retention-preview-title">Next purge preview</h3>
+        <p data-testid="retention-preview-total">{{ view.retention_preview.total_count }} row{{ "s" if view.retention_preview.total_count != 1 else "" }} would be eligible under this policy.</p>
+        <div class="governance__scroll">
+          <table class="governance__table">
+            <caption>Eligible rows by entity and rule</caption>
+            <thead><tr><th scope="col">Entity</th><th scope="col">Rule</th><th scope="col">Eligible rows</th><th scope="col">Cutoff</th></tr></thead>
+            <tbody>
+              {% for row in view.retention_preview.counts %}
+                <tr data-testid="retention-count-{{ row.entity|replace(' ', '-') }}"><th scope="row">{{ row.entity }}</th><td>{{ row.rule }}</td><td>{{ row.count }}</td><td>{{ row.cutoff_date|ist_date }}</td></tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <form method="post" action="/admin/jobs" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="hidden" name="action" value="apply_retention">
+          <input type="hidden" name="retention" value='{{ view.retention_preview.policy.as_dict()|tojson }}'>
+          <input type="hidden" name="preview_token" value="{{ view.retention_preview.token }}">
+          <button class="button" type="submit">Apply retention policy</button>
+        </form>
+      </section>
+    {% endif %}
+  </section>
+
+  <section class="panel" aria-labelledby="purge-log-title">
+    <h2 class="panel__title" id="purge-log-title">Purge log</h2>
+    {% if view.purge_logs %}
+      <div class="governance__scroll">
+        <table class="governance__table">
+          <caption>Completed retention purges</caption>
+          <thead><tr><th scope="col">Entity</th><th scope="col">Rows purged</th><th scope="col">Executed</th><th scope="col">Executed by</th><th scope="col">Criteria</th></tr></thead>
+          <tbody>
+            {% for log in view.purge_logs %}
+              <tr data-testid="purge-log-{{ log.id }}"><th scope="row">{{ log.entity }}</th><td>{{ log.purged_count }}</td><td>{{ log.executed_at|ist_date }}</td><td>{{ log.executed_by }}</td><td><code>{{ log.criteria }}</code></td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <p class="case-file__panel-message">Completed purges are evidence and cannot be re-run from this screen.</p>
+    {% else %}
+      <p class="state state--empty">No retention purge has been executed.</p>
+    {% endif %}
+  </section>
+</div>
+{% endblock %}

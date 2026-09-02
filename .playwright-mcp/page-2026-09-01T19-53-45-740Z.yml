@@ -1,0 +1,98 @@
+- generic [active] [ref=f54e1]:
+  - link "Skip to content" [ref=f54e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f54e3]:
+    - complementary "Workspace navigation" [ref=f54e4]:
+      - link "Covenant Radar" [ref=f54e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f54e13]:
+          - strong [ref=f54e14]: Covenant
+          - generic [ref=f54e15]: Radar
+      - navigation "Primary navigation" [ref=f54e16]:
+        - region [ref=f54e17]:
+          - heading "Monitor" [level=2] [ref=f54e18]
+          - link "Portfolio queue" [ref=f54e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f54e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f54e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f54e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f54e31]: "0"
+          - link "Search" [ref=f54e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f54e37]:
+          - heading "Portfolio data" [level=2] [ref=f54e38]
+          - link "Borrowers" [ref=f54e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f54e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f54e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f54e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f54e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f54e61]:
+          - heading "Workflows" [level=2] [ref=f54e62]
+          - link "Intake" [ref=f54e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f54e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f54e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f54e75] [cursor=pointer]:
+            - /url: /governance
+      - button "Collapse sidebar" [expanded] [ref=f54e79] [cursor=pointer]
+    - generic [ref=f54e83]:
+      - banner [ref=f54e84]:
+        - generic [ref=f54e86]:
+          - generic [ref=f54e87]: Workspace
+          - generic [ref=f54e90]: Current view
+        - search [ref=f54e91]:
+          - generic [ref=f54e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f54e93]
+          - generic: /
+        - generic [ref=f54e94]:
+          - button "Live activity" [ref=f54e95]:
+            - generic [ref=f54e97]: Live
+          - button "Use dark theme" [ref=f54e99] [cursor=pointer]
+          - button "Open user menu" [ref=f54e103] [cursor=pointer]
+      - main [ref=f54e107]:
+        - generic [ref=f54e109]:
+          - paragraph [ref=f54e110]: Decision workspace
+          - heading "Notification centre" [level=1] [ref=f54e111]
+        - generic [ref=f54e112]:
+          - region [ref=f54e113]:
+            - generic [ref=f54e114]:
+              - paragraph [ref=f54e115]: "Unread notifications: 0"
+              - heading "Durable notices for the work in your queue." [level=2] [ref=f54e116]
+          - group "Notification centre" [ref=f54e118]:
+            - generic [ref=f54e120]:
+              - generic [ref=f54e121]: Status
+              - combobox "Status" [ref=f54e122]:
+                - option "All" [selected]
+                - option "Unread"
+                - option "Read"
+            - generic [ref=f54e123]:
+              - generic [ref=f54e124]: Notification type
+              - combobox "Notification type" [ref=f54e125]:
+                - option "All notification types" [selected]
+                - option "band_change"
+                - option "morning_queue"
+                - option "sla_breach"
+                - option "certificate_due"
+                - option "job_failure"
+                - option "security_alert"
+                - option "system_failure"
+            - button "Apply filters" [ref=f54e126] [cursor=pointer]
+          - region [ref=f54e127]:
+            - generic [ref=f54e129]:
+              - paragraph [ref=f54e130]: "Unread notifications: 0"
+              - heading "Notification centre" [level=2] [ref=f54e131]
+            - generic [ref=f54e132]:
+              - heading "No notifications in this view" [level=3] [ref=f54e133]
+              - paragraph [ref=f54e134]: New scoped warnings and workflow notices will appear here.
+            - generic [ref=f54e135]:
+              - text: Last updated
+              - time [ref=f54e136]: just now

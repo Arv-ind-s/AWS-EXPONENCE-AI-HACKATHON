@@ -1,0 +1,18 @@
+{
+  "phase7a-stage7-grounded-demo": {
+    "text": "{\"headline\":\"Leverage ratio is projected to breach at the selected action point.\",\"summary\":\"The current value and contractual threshold are taken from the latest complete period. The projected crossing is an advisory signal for human credit review.\",\"drivers\":[\"debt expansion / tangible net worth\"],\"recommended_next_step\":\"Review the latest financials with the borrower and confirm the remediation path.\",\"disclaimer\":\"human credit review is required before action\"}",
+    "model": "demo-recorded",
+    "input_tokens": 256,
+    "output_tokens": 118,
+    "latency_ms": 20,
+    "raw_payload": {"provider": "phase-7a-demo", "recorded": true}
+  },
+  "phase7a-stage7-deliberate-failing-shape": {
+    "text": "{\"headline\":\"This fixture is intentionally missing grounded fields.\"}",
+    "model": "demo-recorded",
+    "input_tokens": 256,
+    "output_tokens": 24,
+    "latency_ms": 10,
+    "raw_payload": {"provider": "phase-7a-demo", "recorded": true}
+  }
+}

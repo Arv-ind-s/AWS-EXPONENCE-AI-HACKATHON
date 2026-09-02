@@ -1,0 +1,130 @@
+[build-system]
+requires = ["hatchling==1.32.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "covenant-radar"
+dynamic = ["version"]
+description = "Evidence-backed covenant-breach warning software for commercial-credit teams."
+readme = "README.md"
+requires-python = ">=3.12"
+authors = [{ name = "Covenant Radar contributors" }]
+dependencies = [
+  "alembic==1.14.*",
+  "apscheduler==3.11.*",
+  "argon2-cffi==23.*",
+  "authlib==1.4.*",
+  "cryptography==44.*",
+  "fastapi==0.141.1",
+  "httpx==0.28.1",
+  "itsdangerous==2.2.*",
+  "jinja2==3.1.6",
+  "numpy==2.2.*",
+  "ocrmypdf==16.*",
+  "openpyxl==3.1.*",
+  "opentelemetry-sdk==1.29.*",
+  "pandas==3.0.5",
+  "pdfplumber==0.11.*",
+  "prometheus-client==0.21.*",
+  "psycopg[binary]==3.2.*",
+  "pydantic==2.11.*",
+  "pydantic-settings==2.7.*",
+  "pypdf==5.*",
+  "pysaml2==7.*",
+  "scikit-learn==1.6.*",
+  "python-docx==1.1.*",
+  "python-multipart==0.0.20",
+  "sqlalchemy==2.0.*",
+  "structlog==25.*",
+  "tenacity==9.*",
+  "uvicorn[standard]==0.52.4",
+  "weasyprint==63.*",
+]
+
+[project.optional-dependencies]
+dev = [
+  "bandit==1.8.*",
+  "cyclonedx-py",
+  "detect-secrets==1.5.*",
+  "hatchling==1.32.0",
+  "hypothesis==6.*",
+  "import-linter==2.*",
+  "jsonschema==4.23.*",
+  "mypy==1.14.*",
+  "mutmut==3.*",
+  "nox==2026.8.17",
+  "pip-audit==2.*",
+  "playwright==1.62.0",
+  "pre-commit==4.6.2",
+  "pytest==9.1.1",
+  "pytest-asyncio",
+  "pytest-cov",
+  "ruff==0.9.*",
+]
+
+[project.scripts]
+radarctl = "covenant_radar.cli:main"
+
+[tool.hatch.version]
+path = "src/covenant_radar/__init__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/covenant_radar"]
+
+[tool.hatch.build.targets.wheel.force-include]
+"src/radarctl.py" = "radarctl.py"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["B", "DTZ", "E", "F", "I", "T20", "UP"]
+
+[tool.mypy]
+check_untyped_defs = true
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+warn_unused_ignores = true
+
+[[tool.mypy.overrides]]
+module = ["covenant_radar.domain.*", "covenant_radar.services.*"]
+strict = true
+
+[[tool.mypy.overrides]]
+# APScheduler (`spec §13`'s ADR for T-120) ships no type stubs or py.typed marker.
+module = ["apscheduler.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+# openpyxl (`T-025`'s XLSX statement reader) ships no inline type stubs.
+module = ["openpyxl.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["sklearn.*"]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+addopts = "-ra --strict-markers"
+testpaths = ["tests"]
+markers = [
+  "unit: isolated unit tests",
+  "property: property-based tests",
+  "integration: integration tests requiring adapters",
+  "contract: API contract tests",
+  "e2e: browser end-to-end tests",
+  "a11y: accessibility tests",
+  "security: security tests",
+  "perf: performance tests",
+  "migration: database migration tests",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["covenant_radar"]
+
+[tool.coverage.report]
+# T-160 raises this threshold when the complete test corpus is available.
+fail_under = 0

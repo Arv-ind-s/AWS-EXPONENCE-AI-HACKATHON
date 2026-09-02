@@ -1,0 +1,17 @@
+{% if view is defined %}
+<div class="case-header" data-borrower-reference="{{ view.header.borrower_reference }}">
+  <p class="case-header__identifier">{{ labels.reference }}: {{ view.header.borrower_reference }}</p>
+  <div class="case-header__facts" aria-label="{{ labels.header_label }}">
+    {% for fact in view.header.facts %}
+      <div class="case-header__fact" data-fact="{{ fact.key }}">
+        <span class="case-header__fact-label">{{ fact.label }}</span>
+        <span class="case-header__fact-value{% if fact.missing %} case-header__fact-value--missing{% endif %}"{% if fact.key == "dated_risk" %} data-horizon-header-risk{% endif %}>
+          {{ fact.value }}
+        </span>
+        {% if fact.detail %}<span class="case-header__fact-detail">{{ fact.detail }}</span>{% endif %}
+      </div>
+    {% endfor %}
+    <div class="case-header__whitespace" aria-hidden="true"></div>
+  </div>
+</div>
+{% endif %}

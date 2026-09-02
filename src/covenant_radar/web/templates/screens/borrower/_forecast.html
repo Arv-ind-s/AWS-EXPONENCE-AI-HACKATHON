@@ -1,0 +1,252 @@
+{% if view is defined %}
+{% set forecast_panel = view.forecast_panel %}
+<section
+  class="panel panel--{{ forecast_panel.state }} case-file__panel--wide"
+  id="case-forecast"
+  data-state="{{ forecast_panel.state }}"
+  aria-labelledby="case-forecast-title"
+>
+  <div class="panel__heading">
+    <h2 class="panel__title" id="case-forecast-title">{{ labels.forecast_title }}</h2>
+    {% if view.actions %}<a class="text-action" href="{{ view.actions.why_href }}" hx-get="{{ view.actions.why_href }}" hx-target="body" hx-swap="beforeend">Why this forecast?</a>{% endif %}
+  </div>
+  {% if forecast_panel.state == "empty" %}
+    {% set state_id = "case-forecast-empty" %}
+    {% set state_title = forecast_panel.empty_title %}
+    {% set state_message = forecast_panel.empty_message %}
+    {% include "_states/empty.html" %}
+  {% elif forecast_panel.state == "loading" %}
+    {% set state_label = labels.loading %}
+    {% set state_rows = 3 %}
+    {% set state_columns = 4 %}
+    {% include "_states/loading.html" %}
+  {% elif forecast_panel.state == "error" %}
+    {% set state_id = "case-forecast-error" %}
+    {% set state_title = forecast_panel.error_title %}
+    {% set state_message = forecast_panel.error_message %}
+    {% include "_states/error.html" %}
+  {% elif forecast_panel.state == "degraded" %}
+    {% set state_capability = labels.forecast_title %}
+    {% set state_message = forecast_panel.degraded_message %}
+    {% include "_states/degraded.html" %}
+  {% else %}
+    <div class="forecast-panel" id="forecast-panel">
+      {% for covenant in forecast_panel.covenants %}
+        <article
+          class="forecast-covenant"
+          id="{{ covenant.row_id }}"
+          data-horizon-card
+          data-covenant-reference="{{ covenant.covenant_reference }}"
+          data-unit="{{ covenant.unit }}"
+          data-threshold="{{ covenant.threshold if covenant.threshold is not none else "" }}"
+          data-maximum-day="{{ covenant.maximum_day }}"
+          data-as-of-date="{{ covenant.as_of_date.isoformat() if covenant.as_of_date else "" }}"
+          data-horizon-updates-header="{{ "true" if covenant.updates_header else "false" }}"
+        >
+          <header class="forecast-covenant__heading">
+            <h3 class="forecast-covenant__name">{{ covenant.covenant_name }}</h3>
+            <p class="forecast-covenant__reference">
+              {{ covenant.covenant_reference }} · {{ covenant.facility_reference }}
+            </p>
+          </header>
+          {% include "screens/borrower/_horizon.html" %}
+          <div class="forecast-covenant__layout">
+            <div class="forecast-covenant__figures">
+              <table class="forecast-covenant__table" id="{{ covenant.trajectory_id }}-ledger">
+                <caption>{{ labels.forecast_ledger }}</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">{{ labels.forecast_horizon }}</th>
+                    <th scope="col" class="forecast-number">{{ labels.forecast_probability }}</th>
+                    <th scope="col" class="forecast-number">{{ labels.forecast_confidence }}</th>
+                    <th scope="col">{{ labels.forecast_crossing }}</th>
+                    <th scope="col">{{ labels.forecast_method }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for horizon in covenant.horizons %}
+                    <tr data-horizon="{{ horizon.horizon_days }}" data-state="{{ horizon.state }}">
+                      <th scope="row">{{ horizon.label }}</th>
+                      <td
+                        class="forecast-number forecast-horizon__probability"
+                        data-suppressed="{{ "true" if horizon.state == "suppressed" else "false" }}"
+                      >{{ horizon.probability_display }}</td>
+                      <td class="forecast-number forecast-horizon__confidence">{{ horizon.confidence_display }}</td>
+                      <td
+                        class="forecast-horizon__crossing"
+                        data-state="{{ "available" if horizon.crossing_date else "unavailable" }}"
+                      >
+                        {{ horizon.crossing_display }}
+                        {% if horizon.forecast_id %}<a class="forecast-horizon__why text-action" href="/why/forecast/{{ horizon.forecast_id }}" hx-get="/why/forecast/{{ horizon.forecast_id }}" hx-target="body" hx-swap="beforeend">Why?</a>{% endif %}
+                      </td>
+                      <td class="forecast-horizon__method">
+                        {% if horizon.explanation %}
+                          <span data-prediction-method="{{ horizon.explanation.method }}">{{ horizon.explanation.method_label }}</span>
+                        {% else %}
+                          {{ labels.horizon_not_selected }}
+                        {% endif %}
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+            <div class="forecast-covenant__trajectory">
+              {% if covenant.trajectory_available %}
+                <figure
+                  class="trajectory"
+                  id="{{ covenant.trajectory_id }}"
+                  aria-labelledby="{{ covenant.trajectory_id }}-caption"
+                  aria-describedby="{{ covenant.trajectory_id }}-ledger"
+                >
+                  <figcaption class="trajectory__caption" id="{{ covenant.trajectory_id }}-caption">
+                    {{ labels.forecast_trajectory }}
+                  </figcaption>
+                  {{ covenant.trajectory_svg }}
+                </figure>
+              {% else %}
+                <div class="trajectory-state" role="status">
+                  {{ covenant.trajectory_svg }}
+                </div>
+              {% endif %}
+              <p class="forecast-covenant__reason">{{ covenant.trajectory_message }}</p>
+            </div>
+          </div>
+
+          <section class="forecast-assurance" aria-labelledby="{{ covenant.trajectory_id }}-explanations">
+            <div class="forecast-assurance__heading">
+              <h4 id="{{ covenant.trajectory_id }}-explanations">{{ labels.forecast_explanations }}</h4>
+              <p>{{ labels.forecast_explanations_note }}</p>
+            </div>
+            <div class="forecast-explanation-list">
+              {% for horizon in covenant.horizons %}
+                {% if horizon.explanation %}
+                  {% set explanation = horizon.explanation %}
+                  <details
+                    class="forecast-explanation"
+                    id="forecast-explanation-{{ horizon.forecast_id }}"
+                    data-method="{{ explanation.method }}"
+                    {% if horizon.is_primary %}open{% endif %}
+                  >
+                    <summary>
+                      <span>{{ horizon.label }}</span>
+                      <span>{{ horizon.probability_display }}</span>
+                      <span>{{ explanation.method_label }}</span>
+                    </summary>
+                    <div class="forecast-explanation__body">
+                      {% if explanation.governance_warning %}
+                        <p class="forecast-explanation__warning" role="alert">{{ explanation.governance_warning }}</p>
+                      {% endif %}
+                      <p class="forecast-explanation__summary">{{ explanation.summary }}</p>
+                      <p>{{ explanation.rationale }}</p>
+
+                      <dl class="forecast-explanation__meta">
+                        <div><dt>{{ labels.forecast_operational_source }}</dt><dd>{{ explanation.operational_label }}</dd></div>
+                        {% if explanation.rule_version %}<div><dt>{{ labels.forecast_rule_version }}</dt><dd><code>{{ explanation.rule_version }}</code></dd></div>{% endif %}
+                        {% if explanation.deterministic_probability_display %}<div><dt>{{ labels.forecast_deterministic_probability }}</dt><dd>{{ explanation.deterministic_probability_display }}</dd></div>{% endif %}
+                        {% if explanation.ml_probability_display %}<div><dt>{{ labels.forecast_ml_probability }}</dt><dd>{{ explanation.ml_probability_display }}{% if explanation.ml_role %}<span>{{ explanation.ml_role }}</span>{% endif %}</dd></div>{% endif %}
+                        {% if explanation.ml_model_version %}<div><dt>{{ labels.forecast_model_version }}</dt><dd><code>{{ explanation.ml_model_version }}</code></dd></div>{% endif %}
+                        {% if explanation.artifact_checksum %}<div><dt>{{ labels.forecast_artifact_checksum }}</dt><dd><code>{{ explanation.artifact_checksum }}</code></dd></div>{% endif %}
+                        {% if explanation.feature_snapshot_hash %}<div><dt>{{ labels.forecast_feature_snapshot }}</dt><dd><code>{{ explanation.feature_snapshot_hash }}</code></dd></div>{% endif %}
+                        {% if explanation.fallback_reason %}<div><dt>Fallback / comparison status</dt><dd>{{ explanation.fallback_reason }}</dd></div>{% endif %}
+                      </dl>
+
+                      {% if explanation.factors %}
+                        <section aria-labelledby="forecast-factors-{{ horizon.forecast_id }}">
+                          <h5 id="forecast-factors-{{ horizon.forecast_id }}">{{ labels.forecast_rule_factors }}</h5>
+                          <div class="forecast-explanation__table-wrap">
+                            <table class="forecast-explanation__factor-table">
+                              <thead><tr><th scope="col">{{ labels.forecast_factor }}</th><th scope="col">{{ labels.forecast_input }}</th><th scope="col">{{ labels.forecast_normalized }}</th><th scope="col">{{ labels.forecast_weight }}</th><th scope="col">{{ labels.forecast_contribution }}</th></tr></thead>
+                              <tbody>
+                                {% for factor in explanation.factors %}
+                                  <tr><th scope="row">{{ factor.label }}</th><td>{{ factor.input_display }}</td><td>{{ factor.normalized_display }}</td><td>{{ factor.weight_display }}</td><td>{{ factor.contribution_display }}</td></tr>
+                                {% endfor %}
+                              </tbody>
+                            </table>
+                          </div>
+                        </section>
+                      {% endif %}
+
+                      <section aria-labelledby="forecast-drivers-{{ horizon.forecast_id }}">
+                        <h5 id="forecast-drivers-{{ horizon.forecast_id }}">{{ labels.forecast_drivers }}</h5>
+                        {% if explanation.drivers %}
+                          <ul class="forecast-driver-list">
+                            {% for driver in explanation.drivers %}
+                              <li>
+                                <span>{{ driver.label }}</span><strong>{{ driver.share_display }}</strong>
+                                {% if driver.evidence_href %}<a href="{{ driver.evidence_href }}">View cited evidence</a>{% else %}<span class="muted">Rule-derived; no evidence record link</span>{% endif %}
+                              </li>
+                            {% endfor %}
+                          </ul>
+                        {% else %}
+                          <p class="muted">No attribution records were stored for this horizon.</p>
+                        {% endif %}
+                      </section>
+
+                      {% if explanation.ml_model_version %}
+                        <section aria-labelledby="forecast-ml-contributions-{{ horizon.forecast_id }}">
+                          <h5 id="forecast-ml-contributions-{{ horizon.forecast_id }}">{{ labels.forecast_model_contributions }}</h5>
+                          {% if explanation.model_contributions %}
+                            <ul class="forecast-model-contribution-list">
+                              {% for contribution in explanation.model_contributions %}
+                                <li><span>{{ contribution.label }}</span><strong>{{ contribution.value_display }}</strong><span>{{ contribution.direction }}</span></li>
+                              {% endfor %}
+                            </ul>
+                          {% else %}
+                            <p class="muted">{{ labels.forecast_no_model_contributions }}</p>
+                          {% endif %}
+                        </section>
+                      {% endif %}
+
+                      <section aria-labelledby="forecast-citations-{{ horizon.forecast_id }}">
+                        <h5 id="forecast-citations-{{ horizon.forecast_id }}">{{ labels.forecast_citations }}</h5>
+                        <ol class="forecast-citation-list">
+                          {% for citation in explanation.citations %}
+                            <li>
+                              <a href="{{ citation.href }}"{% if citation.source_type == "forecast" %} hx-get="{{ citation.href }}" hx-target="body" hx-swap="beforeend"{% endif %}>{{ citation.label }}</a>
+                            </li>
+                          {% endfor %}
+                        </ol>
+                      </section>
+
+                      <aside class="forecast-explanation__provenance" aria-label="{{ labels.forecast_explanation_provenance }}">
+                        <strong>{{ labels.forecast_explanation_provenance }}</strong>
+                        <p>{{ explanation.provenance_statement }}</p>
+                      </aside>
+                    </div>
+                  </details>
+                {% endif %}
+              {% endfor %}
+            </div>
+          </section>
+
+          <section class="forecast-insights" aria-labelledby="{{ covenant.trajectory_id }}-insights">
+            <div class="forecast-insights__heading">
+              <h4 id="{{ covenant.trajectory_id }}-insights">{{ labels.forecast_actionable_insights }}</h4>
+              <p>{{ labels.forecast_actionable_note }}</p>
+            </div>
+            {% if covenant.actionable_insights %}
+              <ol class="forecast-insight-list">
+                {% for insight in covenant.actionable_insights %}
+                  <li class="forecast-insight" data-intervention-code="{{ insight.code }}">
+                    <div class="forecast-insight__title"><code>{{ insight.code }}</code><span>{{ labels.forecast_action_owner }}: {{ insight.role_label }}</span></div>
+                    <p>{{ insight.text }}</p>
+                    <p class="forecast-insight__reason">{{ insight.applicability_reason }}</p>
+                    <dl><div><dt>{{ labels.forecast_action_effect }}</dt><dd>{{ insight.effect_model }}</dd></div><div><dt>{{ labels.forecast_action_approval }}</dt><dd>{{ "Yes" if insight.requires_approval else "No" }}</dd></div></dl>
+                    {% if insight.assumptions %}
+                      <details><summary>{{ labels.forecast_action_assumptions }}</summary><ul>{% for assumption in insight.assumptions %}<li>{{ assumption }}</li>{% endfor %}</ul></details>
+                    {% endif %}
+                    {% if insight.simulator_href %}<a class="button" href="{{ insight.simulator_href }}">{{ labels.forecast_action_simulate }}</a>{% endif %}
+                  </li>
+                {% endfor %}
+              </ol>
+            {% else %}
+              <p class="muted">{{ labels.forecast_no_actions }}</p>
+            {% endif %}
+          </section>
+        </article>
+      {% endfor %}
+    </div>
+  {% endif %}
+</section>
+{% endif %}

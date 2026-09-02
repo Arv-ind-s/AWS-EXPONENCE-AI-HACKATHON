@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set borrower = borrower|default(namespace(reference="unknown", portfolio_id="unknown", version=0, cin_fingerprint=None, legal_name="")) %}
+{% set facility_rows = facility_rows|default(()) %}
+{% set form = form|default({}) %}
+{% set csrf_token = csrf_token|default("") %}
+
+{% block page_title %}{{ labels.borrower_title }}{% endblock %}
+{% block h1 %}{{ labels.borrower_heading }}{% endblock %}
+
+{% block content %}
+  {% call components.panel(title=borrower.reference, panel_id="borrower-summary") %}
+    {{ components.field("legal_name", labels.borrowers_legal_name, value=borrower.legal_name, disabled=true, field_id="summary-legal_name") }}
+    {{ components.field("portfolio_id", labels.borrowers_portfolio, value=borrower.portfolio_id, disabled=true, field_id="summary-portfolio_id") }}
+    {{ components.field("version", labels.borrower_version, value=borrower.version, disabled=true, field_id="summary-version") }}
+    {{ components.field("cin_present", labels.borrower_cin_present, value=labels.borrowers_active if borrower.cin_fingerprint else labels.borrowers_inactive, disabled=true, field_id="summary-cin_present") }}
+  {% endcall %}
+  {% call components.panel(title=labels.facilities_heading, panel_id="borrower-facilities") %}
+    {{ components.ledger_table(
+      labels.facilities_heading,
+      [
+        {"key": "reference", "label": labels.facilities_reference},
+        {"key": "limit", "label": labels.facilities_limit},
+        {"key": "effective", "label": labels.facilities_effective}
+      ],
+      facility_rows,
+      table_id="borrower-facility-ledger",
+      empty_title=labels.facilities_empty,
+      empty_message=labels.facilities_empty
+    ) }}
+  {% endcall %}
+  {% if principal.has("CORRECT_SOURCE_DATA") %}
+    {% call components.panel(title=labels.borrower_save, panel_id="borrower-edit") %}
+      <form method="post" action="/borrowers/{{ borrower.reference }}/edit" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="hidden" name="expected_version" value="{{ form.expected_version }}">
+        {{ components.field("legal_name", labels.borrowers_legal_name, value=form.get("legal_name", borrower.legal_name), required=true) }}
+        {{ components.button(labels.borrower_save, type="submit") }}
+      </form>
+      <form method="post" action="/borrowers/{{ borrower.reference }}/deactivate" novalidate>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+        <input type="hidden" name="expected_version" value="{{ borrower.version }}">
+        {{ components.button(labels.borrower_deactivate, type="submit", destructive=true) }}
+      </form>
+    {% endcall %}
+  {% endif %}
+{% endblock %}

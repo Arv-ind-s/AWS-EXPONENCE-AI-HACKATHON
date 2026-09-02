@@ -1,0 +1,1108 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f4e3]:
+    - complementary "Workspace navigation" [ref=f4e4]:
+      - link "Covenant Radar" [ref=f4e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f4e13]:
+          - strong [ref=f4e14]: Covenant
+          - generic [ref=f4e15]: Radar
+      - navigation "Primary navigation" [ref=f4e16]:
+        - region [ref=f4e17]:
+          - heading "Monitor" [level=2] [ref=f4e18]
+          - link "Portfolio queue" [ref=f4e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f4e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f4e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f4e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f4e31]: "0"
+          - link "Search" [ref=f4e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f4e37]:
+          - heading "Portfolio data" [level=2] [ref=f4e38]
+          - link "Borrowers" [ref=f4e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f4e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f4e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f4e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f4e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f4e61]:
+          - heading "Workflows" [level=2] [ref=f4e62]
+          - link "Intake" [ref=f4e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f4e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f4e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f4e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f4e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f4e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f4e87]:
+          - heading "Administration" [level=2] [ref=f4e88]
+          - link "Action catalogue" [ref=f4e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f4e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f4e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f4e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f4e109] [cursor=pointer]
+    - generic [ref=f4e113]:
+      - banner [ref=f4e114]:
+        - generic: Current view
+        - search [ref=f4e116]:
+          - generic [ref=f4e117]: Search the workspace
+          - searchbox "Search the workspace" [ref=f4e118]
+          - generic: /
+        - generic [ref=f4e119]:
+          - button "Live activity" [ref=f4e120]:
+            - generic [ref=f4e122]: Live
+          - button "Use dark theme" [ref=f4e124] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f4e128] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f4e130] [cursor=pointer]
+      - main [ref=f4e134]:
+        - generic [ref=f4e136]:
+          - paragraph [ref=f4e137]: Decision workspace
+          - heading "Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited" [level=1] [ref=f4e138]
+        - generic [ref=f4e140]:
+          - region [ref=f4e141]:
+            - heading "Borrower facts" [level=2] [ref=f4e142]
+            - generic [ref=f4e143]:
+              - paragraph [ref=f4e144]: "Borrower reference: B-000002"
+              - generic "Borrower facts" [ref=f4e145]:
+                - generic [ref=f4e146]:
+                  - generic [ref=f4e147]: Borrower
+                  - generic [ref=f4e148]: Chatterjee Agro Processing and Logistics Saanvi 00002 Private Limited
+                - generic [ref=f4e149]:
+                  - generic [ref=f4e150]: Exposure
+                  - generic [ref=f4e151]: ₹133.54
+                - generic [ref=f4e152]:
+                  - generic [ref=f4e153]: Worst covenant
+                  - generic [ref=f4e154]: Leverage ratio ≤ 3x
+                - generic [ref=f4e155]:
+                  - generic [ref=f4e156]: Dated risk
+                  - generic [ref=f4e157]: "Crossing: 02 Sept 2026"
+          - generic [ref=f4e159]:
+            - region [ref=f4e160]:
+              - heading "Case actions" [level=2] [ref=f4e161]
+              - generic [ref=f4e162]:
+                - link "Why this decision" [ref=f4e164] [cursor=pointer]:
+                  - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+                - button "Prepare memo" [ref=f4e167] [cursor=pointer]
+                - link "Run simulation" [ref=f4e169] [cursor=pointer]:
+                  - /url: /simulator/01a05fa1-58f1-780f-8b8e-42dda9db0804
+                - link "Log action" [ref=f4e171] [cursor=pointer]:
+                  - /url: /cases/C-018CA12C8A62-2#case-actions
+            - region [ref=f4e172]:
+              - heading "Warning memo" [level=2] [ref=f4e173]
+              - paragraph [ref=f4e174]: Drafted by model
+              - region [ref=f4e175]:
+                - heading "AI explanation provenance" [level=3] [ref=f4e176]
+                - generic [ref=f4e177]:
+                  - generic [ref=f4e178]:
+                    - term [ref=f4e179]: Provider
+                    - definition [ref=f4e180]: TCS
+                  - generic [ref=f4e181]:
+                    - term [ref=f4e182]: Model
+                    - definition [ref=f4e183]: azure/genailab-maas-gpt-4o-mini
+                  - generic [ref=f4e184]:
+                    - term [ref=f4e185]: Prompt
+                    - definition [ref=f4e186]: v2
+                  - generic [ref=f4e187]:
+                    - term [ref=f4e188]: Grounding checks
+                    - definition [ref=f4e189]: Passed
+              - article "Drafted by model" [ref=f4e190]:
+                - heading "Leverage ratio projected breach warning" [level=3] [ref=f4e191]
+                - paragraph [ref=f4e192]: The current leverage ratio stands at 3.22000000, exceeding the contractual threshold of 3.00000000, resulting in a headroom of -7.3333. There is a projected breach probability of 0.9900, with a crossing date anticipated on 2026-09-02.
+                - heading "Drivers cited" [level=4] [ref=f4e193]
+                - list [ref=f4e194]:
+                  - listitem [ref=f4e195]: distance
+                  - listitem [ref=f4e196]: trend
+                  - listitem [ref=f4e197]: pressure
+                - heading "Recommended actions" [level=4] [ref=f4e198]
+                - table [ref=f4e199]:
+                  - caption [ref=f4e200]: Recommended actions
+                  - rowgroup [ref=f4e201]:
+                    - row [ref=f4e202]:
+                      - columnheader "Action" [ref=f4e203]
+                      - columnheader "Owning role" [ref=f4e204]
+                      - columnheader "Detail" [ref=f4e205]
+                  - rowgroup [ref=f4e206]:
+                    - row [ref=f4e207]:
+                      - cell "CREDIT-REDUCE-EXPOSURE" [ref=f4e208]
+                      - cell "credit" [ref=f4e209]
+                      - cell "Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f4e210]
+                    - row [ref=f4e211]:
+                      - cell "RISK-REVIEW-THRESHOLD" [ref=f4e212]
+                      - cell "risk" [ref=f4e213]
+                      - cell "Review the covenant threshold against the executed facility documents." [ref=f4e214]
+                - heading "Recommended next step" [level=4] [ref=f4e215]
+                - paragraph [ref=f4e216]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                - paragraph [ref=f4e217]: human credit review is required before action
+              - region [ref=f4e218]:
+                - heading "Grounding citations" [level=3] [ref=f4e219]
+                - paragraph [ref=f4e220]: The model connected these stored facts into prose; it did not calculate the prediction or create new source records.
+                - list [ref=f4e221]:
+                  - listitem [ref=f4e222]:
+                    - link "Forecast — 01a05fa1-58f1-780f-8b8e-42dda9db0804" [ref=f4e223] [cursor=pointer]:
+                      - /url: /why/forecast/01a05fa1-58f1-780f-8b8e-42dda9db0804
+                  - listitem [ref=f4e224]: Forecast driver — 01a05fa1-5918-70e3-86a6-8d3a39b88ac9
+                  - listitem [ref=f4e225]: Forecast driver — 01a05fa1-5918-70e4-acc8-506e98059491
+                  - listitem [ref=f4e226]: Forecast driver — 01a05fa1-5918-70e5-bc7d-b0a71d8c3c78
+                  - listitem [ref=f4e227]:
+                    - link "Evidence item — 01a05c21-7072-7103-8adf-597b424d14d2" [ref=f4e228] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7103-8adf-597b424d14d2"
+                  - listitem [ref=f4e229]:
+                    - link "Evidence item — 01a05c21-7072-7106-bf5b-c7bf51e79e99" [ref=f4e230] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7106-bf5b-c7bf51e79e99"
+                  - listitem [ref=f4e231]:
+                    - link "Evidence item — 01a05c21-7072-7107-b2b1-6278d5e8816e" [ref=f4e232] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7107-b2b1-6278d5e8816e"
+                  - listitem [ref=f4e233]:
+                    - link "Evidence item — 01a05c21-7072-7108-9776-727e4f4a6966" [ref=f4e234] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7108-9776-727e4f4a6966"
+                  - listitem [ref=f4e235]:
+                    - link "Evidence item — 01a05c21-7072-7109-9c66-06df81935643" [ref=f4e236] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7109-9c66-06df81935643"
+                  - listitem [ref=f4e237]:
+                    - link "Evidence item — 01a05c21-7072-7105-86f2-019e5ee135c6" [ref=f4e238] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7105-86f2-019e5ee135c6"
+                  - listitem [ref=f4e239]:
+                    - link "Evidence item — 01a05c21-7072-7104-a970-feb6c83c559f" [ref=f4e240] [cursor=pointer]:
+                      - /url: "#evidence-item-01a05c21-7072-7104-a970-feb6c83c559f"
+                  - listitem [ref=f4e241]: Bank action catalogue — 01a058f4-0773-7380-b691-b711be88d265
+                  - listitem [ref=f4e242]: Bank action catalogue — 01a058f4-0773-7381-a1d7-7cf213482e24
+              - paragraph [ref=f4e243]: Memo reference 01a06061-4eae-7a33-9cdc-1d49d37c0e31
+            - region [ref=f4e244]:
+              - generic [ref=f4e245]:
+                - heading "Covenant position" [level=2] [ref=f4e246]
+                - link "Why this contractual status?" [ref=f4e247] [cursor=pointer]:
+                  - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+              - table [ref=f4e249]:
+                - caption [ref=f4e250]: Covenant position
+                - rowgroup [ref=f4e251]:
+                  - row [ref=f4e252]:
+                    - columnheader "Covenant" [ref=f4e253]
+                    - columnheader "Facility" [ref=f4e254]
+                    - columnheader "Value" [ref=f4e255]
+                    - columnheader "Threshold in force" [ref=f4e256]
+                    - columnheader "Headroom" [ref=f4e257]
+                    - columnheader "Verdict" [ref=f4e258]
+                    - columnheader "Next test" [ref=f4e259]
+                    - columnheader "Trajectory" [ref=f4e260]
+                - rowgroup [ref=f4e261]:
+                  - row [ref=f4e262]:
+                    - rowheader "Current ratio D02LIQ" [ref=f4e263]:
+                      - text: Current ratio
+                      - generic [ref=f4e264]: D02LIQ
+                    - cell "F-000002-01" [ref=f4e265]
+                    - cell "1.475x" [ref=f4e266]
+                    - cell "1.2x" [ref=f4e267]
+                    - cell "22.9167%" [ref=f4e268]
+                    - cell "Pass Why?" [ref=f4e269]:
+                      - generic [ref=f4e270]: Pass
+                      - link "Why?" [ref=f4e271] [cursor=pointer]:
+                        - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+                    - cell "No next test is recorded in the covenant schedule." [ref=f4e272]
+                    - cell "Trajectory toward the minimum threshold" [ref=f4e273]: ↓
+                  - row [ref=f4e274]:
+                    - rowheader "Interest coverage ratio D02COV" [ref=f4e275]:
+                      - text: Interest coverage ratio
+                      - generic [ref=f4e276]: D02COV
+                    - cell "F-000002-01" [ref=f4e277]
+                    - cell "2.25x" [ref=f4e278]
+                    - cell "1.5x" [ref=f4e279]
+                    - cell "50.0000%" [ref=f4e280]
+                    - cell "Pass Why?" [ref=f4e281]:
+                      - generic [ref=f4e282]: Pass
+                      - link "Why?" [ref=f4e283] [cursor=pointer]:
+                        - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+                    - cell "No next test is recorded in the covenant schedule." [ref=f4e284]
+                    - cell "Trajectory toward the minimum threshold" [ref=f4e285]: ↓
+                  - row [ref=f4e286]:
+                    - rowheader "Leverage ratio D02LEV" [ref=f4e287]:
+                      - text: Leverage ratio
+                      - generic [ref=f4e288]: D02LEV
+                    - cell "F-000002-01" [ref=f4e289]
+                    - cell "3.22x" [ref=f4e290]
+                    - cell "3x" [ref=f4e291]
+                    - cell "-7.3333%" [ref=f4e292]
+                    - cell "Breach — cure open Why?" [ref=f4e293]:
+                      - generic [ref=f4e294]: Breach — cure open
+                      - link "Why?" [ref=f4e295] [cursor=pointer]:
+                        - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+                    - cell "No next test is recorded in the covenant schedule." [ref=f4e296]
+                    - cell "Trajectory toward the maximum threshold" [ref=f4e297]: ↑
+            - region [ref=f4e298]:
+              - generic [ref=f4e299]:
+                - generic [ref=f4e300]:
+                  - paragraph [ref=f4e301]: Early-warning evidence
+                  - heading "Seven signal families" [level=2] [ref=f4e302]
+                  - paragraph [ref=f4e303]: Behavioural and external indicators are shown separately from contractual covenant status. Each card is backed by dated source events.
+                - link "Why these signals?" [ref=f4e304] [cursor=pointer]:
+                  - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+              - list "Signal family trends" [ref=f4e305]:
+                - listitem [ref=f4e306]:
+                  - generic "Account activity Worsening" [ref=f4e307] [cursor=pointer]:
+                    - generic: Account activity
+                    - generic [ref=f4e309]: Worsening
+                - listitem [ref=f4e310]:
+                  - generic "Payment behaviour Worsening" [ref=f4e311] [cursor=pointer]:
+                    - generic: Payment behaviour
+                    - generic [ref=f4e313]: Worsening
+                - listitem [ref=f4e314]:
+                  - generic "Facility utilisation Worsening" [ref=f4e315] [cursor=pointer]:
+                    - generic: Facility utilisation
+                    - generic [ref=f4e317]: Worsening
+                - listitem [ref=f4e318]:
+                  - generic "Treasury flows Worsening" [ref=f4e319] [cursor=pointer]:
+                    - generic: Treasury flows
+                    - generic [ref=f4e321]: Worsening
+                - listitem [ref=f4e322]:
+                  - generic "Concentration exposure Worsening" [ref=f4e323] [cursor=pointer]:
+                    - generic: Concentration exposure
+                    - generic [ref=f4e325]: Worsening
+                - listitem [ref=f4e326]:
+                  - generic "Industry conditions Worsening" [ref=f4e327] [cursor=pointer]:
+                    - generic: Industry conditions
+                    - generic [ref=f4e329]: Worsening
+                - listitem [ref=f4e330]:
+                  - generic "News deterioration Worsening" [ref=f4e331] [cursor=pointer]:
+                    - generic: News deterioration
+                    - generic [ref=f4e333]: Worsening
+            - region [ref=f4e334]:
+              - generic [ref=f4e335]:
+                - heading "Forecast trajectory" [level=2] [ref=f4e336]
+                - link "Why this forecast?" [ref=f4e337] [cursor=pointer]:
+                  - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+              - generic [ref=f4e338]:
+                - article [ref=f4e339]:
+                  - generic [ref=f4e340]:
+                    - heading "Interest coverage ratio" [level=3] [ref=f4e341]
+                    - paragraph [ref=f4e342]: D02COV · F-000002-01
+                  - generic [ref=f4e343]:
+                    - generic [ref=f4e344]:
+                      - heading "Horizon" [level=4] [ref=f4e345]
+                      - paragraph [ref=f4e346]:
+                        - text: "Selected day:"
+                        - status [ref=f4e347]: "0"
+                    - generic [ref=f4e348]:
+                      - generic [ref=f4e349]: Move through stored days
+                      - slider "Move through stored days" [ref=f4e350]: "0"
+                    - status [ref=f4e351]: Stored forecast day 0 loaded.
+                    - generic [ref=f4e352]:
+                      - generic [ref=f4e353]:
+                        - term [ref=f4e354]: Projected value
+                        - definition [ref=f4e355]: 2.25x
+                      - generic [ref=f4e356]:
+                        - term [ref=f4e357]: Headroom
+                        - definition [ref=f4e358]: 50%
+                      - generic [ref=f4e359]:
+                        - term [ref=f4e360]: Probability
+                        - definition [ref=f4e361]: 99%
+                      - generic [ref=f4e362]:
+                        - term [ref=f4e363]: Confidence
+                        - definition [ref=f4e364]: 100%
+                      - generic [ref=f4e365]:
+                        - term [ref=f4e366]: Crossing
+                        - definition [ref=f4e367]: "Projected crossing: 03 Sept 2026"
+                    - generic [ref=f4e368]:
+                      - heading "Drivers at selected day" [level=5] [ref=f4e369]
+                      - list [ref=f4e370]:
+                        - listitem [ref=f4e371]: distance (56%)
+                        - listitem [ref=f4e372]: pressure (18%)
+                        - listitem [ref=f4e373]: trend (26%)
+                  - generic [ref=f4e374]:
+                    - table [ref=f4e376]:
+                      - caption [ref=f4e377]: Forecast figures
+                      - rowgroup [ref=f4e378]:
+                        - row [ref=f4e379]:
+                          - columnheader "Horizon" [ref=f4e380]
+                          - columnheader "Probability" [ref=f4e381]
+                          - columnheader "Confidence" [ref=f4e382]
+                          - columnheader "Crossing" [ref=f4e383]
+                          - columnheader "Decision method" [ref=f4e384]
+                      - rowgroup [ref=f4e385]:
+                        - row [ref=f4e386]:
+                          - rowheader "30-day" [ref=f4e387]
+                          - cell "99%" [ref=f4e388]
+                          - cell "100%" [ref=f4e389]
+                          - cell [ref=f4e390]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e391] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-5943-7da4-af61-fba5955c8a9d
+                          - cell "Deterministic forecast rule" [ref=f4e392]
+                        - row [ref=f4e393]:
+                          - rowheader "60-day" [ref=f4e394]
+                          - cell "99%" [ref=f4e395]
+                          - cell "100%" [ref=f4e396]
+                          - cell [ref=f4e397]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e398] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-5943-7da5-acb1-b529bc2889b9
+                          - cell "Deterministic forecast rule" [ref=f4e399]
+                        - row [ref=f4e400]:
+                          - rowheader "90-day" [ref=f4e401]
+                          - cell "99%" [ref=f4e402]
+                          - cell "100%" [ref=f4e403]
+                          - cell [ref=f4e404]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e405] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-5943-7da6-b3de-8fffff79734c
+                          - cell "Deterministic forecast rule" [ref=f4e406]
+                    - generic [ref=f4e407]:
+                      - figure "Stored daily trajectory" [ref=f4e408]:
+                        - img "Interest coverage ratio trajectory" [ref=f4e410]:
+                          - generic: "Crossing day 1 · 03 Sep 2026 · Dominant driver: distance"
+                      - paragraph [ref=f4e412]: Stored daily path rendered.
+                  - region [ref=f4e413]:
+                    - generic [ref=f4e414]:
+                      - heading "Prediction explanations and provenance" [level=4] [ref=f4e415]
+                      - paragraph [ref=f4e416]: Each explanation is reconstructed from stored inputs. LLM-drafted prose is confined to the separately labelled, grounded memo.
+                    - generic [ref=f4e417]:
+                      - group [ref=f4e418]:
+                        - generic "30-day 99% Deterministic forecast rule" [ref=f4e419] [cursor=pointer]:
+                          - generic [ref=f4e420]: 30-day
+                          - generic [ref=f4e421]: 99%
+                          - generic [ref=f4e422]: Deterministic forecast rule
+                        - generic [ref=f4e423]:
+                          - paragraph [ref=f4e424]: Deterministic forecast rule supplied 99% for the 30-day horizon by combining threshold distance 0, deterioration velocity 4.395150687887779875910439709, and sustained-evidence pressure 4.3948.
+                          - paragraph [ref=f4e425]: The largest attributed driver is Proximity to covenant threshold at 56%. Confidence is 100%; threshold crossing is 03 Sep 2026.
+                          - generic [ref=f4e426]:
+                            - generic [ref=f4e427]:
+                              - term [ref=f4e428]: Operational source
+                              - definition [ref=f4e429]: Operational — used by the current risk view
+                            - generic [ref=f4e430]:
+                              - term [ref=f4e431]: Rule version
+                              - definition [ref=f4e432]:
+                                - code [ref=f4e433]: forecast.scoring.v1
+                            - generic [ref=f4e434]:
+                              - term [ref=f4e435]: Deterministic probability
+                              - definition [ref=f4e436]: 99%
+                            - generic [ref=f4e437]:
+                              - term [ref=f4e438]: Feature snapshot hash
+                              - definition [ref=f4e439]:
+                                - code [ref=f4e440]: 929385337aa26759d428b755940fcdc8854f49ba624d890d3fabbf9bffc895d4
+                            - generic [ref=f4e441]:
+                              - term [ref=f4e442]: Fallback / comparison status
+                              - definition [ref=f4e443]: covenant is already in breach; deterministic maximum retained over the model probability
+                          - region [ref=f4e444]:
+                            - heading "Deterministic rule factors" [level=5] [ref=f4e445]
+                            - table [ref=f4e447]:
+                              - rowgroup [ref=f4e448]:
+                                - row [ref=f4e449]:
+                                  - columnheader "Factor" [ref=f4e450]
+                                  - columnheader "Input" [ref=f4e451]
+                                  - columnheader "Normalised" [ref=f4e452]
+                                  - columnheader "Weight" [ref=f4e453]
+                                  - columnheader "Contribution" [ref=f4e454]
+                              - rowgroup [ref=f4e455]:
+                                - row [ref=f4e456]:
+                                  - rowheader "Distance to covenant threshold" [ref=f4e457]
+                                  - cell "0" [ref=f4e458]
+                                  - cell "100%" [ref=f4e459]
+                                  - cell "0.5" [ref=f4e460]
+                                  - cell "50%" [ref=f4e461]
+                                - row [ref=f4e462]:
+                                  - rowheader "Rate of deterioration" [ref=f4e463]
+                                  - cell "4.395150687887779875910439709" [ref=f4e464]
+                                  - cell "81%" [ref=f4e465]
+                                  - cell "0.3" [ref=f4e466]
+                                  - cell "24%" [ref=f4e467]
+                                - row [ref=f4e468]:
+                                  - rowheader "Sustained evidence pressure" [ref=f4e469]
+                                  - cell "4.3948" [ref=f4e470]
+                                  - cell "81%" [ref=f4e471]
+                                  - cell "0.2" [ref=f4e472]
+                                  - cell "16%" [ref=f4e473]
+                          - region [ref=f4e474]:
+                            - heading "Attributed drivers" [level=5] [ref=f4e475]
+                            - list [ref=f4e476]:
+                              - listitem [ref=f4e477]:
+                                - generic [ref=f4e478]: Proximity to covenant threshold
+                                - strong [ref=f4e479]: 56%
+                                - generic [ref=f4e480]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e481]:
+                                - generic [ref=f4e482]: Covenant trajectory trend
+                                - strong [ref=f4e483]: 26%
+                                - generic [ref=f4e484]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e485]:
+                                - generic [ref=f4e486]: Sustained evidence pressure
+                                - strong [ref=f4e487]: 18%
+                                - generic [ref=f4e488]: Rule-derived; no evidence record link
+                          - region [ref=f4e489]:
+                            - heading "Citations" [level=5] [ref=f4e490]
+                            - list [ref=f4e491]:
+                              - listitem [ref=f4e492]:
+                                - link "Forecast record — 30-day horizon" [ref=f4e493] [cursor=pointer]:
+                                  - /url: /why/forecast/01a05fa1-5943-7da4-af61-fba5955c8a9d
+                              - listitem [ref=f4e494]:
+                                - link "Evidence input — Account Activity" [ref=f4e495] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7103-8adf-597b424d14d2"
+                              - listitem [ref=f4e496]:
+                                - link "Evidence input — Concentration" [ref=f4e497] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7106-bf5b-c7bf51e79e99"
+                              - listitem [ref=f4e498]:
+                                - link "Evidence input — Industry" [ref=f4e499] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7107-b2b1-6278d5e8816e"
+                              - listitem [ref=f4e500]:
+                                - link "Evidence input — News" [ref=f4e501] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7108-9776-727e4f4a6966"
+                              - listitem [ref=f4e502]:
+                                - link "Evidence input — Payment" [ref=f4e503] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7109-9c66-06df81935643"
+                              - listitem [ref=f4e504]:
+                                - link "Evidence input — Treasury" [ref=f4e505] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7105-86f2-019e5ee135c6"
+                              - listitem [ref=f4e506]:
+                                - link "Evidence input — Utilisation" [ref=f4e507] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7104-a970-feb6c83c559f"
+                          - complementary "Why this explanation is supportable" [ref=f4e508]:
+                            - strong [ref=f4e509]: Why this explanation is supportable
+                            - paragraph [ref=f4e510]: Assembled from stored forecast 01a05fa1-5943-7da4-af61-fba5955c8a9d, its saved formula inputs and 3 attribution records. An LLM did not calculate or rewrite this explanation; when an AI memo is requested, the TCS-backed stage-7 draft is separately labelled and shape-checked.
+                      - group [ref=f4e511]:
+                        - generic "60-day 99% Deterministic forecast rule" [ref=f4e512] [cursor=pointer]:
+                          - generic [ref=f4e513]: 60-day
+                          - generic [ref=f4e514]: 99%
+                          - generic [ref=f4e515]: Deterministic forecast rule
+                      - group [ref=f4e516]:
+                        - generic "90-day 99% Deterministic forecast rule" [ref=f4e517] [cursor=pointer]:
+                          - generic [ref=f4e518]: 90-day
+                          - generic [ref=f4e519]: 99%
+                          - generic [ref=f4e520]: Deterministic forecast rule
+                  - region [ref=f4e521]:
+                    - generic [ref=f4e522]:
+                      - heading "Possible actionable insights" [level=4] [ref=f4e523]
+                      - paragraph [ref=f4e524]: These are active, bank-owned catalogue actions applicable to this covenant. They are advisory candidates, not automatic credit decisions; simulate before prioritising.
+                    - list [ref=f4e525]:
+                      - listitem [ref=f4e526]:
+                        - generic [ref=f4e527]:
+                          - code [ref=f4e528]: CREDIT-REDUCE-EXPOSURE
+                          - generic [ref=f4e529]: "Owner: Credit"
+                        - paragraph [ref=f4e530]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                        - paragraph [ref=f4e531]: Shown because bank catalogue action CREDIT-REDUCE-EXPOSURE is active and applicable to coverage covenants.
+                        - generic [ref=f4e532]:
+                          - generic [ref=f4e533]:
+                            - term [ref=f4e534]: Effect model
+                            - definition [ref=f4e535]: Level Shift
+                          - generic [ref=f4e536]:
+                            - term [ref=f4e537]: Human approval required
+                            - definition [ref=f4e538]: "Yes"
+                        - group [ref=f4e539]:
+                          - generic "Assumptions" [ref=f4e540] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e541] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-5943-7da4-af61-fba5955c8a9d?intervention_code=CREDIT-REDUCE-EXPOSURE
+                      - listitem [ref=f4e542]:
+                        - generic [ref=f4e543]:
+                          - code [ref=f4e544]: RISK-REVIEW-THRESHOLD
+                          - generic [ref=f4e545]: "Owner: Risk"
+                        - paragraph [ref=f4e546]: Review the covenant threshold against the executed facility documents.
+                        - paragraph [ref=f4e547]: Shown because bank catalogue action RISK-REVIEW-THRESHOLD is active and applicable to coverage covenants.
+                        - generic [ref=f4e548]:
+                          - generic [ref=f4e549]:
+                            - term [ref=f4e550]: Effect model
+                            - definition [ref=f4e551]: Threshold Relaxation
+                          - generic [ref=f4e552]:
+                            - term [ref=f4e553]: Human approval required
+                            - definition [ref=f4e554]: "Yes"
+                        - group [ref=f4e555]:
+                          - generic "Assumptions" [ref=f4e556] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e557] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-5943-7da4-af61-fba5955c8a9d?intervention_code=RISK-REVIEW-THRESHOLD
+                - article [ref=f4e558]:
+                  - generic [ref=f4e559]:
+                    - heading "Leverage ratio" [level=3] [ref=f4e560]
+                    - paragraph [ref=f4e561]: D02LEV · F-000002-01
+                  - generic [ref=f4e562]:
+                    - generic [ref=f4e563]:
+                      - heading "Horizon" [level=4] [ref=f4e564]
+                      - paragraph [ref=f4e565]:
+                        - text: "Selected day:"
+                        - status [ref=f4e566]: "0"
+                    - generic [ref=f4e567]:
+                      - generic [ref=f4e568]: Move through stored days
+                      - slider "Move through stored days" [ref=f4e569]: "0"
+                    - status [ref=f4e570]: Stored forecast day 0 loaded.
+                    - generic [ref=f4e571]:
+                      - generic [ref=f4e572]:
+                        - term [ref=f4e573]: Projected value
+                        - definition [ref=f4e574]: 3.22x
+                      - generic [ref=f4e575]:
+                        - term [ref=f4e576]: Headroom
+                        - definition [ref=f4e577]: "-7.3333%"
+                      - generic [ref=f4e578]:
+                        - term [ref=f4e579]: Probability
+                        - definition [ref=f4e580]: 99%
+                      - generic [ref=f4e581]:
+                        - term [ref=f4e582]: Confidence
+                        - definition [ref=f4e583]: 100%
+                      - generic [ref=f4e584]:
+                        - term [ref=f4e585]: Crossing
+                        - definition [ref=f4e586]: "Crossing: 02 Sept 2026"
+                    - generic [ref=f4e587]:
+                      - heading "Drivers at selected day" [level=5] [ref=f4e588]
+                      - list [ref=f4e589]:
+                        - listitem [ref=f4e590]: distance (56%)
+                        - listitem [ref=f4e591]: pressure (18%)
+                        - listitem [ref=f4e592]: trend (26%)
+                  - generic [ref=f4e593]:
+                    - table [ref=f4e595]:
+                      - caption [ref=f4e596]: Forecast figures
+                      - rowgroup [ref=f4e597]:
+                        - row [ref=f4e598]:
+                          - columnheader "Horizon" [ref=f4e599]
+                          - columnheader "Probability" [ref=f4e600]
+                          - columnheader "Confidence" [ref=f4e601]
+                          - columnheader "Crossing" [ref=f4e602]
+                          - columnheader "Decision method" [ref=f4e603]
+                      - rowgroup [ref=f4e604]:
+                        - row [ref=f4e605]:
+                          - rowheader "30-day" [ref=f4e606]
+                          - cell "99%" [ref=f4e607]
+                          - cell "100%" [ref=f4e608]
+                          - cell [ref=f4e609]:
+                            - text: 02 Sep 2026
+                            - link "Why?" [ref=f4e610] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-58f1-780f-8b8e-42dda9db0804
+                          - cell "Deterministic forecast rule" [ref=f4e611]
+                        - row [ref=f4e612]:
+                          - rowheader "60-day" [ref=f4e613]
+                          - cell "99%" [ref=f4e614]
+                          - cell "100%" [ref=f4e615]
+                          - cell [ref=f4e616]:
+                            - text: 02 Sep 2026
+                            - link "Why?" [ref=f4e617] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-58f1-7810-8957-a6c8369c2022
+                          - cell "Deterministic forecast rule" [ref=f4e618]
+                        - row [ref=f4e619]:
+                          - rowheader "90-day" [ref=f4e620]
+                          - cell "99%" [ref=f4e621]
+                          - cell "100%" [ref=f4e622]
+                          - cell [ref=f4e623]:
+                            - text: 02 Sep 2026
+                            - link "Why?" [ref=f4e624] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-58f1-7811-b732-8c8fad76ca37
+                          - cell "Deterministic forecast rule" [ref=f4e625]
+                    - generic [ref=f4e626]:
+                      - figure "Stored daily trajectory" [ref=f4e627]:
+                        - img "Leverage ratio trajectory" [ref=f4e629]:
+                          - generic: "Crossing day 0 · 02 Sep 2026 · Dominant driver: distance"
+                      - paragraph [ref=f4e631]: Stored daily path rendered.
+                  - region [ref=f4e632]:
+                    - generic [ref=f4e633]:
+                      - heading "Prediction explanations and provenance" [level=4] [ref=f4e634]
+                      - paragraph [ref=f4e635]: Each explanation is reconstructed from stored inputs. LLM-drafted prose is confined to the separately labelled, grounded memo.
+                    - generic [ref=f4e636]:
+                      - group [ref=f4e637]:
+                        - generic "30-day 99% Deterministic forecast rule" [ref=f4e638] [cursor=pointer]:
+                          - generic [ref=f4e639]: 30-day
+                          - generic [ref=f4e640]: 99%
+                          - generic [ref=f4e641]: Deterministic forecast rule
+                        - generic [ref=f4e642]:
+                          - paragraph [ref=f4e643]: Deterministic forecast rule supplied 99% for the 30-day horizon by combining threshold distance 0, deterioration velocity 4.395781926085783652549231184, and sustained-evidence pressure 4.3948.
+                          - paragraph [ref=f4e644]: The largest attributed driver is Proximity to covenant threshold at 56%. Confidence is 100%; threshold crossing is 02 Sep 2026.
+                          - generic [ref=f4e645]:
+                            - generic [ref=f4e646]:
+                              - term [ref=f4e647]: Operational source
+                              - definition [ref=f4e648]: Operational — used by the current risk view
+                            - generic [ref=f4e649]:
+                              - term [ref=f4e650]: Rule version
+                              - definition [ref=f4e651]:
+                                - code [ref=f4e652]: forecast.scoring.v1
+                            - generic [ref=f4e653]:
+                              - term [ref=f4e654]: Deterministic probability
+                              - definition [ref=f4e655]: 99%
+                            - generic [ref=f4e656]:
+                              - term [ref=f4e657]: Feature snapshot hash
+                              - definition [ref=f4e658]:
+                                - code [ref=f4e659]: 78f5cd467f42902d7ffa1d1551d2807d5e9013df4ddbed8b97e229e3b7a33ce8
+                            - generic [ref=f4e660]:
+                              - term [ref=f4e661]: Fallback / comparison status
+                              - definition [ref=f4e662]: covenant is already in breach; deterministic maximum retained over the model probability
+                          - region [ref=f4e663]:
+                            - heading "Deterministic rule factors" [level=5] [ref=f4e664]
+                            - table [ref=f4e666]:
+                              - rowgroup [ref=f4e667]:
+                                - row [ref=f4e668]:
+                                  - columnheader "Factor" [ref=f4e669]
+                                  - columnheader "Input" [ref=f4e670]
+                                  - columnheader "Normalised" [ref=f4e671]
+                                  - columnheader "Weight" [ref=f4e672]
+                                  - columnheader "Contribution" [ref=f4e673]
+                              - rowgroup [ref=f4e674]:
+                                - row [ref=f4e675]:
+                                  - rowheader "Distance to covenant threshold" [ref=f4e676]
+                                  - cell "0" [ref=f4e677]
+                                  - cell "100%" [ref=f4e678]
+                                  - cell "0.5" [ref=f4e679]
+                                  - cell "50%" [ref=f4e680]
+                                - row [ref=f4e681]:
+                                  - rowheader "Rate of deterioration" [ref=f4e682]
+                                  - cell "4.395781926085783652549231184" [ref=f4e683]
+                                  - cell "81%" [ref=f4e684]
+                                  - cell "0.3" [ref=f4e685]
+                                  - cell "24%" [ref=f4e686]
+                                - row [ref=f4e687]:
+                                  - rowheader "Sustained evidence pressure" [ref=f4e688]
+                                  - cell "4.3948" [ref=f4e689]
+                                  - cell "81%" [ref=f4e690]
+                                  - cell "0.2" [ref=f4e691]
+                                  - cell "16%" [ref=f4e692]
+                          - region [ref=f4e693]:
+                            - heading "Attributed drivers" [level=5] [ref=f4e694]
+                            - list [ref=f4e695]:
+                              - listitem [ref=f4e696]:
+                                - generic [ref=f4e697]: Proximity to covenant threshold
+                                - strong [ref=f4e698]: 56%
+                                - generic [ref=f4e699]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e700]:
+                                - generic [ref=f4e701]: Covenant trajectory trend
+                                - strong [ref=f4e702]: 26%
+                                - generic [ref=f4e703]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e704]:
+                                - generic [ref=f4e705]: Sustained evidence pressure
+                                - strong [ref=f4e706]: 18%
+                                - generic [ref=f4e707]: Rule-derived; no evidence record link
+                          - region [ref=f4e708]:
+                            - heading "Citations" [level=5] [ref=f4e709]
+                            - list [ref=f4e710]:
+                              - listitem [ref=f4e711]:
+                                - link "Forecast record — 30-day horizon" [ref=f4e712] [cursor=pointer]:
+                                  - /url: /why/forecast/01a05fa1-58f1-780f-8b8e-42dda9db0804
+                              - listitem [ref=f4e713]:
+                                - link "Evidence input — Account Activity" [ref=f4e714] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7103-8adf-597b424d14d2"
+                              - listitem [ref=f4e715]:
+                                - link "Evidence input — Concentration" [ref=f4e716] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7106-bf5b-c7bf51e79e99"
+                              - listitem [ref=f4e717]:
+                                - link "Evidence input — Industry" [ref=f4e718] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7107-b2b1-6278d5e8816e"
+                              - listitem [ref=f4e719]:
+                                - link "Evidence input — News" [ref=f4e720] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7108-9776-727e4f4a6966"
+                              - listitem [ref=f4e721]:
+                                - link "Evidence input — Payment" [ref=f4e722] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7109-9c66-06df81935643"
+                              - listitem [ref=f4e723]:
+                                - link "Evidence input — Treasury" [ref=f4e724] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7105-86f2-019e5ee135c6"
+                              - listitem [ref=f4e725]:
+                                - link "Evidence input — Utilisation" [ref=f4e726] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7104-a970-feb6c83c559f"
+                          - complementary "Why this explanation is supportable" [ref=f4e727]:
+                            - strong [ref=f4e728]: Why this explanation is supportable
+                            - paragraph [ref=f4e729]: Assembled from stored forecast 01a05fa1-58f1-780f-8b8e-42dda9db0804, its saved formula inputs and 3 attribution records. An LLM did not calculate or rewrite this explanation; when an AI memo is requested, the TCS-backed stage-7 draft is separately labelled and shape-checked.
+                      - group [ref=f4e730]:
+                        - generic "60-day 99% Deterministic forecast rule" [ref=f4e731] [cursor=pointer]:
+                          - generic [ref=f4e732]: 60-day
+                          - generic [ref=f4e733]: 99%
+                          - generic [ref=f4e734]: Deterministic forecast rule
+                      - group [ref=f4e735]:
+                        - generic "90-day 99% Deterministic forecast rule" [ref=f4e736] [cursor=pointer]:
+                          - generic [ref=f4e737]: 90-day
+                          - generic [ref=f4e738]: 99%
+                          - generic [ref=f4e739]: Deterministic forecast rule
+                  - region [ref=f4e740]:
+                    - generic [ref=f4e741]:
+                      - heading "Possible actionable insights" [level=4] [ref=f4e742]
+                      - paragraph [ref=f4e743]: These are active, bank-owned catalogue actions applicable to this covenant. They are advisory candidates, not automatic credit decisions; simulate before prioritising.
+                    - list [ref=f4e744]:
+                      - listitem [ref=f4e745]:
+                        - generic [ref=f4e746]:
+                          - code [ref=f4e747]: CREDIT-REDUCE-EXPOSURE
+                          - generic [ref=f4e748]: "Owner: Credit"
+                        - paragraph [ref=f4e749]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                        - paragraph [ref=f4e750]: Shown because bank catalogue action CREDIT-REDUCE-EXPOSURE is active and applicable to leverage covenants.
+                        - generic [ref=f4e751]:
+                          - generic [ref=f4e752]:
+                            - term [ref=f4e753]: Effect model
+                            - definition [ref=f4e754]: Level Shift
+                          - generic [ref=f4e755]:
+                            - term [ref=f4e756]: Human approval required
+                            - definition [ref=f4e757]: "Yes"
+                        - group [ref=f4e758]:
+                          - generic "Assumptions" [ref=f4e759] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e760] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-58f1-780f-8b8e-42dda9db0804?intervention_code=CREDIT-REDUCE-EXPOSURE
+                      - listitem [ref=f4e761]:
+                        - generic [ref=f4e762]:
+                          - code [ref=f4e763]: RISK-REVIEW-THRESHOLD
+                          - generic [ref=f4e764]: "Owner: Risk"
+                        - paragraph [ref=f4e765]: Review the covenant threshold against the executed facility documents.
+                        - paragraph [ref=f4e766]: Shown because bank catalogue action RISK-REVIEW-THRESHOLD is active and applicable to leverage covenants.
+                        - generic [ref=f4e767]:
+                          - generic [ref=f4e768]:
+                            - term [ref=f4e769]: Effect model
+                            - definition [ref=f4e770]: Threshold Relaxation
+                          - generic [ref=f4e771]:
+                            - term [ref=f4e772]: Human approval required
+                            - definition [ref=f4e773]: "Yes"
+                        - group [ref=f4e774]:
+                          - generic "Assumptions" [ref=f4e775] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e776] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-58f1-780f-8b8e-42dda9db0804?intervention_code=RISK-REVIEW-THRESHOLD
+                - article [ref=f4e777]:
+                  - generic [ref=f4e778]:
+                    - heading "Current ratio" [level=3] [ref=f4e779]
+                    - paragraph [ref=f4e780]: D02LIQ · F-000002-01
+                  - generic [ref=f4e781]:
+                    - generic [ref=f4e782]:
+                      - heading "Horizon" [level=4] [ref=f4e783]
+                      - paragraph [ref=f4e784]:
+                        - text: "Selected day:"
+                        - status [ref=f4e785]: "0"
+                    - generic [ref=f4e786]:
+                      - generic [ref=f4e787]: Move through stored days
+                      - slider "Move through stored days" [ref=f4e788]: "0"
+                    - status [ref=f4e789]: Stored forecast day 0 loaded.
+                    - generic [ref=f4e790]:
+                      - generic [ref=f4e791]:
+                        - term [ref=f4e792]: Projected value
+                        - definition [ref=f4e793]: 1.475x
+                      - generic [ref=f4e794]:
+                        - term [ref=f4e795]: Headroom
+                        - definition [ref=f4e796]: 22.9167%
+                      - generic [ref=f4e797]:
+                        - term [ref=f4e798]: Probability
+                        - definition [ref=f4e799]: 99%
+                      - generic [ref=f4e800]:
+                        - term [ref=f4e801]: Confidence
+                        - definition [ref=f4e802]: 100%
+                      - generic [ref=f4e803]:
+                        - term [ref=f4e804]: Crossing
+                        - definition [ref=f4e805]: "Projected crossing: 03 Sept 2026"
+                    - generic [ref=f4e806]:
+                      - heading "Drivers at selected day" [level=5] [ref=f4e807]
+                      - list [ref=f4e808]:
+                        - listitem [ref=f4e809]: distance (56%)
+                        - listitem [ref=f4e810]: pressure (18%)
+                        - listitem [ref=f4e811]: trend (26%)
+                  - generic [ref=f4e812]:
+                    - table [ref=f4e814]:
+                      - caption [ref=f4e815]: Forecast figures
+                      - rowgroup [ref=f4e816]:
+                        - row [ref=f4e817]:
+                          - columnheader "Horizon" [ref=f4e818]
+                          - columnheader "Probability" [ref=f4e819]
+                          - columnheader "Confidence" [ref=f4e820]
+                          - columnheader "Crossing" [ref=f4e821]
+                          - columnheader "Decision method" [ref=f4e822]
+                      - rowgroup [ref=f4e823]:
+                        - row [ref=f4e824]:
+                          - rowheader "30-day" [ref=f4e825]
+                          - cell "99%" [ref=f4e826]
+                          - cell "100%" [ref=f4e827]
+                          - cell [ref=f4e828]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e829] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-598a-7eb5-b110-d95ab124112a
+                          - cell "Deterministic forecast rule" [ref=f4e830]
+                        - row [ref=f4e831]:
+                          - rowheader "60-day" [ref=f4e832]
+                          - cell "99%" [ref=f4e833]
+                          - cell "100%" [ref=f4e834]
+                          - cell [ref=f4e835]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e836] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-598a-7eb6-ad14-6d6fddc84131
+                          - cell "Deterministic forecast rule" [ref=f4e837]
+                        - row [ref=f4e838]:
+                          - rowheader "90-day" [ref=f4e839]
+                          - cell "99%" [ref=f4e840]
+                          - cell "100%" [ref=f4e841]
+                          - cell [ref=f4e842]:
+                            - text: 03 Sep 2026
+                            - link "Why?" [ref=f4e843] [cursor=pointer]:
+                              - /url: /why/forecast/01a05fa1-598a-7eb7-a97b-e8d98add970d
+                          - cell "Deterministic forecast rule" [ref=f4e844]
+                    - generic [ref=f4e845]:
+                      - figure "Stored daily trajectory" [ref=f4e846]:
+                        - img "Current ratio trajectory" [ref=f4e848]:
+                          - generic: "Crossing day 1 · 03 Sep 2026 · Dominant driver: distance"
+                      - paragraph [ref=f4e850]: Stored daily path rendered.
+                  - region [ref=f4e851]:
+                    - generic [ref=f4e852]:
+                      - heading "Prediction explanations and provenance" [level=4] [ref=f4e853]
+                      - paragraph [ref=f4e854]: Each explanation is reconstructed from stored inputs. LLM-drafted prose is confined to the separately labelled, grounded memo.
+                    - generic [ref=f4e855]:
+                      - group [ref=f4e856]:
+                        - generic "30-day 99% Deterministic forecast rule" [ref=f4e857] [cursor=pointer]:
+                          - generic [ref=f4e858]: 30-day
+                          - generic [ref=f4e859]: 99%
+                          - generic [ref=f4e860]: Deterministic forecast rule
+                        - generic [ref=f4e861]:
+                          - paragraph [ref=f4e862]: Deterministic forecast rule supplied 99% for the 30-day horizon by combining threshold distance 0, deterioration velocity 4.394975343943889937955219854, and sustained-evidence pressure 4.3948.
+                          - paragraph [ref=f4e863]: The largest attributed driver is Proximity to covenant threshold at 56%. Confidence is 100%; threshold crossing is 03 Sep 2026.
+                          - generic [ref=f4e864]:
+                            - generic [ref=f4e865]:
+                              - term [ref=f4e866]: Operational source
+                              - definition [ref=f4e867]: Operational — used by the current risk view
+                            - generic [ref=f4e868]:
+                              - term [ref=f4e869]: Rule version
+                              - definition [ref=f4e870]:
+                                - code [ref=f4e871]: forecast.scoring.v1
+                            - generic [ref=f4e872]:
+                              - term [ref=f4e873]: Deterministic probability
+                              - definition [ref=f4e874]: 99%
+                            - generic [ref=f4e875]:
+                              - term [ref=f4e876]: Feature snapshot hash
+                              - definition [ref=f4e877]:
+                                - code [ref=f4e878]: dad17f6ce0d08dc31776af0665c77a623abcbd44f25021aeac7ea29dd742ecdf
+                            - generic [ref=f4e879]:
+                              - term [ref=f4e880]: Fallback / comparison status
+                              - definition [ref=f4e881]: covenant is already in breach; deterministic maximum retained over the model probability
+                          - region [ref=f4e882]:
+                            - heading "Deterministic rule factors" [level=5] [ref=f4e883]
+                            - table [ref=f4e885]:
+                              - rowgroup [ref=f4e886]:
+                                - row [ref=f4e887]:
+                                  - columnheader "Factor" [ref=f4e888]
+                                  - columnheader "Input" [ref=f4e889]
+                                  - columnheader "Normalised" [ref=f4e890]
+                                  - columnheader "Weight" [ref=f4e891]
+                                  - columnheader "Contribution" [ref=f4e892]
+                              - rowgroup [ref=f4e893]:
+                                - row [ref=f4e894]:
+                                  - rowheader "Distance to covenant threshold" [ref=f4e895]
+                                  - cell "0" [ref=f4e896]
+                                  - cell "100%" [ref=f4e897]
+                                  - cell "0.5" [ref=f4e898]
+                                  - cell "50%" [ref=f4e899]
+                                - row [ref=f4e900]:
+                                  - rowheader "Rate of deterioration" [ref=f4e901]
+                                  - cell "4.394975343943889937955219854" [ref=f4e902]
+                                  - cell "81%" [ref=f4e903]
+                                  - cell "0.3" [ref=f4e904]
+                                  - cell "24%" [ref=f4e905]
+                                - row [ref=f4e906]:
+                                  - rowheader "Sustained evidence pressure" [ref=f4e907]
+                                  - cell "4.3948" [ref=f4e908]
+                                  - cell "81%" [ref=f4e909]
+                                  - cell "0.2" [ref=f4e910]
+                                  - cell "16%" [ref=f4e911]
+                          - region [ref=f4e912]:
+                            - heading "Attributed drivers" [level=5] [ref=f4e913]
+                            - list [ref=f4e914]:
+                              - listitem [ref=f4e915]:
+                                - generic [ref=f4e916]: Proximity to covenant threshold
+                                - strong [ref=f4e917]: 56%
+                                - generic [ref=f4e918]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e919]:
+                                - generic [ref=f4e920]: Covenant trajectory trend
+                                - strong [ref=f4e921]: 26%
+                                - generic [ref=f4e922]: Rule-derived; no evidence record link
+                              - listitem [ref=f4e923]:
+                                - generic [ref=f4e924]: Sustained evidence pressure
+                                - strong [ref=f4e925]: 18%
+                                - generic [ref=f4e926]: Rule-derived; no evidence record link
+                          - region [ref=f4e927]:
+                            - heading "Citations" [level=5] [ref=f4e928]
+                            - list [ref=f4e929]:
+                              - listitem [ref=f4e930]:
+                                - link "Forecast record — 30-day horizon" [ref=f4e931] [cursor=pointer]:
+                                  - /url: /why/forecast/01a05fa1-598a-7eb5-b110-d95ab124112a
+                              - listitem [ref=f4e932]:
+                                - link "Evidence input — Account Activity" [ref=f4e933] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7103-8adf-597b424d14d2"
+                              - listitem [ref=f4e934]:
+                                - link "Evidence input — Concentration" [ref=f4e935] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7106-bf5b-c7bf51e79e99"
+                              - listitem [ref=f4e936]:
+                                - link "Evidence input — Industry" [ref=f4e937] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7107-b2b1-6278d5e8816e"
+                              - listitem [ref=f4e938]:
+                                - link "Evidence input — News" [ref=f4e939] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7108-9776-727e4f4a6966"
+                              - listitem [ref=f4e940]:
+                                - link "Evidence input — Payment" [ref=f4e941] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7109-9c66-06df81935643"
+                              - listitem [ref=f4e942]:
+                                - link "Evidence input — Treasury" [ref=f4e943] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7105-86f2-019e5ee135c6"
+                              - listitem [ref=f4e944]:
+                                - link "Evidence input — Utilisation" [ref=f4e945] [cursor=pointer]:
+                                  - /url: "#evidence-item-01a05c21-7072-7104-a970-feb6c83c559f"
+                          - complementary "Why this explanation is supportable" [ref=f4e946]:
+                            - strong [ref=f4e947]: Why this explanation is supportable
+                            - paragraph [ref=f4e948]: Assembled from stored forecast 01a05fa1-598a-7eb5-b110-d95ab124112a, its saved formula inputs and 3 attribution records. An LLM did not calculate or rewrite this explanation; when an AI memo is requested, the TCS-backed stage-7 draft is separately labelled and shape-checked.
+                      - group [ref=f4e949]:
+                        - generic "60-day 99% Deterministic forecast rule" [ref=f4e950] [cursor=pointer]:
+                          - generic [ref=f4e951]: 60-day
+                          - generic [ref=f4e952]: 99%
+                          - generic [ref=f4e953]: Deterministic forecast rule
+                      - group [ref=f4e954]:
+                        - generic "90-day 99% Deterministic forecast rule" [ref=f4e955] [cursor=pointer]:
+                          - generic [ref=f4e956]: 90-day
+                          - generic [ref=f4e957]: 99%
+                          - generic [ref=f4e958]: Deterministic forecast rule
+                  - region [ref=f4e959]:
+                    - generic [ref=f4e960]:
+                      - heading "Possible actionable insights" [level=4] [ref=f4e961]
+                      - paragraph [ref=f4e962]: These are active, bank-owned catalogue actions applicable to this covenant. They are advisory candidates, not automatic credit decisions; simulate before prioritising.
+                    - list [ref=f4e963]:
+                      - listitem [ref=f4e964]:
+                        - generic [ref=f4e965]:
+                          - code [ref=f4e966]: CREDIT-REDUCE-EXPOSURE
+                          - generic [ref=f4e967]: "Owner: Credit"
+                        - paragraph [ref=f4e968]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                        - paragraph [ref=f4e969]: Shown because bank catalogue action CREDIT-REDUCE-EXPOSURE is active and applicable to liquidity covenants.
+                        - generic [ref=f4e970]:
+                          - generic [ref=f4e971]:
+                            - term [ref=f4e972]: Effect model
+                            - definition [ref=f4e973]: Level Shift
+                          - generic [ref=f4e974]:
+                            - term [ref=f4e975]: Human approval required
+                            - definition [ref=f4e976]: "Yes"
+                        - group [ref=f4e977]:
+                          - generic "Assumptions" [ref=f4e978] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e979] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-598a-7eb5-b110-d95ab124112a?intervention_code=CREDIT-REDUCE-EXPOSURE
+                      - listitem [ref=f4e980]:
+                        - generic [ref=f4e981]:
+                          - code [ref=f4e982]: RM-REVIEW-CONDUCT
+                          - generic [ref=f4e983]: "Owner: Relationship manager"
+                        - paragraph [ref=f4e984]: Review account conduct with the borrower and agree a monitored operating plan.
+                        - paragraph [ref=f4e985]: Shown because bank catalogue action RM-REVIEW-CONDUCT is active and applicable to liquidity covenants.
+                        - generic [ref=f4e986]:
+                          - generic [ref=f4e987]:
+                            - term [ref=f4e988]: Effect model
+                            - definition [ref=f4e989]: Pressure Reduction
+                          - generic [ref=f4e990]:
+                            - term [ref=f4e991]: Human approval required
+                            - definition [ref=f4e992]: "No"
+                        - group [ref=f4e993]:
+                          - generic "Assumptions" [ref=f4e994] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e995] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-598a-7eb5-b110-d95ab124112a?intervention_code=RM-REVIEW-CONDUCT
+                      - listitem [ref=f4e996]:
+                        - generic [ref=f4e997]:
+                          - code [ref=f4e998]: RISK-REVIEW-THRESHOLD
+                          - generic [ref=f4e999]: "Owner: Risk"
+                        - paragraph [ref=f4e1000]: Review the covenant threshold against the executed facility documents.
+                        - paragraph [ref=f4e1001]: Shown because bank catalogue action RISK-REVIEW-THRESHOLD is active and applicable to liquidity covenants.
+                        - generic [ref=f4e1002]:
+                          - generic [ref=f4e1003]:
+                            - term [ref=f4e1004]: Effect model
+                            - definition [ref=f4e1005]: Threshold Relaxation
+                          - generic [ref=f4e1006]:
+                            - term [ref=f4e1007]: Human approval required
+                            - definition [ref=f4e1008]: "Yes"
+                        - group [ref=f4e1009]:
+                          - generic "Assumptions" [ref=f4e1010] [cursor=pointer]
+                        - link "Test in simulator" [ref=f4e1011] [cursor=pointer]:
+                          - /url: /simulator/01a05fa1-598a-7eb5-b110-d95ab124112a?intervention_code=RISK-REVIEW-THRESHOLD
+            - region [ref=f4e1012]:
+              - generic [ref=f4e1013]:
+                - heading "Evidence" [level=2] [ref=f4e1014]
+                - link "Why this evidence?" [ref=f4e1015] [cursor=pointer]:
+                  - /url: /why/borrower/018ca12c-8a62-7092-95b8-f3b9f74053b7
+              - table [ref=f4e1017]:
+                - caption [ref=f4e1018]: Evidence has been recorded for this borrower.
+                - rowgroup [ref=f4e1019]:
+                  - row [ref=f4e1020]:
+                    - columnheader "Evidence type" [ref=f4e1021]
+                    - columnheader "First / last seen" [ref=f4e1022]
+                    - columnheader "Persistence" [ref=f4e1023]
+                    - columnheader "Materiality" [ref=f4e1024]
+                    - columnheader "Decay" [ref=f4e1025]
+                    - columnheader "Pressure" [ref=f4e1026]
+                    - columnheader "State" [ref=f4e1027]
+                - rowgroup [ref=f4e1028]:
+                  - row [ref=f4e1029]:
+                    - rowheader "Account Activity" [ref=f4e1030]
+                  - row [ref=f4e1031]:
+                    - rowheader "Account Activity Change" [ref=f4e1032]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1033]
+                    - cell "35 days / 27 events" [ref=f4e1034]
+                    - cell "18.1400%" [ref=f4e1035]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1036]
+                    - cell "Counts toward pressure" [ref=f4e1037]
+                    - cell "Sustained" [ref=f4e1038]
+                - rowgroup [ref=f4e1039]:
+                  - row [ref=f4e1040]:
+                    - rowheader "Concentration" [ref=f4e1041]
+                  - row [ref=f4e1042]:
+                    - rowheader "Concentration Exposure" [ref=f4e1043]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1044]
+                    - cell "35 days / 27 events" [ref=f4e1045]
+                    - cell "58.2200%" [ref=f4e1046]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1047]
+                    - cell "Counts toward pressure" [ref=f4e1048]
+                    - cell "Sustained" [ref=f4e1049]
+                - rowgroup [ref=f4e1050]:
+                  - row [ref=f4e1051]:
+                    - rowheader "Industry" [ref=f4e1052]
+                  - row [ref=f4e1053]:
+                    - rowheader "Industry Indicator" [ref=f4e1054]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1055]
+                    - cell "35 days / 27 events" [ref=f4e1056]
+                    - cell "94.6000%" [ref=f4e1057]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1058]
+                    - cell "Counts toward pressure" [ref=f4e1059]
+                    - cell "Sustained" [ref=f4e1060]
+                - rowgroup [ref=f4e1061]:
+                  - row [ref=f4e1062]:
+                    - rowheader "News" [ref=f4e1063]
+                  - row [ref=f4e1064]:
+                    - rowheader "News Event" [ref=f4e1065]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1066]
+                    - cell "35 days / 27 events" [ref=f4e1067]
+                    - cell "97.4000%" [ref=f4e1068]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1069]
+                    - cell "Counts toward pressure" [ref=f4e1070]
+                    - cell "Sustained" [ref=f4e1071]
+                - rowgroup [ref=f4e1072]:
+                  - row [ref=f4e1073]:
+                    - rowheader "Payment" [ref=f4e1074]
+                  - row [ref=f4e1075]:
+                    - rowheader "Payment Delay" [ref=f4e1076]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1077]
+                    - cell "35 days / 27 events" [ref=f4e1078]
+                    - cell "24.0000%" [ref=f4e1079]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1080]
+                    - cell "Counts toward pressure" [ref=f4e1081]
+                    - cell "Sustained" [ref=f4e1082]
+                - rowgroup [ref=f4e1083]:
+                  - row [ref=f4e1084]:
+                    - rowheader "Treasury" [ref=f4e1085]
+                  - row [ref=f4e1086]:
+                    - rowheader "Treasury Outflow" [ref=f4e1087]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1088]
+                    - cell "35 days / 27 events" [ref=f4e1089]
+                    - cell "57.2000%" [ref=f4e1090]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1091]
+                    - cell "Counts toward pressure" [ref=f4e1092]
+                    - cell "Sustained" [ref=f4e1093]
+                - rowgroup [ref=f4e1094]:
+                  - row [ref=f4e1095]:
+                    - rowheader "Utilisation" [ref=f4e1096]
+                  - row [ref=f4e1097]:
+                    - rowheader "Facility Utilisation" [ref=f4e1098]
+                    - cell "27 Jul 2026 / 30 Aug 2026" [ref=f4e1099]
+                    - cell "35 days / 27 events" [ref=f4e1100]
+                    - cell "89.9200%" [ref=f4e1101]
+                    - cell "Fresh — retained weight 1.0000" [ref=f4e1102]
+                    - cell "Counts toward pressure" [ref=f4e1103]
+                    - cell "Sustained" [ref=f4e1104]
+            - region [ref=f4e1105]:
+              - heading "Source documents" [level=2] [ref=f4e1106]
+              - paragraph [ref=f4e1107]:
+                - link "Financial statements" [ref=f4e1108] [cursor=pointer]:
+                  - /url: /financial-statements?borrower_ref=B-000002
+              - region [ref=f4e1109]:
+                - heading "Source documents" [level=2] [ref=f4e1110]
+                - paragraph [ref=f4e1111]: No source documents are available for this borrower.
+                - link "Upload a document" [ref=f4e1112] [cursor=pointer]:
+                  - /url: /intake

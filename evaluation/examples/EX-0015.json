@@ -1,0 +1,38 @@
+{
+  "id": "EX-0015",
+  "kind": "boundary",
+  "title": "A not-computable ratio propagates to a not_computable verdict with its reason",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "not_computable"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max"
+    },
+    "ratio": {
+      "computable": false,
+      "reason": "missing_line"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "not_computable",
+    "threshold_used": "4.00",
+    "reason": "missing_line"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "The ratio itself could not be computed (MISSING_LINE). evaluate_covenant never fabricates a value to compare against the threshold in that case; it returns not_computable and carries the ratio's own reason through unchanged."
+}

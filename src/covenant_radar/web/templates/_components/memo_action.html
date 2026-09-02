@@ -1,0 +1,20 @@
+{#
+  The simulator's memo action (C-08). A memo is drafted rather than fetched,
+  so this posts; the compared options travel as repeated `simulation_ids`
+  fields so the memo cites exactly what is on screen. Shared by the full page
+  and the HTMX comparison fragment.
+#}
+<form class="simulator__memo" method="post" action="{{ view.memo_href }}"
+      hx-post="{{ view.memo_href }}" hx-target="#simulator-memo" hx-swap="outerHTML">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+  <input type="hidden" name="borrower_ref" value="{{ view.memo_borrower_ref }}">
+  {% for simulation_id in view.memo_simulation_ids %}
+    <input type="hidden" name="simulation_ids" value="{{ simulation_id }}">
+  {% endfor %}
+  {# `.button`, not `.text-action`: the latter only sets colour and underline,
+     so on a submit control it leaves the browser's default button chrome
+     showing. This is an action rather than a link now, so it reads as one —
+     the same class the borrower screen's memo action uses. #}
+  <button class="button" type="submit">{{ labels.memo }}</button>
+</form>
+<div id="simulator-memo"></div>

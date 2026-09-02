@@ -1,0 +1,38 @@
+{
+  "id": "EX-0009",
+  "kind": "boundary",
+  "title": "A max-direction covenant passes with clean headroom",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "boundary",
+    "pass"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "covenant": {
+      "threshold": "4.00",
+      "direction": "max"
+    },
+    "ratio": {
+      "computable": true,
+      "value": "3.00"
+    },
+    "period": {
+      "is_complete": true,
+      "as_of_date": "2026-03-31"
+    }
+  },
+  "expected": {
+    "verdict": "pass",
+    "headroom_pct": "25.00",
+    "threshold_used": "4.00"
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "signed_headroom = (threshold - value) / |threshold| * 100 = (4.00-3.00)/4.00*100 = 25.00%. The value is below the threshold and no warning band is configured, so the verdict is pass."
+}

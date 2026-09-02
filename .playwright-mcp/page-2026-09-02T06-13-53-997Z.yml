@@ -1,0 +1,139 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f5e3]:
+    - complementary "Workspace navigation" [ref=f5e4]:
+      - link "Covenant Radar" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f5e13]:
+          - strong [ref=f5e14]: Covenant
+          - generic [ref=f5e15]: Radar
+      - navigation "Primary navigation" [ref=f5e16]:
+        - region [ref=f5e17]:
+          - heading "Monitor" [level=2] [ref=f5e18]
+          - link "Portfolio queue" [ref=f5e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f5e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f5e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f5e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f5e31]: "0"
+          - link "Search" [ref=f5e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f5e37]:
+          - heading "Portfolio data" [level=2] [ref=f5e38]
+          - link "Borrowers" [ref=f5e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f5e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f5e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f5e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f5e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f5e61]:
+          - heading "Workflows" [level=2] [ref=f5e62]
+          - link "Intake" [ref=f5e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Document review" [ref=f5e67] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f5e71] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f5e75] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f5e79]:
+          - heading "Administration" [level=2] [ref=f5e80]
+          - link "Action catalogue" [ref=f5e81] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f5e86] [cursor=pointer]
+    - generic [ref=f5e90]:
+      - banner [ref=f5e91]:
+        - generic [ref=f5e93]:
+          - generic [ref=f5e94]: Workspace
+          - generic [ref=f5e97]: F-000001-01
+        - search [ref=f5e98]:
+          - generic [ref=f5e99]: Search the workspace
+          - searchbox "Search the workspace" [ref=f5e100]
+          - generic: /
+        - generic [ref=f5e101]:
+          - button "Live activity" [ref=f5e102]:
+            - generic [ref=f5e104]: Live
+          - button "Use dark theme" [ref=f5e106] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f5e110] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f5e112] [cursor=pointer]
+      - main [ref=f5e116]:
+        - generic [ref=f5e117]:
+          - generic [ref=f5e118]:
+            - paragraph [ref=f5e119]: Decision workspace
+            - heading "Facility details" [level=1] [ref=f5e120]
+          - link "Back to facilities" [ref=f5e122] [cursor=pointer]:
+            - /url: /facilities
+        - generic [ref=f5e123]:
+          - generic [ref=f5e124]:
+            - heading "F-000001-01" [level=2] [ref=f5e125]
+            - generic [ref=f5e126]:
+              - paragraph [ref=f5e127]: Amounts in ₹ crore
+              - table [ref=f5e129]:
+                - caption [ref=f5e130]: Facility record
+                - rowgroup [ref=f5e131]:
+                  - row [ref=f5e132]:
+                    - columnheader "Field" [ref=f5e133]
+                    - columnheader "Value" [ref=f5e134]
+                - rowgroup [ref=f5e135]:
+                  - row [ref=f5e136]:
+                    - rowheader "Borrower" [ref=f5e137]
+                    - cell [ref=f5e138]:
+                      - link "B-000001 — Subramanian Precision Materials and Components Kavya 00001 Private Limited" [ref=f5e139] [cursor=pointer]:
+                        - /url: /borrowers/B-000001/master-data
+                  - row [ref=f5e140]:
+                    - rowheader "Facility type" [ref=f5e141]
+                    - cell "Cash credit" [ref=f5e142]
+                  - row [ref=f5e143]:
+                    - rowheader "Currency" [ref=f5e144]
+                    - cell "INR" [ref=f5e145]
+                  - row [ref=f5e146]:
+                    - rowheader "Sanctioned limit" [ref=f5e147]
+                    - cell "148.83" [ref=f5e148]
+                  - row [ref=f5e149]:
+                    - rowheader "Drawing power" [ref=f5e150]
+                    - cell "139.90" [ref=f5e151]
+                  - row [ref=f5e152]:
+                    - rowheader "Outstanding" [ref=f5e153]
+                    - cell "103.53" [ref=f5e154]
+                  - row [ref=f5e155]:
+                    - rowheader "Utilisation" [ref=f5e156]
+                    - cell "69.6%" [ref=f5e157]
+                  - row [ref=f5e159]:
+                    - rowheader "Undrawn" [ref=f5e160]
+                    - cell "45.30" [ref=f5e161]
+                  - row [ref=f5e162]:
+                    - rowheader "Pricing" [ref=f5e163]
+                    - cell "851 bps (8.51%)" [ref=f5e164]
+                  - row [ref=f5e165]:
+                    - rowheader "Security" [ref=f5e166]
+                    - cell "First charge on current assets" [ref=f5e167]
+                  - row [ref=f5e168]:
+                    - rowheader "Sanction date" [ref=f5e169]
+                    - cell "01 Apr 2019" [ref=f5e170]
+                  - row [ref=f5e171]:
+                    - rowheader "Maturity date" [ref=f5e172]
+                    - cell "31 Mar 2025 (matured 520 days ago)" [ref=f5e173]
+                  - row [ref=f5e175]:
+                    - rowheader "Effective from" [ref=f5e176]
+                    - cell "01 Apr 2019" [ref=f5e177]
+                  - row [ref=f5e178]:
+                    - rowheader "Effective to" [ref=f5e179]
+                    - cell "—" [ref=f5e180]
+                  - row [ref=f5e181]:
+                    - rowheader "Status" [ref=f5e182]
+                    - cell "Current" [ref=f5e183]
+                  - row [ref=f5e185]:
+                    - rowheader "Version" [ref=f5e186]
+                    - cell "1" [ref=f5e187]
+          - generic [ref=f5e188]:
+            - heading "Limit history" [level=2] [ref=f5e189]
+            - generic [ref=f5e190]:
+              - paragraph [ref=f5e191]: "A limit change never overwrites a facility: it closes the current version and opens a successor, so every revision stays readable here."
+              - paragraph [ref=f5e192]: This facility has no earlier or later versions.

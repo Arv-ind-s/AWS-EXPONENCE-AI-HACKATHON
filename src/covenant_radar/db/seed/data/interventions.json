@@ -1,0 +1,62 @@
+{
+  "taxonomy_version": "1.0",
+  "interventions": [
+    {
+      "code": "RM-REVIEW-CONDUCT",
+      "role_tag": "relationship_manager",
+      "text": "Review account conduct with the borrower and agree a monitored operating plan.",
+      "effect_model": "pressure_reduction",
+      "effect_parameters": {
+        "fraction": "0.25",
+        "_assumptions": [
+          "The agreed operating plan reduces observed conduct pressure immediately."
+        ]
+      },
+      "applicable_covenant_classes": [
+        "conduct",
+        "liquidity"
+      ],
+      "requires_approval": false,
+      "is_active": true
+    },
+    {
+      "code": "CREDIT-REDUCE-EXPOSURE",
+      "role_tag": "credit",
+      "text": "Review and, subject to the bank's approval process, reduce the funded exposure.",
+      "effect_model": "level_shift",
+      "effect_parameters": {
+        "amount": "-0.10",
+        "_assumptions": [
+          "The approved exposure reduction is available immediately."
+        ]
+      },
+      "applicable_covenant_classes": [
+        "leverage",
+        "coverage",
+        "liquidity"
+      ],
+      "requires_approval": true,
+      "is_active": true
+    },
+    {
+      "code": "RISK-REVIEW-THRESHOLD",
+      "role_tag": "risk",
+      "text": "Review the covenant threshold against the executed facility documents.",
+      "effect_model": "threshold_relaxation",
+      "effect_parameters": {
+        "amount": "0.10",
+        "_assumptions": [
+          "A separately approved contractual amendment changes the threshold."
+        ]
+      },
+      "applicable_covenant_classes": [
+        "leverage",
+        "coverage",
+        "liquidity",
+        "net_worth"
+      ],
+      "requires_approval": true,
+      "is_active": true
+    }
+  ]
+}

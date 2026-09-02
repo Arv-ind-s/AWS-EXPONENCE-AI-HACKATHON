@@ -1,0 +1,7 @@
+{% macro band_chip(band, label="", chip_id="", aria_label="", variant="") -%}
+  {% set requested_band = band|string|lower %}
+  {% set chip_band = requested_band if requested_band in ("act", "amber", "watch") else "neutral" %}
+  {% set chip_label = label or (requested_band|title if requested_band else "Neutral") %}
+  {% set chip_base = "queue-summary-chip" if variant|string|trim == "queue-summary-chip" else "band-chip" %}
+  <span class="{{ chip_base }} {{ chip_base }}--{{ chip_band }}" data-band="{{ chip_band }}"{% if chip_id %} id="{{ chip_id }}"{% endif %}{% if aria_label or chip_label %} aria-label="{{ aria_label or chip_label }}"{% endif %}>{{ chip_label }}</span>
+{%- endmacro %}

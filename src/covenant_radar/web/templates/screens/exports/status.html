@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{ labels.export_title }}{% endblock %}
+{% block h1 %}{{ labels.export_heading }}{% endblock %}
+
+{% block content %}
+  {% include "_components/export_status.html" %}
+{% endblock %}

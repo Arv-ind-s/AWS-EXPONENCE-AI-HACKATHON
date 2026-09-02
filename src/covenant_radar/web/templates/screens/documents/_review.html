@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set rows = rows|default(()) %}
+{% set error = error|default("") %}
+
+{% block page_title %}{{ labels.title }}{% endblock %}
+{% block h1 %}{{ labels.heading }}{% endblock %}
+
+{% block content %}
+  <p id="ocr-capability">
+    {{ labels.capability }}:
+    <span data-ocr-available="{{ "true" if capability.available else "false" }}">
+      {{ labels.available if capability.available else labels.unavailable }}
+    </span>
+    <span>({{ capability.detail }})</span>
+  </p>
+  {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+  {% if rows %}
+    {% for row in rows %}
+      <article class="panel" id="review-document-{{ row.document.id }}-page-{{ row.page.page_number }}">
+        <h2>{{ labels.document }}: {{ row.document.filename }}</h2>
+        <p>{{ labels.page }}: {{ row.page.page_number }}</p>
+        <p>{{ labels.reason }}: {{ row.reason }}</p>
+        {% if row.page.text %}
+          <details>
+            <summary>{{ labels.extracted_text }}</summary>
+            <pre>{{ row.page.text }}</pre>
+          </details>
+        {% endif %}
+        <form method="post" action="/documents/{{ row.document.id }}/pages/{{ row.page.page_number }}/correct" novalidate>
+          <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+          <input type="hidden" name="expected_version" value="{{ row.document.version }}">
+          {{ components.field("corrected_text", labels.correction, type="textarea", value=row.page.text or "", required=true, error=labels.required if error else "") }}
+          <p>{{ labels.source_retained }}</p>
+          {{ components.button(labels.correct, type="submit") }}
+        </form>
+      </article>
+    {% endfor %}
+  {% else %}
+    {{ components.empty_state("document-review-empty", labels.empty, labels.empty) }}
+  {% endif %}
+{% endblock %}

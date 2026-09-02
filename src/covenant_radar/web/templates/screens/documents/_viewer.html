@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% import "_components/components.html" as components %}
+{% set labels = labels|default({}) %}
+{% set error = error|default("") %}
+{% set override = override|default(none) %}
+{% set highlight = highlight|default(none) %}
+
+{% block page_title %}{{ labels.viewer_title }}{% endblock %}
+{% block h1 %}{{ labels.viewer_title }}{% endblock %}
+
+{% block content %}
+  <article class="panel document-viewer" id="document-viewer">
+    <h2>{{ labels.document }}: {{ document.filename }}</h2>
+    <p>{{ labels.page }}: {{ page.page_number }}</p>
+
+    <section class="document-viewer__classification" id="document-classification">
+      <h3>{{ labels.classification }}</h3>
+      {% if classification.doc_type == unclassified_doc_type %}
+        <p data-classification-state="unclassified">{{ labels.unclassified }} ({{ classification_confidence_display }})</p>
+      {% else %}
+        <p data-classification-state="classified">{{ doc_type_labels.get(classification.doc_type, classification.doc_type) }} ({{ classification_confidence_display }})</p>
+      {% endif %}
+      {% if override %}
+        <p data-classification-override="true">
+          {{ labels.overridden_by }}: {{ doc_type_labels.get(override.user_value.doc_type, override.user_value.doc_type) }} — {{ override.reason }}
+        </p>
+      {% endif %}
+    </section>
+
+    {% if was_corrected %}
+      <p role="note" data-page-corrected="true">{{ labels.corrected_note }}</p>
+    {% endif %}
+
+    {% if error %}<p role="alert">{{ error }}</p>{% endif %}
+
+    <section class="document-viewer__source" id="document-source-page-{{ page.page_number }}">
+      {% if highlight %}
+        <blockquote class="document-viewer__quote" data-span-start="{{ span_start }}" data-span-end="{{ span_end }}">{{ highlight }}</blockquote>
+      {% elif span_start is not none or span_end is not none %}
+        <p role="note">{{ labels.span_missing }}</p>
+      {% endif %}
+      {% if page.text %}
+        <pre class="document-viewer__page-text">{% if highlight %}{{ page.text[:span_start] }}<mark data-span-highlight="true">{{ highlight }}</mark>{{ page.text[span_end:] }}{% else %}{{ page.text }}{% endif %}</pre>
+      {% else %}
+        <p role="note">{{ labels.no_text }}</p>
+      {% endif %}
+    </section>
+
+    {{ components.provenance_link(labels.back_to_review, state="resolvable", href="/documents/review") }}
+  </article>
+
+  <article class="panel document-viewer__override" id="document-classification-override">
+    <h2>{{ labels.override_heading }}</h2>
+    <form method="post" action="/documents/{{ document.id }}/classification/override" novalidate>
+      <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+      <input type="hidden" name="page" value="{{ page.page_number }}">
+      {{ components.field("doc_type", labels.override_doc_type, type="select", value=(classification.doc_type if classification.doc_type != unclassified_doc_type else ""), options=doc_type_options, required=true, error=labels.override_required if error else "") }}
+      {{ components.field("reason", labels.override_reason, type="textarea", required=true) }}
+      {{ components.button(labels.override_submit, type="submit") }}
+    </form>
+  </article>
+{% endblock %}
+
+{% block body_end %}
+  <script src="/static/js/document_viewer.js" defer></script>
+{% endblock %}

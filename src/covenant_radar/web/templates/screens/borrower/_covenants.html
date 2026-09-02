@@ -1,0 +1,78 @@
+{% if view is defined %}
+{% set covenant_panel = view.covenants_panel %}
+{% set state_action_label = "" %}
+{% set state_action_href = "" %}
+<section
+  class="panel panel--{{ covenant_panel.state }} case-file__panel--wide"
+  id="case-covenants"
+  data-state="{{ covenant_panel.state }}"
+  aria-labelledby="case-covenants-title"
+>
+  <div class="panel__heading">
+    <h2 class="panel__title" id="case-covenants-title">{{ labels.covenant_title }}</h2>
+    {% if view.actions %}<a class="text-action" href="{{ view.actions.why_href }}" hx-get="{{ view.actions.why_href }}" hx-target="body" hx-swap="beforeend">Why this contractual status?</a>{% endif %}
+  </div>
+  {% if covenant_panel.state == "empty" %}
+    {% set state_id = "case-covenants-empty" %}
+    {% set state_title = covenant_panel.empty_title %}
+    {% set state_message = covenant_panel.empty_message %}
+    {% include "_states/empty.html" %}
+  {% elif covenant_panel.state == "loading" %}
+    {% set state_label = labels.loading %}
+    {% set state_rows = 3 %}
+    {% set state_columns = 7 %}
+    {% include "_states/loading.html" %}
+  {% elif covenant_panel.state == "error" %}
+    {% set state_id = "case-covenants-error" %}
+    {% set state_title = covenant_panel.error_title %}
+    {% set state_message = covenant_panel.error_message %}
+    {% include "_states/error.html" %}
+  {% elif covenant_panel.state == "degraded" %}
+    {% set state_capability = labels.covenant_title %}
+    {% set state_message = covenant_panel.degraded_message %}
+    {% include "_states/degraded.html" %}
+  {% else %}
+    <div class="ledger-table case-covenant-ledger" id="case-covenant-ledger">
+      <table class="ledger-table__table">
+        <caption class="ledger-table__caption">{{ labels.covenant_title }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.covenant_reference }}</th>
+            <th scope="col">{{ labels.covenant_facility }}</th>
+            <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_value }}</th>
+            <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_threshold }}</th>
+            <th scope="col" class="ledger-table__heading--right">{{ labels.covenant_headroom }}</th>
+            <th scope="col">{{ labels.covenant_verdict }}</th>
+            <th scope="col">{{ labels.covenant_next_test }}</th>
+            <th scope="col" class="ledger-table__heading--center">{{ labels.covenant_trajectory }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in view.covenants %}
+            <tr class="ledger-row case-covenant-row" id="{{ row.row_id }}" data-verdict="{{ row.verdict }}">
+              <th scope="row" class="ledger-row__cell case-covenant-row__name">
+                <span>{{ row.covenant_name }}</span>
+                <span class="case-covenant-row__reference">{{ row.covenant_reference }}</span>
+                {% if row.detail_message %}<span class="case-covenant-row__detail">{{ row.detail_message }}</span>{% endif %}
+              </th>
+              <td class="ledger-row__cell">{{ row.facility_reference }}</td>
+              <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric">{{ row.value_display }}</td>
+              <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric">{{ row.threshold_display }}</td>
+              <td class="ledger-row__cell ledger-row__cell--right case-covenant-row__numeric case-covenant-row__headroom">{{ row.headroom_display }}</td>
+              <td class="ledger-row__cell">
+                <span class="case-covenant-row__verdict" data-verdict="{{ row.verdict }}">{{ row.verdict_display }}</span>
+                {% if view.actions %}<a class="case-covenant-row__why text-action" href="{{ view.actions.why_href }}" hx-get="{{ view.actions.why_href }}" hx-target="body" hx-swap="beforeend">Why?</a>{% endif %}
+                {% if row.not_computable_reason %}<span class="case-covenant-row__detail">{{ row.not_computable_reason }}</span>{% endif %}
+              </td>
+              <td class="ledger-row__cell">{{ row.next_test_display }}</td>
+              <td class="ledger-row__cell ledger-row__cell--center case-covenant-row__trajectory">
+                <span aria-label="{{ row.trajectory_label }}">{{ row.trajectory_arrow }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</section>
+{% endif %}

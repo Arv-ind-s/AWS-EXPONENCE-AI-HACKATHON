@@ -1,0 +1,10 @@
+{% macro drawer(drawer_id, title, state="closed", content="", close_label="Close", describedby="") -%}
+  {% set drawer_state = state if state in ("closed", "opening", "open") else "closed" %}
+  <section class="drawer drawer--{{ drawer_state }}" id="{{ drawer_id }}" data-drawer data-state="{{ drawer_state }}" role="dialog" aria-modal="true" aria-labelledby="{{ drawer_id }}-title" aria-hidden="{{ "false" if drawer_state != "closed" else "true" }}" tabindex="-1"{% if describedby %} aria-describedby="{{ describedby }}"{% endif %}{% if drawer_state == "closed" %} hidden{% endif %}>
+    <div class="drawer__header">
+      <h2 class="drawer__title" id="{{ drawer_id }}-title">{{ title }}</h2>
+      <button class="button drawer__close" type="button" data-drawer-close="{{ drawer_id }}">{{ close_label }}</button>
+    </div>
+    <div class="drawer__body">{% if caller is defined %}{{ caller() }}{% else %}{{ content }}{% endif %}</div>
+  </section>
+{%- endmacro %}

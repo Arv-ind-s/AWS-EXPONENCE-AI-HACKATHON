@@ -1,0 +1,17 @@
+{
+  "stage1_extract.v1.md": {
+    "body_sha256": "0d154b1a68c841a56a02b397bcf159cb3714ff18bf37c104eeb7d37715f32e12",
+    "sha256": "879a4ea4f5ce947b5edc9645541e86ad81e7b43cb828f1afd3e1bbe19a27f5da",
+    "version": "v1"
+  },
+  "stage7_memo.v1.md": {
+    "body_sha256": "25e8a0181c1cc0ef4a7f7e991f429ff791b28b63db3ab6fa229e7cec87ceb623",
+    "sha256": "e6aef7ac3a95a69ecf4d70dae1ee76a1b9334ac4def5e93e69c29345eed8d798",
+    "version": "v1"
+  },
+  "stage7_memo.v2.md": {
+    "body_sha256": "b5e3ce37a8acb35027c4cdc6bbbfdf555bb13883bba912601d9594bf06c1e89c",
+    "sha256": "c10127bcea8b07828af8566c0b81b53937e23f9d3912f88c3902e32af57c4dc2",
+    "version": "v2"
+  }
+}

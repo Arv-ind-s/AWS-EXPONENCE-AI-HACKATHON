@@ -1,0 +1,79 @@
+<div id="simulator-comparison-region" aria-live="polite">
+  {% if view.error_message %}
+    <section class="panel panel--error simulator__alert" role="alert" aria-live="assertive">
+      <h2 class="panel__title">{{ labels.error_title }}</h2>
+      <p>{{ view.error_message }}</p>
+    </section>
+  {% endif %}
+  {% if view.options %}
+    <section class="panel simulator__comparison" id="simulator-comparison" aria-labelledby="simulator-comparison-title">
+      <h2 class="panel__title" id="simulator-comparison-title">{{ labels.comparison_title }}</h2>
+      <div class="simulator-table-wrap">
+        <table class="simulator-table">
+          <caption class="sr-only">{{ labels.comparison_title }}</caption>
+          <thead>
+            <tr>
+              <th scope="col">{{ labels.status }}</th>
+              {% for column in view.comparison.columns %}
+                <th scope="col" data-comparison-code="{{ column.code }}">
+                  <span class="simulator-table__option">{{ column.label }}</span>
+                  <span class="simulator-table__status simulator-table__status--{{ column.status.value }}">
+                    {% if column.is_baseline %}{{ labels.baseline }}{% elif column.no_effect %}{{ labels.status_no_effect }}{% else %}{{ labels.status_applied }}{% endif %}
+                  </span>
+                  <span class="simulator-table__description">{{ column.description }}</span>
+                  <span class="simulator-table__assumptions">{{ labels.assumptions }}</span>
+                  <ul class="simulator-table__assumption-list">
+                    {% for assumption in column.assumptions %}<li>{{ assumption }}</li>{% endfor %}
+                  </ul>
+                  {% if column.no_effect_reason %}<span class="simulator-table__no-effect">{{ column.no_effect_reason }}</span>{% endif %}
+                </th>
+              {% endfor %}
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">{{ labels.crossing }}</th>
+              {% for column in view.comparison.columns %}
+                <td><ul class="simulator-table__horizons">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}"><span>{{ horizon.horizon_days }} {{ labels.days }}</span> {{ horizon.crossing_display }}</li>{% endfor %}
+                </ul></td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <th scope="row">{{ labels.probability }}</th>
+              {% for column in view.comparison.columns %}
+                <td><ul class="simulator-table__horizons simulator-table__horizons--numbers">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}"><span>{{ horizon.horizon_days }} {{ labels.days }}</span> {{ horizon.probability_display }}</li>{% endfor %}
+                </ul></td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <th scope="row">{{ labels.delta_days }}</th>
+              {% for column in view.comparison.columns %}
+                <td><ul class="simulator-table__horizons" data-metric="delta-days">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_days_display }}</li>{% endfor %}
+                </ul></td>
+              {% endfor %}
+            </tr>
+            <tr>
+              <th scope="row">{{ labels.delta_probability }}</th>
+              {% for column in view.comparison.columns %}
+                <td><ul class="simulator-table__horizons" data-metric="delta-probability">
+                  {% for horizon in column.horizons %}<li data-horizon="{{ horizon.horizon_days }}">{{ horizon.delta_probability_display }}</li>{% endfor %}
+                </ul></td>
+              {% endfor %}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      {% if view.memo_href %}{% include "_components/memo_action.html" %}{% endif %}
+    </section>
+  {% else %}
+    {% set state_id = "simulator-comparison-empty" %}
+    {% set state_title = view.empty_title %}
+    {% set state_message = view.empty_message %}
+    {% set state_action_label = "" %}
+    {% set state_action_href = "" %}
+    {% include "_states/empty.html" %}
+  {% endif %}
+</div>

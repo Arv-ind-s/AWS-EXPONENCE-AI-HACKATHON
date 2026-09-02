@@ -1,0 +1,31 @@
+{
+  "id": "EX-0003",
+  "kind": "engine",
+  "title": "TOL/TNW sits exactly on its plausible-band ceiling without breaching it",
+  "arms": [
+    "product"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "engine",
+    "boundary_of_band"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "definition_code": "tol_tnw",
+    "lines": {
+      "total_liabilities": "240",
+      "tangible_net_worth": "40"
+    }
+  },
+  "expected": {
+    "computable": true,
+    "value": "6",
+    "band_breached": false
+  },
+  "pass_mark": {
+    "type": "exact"
+  },
+  "note": "tol_tnw = total_liabilities / tangible_net_worth = 240 / 40 = 6.00x. The plausible band ceiling is 6; compute_ratio's band check is a strict greater-than, so a value exactly at 6.00 does not breach the band (band_breached is false, not true)."
+}

@@ -1,0 +1,57 @@
+{
+  "id": "EX-0034",
+  "kind": "usefulness",
+  "title": "A vague, undated memo draft fails the usefulness rubric floor",
+  "arms": [
+    "product",
+    "baseline"
+  ],
+  "status": "authored",
+  "adversarial": false,
+  "tags": [
+    "usefulness"
+  ],
+  "references_reference_portfolio": false,
+  "input": {
+    "memo_draft": {
+      "headline": "Covenant concern",
+      "summary": "This borrower's financial position appears to be weakening.",
+      "drivers": [
+        "General deterioration"
+      ],
+      "recommended_next_step": "Not available from the recorded evidence.",
+      "disclaimer": "human credit review is required before action"
+    }
+  },
+  "expected": {
+    "rubric_floor_met": false,
+    "criteria": [
+      {
+        "name": "names the specific covenant and its threshold",
+        "satisfied": false
+      },
+      {
+        "name": "states the breach or crossing date",
+        "satisfied": false
+      },
+      {
+        "name": "cites a concrete driver rather than a generic statement",
+        "satisfied": false
+      },
+      {
+        "name": "recommends a next step from the permitted catalogue, or names its absence",
+        "satisfied": true
+      },
+      {
+        "name": "carries the fixed advisory disclaimer",
+        "satisfied": true
+      }
+    ]
+  },
+  "pass_mark": {
+    "type": "rubric_floor",
+    "floor": 4.0,
+    "reviewers": 3
+  },
+  "note": "Nothing names the actual covenant, its threshold or a crossing date, and 'General deterioration' is not a concrete driver a credit officer could act on -- a reviewer working the rubric by hand marks only the last two criteria satisfied (the absent-next-step is honestly stated, and the disclaimer is present), scoring 2 of 5 against a floor of 4. This is the honest-baseline shape spec §17.7 needs the rubric to actually distinguish, not a draft nobody would ever produce."
+}
