@@ -77,6 +77,21 @@
                   <figure class="trajectory case-covenant-row__history" aria-label="{{ row.history_label }}">
                     <figcaption class="trajectory__caption">{{ row.history_label }} — {{ row.covenant_name }}</figcaption>
                     {{ row.history_svg }}
+                    {#
+                      The chart's own `aria-describedby` names this list, and
+                      `spec §15.2` refuses a chart whose figures are not also
+                      readable as text. Both were previously unmet here: the
+                      reference pointed at nothing and the tested values
+                      existed only as pixels.
+                    #}
+                    <dl class="trajectory__ledger" id="{{ row.history_id }}-ledger">
+                      {% for figure in row.history_figures %}
+                        <div class="trajectory__ledger-item">
+                          <dt>{{ figure.label }}</dt>
+                          <dd>{{ figure.value }}</dd>
+                        </div>
+                      {% endfor %}
+                    </dl>
                   </figure>
                 </td>
               </tr>

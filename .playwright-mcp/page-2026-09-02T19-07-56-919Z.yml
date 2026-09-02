@@ -1,0 +1,178 @@
+- generic [active] [ref=f27e1]:
+  - link "Skip to content" [ref=f27e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f27e3]:
+    - complementary "Workspace navigation" [ref=f27e4]:
+      - link "Covenant Radar" [ref=f27e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f27e13]:
+          - strong [ref=f27e14]: Covenant
+          - generic [ref=f27e15]: Radar
+      - navigation "Primary navigation" [ref=f27e16]:
+        - region [ref=f27e17]:
+          - heading "Monitor" [level=2] [ref=f27e18]
+          - link "Portfolio queue" [ref=f27e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f27e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f27e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f27e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f27e31]: "0"
+          - link "Search" [ref=f27e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f27e37]:
+          - heading "Portfolio data" [level=2] [ref=f27e38]
+          - link "Borrowers" [ref=f27e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f27e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f27e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f27e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f27e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f27e61]:
+          - heading "Workflows" [level=2] [ref=f27e62]
+          - link "Intake" [ref=f27e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f27e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f27e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f27e75] [cursor=pointer]
+    - generic [ref=f27e79]:
+      - banner [ref=f27e80]:
+        - generic [ref=f27e82]:
+          - generic [ref=f27e83]: Workspace
+          - generic [ref=f27e86]: Current view
+        - search [ref=f27e87]:
+          - generic [ref=f27e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f27e89]
+          - generic: /
+        - generic [ref=f27e90]:
+          - button "Live activity" [ref=f27e91]:
+            - generic [ref=f27e93]: Live
+          - button "Use dark theme" [ref=f27e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f27e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f27e101] [cursor=pointer]
+      - main [ref=f27e105]:
+        - generic [ref=f27e107]:
+          - paragraph [ref=f27e108]: Decision workspace
+          - heading "Rows awaiting resolution" [level=1] [ref=f27e109]
+        - article [ref=f27e111]:
+          - heading "Row 8" [level=2] [ref=f27e112]
+          - paragraph [ref=f27e113]: "Rule failed: unknown_borrower"
+          - paragraph [ref=f27e114]: "Reason quarantined: Borrower key 'B-999999' does not match any borrower in the caller's portfolio scope."
+          - paragraph [ref=f27e115]: "Import batch: 01a06384-74e5-7324-aeec-c350097b9998"
+          - generic [ref=f27e116]:
+            - heading "Correct and re-submit" [level=3] [ref=f27e117]
+            - generic [ref=f27e118]:
+              - generic [ref=f27e119]:
+                - generic [ref=f27e120]: borrower_key
+                - textbox "borrower_key" [ref=f27e121]: B-999999
+                - paragraph [ref=f27e122]: Original value
+              - generic [ref=f27e123]:
+                - generic [ref=f27e124]: cash_and_bank_lakh
+                - textbox "cash_and_bank_lakh" [ref=f27e125]: "520"
+                - paragraph [ref=f27e126]: Original value
+              - generic [ref=f27e127]:
+                - generic [ref=f27e128]: cogs_lakh
+                - textbox "cogs_lakh" [ref=f27e129]: "5332"
+                - paragraph [ref=f27e130]: Original value
+              - generic [ref=f27e131]:
+                - generic [ref=f27e132]: depreciation_lakh
+                - textbox "depreciation_lakh" [ref=f27e133]: "540"
+                - paragraph [ref=f27e134]: Original value
+              - generic [ref=f27e135]:
+                - generic [ref=f27e136]: finance_cost_lakh
+                - textbox "finance_cost_lakh" [ref=f27e137]: "470"
+                - paragraph [ref=f27e138]: Original value
+              - generic [ref=f27e139]:
+                - generic [ref=f27e140]: fy_label
+                - textbox "fy_label" [ref=f27e141]: FY26Q3
+                - paragraph [ref=f27e142]: Original value
+              - generic [ref=f27e143]:
+                - generic [ref=f27e144]: inventory_lakh
+                - textbox "inventory_lakh" [ref=f27e145]: "2700"
+                - paragraph [ref=f27e146]: Original value
+              - generic [ref=f27e147]:
+                - generic [ref=f27e148]: is_audited
+                - textbox "is_audited" [ref=f27e149]: "false"
+                - paragraph [ref=f27e150]: Original value
+              - generic [ref=f27e151]:
+                - generic [ref=f27e152]: long_term_debt_lakh
+                - textbox "long_term_debt_lakh" [ref=f27e153]: "3300"
+                - paragraph [ref=f27e154]: Original value
+              - generic [ref=f27e155]:
+                - generic [ref=f27e156]: opex_lakh
+                - textbox "opex_lakh" [ref=f27e157]: "1548"
+                - paragraph [ref=f27e158]: Original value
+              - generic [ref=f27e159]:
+                - generic [ref=f27e160]: other_current_assets_lakh
+                - textbox "other_current_assets_lakh" [ref=f27e161]: "300"
+                - paragraph [ref=f27e162]: Original value
+              - generic [ref=f27e163]:
+                - generic [ref=f27e164]: other_current_liabilities_lakh
+                - textbox "other_current_liabilities_lakh" [ref=f27e165]: "560"
+                - paragraph [ref=f27e166]: Original value
+              - generic [ref=f27e167]:
+                - generic [ref=f27e168]: pat_lakh
+                - textbox "pat_lakh" [ref=f27e169]: "520"
+                - paragraph [ref=f27e170]: Original value
+              - generic [ref=f27e171]:
+                - generic [ref=f27e172]: payables_lakh
+                - textbox "payables_lakh" [ref=f27e173]: "2100"
+                - paragraph [ref=f27e174]: Original value
+              - generic [ref=f27e175]:
+                - generic [ref=f27e176]: period_end
+                - textbox "period_end" [ref=f27e177]: 2026-09-30
+                - paragraph [ref=f27e178]: Original value
+              - generic [ref=f27e179]:
+                - generic [ref=f27e180]: period_start
+                - textbox "period_start" [ref=f27e181]: 2026-07-01
+                - paragraph [ref=f27e182]: Original value
+              - generic [ref=f27e183]:
+                - generic [ref=f27e184]: period_type
+                - textbox "period_type" [ref=f27e185]: quarterly
+                - paragraph [ref=f27e186]: Original value
+              - generic [ref=f27e187]:
+                - generic [ref=f27e188]: receivables_lakh
+                - textbox "receivables_lakh" [ref=f27e189]: "3050"
+                - paragraph [ref=f27e190]: Original value
+              - generic [ref=f27e191]:
+                - generic [ref=f27e192]: revenue_lakh
+                - textbox "revenue_lakh" [ref=f27e193]: "8600"
+                - paragraph [ref=f27e194]: Original value
+              - generic [ref=f27e195]:
+                - generic [ref=f27e196]: short_term_debt_lakh
+                - textbox "short_term_debt_lakh" [ref=f27e197]: "2600"
+                - paragraph [ref=f27e198]: Original value
+              - generic [ref=f27e199]:
+                - generic [ref=f27e200]: tangible_net_worth_lakh
+                - textbox "tangible_net_worth_lakh" [ref=f27e201]: "6400"
+                - paragraph [ref=f27e202]: Original value
+              - generic [ref=f27e203]:
+                - generic [ref=f27e204]: tax_expense_lakh
+                - textbox "tax_expense_lakh" [ref=f27e205]: "190"
+                - paragraph [ref=f27e206]: Original value
+              - generic [ref=f27e207]:
+                - generic [ref=f27e208]: total_assets_lakh
+                - textbox "total_assets_lakh" [ref=f27e209]: "14960"
+                - paragraph [ref=f27e210]: Original value
+              - generic [ref=f27e211]:
+                - generic [ref=f27e212]: total_liabilities_lakh
+                - textbox "total_liabilities_lakh" [ref=f27e213]: "8560"
+                - paragraph [ref=f27e214]: Original value
+              - generic [ref=f27e215]:
+                - generic [ref=f27e216]: Reason *
+                - textbox "Reason" [ref=f27e217]
+              - button "Save correction" [ref=f27e218] [cursor=pointer]
+          - generic [ref=f27e219]:
+            - heading "Reject" [level=3] [ref=f27e220]
+            - generic [ref=f27e221]:
+              - generic [ref=f27e222]:
+                - generic [ref=f27e223]: Reason *
+                - textbox "Reason" [ref=f27e224]
+              - button "Reject row" [ref=f27e225] [cursor=pointer]

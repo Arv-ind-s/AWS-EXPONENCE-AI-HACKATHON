@@ -19,15 +19,13 @@
         {"key": "name", "label": labels.name},
         {"key": "class", "label": labels.class},
         {"key": "facility", "label": labels.facility},
-        {"key": "status", "label": labels.status}
+        {"key": "status", "label": labels.status},
+        {"key": "actions", "label": labels.actions}
       ],
       table_rows,
       table_id="covenants-ledger",
       empty_title=labels.empty,
       empty_message=labels.empty
     ) }}
-    {% for row in rows %}
-      <p>{{ components.button(labels.open, href="/covenants/" ~ row.reference) }}</p>
-    {% endfor %}
   {% endcall %}
 {% endblock %}

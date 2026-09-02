@@ -21,9 +21,13 @@ from covenant_radar.db.models import (
     CovenantTest,
     CovenantVersion,
     Facility,
+    FieldProvenance,
+    FinancialPeriod,
     Forecast,
     ForecastRun,
     Portfolio,
+    RatioDefinition,
+    StatementLineValue,
     TriageEntry,
     UserPortfolioScope,
 )
@@ -333,6 +337,214 @@ def test_view_computes_no_figure() -> None:
         fixture.close()
 
 
+def financials(fixture: _Fixture) -> None:
+    """Give the fixture four filed quarters and a covenant tested on each.
+
+    Exported (like `test_forecast_panel._forecast`) because the a11y manifest
+    needs a case file whose financials tab is populated: the panel's tables,
+    charts and sticky headers only exist in that state, and the three
+    existing borrower states all render its empty state instead.
+
+    Leverage rises from 2.60x to 3.40x on flat net worth, crossing the
+    3.25x threshold at the third quarter, so the attribution sentence has a
+    real crossing and a real one-sided movement to report.
+
+    A second covenant is registered rather than the fixture's own being
+    given a `definition_ref`: the fixture's version is already
+    `tested_at_least_once`, and `covenant_version` is frozen from that point
+    by a database trigger (`db/models/covenant.py`), so amending it here
+    would be the test asking the schema to break its own immutability rule.
+    """
+
+    fixture.session.add(
+        RatioDefinition(
+            id=uuid4(),
+            code="leverage_ratio",
+            name="Leverage ratio",
+            formula_text="total_debt / tangible_net_worth",
+            required_lines=["total_debt", "tangible_net_worth"],
+            unit="x",
+            plausible_min=Decimal("0"),
+            plausible_max=Decimal("6"),
+            direction_hint="max",
+            taxonomy_version="1.0",
+            version=1,
+            created_at=_NOW,
+            updated_at=_NOW,
+            request_id="rq-t075-ratio-definition",
+        )
+    )
+    covenant = Covenant(
+        id=uuid4(),
+        reference="CV-T075-LEV",
+        facility_id=fixture.facility.id,
+        name="Leverage ratio",
+        covenant_class="financial",
+        is_active=True,
+        created_at=_NOW,
+        updated_at=_NOW,
+        request_id="rq-t075-lev-covenant",
+    )
+    version = CovenantVersion(
+        id=uuid4(),
+        covenant_id=covenant.id,
+        version_no=1,
+        definition_ref="leverage_ratio",
+        threshold=Decimal("3.25"),
+        direction="max",
+        unit="x",
+        frequency="quarterly",
+        test_basis="standalone",
+        effective_from=date(2025, 1, 1),
+        status="live",
+        tested_at_least_once=True,
+        registered_by_id=fixture.principal.id,
+        created_at=_NOW,
+        updated_at=_NOW,
+        request_id="rq-t075-lev-version",
+    )
+    fixture.session.add_all([covenant, version])
+    fixture.session.flush()
+
+    quarters = (
+        ("FY26Q1", date(2025, 4, 1), date(2025, 6, 30), Decimal("260"), "pass"),
+        ("FY26Q2", date(2025, 7, 1), date(2025, 9, 30), Decimal("287"), "warning"),
+        ("FY26Q3", date(2025, 10, 1), date(2025, 12, 31), Decimal("314"), "breach"),
+        ("FY26Q4", date(2026, 1, 1), date(2026, 3, 31), Decimal("340"), "breach"),
+    )
+    for label, starts, ends, debt, verdict in quarters:
+        period = FinancialPeriod(
+            id=uuid4(),
+            borrower_id=fixture.borrower.id,
+            fy_label=label,
+            period_type="quarterly",
+            period_start=starts,
+            period_end=ends,
+            is_complete=True,
+            is_audited=True,
+            version=1,
+            created_at=_NOW,
+            updated_at=_NOW,
+            request_id="rq-t075-period",
+        )
+        provenance = FieldProvenance(
+            id=uuid4(),
+            source_type="json",
+            source_reference="tests/integration/test_case_file.py",
+            mapping_version=1,
+            ingested_at=_NOW,
+            batch_id=uuid4(),
+            created_at=_NOW,
+            updated_at=_NOW,
+            request_id="rq-t075-provenance",
+        )
+        fixture.session.add_all([period, provenance])
+        fixture.session.flush()
+        lines = {
+            "total_debt": debt,
+            "tangible_net_worth": Decimal("100"),
+            "revenue": Decimal("410"),
+            "ebitda": Decimal("44"),
+            "ebit": Decimal("30"),
+            "finance_cost": Decimal("10"),
+            "current_assets": Decimal("240"),
+            "current_liabilities": Decimal("120"),
+            "cash_flow_debt_service": Decimal("26"),
+        }
+        for code, value in lines.items():
+            fixture.session.add(
+                StatementLineValue(
+                    id=uuid4(),
+                    period_id=period.id,
+                    line_code=code,
+                    value=value,
+                    unit="amount",
+                    currency="INR",
+                    provenance_id=provenance.id,
+                    created_at=_NOW,
+                    updated_at=_NOW,
+                    request_id="rq-t075-line",
+                )
+            )
+        fixture.session.add(
+            CovenantTest(
+                id=uuid4(),
+                covenant_version_id=version.id,
+                period_id=period.id,
+                as_of_date=ends,
+                value=(debt / Decimal("100")).quantize(Decimal("0.01")),
+                threshold_used=Decimal("3.25"),
+                headroom_pct=(
+                    ((Decimal("3.25") - debt / Decimal("100")) / Decimal("3.25")) * Decimal("100")
+                ).quantize(Decimal("0.0001")),
+                verdict=verdict,
+                computed_at=_NOW,
+                created_at=_NOW,
+                updated_at=_NOW,
+                request_id="rq-t075-period-test",
+            )
+        )
+    fixture.session.flush()
+
+
+def test_financials_tab_shows_filed_lines_and_attributes_the_breach() -> None:
+    """The panel's whole promise: the lines, and what moved the covenant.
+
+    Asserting the attribution sentence rather than only the presence of the
+    figures is deliberate — the figures were already reachable on the
+    statements screen, and the sentence is the thing this tab adds.
+    """
+
+    fixture = _Fixture()
+    try:
+        fixture.triage()
+        financials(fixture)
+        with fixture.client() as client:
+            response = client.get(f"/borrowers/{fixture.borrower.reference}")
+
+        assert response.status_code == 200
+        body = response.text
+        # Every line the tab promises, present as a filed figure.
+        for label in (
+            "Revenue",
+            "EBITDA",
+            "EBIT",
+            "Finance cost",
+            "Tangible net worth",
+            "Total debt",
+            "Current liabilities",
+            "Cash flow available for debt service",
+        ):
+            assert label in body, f"{label} is missing from the financials tab"
+        assert "₹340.00 cr" in body
+        # The movement is one-sided and the crossing is the stored verdict's,
+        # not a comparison the panel made for itself.
+        assert "The movement is entirely on the total debt side." in body
+        assert "It first tested in breach of the 3.25x ceiling at FY26Q3." in body
+        # The indicative ratios are present and unmistakably labelled.
+        assert "Indicative ratios — not covenanted" in body
+        assert "Debt / EBITDA" in body
+    finally:
+        fixture.close()
+
+
+def test_financials_tab_is_empty_without_filed_statements() -> None:
+    fixture = _Fixture()
+    try:
+        fixture.triage()
+        fixture.test()
+        with fixture.client() as client:
+            response = client.get(f"/borrowers/{fixture.borrower.reference}")
+
+        assert response.status_code == 200
+        assert "No financial statements have been filed" in response.text
+        # A covenant test with no period behind it cannot be attributed to a
+        # filing, so it must not appear as though it were.
+        assert "The movement is entirely on" not in response.text
+    finally:
+        fixture.close()
+
+
 def test_unknown_borrower_404() -> None:
     fixture = _Fixture()
     try:
@@ -371,4 +583,4 @@ def test_out_of_scope_borrower_404() -> None:
         fixture.close()
 
 
-__all__ = ["_Fixture"]
+__all__ = ["_Fixture", "financials"]

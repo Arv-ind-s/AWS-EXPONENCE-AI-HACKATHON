@@ -42,16 +42,14 @@
         {"key": "reference", "label": labels.borrowers_reference},
         {"key": "legal_name", "label": labels.borrowers_legal_name},
         {"key": "portfolio", "label": labels.borrowers_portfolio},
-        {"key": "status", "label": labels.borrowers_status}
+        {"key": "status", "label": labels.borrowers_status},
+        {"key": "actions", "label": labels.borrowers_actions}
       ],
       table_rows,
       table_id="borrowers-ledger",
       empty_title=labels.get("borrowers_no_matches", "No borrowers match the active filters.") if filters_active else labels.borrowers_empty,
       empty_message=labels.get("borrowers_no_matches", "No borrowers match the active filters.") if filters_active else labels.borrowers_empty
     ) }}
-    {% for row in rows %}
-      <p>{{ components.button(labels.borrowers_open ~ " " ~ row.reference, href="/borrowers/" ~ row.reference ~ master_detail_suffix) }}</p>
-    {% endfor %}
     {% include "_components/_pagination.html" %}
   {% endcall %}
 {% endblock %}

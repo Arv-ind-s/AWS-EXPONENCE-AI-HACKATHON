@@ -898,8 +898,7 @@ class DocumentService:
                                 "confidence": (
                                     str(page.confidence) if page.confidence is not None else None
                                 ),
-                                "needs_review": page.page_number
-                                in ocr_result.pages_needing_review,
+                                "needs_review": page.page_number in ocr_result.pages_needing_review,
                                 "reason": page.reason,
                             }
                             for page in ocr_result.pages
@@ -1222,7 +1221,11 @@ def _text_hash(value: str | None) -> str | None:
 def _corrected_page_text(value: object) -> str:
     if not isinstance(value, str):
         raise ValidationError("corrected_text is required.", field="corrected_text")
-    normalized = value.strip()
+    # A browser submits textarea line breaks as CRLF, while stored page text and
+    # its spans use the LF convention that OCR and native extraction produce.
+    # Fold the submitted endings before validating so a hand-typed correction is
+    # not rejected as a control character.
+    normalized = value.replace("\r\n", "\n").replace("\r", "\n").strip()
     if not normalized:
         raise ValidationError("corrected_text is required.", field="corrected_text")
     if len(normalized) > _MAX_CORRECTED_PAGE_TEXT_LENGTH:

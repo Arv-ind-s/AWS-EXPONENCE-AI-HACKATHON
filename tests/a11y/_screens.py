@@ -66,6 +66,7 @@ from tests.integration.test_admin_ops import _World as _AdminOpsWorld
 from tests.integration.test_audit_screens import _World as _AuditWorld
 from tests.integration.test_auth_local import _build as _build_auth, _STRONG_PASSWORD
 from tests.integration.test_case_file import _Fixture as _CaseFileFixture
+from tests.integration.test_case_file import financials as _case_file_financials
 from tests.integration.test_case_screens import _Fixture as _CasesFixture
 from tests.integration.test_document_upload import _Fixture as _DocumentFixture
 from tests.integration.test_evidence_margin import _Fixture as _EvidenceFixture
@@ -458,46 +459,76 @@ def _covenant_world(session: Session) -> _CovenantWorld:
         ),
     )
     portfolio = Portfolio.create(
-        code="T083-COV", name="T083 covenant root", created_at=_NOW, updated_at=_NOW,
+        code="T083-COV",
+        name="T083 covenant root",
+        created_at=_NOW,
+        updated_at=_NOW,
         request_id="rq-t083-cov-portfolio",
     )
     session.add(portfolio)
     session.flush()
     borrower = Borrower(
-        reference="B-T083", legal_name="T083 Covenant Borrower Private Limited",
-        portfolio_id=portfolio.id, created_at=_NOW, updated_at=_NOW,
+        reference="B-T083",
+        legal_name="T083 Covenant Borrower Private Limited",
+        portfolio_id=portfolio.id,
+        created_at=_NOW,
+        updated_at=_NOW,
         request_id="rq-t083-cov-borrower",
     )
     session.add(borrower)
     session.flush()
     facility = Facility(
-        reference="F-T083", borrower_id=borrower.id, facility_type="term_loan",
-        sanctioned_limit=Decimal("1000"), currency="INR", sanction_date=date(2025, 1, 1),
-        effective_from=date(2025, 1, 1), outstanding=Decimal("700"),
-        created_at=_NOW, updated_at=_NOW, request_id="rq-t083-cov-facility",
+        reference="F-T083",
+        borrower_id=borrower.id,
+        facility_type="term_loan",
+        sanctioned_limit=Decimal("1000"),
+        currency="INR",
+        sanction_date=date(2025, 1, 1),
+        effective_from=date(2025, 1, 1),
+        outstanding=Decimal("700"),
+        created_at=_NOW,
+        updated_at=_NOW,
+        request_id="rq-t083-cov-facility",
     )
     session.add(facility)
     session.flush()
     scope = Scope.from_paths(principal.id, [portfolio.path])
     registry = RegistryService(
-        session, audit=_Audit(), clock=FixedClock(_NOW),
-        request_id="rq-t083-cov-registry", maker_checker_enabled=False,
+        session,
+        audit=_Audit(),
+        clock=FixedClock(_NOW),
+        request_id="rq-t083-cov-registry",
+        maker_checker_enabled=False,
         scope_resolver=lambda _principal: scope,
     )
     return _CovenantWorld(
-        session=session, principal=principal, scope=scope, facility_id=facility.id, registry=registry,
+        session=session,
+        principal=principal,
+        scope=scope,
+        facility_id=facility.id,
+        registry=registry,
     )
 
 
 def _register_covenant(world: _CovenantWorld) -> None:
     terms = CovenantVersionTerms(
-        definition_ref="leverage_ratio", custom_formula=None, threshold=Decimal("2.5"),
-        direction="max", unit="x", frequency="quarterly", test_basis="standalone",
+        definition_ref="leverage_ratio",
+        custom_formula=None,
+        threshold=Decimal("2.5"),
+        direction="max",
+        unit="x",
+        frequency="quarterly",
+        test_basis="standalone",
         effective_from=date(2025, 1, 1),
     )
     world.registry.register(
-        world.principal, facility_id=world.facility_id, reference=world.reference,
-        name="Leverage ratio", covenant_class="financial", terms=terms, scope=world.scope,
+        world.principal,
+        facility_id=world.facility_id,
+        reference=world.reference,
+        name="Leverage ratio",
+        covenant_class="financial",
+        terms=terms,
+        scope=world.scope,
     )
 
 
@@ -558,11 +589,18 @@ def _document_review_rest(theme: str) -> str:
             document = fixture.upload()
             fixture.session.add(
                 DocumentPage(
-                    id=new_id(), document_id=document.id, page_number=1,
-                    text="OCR text needing review.", ocr_confidence=Decimal("0.40"),
-                    needs_review=True, width=612, height=792,
-                    created_at=_NOW, updated_at=_NOW,
-                    created_by_id=fixture.principal.id, updated_by_id=fixture.principal.id,
+                    id=new_id(),
+                    document_id=document.id,
+                    page_number=1,
+                    text="OCR text needing review.",
+                    ocr_confidence=Decimal("0.40"),
+                    needs_review=True,
+                    width=612,
+                    height=792,
+                    created_at=_NOW,
+                    updated_at=_NOW,
+                    created_by_id=fixture.principal.id,
+                    updated_by_id=fixture.principal.id,
                     request_id="rq-t083-review-page",
                 )
             )
@@ -601,10 +639,18 @@ def _document_viewer_rest(theme: str) -> str:
             text = "Sanctioned limit is INR 10 crore for the cash credit facility."
             fixture.session.add(
                 DocumentPage(
-                    id=new_id(), document_id=document.id, page_number=1, text=text,
-                    ocr_confidence=None, needs_review=False, width=612, height=792,
-                    created_at=_NOW, updated_at=_NOW,
-                    created_by_id=fixture.principal.id, updated_by_id=fixture.principal.id,
+                    id=new_id(),
+                    document_id=document.id,
+                    page_number=1,
+                    text=text,
+                    ocr_confidence=None,
+                    needs_review=False,
+                    width=612,
+                    height=792,
+                    created_at=_NOW,
+                    updated_at=_NOW,
+                    created_by_id=fixture.principal.id,
+                    updated_by_id=fixture.principal.id,
                     request_id="rq-t083-viewer-page",
                 )
             )
@@ -708,10 +754,33 @@ def _borrower_index_with_forecast(theme: str) -> str:
         fixture.close()
 
 
+def _borrower_index_financials(theme: str) -> str:
+    """The case file with its financials tab populated.
+
+    The other three borrower states file no statements, so they render that
+    tab's empty state and never exercise its statement table, ratio cards or
+    series charts — the parts of the panel with sticky headers, an SVG text
+    equivalent and a colour-coded verdict strip to get wrong.
+    """
+
+    fixture = _CaseFileFixture()
+    try:
+        fixture.triage()
+        _case_file_financials(fixture)
+        with fixture.client() as client:
+            return _get(client, f"/borrowers/{fixture.borrower.reference}", theme=theme)
+    finally:
+        fixture.close()
+
+
 def _borrower_index_evidence(theme: str) -> str:
     fixture = _EvidenceFixture()
-    fixture.evidence(evidence_type="stock_shortfall", decay_factor=Decimal("0"), counts_toward_pressure=False)
-    with fixture.client(permissions=(Permission.VIEW_BORROWER, Permission.UPLOAD_DOCUMENT)) as client:
+    fixture.evidence(
+        evidence_type="stock_shortfall", decay_factor=Decimal("0"), counts_toward_pressure=False
+    )
+    with fixture.client(
+        permissions=(Permission.VIEW_BORROWER, Permission.UPLOAD_DOCUMENT)
+    ) as client:
         return _get(client, f"/borrowers/{fixture.borrower.reference}", theme=theme)
 
 
@@ -771,7 +840,9 @@ def _intake_passing(theme: str) -> str:
 def _catalogue_rest(theme: str) -> str:
     with _sqlite_session() as session:
         principal = Principal.user(uuid4(), (Permission.PROPOSE_THRESHOLDS,))
-        service = CatalogueService(session, audit=_Audit(), clock=FixedClock(_NOW), maker_checker_enabled=False)
+        service = CatalogueService(
+            session, audit=_Audit(), clock=FixedClock(_NOW), maker_checker_enabled=False
+        )
         service.save(
             principal,
             {
@@ -811,15 +882,24 @@ def _admin_users_rest(theme: str) -> str:
         admin = Principal.user(uuid4(), (Permission.MANAGE_USERS,))
         session.add(
             AppUser(
-                id=admin.id, username="t083-admin", email="t083-admin@example.com",
-                full_name="T083 Admin", created_at=_NOW, updated_at=_NOW,
+                id=admin.id,
+                username="t083-admin",
+                email="t083-admin@example.com",
+                full_name="T083 Admin",
+                created_at=_NOW,
+                updated_at=_NOW,
                 request_id="rq-t083-admin",
             )
         )
         session.flush()
-        service = AdminUsersService(session, audit=_Audit(), clock=FixedClock(_NOW), request_id="rq-t083-admin-users")
+        service = AdminUsersService(
+            session, audit=_Audit(), clock=FixedClock(_NOW), request_id="rq-t083-admin-users"
+        )
         created = service.create_user(
-            admin, username="analyst", email="analyst@example.com", full_name="Risk Analyst",
+            admin,
+            username="analyst",
+            email="analyst@example.com",
+            full_name="Risk Analyst",
             password="Correct-Horse-123!",
         )
         app = create_app(
@@ -842,7 +922,9 @@ def _admin_ops_rest(theme: str) -> str:
 
 def _admin_config_rest(theme: str) -> str:
     with _sqlite_session() as session:
-        principal = Principal.user(uuid4(), (Permission.PROPOSE_THRESHOLDS, Permission.APPROVE_THRESHOLDS))
+        principal = Principal.user(
+            uuid4(), (Permission.PROPOSE_THRESHOLDS, Permission.APPROVE_THRESHOLDS)
+        )
         app = create_app(
             routers=(create_admin_config_router(session),),
             principal_resolver=lambda _request: principal,
@@ -924,7 +1006,9 @@ def _quarantine_review_empty(theme: str) -> str:
     from covenant_radar.services.statements import StatementImportService
 
     with _sqlite_session() as session:
-        principal = Principal.user(uuid4(), (Permission.RESOLVE_QUARANTINE, Permission.CORRECT_SOURCE_DATA))
+        principal = Principal.user(
+            uuid4(), (Permission.RESOLVE_QUARANTINE, Permission.CORRECT_SOURCE_DATA)
+        )
         service = StatementImportService(session, audit=_Audit(), clock=FixedClock(_NOW))
         with _statements_client(service, principal) as client:
             return _get(client, "/statements/quarantine", theme=theme)
@@ -961,7 +1045,9 @@ def _restate_result_direct(theme: str) -> str:
     `StatementImportService.restate_period`'s real return value."""
     from covenant_radar.ingestion.statements.restate import DependentTest, RestatementResult
 
-    template_root = Path(__file__).resolve().parents[2] / "src" / "covenant_radar" / "web" / "templates"
+    template_root = (
+        Path(__file__).resolve().parents[2] / "src" / "covenant_radar" / "web" / "templates"
+    )
     environment = Environment(
         loader=FileSystemLoader(str(template_root)), autoescape=select_autoescape(("html", "xml"))
     )
@@ -1266,24 +1352,37 @@ def _certificates_rest(theme: str) -> str:
         covenant = world.registry.get_covenant(world.principal, world.reference)
         version_row = world.registry.list_versions(world.principal, covenant.id)[-1]
         schedule = CovenantSchedule(
-            id=new_id(), covenant_version_id=version_row.id, due_date=date(2026, 3, 31),
-            state="pending", created_at=_NOW, updated_at=_NOW, request_id="rq-t083-schedule",
+            id=new_id(),
+            covenant_version_id=version_row.id,
+            due_date=date(2026, 3, 31),
+            state="pending",
+            created_at=_NOW,
+            updated_at=_NOW,
+            request_id="rq-t083-schedule",
         )
         session.add(schedule)
         session.flush()
 
         borrower = session.query(Borrower).filter_by(reference="B-T083").one()
         certificate_request = CertificateRequest(
-            id=new_id(), covenant_schedule_id=schedule.id, borrower_id=borrower.id,
-            due_date=date(2026, 3, 31), state="requested", requested_at=_NOW,
-            created_at=_NOW, updated_at=_NOW, request_id="rq-t083-certificate",
+            id=new_id(),
+            covenant_schedule_id=schedule.id,
+            borrower_id=borrower.id,
+            due_date=date(2026, 3, 31),
+            state="requested",
+            requested_at=_NOW,
+            created_at=_NOW,
+            updated_at=_NOW,
+            request_id="rq-t083-certificate",
         )
         session.add(certificate_request)
         session.flush()
 
         principal = Principal.user(world.principal.id, (Permission.VIEW_COVENANT,))
         service = CertificateService(
-            session, audit=_Audit(), clock=FixedClock(_NOW),
+            session,
+            audit=_Audit(),
+            clock=FixedClock(_NOW),
             scope_resolver=lambda _p: world.scope,
         )
         app = create_app(
@@ -1299,7 +1398,9 @@ def _certificates_empty(theme: str) -> str:
         world = _covenant_world(session)
         principal = Principal.user(world.principal.id, (Permission.VIEW_COVENANT,))
         service = CertificateService(
-            session, audit=_Audit(), clock=FixedClock(_NOW),
+            session,
+            audit=_Audit(),
+            clock=FixedClock(_NOW),
             scope_resolver=lambda _p: world.scope,
         )
         app = create_app(
@@ -1355,14 +1456,22 @@ def _governance_rest(theme: str) -> str:
 # ---------------------------------------------------------------------------
 
 SCREENS: tuple[ScreenCase, ...] = (
-    ScreenCase("auth_sign_in", ("screens/auth/sign_in.html",), (ScreenState("rest", _sign_in_rest),)),
+    ScreenCase(
+        "auth_sign_in", ("screens/auth/sign_in.html",), (ScreenState("rest", _sign_in_rest),)
+    ),
     ScreenCase(
         "auth_change_password",
         ("screens/auth/change_password.html",),
         (ScreenState("rest", _change_password_rest),),
     ),
-    ScreenCase("auth_mfa_enrol", ("screens/auth/mfa_enrol.html",), (ScreenState("rest", _mfa_enrol_rest),)),
-    ScreenCase("auth_mfa_verify", ("screens/auth/mfa_verify.html",), (ScreenState("rest", _mfa_verify_rest),)),
+    ScreenCase(
+        "auth_mfa_enrol", ("screens/auth/mfa_enrol.html",), (ScreenState("rest", _mfa_enrol_rest),)
+    ),
+    ScreenCase(
+        "auth_mfa_verify",
+        ("screens/auth/mfa_verify.html",),
+        (ScreenState("rest", _mfa_verify_rest),),
+    ),
     ScreenCase("shell_404", ("screens/_404.html",), (ScreenState("rest", _not_found_rest),)),
     ScreenCase("shell_500", ("screens/_500.html",), (ScreenState("rest", _server_error_rest),)),
     ScreenCase(
@@ -1424,7 +1533,9 @@ SCREENS: tuple[ScreenCase, ...] = (
         (ScreenState("rest", _covenants_rest), ScreenState("empty", _covenants_empty)),
     ),
     ScreenCase(
-        "covenant_form", ("screens/covenants/covenant_form.html",), (ScreenState("create", _covenant_form_rest),)
+        "covenant_form",
+        ("screens/covenants/covenant_form.html",),
+        (ScreenState("create", _covenant_form_rest),),
     ),
     ScreenCase(
         "covenant_detail",
@@ -1442,7 +1553,9 @@ SCREENS: tuple[ScreenCase, ...] = (
         (ScreenState("rest", _document_review_rest), ScreenState("empty", _document_review_empty)),
     ),
     ScreenCase(
-        "document_viewer", ("screens/documents/_viewer.html",), (ScreenState("rest", _document_viewer_rest),)
+        "document_viewer",
+        ("screens/documents/_viewer.html",),
+        (ScreenState("rest", _document_viewer_rest),),
     ),
     ScreenCase(
         "why_panel",
@@ -1461,6 +1574,7 @@ SCREENS: tuple[ScreenCase, ...] = (
             "screens/borrower/index.html",
             "screens/borrower/_header.html",
             "screens/borrower/_covenants.html",
+            "screens/borrower/_financials.html",
             "screens/borrower/_signals.html",
             "screens/borrower/_forecast.html",
             "screens/borrower/_horizon.html",
@@ -1471,6 +1585,7 @@ SCREENS: tuple[ScreenCase, ...] = (
         (
             ScreenState("rest", _borrower_index_rest),
             ScreenState("with_forecast", _borrower_index_with_forecast),
+            ScreenState("with_financials", _borrower_index_financials),
             ScreenState("with_evidence", _borrower_index_evidence),
         ),
     ),
@@ -1480,16 +1595,30 @@ SCREENS: tuple[ScreenCase, ...] = (
         (ScreenState("not_configured", _borrower_memo_unavailable),),
         fragment=True,
     ),
-    ScreenCase("intake_index", ("screens/intake/index.html",), (ScreenState("passing", _intake_passing),)),
+    ScreenCase(
+        "intake_index", ("screens/intake/index.html",), (ScreenState("passing", _intake_passing),)
+    ),
     ScreenCase(
         "admin_catalogue",
         ("screens/admin/_catalogue.html",),
         (ScreenState("rest", _catalogue_rest), ScreenState("empty", _catalogue_empty)),
     ),
-    ScreenCase("admin_users", ("screens/admin/users/index.html",), (ScreenState("rest", _admin_users_rest),)),
-    ScreenCase("admin_config", ("screens/admin/config/index.html",), (ScreenState("rest", _admin_config_rest),)),
-    ScreenCase("admin_ops", ("screens/admin/ops/index.html",), (ScreenState("rest", _admin_ops_rest),)),
-    ScreenCase("audit_index", ("screens/audit/index.html",), (ScreenState("rest", _audit_index_rest),)),
+    ScreenCase(
+        "admin_users",
+        ("screens/admin/users/index.html",),
+        (ScreenState("rest", _admin_users_rest),),
+    ),
+    ScreenCase(
+        "admin_config",
+        ("screens/admin/config/index.html",),
+        (ScreenState("rest", _admin_config_rest),),
+    ),
+    ScreenCase(
+        "admin_ops", ("screens/admin/ops/index.html",), (ScreenState("rest", _admin_ops_rest),)
+    ),
+    ScreenCase(
+        "audit_index", ("screens/audit/index.html",), (ScreenState("rest", _audit_index_rest),)
+    ),
     ScreenCase(
         "audit_reconstruction",
         ("screens/audit/reconstruction.html",),
@@ -1500,7 +1629,11 @@ SCREENS: tuple[ScreenCase, ...] = (
         ("screens/audit/bundle_status.html",),
         (ScreenState("rest", _audit_bundle_status_rest),),
     ),
-    ScreenCase("simulator_index", ("screens/simulator/index.html",), (ScreenState("rest", _simulator_rest),)),
+    ScreenCase(
+        "simulator_index",
+        ("screens/simulator/index.html",),
+        (ScreenState("rest", _simulator_rest),),
+    ),
     ScreenCase(
         "statements_quarantine_review",
         ("screens/statements/_quarantine_review.html",),
@@ -1512,7 +1645,9 @@ SCREENS: tuple[ScreenCase, ...] = (
         (ScreenState("rest", _financial_statements_import_rest),),
     ),
     ScreenCase(
-        "statements_restate", ("screens/statements/_restate.html",), (ScreenState("rest", _restate_form_rest),)
+        "statements_restate",
+        ("screens/statements/_restate.html",),
+        (ScreenState("rest", _restate_form_rest),),
     ),
     ScreenCase(
         "statements_restate_result",
@@ -1561,9 +1696,17 @@ SCREENS: tuple[ScreenCase, ...] = (
         ("screens/certificates/index.html",),
         (ScreenState("rest", _certificates_rest), ScreenState("empty", _certificates_empty)),
     ),
-    ScreenCase("cases_index", ("screens/cases/index.html",), (ScreenState("rest", _cases_index_rest),)),
-    ScreenCase("cases_detail", ("screens/cases/detail.html",), (ScreenState("rest", _cases_detail_rest),)),
-    ScreenCase("governance_index", ("screens/governance/index.html",), (ScreenState("rest", _governance_rest),)),
+    ScreenCase(
+        "cases_index", ("screens/cases/index.html",), (ScreenState("rest", _cases_index_rest),)
+    ),
+    ScreenCase(
+        "cases_detail", ("screens/cases/detail.html",), (ScreenState("rest", _cases_detail_rest),)
+    ),
+    ScreenCase(
+        "governance_index",
+        ("screens/governance/index.html",),
+        (ScreenState("rest", _governance_rest),),
+    ),
 )
 
 

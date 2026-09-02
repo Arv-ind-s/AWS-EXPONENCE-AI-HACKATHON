@@ -62,6 +62,53 @@ DEMO_PERIODS: Final[tuple[tuple[str, date, date], ...]] = (
     ("FY26Q1", date(2026, 1, 1), date(2026, 3, 31)),
     ("FY26Q2", date(2026, 4, 1), date(2026, 6, 30)),
 )
+#: The mapping the `/financial-statements` screen imports against.
+#:
+#: `phase-7a-demo-financials` below is only a provenance label for the
+#: seeded statement rows — an `import_batch` needs a `mapping_id`, and its
+#: spec was never a real `ImportMappingSpec`.  Nothing in the demo database
+#: could therefore drive an actual import, so every upload on the screen
+#: named after `INGEST_FINANCIAL_STATEMENTS` failed at `parse_mapping_spec`.
+#: This is a real mapping over the same chart lines the demo portfolio
+#: already carries, so an imported quarter lands in the same shape as the
+#: seeded history and feeds the same covenant tests.
+#:
+#: Only non-derived lines are mapped; `ebitda`, `ebit`, `current_assets`,
+#: `current_liabilities` and `total_debt` are left for the chart to derive,
+#: which is what the covenant ratios read.
+DEMO_IMPORT_MAPPING_NAME: Final[str] = "quarterly-financials-v1"
+DEMO_IMPORT_MAPPING_SPEC: Final[dict[str, object]] = {
+    "borrower_key_column": "borrower_key",
+    "fy_label_column": "fy_label",
+    "period_type_column": "period_type",
+    "period_start_column": "period_start",
+    "period_end_column": "period_end",
+    "is_audited_column": "is_audited",
+    "unit": "lakh",
+    "currency": "INR",
+    "sign": "as_reported",
+    "columns": {
+        "revenue_lakh": "revenue",
+        "cogs_lakh": "cost_of_goods_sold",
+        "opex_lakh": "operating_expenses",
+        "depreciation_lakh": "depreciation",
+        "finance_cost_lakh": "finance_cost",
+        "tax_expense_lakh": "tax_expense",
+        "pat_lakh": "profit_after_tax",
+        "cash_and_bank_lakh": "cash_and_bank",
+        "inventory_lakh": "inventory",
+        "receivables_lakh": "receivables",
+        "other_current_assets_lakh": "other_current_assets",
+        "payables_lakh": "payables",
+        "short_term_debt_lakh": "short_term_debt",
+        "other_current_liabilities_lakh": "other_current_liabilities",
+        "long_term_debt_lakh": "long_term_debt",
+        "total_liabilities_lakh": "total_liabilities",
+        "tangible_net_worth_lakh": "tangible_net_worth",
+        "total_assets_lakh": "total_assets",
+    },
+    "totals_row": {"column": "borrower_key", "value": "TOTAL"},
+}
 DEMO_COVENANTS_PER_BORROWER: Final[int] = 3
 DEMO_SIGNAL_DAYS: Final[int] = 35
 DEMO_SIGNAL_END_DATE: Final[date] = date(2026, 8, 30)
@@ -98,10 +145,30 @@ _SAFE_STABLE: Final[tuple[int, ...]] = (3, 6, 18, 20, 21)
 # companies breach on leverage, some on interest coverage, some on the
 # current ratio, spread evenly across act/amber/watch.
 _DRIVER: Final[Mapping[int, str]] = {
-    1: "LEV", 2: "LEV", 3: "LEV", 4: "COV", 5: "LEV", 6: "COV", 7: "LIQ",
-    8: "LEV", 9: "COV", 10: "COV", 11: "COV", 12: "LIQ", 13: "LIQ",
-    14: "LEV", 15: "COV", 16: "LEV", 17: "COV", 18: "LIQ", 19: "LIQ",
-    20: "LEV", 21: "COV", 22: "LEV", 23: "LEV", 24: "LIQ",
+    1: "LEV",
+    2: "LEV",
+    3: "LEV",
+    4: "COV",
+    5: "LEV",
+    6: "COV",
+    7: "LIQ",
+    8: "LEV",
+    9: "COV",
+    10: "COV",
+    11: "COV",
+    12: "LIQ",
+    13: "LIQ",
+    14: "LEV",
+    15: "COV",
+    16: "LEV",
+    17: "COV",
+    18: "LIQ",
+    19: "LIQ",
+    20: "LEV",
+    21: "COV",
+    22: "LEV",
+    23: "LEV",
+    24: "LIQ",
 }
 
 # The flat, comfortably-healthy shape used for whichever two covenants are
@@ -193,10 +260,48 @@ _TIER_PROFILE: Final[Mapping[str, str]] = {
 # its covenant but pays on time; #17 is not yet covenant-breached but is
 # already `beyond` on conduct, i.e. conduct worsened before the covenant did.
 _DPD_TARGET: Final[Mapping[int, int]] = {
-    1: 0, 2: 95, 3: 0, 4: 70, 5: 35, 6: 0, 7: 45, 8: 0, 9: 0, 10: 0,
-    11: 0, 12: 15, 13: 0, 14: 0, 15: 0, 16: 40, 17: 95, 18: 0, 19: 0,
-    20: 0, 21: 0, 22: 25, 23: 0, 24: 0,
+    1: 0,
+    2: 95,
+    3: 0,
+    4: 70,
+    5: 35,
+    6: 0,
+    7: 45,
+    8: 0,
+    9: 0,
+    10: 0,
+    11: 0,
+    12: 15,
+    13: 0,
+    14: 0,
+    15: 0,
+    16: 40,
+    17: 95,
+    18: 0,
+    19: 0,
+    20: 0,
+    21: 0,
+    22: 25,
+    23: 0,
+    24: 0,
 }
+
+
+# The non-covenant statement lines (`_demo_lines`). None of these feeds a
+# demo covenant threshold, so they are free to vary; they exist so a reader
+# can see *why* a covenant moved. All amounts are ₹ crore per quarter, sized
+# for a mid-corporate borrower with a roughly ₹1,200-1,600 crore annual top
+# line — large enough for the three covenanted ratios to look proportionate
+# beside them, small enough to stay a believable single relationship.
+_REVENUE_BASE: Final[Decimal] = Decimal("300")
+_REVENUE_GROWTH: Final[Decimal] = Decimal("4")
+#: Per-borrower top-line spread, applied as `1 + spread * (index % 5)`, so
+#: EBIT margin lands somewhere in roughly 8-11% across the portfolio rather
+#: than every company reporting the identical margin.
+_REVENUE_SPREAD: Final[Decimal] = Decimal("0.08")
+_DEPRECIATION_OF_REVENUE: Final[Decimal] = Decimal("0.045")
+_CFDS_OF_EBITDA: Final[Decimal] = Decimal("0.70")
+_CFDS_DEBT_DRAG: Final[Decimal] = Decimal("0.015")
 
 
 def _tier_for(borrower_index: int) -> str:
@@ -301,6 +406,12 @@ def seed_demo_covenants(
         now=now,
         request_id=request_id,
         borrower_count=len(borrowers),
+    )
+    _ensure_statement_import_mapping(
+        session,
+        system_actor_id=system_actor_id,
+        now=now,
+        request_id=request_id,
     )
     threshold_snapshot_id = _ensure_demo_threshold_snapshot(
         session, system_actor_id=system_actor_id, now=now, request_id=request_id
@@ -465,9 +576,7 @@ def seed_demo_covenants(
                     as_of_date=period.period_end,
                     period_id=period.id,
                 )
-                current_inputs = (
-                    dict(result.inputs) if isinstance(result.inputs, Mapping) else {}
-                )
+                current_inputs = dict(result.inputs) if isinstance(result.inputs, Mapping) else {}
                 current_inputs["demo_driver"] = _driver_for(kind, borrower_index)
                 result.inputs = current_inputs
                 tests_created += 1
@@ -656,9 +765,7 @@ def _demo_signal_adverse(profile: str, day_offset: int) -> bool:
     return False
 
 
-def _demo_signal_value(
-    family: str, profile: str, day_offset: int, borrower_index: int
-) -> Decimal:
+def _demo_signal_value(family: str, profile: str, day_offset: int, borrower_index: int) -> Decimal:
     if profile == "deteriorating":
         base = {
             "account_activity": Decimal("12.00"),
@@ -723,6 +830,46 @@ def _demo_payment_dpd(dpd_target: int) -> Decimal:
     """
 
     return Decimal(dpd_target)
+
+
+def _ensure_statement_import_mapping(
+    session: Session,
+    *,
+    system_actor_id: UUID,
+    now: datetime,
+    request_id: str,
+) -> ImportMapping:
+    """Seed the one mapping the financial-statement import screen can use.
+
+    Kept separate from `_ensure_import_batch`'s provenance-label mapping so
+    the two are not confused: that one records where the seeded rows came
+    from, this one is a real `ImportMappingSpec` a presenter can import a
+    fresh quarter against.
+    """
+
+    mapping = session.scalar(
+        select(ImportMapping).where(
+            ImportMapping.name == DEMO_IMPORT_MAPPING_NAME, ImportMapping.version == 1
+        )
+    )
+    if mapping is not None:
+        return mapping
+    mapping = ImportMapping(
+        id=new_id(),
+        name=DEMO_IMPORT_MAPPING_NAME,
+        source_type="csv",
+        version=1,
+        spec=dict(DEMO_IMPORT_MAPPING_SPEC),
+        is_active=True,
+        created_at=now,
+        updated_at=now,
+        created_by_id=system_actor_id,
+        updated_by_id=system_actor_id,
+        request_id=request_id,
+    )
+    session.add(mapping)
+    session.flush()
+    return mapping
 
 
 def _ensure_import_batch(
@@ -815,7 +962,11 @@ def _ensure_demo_threshold_snapshot(
             approved_by_id=system_actor_id,
             note="Phase 7A demo calibration",
             version=(
-                session.scalar(select(ThresholdSnapshot.version).order_by(ThresholdSnapshot.version.desc()).limit(1))
+                session.scalar(
+                    select(ThresholdSnapshot.version)
+                    .order_by(ThresholdSnapshot.version.desc())
+                    .limit(1)
+                )
                 or 0
             )
             + 1,
@@ -911,6 +1062,15 @@ def _demo_lines(borrower_index: int, period_index: int) -> dict[str, Decimal]:
     its tier calls for; the other two covenants stay flat and healthy so
     they never become an accidental second binding covenant. See
     `_covenant_shapes` for how the driver is chosen and shaped.
+
+    The six covenant-bearing lines are pinned by the covenant shape above
+    and must not be re-derived here. The four lines below them exist so the
+    case file can *explain* a covenant movement rather than only state it:
+    a reader who sees leverage cross 3.00x needs revenue, EBITDA and cash
+    flow available for debt service beside it to tell debt-funded expansion
+    apart from earnings collapse. They are deliberately derived from the
+    covenant lines rather than drawn independently, so no figure on the
+    financials tab can contradict the covenant it sits next to.
     """
 
     tier = _tier_for(borrower_index)
@@ -921,13 +1081,42 @@ def _demo_lines(borrower_index: int, period_index: int) -> dict[str, Decimal]:
     leverage = lev_start + lev_slope * period_index
     coverage = cov_start + cov_slope * period_index
     liquidity = liq_start + liq_slope * period_index
+
+    total_debt = (leverage * Decimal("100")).quantize(Decimal("0.001"))
+    ebit = (coverage * Decimal("10")).quantize(Decimal("0.001"))
+
+    # Top line grows mildly and is scaled per borrower, so EBIT margin is a
+    # figure that genuinely moves: a coverage-driven borrower's earnings fall
+    # against a rising top line, which is what margin compression looks like
+    # on a real statement. Revenue never feeds a covenant, so varying it
+    # cannot disturb any threshold.
+    revenue = (
+        (_REVENUE_BASE + _REVENUE_GROWTH * period_index)
+        * (Decimal("1") + _REVENUE_SPREAD * Decimal(borrower_index % 5))
+    ).quantize(Decimal("0.001"))
+    depreciation = (revenue * _DEPRECIATION_OF_REVENUE).quantize(Decimal("0.001"))
+    # Exactly the chart's own derivation (`ebit + depreciation`), so a
+    # supplied EBITDA can never disagree with its derived value.
+    ebitda = ebit + depreciation
+    # Cash available for debt service is EBITDA net of tax and working
+    # capital, less a drag that scales with the debt stack. The drag is the
+    # point: a borrower levering up watches DSCR fall even while EBITDA holds,
+    # which is the mechanism the case file names when leverage is the driver.
+    cash_flow_debt_service = ((ebitda * _CFDS_OF_EBITDA) - (total_debt * _CFDS_DEBT_DRAG)).quantize(
+        Decimal("0.001")
+    )
+
     return {
-        "total_debt": (leverage * Decimal("100")).quantize(Decimal("0.001")),
+        "total_debt": total_debt,
         "tangible_net_worth": Decimal("100"),
-        "ebit": (coverage * Decimal("10")).quantize(Decimal("0.001")),
+        "ebit": ebit,
         "finance_cost": Decimal("10"),
         "current_assets": (liquidity * Decimal("100")).quantize(Decimal("0.001")),
         "current_liabilities": Decimal("100"),
+        "revenue": revenue,
+        "depreciation": depreciation,
+        "ebitda": ebitda,
+        "cash_flow_debt_service": cash_flow_debt_service,
     }
 
 

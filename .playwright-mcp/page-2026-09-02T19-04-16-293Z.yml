@@ -1,0 +1,80 @@
+- generic [active] [ref=f20e1]:
+  - link "Skip to content" [ref=f20e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f20e3]:
+    - complementary "Workspace navigation" [ref=f20e4]:
+      - link "Covenant Radar" [ref=f20e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f20e13]:
+          - strong [ref=f20e14]: Covenant
+          - generic [ref=f20e15]: Radar
+      - navigation "Primary navigation" [ref=f20e16]:
+        - region [ref=f20e17]:
+          - heading "Monitor" [level=2] [ref=f20e18]
+          - link "Portfolio queue" [ref=f20e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f20e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f20e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f20e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f20e31]: "0"
+          - link "Search" [ref=f20e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f20e37]:
+          - heading "Portfolio data" [level=2] [ref=f20e38]
+          - link "Borrowers" [ref=f20e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f20e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f20e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f20e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f20e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f20e61]:
+          - heading "Workflows" [level=2] [ref=f20e62]
+          - link "Intake" [ref=f20e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f20e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f20e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f20e75] [cursor=pointer]
+    - generic [ref=f20e79]:
+      - banner [ref=f20e80]:
+        - generic [ref=f20e82]:
+          - generic [ref=f20e83]: Workspace
+          - generic [ref=f20e86]: Current view
+        - search [ref=f20e87]:
+          - generic [ref=f20e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f20e89]
+          - generic: /
+        - generic [ref=f20e90]:
+          - button "Live activity" [ref=f20e91]:
+            - generic [ref=f20e93]: Live
+          - button "Use dark theme" [ref=f20e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f20e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f20e101] [cursor=pointer]
+      - main [ref=f20e105]:
+        - generic [ref=f20e107]:
+          - paragraph [ref=f20e108]: Decision workspace
+          - heading "Import a financial statement extract" [level=1] [ref=f20e109]
+        - generic [ref=f20e110]:
+          - paragraph [ref=f20e111]: Upload a periodic financial extract for the borrowers in your scope. Rows that pass the mapping's rules are accepted; rows that fail one are quarantined for review rather than being silently dropped.
+          - generic [ref=f20e112]:
+            - generic [ref=f20e113]:
+              - generic [ref=f20e114]: Source type *
+              - combobox "Source type" [ref=f20e115]:
+                - option "s" [selected]
+                - option "l"
+                - option "s"
+            - generic [ref=f20e116]:
+              - generic [ref=f20e117]: Mapping name *
+              - combobox "Mapping name" [ref=f20e118]:
+                - option "u" [selected]
+            - generic [ref=f20e119]:
+              - generic [ref=f20e120]: Corrected extract (one row) *
+              - button "Corrected extract (one row)" [ref=f20e121]
+            - button "Import extract" [ref=f20e122] [cursor=pointer]

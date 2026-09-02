@@ -1,0 +1,578 @@
+- generic [ref=f32e1]:
+  - link "Skip to content" [ref=f32e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f32e3]:
+    - complementary "Workspace navigation" [ref=f32e4]:
+      - link "Covenant Radar" [ref=f32e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f32e13]:
+          - strong [ref=f32e14]: Covenant
+          - generic [ref=f32e15]: Radar
+      - navigation "Primary navigation" [ref=f32e16]:
+        - region [ref=f32e17]:
+          - heading "Monitor" [level=2] [ref=f32e18]
+          - link "Portfolio queue" [ref=f32e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f32e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f32e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f32e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f32e31]: "0"
+          - link "Search" [ref=f32e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f32e37]:
+          - heading "Portfolio data" [level=2] [ref=f32e38]
+          - link "Borrowers" [ref=f32e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f32e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f32e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f32e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f32e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f32e61]:
+          - heading "Workflows" [level=2] [ref=f32e62]
+          - link "Intake" [ref=f32e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f32e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f32e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f32e75] [cursor=pointer]
+    - generic [ref=f32e79]:
+      - banner [ref=f32e80]:
+        - generic [ref=f32e82]:
+          - generic [ref=f32e83]: Workspace
+          - generic [ref=f32e86]: Current view
+        - search [ref=f32e87]:
+          - generic [ref=f32e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f32e89]
+          - generic: /
+        - generic [ref=f32e90]:
+          - button "Live activity" [ref=f32e91]:
+            - generic [ref=f32e93]: Live
+          - button "Use dark theme" [ref=f32e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f32e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f32e101] [cursor=pointer]
+      - main [ref=f32e105]:
+        - generic [ref=f32e107]:
+          - paragraph [ref=f32e108]: Decision workspace
+          - heading "Alderwyn Agri Supply Private Limited" [level=1] [ref=f32e109]
+        - generic [ref=f32e111]:
+          - region [ref=f32e112]:
+            - heading "Borrower facts" [level=2] [ref=f32e113]
+            - generic [ref=f32e114]:
+              - paragraph [ref=f32e115]: "Borrower reference: B-000001"
+              - generic "Borrower facts" [ref=f32e116]:
+                - generic [ref=f32e117]:
+                  - generic [ref=f32e118]: Borrower
+                  - generic [ref=f32e119]: Alderwyn Agri Supply Private Limited
+                - generic [ref=f32e120]:
+                  - generic [ref=f32e121]: Exposure
+                  - generic [ref=f32e122]: ₹258.81 crore
+                - generic [ref=f32e123]:
+                  - generic [ref=f32e124]: Worst covenant
+                  - generic [ref=f32e125]: Leverage ratio ≤ 3x
+                - generic [ref=f32e126]:
+                  - generic [ref=f32e127]: Dated risk
+                  - generic [ref=f32e128]: No projected crossing in the stored horizon; toward the maximum threshold.
+          - generic [ref=f32e129]:
+            - region [ref=f32e130]:
+              - heading "Case actions" [level=2] [ref=f32e131]
+              - link "Why this decision" [ref=f32e134] [cursor=pointer]:
+                - /url: /why/borrower/018c9eeb-c221-7518-ae04-8feb51599c3b
+            - region [ref=f32e135]:
+              - heading "AI-generated explanation" [level=2] [ref=f32e136]
+              - paragraph [ref=f32e137]: Drafted by model
+              - region [ref=f32e138]:
+                - heading "AI explanation provenance" [level=3] [ref=f32e139]
+                - generic [ref=f32e140]:
+                  - generic [ref=f32e141]:
+                    - term [ref=f32e142]: Provider
+                    - definition [ref=f32e143]: Covenant Radar AI
+                  - generic [ref=f32e144]:
+                    - term [ref=f32e145]: Model
+                    - definition [ref=f32e146]: genailab-maas-gpt-5.4-mini
+                  - generic [ref=f32e147]:
+                    - term [ref=f32e148]: Prompt
+                    - definition [ref=f32e149]: v2
+                  - generic [ref=f32e150]:
+                    - term [ref=f32e151]: Grounding checks
+                    - definition [ref=f32e152]: Passed
+              - article "Drafted by model" [ref=f32e153]:
+                - 'heading "Leverage ratio covenant: current value 1.76 against contractual threshold 3, with projected breach probability 0.2262" [level=3] [ref=f32e154]'
+                - paragraph [ref=f32e155]: The recorded evidence shows a leverage ratio current value of 1.76 versus a contractual threshold of 3, leaving headroom of 41.3333. Projected breach probability is 0.2262 with confidence 1, and no projected crossing date is available from the recorded evidence. No simulations are recorded for this borrower, and the evidence counts are 0 across all listed sources.
+                - heading "Drivers cited" [level=4] [ref=f32e156]
+                - list [ref=f32e157]:
+                  - listitem [ref=f32e158]: distance
+                  - listitem [ref=f32e159]: other
+                - heading "Recommended actions" [level=4] [ref=f32e160]
+                - table [ref=f32e161]:
+                  - caption [ref=f32e162]: Recommended actions
+                  - rowgroup [ref=f32e163]:
+                    - row [ref=f32e164]:
+                      - columnheader "Action" [ref=f32e165]
+                      - columnheader "Owning role" [ref=f32e166]
+                      - columnheader "Detail" [ref=f32e167]
+                  - rowgroup [ref=f32e168]:
+                    - row [ref=f32e169]:
+                      - cell "CREDIT-REDUCE-EXPOSURE" [ref=f32e170]
+                      - cell "credit" [ref=f32e171]
+                      - cell "Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f32e172]
+                    - row [ref=f32e173]:
+                      - cell "RISK-REVIEW-THRESHOLD" [ref=f32e174]
+                      - cell "risk" [ref=f32e175]
+                      - cell "Review the covenant threshold against the executed facility documents." [ref=f32e176]
+                - heading "Recommended next step" [level=4] [ref=f32e177]
+                - paragraph [ref=f32e178]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                - paragraph [ref=f32e179]: human credit review is required before action
+              - region [ref=f32e180]:
+                - heading "Grounding citations" [level=3] [ref=f32e181]
+                - paragraph [ref=f32e182]: The model connected these stored facts into prose; it did not calculate the prediction or create new source records.
+                - list [ref=f32e183]:
+                  - listitem [ref=f32e184]:
+                    - link "Forecast — 01a0627b-fc96-77d0-b28d-13efffdd699d" [ref=f32e185] [cursor=pointer]:
+                      - /url: /why/forecast/01a0627b-fc96-77d0-b28d-13efffdd699d
+                  - listitem [ref=f32e186]: Forecast driver — 01a0627b-fcdc-7b34-8799-e19d306e177d
+                  - listitem [ref=f32e187]: Forecast driver — 01a0627b-fcdc-7b35-bb53-71f7e671da15
+                  - listitem [ref=f32e188]:
+                    - link "Evidence item — 01a0627b-facc-7df0-a415-a895e13a2247" [ref=f32e189] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df0-a415-a895e13a2247"
+                  - listitem [ref=f32e190]:
+                    - link "Evidence item — 01a0627b-facc-7df4-a9fe-223edbdb5dd6" [ref=f32e191] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df4-a9fe-223edbdb5dd6"
+                  - listitem [ref=f32e192]:
+                    - link "Evidence item — 01a0627b-facc-7df5-a369-768294d98810" [ref=f32e193] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df5-a369-768294d98810"
+                  - listitem [ref=f32e194]:
+                    - link "Evidence item — 01a0627b-facc-7df6-80c5-b49c8a82b5c7" [ref=f32e195] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df6-80c5-b49c8a82b5c7"
+                  - listitem [ref=f32e196]:
+                    - link "Evidence item — 01a0627b-facc-7df1-9544-61621f8fc5db" [ref=f32e197] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df1-9544-61621f8fc5db"
+                  - listitem [ref=f32e198]:
+                    - link "Evidence item — 01a0627b-facc-7df3-bae1-47f368919e52" [ref=f32e199] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df3-bae1-47f368919e52"
+                  - listitem [ref=f32e200]:
+                    - link "Evidence item — 01a0627b-facc-7df2-9d9d-5ca43b703764" [ref=f32e201] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df2-9d9d-5ca43b703764"
+                  - listitem [ref=f32e202]: Bank action catalogue — 01a0627b-c548-7a12-b6a4-ebe4a63ce724
+                  - listitem [ref=f32e203]: Bank action catalogue — 01a0627b-c548-7a13-95c8-7191f0472adb
+              - paragraph [ref=f32e204]: Memo reference 01a06284-b74a-75eb-b4d4-5c7ec374cfa4
+            - generic [ref=f32e205]:
+              - tablist "Case sections" [ref=f32e206]:
+                - tab "Forecast trajectory" [ref=f32e207] [cursor=pointer]
+                - tab "Covenant position" [ref=f32e209] [cursor=pointer]
+                - tab "Financials" [active] [selected] [ref=f32e211] [cursor=pointer]
+                - tab "Seven signal families" [ref=f32e213] [cursor=pointer]
+                - tab "Evidence" [ref=f32e215] [cursor=pointer]
+                - tab "Source documents" [ref=f32e217] [cursor=pointer]
+              - tabpanel "Financials" [ref=f32e312]:
+                - generic [ref=f32e313]:
+                  - generic [ref=f32e314]:
+                    - paragraph [ref=f32e315]: Filed statements
+                    - heading "Financials" [level=2] [ref=f32e316]
+                    - paragraph [ref=f32e317]: 8 filed periods, FY24Q4 to FY26Q3. No covenant is in breach on the filed figures.
+                  - link "Statement imports" [ref=f32e318] [cursor=pointer]:
+                    - /url: /financial-statements?borrower_ref=B-000001
+                - heading "Covenanted ratios" [level=3] [ref=f32e319]
+                - paragraph [ref=f32e320]: Every value, threshold, headroom and verdict below is read from the covenant test the engine stored for that period. Nothing on this panel re-tests a covenant.
+                - list "Covenanted ratios" [ref=f32e321]:
+                  - listitem [ref=f32e322]:
+                    - generic [ref=f32e323]:
+                      - generic [ref=f32e324]:
+                        - heading "Leverage ratio" [level=4] [ref=f32e325]
+                        - paragraph [ref=f32e326]: D01LEV · F-000001-01
+                      - generic [ref=f32e327]: Pass
+                    - generic [ref=f32e328]:
+                      - generic [ref=f32e329]:
+                        - generic [ref=f32e330]: Latest
+                        - generic [ref=f32e331]: 1.76x
+                      - generic [ref=f32e332]:
+                        - generic [ref=f32e333]: Headroom
+                        - generic [ref=f32e334]: +41.3%
+                    - paragraph [ref=f32e335]: Must stay at or below 3.00x
+                    - figure "FY24Q4 → FY26Q2. Dashed line is the threshold; the shaded band is the breaching side." [ref=f32e336]:
+                      - img "Leverage ratio across filed periods" [ref=f32e337]
+                    - list [ref=f32e343]:
+                      - listitem [ref=f32e344]:
+                        - generic [ref=f32e345]: FY24Q4
+                        - generic [ref=f32e346]: 1.58x
+                        - generic [ref=f32e347]: Pass, headroom +47.3%
+                      - listitem [ref=f32e348]:
+                        - generic [ref=f32e349]: FY25Q1
+                        - generic [ref=f32e350]: 1.61x
+                        - generic [ref=f32e351]: Pass, headroom +46.3%
+                      - listitem [ref=f32e352]:
+                        - generic [ref=f32e353]: FY25Q2
+                        - generic [ref=f32e354]: 1.64x
+                        - generic [ref=f32e355]: Pass, headroom +45.3%
+                      - listitem [ref=f32e356]:
+                        - generic [ref=f32e357]: FY25Q3
+                        - generic [ref=f32e358]: 1.67x
+                        - generic [ref=f32e359]: Pass, headroom +44.3%
+                      - listitem [ref=f32e360]:
+                        - generic [ref=f32e361]: FY25Q4
+                        - generic [ref=f32e362]: 1.70x
+                        - generic [ref=f32e363]: Pass, headroom +43.3%
+                      - listitem [ref=f32e364]:
+                        - generic [ref=f32e365]: FY26Q1
+                        - generic [ref=f32e366]: 1.73x
+                        - generic [ref=f32e367]: Pass, headroom +42.3%
+                      - listitem [ref=f32e368]:
+                        - generic [ref=f32e369]: FY26Q2
+                        - generic [ref=f32e370]: 1.76x
+                        - generic [ref=f32e371]: Pass, headroom +41.3%
+                    - paragraph [ref=f32e372]:
+                      - generic [ref=f32e373]: "What moved it:"
+                      - text: 1.58x at FY24Q4 to 1.76x at FY26Q2. Total debt rose ₹14.00 cr (+8.9%) to ₹172.00 cr while tangible net worth rose ₹4.00 cr (+4.0%) to ₹104.00 cr. Total debt is the larger mover. It has not tested in breach of the 3.00x ceiling across these periods.
+                    - paragraph [ref=f32e374]:
+                      - text: "Formula:"
+                      - code [ref=f32e375]: total debt / tangible net worth
+                  - listitem [ref=f32e376]:
+                    - generic [ref=f32e377]:
+                      - generic [ref=f32e378]:
+                        - heading "Interest coverage ratio" [level=4] [ref=f32e379]
+                        - paragraph [ref=f32e380]: D01COV · F-000001-01
+                      - generic [ref=f32e381]: Pass
+                    - generic [ref=f32e382]:
+                      - generic [ref=f32e383]:
+                        - generic [ref=f32e384]: Latest
+                        - generic [ref=f32e385]: 3.22x
+                      - generic [ref=f32e386]:
+                        - generic [ref=f32e387]: Headroom
+                        - generic [ref=f32e388]: +114.7%
+                    - paragraph [ref=f32e389]: Must stay at or above 1.50x
+                    - figure "FY24Q4 → FY26Q2. Dashed line is the threshold; the shaded band is the breaching side." [ref=f32e390]:
+                      - img "Interest coverage ratio across filed periods" [ref=f32e391]
+                    - list [ref=f32e397]:
+                      - listitem [ref=f32e398]:
+                        - generic [ref=f32e399]: FY24Q4
+                        - generic [ref=f32e400]: 3.16x
+                        - generic [ref=f32e401]: Pass, headroom +110.7%
+                      - listitem [ref=f32e402]:
+                        - generic [ref=f32e403]: FY25Q1
+                        - generic [ref=f32e404]: 3.17x
+                        - generic [ref=f32e405]: Pass, headroom +111.3%
+                      - listitem [ref=f32e406]:
+                        - generic [ref=f32e407]: FY25Q2
+                        - generic [ref=f32e408]: 3.18x
+                        - generic [ref=f32e409]: Pass, headroom +112.0%
+                      - listitem [ref=f32e410]:
+                        - generic [ref=f32e411]: FY25Q3
+                        - generic [ref=f32e412]: 3.19x
+                        - generic [ref=f32e413]: Pass, headroom +112.7%
+                      - listitem [ref=f32e414]:
+                        - generic [ref=f32e415]: FY25Q4
+                        - generic [ref=f32e416]: 3.20x
+                        - generic [ref=f32e417]: Pass, headroom +113.3%
+                      - listitem [ref=f32e418]:
+                        - generic [ref=f32e419]: FY26Q1
+                        - generic [ref=f32e420]: 3.21x
+                        - generic [ref=f32e421]: Pass, headroom +114.0%
+                      - listitem [ref=f32e422]:
+                        - generic [ref=f32e423]: FY26Q2
+                        - generic [ref=f32e424]: 3.22x
+                        - generic [ref=f32e425]: Pass, headroom +114.7%
+                    - paragraph [ref=f32e426]:
+                      - generic [ref=f32e427]: "What moved it:"
+                      - text: 3.16x at FY24Q4 to 3.22x at FY26Q2. EBIT rose ₹1.33 cr (+4.2%) to ₹32.93 cr while finance cost held at ₹10.00 cr. The movement is entirely on the EBIT side. It has not tested in breach of the 1.50x floor across these periods.
+                    - paragraph [ref=f32e428]:
+                      - text: "Formula:"
+                      - code [ref=f32e429]: ebit / finance cost
+                  - listitem [ref=f32e430]:
+                    - generic [ref=f32e431]:
+                      - generic [ref=f32e432]:
+                        - heading "Current ratio" [level=4] [ref=f32e433]
+                        - paragraph [ref=f32e434]: D01LIQ · F-000001-01
+                      - generic [ref=f32e435]: Pass
+                    - generic [ref=f32e436]:
+                      - generic [ref=f32e437]:
+                        - generic [ref=f32e438]: Latest
+                        - generic [ref=f32e439]: 2.92x
+                      - generic [ref=f32e440]:
+                        - generic [ref=f32e441]: Headroom
+                        - generic [ref=f32e442]: +143.3%
+                    - paragraph [ref=f32e443]: Must stay at or above 1.20x
+                    - figure "FY24Q4 → FY26Q2. Dashed line is the threshold; the shaded band is the breaching side." [ref=f32e444]:
+                      - img "Current ratio across filed periods" [ref=f32e445]
+                    - list [ref=f32e451]:
+                      - listitem [ref=f32e452]:
+                        - generic [ref=f32e453]: FY24Q4
+                        - generic [ref=f32e454]: 2.86x
+                        - generic [ref=f32e455]: Pass, headroom +138.3%
+                      - listitem [ref=f32e456]:
+                        - generic [ref=f32e457]: FY25Q1
+                        - generic [ref=f32e458]: 2.87x
+                        - generic [ref=f32e459]: Pass, headroom +139.2%
+                      - listitem [ref=f32e460]:
+                        - generic [ref=f32e461]: FY25Q2
+                        - generic [ref=f32e462]: 2.88x
+                        - generic [ref=f32e463]: Pass, headroom +140.0%
+                      - listitem [ref=f32e464]:
+                        - generic [ref=f32e465]: FY25Q3
+                        - generic [ref=f32e466]: 2.89x
+                        - generic [ref=f32e467]: Pass, headroom +140.8%
+                      - listitem [ref=f32e468]:
+                        - generic [ref=f32e469]: FY25Q4
+                        - generic [ref=f32e470]: 2.90x
+                        - generic [ref=f32e471]: Pass, headroom +141.7%
+                      - listitem [ref=f32e472]:
+                        - generic [ref=f32e473]: FY26Q1
+                        - generic [ref=f32e474]: 2.91x
+                        - generic [ref=f32e475]: Pass, headroom +142.5%
+                      - listitem [ref=f32e476]:
+                        - generic [ref=f32e477]: FY26Q2
+                        - generic [ref=f32e478]: 2.92x
+                        - generic [ref=f32e479]: Pass, headroom +143.3%
+                    - paragraph [ref=f32e480]:
+                      - generic [ref=f32e481]: "What moved it:"
+                      - text: 2.86x at FY24Q4 to 2.92x at FY26Q2. Current assets rose ₹6.00 cr (+2.1%) to ₹292.00 cr while current liabilities held at ₹100.00 cr. The movement is entirely on the current assets side. It has not tested in breach of the 1.20x floor across these periods.
+                    - paragraph [ref=f32e482]:
+                      - text: "Formula:"
+                      - code [ref=f32e483]: current assets / current liabilities
+                - heading "Indicative ratios — not covenanted" [level=3] [ref=f32e484]
+                - paragraph [ref=f32e485]: No covenant on this borrower tests these. They are computed from the same filed lines using the standard library formula, as context for the covenants above, and carry no contractual force.
+                - list "Indicative ratios — not covenanted" [ref=f32e486]:
+                  - listitem [ref=f32e487]:
+                    - generic [ref=f32e488]:
+                      - generic [ref=f32e489]:
+                        - heading "Debt / EBITDA" [level=4] [ref=f32e490]
+                        - paragraph [ref=f32e491]: Not covenanted
+                      - generic [ref=f32e492]: 3.52x
+                    - paragraph [ref=f32e493]: The leverage measure most lenders syndicate on, shown beside the covenanted net-worth-based one so a divergence between the two is visible.
+                    - figure "FY24Q4 → FY26Q3. No threshold — this ratio is not covenanted." [ref=f32e494]:
+                      - img "Debt / EBITDA across filed periods" [ref=f32e495]
+                    - paragraph [ref=f32e500]:
+                      - generic [ref=f32e501]: "What moved it:"
+                      - text: 3.41x at FY24Q4 to 3.52x at FY26Q3. Total debt rose ₹14.00 cr (+8.9%) to ₹172.00 cr while EBITDA rose ₹2.50 cr (+5.4%) to ₹48.87 cr. Both sides moved materially.
+                    - paragraph [ref=f32e502]:
+                      - text: "Formula:"
+                      - code [ref=f32e503]: total debt / ebitda
+                  - listitem [ref=f32e504]:
+                    - generic [ref=f32e505]:
+                      - generic [ref=f32e506]:
+                        - heading "Debt service coverage ratio" [level=4] [ref=f32e507]
+                        - paragraph [ref=f32e508]: Not covenanted
+                      - generic [ref=f32e509]: 3.11x
+                    - paragraph [ref=f32e510]: Whether cash actually generated covers the financing charge — the coverage question interest cover answers on an accrual basis.
+                    - figure "FY24Q4 → FY26Q2. No threshold — this ratio is not covenanted." [ref=f32e511]:
+                      - img "Debt service coverage ratio across filed periods" [ref=f32e512]
+                    - paragraph [ref=f32e517]:
+                      - generic [ref=f32e518]: "What moved it:"
+                      - text: 3.01x at FY24Q4 to 3.11x at FY26Q2. Cash flow available for debt service rose ₹0.97 cr (+3.2%) to ₹31.06 cr while finance cost held at ₹10.00 cr. The movement is entirely on the cash flow available for debt service side.
+                    - paragraph [ref=f32e519]:
+                      - text: "Formula:"
+                      - code [ref=f32e520]: cash flow debt service / finance cost
+                  - listitem [ref=f32e521]:
+                    - generic [ref=f32e522]:
+                      - generic [ref=f32e523]:
+                        - heading "EBITDA margin" [level=4] [ref=f32e524]
+                        - paragraph [ref=f32e525]: Not covenanted
+                      - generic [ref=f32e526]: 13.50%
+                    - paragraph [ref=f32e527]: Earnings quality behind the coverage ratios. A covenant held by margin compression reads differently from one held by a volume fall.
+                    - figure "FY24Q4 → FY26Q3. No threshold — this ratio is not covenanted." [ref=f32e528]:
+                      - img "EBITDA margin across filed periods" [ref=f32e529]
+                    - paragraph [ref=f32e534]:
+                      - generic [ref=f32e535]: "What moved it:"
+                      - text: 14.12% at FY24Q4 to 13.50% at FY26Q3. EBITDA rose ₹2.50 cr (+5.4%) to ₹48.87 cr while revenue rose ₹33.68 cr (+10.3%) to ₹362.00 cr. Both sides moved materially.
+                    - paragraph [ref=f32e536]:
+                      - text: "Formula:"
+                      - code [ref=f32e537]: ebitda / revenue * 100
+                - heading "Filed statement lines" [level=3] [ref=f32e538]
+                - paragraph [ref=f32e539]: All amounts in ₹ crore, as filed. Every ratio above is computed from these lines. "Feeds" names the covenant a movement in that line lands on.
+                - table [ref=f32e541]:
+                  - caption [ref=f32e542]: Filed statement lines
+                  - rowgroup [ref=f32e543]:
+                    - row [ref=f32e544]:
+                      - columnheader "Line" [ref=f32e545]
+                      - columnheader "FY24Q4 31 Dec 2024 audited" [ref=f32e546]:
+                        - generic [ref=f32e547]: FY24Q4
+                        - generic [ref=f32e548]: 31 Dec 2024
+                        - generic [ref=f32e549]: audited
+                      - columnheader "FY25Q1 31 Mar 2025 audited" [ref=f32e550]:
+                        - generic [ref=f32e551]: FY25Q1
+                        - generic [ref=f32e552]: 31 Mar 2025
+                        - generic [ref=f32e553]: audited
+                      - columnheader "FY25Q2 30 Jun 2025 audited" [ref=f32e554]:
+                        - generic [ref=f32e555]: FY25Q2
+                        - generic [ref=f32e556]: 30 Jun 2025
+                        - generic [ref=f32e557]: audited
+                      - columnheader "FY25Q3 30 Sep 2025 audited" [ref=f32e558]:
+                        - generic [ref=f32e559]: FY25Q3
+                        - generic [ref=f32e560]: 30 Sep 2025
+                        - generic [ref=f32e561]: audited
+                      - columnheader "FY25Q4 31 Dec 2025 audited" [ref=f32e562]:
+                        - generic [ref=f32e563]: FY25Q4
+                        - generic [ref=f32e564]: 31 Dec 2025
+                        - generic [ref=f32e565]: audited
+                      - columnheader "FY26Q1 31 Mar 2026 audited" [ref=f32e566]:
+                        - generic [ref=f32e567]: FY26Q1
+                        - generic [ref=f32e568]: 31 Mar 2026
+                        - generic [ref=f32e569]: audited
+                      - columnheader "FY26Q2 30 Jun 2026 audited" [ref=f32e570]:
+                        - generic [ref=f32e571]: FY26Q2
+                        - generic [ref=f32e572]: 30 Jun 2026
+                        - generic [ref=f32e573]: audited
+                      - columnheader "FY26Q3 30 Sep 2026" [ref=f32e574]:
+                        - generic [ref=f32e575]: FY26Q3
+                        - generic [ref=f32e576]: 30 Sep 2026
+                      - columnheader "Trend" [ref=f32e577]
+                  - rowgroup [ref=f32e578]:
+                    - row [ref=f32e579]:
+                      - 'rowheader "Revenue Profit and loss Top line for the period. Sets the scale every margin is read against. Feeds: EBITDA margin (indicative)" [ref=f32e580]':
+                        - generic [ref=f32e581]: Revenue
+                        - generic [ref=f32e582]: Profit and loss
+                        - generic [ref=f32e583]: Top line for the period. Sets the scale every margin is read against.
+                        - generic [ref=f32e584]: "Feeds: EBITDA margin (indicative)"
+                      - cell "₹328.32 cr" [ref=f32e585]
+                      - cell "₹332.64 cr" [ref=f32e586]
+                      - cell "₹336.96 cr" [ref=f32e587]
+                      - cell "₹341.28 cr" [ref=f32e588]
+                      - cell "₹345.60 cr" [ref=f32e589]
+                      - cell "₹349.92 cr" [ref=f32e590]
+                      - cell "₹354.24 cr" [ref=f32e591]
+                      - cell "₹362.00 cr" [ref=f32e592]
+                      - cell "Revenue across filed periods +10.3% since FY24Q4" [ref=f32e593]:
+                        - img "Revenue across filed periods" [ref=f32e595]
+                        - generic [ref=f32e599]: +10.3% since FY24Q4
+                    - row [ref=f32e600]:
+                      - 'rowheader "EBITDA Profit and loss Earnings before interest, tax, depreciation and amortisation. Feeds: Debt / EBITDA (indicative), EBITDA margin (indicative)" [ref=f32e601]':
+                        - generic [ref=f32e602]: EBITDA
+                        - generic [ref=f32e603]: Profit and loss
+                        - generic [ref=f32e604]: Earnings before interest, tax, depreciation and amortisation.
+                        - generic [ref=f32e605]: "Feeds: Debt / EBITDA (indicative), EBITDA margin (indicative)"
+                      - cell "₹46.37 cr" [ref=f32e606]
+                      - cell "₹46.67 cr" [ref=f32e607]
+                      - cell "₹46.96 cr" [ref=f32e608]
+                      - cell "₹47.26 cr" [ref=f32e609]
+                      - cell "₹47.55 cr" [ref=f32e610]
+                      - cell "₹47.85 cr" [ref=f32e611]
+                      - cell "₹48.14 cr" [ref=f32e612]
+                      - cell "₹48.87 cr" [ref=f32e613]
+                      - cell "EBITDA across filed periods +5.4% since FY24Q4" [ref=f32e614]:
+                        - img "EBITDA across filed periods" [ref=f32e616]
+                        - generic [ref=f32e620]: +5.4% since FY24Q4
+                    - row [ref=f32e621]:
+                      - 'rowheader "EBIT Profit and loss Operating earnings. The numerator of interest cover. Feeds: Interest coverage ratio" [ref=f32e622]':
+                        - generic [ref=f32e623]: EBIT
+                        - generic [ref=f32e624]: Profit and loss
+                        - generic [ref=f32e625]: Operating earnings. The numerator of interest cover.
+                        - generic [ref=f32e626]: "Feeds: Interest coverage ratio"
+                      - cell "₹31.60 cr" [ref=f32e627]
+                      - cell "₹31.70 cr" [ref=f32e628]
+                      - cell "₹31.80 cr" [ref=f32e629]
+                      - cell "₹31.90 cr" [ref=f32e630]
+                      - cell "₹32.00 cr" [ref=f32e631]
+                      - cell "₹32.10 cr" [ref=f32e632]
+                      - cell "₹32.20 cr" [ref=f32e633]
+                      - cell "₹32.93 cr" [ref=f32e634]
+                      - cell "EBIT across filed periods +4.2% since FY24Q4" [ref=f32e635]:
+                        - img "EBIT across filed periods" [ref=f32e637]
+                        - generic [ref=f32e641]: +4.2% since FY24Q4
+                    - row [ref=f32e642]:
+                      - 'rowheader "Finance cost Profit and loss Interest and financing charges. The denominator of interest cover and DSCR. Feeds: Interest coverage ratio, Debt service coverage ratio (indicative)" [ref=f32e643]':
+                        - generic [ref=f32e644]: Finance cost
+                        - generic [ref=f32e645]: Profit and loss
+                        - generic [ref=f32e646]: Interest and financing charges. The denominator of interest cover and DSCR.
+                        - generic [ref=f32e647]: "Feeds: Interest coverage ratio, Debt service coverage ratio (indicative)"
+                      - cell "₹10.00 cr" [ref=f32e648]
+                      - cell "₹10.00 cr" [ref=f32e649]
+                      - cell "₹10.00 cr" [ref=f32e650]
+                      - cell "₹10.00 cr" [ref=f32e651]
+                      - cell "₹10.00 cr" [ref=f32e652]
+                      - cell "₹10.00 cr" [ref=f32e653]
+                      - cell "₹10.00 cr" [ref=f32e654]
+                      - cell "₹10.00 cr" [ref=f32e655]
+                      - cell "Finance cost across filed periods Held since FY24Q4" [ref=f32e656]:
+                        - img "Finance cost across filed periods" [ref=f32e658]
+                        - generic [ref=f32e661]: Held since FY24Q4
+                    - row [ref=f32e662]:
+                      - 'rowheader "Tangible net worth Balance sheet Net worth excluding intangibles. The denominator of leverage. Feeds: Leverage ratio" [ref=f32e663]':
+                        - generic [ref=f32e664]: Tangible net worth
+                        - generic [ref=f32e665]: Balance sheet
+                        - generic [ref=f32e666]: Net worth excluding intangibles. The denominator of leverage.
+                        - generic [ref=f32e667]: "Feeds: Leverage ratio"
+                      - cell "₹100.00 cr" [ref=f32e668]
+                      - cell "₹100.00 cr" [ref=f32e669]
+                      - cell "₹100.00 cr" [ref=f32e670]
+                      - cell "₹100.00 cr" [ref=f32e671]
+                      - cell "₹100.00 cr" [ref=f32e672]
+                      - cell "₹100.00 cr" [ref=f32e673]
+                      - cell "₹100.00 cr" [ref=f32e674]
+                      - cell "₹104.00 cr" [ref=f32e675]
+                      - cell "Tangible net worth across filed periods +4.0% since FY24Q4" [ref=f32e676]:
+                        - img "Tangible net worth across filed periods" [ref=f32e678]
+                        - generic [ref=f32e682]: +4.0% since FY24Q4
+                    - row [ref=f32e683]:
+                      - 'rowheader "Total debt Balance sheet Short- and long-term borrowings. The numerator of leverage. Feeds: Leverage ratio, Debt / EBITDA (indicative)" [ref=f32e684]':
+                        - generic [ref=f32e685]: Total debt
+                        - generic [ref=f32e686]: Balance sheet
+                        - generic [ref=f32e687]: Short- and long-term borrowings. The numerator of leverage.
+                        - generic [ref=f32e688]: "Feeds: Leverage ratio, Debt / EBITDA (indicative)"
+                      - cell "₹158.00 cr" [ref=f32e689]
+                      - cell "₹161.00 cr" [ref=f32e690]
+                      - cell "₹164.00 cr" [ref=f32e691]
+                      - cell "₹167.00 cr" [ref=f32e692]
+                      - cell "₹170.00 cr" [ref=f32e693]
+                      - cell "₹173.00 cr" [ref=f32e694]
+                      - cell "₹176.00 cr" [ref=f32e695]
+                      - cell "₹172.00 cr" [ref=f32e696]
+                      - cell "Total debt across filed periods +8.9% since FY24Q4" [ref=f32e697]:
+                        - img "Total debt across filed periods" [ref=f32e699]
+                        - generic [ref=f32e703]: +8.9% since FY24Q4
+                    - row [ref=f32e704]:
+                      - 'rowheader "Current assets Balance sheet The numerator of the current ratio. Feeds: Current ratio" [ref=f32e705]':
+                        - generic [ref=f32e706]: Current assets
+                        - generic [ref=f32e707]: Balance sheet
+                        - generic [ref=f32e708]: The numerator of the current ratio.
+                        - generic [ref=f32e709]: "Feeds: Current ratio"
+                      - cell "₹286.00 cr" [ref=f32e710]
+                      - cell "₹287.00 cr" [ref=f32e711]
+                      - cell "₹288.00 cr" [ref=f32e712]
+                      - cell "₹289.00 cr" [ref=f32e713]
+                      - cell "₹290.00 cr" [ref=f32e714]
+                      - cell "₹291.00 cr" [ref=f32e715]
+                      - cell "₹292.00 cr" [ref=f32e716]
+                      - cell "₹292.00 cr" [ref=f32e717]
+                      - cell "Current assets across filed periods +2.1% since FY24Q4" [ref=f32e718]:
+                        - img "Current assets across filed periods" [ref=f32e720]
+                        - generic [ref=f32e724]: +2.1% since FY24Q4
+                    - row [ref=f32e725]:
+                      - 'rowheader "Current liabilities Balance sheet The denominator of the current ratio. Feeds: Current ratio" [ref=f32e726]':
+                        - generic [ref=f32e727]: Current liabilities
+                        - generic [ref=f32e728]: Balance sheet
+                        - generic [ref=f32e729]: The denominator of the current ratio.
+                        - generic [ref=f32e730]: "Feeds: Current ratio"
+                      - cell "₹100.00 cr" [ref=f32e731]
+                      - cell "₹100.00 cr" [ref=f32e732]
+                      - cell "₹100.00 cr" [ref=f32e733]
+                      - cell "₹100.00 cr" [ref=f32e734]
+                      - cell "₹100.00 cr" [ref=f32e735]
+                      - cell "₹100.00 cr" [ref=f32e736]
+                      - cell "₹100.00 cr" [ref=f32e737]
+                      - cell "₹100.00 cr" [ref=f32e738]
+                      - cell "Current liabilities across filed periods Held since FY24Q4" [ref=f32e739]:
+                        - img "Current liabilities across filed periods" [ref=f32e741]
+                        - generic [ref=f32e744]: Held since FY24Q4
+                    - row [ref=f32e745]:
+                      - 'rowheader "Cash flow available for debt service Cash flow Cash generated and available to service debt. DSCR''s numerator. Feeds: Debt service coverage ratio (indicative)" [ref=f32e746]':
+                        - generic [ref=f32e747]: Cash flow available for debt service
+                        - generic [ref=f32e748]: Cash flow
+                        - generic [ref=f32e749]: Cash generated and available to service debt. DSCR's numerator.
+                        - generic [ref=f32e750]: "Feeds: Debt service coverage ratio (indicative)"
+                      - cell "₹30.09 cr" [ref=f32e751]
+                      - cell "₹30.25 cr" [ref=f32e752]
+                      - cell "₹30.41 cr" [ref=f32e753]
+                      - cell "₹30.58 cr" [ref=f32e754]
+                      - cell "₹30.74 cr" [ref=f32e755]
+                      - cell "₹30.90 cr" [ref=f32e756]
+                      - cell "₹31.06 cr" [ref=f32e757]
+                      - cell "Not filed" [ref=f32e758]
+                      - cell "Cash flow available for debt service across filed periods +3.2% since FY24Q4" [ref=f32e759]:
+                        - img "Cash flow available for debt service across filed periods" [ref=f32e761]
+                        - generic [ref=f32e765]: +3.2% since FY24Q4
+              - text: →

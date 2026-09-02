@@ -1,0 +1,114 @@
+- generic [active] [ref=f31e1]:
+  - link "Skip to content" [ref=f31e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f31e3]:
+    - complementary "Workspace navigation" [ref=f31e4]:
+      - link "Covenant Radar" [ref=f31e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f31e13]:
+          - strong [ref=f31e14]: Covenant
+          - generic [ref=f31e15]: Radar
+      - navigation "Primary navigation" [ref=f31e16]:
+        - region [ref=f31e17]:
+          - heading "Monitor" [level=2] [ref=f31e18]
+          - link "Portfolio queue" [ref=f31e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f31e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f31e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f31e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f31e31]: "0"
+          - link "Search" [ref=f31e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f31e37]:
+          - heading "Portfolio data" [level=2] [ref=f31e38]
+          - link "Borrowers" [ref=f31e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f31e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f31e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f31e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f31e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f31e61]:
+          - heading "Workflows" [level=2] [ref=f31e62]
+          - link "Intake" [ref=f31e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f31e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f31e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f31e75] [cursor=pointer]
+    - generic [ref=f31e79]:
+      - banner [ref=f31e80]:
+        - generic [ref=f31e82]:
+          - generic [ref=f31e83]: Workspace
+          - generic [ref=f31e86]: Current view
+        - search [ref=f31e87]:
+          - generic [ref=f31e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f31e89]
+          - generic: /
+        - generic [ref=f31e90]:
+          - button "Live activity" [ref=f31e91]:
+            - generic [ref=f31e93]: Live
+          - button "Use dark theme" [ref=f31e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f31e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f31e101] [cursor=pointer]
+      - main [ref=f31e105]:
+        - generic [ref=f31e107]:
+          - paragraph [ref=f31e108]: Decision workspace
+          - heading "Import a financial statement extract" [level=1] [ref=f31e109]
+        - generic [ref=f31e110]:
+          - paragraph [ref=f31e111]: Upload a periodic financial extract for the borrowers in your scope. Rows that pass the mapping's rules are accepted; rows that fail one are quarantined for review rather than being silently dropped.
+          - generic [ref=f31e112]:
+            - generic [ref=f31e113]:
+              - generic [ref=f31e114]: Source type *
+              - combobox "Source type" [ref=f31e115]:
+                - option "csv" [selected]
+                - option "xlsx"
+                - option "json"
+            - generic [ref=f31e116]:
+              - generic [ref=f31e117]: Mapping name *
+              - combobox "Mapping name" [ref=f31e118]:
+                - option "quarterly-financials-v1" [selected]
+            - generic [ref=f31e119]:
+              - generic [ref=f31e120]: Financial statement extract *
+              - button "Financial statement extract" [ref=f31e121]
+            - button "Import extract" [ref=f31e122] [cursor=pointer]
+          - heading "Import result" [level=2] [ref=f31e123]
+          - generic [ref=f31e124]:
+            - term [ref=f31e125]: Import batch
+            - definition [ref=f31e126]: 01a06388-f0c8-7abc-814d-3ce015e6d068
+            - term [ref=f31e127]: Mapping name
+            - definition [ref=f31e128]: quarterly-financials-v1 (version 1)
+            - term [ref=f31e129]: Rows read
+            - definition [ref=f31e130]: "9"
+            - term [ref=f31e131]: Accepted
+            - definition [ref=f31e132]: "6"
+            - term [ref=f31e133]: Quarantined
+            - definition [ref=f31e134]: "2"
+            - term [ref=f31e135]: Control rows
+            - definition [ref=f31e136]: "1"
+            - term [ref=f31e137]: Control total
+            - definition [ref=f31e138]: Reconciled against the file's control total.
+          - table [ref=f31e139]:
+            - caption [ref=f31e140]: Quarantined
+            - rowgroup [ref=f31e141]:
+              - row [ref=f31e142]:
+                - columnheader "Row" [ref=f31e143]
+                - columnheader "Rule failed" [ref=f31e144]
+                - columnheader "Reason quarantined" [ref=f31e145]
+            - rowgroup [ref=f31e146]:
+              - row [ref=f31e147]:
+                - cell "7" [ref=f31e148]
+                - cell "line_normalisation_failed" [ref=f31e149]
+                - 'cell "revenue is not a valid decimal: ''3,86,00''." [ref=f31e150]'
+              - row [ref=f31e151]:
+                - cell "8" [ref=f31e152]
+                - cell "unknown_borrower" [ref=f31e153]
+                - cell "Borrower key 'B-999999' does not match any borrower in the caller's portfolio scope." [ref=f31e154]
+          - link "Back to quarantine review" [ref=f31e155] [cursor=pointer]:
+            - /url: /statements/quarantine

@@ -2022,18 +2022,23 @@ details:not(.shell-user-menu)[open] > summary {
 }
 
 /*
-  Three case-file panels carry the wide tables — the covenant ledger, the
-  forecast figures and trajectory, and the evidence register.  At six of twelve
-  columns each of those panels is narrower than the table it holds, so the
-  table was cut off inside its own card behind a scrollbar.  Give them the full
-  track; the remaining panels stay two-up.
+  Every direct child of the case file's own grid needs the full track, for
+  three separate reasons:
 
-  `.case-file__sections` needs the same override for a different reason: it is
-  the tab strip's wrapper, sitting as a direct child of this grid alongside
-  the two-up action/memo panels, so the `span 6` default above left it (and
-  every card inside it) squeezed into half the page with the other half
-  blank. Its own five panels are already full-width blocks, so this is the
-  one place their width was actually being decided.
+  - the covenant ledger, forecast figures/trajectory and evidence register
+    each hold a table wider than six of twelve columns, so at the `span 6`
+    default the table was cut off inside its own card behind a scrollbar.
+  - `.case-file__sections` is the tab strip's wrapper; at `span 6` it (and
+    every one of the five cards inside it) was squeezed into half the page
+    with the other half blank.
+  - `.case-actions` is a short button row and `.case-memo` can run to a
+    thousand-plus pixels once a memo is drafted. Paired at `span 6` each,
+    the grid row took the height of the taller one, leaving a dead gap below
+    the actions card the same height as the memo beside it.
+
+  `.case-workspace__grid` above shares the `span 6` default for screens
+  where two-up genuinely fits; nothing on the case file needs it, hence the
+  full stack here.
 */
 .case-file__panels > .case-file__panel--wide,
 .case-file__panels > .case-file__sections {

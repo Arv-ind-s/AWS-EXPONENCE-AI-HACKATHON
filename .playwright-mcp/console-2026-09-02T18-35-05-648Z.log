@@ -1,0 +1,5 @@
+[   22163ms] [ERROR] Failed to load resource: the server responded with a status of 422 (Unprocessable Entity) @ http://127.0.0.1:8000/documents/01a06364-2406-7dc5-89c9-caf067c366bd/pages/1/correct:0
+[   84336ms] [ERROR] htmx:afterRequest @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[   84338ms] [ERROR] htmx:sendError @ http://127.0.0.1:8000/static/vendor/htmx/htmx.min.js:0
+[   84339ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/notifications/unread-count:0
+[   84342ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://127.0.0.1:8000/live/updates?cursor=eyJ1IjoiMDFhMDYyN2ItZGY2YS03NjcyLTk0NzItNmNmYWNkZTEwMTZjIiwidCI6IjIwMjYtMDktMDJUMTg6MzU6MjcuOTI2OTM4KzAwOjAwIn0uJEUl5qyFADK7VRMOsx5sIYVfEmSrPgAw_08Rlin3Ai0&context=%2Fdocuments%2F01a06364-2406-7dc5-89c9-caf067c366bd%2Fpages%2F1%2Fcorrect:0

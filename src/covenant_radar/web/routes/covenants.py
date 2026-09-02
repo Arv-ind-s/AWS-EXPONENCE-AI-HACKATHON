@@ -4,12 +4,13 @@ from __future__ import annotations
 
 from collections.abc import Mapping, Sequence
 from pathlib import Path
-from urllib.parse import parse_qs
+from urllib.parse import parse_qs, quote
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from markupsafe import Markup
 from pydantic import ValidationError as PydanticValidationError
 
 from covenant_radar.api.deps import requires
@@ -406,6 +407,9 @@ def _covenant_rows(rows: Sequence[Covenant]) -> list[dict[str, object]]:
             "class": row.covenant_class,
             "facility": str(row.facility_id),
             "status": "active" if row.is_active else "retired",
+            "actions": Markup('<a class="button" href="/covenants/{href}">{label}</a>').format(
+                href=quote(row.reference, safe=""), label=_LABELS["open"]
+            ),
         }
         for row in rows
     ]

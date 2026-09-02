@@ -82,6 +82,21 @@ _LABELS = {
     "import_duplicate": (
         "This extract was imported before; the original batch's result is shown."
     ),
+    "import_file": "Financial statement extract",
+    "import_totals_rows": "Control rows",
+    "import_reconciled": "Control total",
+    "import_reconciled_yes": "Reconciled against the file's control total.",
+    "import_reconciled_no": "Does not reconcile against the file's control total.",
+    "import_reconciled_none": "The file carried no control total to reconcile against.",
+    "import_discrepancies": "Control total discrepancies",
+    "line_code": "Chart line",
+    "expected": "File total",
+    "actual": "Loaded total",
+    "difference": "Difference",
+    "no_mappings": (
+        "No import mapping is configured for financial statements. "
+        "Seed one before importing."
+    ),
 }
 
 _SOURCE_TYPES = ("csv", "xlsx", "json")
@@ -192,7 +207,13 @@ def create_statements_router(
         request: Request,
         principal: Principal = _INGEST_DEP,
     ) -> HTMLResponse:
-        return _render_import(request, fallback_environment, principal=principal, error="")
+        return _render_import(
+            request,
+            fallback_environment,
+            principal=principal,
+            error="",
+            mapping_options=service.list_import_mapping_names(principal),
+        )
 
     @router.post(
         "/financial-statements",
@@ -203,6 +224,7 @@ def create_statements_router(
         request: Request,
         principal: Principal = _INGEST_DEP,
     ) -> HTMLResponse:
+        mapping_options = service.list_import_mapping_names(principal)
         fields, content = await _restate_form_values(request)
         source_type = fields.get("source_type", "")
         if source_type not in _SOURCE_TYPES:
@@ -211,6 +233,7 @@ def create_statements_router(
                 fallback_environment,
                 principal=principal,
                 error=f"source_type must be one of {', '.join(_SOURCE_TYPES)}.",
+                mapping_options=mapping_options,
                 status_code=422,
             )
         try:
@@ -228,6 +251,7 @@ def create_statements_router(
                 fallback_environment,
                 principal=principal,
                 error=error.message,
+                mapping_options=mapping_options,
                 status_code=422,
             )
         return _render_import(
@@ -235,6 +259,7 @@ def create_statements_router(
             fallback_environment,
             principal=principal,
             error="",
+            mapping_options=mapping_options,
             report=report,
         )
 
@@ -297,6 +322,7 @@ def _render_import(
     *,
     principal: Principal,
     error: str,
+    mapping_options: tuple[str, ...] = (),
     report: object | None = None,
     status_code: int = 200,
 ) -> HTMLResponse:
@@ -304,6 +330,7 @@ def _render_import(
     template = environment.get_template("screens/statements/_import.html")
     context = _base_context(request, principal, error=error)
     context["source_type_options"] = _SOURCE_TYPES
+    context["mapping_options"] = mapping_options
     context["report"] = report
     return HTMLResponse(template.render(**context), status_code=status_code)
 

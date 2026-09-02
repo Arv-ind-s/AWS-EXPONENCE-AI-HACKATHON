@@ -26,6 +26,14 @@
             {% set option_value = option.get("value", "") %}
             {% set option_label = option.get("label", option_value) %}
             {% set option_disabled = option.get("disabled", false) %}
+          {% elif option is string %}
+            {# A bare string is its own value and label. Indexing it as a
+               (value, label) pair silently yields its first two characters,
+               which is how the statement screens shipped dropdowns reading
+               "s", "l", "s" for csv/xlsx/json. #}
+            {% set option_value = option %}
+            {% set option_label = option %}
+            {% set option_disabled = false %}
           {% else %}
             {% set option_value = option[0] %}
             {% set option_label = option[1] %}

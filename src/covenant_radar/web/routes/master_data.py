@@ -7,12 +7,13 @@ from datetime import date
 from decimal import Decimal
 from pathlib import Path
 from typing import TypeVar
-from urllib.parse import parse_qs, urlencode
+from urllib.parse import parse_qs, quote, urlencode
 from uuid import UUID
 
 from fastapi import APIRouter, Depends, Query, Request
 from fastapi.responses import HTMLResponse, RedirectResponse, Response
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from markupsafe import Markup
 from pydantic import ValidationError as PydanticValidationError
 
 from covenant_radar.api.deps import requires
@@ -263,13 +264,14 @@ def create_master_data_router(
         )
         rows, has_next = _split_page(fetched)
         portfolios = service.list_portfolios(principal)
+        labels = _labels(request)
         return _render(
             request,
             fallback_environment,
             "screens/master_data/borrowers.html",
             principal=principal,
             rows=rows,
-            table_rows=_borrower_rows(rows),
+            table_rows=_borrower_rows(rows, labels, detail_suffix="/master-data"),
             filters={
                 "q": q.strip() if q else "",
                 "portfolio": str(portfolio_id) if portfolio_id else "",
@@ -559,13 +561,14 @@ def create_master_data_router(
     @router.get("/portfolios", response_class=HTMLResponse, name="portfolio_list")
     async def portfolio_list(request: Request, principal: Principal = _READ_DEP) -> HTMLResponse:
         rows = service.list_portfolios(principal)
+        labels = _labels(request)
         return _render(
             request,
             fallback_environment,
             "screens/master_data/portfolios.html",
             principal=principal,
             rows=rows,
-            table_rows=_portfolio_rows(rows),
+            table_rows=_portfolio_rows(rows, labels),
         )
 
     @router.get("/portfolios/new", response_class=HTMLResponse, name="portfolio_create_page")
@@ -885,7 +888,9 @@ def _as_domain_error(error: DomainError | PydanticValidationError, *, resource: 
     return ValidationError(f"{field}: {message}.", field=field)
 
 
-def _borrower_rows(rows: Sequence[Borrower]) -> list[dict[str, object]]:
+def _borrower_rows(
+    rows: Sequence[Borrower], labels: Mapping[str, str], *, detail_suffix: str = ""
+) -> list[dict[str, object]]:
     return [
         {
             "id": row.reference,
@@ -893,6 +898,13 @@ def _borrower_rows(rows: Sequence[Borrower]) -> list[dict[str, object]]:
             "legal_name": row.legal_name,
             "portfolio": str(row.portfolio_id),
             "status": "active" if row.is_active else "inactive",
+            "actions": Markup(
+                '<a class="button" href="/borrowers/{href}{suffix}">{label}</a>'
+            ).format(
+                href=quote(row.reference, safe=""),
+                suffix=detail_suffix,
+                label=labels["borrowers_open"],
+            ),
         }
         for row in rows
     ]
@@ -911,13 +923,19 @@ def _facility_rows(rows: Sequence[Facility]) -> list[dict[str, object]]:
     ]
 
 
-def _portfolio_rows(rows: Sequence[Portfolio]) -> list[dict[str, object]]:
+def _portfolio_rows(
+    rows: Sequence[Portfolio], labels: Mapping[str, str]
+) -> list[dict[str, object]]:
     return [
         {
             "id": str(row.id),
             "code": row.code,
             "name": row.name,
             "branch": row.branch_code or "",
+            "actions": Markup('<a class="button" href="/portfolios/{href}">{label}</a>').format(
+                href=quote(str(row.id), safe=""),
+                label=labels["borrowers_open"],
+            ),
         }
         for row in rows
     ]

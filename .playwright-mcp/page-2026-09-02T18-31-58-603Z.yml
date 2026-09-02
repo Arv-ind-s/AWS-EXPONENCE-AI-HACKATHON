@@ -1,0 +1,79 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f5e3]:
+    - complementary "Workspace navigation" [ref=f5e4]:
+      - link "Covenant Radar" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f5e13]:
+          - strong [ref=f5e14]: Covenant
+          - generic [ref=f5e15]: Radar
+      - navigation "Primary navigation" [ref=f5e16]:
+        - region [ref=f5e17]:
+          - heading "Monitor" [level=2] [ref=f5e18]
+          - link "Portfolio queue" [ref=f5e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f5e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f5e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f5e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f5e31]: "0"
+          - link "Search" [ref=f5e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f5e37]:
+          - heading "Portfolio data" [level=2] [ref=f5e38]
+          - link "Borrowers" [ref=f5e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f5e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f5e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f5e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f5e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f5e61]:
+          - heading "Workflows" [level=2] [ref=f5e62]
+          - link "Intake" [ref=f5e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f5e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f5e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f5e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f5e79] [cursor=pointer]
+    - generic [ref=f5e83]:
+      - banner [ref=f5e84]:
+        - generic [ref=f5e86]:
+          - generic [ref=f5e87]: Workspace
+          - generic [ref=f5e90]: Current view
+        - search [ref=f5e91]:
+          - generic [ref=f5e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f5e93]
+          - generic: /
+        - generic [ref=f5e94]:
+          - button "Live activity" [ref=f5e95]:
+            - generic [ref=f5e97]: Live
+          - button "Use dark theme" [ref=f5e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f5e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f5e105] [cursor=pointer]
+      - main [ref=f5e109]:
+        - generic [ref=f5e111]:
+          - paragraph [ref=f5e112]: Decision workspace
+          - heading "Pages requiring review" [level=1] [ref=f5e113]
+        - generic [ref=f5e114]:
+          - paragraph [ref=f5e115]: "OCR capability: Available (configured)"
+          - article [ref=f5e116]:
+            - 'heading "Document: scanned-sanction-letter-poor-copy.pdf" [level=2] [ref=f5e117]'
+            - paragraph [ref=f5e118]: "Page: 1"
+            - paragraph [ref=f5e119]: "Review reason: OCR confidence is below the configured floor. Observed 0.40; floor 0.80."
+            - group [ref=f5e120]:
+              - generic "Extracted text" [ref=f5e121] [cursor=pointer]
+            - generic [ref=f5e122]:
+              - generic [ref=f5e123]:
+                - generic [ref=f5e124]: Corrected text *
+                - textbox "Corrected text" [ref=f5e125]: "Ret. $.2026'617 Da 12 Fey 204 Aachamme Geutiio Mills Private Limited ; Fie 2. NAD Tate tn, Ranh, Raleninn C1 j . Wiese pease wari ution ofthe cn. Scie deine a IO EA onan ee aa Sinjeestibinciongy tate ‘; Ths Bessower sah stint tio linesat Coverage tio rnp “3 of aty Relevant Period stall not be Lens than. 2 50, 106. tested quoety each Tesang Dew 42 Total Net Levernge re oe ee edd ein i icspeid ed et an TON dows ect exceed} 75 1.00 an at the Last day ofeach Relevant ‘ Povind ending en ac: atier 3} March 3026% 43 ‘dictions Tangible Kot Were ‘Segate Nero dat asta blew nn BE. 1 25000000 {Rupees One Hundend Twenty Fare Craw daly) 1.4 Dede Service Coverage Ratio Tie Deke Service Covesnge Ratto hall net at any tame be ews tha 1.28: 100, ceried by she Berewrer's stopery annoy wes £8"
+              - paragraph [ref=f5e126]: The original page text is retained in provenance.
+              - button "Save correction" [ref=f5e127] [cursor=pointer]

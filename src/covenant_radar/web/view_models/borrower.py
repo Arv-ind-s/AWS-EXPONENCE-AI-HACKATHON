@@ -62,6 +62,10 @@ from covenant_radar.web.svg.trajectory import (
     render_trajectory_sparkline_svg,
     render_trajectory_svg,
 )
+from covenant_radar.web.view_models.financials import (
+    FinancialsPanelView,
+    build_financials_panel,
+)
 
 PanelState = Literal["rest", "loading", "error", "empty", "degraded"]
 CaseFileState = Literal["ready", "loading", "error", "degraded"]
@@ -463,6 +467,12 @@ class CovenantRowView:
     confidence_reduction: str | None = None
     history_svg: Markup | None = None
     history_label: str = ""
+    #: The figures `history_svg` describes. `render_trajectory_svg` always
+    #: points its `aria-describedby` at an element with this id, so the
+    #: template has to render one — and `spec §15.2`'s no-chart-without-ledger
+    #: rule wants these figures visible regardless.
+    history_id: str = ""
+    history_figures: tuple[TrajectoryLedgerFigure, ...] = ()
 
 
 EvidenceDecayState = Literal["fresh", "decaying", "decayed", "not_recorded"]
@@ -615,6 +625,11 @@ class CaseFileView:
     covenants_panel: CaseFilePanelView
     forecast_panel: ForecastPanelView
     evidence_panel: CaseFilePanelView
+    #: The filed statements behind every covenant value above, and what moved
+    #: them (`view_models/financials.py`). Optional so a caller that only
+    #: needs the covenant position — the memo record collector, the export
+    #: templates — is not made to pay for the statement reads.
+    financials: FinancialsPanelView | None = None
     evidence: tuple[EvidenceMarginView, ...] = ()
     evidence_families: tuple[EvidenceFamilyGroupView, ...] = ()
     signal_families: tuple[SignalFamilyView, ...] = ()
@@ -797,6 +812,7 @@ def build_borrower_view(
         covenants_panel=covenant_panel,
         forecast_panel=forecast_panel,
         evidence_panel=evidence_panel,
+        financials=build_financials_panel(session, borrower.id, scope=scope),
         evidence=evidence,
         evidence_families=evidence_families,
         signal_families=signal_families,
@@ -1173,7 +1189,9 @@ def _signal_family_views(
         # what made every signal family read "Improving" for borrowers whose
         # true trend was deteriorating. `ingested_at` reflects true
         # ingestion order regardless of which generator wrote the row.
-        .order_by(SignalEvent.family, SignalEvent.event_date, SignalEvent.ingested_at, SignalEvent.id)
+        .order_by(
+            SignalEvent.family, SignalEvent.event_date, SignalEvent.ingested_at, SignalEvent.id
+        )
     )
     if as_of_date is not None:
         statement = statement.where(SignalEvent.event_date <= as_of_date)
@@ -1852,9 +1870,7 @@ def _forecast_citations(
         if isinstance(families, Sequence) and not isinstance(families, str | bytes | bytearray)
         else ()
     )
-    if isinstance(evidence_ids, Sequence) and not isinstance(
-        evidence_ids, str | bytes | bytearray
-    ):
+    if isinstance(evidence_ids, Sequence) and not isinstance(evidence_ids, str | bytes | bytearray):
         for index, raw_id in enumerate(evidence_ids):
             try:
                 evidence_id = raw_id if isinstance(raw_id, UUID) else UUID(str(raw_id))
@@ -1939,9 +1955,7 @@ def _action_forecast(
     if version_id is None:
         return None
     candidates = [
-        forecast
-        for (candidate_id, _), forecast in forecasts.items()
-        if candidate_id == version_id
+        forecast for (candidate_id, _), forecast in forecasts.items() if candidate_id == version_id
     ]
     displayable = [
         forecast
@@ -2015,9 +2029,7 @@ def _intervention_assumptions(raw: object) -> tuple[str, ...]:
     values = raw.get("_assumptions", raw.get("assumptions"))
     if not isinstance(values, Sequence) or isinstance(values, str | bytes | bytearray):
         return ()
-    return tuple(
-        value.strip() for value in values if isinstance(value, str) and value.strip()
-    )
+    return tuple(value.strip() for value in values if isinstance(value, str) and value.strip())
 
 
 def _nested_mapping(values: Mapping[str, object], key: str) -> Mapping[str, object]:
@@ -2365,7 +2377,7 @@ def _covenant_row(
         if version.direction == "min"
         else "toward the maximum threshold"
     )
-    history_svg, history_label = _covenant_history_view(
+    history_svg, history_label, history_id, history_figures = _covenant_history_view(
         covenant, version, unit, threshold, (test_history or {}).get(version.id, ())
     )
     return CovenantRowView(
@@ -2399,6 +2411,8 @@ def _covenant_row(
         confidence_reduction=confidence_reduction,
         history_svg=history_svg,
         history_label=history_label,
+        history_id=history_id,
+        history_figures=history_figures,
     )
 
 
@@ -2408,19 +2422,27 @@ def _covenant_history_view(
     unit: str,
     threshold: Decimal,
     history_tests: Sequence[CovenantTest],
-) -> tuple[Markup | None, str]:
+) -> tuple[Markup | None, str, str, tuple[TrajectoryLedgerFigure, ...]]:
     """Chart the covenant's recently tested quarters, oldest first.
 
     Reuses the same accessible SVG renderer as the forward-looking forecast
     trajectory, just fed historical test values instead of a projected path,
     so a banker sees where the ratio has actually been alongside where the
     forecast says it is going.
+
+    The ledger figures are returned alongside the SVG, not consumed here.
+    `render_trajectory_svg` points the chart's `aria-describedby` at an
+    element it does not itself render — the forecast panel supplies one, and
+    this chart must too, or the reference dangles and the figures the chart
+    plots exist nowhere in text.
     """
 
     valued = tuple(item for item in history_tests if item.value is not None)
     if len(valued) < 2:
-        return None, ""
-    points = tuple(TrajectoryPoint(day=index, value=item.value) for index, item in enumerate(valued))
+        return None, "", "", ()
+    points = tuple(
+        TrajectoryPoint(day=index, value=item.value) for index, item in enumerate(valued)
+    )
     ledger_figures = tuple(
         TrajectoryLedgerFigure(
             label=format_ist_date(item.as_of_date),
@@ -2429,15 +2451,16 @@ def _covenant_history_view(
         for item in valued
     )
     label = f"Last {len(valued)} tested quarters"
+    trajectory_id = f"covenant-history-{covenant.id}"
     svg = render_trajectory_svg(
-        f"covenant-history-{covenant.id}",
+        trajectory_id,
         points,
         threshold,
         ledger_figures,
         label=f"{covenant.name} recent history",
         breach_above=(version.direction == "max"),
     )
-    return svg, label
+    return svg, label, trajectory_id, ledger_figures
 
 
 def _covenant_label(covenant: Covenant, version: CovenantVersion) -> str:
@@ -2561,6 +2584,7 @@ __all__ = [
     "EvidenceDecayState",
     "EvidenceFamilyGroupView",
     "EvidenceMarginView",
+    "FinancialsPanelView",
     "SignalFamilyView",
     "FORECAST_HORIZONS",
     "ForecastCitationView",

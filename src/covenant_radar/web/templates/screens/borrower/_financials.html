@@ -1,0 +1,188 @@
+{#
+  The filed statements behind every covenant figure on this case file.
+
+  The order is deliberate and is the reading order a credit reviewer works
+  in: the covenanted ratios first, because they are the contractual position
+  and the reason the case is open; then the uncovenanted indicators, held
+  visually apart so nothing on this screen can be mistaken for a covenant the
+  bank does not actually hold; then the line-by-line statement the two
+  sections above are computed from, so any figure quoted higher up can be
+  traced to the row it came from without leaving the tab.
+#}
+{% if view is defined and view.financials %}
+{% set financials = view.financials %}
+{% set state_action_label = "" %}
+{% set state_action_href = "" %}
+<section
+  class="panel case-financials"
+  id="case-financials"
+  data-state="{{ financials.state }}"
+  aria-labelledby="case-financials-title"
+>
+  <div class="panel__heading case-financials__heading">
+    <div>
+      <p class="panel__eyebrow">{{ labels.financials_eyebrow }}</p>
+      <h2 class="panel__title" id="case-financials-title">{{ labels.financials_title }}</h2>
+      {% if financials.headline %}<p class="panel__intro">{{ financials.headline }}</p>{% endif %}
+    </div>
+    {% if view.financial_statements_href %}
+      <a class="button button--secondary" href="{{ view.financial_statements_href }}">{{ labels.financials_manage }}</a>
+    {% endif %}
+  </div>
+
+  {% if financials.state == "empty" %}
+    {% set state_id = "case-financials-empty" %}
+    {% set state_title = labels.financials_empty_title %}
+    {% set state_message = financials.empty_message %}
+    {% include "_states/empty.html" %}
+  {% else %}
+
+    {# ---- Covenanted ratios: every figure here is a stored engine verdict ---- #}
+    {% if financials.covenanted_ratios %}
+      <h3 class="case-financials__subtitle" id="case-financials-covenanted">{{ labels.financials_covenanted }}</h3>
+      <p class="case-financials__note">{{ labels.financials_covenanted_note }}</p>
+      <div class="ratio-grid" role="list" aria-labelledby="case-financials-covenanted">
+        {% for ratio in financials.covenanted_ratios %}
+          <article class="ratio-card" role="listitem" data-verdict="{{ ratio.latest_verdict }}">
+            <header class="ratio-card__header">
+              <div class="ratio-card__identity">
+                <h4 class="ratio-card__name">{{ ratio.name }}</h4>
+                <p class="ratio-card__meta">{{ ratio.covenant_reference }} · {{ ratio.facility_reference }}</p>
+              </div>
+              <span class="ratio-card__verdict" data-verdict="{{ ratio.latest_verdict }}">{{ ratio.latest_verdict_display }}</span>
+            </header>
+
+            <div class="ratio-card__figures">
+              <div class="ratio-card__figure">
+                <span class="ratio-card__figure-label">{{ labels.financials_latest }}</span>
+                <span class="ratio-card__figure-value">{{ ratio.latest_display }}</span>
+              </div>
+              <div class="ratio-card__figure">
+                <span class="ratio-card__figure-label">{{ labels.financials_headroom }}</span>
+                <span class="ratio-card__figure-value ratio-card__figure-value--secondary">{{ ratio.latest_headroom_display }}</span>
+              </div>
+            </div>
+
+            <p class="ratio-card__obligation">{{ ratio.obligation_display }}</p>
+
+            {% if ratio.chart_svg %}
+              <figure class="ratio-card__chart">
+                {{ ratio.chart_svg }}
+                <figcaption>
+                  {{ ratio.points[0].period_label }} → {{ ratio.points[-1].period_label }}.
+                  {{ labels.financials_chart_key }}
+                </figcaption>
+              </figure>
+            {% endif %}
+
+            <ol class="ratio-card__periods">
+              {% for point in ratio.points %}
+                <li class="ratio-card__period" data-verdict="{{ point.verdict }}">
+                  <span class="ratio-card__period-label">{{ point.period_label }}</span>
+                  <span class="ratio-card__period-value">{{ point.value_display }}</span>
+                  <span class="sr-only">{{ point.verdict_display }}, headroom {{ point.headroom_display }}</span>
+                </li>
+              {% endfor %}
+            </ol>
+
+            {% if ratio.attribution %}
+              <p class="ratio-card__attribution">
+                <span class="ratio-card__attribution-label">{{ labels.financials_what_moved }}</span>
+                {{ ratio.attribution }}
+              </p>
+            {% endif %}
+            {% if ratio.formula_display %}
+              <p class="ratio-card__formula"><span>{{ labels.financials_formula }}</span> <code>{{ ratio.formula_display }}</code></p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# ---- Uncovenanted indicators: computed, and marked as such everywhere ---- #}
+    {% if financials.context_ratios %}
+      <h3 class="case-financials__subtitle" id="case-financials-context">{{ labels.financials_context }}</h3>
+      <p class="case-financials__note">{{ labels.financials_context_note }}</p>
+      <div class="ratio-grid ratio-grid--context" role="list" aria-labelledby="case-financials-context">
+        {% for ratio in financials.context_ratios %}
+          <article class="ratio-card ratio-card--context" role="listitem">
+            <header class="ratio-card__header">
+              <div class="ratio-card__identity">
+                <h4 class="ratio-card__name">{{ ratio.name }}</h4>
+                <p class="ratio-card__meta">{{ ratio.latest_verdict_display }}</p>
+              </div>
+              <span class="ratio-card__figure-value">{{ ratio.latest_display }}</span>
+            </header>
+            {% if ratio.purpose %}<p class="ratio-card__obligation">{{ ratio.purpose }}</p>{% endif %}
+            {% if ratio.chart_svg %}
+              <figure class="ratio-card__chart">
+                {{ ratio.chart_svg }}
+                <figcaption>{{ ratio.points[0].period_label }} → {{ ratio.points[-1].period_label }}. {{ labels.financials_no_threshold }}</figcaption>
+              </figure>
+            {% endif %}
+            {% if ratio.attribution %}
+              <p class="ratio-card__attribution">
+                <span class="ratio-card__attribution-label">{{ labels.financials_what_moved }}</span>
+                {{ ratio.attribution }}
+              </p>
+            {% endif %}
+            {% if ratio.formula_display %}
+              <p class="ratio-card__formula"><span>{{ labels.financials_formula }}</span> <code>{{ ratio.formula_display }}</code></p>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    {# ---- The filed lines every figure above is computed from ---- #}
+    <h3 class="case-financials__subtitle" id="case-financials-lines">{{ labels.financials_lines }}</h3>
+    <p class="case-financials__note">{{ financials.currency_note }} {{ labels.financials_lines_note }}</p>
+    <div class="ledger-table statement-table" id="case-financials-ledger">
+      <table class="ledger-table__table">
+        {# The `h3` immediately above already carries this text visibly; the
+           caption stays for the table's accessible name only. #}
+        <caption class="sr-only">{{ labels.financials_lines }}</caption>
+        <thead>
+          <tr>
+            <th scope="col" class="statement-table__line-heading">{{ labels.financials_line }}</th>
+            {% for period in financials.periods %}
+              <th scope="col" class="ledger-table__heading--right statement-table__period{% if period.is_latest %} statement-table__period--latest{% endif %}">
+                {# Each on its own line: run together they set the column's
+                   minimum width and pushed the most recent quarters out of
+                   view entirely. #}
+                <span class="statement-table__period-label">{{ period.label }}</span>
+                <span class="statement-table__period-detail">{{ period.ends_on|ist_date }}</span>
+                {% if period.is_audited %}<span class="statement-table__period-detail">{{ labels.financials_audited }}</span>{% endif %}
+              </th>
+            {% endfor %}
+            <th scope="col" class="ledger-table__heading--center statement-table__trend">{{ labels.financials_trend }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for line in financials.lines %}
+            <tr class="ledger-row statement-row" data-tone="{{ line.tone }}" data-movement="{{ line.movement }}">
+              <th scope="row" class="ledger-row__cell statement-row__line">
+                <span class="statement-row__label">{{ line.label }}</span>
+                <span class="statement-row__statement">{{ line.statement_label }}</span>
+                {% if line.note %}<span class="statement-row__note">{{ line.note }}</span>{% endif %}
+                {% if line.feeds_display %}
+                  <span class="statement-row__feeds">{{ labels.financials_feeds }} {{ line.feeds_display }}</span>
+                {% endif %}
+              </th>
+              {% for cell in line.cells %}
+                <td class="ledger-row__cell ledger-row__cell--right statement-row__value{% if not cell.is_filed %} statement-row__value--absent{% endif %}">{{ cell.display }}</td>
+              {% endfor %}
+              <td class="ledger-row__cell statement-row__trend">
+                {% if line.sparkline_svg %}
+                  <span class="statement-row__spark">{{ line.sparkline_svg }}</span>
+                {% endif %}
+                <span class="statement-row__change" data-tone="{{ line.tone }}">{{ line.change_display }}</span>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% endif %}
+</section>
+{% endif %}

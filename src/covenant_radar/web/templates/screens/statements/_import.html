@@ -4,6 +4,7 @@
 {% set error = error|default("") %}
 {% set report = report|default(none) %}
 {% set source_type_options = source_type_options|default(()) %}
+{% set mapping_options = mapping_options|default(()) %}
 
 {% block page_title %}{{ labels.import_title }}{% endblock %}
 {% block h1 %}{{ labels.import_heading }}{% endblock %}
@@ -15,8 +16,13 @@
   <form method="post" action="/financial-statements" enctype="multipart/form-data" novalidate>
     <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     {{ components.field("source_type", labels.source_type, type="select", options=source_type_options, required=true) }}
-    {{ components.field("mapping_name", labels.mapping_name, required=true) }}
-    {{ components.field("file", labels.file, type="file", accept=".csv,.xlsx,.json", required=true) }}
+    {% if mapping_options %}
+      {{ components.field("mapping_name", labels.mapping_name, type="select", options=mapping_options, required=true) }}
+    {% else %}
+      <p role="alert">{{ labels.no_mappings }}</p>
+      {{ components.field("mapping_name", labels.mapping_name, required=true) }}
+    {% endif %}
+    {{ components.field("file", labels.import_file, type="file", accept=".csv,.xlsx,.json", required=true) }}
     {{ components.button(labels.import_submit, type="submit") }}
   </form>
 
@@ -33,7 +39,43 @@
       <dd>{{ report.accepted }}</dd>
       <dt>{{ labels.import_quarantined }}</dt>
       <dd>{{ report.quarantined }}</dd>
+      <dt>{{ labels.import_totals_rows }}</dt>
+      <dd>{{ report.totals_rows }}</dd>
+      <dt>{{ labels.import_reconciled }}</dt>
+      <dd>
+        {% if report.totals_rows == 0 %}
+          {{ labels.import_reconciled_none }}
+        {% elif report.reconciled %}
+          {{ labels.import_reconciled_yes }}
+        {% else %}
+          {{ labels.import_reconciled_no }}
+        {% endif %}
+      </dd>
     </dl>
+
+    {% if report.discrepancies %}
+      <table>
+        <caption>{{ labels.import_discrepancies }}</caption>
+        <thead>
+          <tr>
+            <th scope="col">{{ labels.line_code }}</th>
+            <th scope="col">{{ labels.expected }}</th>
+            <th scope="col">{{ labels.actual }}</th>
+            <th scope="col">{{ labels.difference }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in report.discrepancies %}
+            <tr>
+              <td>{{ item.line_code }}</td>
+              <td>{{ item.expected }}</td>
+              <td>{{ item.actual }}</td>
+              <td>{{ item.difference }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% endif %}
 
     {% if report.quarantine %}
       <table>

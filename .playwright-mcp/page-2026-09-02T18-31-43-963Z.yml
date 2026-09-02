@@ -1,0 +1,116 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f4e3]:
+    - complementary "Workspace navigation" [ref=f4e4]:
+      - link "Covenant Radar" [ref=f4e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f4e13]:
+          - strong [ref=f4e14]: Covenant
+          - generic [ref=f4e15]: Radar
+      - navigation "Primary navigation" [ref=f4e16]:
+        - region [ref=f4e17]:
+          - heading "Monitor" [level=2] [ref=f4e18]
+          - link "Portfolio queue" [ref=f4e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f4e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f4e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f4e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f4e31]: "0"
+          - link "Search" [ref=f4e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f4e37]:
+          - heading "Portfolio data" [level=2] [ref=f4e38]
+          - link "Borrowers" [ref=f4e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f4e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f4e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f4e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f4e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f4e61]:
+          - heading "Workflows" [level=2] [ref=f4e62]
+          - link "Intake" [ref=f4e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f4e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f4e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f4e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f4e79] [cursor=pointer]
+    - generic [ref=f4e83]:
+      - banner [ref=f4e84]:
+        - generic [ref=f4e86]:
+          - generic [ref=f4e87]: Workspace
+          - generic [ref=f4e90]: Current view
+        - search [ref=f4e91]:
+          - generic [ref=f4e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f4e93]
+          - generic: /
+        - generic [ref=f4e94]:
+          - button "Live activity" [ref=f4e95]:
+            - generic [ref=f4e97]: Live
+          - button "Use dark theme" [ref=f4e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f4e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f4e105] [cursor=pointer]
+      - main [ref=f4e109]:
+        - generic [ref=f4e111]:
+          - paragraph [ref=f4e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f4e113]
+        - generic [ref=f4e115]:
+          - status [ref=f4e116]: Document accepted. Review its extraction status before proposing clauses.
+          - generic [ref=f4e117]:
+            - heading "Upload a source document" [level=2] [ref=f4e118]
+            - generic [ref=f4e119]:
+              - generic [ref=f4e120]:
+                - generic [ref=f4e121]: Borrower reference *
+                - textbox "Borrower reference" [ref=f4e122]
+              - generic [ref=f4e123]:
+                - generic [ref=f4e124]: Facility reference
+                - textbox "Facility reference" [ref=f4e125]
+              - generic [ref=f4e126]:
+                - generic [ref=f4e127]: Document type *
+                - combobox "Document type" [ref=f4e128]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f4e129]:
+                - generic [ref=f4e130]: Sanction letter or source document *
+                - button "Sanction letter or source document" [ref=f4e131]
+              - button "Upload and extract" [ref=f4e132] [cursor=pointer]
+          - generic [ref=f4e133]:
+            - generic [ref=f4e134]:
+              - generic [ref=f4e135]:
+                - heading "Document processing" [level=2] [ref=f4e136]
+                - paragraph [ref=f4e137]: scanned-sanction-letter-poor-copy.pdf
+              - generic [ref=f4e138]: Text extraction is complete.
+            - progressbar "Text extraction is complete." [ref=f4e139]: 100%
+            - generic [ref=f4e140]:
+              - generic [ref=f4e141]:
+                - term [ref=f4e142]: Document type
+                - definition [ref=f4e143]: Sanction Letter
+              - generic [ref=f4e144]:
+                - term [ref=f4e145]: OCR
+                - definition [ref=f4e146]: OCR was applied.
+              - generic [ref=f4e147]:
+                - term [ref=f4e148]: Pages requiring review
+                - definition [ref=f4e149]: "1"
+              - generic [ref=f4e150]:
+                - term [ref=f4e151]: Pages
+                - definition [ref=f4e152]: "1"
+          - generic [ref=f4e153]:
+            - heading "Candidate review pending" [level=2] [ref=f4e154]
+            - paragraph [ref=f4e155]: This page needs OCR review and is excluded from proposal generation until a person corrects it.
+            - list [ref=f4e156]:
+              - listitem [ref=f4e157]:
+                - link "Page 1" [ref=f4e158] [cursor=pointer]:
+                  - /url: /documents/01a06364-2406-7dc5-89c9-caf067c366bd/view?page=1
+                - generic [ref=f4e159]: OCR confidence is below the configured floor. Observed 0.40; floor 0.80.

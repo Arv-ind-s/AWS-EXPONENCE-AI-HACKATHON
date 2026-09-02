@@ -17,15 +17,13 @@
       [
         {"key": "code", "label": labels.portfolios_code},
         {"key": "name", "label": labels.portfolios_name},
-        {"key": "branch", "label": labels.portfolios_branch}
+        {"key": "branch", "label": labels.portfolios_branch},
+        {"key": "actions", "label": labels.borrowers_actions}
       ],
       table_rows,
       table_id="portfolios-ledger",
       empty_title=labels.portfolios_empty,
       empty_message=labels.portfolios_empty
     ) }}
-    {% for row in rows %}
-      <p>{{ components.button(labels.borrowers_open, href="/portfolios/" ~ row.id) }}</p>
-    {% endfor %}
   {% endcall %}
 {% endblock %}

@@ -24,7 +24,7 @@
         {% set memo = latest_memo %}
         {% include "screens/borrower/_memo.html" %}
       {% else %}
-        <section class="panel case-memo case-memo--empty"
+        <section class="panel case-memo case-memo--empty case-file__panel--wide"
                  id="case-memo"
                  aria-labelledby="case-memo-title"
                  aria-live="polite"
@@ -51,6 +51,9 @@
         {% call components.tab_strip(labels.sections_label) %}
           {{ components.tab("case-forecast", labels.forecast_title) }}
           {{ components.tab("case-covenants", labels.covenant_title) }}
+          {# Financials sits directly after the covenant position on purpose:
+             it is the answer to the question the covenant tab raises. #}
+          {{ components.tab("case-financials", labels.financials_title) }}
           {{ components.tab("case-signals", labels.signals_title) }}
           {{ components.tab("case-evidence", labels.evidence_title) }}
           {{ components.tab("case-documents", labels.documents_title) }}
@@ -59,6 +62,8 @@
         {% include "screens/borrower/_forecast.html" %}
 
         {% include "screens/borrower/_covenants.html" %}
+
+        {% include "screens/borrower/_financials.html" %}
 
         {% include "screens/borrower/_signals.html" %}
 

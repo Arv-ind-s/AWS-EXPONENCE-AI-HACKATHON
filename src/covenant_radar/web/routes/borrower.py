@@ -133,6 +133,40 @@ _LABELS = {
     # scroll. These name the controls that open them, the covenant switcher
     # above them, and the strip that selects between the evidence panels.
     "sections_label": "Case sections",
+    # The financials tab. Its wording carries one job the other tabs do not:
+    # keeping the covenanted figures (stored engine verdicts) and the
+    # uncovenanted indicators (computed context) unmistakably apart, so no
+    # reader can take an indicative ratio for a contractual position.
+    "financials_title": "Financials",
+    "financials_eyebrow": "Filed statements",
+    "financials_manage": "Statement imports",
+    "financials_empty_title": "No statements filed",
+    "financials_covenanted": "Covenanted ratios",
+    "financials_covenanted_note": (
+        "Every value, threshold, headroom and verdict below is read from the covenant test "
+        "the engine stored for that period. Nothing on this panel re-tests a covenant."
+    ),
+    "financials_context": "Indicative ratios — not covenanted",
+    "financials_context_note": (
+        "No covenant on this borrower tests these. They are computed from the same filed "
+        "lines using the standard library formula, as context for the covenants above, and "
+        "carry no contractual force."
+    ),
+    "financials_lines": "Filed statement lines",
+    "financials_lines_note": (
+        'Every ratio above is computed from these lines. "Feeds" names the covenant a '
+        "movement in that line lands on."
+    ),
+    "financials_line": "Line",
+    "financials_latest": "Latest",
+    "financials_headroom": "Headroom",
+    "financials_trend": "Trend",
+    "financials_audited": "audited",
+    "financials_feeds": "Feeds:",
+    "financials_formula": "Formula:",
+    "financials_what_moved": "What moved it:",
+    "financials_chart_key": "Dashed line is the threshold; the shaded band is the breaching side.",
+    "financials_no_threshold": "No threshold — this ratio is not covenanted.",
     "signals_title": "Seven signal families",
     "forecast_covenants_nav": "Covenants on this case",
     "forecast_open_explanations": "Explanations and provenance",

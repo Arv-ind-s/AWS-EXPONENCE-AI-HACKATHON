@@ -1,0 +1,556 @@
+/*
+  The borrower case file's financials tab.
+
+  Two rules drive every choice below and are worth stating once:
+
+  1. A covenanted ratio and an indicative one must never be confusable. The
+     covenanted cards carry a solid verdict-coloured edge and a verdict chip;
+     the indicative ones carry a dashed hairline, no risk colour anywhere,
+     and no chip. Risk colour on this screen means "the engine tested this
+     and reached this verdict" and nothing else.
+
+  2. Figures are compared down columns, so every number is tabular-nums in
+     the data face, and the line column stays put while the period columns
+     scroll — a reader who scrolls to the latest quarter and can no longer
+     see which line they are on is reading a grid of unlabelled numbers.
+
+  Token-only, per `tokens.css`. Both themes come from the tokens; nothing
+  here defines a colour of its own.
+*/
+
+.case-financials {
+  overflow: hidden;
+  background: var(--surface-raised);
+}
+
+.case-financials__heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-block-end: var(--space-5);
+}
+
+.case-financials__subtitle {
+  margin: var(--space-8) 0 var(--space-1);
+  color: var(--ink);
+  font-family: var(--font-head);
+  font-size: var(--size-body);
+  font-weight: var(--weight-bold);
+  letter-spacing: -0.01em;
+}
+
+.case-financials__subtitle:first-of-type {
+  margin-block-start: 0;
+}
+
+.case-financials__note {
+  max-width: 68ch;
+  margin: 0 0 var(--space-4);
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+  line-height: 1.5;
+}
+
+/* ---------------------------------------------------------------- ratios */
+
+.ratio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(19rem, 1fr));
+  gap: var(--space-4);
+}
+
+.ratio-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  min-width: 0;
+  padding: var(--space-4);
+  border: var(--border);
+  /*
+    The verdict edge. It is the card's only large colour field, which is
+    deliberate: a reader scanning three cards should be able to find the
+    breaching one without reading a word.
+  */
+  border-inline-start: var(--space-1) solid var(--signal);
+  border-radius: var(--radius-md);
+  background: var(--paper);
+  box-shadow: var(--shadow-sm);
+}
+
+.ratio-card[data-verdict="pass"] { border-inline-start-color: var(--headroom); }
+.ratio-card[data-verdict="warning"] { border-inline-start-color: var(--watch); }
+.ratio-card[data-verdict="breach"],
+.ratio-card[data-verdict="breach_cure_open"] { border-inline-start-color: var(--breach); }
+
+.ratio-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.ratio-card__identity { min-width: 0; }
+
+.ratio-card__name {
+  margin: 0;
+  color: var(--ink);
+  font-family: var(--font-head);
+  font-size: var(--size-body);
+  font-weight: var(--weight-semi);
+  overflow-wrap: anywhere;
+}
+
+.ratio-card__meta {
+  margin: var(--space-1) 0 0;
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+}
+
+.ratio-card__verdict {
+  flex: 0 0 auto;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  background: var(--signal-soft);
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semi);
+  white-space: nowrap;
+}
+
+.ratio-card__verdict[data-verdict="pass"] { background: var(--headroom-bg); color: var(--headroom); }
+.ratio-card__verdict[data-verdict="warning"] { background: var(--watch-bg); color: var(--watch); }
+.ratio-card__verdict[data-verdict="breach"],
+.ratio-card__verdict[data-verdict="breach_cure_open"] { background: var(--breach-bg); color: var(--breach); }
+
+.ratio-card__figures {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-6);
+}
+
+.ratio-card__figure {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.ratio-card__figure-label {
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.ratio-card__figure-value {
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: var(--size-case-title);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-bold);
+  line-height: 1.1;
+}
+
+.ratio-card__figure-value--secondary {
+  font-size: var(--size-section);
+  font-weight: var(--weight-semi);
+}
+
+.ratio-card__obligation {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+.ratio-card__chart {
+  margin: 0;
+}
+
+.ratio-card__chart figcaption {
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+/*
+  The period strip. Every filed period gets a cell, so the chart above is
+  never the only way to read a value — a chart without its figures beside it
+  is the pattern `spec §15.2` refuses everywhere else on this screen.
+*/
+.ratio-card__periods {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: var(--border-width);
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  list-style: none;
+}
+
+.ratio-card__period {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-1);
+  border-block-start: var(--border-strong);
+  text-align: center;
+}
+
+.ratio-card__period[data-verdict="warning"] { border-block-start-color: var(--watch); }
+.ratio-card__period[data-verdict="breach"],
+.ratio-card__period[data-verdict="breach_cure_open"] {
+  border-block-start-color: var(--breach);
+  background: var(--breach-bg);
+}
+
+.ratio-card__period-label {
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+}
+
+.ratio-card__period-value {
+  color: var(--ink);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--weight-semi);
+}
+
+/*
+  The attribution sentence — the reason this tab exists. It is set in the
+  editorial face and given a quiet ground so it reads as a finding rather
+  than as another figure in a card full of figures.
+*/
+.ratio-card__attribution {
+  margin: 0;
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+  background: var(--surface-subtle);
+  color: var(--ink);
+  font-family: var(--font-editorial);
+  font-size: var(--size-body);
+  line-height: 1.55;
+}
+
+.ratio-card__attribution-label {
+  display: block;
+  margin-block-end: var(--space-1);
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semi);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.ratio-card__formula {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+.ratio-card__formula code {
+  font-family: var(--font-data);
+  overflow-wrap: anywhere;
+}
+
+/* Indicative cards: no risk colour, and a dashed edge that says "not a term". */
+.ratio-card--context {
+  border: var(--border-width) dashed var(--hairline);
+  background: transparent;
+  box-shadow: none;
+}
+
+.ratio-card--context .ratio-card__figure-value {
+  font-size: var(--size-section);
+}
+
+/* -------------------------------------------------------- statement table */
+
+.statement-table {
+  position: relative;
+  border: var(--border);
+  border-radius: var(--radius-md);
+}
+
+/*
+  No gradient scroll-shadow here. The usual `background-attachment: local`
+  recipe assumes a table whose cells are transparent over the container's own
+  background; this one has a sticky first column painted on `--surface-raised`
+  and sticky header cells on `--surface-subtle`, so the shadow layer showed
+  through the body rows as a band down the full height of the table whether or
+  not anything was scrollable. The eight filed periods and the trend column
+  fit a desktop panel (`MAX_PERIODS`), and below that the native horizontal
+  scrollbar plus the pinned line column are the affordance.
+*/
+
+.statement-table .ledger-table__table {
+  font-variant-numeric: tabular-nums;
+}
+
+.statement-table th,
+.statement-table td {
+  padding: var(--space-3) var(--space-2);
+  border-block-end: var(--border);
+  vertical-align: top;
+}
+
+.statement-table thead th {
+  position: sticky;
+  inset-block-start: 0;
+  z-index: 1;
+  background: var(--surface-subtle);
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-semi);
+  letter-spacing: normal;
+  text-transform: none;
+  /*
+    The period label must not wrap; its date and audited mark stack beneath
+    it instead. Left on the shared `nowrap`, "30 Sep 2024 · audited" set the
+    column's minimum width and pushed the three most recent quarters off the
+    right edge of the panel.
+  */
+  white-space: normal;
+}
+
+/*
+  The line name stays visible while the period columns scroll. Without this
+  the table degrades into unlabelled columns the moment a reader reaches the
+  most recent quarter, which is the quarter they came to read.
+*/
+.statement-table__line-heading,
+.statement-row__line {
+  position: sticky;
+  inset-inline-start: 0;
+  z-index: 2;
+  min-width: 13rem;
+  max-width: 16rem;
+  background: var(--surface-raised);
+  text-align: start;
+}
+
+.statement-table thead .statement-table__line-heading {
+  z-index: 3;
+  background: var(--surface-subtle);
+}
+
+.statement-table__period {
+  text-align: end;
+}
+
+.statement-table__period--latest {
+  background: var(--accent-soft);
+  color: var(--ink);
+}
+
+.statement-table__period-label,
+.statement-table__period-detail {
+  display: block;
+}
+
+.statement-table__period-label { white-space: nowrap; }
+
+.statement-table__period-detail {
+  margin-block-start: var(--space-1);
+  font-weight: var(--weight-regular);
+  opacity: 0.75;
+}
+
+.statement-table__trend { text-align: center; }
+
+/*
+  `modern.css` styles every `th` in a ledger table as a column header —
+  uppercase, bold, letter-spaced, nowrap, on the subtle ground. That is right
+  for the period headers above and wrong for these row headers, which carry a
+  line name and two sentences of prose. Left inherited, the notes rendered in
+  full caps and refused to wrap, which is what forced the table wider than
+  its panel. Each property is reset explicitly rather than by shorthand so it
+  stays obvious which shared rule is being overridden and why.
+*/
+.statement-row__line {
+  font-family: var(--font-ui);
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+  text-transform: none;
+  white-space: normal;
+}
+
+.statement-row__label {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-head);
+  font-size: var(--size-data);
+  font-weight: var(--weight-semi);
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.statement-row__statement,
+.statement-row__note,
+.statement-row__feeds {
+  display: block;
+  margin-block-start: var(--space-1);
+  color: var(--ink-muted);
+  font-family: var(--font-ui);
+  font-size: var(--size-caption);
+  font-weight: var(--weight-regular);
+  letter-spacing: normal;
+  line-height: 1.4;
+  text-transform: none;
+  white-space: normal;
+}
+
+.statement-row__statement {
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+/* "Feeds: Leverage ratio" is the row's link to the covenant above it. */
+.statement-row__feeds {
+  color: var(--accent);
+  font-family: var(--font-data);
+}
+
+.statement-row__value {
+  font-family: var(--font-data);
+  text-align: end;
+  white-space: nowrap;
+}
+
+.statement-row__value--absent {
+  color: var(--ink-muted);
+  font-style: italic;
+}
+
+.statement-row__trend {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-width: 7.5rem;
+}
+
+.statement-row__spark {
+  display: block;
+  width: 100%;
+  max-width: 6.5rem;
+}
+
+.statement-row__change {
+  color: var(--ink-muted);
+  font-family: var(--font-data);
+  font-size: var(--size-caption);
+  white-space: nowrap;
+}
+
+/*
+  Tone is about *credit* direction, not arithmetic direction: rising finance
+  cost and falling EBITDA are both adverse, and both read red. This is the
+  one place on the panel where colour is applied to something the engine did
+  not test, so it is confined to this small chip and never to a value cell.
+*/
+.statement-row__change[data-tone="adverse"] { color: var(--breach); }
+.statement-row__change[data-tone="favourable"] { color: var(--headroom); }
+
+.statement-row[data-tone="adverse"] .series__line { stroke: var(--breach); }
+.statement-row[data-tone="adverse"] .series__area {
+  fill: color-mix(in oklab, var(--breach) 14%, transparent);
+}
+.statement-row[data-tone="favourable"] .series__line { stroke: var(--headroom); }
+.statement-row[data-tone="favourable"] .series__area {
+  fill: color-mix(in oklab, var(--headroom) 14%, transparent);
+}
+
+/* --------------------------------------------------------- series charts */
+
+.series__plot {
+  display: block;
+  width: 100%;
+  height: auto;
+  /*
+    The plot is stretched to its container, so a stroke scaled with it would
+    come out thicker horizontally than vertically. Non-scaling strokes keep
+    every line the width it was authored at, whatever box it lands in.
+  */
+  overflow: visible;
+}
+
+.ratio-card__chart .series__plot { min-height: 5rem; }
+
+.series__line {
+  fill: none;
+  stroke: var(--accent);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+  vector-effect: non-scaling-stroke;
+}
+
+.series__area {
+  fill: color-mix(in oklab, var(--accent) 12%, transparent);
+  stroke: none;
+}
+
+.series__threshold {
+  stroke: var(--ink-muted);
+  stroke-dasharray: 3 2;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.series__breach-zone {
+  fill: var(--breach);
+  opacity: 0.08;
+}
+
+.series__latest {
+  fill: var(--accent);
+  stroke: var(--surface-raised);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.series__breach {
+  fill: var(--breach);
+  stroke: var(--surface-raised);
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+.series-state--refused {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--size-caption);
+}
+
+/* ------------------------------------------------------------ responsive */
+
+@media (max-width: 60em) {
+  .ratio-grid { grid-template-columns: minmax(0, 1fr); }
+  .case-financials__heading { display: grid; }
+}
+
+@media (max-width: 40em) {
+  /*
+    Sticky columns need a viewport wide enough to leave something to scroll
+    *to*. Below this the line column would take most of the screen, so it
+    releases and the table scrolls as one.
+  */
+  .statement-table__line-heading,
+  .statement-row__line {
+    position: static;
+    min-width: 11rem;
+  }
+
+  .statement-row__note { display: none; }
+  .statement-row__trend { min-width: 6rem; }
+  .statement-row__spark { max-width: 5rem; }
+}

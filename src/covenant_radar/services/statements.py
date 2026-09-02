@@ -810,6 +810,41 @@ class StatementImportService:
         )
         return tuple(rows)
 
+    def list_import_mapping_names(self, principal: Principal) -> tuple[str, ...]:
+        """List the mapping names this screen can actually import against.
+
+        The import screen asked the operator to type this name from memory,
+        so a typo surfaced as "no active import mapping named ..." rather
+        than as a list of what does exist.  Gated on the same permission
+        the import itself needs; the mapping name is configuration, not
+        borrower data, so no portfolio scope applies.
+
+        Active is necessary but not sufficient: `import_mapping` also holds
+        rows whose spec is a provenance label rather than a parseable
+        `ImportMappingSpec` (a batch needs a `mapping_id` even when nothing
+        was mapped) and rows for non-statement sources.  Offering those
+        would only move the failure from a typo to a menu choice, so each
+        candidate's spec is parsed and only the usable ones are returned.
+        """
+        if not isinstance(principal, Principal):
+            raise AuthorizationError("An authenticated principal is required.")
+        authorize(principal, Permission.INGEST_FINANCIAL_STATEMENTS)
+        mappings = self.session.scalars(
+            select(ImportMapping)
+            .where(ImportMapping.is_active.is_(True))
+            .order_by(ImportMapping.name, ImportMapping.version.desc())
+        )
+        usable: list[str] = []
+        for mapping in mappings:
+            if mapping.name in usable:
+                continue
+            try:
+                parse_mapping_spec(mapping.spec, chart=self.chart)
+            except ValidationError:
+                continue
+            usable.append(mapping.name)
+        return tuple(usable)
+
     def trace_line_value(
         self,
         principal: Principal,

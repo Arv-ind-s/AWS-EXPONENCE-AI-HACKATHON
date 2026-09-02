@@ -1,0 +1,108 @@
+- generic [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f3e3]:
+    - complementary "Workspace navigation" [ref=f3e4]:
+      - link "Covenant Radar" [ref=f3e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e13]:
+          - strong [ref=f3e14]: Covenant
+          - generic [ref=f3e15]: Radar
+      - navigation "Primary navigation" [ref=f3e16]:
+        - region [ref=f3e17]:
+          - heading "Monitor" [level=2] [ref=f3e18]
+          - link "Portfolio queue" [ref=f3e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f3e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f3e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f3e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f3e31]: "0"
+          - link "Search" [ref=f3e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f3e37]:
+          - heading "Portfolio data" [level=2] [ref=f3e38]
+          - link "Borrowers" [ref=f3e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f3e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f3e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f3e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f3e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f3e61]:
+          - heading "Workflows" [level=2] [ref=f3e62]
+          - link "Intake" [ref=f3e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f3e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f3e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f3e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f3e79] [cursor=pointer]
+    - generic [ref=f3e83]:
+      - banner [ref=f3e84]:
+        - generic [ref=f3e86]:
+          - generic [ref=f3e87]: Workspace
+          - generic [ref=f3e90]: Current view
+        - search [ref=f3e91]:
+          - generic [ref=f3e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f3e93]
+          - generic: /
+        - generic [ref=f3e94]:
+          - button "Live activity" [ref=f3e95]:
+            - generic [ref=f3e97]: Live
+          - button "Use dark theme" [ref=f3e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f3e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f3e105] [cursor=pointer]
+      - main [ref=f3e109]:
+        - generic [ref=f3e111]:
+          - paragraph [ref=f3e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f3e113]
+        - generic [ref=f3e115]:
+          - status [ref=f3e116]: Document accepted. Review its extraction status before proposing clauses.
+          - generic [ref=f3e117]:
+            - heading "Upload a source document" [level=2] [ref=f3e118]
+            - generic [ref=f3e119]:
+              - generic [ref=f3e120]:
+                - generic [ref=f3e121]: Borrower reference *
+                - textbox "Borrower reference" [ref=f3e122]: B-000004
+              - generic [ref=f3e123]:
+                - generic [ref=f3e124]: Facility reference
+                - textbox "Facility reference" [ref=f3e125]
+              - generic [ref=f3e126]:
+                - generic [ref=f3e127]: Document type *
+                - combobox "Document type" [ref=f3e128]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f3e129]:
+                - generic [ref=f3e130]: Sanction letter or source document *
+                - button "Sanction letter or source document" [active] [ref=f3e131]
+              - button "Upload and extract" [ref=f3e132] [cursor=pointer]
+          - generic [ref=f3e133]:
+            - generic [ref=f3e134]:
+              - generic [ref=f3e135]:
+                - heading "Document processing" [level=2] [ref=f3e136]
+                - paragraph [ref=f3e137]: scanned-sanction-letter.pdf
+              - generic [ref=f3e138]: Text extraction is complete.
+            - progressbar "Text extraction is complete." [ref=f3e139]: 100%
+            - generic [ref=f3e140]:
+              - generic [ref=f3e141]:
+                - term [ref=f3e142]: Document type
+                - definition [ref=f3e143]: Sanction Letter
+              - generic [ref=f3e144]:
+                - term [ref=f3e145]: OCR
+                - definition [ref=f3e146]: OCR was applied.
+              - generic [ref=f3e147]:
+                - term [ref=f3e148]: Pages requiring review
+                - definition [ref=f3e149]: "0"
+              - generic [ref=f3e150]:
+                - term [ref=f3e151]: Pages
+                - definition [ref=f3e152]: "1"

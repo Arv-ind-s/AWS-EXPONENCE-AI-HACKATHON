@@ -287,6 +287,38 @@ def test_correction_stored_as_new_version_original_retained(tmp_path: Path) -> N
         fixture.close()
 
 
+def test_correction_accepts_browser_crlf_line_endings(tmp_path: Path) -> None:
+    """A browser submits textarea line breaks as CRLF; the correction must not be rejected."""
+
+    fixture = _Fixture(tmp_path)
+    try:
+        document = _extract_with_pipeline(
+            fixture,
+            _pipeline(_Recognizer(confidence=Decimal("0.7999"))),
+        )
+        submitted = "4.1 Interest Coverage Ratio\r\n\r\nNot less than 2.50 : 1.00."
+        corrected_page = fixture.service.correct_page(
+            Principal.user(
+                fixture.principal.id,
+                (
+                    Permission.VIEW_DOCUMENT,
+                    Permission.UPLOAD_DOCUMENT,
+                    Permission.CORRECT_SOURCE_DATA,
+                ),
+            ),
+            document.id,
+            1,
+            submitted,
+            expected_version=document.version,
+            scope=fixture.scope,
+        )
+        assert "\r" not in corrected_page.text
+        assert corrected_page.text == "4.1 Interest Coverage Ratio\n\nNot less than 2.50 : 1.00."
+        assert corrected_page.needs_review is False
+    finally:
+        fixture.close()
+
+
 def _mixed_pdf() -> bytes:
     reader = PdfReader(BytesIO(_fixture_pdf()))
     writer = PdfWriter()

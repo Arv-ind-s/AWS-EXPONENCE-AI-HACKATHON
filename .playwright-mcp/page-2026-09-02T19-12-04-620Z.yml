@@ -1,0 +1,270 @@
+- generic [active] [ref=f32e1]:
+  - link "Skip to content" [ref=f32e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f32e3]:
+    - complementary "Workspace navigation" [ref=f32e4]:
+      - link "Covenant Radar" [ref=f32e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f32e13]:
+          - strong [ref=f32e14]: Covenant
+          - generic [ref=f32e15]: Radar
+      - navigation "Primary navigation" [ref=f32e16]:
+        - region [ref=f32e17]:
+          - heading "Monitor" [level=2] [ref=f32e18]
+          - link "Portfolio queue" [ref=f32e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f32e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f32e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f32e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f32e31]: "0"
+          - link "Search" [ref=f32e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f32e37]:
+          - heading "Portfolio data" [level=2] [ref=f32e38]
+          - link "Borrowers" [ref=f32e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f32e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f32e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f32e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f32e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f32e61]:
+          - heading "Workflows" [level=2] [ref=f32e62]
+          - link "Intake" [ref=f32e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f32e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f32e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f32e75] [cursor=pointer]
+    - generic [ref=f32e79]:
+      - banner [ref=f32e80]:
+        - generic [ref=f32e82]:
+          - generic [ref=f32e83]: Workspace
+          - generic [ref=f32e86]: Current view
+        - search [ref=f32e87]:
+          - generic [ref=f32e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f32e89]
+          - generic: /
+        - generic [ref=f32e90]:
+          - button "Live activity" [ref=f32e91]:
+            - generic [ref=f32e93]: Live
+          - button "Use dark theme" [ref=f32e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f32e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f32e101] [cursor=pointer]
+      - main [ref=f32e105]:
+        - generic [ref=f32e107]:
+          - paragraph [ref=f32e108]: Decision workspace
+          - heading "Alderwyn Agri Supply Private Limited" [level=1] [ref=f32e109]
+        - generic [ref=f32e111]:
+          - region [ref=f32e112]:
+            - heading "Borrower facts" [level=2] [ref=f32e113]
+            - generic [ref=f32e114]:
+              - paragraph [ref=f32e115]: "Borrower reference: B-000001"
+              - generic "Borrower facts" [ref=f32e116]:
+                - generic [ref=f32e117]:
+                  - generic [ref=f32e118]: Borrower
+                  - generic [ref=f32e119]: Alderwyn Agri Supply Private Limited
+                - generic [ref=f32e120]:
+                  - generic [ref=f32e121]: Exposure
+                  - generic [ref=f32e122]: ₹258.81 crore
+                - generic [ref=f32e123]:
+                  - generic [ref=f32e124]: Worst covenant
+                  - generic [ref=f32e125]: Leverage ratio ≤ 3x
+                - generic [ref=f32e126]:
+                  - generic [ref=f32e127]: Dated risk
+                  - generic [ref=f32e128]: No projected crossing in the stored horizon; toward the maximum threshold.
+          - generic [ref=f32e129]:
+            - region [ref=f32e130]:
+              - heading "Case actions" [level=2] [ref=f32e131]
+              - link "Why this decision" [ref=f32e134] [cursor=pointer]:
+                - /url: /why/borrower/018c9eeb-c221-7518-ae04-8feb51599c3b
+            - region [ref=f32e135]:
+              - heading "AI-generated explanation" [level=2] [ref=f32e136]
+              - paragraph [ref=f32e137]: Drafted by model
+              - region [ref=f32e138]:
+                - heading "AI explanation provenance" [level=3] [ref=f32e139]
+                - generic [ref=f32e140]:
+                  - generic [ref=f32e141]:
+                    - term [ref=f32e142]: Provider
+                    - definition [ref=f32e143]: Covenant Radar AI
+                  - generic [ref=f32e144]:
+                    - term [ref=f32e145]: Model
+                    - definition [ref=f32e146]: genailab-maas-gpt-5.4-mini
+                  - generic [ref=f32e147]:
+                    - term [ref=f32e148]: Prompt
+                    - definition [ref=f32e149]: v2
+                  - generic [ref=f32e150]:
+                    - term [ref=f32e151]: Grounding checks
+                    - definition [ref=f32e152]: Passed
+              - article "Drafted by model" [ref=f32e153]:
+                - 'heading "Leverage ratio covenant: current value 1.76 against contractual threshold 3, with projected breach probability 0.2262" [level=3] [ref=f32e154]'
+                - paragraph [ref=f32e155]: The recorded evidence shows a leverage ratio current value of 1.76 versus a contractual threshold of 3, leaving headroom of 41.3333. Projected breach probability is 0.2262 with confidence 1, and no projected crossing date is available from the recorded evidence. No simulations are recorded for this borrower, and the evidence counts are 0 across all listed sources.
+                - heading "Drivers cited" [level=4] [ref=f32e156]
+                - list [ref=f32e157]:
+                  - listitem [ref=f32e158]: distance
+                  - listitem [ref=f32e159]: other
+                - heading "Recommended actions" [level=4] [ref=f32e160]
+                - table [ref=f32e161]:
+                  - caption [ref=f32e162]: Recommended actions
+                  - rowgroup [ref=f32e163]:
+                    - row [ref=f32e164]:
+                      - columnheader "Action" [ref=f32e165]
+                      - columnheader "Owning role" [ref=f32e166]
+                      - columnheader "Detail" [ref=f32e167]
+                  - rowgroup [ref=f32e168]:
+                    - row [ref=f32e169]:
+                      - cell "CREDIT-REDUCE-EXPOSURE" [ref=f32e170]
+                      - cell "credit" [ref=f32e171]
+                      - cell "Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f32e172]
+                    - row [ref=f32e173]:
+                      - cell "RISK-REVIEW-THRESHOLD" [ref=f32e174]
+                      - cell "risk" [ref=f32e175]
+                      - cell "Review the covenant threshold against the executed facility documents." [ref=f32e176]
+                - heading "Recommended next step" [level=4] [ref=f32e177]
+                - paragraph [ref=f32e178]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                - paragraph [ref=f32e179]: human credit review is required before action
+              - region [ref=f32e180]:
+                - heading "Grounding citations" [level=3] [ref=f32e181]
+                - paragraph [ref=f32e182]: The model connected these stored facts into prose; it did not calculate the prediction or create new source records.
+                - list [ref=f32e183]:
+                  - listitem [ref=f32e184]:
+                    - link "Forecast — 01a0627b-fc96-77d0-b28d-13efffdd699d" [ref=f32e185] [cursor=pointer]:
+                      - /url: /why/forecast/01a0627b-fc96-77d0-b28d-13efffdd699d
+                  - listitem [ref=f32e186]: Forecast driver — 01a0627b-fcdc-7b34-8799-e19d306e177d
+                  - listitem [ref=f32e187]: Forecast driver — 01a0627b-fcdc-7b35-bb53-71f7e671da15
+                  - listitem [ref=f32e188]:
+                    - link "Evidence item — 01a0627b-facc-7df0-a415-a895e13a2247" [ref=f32e189] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df0-a415-a895e13a2247"
+                  - listitem [ref=f32e190]:
+                    - link "Evidence item — 01a0627b-facc-7df4-a9fe-223edbdb5dd6" [ref=f32e191] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df4-a9fe-223edbdb5dd6"
+                  - listitem [ref=f32e192]:
+                    - link "Evidence item — 01a0627b-facc-7df5-a369-768294d98810" [ref=f32e193] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df5-a369-768294d98810"
+                  - listitem [ref=f32e194]:
+                    - link "Evidence item — 01a0627b-facc-7df6-80c5-b49c8a82b5c7" [ref=f32e195] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df6-80c5-b49c8a82b5c7"
+                  - listitem [ref=f32e196]:
+                    - link "Evidence item — 01a0627b-facc-7df1-9544-61621f8fc5db" [ref=f32e197] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df1-9544-61621f8fc5db"
+                  - listitem [ref=f32e198]:
+                    - link "Evidence item — 01a0627b-facc-7df3-bae1-47f368919e52" [ref=f32e199] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df3-bae1-47f368919e52"
+                  - listitem [ref=f32e200]:
+                    - link "Evidence item — 01a0627b-facc-7df2-9d9d-5ca43b703764" [ref=f32e201] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-facc-7df2-9d9d-5ca43b703764"
+                  - listitem [ref=f32e202]: Bank action catalogue — 01a0627b-c548-7a12-b6a4-ebe4a63ce724
+                  - listitem [ref=f32e203]: Bank action catalogue — 01a0627b-c548-7a13-95c8-7191f0472adb
+              - paragraph [ref=f32e204]: Memo reference 01a06284-b74a-75eb-b4d4-5c7ec374cfa4
+            - generic [ref=f32e205]:
+              - tablist "Case sections" [ref=f32e206]:
+                - tab "Forecast trajectory" [selected] [ref=f32e207] [cursor=pointer]
+                - tab "Covenant position" [ref=f32e209] [cursor=pointer]
+                - tab "Financials" [ref=f32e211] [cursor=pointer]
+                - tab "Seven signal families" [ref=f32e213] [cursor=pointer]
+                - tab "Evidence" [ref=f32e215] [cursor=pointer]
+                - tab "Source documents" [ref=f32e217] [cursor=pointer]
+              - tabpanel "Forecast trajectory" [ref=f32e219]:
+                - generic [ref=f32e220]:
+                  - heading "Forecast trajectory" [level=2] [ref=f32e221]
+                  - link "Why this forecast?" [ref=f32e222] [cursor=pointer]:
+                    - /url: /why/borrower/018c9eeb-c221-7518-ae04-8feb51599c3b
+                - generic [ref=f32e223]:
+                  - tablist "Covenants on this case" [ref=f32e224]:
+                    - tab "Interest coverage ratio D01COV" [selected] [ref=f32e225] [cursor=pointer]:
+                      - generic [ref=f32e226]: Interest coverage ratio
+                      - generic [ref=f32e227]: D01COV
+                    - tab "Leverage ratio D01LEV" [ref=f32e228] [cursor=pointer]:
+                      - generic [ref=f32e229]: Leverage ratio
+                      - generic [ref=f32e230]: D01LEV
+                    - tab "Current ratio D01LIQ" [ref=f32e231] [cursor=pointer]:
+                      - generic [ref=f32e232]: Current ratio
+                      - generic [ref=f32e233]: D01LIQ
+                  - tabpanel "Interest coverage ratio D01COV" [ref=f32e234]:
+                    - generic [ref=f32e235]:
+                      - heading "Interest coverage ratio" [level=3] [ref=f32e236]
+                      - paragraph [ref=f32e237]: D01COV · F-000001-01
+                    - generic [ref=f32e238]:
+                      - generic [ref=f32e239]:
+                        - heading "Horizon" [level=4] [ref=f32e240]
+                        - paragraph [ref=f32e241]:
+                          - text: "Selected day:"
+                          - status [ref=f32e242]: "0"
+                      - generic [ref=f32e243]:
+                        - generic [ref=f32e244]: Move through stored days
+                        - slider "Move through stored days" [ref=f32e245]: "0"
+                      - status [ref=f32e246]: Stored forecast day 0 loaded.
+                      - generic [ref=f32e247]:
+                        - generic [ref=f32e248]:
+                          - term [ref=f32e249]: Projected value
+                          - definition [ref=f32e250]: 3.22x
+                        - generic [ref=f32e251]:
+                          - term [ref=f32e252]: Headroom
+                          - definition [ref=f32e253]: 114.6667%
+                        - generic [ref=f32e254]:
+                          - term [ref=f32e255]: Probability
+                          - definition [ref=f32e256]: 18%
+                        - generic [ref=f32e257]:
+                          - term [ref=f32e258]: Confidence
+                          - definition [ref=f32e259]: 100%
+                        - generic [ref=f32e260]:
+                          - term [ref=f32e261]: Crossing
+                          - definition [ref=f32e262]: No projected crossing in the stored horizon; toward the minimum threshold.
+                      - generic [ref=f32e263]:
+                        - heading "Drivers at selected day" [level=5] [ref=f32e264]
+                        - list [ref=f32e265]:
+                          - listitem [ref=f32e266]: distance (100%)
+                    - generic [ref=f32e267]:
+                      - table [ref=f32e269]:
+                        - caption [ref=f32e270]: Forecast figures
+                        - rowgroup [ref=f32e271]:
+                          - row [ref=f32e272]:
+                            - columnheader "Horizon" [ref=f32e273]
+                            - columnheader "Probability" [ref=f32e274]
+                            - columnheader "Confidence" [ref=f32e275]
+                            - columnheader "Crossing" [ref=f32e276]
+                            - columnheader "Decision method" [ref=f32e277]
+                        - rowgroup [ref=f32e278]:
+                          - row [ref=f32e279]:
+                            - rowheader "30-day" [ref=f32e280]
+                            - cell "18%" [ref=f32e281]
+                            - cell "100%" [ref=f32e282]
+                            - cell [ref=f32e283]:
+                              - text: "No projected crossing in 30 days; direction: toward the minimum threshold."
+                              - link "Why?" [ref=f32e284] [cursor=pointer]:
+                                - /url: /why/forecast/01a0627b-fced-756e-aa31-08a644768d18
+                            - cell "Deterministic rule with ML challenger" [ref=f32e285]
+                          - row [ref=f32e286]:
+                            - rowheader "60-day" [ref=f32e287]
+                            - cell "18%" [ref=f32e288]
+                            - cell "100%" [ref=f32e289]
+                            - cell [ref=f32e290]:
+                              - text: "No projected crossing in 60 days; direction: toward the minimum threshold."
+                              - link "Why?" [ref=f32e291] [cursor=pointer]:
+                                - /url: /why/forecast/01a0627b-fcf2-7a6f-a977-cfcace444e47
+                            - cell "Deterministic rule with ML challenger" [ref=f32e292]
+                          - row [ref=f32e293]:
+                            - rowheader "90-day" [ref=f32e294]
+                            - cell "18%" [ref=f32e295]
+                            - cell "100%" [ref=f32e296]
+                            - cell [ref=f32e297]:
+                              - text: "No projected crossing in 90 days; direction: toward the minimum threshold."
+                              - link "Why?" [ref=f32e298] [cursor=pointer]:
+                                - /url: /why/forecast/01a0627b-fd05-70a9-be3e-70e27d14cdd9
+                            - cell "Deterministic rule with ML challenger" [ref=f32e299]
+                      - generic [ref=f32e300]:
+                        - figure "Stored daily trajectory" [ref=f32e301]:
+                          - img "Interest coverage ratio trajectory" [ref=f32e303]:
+                            - generic [ref=f32e304]: 30d
+                            - generic [ref=f32e305]: 60d
+                        - paragraph [ref=f32e308]: Stored daily path rendered.
+                    - generic [ref=f32e309]:
+                      - button "Explanations and provenance" [ref=f32e310] [cursor=pointer]
+                      - button "Actionable insights (2)" [ref=f32e311] [cursor=pointer]
+              - text: →

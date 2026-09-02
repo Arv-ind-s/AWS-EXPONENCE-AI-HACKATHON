@@ -1,0 +1,150 @@
+- generic [ref=f2e1]:
+  - link "Skip to content" [ref=f2e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f2e3]:
+    - complementary "Workspace navigation" [ref=f2e4]:
+      - link "Covenant Radar" [ref=f2e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f2e13]:
+          - strong [ref=f2e14]: Covenant
+          - generic [ref=f2e15]: Radar
+      - navigation "Primary navigation" [ref=f2e16]:
+        - region [ref=f2e17]:
+          - heading "Monitor" [level=2] [ref=f2e18]
+          - link "Portfolio queue" [ref=f2e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f2e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f2e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f2e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f2e31]: "0"
+          - link "Search" [ref=f2e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f2e37]:
+          - heading "Portfolio data" [level=2] [ref=f2e38]
+          - link "Borrowers" [ref=f2e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f2e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f2e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f2e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f2e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f2e61]:
+          - heading "Workflows" [level=2] [ref=f2e62]
+          - link "Intake" [ref=f2e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f2e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f2e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f2e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f2e79] [cursor=pointer]
+    - generic [ref=f2e83]:
+      - banner [ref=f2e84]:
+        - generic [ref=f2e86]:
+          - generic [ref=f2e87]: Workspace
+          - generic [ref=f2e90]: Current view
+        - search [ref=f2e91]:
+          - generic [ref=f2e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f2e93]
+          - generic: /
+        - generic [ref=f2e94]:
+          - button "Live activity" [ref=f2e95]:
+            - generic [ref=f2e97]: Live
+          - button "Use dark theme" [ref=f2e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f2e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f2e105] [cursor=pointer]
+      - main [ref=f2e109]:
+        - generic [ref=f2e111]:
+          - paragraph [ref=f2e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f2e113]
+        - generic [ref=f2e115]:
+          - generic [ref=f2e116]:
+            - heading "Upload a source document" [level=2] [ref=f2e117]
+            - generic [ref=f2e118]:
+              - generic [ref=f2e119]:
+                - generic [ref=f2e120]: Borrower reference *
+                - textbox "Borrower reference" [ref=f2e121]: B-000004
+              - generic [ref=f2e122]:
+                - generic [ref=f2e123]: Facility reference
+                - textbox "Facility reference" [ref=f2e124]
+              - generic [ref=f2e125]:
+                - generic [ref=f2e126]: Document type *
+                - combobox "Document type" [ref=f2e127]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f2e128]:
+                - generic [ref=f2e129]: Sanction letter or source document *
+                - button "Sanction letter or source document" [active] [ref=f2e130]
+              - button "Upload and extract" [ref=f2e131] [cursor=pointer]
+          - generic [ref=f2e132]:
+            - heading "Enter covenant clause" [level=2] [ref=f2e133]
+            - paragraph [ref=f2e134]: Enter the clause and its fields. The same code verifications will run before anything can be confirmed.
+            - generic [ref=f2e135]:
+              - generic [ref=f2e136]:
+                - generic [ref=f2e137]: Facility reference *
+                - textbox "Facility reference" [ref=f2e138]
+              - generic [ref=f2e139]:
+                - generic [ref=f2e140]: Source text *
+                - textbox "Source text" [ref=f2e141]
+              - generic [ref=f2e142]:
+                - generic [ref=f2e143]:
+                  - generic [ref=f2e144]: Definition
+                  - textbox "Definition" [ref=f2e145]
+                - generic [ref=f2e146]:
+                  - generic [ref=f2e147]: Custom formula
+                  - textbox "Custom formula" [ref=f2e148]
+                - generic [ref=f2e149]:
+                  - generic [ref=f2e150]: Threshold
+                  - textbox "Threshold" [ref=f2e151]
+                - generic [ref=f2e152]:
+                  - generic [ref=f2e153]: Direction
+                  - combobox "Direction" [ref=f2e154]:
+                    - option "Not supplied" [selected]
+                    - option "Above"
+                    - option "Below"
+                - generic [ref=f2e155]:
+                  - generic [ref=f2e156]: Unit
+                  - combobox "Unit" [ref=f2e157]:
+                    - option "Not supplied" [selected]
+                    - option "Ratio"
+                    - option "Percent"
+                    - option "Currency"
+                    - option "Days"
+                    - option "Count"
+                - generic [ref=f2e158]:
+                  - generic [ref=f2e159]: Currency
+                  - textbox "Currency" [ref=f2e160]
+                - generic [ref=f2e161]:
+                  - generic [ref=f2e162]: Testing frequency
+                  - combobox "Testing frequency" [ref=f2e163]:
+                    - option "Not supplied" [selected]
+                    - option "Monthly"
+                    - option "Quarterly"
+                    - option "Half yearly"
+                    - option "Yearly"
+                    - option "Event driven"
+                - generic [ref=f2e164]:
+                  - generic [ref=f2e165]: Effective from
+                  - textbox "Effective from" [ref=f2e166]
+                - generic [ref=f2e167]:
+                  - generic [ref=f2e168]: Effective to
+                  - textbox "Effective to" [ref=f2e169]
+                - generic [ref=f2e170]:
+                  - generic [ref=f2e171]: Exceptions
+                  - textbox "Exceptions" [ref=f2e172]
+                - generic [ref=f2e173]:
+                  - generic [ref=f2e174]: Cure period (days)
+                  - spinbutton "Cure period (days)" [ref=f2e175]
+                - generic [ref=f2e176]:
+                  - generic [ref=f2e177]: Source quote
+                  - textbox "Source quote" [ref=f2e178]
+              - button "Verify clause" [ref=f2e179] [cursor=pointer]

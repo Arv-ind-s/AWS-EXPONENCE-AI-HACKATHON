@@ -27,6 +27,9 @@
     {% if live_workspace_enabled %}<link rel="stylesheet" href="/static/css/live-workspace.css">{% endif %}
     {% block head %}{% endblock %}
     <link rel="stylesheet" href="/static/css/modern.css">
+    {# After modern.css: the financials tab's tables and charts layer over the
+       shared ledger and trajectory rules rather than replacing them. #}
+    <link rel="stylesheet" href="/static/css/financials.css">
     <link rel="stylesheet" href="/static/css/print.css" media="print">
   </head>
   <body class="{% if principal %}app-shell{% else %}auth-shell{% endif %}">
