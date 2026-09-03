@@ -1,0 +1,2 @@
+[     326ms] [VERBOSE] [DOM] Password forms should have (optionally hidden) username fields for accessibility: (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a0627b-df67-79a1-b60d-f5e4803d8c02:0
+[     326ms] [VERBOSE] [DOM] Input elements should have autocomplete attributes (suggested: "username"): (More info: https://goo.gl/9p2vKq) %o @ http://127.0.0.1:8000/admin/users/01a0627b-df67-79a1-b60d-f5e4803d8c02:0

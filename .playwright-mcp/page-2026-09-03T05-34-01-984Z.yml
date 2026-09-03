@@ -1,0 +1,521 @@
+- generic [active] [ref=f11e1]:
+  - link "Skip to content" [ref=f11e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f11e3]:
+    - complementary "Workspace navigation" [ref=f11e4]:
+      - link "Covenant Radar" [ref=f11e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f11e13]:
+          - strong [ref=f11e14]: Covenant
+          - generic [ref=f11e15]: Radar
+      - navigation "Primary navigation" [ref=f11e16]:
+        - region [ref=f11e17]:
+          - heading "Monitor" [level=2] [ref=f11e18]
+          - link "Portfolio queue" [ref=f11e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f11e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f11e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f11e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f11e31]: "9"
+          - link "Search" [ref=f11e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f11e37]:
+          - heading "Portfolio data" [level=2] [ref=f11e38]
+          - link "Borrowers" [ref=f11e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f11e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f11e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f11e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f11e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f11e61]:
+          - heading "Workflows" [level=2] [ref=f11e62]
+          - link "Document review" [ref=f11e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f11e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f11e71] [cursor=pointer]
+    - generic [ref=f11e75]:
+      - banner [ref=f11e76]:
+        - generic [ref=f11e78]:
+          - generic [ref=f11e79]: Workspace
+          - generic [ref=f11e82]: Facilities
+        - search [ref=f11e83]:
+          - generic [ref=f11e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f11e85]
+          - generic: /
+        - generic [ref=f11e86]:
+          - button "Live activity" [ref=f11e87]:
+            - generic [ref=f11e89]: Live
+          - button "Use dark theme" [ref=f11e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f11e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f11e97] [cursor=pointer]
+      - main [ref=f11e101]:
+        - generic [ref=f11e102]:
+          - generic [ref=f11e103]:
+            - paragraph [ref=f11e104]: Decision workspace
+            - heading "Facility master data" [level=1] [ref=f11e105]
+          - link "Book insights" [ref=f11e107] [cursor=pointer]:
+            - /url: /facilities/insights
+        - generic [ref=f11e108]:
+          - generic [ref=f11e109]:
+            - generic [ref=f11e110]:
+              - generic [ref=f11e111]:
+                - generic [ref=f11e112]: Search facilities
+                - searchbox "Search facilities" [ref=f11e113]
+              - generic [ref=f11e114]:
+                - generic [ref=f11e115]: Facility type
+                - combobox "Facility type" [ref=f11e116]:
+                  - option "All facility types" [selected]
+                  - option "Cash credit"
+                  - option "Term loan"
+              - generic [ref=f11e117]:
+                - generic [ref=f11e118]: Currency
+                - combobox "Currency" [ref=f11e119]:
+                  - option "All currencies" [selected]
+                  - option "INR"
+              - generic [ref=f11e120]:
+                - generic [ref=f11e121]: Version status
+                - combobox "Version status" [ref=f11e122]:
+                  - option "Current versions" [selected]
+                  - option "Superseded versions"
+                  - option "All versions"
+            - button "Apply filters" [ref=f11e124] [cursor=pointer]
+          - generic [ref=f11e126]:
+            - paragraph [ref=f11e127]:
+              - generic [ref=f11e128]: Showing 1–28 of 28 facilities
+              - generic [ref=f11e129]: Amounts in ₹ crore
+            - table [ref=f11e131]:
+              - caption [ref=f11e132]: Facility master data
+              - rowgroup [ref=f11e133]:
+                - row [ref=f11e134]:
+                  - columnheader "Reference" [ref=f11e135]
+                  - columnheader "Borrower" [ref=f11e136]
+                  - columnheader "Facility type" [ref=f11e137]
+                  - columnheader "Sanctioned limit" [ref=f11e138]
+                  - columnheader "Outstanding" [ref=f11e139]
+                  - columnheader "Utilisation" [ref=f11e140]
+                  - columnheader "Maturity date" [ref=f11e141]
+                  - columnheader "Version status" [ref=f11e142]
+              - rowgroup [ref=f11e143]:
+                - row [ref=f11e144]:
+                  - cell [ref=f11e145]:
+                    - link "F-000001-01" [ref=f11e146] [cursor=pointer]:
+                      - /url: /facilities/F-000001-01
+                  - cell "B-000001 Alderwyn Agri Supply Private Limited" [ref=f11e147]:
+                    - link "B-000001" [ref=f11e148] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                    - generic [ref=f11e149]: Alderwyn Agri Supply Private Limited
+                  - cell "Cash credit" [ref=f11e150]
+                  - cell "490.36" [ref=f11e151]
+                  - cell "258.81" [ref=f11e152]
+                  - cell "52.8%" [ref=f11e153]
+                  - cell "31 Mar 2025 matured 521 days ago" [ref=f11e155]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f11e156]: matured 521 days ago
+                  - cell "Current" [ref=f11e157]
+                - row [ref=f11e159]:
+                  - cell [ref=f11e160]:
+                    - link "F-000002-01" [ref=f11e161] [cursor=pointer]:
+                      - /url: /facilities/F-000002-01
+                  - cell "B-000002 Amberwick Mineral Resources Private Limited" [ref=f11e162]:
+                    - link "B-000002" [ref=f11e163] [cursor=pointer]:
+                      - /url: /borrowers/B-000002/master-data
+                    - generic [ref=f11e164]: Amberwick Mineral Resources Private Limited
+                  - cell "Cash credit" [ref=f11e165]
+                  - cell "133.15" [ref=f11e166]
+                  - cell "71.58" [ref=f11e167]
+                  - cell "53.8%" [ref=f11e168]
+                  - cell "31 Mar 2026 matured 156 days ago" [ref=f11e170]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f11e171]: matured 156 days ago
+                  - cell "Current" [ref=f11e172]
+                - row [ref=f11e174]:
+                  - cell [ref=f11e175]:
+                    - link "F-000003-01" [ref=f11e176] [cursor=pointer]:
+                      - /url: /facilities/F-000003-01
+                  - cell "B-000003 Anviora Food Products Private Limited" [ref=f11e177]:
+                    - link "B-000003" [ref=f11e178] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                    - generic [ref=f11e179]: Anviora Food Products Private Limited
+                  - cell "Cash credit" [ref=f11e180]
+                  - cell "364.93" [ref=f11e181]
+                  - cell "272.97" [ref=f11e182]
+                  - cell "74.8%" [ref=f11e183]
+                  - cell "31 Mar 2027" [ref=f11e185]
+                  - cell "Current" [ref=f11e186]
+                - row [ref=f11e188]:
+                  - cell [ref=f11e189]:
+                    - link "F-000004-01" [ref=f11e190] [cursor=pointer]:
+                      - /url: /facilities/F-000004-01
+                  - cell "B-000004 Arclume Textile Mills Private Limited" [ref=f11e191]:
+                    - link "B-000004" [ref=f11e192] [cursor=pointer]:
+                      - /url: /borrowers/B-000004/master-data
+                    - generic [ref=f11e193]: Arclume Textile Mills Private Limited
+                  - cell "Cash credit" [ref=f11e194]
+                  - cell "473.60" [ref=f11e195]
+                  - cell "251.96" [ref=f11e196]
+                  - cell "53.2%" [ref=f11e197]
+                  - cell "31 Mar 2028" [ref=f11e199]
+                  - cell "Current" [ref=f11e200]
+                - row [ref=f11e202]:
+                  - cell [ref=f11e203]:
+                    - link "F-000004-02" [ref=f11e204] [cursor=pointer]:
+                      - /url: /facilities/F-000004-02
+                  - cell "B-000004 Arclume Textile Mills Private Limited" [ref=f11e205]:
+                    - link "B-000004" [ref=f11e206] [cursor=pointer]:
+                      - /url: /borrowers/B-000004/master-data
+                    - generic [ref=f11e207]: Arclume Textile Mills Private Limited
+                  - cell "Term loan" [ref=f11e208]
+                  - cell "103.68" [ref=f11e209]
+                  - cell "87.24" [ref=f11e210]
+                  - cell "84.1%" [ref=f11e211]
+                  - cell "31 Mar 2029" [ref=f11e213]
+                  - cell "Current" [ref=f11e214]
+                - row [ref=f11e216]:
+                  - cell [ref=f11e217]:
+                    - link "F-000005-01" [ref=f11e218] [cursor=pointer]:
+                      - /url: /facilities/F-000005-01
+                  - cell "B-000005 Ardentia Specialty Chemicals Private Limited" [ref=f11e219]:
+                    - link "B-000005" [ref=f11e220] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                    - generic [ref=f11e221]: Ardentia Specialty Chemicals Private Limited
+                  - cell "Cash credit" [ref=f11e222]
+                  - cell "148.37" [ref=f11e223]
+                  - cell "112.53" [ref=f11e224]
+                  - cell "75.8%" [ref=f11e225]
+                  - cell "31 Mar 2029" [ref=f11e227]
+                  - cell "Current" [ref=f11e228]
+                - row [ref=f11e230]:
+                  - cell [ref=f11e231]:
+                    - link "F-000006-01" [ref=f11e232] [cursor=pointer]:
+                      - /url: /facilities/F-000006-01
+                  - cell "B-000006 Arkenvale Life Sciences Private Limited" [ref=f11e233]:
+                    - link "B-000006" [ref=f11e234] [cursor=pointer]:
+                      - /url: /borrowers/B-000006/master-data
+                    - generic [ref=f11e235]: Arkenvale Life Sciences Private Limited
+                  - cell "Cash credit" [ref=f11e236]
+                  - cell "149.89" [ref=f11e237]
+                  - cell "95.39" [ref=f11e238]
+                  - cell "63.6%" [ref=f11e239]
+                  - cell "31 Mar 2030" [ref=f11e241]
+                  - cell "Current" [ref=f11e242]
+                - row [ref=f11e244]:
+                  - cell [ref=f11e245]:
+                    - link "F-000007-01" [ref=f11e246] [cursor=pointer]:
+                      - /url: /facilities/F-000007-01
+                  - cell "B-000007 Ashmere Metalworks Private Limited" [ref=f11e247]:
+                    - link "B-000007" [ref=f11e248] [cursor=pointer]:
+                      - /url: /borrowers/B-000007/master-data
+                    - generic [ref=f11e249]: Ashmere Metalworks Private Limited
+                  - cell "Cash credit" [ref=f11e250]
+                  - cell "380.55" [ref=f11e251]
+                  - cell "241.58" [ref=f11e252]
+                  - cell "63.5%" [ref=f11e253]
+                  - cell "31 Mar 2024 matured 886 days ago" [ref=f11e255]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f11e256]: matured 886 days ago
+                  - cell "Current" [ref=f11e257]
+                - row [ref=f11e259]:
+                  - cell [ref=f11e260]:
+                    - link "F-000008-01" [ref=f11e261] [cursor=pointer]:
+                      - /url: /facilities/F-000008-01
+                  - cell "B-000008 Avenrock Precision Engineering Private Limited" [ref=f11e262]:
+                    - link "B-000008" [ref=f11e263] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                    - generic [ref=f11e264]: Avenrock Precision Engineering Private Limited
+                  - cell "Cash credit" [ref=f11e265]
+                  - cell "216.23" [ref=f11e266]
+                  - cell "99.25" [ref=f11e267]
+                  - cell "45.9%" [ref=f11e268]
+                  - cell "31 Mar 2025 matured 521 days ago" [ref=f11e270]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f11e271]: matured 521 days ago
+                  - cell "Current" [ref=f11e272]
+                - row [ref=f11e274]:
+                  - cell [ref=f11e275]:
+                    - link "F-000009-01" [ref=f11e276] [cursor=pointer]:
+                      - /url: /facilities/F-000009-01
+                  - cell "B-000009 Bellora Mobility Components Private Limited" [ref=f11e277]:
+                    - link "B-000009" [ref=f11e278] [cursor=pointer]:
+                      - /url: /borrowers/B-000009/master-data
+                    - generic [ref=f11e279]: Bellora Mobility Components Private Limited
+                  - cell "Cash credit" [ref=f11e280]
+                  - cell "229.74" [ref=f11e281]
+                  - cell "91.37" [ref=f11e282]
+                  - cell "39.8%" [ref=f11e283]
+                  - cell "31 Mar 2026 matured 156 days ago" [ref=f11e285]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f11e286]: matured 156 days ago
+                  - cell "Current" [ref=f11e287]
+                - row [ref=f11e289]:
+                  - cell [ref=f11e290]:
+                    - link "F-000010-01" [ref=f11e291] [cursor=pointer]:
+                      - /url: /facilities/F-000010-01
+                  - cell "B-000010 Bluehaven Power Systems Private Limited" [ref=f11e292]:
+                    - link "B-000010" [ref=f11e293] [cursor=pointer]:
+                      - /url: /borrowers/B-000010/master-data
+                    - generic [ref=f11e294]: Bluehaven Power Systems Private Limited
+                  - cell "Cash credit" [ref=f11e295]
+                  - cell "188.24" [ref=f11e296]
+                  - cell "73.71" [ref=f11e297]
+                  - cell "39.2%" [ref=f11e298]
+                  - cell "31 Mar 2027" [ref=f11e300]
+                  - cell "Current" [ref=f11e301]
+                - row [ref=f11e303]:
+                  - cell [ref=f11e304]:
+                    - link "F-000011-01" [ref=f11e305] [cursor=pointer]:
+                      - /url: /facilities/F-000011-01
+                  - cell "B-000011 Brambletide Water Infrastructure Private Limited" [ref=f11e306]:
+                    - link "B-000011" [ref=f11e307] [cursor=pointer]:
+                      - /url: /borrowers/B-000011/master-data
+                    - generic [ref=f11e308]: Brambletide Water Infrastructure Private Limited
+                  - cell "Cash credit" [ref=f11e309]
+                  - cell "254.62" [ref=f11e310]
+                  - cell "147.58" [ref=f11e311]
+                  - cell "58.0%" [ref=f11e312]
+                  - cell "31 Mar 2028" [ref=f11e314]
+                  - cell "Current" [ref=f11e315]
+                - row [ref=f11e317]:
+                  - cell [ref=f11e318]:
+                    - link "F-000012-01" [ref=f11e319] [cursor=pointer]:
+                      - /url: /facilities/F-000012-01
+                  - cell "B-000012 Brindale Civil Projects Private Limited" [ref=f11e320]:
+                    - link "B-000012" [ref=f11e321] [cursor=pointer]:
+                      - /url: /borrowers/B-000012/master-data
+                    - generic [ref=f11e322]: Brindale Civil Projects Private Limited
+                  - cell "Cash credit" [ref=f11e323]
+                  - cell "493.76" [ref=f11e324]
+                  - cell "293.29" [ref=f11e325]
+                  - cell "59.4%" [ref=f11e326]
+                  - cell "31 Mar 2029" [ref=f11e328]
+                  - cell "Current" [ref=f11e329]
+                - row [ref=f11e331]:
+                  - cell [ref=f11e332]:
+                    - link "F-000013-01" [ref=f11e333] [cursor=pointer]:
+                      - /url: /facilities/F-000013-01
+                  - cell "B-000013 Cairnwell Wholesale Markets Private Limited" [ref=f11e334]:
+                    - link "B-000013" [ref=f11e335] [cursor=pointer]:
+                      - /url: /borrowers/B-000013/master-data
+                    - generic [ref=f11e336]: Cairnwell Wholesale Markets Private Limited
+                  - cell "Cash credit" [ref=f11e337]
+                  - cell "293.21" [ref=f11e338]
+                  - cell "140.80" [ref=f11e339]
+                  - cell "48.0%" [ref=f11e340]
+                  - cell "31 Mar 2030" [ref=f11e342]
+                  - cell "Current" [ref=f11e343]
+                - row [ref=f11e345]:
+                  - cell [ref=f11e346]:
+                    - link "F-000014-01" [ref=f11e347] [cursor=pointer]:
+                      - /url: /facilities/F-000014-01
+                  - cell "B-000014 Caldera Consumer Retail Private Limited" [ref=f11e348]:
+                    - link "B-000014" [ref=f11e349] [cursor=pointer]:
+                      - /url: /borrowers/B-000014/master-data
+                    - generic [ref=f11e350]: Caldera Consumer Retail Private Limited
+                  - cell "Cash credit" [ref=f11e351]
+                  - cell "428.95" [ref=f11e352]
+                  - cell "362.68" [ref=f11e353]
+                  - cell "84.6%" [ref=f11e354]
+                  - cell "31 Mar 2024 matured 886 days ago" [ref=f11e356]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f11e357]: matured 886 days ago
+                  - cell "Current" [ref=f11e358]
+                - row [ref=f11e360]:
+                  - cell [ref=f11e361]:
+                    - link "F-000015-01" [ref=f11e362] [cursor=pointer]:
+                      - /url: /facilities/F-000015-01
+                  - cell "B-000015 Cedarwyn Road Logistics Private Limited" [ref=f11e363]:
+                    - link "B-000015" [ref=f11e364] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                    - generic [ref=f11e365]: Cedarwyn Road Logistics Private Limited
+                  - cell "Cash credit" [ref=f11e366]
+                  - cell "175.18" [ref=f11e367]
+                  - cell "131.97" [ref=f11e368]
+                  - cell "75.3%" [ref=f11e369]
+                  - cell "31 Mar 2025 matured 521 days ago" [ref=f11e371]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f11e372]: matured 521 days ago
+                  - cell "Current" [ref=f11e373]
+                - row [ref=f11e375]:
+                  - cell [ref=f11e376]:
+                    - link "F-000016-01" [ref=f11e377] [cursor=pointer]:
+                      - /url: /facilities/F-000016-01
+                  - cell "B-000016 Cinderbay Marine Services Private Limited" [ref=f11e378]:
+                    - link "B-000016" [ref=f11e379] [cursor=pointer]:
+                      - /url: /borrowers/B-000016/master-data
+                    - generic [ref=f11e380]: Cinderbay Marine Services Private Limited
+                  - cell "Cash credit" [ref=f11e381]
+                  - cell "17.64" [ref=f11e382]
+                  - cell "5.46" [ref=f11e383]
+                  - cell "31.0%" [ref=f11e384]
+                  - cell "31 Mar 2026 matured 156 days ago" [ref=f11e386]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f11e387]: matured 156 days ago
+                  - cell "Current" [ref=f11e388]
+                - row [ref=f11e390]:
+                  - cell [ref=f11e391]:
+                    - link "F-000016-02" [ref=f11e392] [cursor=pointer]:
+                      - /url: /facilities/F-000016-02
+                  - cell "B-000016 Cinderbay Marine Services Private Limited" [ref=f11e393]:
+                    - link "B-000016" [ref=f11e394] [cursor=pointer]:
+                      - /url: /borrowers/B-000016/master-data
+                    - generic [ref=f11e395]: Cinderbay Marine Services Private Limited
+                  - cell "Term loan" [ref=f11e396]
+                  - cell "456.74" [ref=f11e397]
+                  - cell "279.07" [ref=f11e398]
+                  - cell "61.1%" [ref=f11e399]
+                  - cell "31 Mar 2027" [ref=f11e401]
+                  - cell "Current" [ref=f11e402]
+                - row [ref=f11e404]:
+                  - cell [ref=f11e405]:
+                    - link "F-000017-01" [ref=f11e406] [cursor=pointer]:
+                      - /url: /facilities/F-000017-01
+                  - cell "B-000017 Cloudmere Aviation Support Private Limited" [ref=f11e407]:
+                    - link "B-000017" [ref=f11e408] [cursor=pointer]:
+                      - /url: /borrowers/B-000017/master-data
+                    - generic [ref=f11e409]: Cloudmere Aviation Support Private Limited
+                  - cell "Cash credit" [ref=f11e410]
+                  - cell "465.34" [ref=f11e411]
+                  - cell "351.47" [ref=f11e412]
+                  - cell "75.5%" [ref=f11e413]
+                  - cell "31 Mar 2027" [ref=f11e415]
+                  - cell "Current" [ref=f11e416]
+                - row [ref=f11e418]:
+                  - cell [ref=f11e419]:
+                    - link "F-000018-01" [ref=f11e420] [cursor=pointer]:
+                      - /url: /facilities/F-000018-01
+                  - cell "B-000018 Coralstone Hospitality Services Private Limited" [ref=f11e421]:
+                    - link "B-000018" [ref=f11e422] [cursor=pointer]:
+                      - /url: /borrowers/B-000018/master-data
+                    - generic [ref=f11e423]: Coralstone Hospitality Services Private Limited
+                  - cell "Cash credit" [ref=f11e424]
+                  - cell "150.87" [ref=f11e425]
+                  - cell "78.26" [ref=f11e426]
+                  - cell "51.9%" [ref=f11e427]
+                  - cell "31 Mar 2028" [ref=f11e429]
+                  - cell "Current" [ref=f11e430]
+                - row [ref=f11e432]:
+                  - cell [ref=f11e433]:
+                    - link "F-000018-02" [ref=f11e434] [cursor=pointer]:
+                      - /url: /facilities/F-000018-02
+                  - cell "B-000018 Coralstone Hospitality Services Private Limited" [ref=f11e435]:
+                    - link "B-000018" [ref=f11e436] [cursor=pointer]:
+                      - /url: /borrowers/B-000018/master-data
+                    - generic [ref=f11e437]: Coralstone Hospitality Services Private Limited
+                  - cell "Term loan" [ref=f11e438]
+                  - cell "223.50" [ref=f11e439]
+                  - cell "102.59" [ref=f11e440]
+                  - cell "45.9%" [ref=f11e441]
+                  - cell "31 Mar 2029" [ref=f11e443]
+                  - cell "Current" [ref=f11e444]
+                - row [ref=f11e446]:
+                  - cell [ref=f11e447]:
+                    - link "F-000019-01" [ref=f11e448] [cursor=pointer]:
+                      - /url: /facilities/F-000019-01
+                  - cell "B-000019 Crestora Digital Networks Private Limited" [ref=f11e449]:
+                    - link "B-000019" [ref=f11e450] [cursor=pointer]:
+                      - /url: /borrowers/B-000019/master-data
+                    - generic [ref=f11e451]: Crestora Digital Networks Private Limited
+                  - cell "Cash credit" [ref=f11e452]
+                  - cell "332.92" [ref=f11e453]
+                  - cell "147.02" [ref=f11e454]
+                  - cell "44.2%" [ref=f11e455]
+                  - cell "31 Mar 2029" [ref=f11e457]
+                  - cell "Current" [ref=f11e458]
+                - row [ref=f11e460]:
+                  - cell [ref=f11e461]:
+                    - link "F-000020-01" [ref=f11e462] [cursor=pointer]:
+                      - /url: /facilities/F-000020-01
+                  - cell "B-000020 Dalespring Software Systems Private Limited" [ref=f11e463]:
+                    - link "B-000020" [ref=f11e464] [cursor=pointer]:
+                      - /url: /borrowers/B-000020/master-data
+                    - generic [ref=f11e465]: Dalespring Software Systems Private Limited
+                  - cell "Cash credit" [ref=f11e466]
+                  - cell "174.28" [ref=f11e467]
+                  - cell "88.88" [ref=f11e468]
+                  - cell "51.0%" [ref=f11e469]
+                  - cell "31 Mar 2030" [ref=f11e471]
+                  - cell "Current" [ref=f11e472]
+                - row [ref=f11e474]:
+                  - cell [ref=f11e475]:
+                    - link "F-000021-01" [ref=f11e476] [cursor=pointer]:
+                      - /url: /facilities/F-000021-01
+                  - cell "B-000021 Dawnridge Financial Services Private Limited" [ref=f11e477]:
+                    - link "B-000021" [ref=f11e478] [cursor=pointer]:
+                      - /url: /borrowers/B-000021/master-data
+                    - generic [ref=f11e479]: Dawnridge Financial Services Private Limited
+                  - cell "Cash credit" [ref=f11e480]
+                  - cell "137.62" [ref=f11e481]
+                  - cell "64.65" [ref=f11e482]
+                  - cell "47.0%" [ref=f11e483]
+                  - cell "31 Mar 2024 matured 886 days ago" [ref=f11e485]:
+                    - text: 31 Mar 2024
+                    - generic [ref=f11e486]: matured 886 days ago
+                  - cell "Current" [ref=f11e487]
+                - row [ref=f11e489]:
+                  - cell [ref=f11e490]:
+                    - link "F-000021-02" [ref=f11e491] [cursor=pointer]:
+                      - /url: /facilities/F-000021-02
+                  - cell "B-000021 Dawnridge Financial Services Private Limited" [ref=f11e492]:
+                    - link "B-000021" [ref=f11e493] [cursor=pointer]:
+                      - /url: /borrowers/B-000021/master-data
+                    - generic [ref=f11e494]: Dawnridge Financial Services Private Limited
+                  - cell "Term loan" [ref=f11e495]
+                  - cell "254.13" [ref=f11e496]
+                  - cell "205.21" [ref=f11e497]
+                  - cell "80.8%" [ref=f11e498]
+                  - cell "31 Mar 2025 matured 521 days ago" [ref=f11e500]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f11e501]: matured 521 days ago
+                  - cell "Current" [ref=f11e502]
+                - row [ref=f11e504]:
+                  - cell [ref=f11e505]:
+                    - link "F-000022-01" [ref=f11e506] [cursor=pointer]:
+                      - /url: /facilities/F-000022-01
+                  - cell "B-000022 Deepwell Urban Estates Private Limited" [ref=f11e507]:
+                    - link "B-000022" [ref=f11e508] [cursor=pointer]:
+                      - /url: /borrowers/B-000022/master-data
+                    - generic [ref=f11e509]: Deepwell Urban Estates Private Limited
+                  - cell "Cash credit" [ref=f11e510]
+                  - cell "286.37" [ref=f11e511]
+                  - cell "148.91" [ref=f11e512]
+                  - cell "52.0%" [ref=f11e513]
+                  - cell "31 Mar 2025 matured 521 days ago" [ref=f11e515]:
+                    - text: 31 Mar 2025
+                    - generic [ref=f11e516]: matured 521 days ago
+                  - cell "Current" [ref=f11e517]
+                - row [ref=f11e519]:
+                  - cell [ref=f11e520]:
+                    - link "F-000023-01" [ref=f11e521] [cursor=pointer]:
+                      - /url: /facilities/F-000023-01
+                  - cell "B-000023 Driftwood Advisory Services Private Limited" [ref=f11e522]:
+                    - link "B-000023" [ref=f11e523] [cursor=pointer]:
+                      - /url: /borrowers/B-000023/master-data
+                    - generic [ref=f11e524]: Driftwood Advisory Services Private Limited
+                  - cell "Cash credit" [ref=f11e525]
+                  - cell "43.87" [ref=f11e526]
+                  - cell "31.49" [ref=f11e527]
+                  - cell "71.8%" [ref=f11e528]
+                  - cell "31 Mar 2026 matured 156 days ago" [ref=f11e530]:
+                    - text: 31 Mar 2026
+                    - generic [ref=f11e531]: matured 156 days ago
+                  - cell "Current" [ref=f11e532]
+                - row [ref=f11e534]:
+                  - cell [ref=f11e535]:
+                    - link "F-000024-01" [ref=f11e536] [cursor=pointer]:
+                      - /url: /facilities/F-000024-01
+                  - cell "B-000024 Eastmere Equipment Leasing Private Limited" [ref=f11e537]:
+                    - link "B-000024" [ref=f11e538] [cursor=pointer]:
+                      - /url: /borrowers/B-000024/master-data
+                    - generic [ref=f11e539]: Eastmere Equipment Leasing Private Limited
+                  - cell "Cash credit" [ref=f11e540]
+                  - cell "57.66" [ref=f11e541]
+                  - cell "34.80" [ref=f11e542]
+                  - cell "60.4%" [ref=f11e543]
+                  - cell "31 Mar 2027" [ref=f11e545]
+                  - cell "Current" [ref=f11e546]

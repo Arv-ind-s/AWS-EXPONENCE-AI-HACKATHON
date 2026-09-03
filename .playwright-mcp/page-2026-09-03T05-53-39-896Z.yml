@@ -1,0 +1,651 @@
+- generic [ref=f48e1]:
+  - link "Skip to content" [ref=f48e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f48e3]:
+    - complementary "Workspace navigation" [ref=f48e4]:
+      - link "Covenant Radar" [ref=f48e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f48e13]:
+          - strong [ref=f48e14]: Covenant
+          - generic [ref=f48e15]: Radar
+      - navigation "Primary navigation" [ref=f48e16]:
+        - region [ref=f48e17]:
+          - heading "Monitor" [level=2] [ref=f48e18]
+          - link "Portfolio queue" [ref=f48e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f48e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f48e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f48e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f48e31]: "0"
+          - link "Search" [ref=f48e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f48e37]:
+          - heading "Portfolio data" [level=2] [ref=f48e38]
+          - link "Borrowers" [ref=f48e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f48e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f48e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f48e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f48e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f48e61]:
+          - heading "Workflows" [level=2] [ref=f48e62]
+          - link "Document review" [ref=f48e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Audit trail" [ref=f48e67] [cursor=pointer]:
+            - /url: /audit
+      - button "Collapse sidebar" [expanded] [ref=f48e71] [cursor=pointer]
+    - generic [ref=f48e75]:
+      - banner [ref=f48e76]:
+        - generic [ref=f48e78]:
+          - generic [ref=f48e79]: Workspace
+          - generic [ref=f48e82]: Current view
+        - search [ref=f48e83]:
+          - generic [ref=f48e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f48e85]
+          - generic: /
+        - generic [ref=f48e86]:
+          - button "Live activity" [ref=f48e87]:
+            - generic [ref=f48e89]: Live
+          - button "Use dark theme" [ref=f48e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f48e95] [cursor=pointer]: हिं
+          - generic [ref=f48e96]:
+            - button "Open user menu" [expanded] [active] [ref=f48e97] [cursor=pointer]
+            - generic [ref=f48e693]:
+              - generic [ref=f48e694]:
+                - strong [ref=f48e695]: Signed-in user
+                - generic [ref=f48e696]: Secure workspace
+              - link "Change password" [ref=f48e697] [cursor=pointer]:
+                - /url: /password/change
+              - button "Sign out" [ref=f48e699] [cursor=pointer]
+      - main [ref=f48e101]:
+        - generic [ref=f48e103]:
+          - paragraph [ref=f48e104]: Decision workspace
+          - heading "Portfolio queue" [level=1] [ref=f48e105]
+        - generic [ref=f48e107]:
+          - region [ref=f48e108]:
+            - heading "Portfolio snapshot" [level=2] [ref=f48e109]
+            - paragraph [ref=f48e110]:
+              - generic [ref=f48e111]: Ranked by urgency
+              - generic [aria-hidden] [ref=f48e112]: ·
+              - generic [ref=f48e113]: Latest completed run 03 Sep 2026
+              - generic [aria-hidden] [ref=f48e114]: ·
+              - generic [ref=f48e115]:
+                - text: checked
+                - time [ref=f48e116]: just now
+              - button "Check now" [ref=f48e117] [cursor=pointer]
+            - navigation "Band" [ref=f48e118]:
+              - link "All 24" [ref=f48e119] [cursor=pointer]:
+                - /url: /
+                - generic [ref=f48e120]: All
+                - strong [ref=f48e121]: "24"
+              - link "Act now 9" [ref=f48e122] [cursor=pointer]:
+                - /url: /?band=act
+                - generic "Act now" [ref=f48e123]
+                - strong [ref=f48e124]: "9"
+              - link "Amber 6" [ref=f48e128] [cursor=pointer]:
+                - /url: /?band=amber
+                - generic "Amber" [ref=f48e129]
+                - strong [ref=f48e130]: "6"
+              - link "Watch 9" [ref=f48e134] [cursor=pointer]:
+                - /url: /?band=watch
+                - generic "Watch" [ref=f48e135]
+                - strong [ref=f48e136]: "9"
+            - generic [ref=f48e140]:
+              - generic [ref=f48e141]:
+                - term [ref=f48e142]: Exposure in view
+                - definition [ref=f48e143]: ₹4270.52 crore
+              - generic [ref=f48e144]:
+                - term [ref=f48e145]: Changed today
+                - definition [ref=f48e146]: "0"
+          - group [ref=f48e148]:
+            - text: ▴
+            - group "Narrow the queue" [ref=f48e149]:
+              - generic [ref=f48e151]:
+                - generic [ref=f48e152]: Band
+                - combobox "Band" [ref=f48e153]:
+                  - option "All bands" [selected]
+                  - option "Act now"
+                  - option "Amber"
+                  - option "Watch"
+              - generic [ref=f48e154]:
+                - generic [ref=f48e155]: SMA band
+                - combobox "SMA band" [ref=f48e156]:
+                  - option "All SMA bands" [selected]
+                  - option "None"
+                  - option "SMA-0"
+                  - option "SMA-1"
+                  - option "SMA-2"
+                  - option "Beyond"
+              - generic [ref=f48e157]:
+                - generic [ref=f48e158]: Case state
+                - combobox "Case state" [ref=f48e159]:
+                  - option "All case states" [selected]
+                  - option "No case opened"
+                  - option "Open"
+                  - option "In progress"
+                  - option "Monitoring"
+                  - option "Escalated"
+                  - option "Closed"
+              - generic [ref=f48e160]:
+                - generic [ref=f48e161]: Signal family
+                - combobox "Signal family" [ref=f48e162]:
+                  - option "All signal families" [selected]
+                  - option "Account activity"
+                  - option "Payment behaviour"
+                  - option "Facility utilisation"
+                  - option "Treasury flows"
+                  - option "Concentration exposure"
+                  - option "Industry conditions"
+                  - option "News deterioration"
+          - generic [ref=f48e163]:
+            - status [ref=f48e164]:
+              - text: Showing
+              - strong [ref=f48e165]: "24"
+              - text: of 24 borrowers
+            - button "Save this view" [ref=f48e167] [cursor=pointer]
+          - group [ref=f48e168]:
+            - generic "How to read this queue" [ref=f48e169] [cursor=pointer]
+          - region "Portfolio queue results" [ref=f48e170]:
+            - table [ref=f48e172]:
+              - caption [ref=f48e173]: Portfolio queue — Ranked by urgency, 03 Sep 2026
+              - rowgroup [ref=f48e174]:
+                - row [ref=f48e175]:
+                  - columnheader "Row detail" [ref=f48e176]
+                  - columnheader [ref=f48e178]:
+                    - checkbox "Select all rows" [ref=f48e179]
+                  - columnheader "#" [ref=f48e180]
+                  - columnheader "Borrower" [ref=f48e181]
+                  - columnheader "Exposure" [ref=f48e182]
+                  - columnheader "Band" [ref=f48e183]
+                  - columnheader "Trajectory" [ref=f48e184]
+                  - columnheader "Dated risk" [ref=f48e185]
+              - rowgroup [ref=f48e186]:
+                - row [ref=f48e187]:
+                  - cell [ref=f48e188]:
+                    - button "Show detail for Cloudmere Aviation Support Private Limited" [ref=f48e189] [cursor=pointer]
+                  - cell [ref=f48e192]:
+                    - checkbox "Select Cloudmere Aviation Support Private Limited" [ref=f48e193]
+                  - cell "1" [ref=f48e194]
+                  - cell "Cloudmere Aviation Support Private Limited B-000017" [ref=f48e195]:
+                    - link "Cloudmere Aviation Support Private Limited" [ref=f48e196] [cursor=pointer]:
+                      - /url: /borrowers/B-000017
+                    - generic [ref=f48e197]: B-000017
+                  - cell "₹351.47 crore" [ref=f48e198]
+                  - cell "Act" [ref=f48e199]
+                  - cell [ref=f48e201]:
+                    - generic "Cloudmere Aviation Support Private Limited stored risk trajectory" [ref=f48e202]:
+                      - img "Cloudmere Aviation Support Private Limited stored risk trajectory" [ref=f48e203]
+                  - cell [ref=f48e206]:
+                    - text: 99% by 28 Nov 2026
+                    - link "Why Cloudmere Aviation Support Private Limited is ranked here" [ref=f48e207] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d19d-74ea-84c0-24c42034d1f9
+                      - text: Why this score
+                - row [ref=f48e208]:
+                  - cell [ref=f48e209]:
+                    - button "Show detail for Arclume Textile Mills Private Limited" [ref=f48e210] [cursor=pointer]
+                  - cell [ref=f48e213]:
+                    - checkbox "Select Arclume Textile Mills Private Limited" [ref=f48e214]
+                  - cell "2" [ref=f48e215]
+                  - cell "Arclume Textile Mills Private Limited B-000004" [ref=f48e216]:
+                    - link "Arclume Textile Mills Private Limited" [ref=f48e217] [cursor=pointer]:
+                      - /url: /borrowers/B-000004
+                    - generic [ref=f48e218]: B-000004
+                  - cell "₹339.2 crore" [ref=f48e219]
+                  - cell "Act" [ref=f48e220]
+                  - cell [ref=f48e222]:
+                    - generic "Arclume Textile Mills Private Limited stored risk trajectory" [ref=f48e223]:
+                      - img "Arclume Textile Mills Private Limited stored risk trajectory" [ref=f48e224]
+                  - cell [ref=f48e227]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Arclume Textile Mills Private Limited is ranked here" [ref=f48e228] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-becf-7582-8b15-b0803b7e60f4
+                      - text: Why this score
+                - row [ref=f48e229]:
+                  - cell [ref=f48e230]:
+                    - button "Show detail for Brindale Civil Projects Private Limited" [ref=f48e231] [cursor=pointer]
+                  - cell [ref=f48e234]:
+                    - checkbox "Select Brindale Civil Projects Private Limited" [ref=f48e235]
+                  - cell "3" [ref=f48e236]
+                  - cell "Brindale Civil Projects Private Limited B-000012" [ref=f48e237]:
+                    - link "Brindale Civil Projects Private Limited" [ref=f48e238] [cursor=pointer]:
+                      - /url: /borrowers/B-000012
+                    - generic [ref=f48e239]: B-000012
+                  - cell "₹293.29 crore" [ref=f48e240]
+                  - cell "Act" [ref=f48e241]
+                  - cell [ref=f48e243]:
+                    - generic "Brindale Civil Projects Private Limited stored risk trajectory" [ref=f48e244]:
+                      - img "Brindale Civil Projects Private Limited stored risk trajectory" [ref=f48e245]
+                  - cell [ref=f48e248]:
+                    - text: 99% by 24 Oct 2026
+                    - link "Why Brindale Civil Projects Private Limited is ranked here" [ref=f48e249] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-cac0-7535-bb42-9116a20fa163
+                      - text: Why this score
+                - row [ref=f48e250]:
+                  - cell [ref=f48e251]:
+                    - button "Show detail for Cinderbay Marine Services Private Limited" [ref=f48e252] [cursor=pointer]
+                  - cell [ref=f48e255]:
+                    - checkbox "Select Cinderbay Marine Services Private Limited" [ref=f48e256]
+                  - cell "4" [ref=f48e257]
+                  - cell "Cinderbay Marine Services Private Limited B-000016" [ref=f48e258]:
+                    - link "Cinderbay Marine Services Private Limited" [ref=f48e259] [cursor=pointer]:
+                      - /url: /borrowers/B-000016
+                    - generic [ref=f48e260]: B-000016
+                  - cell "₹284.53 crore" [ref=f48e261]
+                  - cell "Act" [ref=f48e262]
+                  - cell [ref=f48e264]:
+                    - generic "Cinderbay Marine Services Private Limited stored risk trajectory" [ref=f48e265]:
+                      - img "Cinderbay Marine Services Private Limited stored risk trajectory" [ref=f48e266]
+                  - cell [ref=f48e269]:
+                    - text: 99% by 13 Nov 2026
+                    - link "Why Cinderbay Marine Services Private Limited is ranked here" [ref=f48e270] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-cfc3-7709-a538-f2df774c546f
+                      - text: Why this score
+                - row [ref=f48e271]:
+                  - cell [ref=f48e272]:
+                    - button "Show detail for Ashmere Metalworks Private Limited" [ref=f48e273] [cursor=pointer]
+                  - cell [ref=f48e276]:
+                    - checkbox "Select Ashmere Metalworks Private Limited" [ref=f48e277]
+                  - cell "5" [ref=f48e278]
+                  - cell "Ashmere Metalworks Private Limited B-000007" [ref=f48e279]:
+                    - link "Ashmere Metalworks Private Limited" [ref=f48e280] [cursor=pointer]:
+                      - /url: /borrowers/B-000007
+                    - generic [ref=f48e281]: B-000007
+                  - cell "₹241.58 crore" [ref=f48e282]
+                  - cell "Act" [ref=f48e283]
+                  - cell [ref=f48e285]:
+                    - generic "Ashmere Metalworks Private Limited stored risk trajectory" [ref=f48e286]:
+                      - img "Ashmere Metalworks Private Limited stored risk trajectory" [ref=f48e287]
+                  - cell [ref=f48e290]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Ashmere Metalworks Private Limited is ranked here" [ref=f48e291] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c371-7c00-bfaf-34071a77d566
+                      - text: Why this score
+                - row [ref=f48e292]:
+                  - cell [ref=f48e293]:
+                    - button "Show detail for Caldera Consumer Retail Private Limited" [ref=f48e294] [cursor=pointer]
+                  - cell [ref=f48e297]:
+                    - checkbox "Caldera Consumer Retail Private Limited has no case to act on" [disabled] [ref=f48e298]
+                  - cell "6" [ref=f48e299]
+                  - cell "Caldera Consumer Retail Private Limited B-000014" [ref=f48e300]:
+                    - link "Caldera Consumer Retail Private Limited" [ref=f48e301] [cursor=pointer]:
+                      - /url: /borrowers/B-000014
+                    - generic [ref=f48e302]: B-000014
+                  - cell "₹362.68 crore" [ref=f48e303]
+                  - cell "Amber" [ref=f48e304]
+                  - cell [ref=f48e306]:
+                    - generic "Caldera Consumer Retail Private Limited stored risk trajectory" [ref=f48e307]:
+                      - img "Caldera Consumer Retail Private Limited stored risk trajectory" [ref=f48e308]
+                  - cell [ref=f48e311]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Caldera Consumer Retail Private Limited is ranked here" [ref=f48e312] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-ccc7-72db-b7b4-2a71d7d41034
+                      - text: Why this score
+                - row [ref=f48e313]:
+                  - cell [ref=f48e314]:
+                    - button "Show detail for Deepwell Urban Estates Private Limited" [ref=f48e315] [cursor=pointer]
+                  - cell [ref=f48e318]:
+                    - checkbox "Select Deepwell Urban Estates Private Limited" [ref=f48e319]
+                  - cell "7" [ref=f48e320]
+                  - cell "Deepwell Urban Estates Private Limited B-000022" [ref=f48e321]:
+                    - link "Deepwell Urban Estates Private Limited" [ref=f48e322] [cursor=pointer]:
+                      - /url: /borrowers/B-000022
+                    - generic [ref=f48e323]: B-000022
+                  - cell "₹148.91 crore" [ref=f48e324]
+                  - cell "Act" [ref=f48e325]
+                  - cell [ref=f48e327]:
+                    - generic "Deepwell Urban Estates Private Limited stored risk trajectory" [ref=f48e328]:
+                      - img "Deepwell Urban Estates Private Limited stored risk trajectory" [ref=f48e329]
+                  - cell [ref=f48e332]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Deepwell Urban Estates Private Limited is ranked here" [ref=f48e333] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d89c-7e8f-ba73-554b252c7fba
+                      - text: Why this score
+                - row [ref=f48e334]:
+                  - cell [ref=f48e335]:
+                    - button "Show detail for Ardentia Specialty Chemicals Private Limited" [ref=f48e336] [cursor=pointer]
+                  - cell [ref=f48e339]:
+                    - checkbox "Select Ardentia Specialty Chemicals Private Limited" [ref=f48e340]
+                  - cell "8" [ref=f48e341]
+                  - cell "Ardentia Specialty Chemicals Private Limited B-000005" [ref=f48e342]:
+                    - link "Ardentia Specialty Chemicals Private Limited" [ref=f48e343] [cursor=pointer]:
+                      - /url: /borrowers/B-000005
+                    - generic [ref=f48e344]: B-000005
+                  - cell "₹112.53 crore" [ref=f48e345]
+                  - cell "Act" [ref=f48e346]
+                  - cell [ref=f48e348]:
+                    - generic "Ardentia Specialty Chemicals Private Limited stored risk trajectory" [ref=f48e349]:
+                      - img "Ardentia Specialty Chemicals Private Limited stored risk trajectory" [ref=f48e350]
+                  - cell [ref=f48e353]:
+                    - text: 99% by 19 Sep 2026
+                    - link "Why Ardentia Specialty Chemicals Private Limited is ranked here" [ref=f48e354] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-bfb5-7caa-b949-c6d03cb011bb
+                      - text: Why this score
+                - row [ref=f48e355]:
+                  - cell [ref=f48e356]:
+                    - button "Show detail for Bellora Mobility Components Private Limited" [ref=f48e357] [cursor=pointer]
+                  - cell [ref=f48e360]:
+                    - checkbox "Select Bellora Mobility Components Private Limited" [ref=f48e361]
+                  - cell "9" [ref=f48e362]
+                  - cell "Bellora Mobility Components Private Limited B-000009" [ref=f48e363]:
+                    - link "Bellora Mobility Components Private Limited" [ref=f48e364] [cursor=pointer]:
+                      - /url: /borrowers/B-000009
+                    - generic [ref=f48e365]: B-000009
+                  - cell "₹91.37 crore" [ref=f48e366]
+                  - cell "Act" [ref=f48e367]
+                  - cell [ref=f48e369]:
+                    - generic "Bellora Mobility Components Private Limited stored risk trajectory" [ref=f48e370]:
+                      - img "Bellora Mobility Components Private Limited stored risk trajectory" [ref=f48e371]
+                  - cell [ref=f48e374]:
+                    - text: 99% by 04 Oct 2026
+                    - link "Why Bellora Mobility Components Private Limited is ranked here" [ref=f48e375] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c5e8-7e05-a670-8edc15700bc4
+                      - text: Why this score
+                - row [ref=f48e376]:
+                  - cell [ref=f48e377]:
+                    - button "Show detail for Amberwick Mineral Resources Private Limited" [ref=f48e378] [cursor=pointer]
+                  - cell [ref=f48e381]:
+                    - checkbox "Select Amberwick Mineral Resources Private Limited" [ref=f48e382]
+                  - cell "10" [ref=f48e383]
+                  - cell "Amberwick Mineral Resources Private Limited B-000002" [ref=f48e384]:
+                    - link "Amberwick Mineral Resources Private Limited" [ref=f48e385] [cursor=pointer]:
+                      - /url: /borrowers/B-000002
+                    - generic [ref=f48e386]: B-000002
+                  - cell "₹71.58 crore" [ref=f48e387]
+                  - cell "Act" [ref=f48e388]
+                  - cell [ref=f48e390]:
+                    - generic "Amberwick Mineral Resources Private Limited stored risk trajectory" [ref=f48e391]:
+                      - img "Amberwick Mineral Resources Private Limited stored risk trajectory" [ref=f48e392]
+                  - cell [ref=f48e395]:
+                    - text: 99% by 03 Sep 2026
+                    - link "Why Amberwick Mineral Resources Private Limited is ranked here" [ref=f48e396] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-bb75-7cbd-9330-ba8d92f220cd
+                      - text: Why this score
+                - row [ref=f48e397]:
+                  - cell [ref=f48e398]:
+                    - button "Show detail for Brambletide Water Infrastructure Private Limited" [ref=f48e399] [cursor=pointer]
+                  - cell [ref=f48e402]:
+                    - checkbox "Brambletide Water Infrastructure Private Limited has no case to act on" [disabled] [ref=f48e403]
+                  - cell "11" [ref=f48e404]
+                  - cell "Brambletide Water Infrastructure Private Limited B-000011" [ref=f48e405]:
+                    - link "Brambletide Water Infrastructure Private Limited" [ref=f48e406] [cursor=pointer]:
+                      - /url: /borrowers/B-000011
+                    - generic [ref=f48e407]: B-000011
+                  - cell "₹147.58 crore" [ref=f48e408]
+                  - cell "Amber" [ref=f48e409]
+                  - cell [ref=f48e411]:
+                    - generic "Brambletide Water Infrastructure Private Limited stored risk trajectory" [ref=f48e412]:
+                      - img "Brambletide Water Infrastructure Private Limited stored risk trajectory" [ref=f48e413]
+                  - cell [ref=f48e416]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Brambletide Water Infrastructure Private Limited is ranked here" [ref=f48e417] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c8f0-7de1-a48c-109811cc1ac8
+                      - text: Why this score
+                - row [ref=f48e418]:
+                  - cell [ref=f48e419]:
+                    - button "Show detail for Cairnwell Wholesale Markets Private Limited" [ref=f48e420] [cursor=pointer]
+                  - cell [ref=f48e423]:
+                    - checkbox "Cairnwell Wholesale Markets Private Limited has no case to act on" [disabled] [ref=f48e424]
+                  - cell "12" [ref=f48e425]
+                  - cell "Cairnwell Wholesale Markets Private Limited B-000013" [ref=f48e426]:
+                    - link "Cairnwell Wholesale Markets Private Limited" [ref=f48e427] [cursor=pointer]:
+                      - /url: /borrowers/B-000013
+                    - generic [ref=f48e428]: B-000013
+                  - cell "₹140.8 crore" [ref=f48e429]
+                  - cell "Amber" [ref=f48e430]
+                  - cell [ref=f48e432]:
+                    - generic "Cairnwell Wholesale Markets Private Limited stored risk trajectory" [ref=f48e433]:
+                      - img "Cairnwell Wholesale Markets Private Limited stored risk trajectory" [ref=f48e434]
+                  - cell [ref=f48e437]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Cairnwell Wholesale Markets Private Limited is ranked here" [ref=f48e438] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-cc45-7be3-a391-7a9a09feaf3e
+                      - text: Why this score
+                - row [ref=f48e439]:
+                  - cell [ref=f48e440]:
+                    - button "Show detail for Alderwyn Agri Supply Private Limited" [ref=f48e441] [cursor=pointer]
+                  - cell [ref=f48e444]:
+                    - checkbox "Alderwyn Agri Supply Private Limited has no case to act on" [disabled] [ref=f48e445]
+                  - cell "13" [ref=f48e446]
+                  - cell "Alderwyn Agri Supply Private Limited B-000001" [ref=f48e447]:
+                    - link "Alderwyn Agri Supply Private Limited" [ref=f48e448] [cursor=pointer]:
+                      - /url: /borrowers/B-000001
+                    - generic [ref=f48e449]: B-000001
+                  - cell "₹258.81 crore" [ref=f48e450]
+                  - cell "Watch" [ref=f48e451]
+                  - cell [ref=f48e453]:
+                    - generic "Alderwyn Agri Supply Private Limited stored risk trajectory" [ref=f48e454]:
+                      - img "Alderwyn Agri Supply Private Limited stored risk trajectory" [ref=f48e455]
+                  - cell [ref=f48e458]:
+                    - text: 23% · no crossing projected within 90d
+                    - link "Why Alderwyn Agri Supply Private Limited is ranked here" [ref=f48e459] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-b99a-73b2-aa98-74a801725274
+                      - text: Why this score
+                - row [ref=f48e460]:
+                  - cell [ref=f48e461]:
+                    - button "Show detail for Cedarwyn Road Logistics Private Limited" [ref=f48e462] [cursor=pointer]
+                  - cell [ref=f48e465]:
+                    - checkbox "Cedarwyn Road Logistics Private Limited has no case to act on" [disabled] [ref=f48e466]
+                  - cell "14" [ref=f48e467]
+                  - cell "Cedarwyn Road Logistics Private Limited B-000015" [ref=f48e468]:
+                    - link "Cedarwyn Road Logistics Private Limited" [ref=f48e469] [cursor=pointer]:
+                      - /url: /borrowers/B-000015
+                    - generic [ref=f48e470]: B-000015
+                  - cell "₹131.97 crore" [ref=f48e471]
+                  - cell "Amber" [ref=f48e472]
+                  - cell [ref=f48e474]:
+                    - generic "Cedarwyn Road Logistics Private Limited stored risk trajectory" [ref=f48e475]:
+                      - img "Cedarwyn Road Logistics Private Limited stored risk trajectory" [ref=f48e476]
+                  - cell [ref=f48e479]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Cedarwyn Road Logistics Private Limited is ranked here" [ref=f48e480] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-cec7-7f8c-b53e-cecf21c2acb0
+                      - text: Why this score
+                - row [ref=f48e481]:
+                  - cell [ref=f48e482]:
+                    - button "Show detail for Anviora Food Products Private Limited" [ref=f48e483] [cursor=pointer]
+                  - cell [ref=f48e486]:
+                    - checkbox "Anviora Food Products Private Limited has no case to act on" [disabled] [ref=f48e487]
+                  - cell "15" [ref=f48e488]
+                  - cell "Anviora Food Products Private Limited B-000003" [ref=f48e489]:
+                    - link "Anviora Food Products Private Limited" [ref=f48e490] [cursor=pointer]:
+                      - /url: /borrowers/B-000003
+                    - generic [ref=f48e491]: B-000003
+                  - cell "₹272.97 crore" [ref=f48e492]
+                  - cell "Watch" [ref=f48e493]
+                  - cell [ref=f48e495]:
+                    - generic "Anviora Food Products Private Limited stored risk trajectory" [ref=f48e496]:
+                      - img "Anviora Food Products Private Limited stored risk trajectory" [ref=f48e497]
+                  - cell [ref=f48e500]:
+                    - text: 18% · no crossing projected within 30d
+                    - link "Why Anviora Food Products Private Limited is ranked here" [ref=f48e501] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-bcd6-7fe6-881a-793b06698f73
+                      - text: Why this score
+                - row [ref=f48e502]:
+                  - cell [ref=f48e503]:
+                    - button "Show detail for Dawnridge Financial Services Private Limited" [ref=f48e504] [cursor=pointer]
+                  - cell [ref=f48e507]:
+                    - checkbox "Dawnridge Financial Services Private Limited has no case to act on" [disabled] [ref=f48e508]
+                  - cell "16" [ref=f48e509]
+                  - cell "Dawnridge Financial Services Private Limited B-000021" [ref=f48e510]:
+                    - link "Dawnridge Financial Services Private Limited" [ref=f48e511] [cursor=pointer]:
+                      - /url: /borrowers/B-000021
+                    - generic [ref=f48e512]: B-000021
+                  - cell "₹269.86 crore" [ref=f48e513]
+                  - cell "Watch" [ref=f48e514]
+                  - cell [ref=f48e516]:
+                    - generic "Dawnridge Financial Services Private Limited stored risk trajectory" [ref=f48e517]:
+                      - img "Dawnridge Financial Services Private Limited stored risk trajectory" [ref=f48e518]
+                  - cell [ref=f48e521]:
+                    - text: 18% · no crossing projected within 30d
+                    - link "Why Dawnridge Financial Services Private Limited is ranked here" [ref=f48e522] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d71f-73a0-97ca-06e61d3e0d7d
+                      - text: Why this score
+                - row [ref=f48e523]:
+                  - cell [ref=f48e524]:
+                    - button "Show detail for Avenrock Precision Engineering Private Limited" [ref=f48e525] [cursor=pointer]
+                  - cell [ref=f48e528]:
+                    - checkbox "Avenrock Precision Engineering Private Limited has no case to act on" [disabled] [ref=f48e529]
+                  - cell "17" [ref=f48e530]
+                  - cell "Avenrock Precision Engineering Private Limited B-000008" [ref=f48e531]:
+                    - link "Avenrock Precision Engineering Private Limited" [ref=f48e532] [cursor=pointer]:
+                      - /url: /borrowers/B-000008
+                    - generic [ref=f48e533]: B-000008
+                  - cell "₹99.25 crore" [ref=f48e534]
+                  - cell "Amber" [ref=f48e535]
+                  - cell [ref=f48e537]:
+                    - generic "Avenrock Precision Engineering Private Limited stored risk trajectory" [ref=f48e538]:
+                      - img "Avenrock Precision Engineering Private Limited stored risk trajectory" [ref=f48e539]
+                  - cell [ref=f48e542]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Avenrock Precision Engineering Private Limited is ranked here" [ref=f48e543] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c3f7-731f-8f28-e4fcfa06ee1d
+                      - text: Why this score
+                - row [ref=f48e544]:
+                  - cell [ref=f48e545]:
+                    - button "Show detail for Crestora Digital Networks Private Limited" [ref=f48e546] [cursor=pointer]
+                  - cell [ref=f48e549]:
+                    - checkbox "Crestora Digital Networks Private Limited has no case to act on" [disabled] [ref=f48e550]
+                  - cell "18" [ref=f48e551]
+                  - cell "Crestora Digital Networks Private Limited B-000019" [ref=f48e552]:
+                    - link "Crestora Digital Networks Private Limited" [ref=f48e553] [cursor=pointer]:
+                      - /url: /borrowers/B-000019
+                    - generic [ref=f48e554]: B-000019
+                  - cell "₹147.02 crore" [ref=f48e555]
+                  - cell "Watch" [ref=f48e556]
+                  - cell [ref=f48e558]:
+                    - generic "Crestora Digital Networks Private Limited stored risk trajectory" [ref=f48e559]:
+                      - img "Crestora Digital Networks Private Limited stored risk trajectory" [ref=f48e560]
+                  - cell [ref=f48e563]:
+                    - text: 23% · no crossing projected within 90d
+                    - link "Why Crestora Digital Networks Private Limited is ranked here" [ref=f48e564] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d524-7185-96b3-dacb905eeb97
+                      - text: Why this score
+                - row [ref=f48e565]:
+                  - cell [ref=f48e566]:
+                    - button "Show detail for Coralstone Hospitality Services Private Limited" [ref=f48e567] [cursor=pointer]
+                  - cell [ref=f48e570]:
+                    - checkbox "Coralstone Hospitality Services Private Limited has no case to act on" [disabled] [ref=f48e571]
+                  - cell "19" [ref=f48e572]
+                  - cell "Coralstone Hospitality Services Private Limited B-000018" [ref=f48e573]:
+                    - link "Coralstone Hospitality Services Private Limited" [ref=f48e574] [cursor=pointer]:
+                      - /url: /borrowers/B-000018
+                    - generic [ref=f48e575]: B-000018
+                  - cell "₹180.85 crore" [ref=f48e576]
+                  - cell "Watch" [ref=f48e577]
+                  - cell [ref=f48e579]:
+                    - generic "Coralstone Hospitality Services Private Limited stored risk trajectory" [ref=f48e580]:
+                      - img "Coralstone Hospitality Services Private Limited stored risk trajectory" [ref=f48e581]
+                  - cell [ref=f48e584]:
+                    - text: 18% · no crossing projected within 30d
+                    - link "Why Coralstone Hospitality Services Private Limited is ranked here" [ref=f48e585] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d28c-78e1-ae3b-0a0ab30a6f0a
+                      - text: Why this score
+                - row [ref=f48e586]:
+                  - cell [ref=f48e587]:
+                    - button "Show detail for Arkenvale Life Sciences Private Limited" [ref=f48e588] [cursor=pointer]
+                  - cell [ref=f48e591]:
+                    - checkbox "Arkenvale Life Sciences Private Limited has no case to act on" [disabled] [ref=f48e592]
+                  - cell "20" [ref=f48e593]
+                  - cell "Arkenvale Life Sciences Private Limited B-000006" [ref=f48e594]:
+                    - link "Arkenvale Life Sciences Private Limited" [ref=f48e595] [cursor=pointer]:
+                      - /url: /borrowers/B-000006
+                    - generic [ref=f48e596]: B-000006
+                  - cell "₹95.39 crore" [ref=f48e597]
+                  - cell "Watch" [ref=f48e598]
+                  - cell [ref=f48e600]:
+                    - generic "Arkenvale Life Sciences Private Limited stored risk trajectory" [ref=f48e601]:
+                      - img "Arkenvale Life Sciences Private Limited stored risk trajectory" [ref=f48e602]
+                  - cell [ref=f48e605]:
+                    - text: 18% · no crossing projected within 30d
+                    - link "Why Arkenvale Life Sciences Private Limited is ranked here" [ref=f48e606] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c111-7baa-8634-7d2ca4f46fe0
+                      - text: Why this score
+                - row [ref=f48e607]:
+                  - cell [ref=f48e608]:
+                    - button "Show detail for Bluehaven Power Systems Private Limited" [ref=f48e609] [cursor=pointer]
+                  - cell [ref=f48e612]:
+                    - checkbox "Bluehaven Power Systems Private Limited has no case to act on" [disabled] [ref=f48e613]
+                  - cell "21" [ref=f48e614]
+                  - cell "Bluehaven Power Systems Private Limited B-000010" [ref=f48e615]:
+                    - link "Bluehaven Power Systems Private Limited" [ref=f48e616] [cursor=pointer]:
+                      - /url: /borrowers/B-000010
+                    - generic [ref=f48e617]: B-000010
+                  - cell "₹73.71 crore" [ref=f48e618]
+                  - cell "Watch" [ref=f48e619]
+                  - cell [ref=f48e621]:
+                    - generic "Bluehaven Power Systems Private Limited stored risk trajectory" [ref=f48e622]:
+                      - img "Bluehaven Power Systems Private Limited stored risk trajectory" [ref=f48e623]
+                  - cell [ref=f48e626]:
+                    - text: 23% · no crossing projected within 90d
+                    - link "Why Bluehaven Power Systems Private Limited is ranked here" [ref=f48e627] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-c770-7c75-9d65-83cc66015a01
+                      - text: Why this score
+                - row [ref=f48e628]:
+                  - cell [ref=f48e629]:
+                    - button "Show detail for Dalespring Software Systems Private Limited" [ref=f48e630] [cursor=pointer]
+                  - cell [ref=f48e633]:
+                    - checkbox "Dalespring Software Systems Private Limited has no case to act on" [disabled] [ref=f48e634]
+                  - cell "22" [ref=f48e635]
+                  - cell "Dalespring Software Systems Private Limited B-000020" [ref=f48e636]:
+                    - link "Dalespring Software Systems Private Limited" [ref=f48e637] [cursor=pointer]:
+                      - /url: /borrowers/B-000020
+                    - generic [ref=f48e638]: B-000020
+                  - cell "₹88.88 crore" [ref=f48e639]
+                  - cell "Watch" [ref=f48e640]
+                  - cell [ref=f48e642]:
+                    - generic "Dalespring Software Systems Private Limited stored risk trajectory" [ref=f48e643]:
+                      - img "Dalespring Software Systems Private Limited stored risk trajectory" [ref=f48e644]
+                  - cell [ref=f48e647]:
+                    - text: 18% · no crossing projected within 30d
+                    - link "Why Dalespring Software Systems Private Limited is ranked here" [ref=f48e648] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d597-7098-991d-00e72261ec16
+                      - text: Why this score
+                - row [ref=f48e649]:
+                  - cell [ref=f48e650]:
+                    - button "Show detail for Eastmere Equipment Leasing Private Limited" [ref=f48e651] [cursor=pointer]
+                  - cell [ref=f48e654]:
+                    - checkbox "Eastmere Equipment Leasing Private Limited has no case to act on" [disabled] [ref=f48e655]
+                  - cell "23" [ref=f48e656]
+                  - cell "Eastmere Equipment Leasing Private Limited B-000024" [ref=f48e657]:
+                    - link "Eastmere Equipment Leasing Private Limited" [ref=f48e658] [cursor=pointer]:
+                      - /url: /borrowers/B-000024
+                    - generic [ref=f48e659]: B-000024
+                  - cell "₹34.8 crore" [ref=f48e660]
+                  - cell "Amber" [ref=f48e661]
+                  - cell [ref=f48e663]:
+                    - generic "Eastmere Equipment Leasing Private Limited stored risk trajectory" [ref=f48e664]:
+                      - img "Eastmere Equipment Leasing Private Limited stored risk trajectory" [ref=f48e665]
+                  - cell [ref=f48e668]:
+                    - text: 43% · no crossing projected within 90d
+                    - link "Why Eastmere Equipment Leasing Private Limited is ranked here" [ref=f48e669] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-dc9c-7dc7-a99f-0fc25ac14507
+                      - text: Why this score
+                - row [ref=f48e670]:
+                  - cell [ref=f48e671]:
+                    - button "Show detail for Driftwood Advisory Services Private Limited" [ref=f48e672] [cursor=pointer]
+                  - cell [ref=f48e675]:
+                    - checkbox "Driftwood Advisory Services Private Limited has no case to act on" [disabled] [ref=f48e676]
+                  - cell "24" [ref=f48e677]
+                  - cell "Driftwood Advisory Services Private Limited B-000023" [ref=f48e678]:
+                    - link "Driftwood Advisory Services Private Limited" [ref=f48e679] [cursor=pointer]:
+                      - /url: /borrowers/B-000023
+                    - generic [ref=f48e680]: B-000023
+                  - cell "₹31.49 crore" [ref=f48e681]
+                  - cell "Watch" [ref=f48e682]
+                  - cell [ref=f48e684]:
+                    - generic "Driftwood Advisory Services Private Limited stored risk trajectory" [ref=f48e685]:
+                      - img "Driftwood Advisory Services Private Limited stored risk trajectory" [ref=f48e686]
+                  - cell [ref=f48e689]:
+                    - text: 23% · no crossing projected within 90d
+                    - link "Why Driftwood Advisory Services Private Limited is ranked here" [ref=f48e690] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-da24-78b4-b04c-4032b9c486c7
+                      - text: Why this score
+            - generic [ref=f48e691]:
+              - text: Last updated
+              - time [ref=f48e692]: just now

@@ -1,0 +1,85 @@
+- generic [active] [ref=f65e1]:
+  - link "Skip to content" [ref=f65e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f65e3]:
+    - complementary "Workspace navigation" [ref=f65e4]:
+      - link "Covenant Radar" [ref=f65e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f65e13]:
+          - strong [ref=f65e14]: Covenant
+          - generic [ref=f65e15]: Radar
+      - navigation "Primary navigation" [ref=f65e16]:
+        - region [ref=f65e17]:
+          - heading "Monitor" [level=2] [ref=f65e18]
+          - link "Portfolio queue" [ref=f65e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f65e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f65e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f65e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f65e31]: "0"
+          - link "Search" [ref=f65e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f65e37]:
+          - heading "Portfolio data" [level=2] [ref=f65e38]
+          - link "Borrowers" [ref=f65e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f65e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f65e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f65e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f65e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f65e61]:
+          - heading "Workflows" [level=2] [ref=f65e62]
+          - link "Intake" [ref=f65e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f65e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f65e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f65e75] [cursor=pointer]
+    - generic [ref=f65e79]:
+      - banner [ref=f65e80]:
+        - generic [ref=f65e82]:
+          - generic [ref=f65e83]: Workspace
+          - generic [ref=f65e86]: Current view
+        - search [ref=f65e87]:
+          - generic [ref=f65e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f65e89]
+          - generic: /
+        - generic [ref=f65e90]:
+          - button "Live activity" [ref=f65e91]:
+            - generic [ref=f65e93]: Live
+          - button "Use dark theme" [ref=f65e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f65e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f65e101] [cursor=pointer]
+      - main [ref=f65e105]:
+        - generic [ref=f65e107]:
+          - paragraph [ref=f65e108]: Decision workspace
+          - heading "Portfolio master data" [level=1] [ref=f65e109]
+        - generic [ref=f65e110]:
+          - paragraph [ref=f65e111]:
+            - link "Add portfolio" [ref=f65e112] [cursor=pointer]:
+              - /url: /portfolios/new
+          - generic [ref=f65e113]:
+            - heading "Portfolio master data" [level=2] [ref=f65e114]
+            - table [ref=f65e117]:
+              - caption [ref=f65e118]: Portfolio master data
+              - rowgroup [ref=f65e119]:
+                - row [ref=f65e120]:
+                  - columnheader "Portfolio code" [ref=f65e121]
+                  - columnheader "Portfolio name" [ref=f65e122]
+                  - columnheader "Branch code" [ref=f65e123]
+                  - columnheader "Actions" [ref=f65e124]
+              - rowgroup [ref=f65e125]:
+                - row [ref=f65e126]:
+                  - cell "REF-PORTFOLIO" [ref=f65e127]
+                  - cell "Synthetic Reference Portfolio" [ref=f65e128]
+                  - cell "REF" [ref=f65e129]
+                  - cell [ref=f65e130]:
+                    - link "Open" [ref=f65e131] [cursor=pointer]:
+                      - /url: /portfolios/018c131f-cb61-7128-abf6-385b9ab6f62e

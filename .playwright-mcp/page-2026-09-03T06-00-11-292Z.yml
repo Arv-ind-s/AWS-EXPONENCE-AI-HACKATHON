@@ -1,0 +1,67 @@
+- generic [active] [ref=f62e1]:
+  - link "Skip to content" [ref=f62e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f62e3]:
+    - complementary "Workspace navigation" [ref=f62e4]:
+      - link "Covenant Radar" [ref=f62e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f62e13]:
+          - strong [ref=f62e14]: Covenant
+          - generic [ref=f62e15]: Radar
+      - navigation "Primary navigation" [ref=f62e16]:
+        - region [ref=f62e17]:
+          - heading "Monitor" [level=2] [ref=f62e18]
+          - link "Portfolio queue" [ref=f62e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f62e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f62e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f62e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f62e31]: "0"
+          - link "Search" [ref=f62e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f62e37]:
+          - heading "Portfolio data" [level=2] [ref=f62e38]
+          - link "Borrowers" [ref=f62e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f62e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f62e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f62e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f62e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f62e61]:
+          - heading "Workflows" [level=2] [ref=f62e62]
+          - link "Intake" [ref=f62e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f62e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f62e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f62e75] [cursor=pointer]
+    - generic [ref=f62e79]:
+      - banner [ref=f62e80]:
+        - generic [ref=f62e82]:
+          - generic [ref=f62e83]: Workspace
+          - generic [ref=f62e86]: Current view
+        - search [ref=f62e87]:
+          - generic [ref=f62e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f62e89]
+          - generic: /
+        - generic [ref=f62e90]:
+          - button "Live activity" [ref=f62e91]:
+            - generic [ref=f62e93]: Live
+          - button "Use dark theme" [ref=f62e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f62e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f62e101] [cursor=pointer]
+      - main [ref=f62e105]:
+        - generic [ref=f62e107]:
+          - paragraph [ref=f62e108]: Decision workspace
+          - heading "Rows awaiting resolution" [level=1] [ref=f62e109]
+        - region [ref=f62e111]:
+          - generic [ref=f62e115]:
+            - heading "No quarantined rows are awaiting resolution." [level=2] [ref=f62e116]
+            - paragraph [ref=f62e117]: No quarantined rows are awaiting resolution.

@@ -1,0 +1,265 @@
+- generic [active] [ref=f24e1]:
+  - link "Skip to content" [ref=f24e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f24e3]:
+    - complementary "Workspace navigation" [ref=f24e4]:
+      - link "Covenant Radar" [ref=f24e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f24e13]:
+          - strong [ref=f24e14]: Covenant
+          - generic [ref=f24e15]: Radar
+      - navigation "Primary navigation" [ref=f24e16]:
+        - region [ref=f24e17]:
+          - heading "Monitor" [level=2] [ref=f24e18]
+          - link "Portfolio queue" [ref=f24e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f24e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f24e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f24e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f24e31]: "0"
+          - link "Search" [ref=f24e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f24e37]:
+          - heading "Portfolio data" [level=2] [ref=f24e38]
+          - link "Borrowers" [ref=f24e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f24e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f24e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f24e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f24e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f24e61]:
+          - heading "Workflows" [level=2] [ref=f24e62]
+          - link "Intake" [ref=f24e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f24e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f24e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f24e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f24e79] [cursor=pointer]
+    - generic [ref=f24e83]:
+      - banner [ref=f24e84]:
+        - generic [ref=f24e86]:
+          - generic [ref=f24e87]: Workspace
+          - generic [ref=f24e90]: Current view
+        - search [ref=f24e91]:
+          - generic [ref=f24e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f24e93]
+          - generic: /
+        - generic [ref=f24e94]:
+          - button "Live activity" [ref=f24e95]:
+            - generic [ref=f24e97]: Live
+          - button "Use dark theme" [ref=f24e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f24e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f24e105] [cursor=pointer]
+      - main [ref=f24e109]:
+        - generic [ref=f24e111]:
+          - paragraph [ref=f24e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f24e113]
+        - generic [ref=f24e115]:
+          - status [ref=f24e116]: Hand-entered clause verified. Correct any struck field before retrying.
+          - generic [ref=f24e117]:
+            - heading "Upload a source document" [level=2] [ref=f24e118]
+            - generic [ref=f24e119]:
+              - generic [ref=f24e120]:
+                - generic [ref=f24e121]: Borrower reference *
+                - textbox "Borrower reference" [ref=f24e122]
+              - generic [ref=f24e123]:
+                - generic [ref=f24e124]: Facility reference
+                - textbox "Facility reference" [ref=f24e125]: F-000017-01
+              - generic [ref=f24e126]:
+                - generic [ref=f24e127]: Document type *
+                - combobox "Document type" [ref=f24e128]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f24e129]:
+                - generic [ref=f24e130]: Sanction letter or source document *
+                - button "Sanction letter or source document" [ref=f24e131]
+              - button "Upload and extract" [ref=f24e132] [cursor=pointer]
+          - region [ref=f24e133]:
+            - generic [ref=f24e134]:
+              - heading "Check covenant proposal" [level=2] [ref=f24e135]
+              - paragraph [ref=f24e136]: Verification verdicts
+            - article [ref=f24e137]:
+              - generic [ref=f24e138]:
+                - region [ref=f24e139]:
+                  - heading "Source text" [level=3] [ref=f24e140]
+                  - blockquote [ref=f24e141]: maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly
+                  - paragraph [ref=f24e142]: Hand-entered clause
+                - region [ref=f24e143]:
+                  - heading "Proposed fields" [level=3] [ref=f24e144]
+                  - deletion [ref=f24e146]:
+                    - generic [ref=f24e147]:
+                      - generic [ref=f24e148]:
+                        - term [ref=f24e149]: Definition
+                        - definition [ref=f24e150]: dscr
+                      - generic [ref=f24e151]:
+                        - term [ref=f24e152]: Custom formula
+                        - definition [ref=f24e153]: Not supplied
+                      - generic [ref=f24e154]:
+                        - term [ref=f24e155]: Threshold
+                        - definition [ref=f24e156]: "1.25"
+                      - generic [ref=f24e157]:
+                        - term [ref=f24e158]: Direction
+                        - definition [ref=f24e159]: above
+                      - generic [ref=f24e160]:
+                        - term [ref=f24e161]: Unit
+                        - definition [ref=f24e162]: ratio
+                      - generic [ref=f24e163]:
+                        - term [ref=f24e164]: Currency
+                        - definition [ref=f24e165]: Not supplied
+                      - generic [ref=f24e166]:
+                        - term [ref=f24e167]: Testing frequency
+                        - definition [ref=f24e168]: quarterly
+                      - generic [ref=f24e169]:
+                        - term [ref=f24e170]: Effective from
+                        - definition [ref=f24e171]: Not supplied
+                      - generic [ref=f24e172]:
+                        - term [ref=f24e173]: Effective to
+                        - definition [ref=f24e174]: Not supplied
+                      - generic [ref=f24e175]:
+                        - term [ref=f24e176]: Exceptions
+                        - definition [ref=f24e177]: Not supplied
+                      - generic [ref=f24e178]:
+                        - term [ref=f24e179]: Cure period (days)
+                        - definition [ref=f24e180]: "30"
+              - region [ref=f24e181]:
+                - heading "Verification verdicts" [level=3] [ref=f24e182]
+                - list [ref=f24e183]:
+                  - listitem [ref=f24e184]:
+                    - 'img "Schema Valid: The stage-1 reply matched its declared output shape." [ref=f24e185]':
+                      - generic [aria-hidden] [ref=f24e186]: ✓
+                      - generic [ref=f24e187]: Schema Valid
+                    - paragraph [ref=f24e188]: The stage-1 reply matched its declared output shape.
+                  - listitem [ref=f24e189]:
+                    - 'img "Definition Known: ''dscr'' is a known ratio-library definition." [ref=f24e190]':
+                      - generic [aria-hidden] [ref=f24e191]: ✓
+                      - generic [ref=f24e192]: Definition Known
+                    - paragraph [ref=f24e193]: "'dscr' is a known ratio-library definition."
+                  - listitem [ref=f24e194]:
+                    - 'img "Recomputable: ''dscr'' recomputed to 2.1413 from this borrower''s own stored statements." [ref=f24e195]':
+                      - generic [aria-hidden] [ref=f24e196]: ✓
+                      - generic [ref=f24e197]: Recomputable
+                    - paragraph [ref=f24e198]: "'dscr' recomputed to 2.1413 from this borrower's own stored statements."
+                  - listitem [ref=f24e199]:
+                    - 'img "Threshold Plausible: 1.25 is within ''dscr''''s plausible band." [ref=f24e200]':
+                      - generic [aria-hidden] [ref=f24e201]: ✓
+                      - generic [ref=f24e202]: Threshold Plausible
+                    - paragraph [ref=f24e203]: 1.25 is within 'dscr''s plausible band.
+                  - listitem [ref=f24e204]:
+                    - 'img "Unit Currency Consistent: The proposed unit matches ''dscr''." [ref=f24e205]':
+                      - generic [aria-hidden] [ref=f24e206]: ✓
+                      - generic [ref=f24e207]: Unit Currency Consistent
+                    - paragraph [ref=f24e208]: The proposed unit matches 'dscr'.
+                  - listitem [ref=f24e209]:
+                    - 'img "Frequency Dates Consistent: No effective-from date was proposed." [ref=f24e210]':
+                      - generic [aria-hidden] [ref=f24e211]: ×
+                      - generic [ref=f24e212]: Frequency Dates Consistent
+                    - paragraph [ref=f24e213]: No effective-from date was proposed.
+                - paragraph [ref=f24e214]:
+                  - strong [ref=f24e215]: "Failed checks:"
+                  - text: Frequency Dates Consistent
+              - generic [ref=f24e216]:
+                - group [ref=f24e217]:
+                  - generic "Proposed fields" [ref=f24e218] [cursor=pointer]
+                  - option "Not supplied"
+                  - option "Above" [selected]
+                  - option "Below"
+                  - option "Not supplied"
+                  - option "Ratio" [selected]
+                  - option "Percent"
+                  - option "Currency"
+                  - option "Days"
+                  - option "Count"
+                  - option "Not supplied"
+                  - option "Monthly"
+                  - option "Quarterly" [selected]
+                  - option "Half yearly"
+                  - option "Yearly"
+                  - option "Event driven"
+                - generic [ref=f24e219]:
+                  - generic [ref=f24e220]:
+                    - generic [ref=f24e221]: Test basis *
+                    - textbox "Test basis" [ref=f24e222]: standalone
+                  - generic [ref=f24e223]:
+                    - generic [ref=f24e224]: Covenant reference
+                    - textbox "Covenant reference" [ref=f24e225]
+                  - generic [ref=f24e226]:
+                    - generic [ref=f24e227]: Covenant name
+                    - textbox "Covenant name" [ref=f24e228]
+                  - generic [ref=f24e229]:
+                    - generic [ref=f24e230]: Covenant class
+                    - textbox "Covenant class" [ref=f24e231]: financial
+                - button "Save and re-run verification" [ref=f24e232] [cursor=pointer]
+          - generic [ref=f24e233]:
+            - heading "Enter covenant clause" [level=2] [ref=f24e234]
+            - generic [ref=f24e235]:
+              - generic [ref=f24e236]:
+                - generic [ref=f24e237]: Facility reference *
+                - textbox "Facility reference" [ref=f24e238]: F-000017-01
+              - generic [ref=f24e239]:
+                - generic [ref=f24e240]: Source text *
+                - textbox "Source text" [ref=f24e241]: The Borrower shall at all times maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly on the last day of each financial quarter, with a cure period of thirty (30) days.
+              - generic [ref=f24e242]:
+                - generic [ref=f24e243]:
+                  - generic [ref=f24e244]: Definition
+                  - textbox "Definition" [ref=f24e245]: dscr
+                - generic [ref=f24e246]:
+                  - generic [ref=f24e247]: Custom formula
+                  - textbox "Custom formula" [ref=f24e248]
+                - generic [ref=f24e249]:
+                  - generic [ref=f24e250]: Threshold
+                  - textbox "Threshold" [ref=f24e251]: "1.25"
+                - generic [ref=f24e252]:
+                  - generic [ref=f24e253]: Direction
+                  - combobox "Direction" [ref=f24e254]:
+                    - option "Not supplied"
+                    - option "Above" [selected]
+                    - option "Below"
+                - generic [ref=f24e255]:
+                  - generic [ref=f24e256]: Unit
+                  - combobox "Unit" [ref=f24e257]:
+                    - option "Not supplied"
+                    - option "Ratio" [selected]
+                    - option "Percent"
+                    - option "Currency"
+                    - option "Days"
+                    - option "Count"
+                - generic [ref=f24e258]:
+                  - generic [ref=f24e259]: Currency
+                  - textbox "Currency" [ref=f24e260]
+                - generic [ref=f24e261]:
+                  - generic [ref=f24e262]: Testing frequency
+                  - combobox "Testing frequency" [ref=f24e263]:
+                    - option "Not supplied"
+                    - option "Monthly"
+                    - option "Quarterly" [selected]
+                    - option "Half yearly"
+                    - option "Yearly"
+                    - option "Event driven"
+                - generic [ref=f24e264]:
+                  - generic [ref=f24e265]: Effective from
+                  - textbox "Effective from" [ref=f24e266]
+                - generic [ref=f24e267]:
+                  - generic [ref=f24e268]: Effective to
+                  - textbox "Effective to" [ref=f24e269]
+                - generic [ref=f24e270]:
+                  - generic [ref=f24e271]: Exceptions
+                  - textbox "Exceptions" [ref=f24e272]
+                - generic [ref=f24e273]:
+                  - generic [ref=f24e274]: Cure period (days)
+                  - spinbutton "Cure period (days)" [ref=f24e275]: "30"
+                - generic [ref=f24e276]:
+                  - generic [ref=f24e277]: Source quote
+                  - textbox "Source quote" [ref=f24e278]: maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly
+              - button "Verify clause" [ref=f24e279] [cursor=pointer]

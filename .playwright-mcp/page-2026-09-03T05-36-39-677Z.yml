@@ -1,0 +1,150 @@
+- generic [active] [ref=f23e1]:
+  - link "Skip to content" [ref=f23e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f23e3]:
+    - complementary "Workspace navigation" [ref=f23e4]:
+      - link "Covenant Radar" [ref=f23e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f23e13]:
+          - strong [ref=f23e14]: Covenant
+          - generic [ref=f23e15]: Radar
+      - navigation "Primary navigation" [ref=f23e16]:
+        - region [ref=f23e17]:
+          - heading "Monitor" [level=2] [ref=f23e18]
+          - link "Portfolio queue" [ref=f23e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f23e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f23e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f23e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f23e31]: "0"
+          - link "Search" [ref=f23e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f23e37]:
+          - heading "Portfolio data" [level=2] [ref=f23e38]
+          - link "Borrowers" [ref=f23e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f23e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f23e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f23e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f23e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f23e61]:
+          - heading "Workflows" [level=2] [ref=f23e62]
+          - link "Intake" [ref=f23e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f23e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f23e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f23e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f23e79] [cursor=pointer]
+    - generic [ref=f23e83]:
+      - banner [ref=f23e84]:
+        - generic [ref=f23e86]:
+          - generic [ref=f23e87]: Workspace
+          - generic [ref=f23e90]: Current view
+        - search [ref=f23e91]:
+          - generic [ref=f23e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f23e93]
+          - generic: /
+        - generic [ref=f23e94]:
+          - button "Live activity" [ref=f23e95]:
+            - generic [ref=f23e97]: Live
+          - button "Use dark theme" [ref=f23e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f23e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f23e105] [cursor=pointer]
+      - main [ref=f23e109]:
+        - generic [ref=f23e111]:
+          - paragraph [ref=f23e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f23e113]
+        - generic [ref=f23e115]:
+          - generic [ref=f23e116]:
+            - heading "Upload a source document" [level=2] [ref=f23e117]
+            - generic [ref=f23e118]:
+              - generic [ref=f23e119]:
+                - generic [ref=f23e120]: Borrower reference *
+                - textbox "Borrower reference" [ref=f23e121]
+              - generic [ref=f23e122]:
+                - generic [ref=f23e123]: Facility reference
+                - textbox "Facility reference" [ref=f23e124]
+              - generic [ref=f23e125]:
+                - generic [ref=f23e126]: Document type *
+                - combobox "Document type" [ref=f23e127]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f23e128]:
+                - generic [ref=f23e129]: Sanction letter or source document *
+                - button "Sanction letter or source document" [ref=f23e130]
+              - button "Upload and extract" [ref=f23e131] [cursor=pointer]
+          - generic [ref=f23e132]:
+            - heading "Enter covenant clause" [level=2] [ref=f23e133]
+            - paragraph [ref=f23e134]: Enter the clause and its fields. The same code verifications will run before anything can be confirmed.
+            - generic [ref=f23e135]:
+              - generic [ref=f23e136]:
+                - generic [ref=f23e137]: Facility reference *
+                - textbox "Facility reference" [ref=f23e138]
+              - generic [ref=f23e139]:
+                - generic [ref=f23e140]: Source text *
+                - textbox "Source text" [ref=f23e141]
+              - generic [ref=f23e142]:
+                - generic [ref=f23e143]:
+                  - generic [ref=f23e144]: Definition
+                  - textbox "Definition" [ref=f23e145]
+                - generic [ref=f23e146]:
+                  - generic [ref=f23e147]: Custom formula
+                  - textbox "Custom formula" [ref=f23e148]
+                - generic [ref=f23e149]:
+                  - generic [ref=f23e150]: Threshold
+                  - textbox "Threshold" [ref=f23e151]
+                - generic [ref=f23e152]:
+                  - generic [ref=f23e153]: Direction
+                  - combobox "Direction" [ref=f23e154]:
+                    - option "Not supplied" [selected]
+                    - option "Above"
+                    - option "Below"
+                - generic [ref=f23e155]:
+                  - generic [ref=f23e156]: Unit
+                  - combobox "Unit" [ref=f23e157]:
+                    - option "Not supplied" [selected]
+                    - option "Ratio"
+                    - option "Percent"
+                    - option "Currency"
+                    - option "Days"
+                    - option "Count"
+                - generic [ref=f23e158]:
+                  - generic [ref=f23e159]: Currency
+                  - textbox "Currency" [ref=f23e160]
+                - generic [ref=f23e161]:
+                  - generic [ref=f23e162]: Testing frequency
+                  - combobox "Testing frequency" [ref=f23e163]:
+                    - option "Not supplied" [selected]
+                    - option "Monthly"
+                    - option "Quarterly"
+                    - option "Half yearly"
+                    - option "Yearly"
+                    - option "Event driven"
+                - generic [ref=f23e164]:
+                  - generic [ref=f23e165]: Effective from
+                  - textbox "Effective from" [ref=f23e166]
+                - generic [ref=f23e167]:
+                  - generic [ref=f23e168]: Effective to
+                  - textbox "Effective to" [ref=f23e169]
+                - generic [ref=f23e170]:
+                  - generic [ref=f23e171]: Exceptions
+                  - textbox "Exceptions" [ref=f23e172]
+                - generic [ref=f23e173]:
+                  - generic [ref=f23e174]: Cure period (days)
+                  - spinbutton "Cure period (days)" [ref=f23e175]
+                - generic [ref=f23e176]:
+                  - generic [ref=f23e177]: Source quote
+                  - textbox "Source quote" [ref=f23e178]
+              - button "Verify clause" [ref=f23e179] [cursor=pointer]

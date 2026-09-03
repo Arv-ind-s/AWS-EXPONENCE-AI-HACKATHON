@@ -1,0 +1,222 @@
+- generic [active] [ref=f5e1]:
+  - link "Skip to content" [ref=f5e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f5e3]:
+    - complementary "Workspace navigation" [ref=f5e4]:
+      - link "Covenant Radar" [ref=f5e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f5e13]:
+          - strong [ref=f5e14]: Covenant
+          - generic [ref=f5e15]: Radar
+      - navigation "Primary navigation" [ref=f5e16]:
+        - region [ref=f5e17]:
+          - heading "Monitor" [level=2] [ref=f5e18]
+          - link "Portfolio queue" [ref=f5e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f5e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f5e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f5e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f5e31]: "9"
+          - link "Search" [ref=f5e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f5e37]:
+          - heading "Portfolio data" [level=2] [ref=f5e38]
+          - link "Borrowers" [ref=f5e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f5e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f5e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f5e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f5e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f5e61]:
+          - heading "Workflows" [level=2] [ref=f5e62]
+          - link "Document review" [ref=f5e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f5e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f5e71] [cursor=pointer]
+    - generic [ref=f5e75]:
+      - banner [ref=f5e76]:
+        - generic [ref=f5e78]:
+          - generic [ref=f5e79]: Workspace
+          - generic [ref=f5e82]: Current view
+        - search [ref=f5e83]:
+          - generic [ref=f5e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f5e85]
+          - generic: /
+        - generic [ref=f5e86]:
+          - button "Live activity" [ref=f5e87]:
+            - generic [ref=f5e89]: Live
+          - button "Use dark theme" [ref=f5e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f5e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f5e97] [cursor=pointer]
+      - main [ref=f5e101]:
+        - generic [ref=f5e103]:
+          - paragraph [ref=f5e104]: Decision workspace
+          - heading "Intervention simulator" [level=1] [ref=f5e105]
+        - generic [ref=f5e107]:
+          - region [ref=f5e108]:
+            - heading "Forecast" [level=2] [ref=f5e109]
+            - paragraph [ref=f5e110]:
+              - strong [ref=f5e111]: Cloudmere Aviation Support Private Limited
+              - generic [ref=f5e112]: B-000017
+              - generic [ref=f5e113]: F-000017-01
+              - generic [ref=f5e114]: D17COV · Interest coverage ratio
+            - generic [ref=f5e115]:
+              - generic [ref=f5e116]:
+                - term [ref=f5e117]: Covenant class
+                - definition [ref=f5e118]: coverage
+              - generic [ref=f5e119]:
+                - term [ref=f5e120]: Threshold
+                - definition [ref=f5e121]: 1.5x
+              - generic [ref=f5e122]:
+                - term [ref=f5e123]: Direction
+                - definition [ref=f5e124]: min
+              - generic [ref=f5e125]:
+                - term [ref=f5e126]: Horizon
+                - definition [ref=f5e127]: 90 days
+              - generic [ref=f5e128]:
+                - term [ref=f5e129]: Probability
+                - definition [ref=f5e130]: 99.00%
+              - generic [ref=f5e131]:
+                - term [ref=f5e132]: Confidence
+                - definition [ref=f5e133]: 100.00%
+              - generic [ref=f5e134]:
+                - term [ref=f5e135]: Crossing date
+                - definition [ref=f5e136]: 28 Nov 2026
+              - generic [ref=f5e137]:
+                - term [ref=f5e138]: As of
+                - definition [ref=f5e139]: 03 Sep 2026
+          - region [ref=f5e140]:
+            - generic [ref=f5e142]:
+              - heading "Applicable interventions" [level=2] [ref=f5e143]
+              - paragraph [ref=f5e144]: Select up to four options. Every assumption is shown before you run them.
+            - generic [ref=f5e145]:
+              - generic [ref=f5e146]:
+                - generic [ref=f5e147]: Parameters
+                - textbox "Parameters" [ref=f5e148]: "{\"weights\":{\"distance\":\"0.5\",\"max_probability\":\"0.99\",\"pressure\":\"0.2\",\"velocity\":\"0.3\"}}"
+              - generic [ref=f5e149]:
+                - article [ref=f5e150]:
+                  - generic [ref=f5e151] [cursor=pointer]:
+                    - checkbox "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [checked] [ref=f5e152]
+                    - generic [ref=f5e153]: CREDIT-REDUCE-DEBT-SERVICE
+                    - generic [ref=f5e154]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                  - generic [ref=f5e155]:
+                    - generic [ref=f5e156]:
+                      - term [ref=f5e157]: Effect model
+                      - definition [ref=f5e158]: level_shift
+                    - generic [ref=f5e159]:
+                      - term [ref=f5e160]: Role
+                      - definition [ref=f5e161]: credit
+                    - generic [ref=f5e162]:
+                      - term [ref=f5e163]: Requires approval
+                      - definition [ref=f5e164]: "Yes"
+                  - region [ref=f5e165]:
+                    - heading "Assumptions for this option" [level=3] [ref=f5e166]
+                    - heading "Parameters" [level=4] [ref=f5e167]
+                    - list [ref=f5e168]:
+                      - listitem [ref=f5e169]: "amount: 0.60"
+                    - heading "Assumptions" [level=4] [ref=f5e170]
+                    - list [ref=f5e171]:
+                      - listitem [ref=f5e172]: The approved exposure reduction is available immediately.
+                      - listitem [ref=f5e173]: The released debt service is retained in the borrower's operating cash flow.
+                - article [ref=f5e174]:
+                  - generic [ref=f5e175] [cursor=pointer]:
+                    - checkbox "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f5e176]
+                    - generic [ref=f5e177]: RISK-REVIEW-THRESHOLD
+                    - generic [ref=f5e178]: Review the covenant threshold against the executed facility documents.
+                  - generic [ref=f5e179]:
+                    - generic [ref=f5e180]:
+                      - term [ref=f5e181]: Effect model
+                      - definition [ref=f5e182]: threshold_relaxation
+                    - generic [ref=f5e183]:
+                      - term [ref=f5e184]: Role
+                      - definition [ref=f5e185]: risk
+                    - generic [ref=f5e186]:
+                      - term [ref=f5e187]: Requires approval
+                      - definition [ref=f5e188]: "Yes"
+                  - region [ref=f5e189]:
+                    - heading "Assumptions for this option" [level=3] [ref=f5e190]
+                    - heading "Parameters" [level=4] [ref=f5e191]
+                    - list [ref=f5e192]:
+                      - listitem [ref=f5e193]: "amount: 0.10"
+                    - heading "Assumptions" [level=4] [ref=f5e194]
+                    - list [ref=f5e195]:
+                      - listitem [ref=f5e196]: A separately approved contractual amendment changes the threshold.
+              - button "Compare with baseline" [ref=f5e197] [cursor=pointer]
+          - region [ref=f5e199]:
+            - heading "Comparison against doing nothing" [level=2] [ref=f5e200]
+            - table [ref=f5e202]:
+              - caption [ref=f5e203]: Comparison against doing nothing
+              - rowgroup [ref=f5e204]:
+                - row [ref=f5e205]:
+                  - columnheader "Status" [ref=f5e206]
+                  - columnheader "Do nothing (baseline) Do nothing (baseline) The stored forecast with no intervention applied. Assumptions No intervention is applied; this is the comparison baseline." [ref=f5e207]:
+                    - generic [ref=f5e208]: Do nothing (baseline)
+                    - generic [ref=f5e209]: Do nothing (baseline)
+                    - generic [ref=f5e210]: The stored forecast with no intervention applied.
+                    - generic [ref=f5e211]: Assumptions
+                    - list [ref=f5e212]:
+                      - listitem [ref=f5e213]: No intervention is applied; this is the comparison baseline.
+                  - columnheader "CREDIT-REDUCE-DEBT-SERVICE Applied Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process. Assumptions The approved exposure reduction is available immediately. The released debt service is retained in the borrower's operating cash flow." [ref=f5e214]:
+                    - generic [ref=f5e215]: CREDIT-REDUCE-DEBT-SERVICE
+                    - generic [ref=f5e216]: Applied
+                    - generic [ref=f5e217]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - generic [ref=f5e218]: Assumptions
+                    - list [ref=f5e219]:
+                      - listitem [ref=f5e220]: The approved exposure reduction is available immediately.
+                      - listitem [ref=f5e221]: The released debt service is retained in the borrower's operating cash flow.
+              - rowgroup [ref=f5e222]:
+                - row [ref=f5e223]:
+                  - rowheader "Crossing date" [ref=f5e224]
+                  - cell [ref=f5e225]:
+                    - list [ref=f5e226]:
+                      - listitem [ref=f5e227]: 30 days No projected crossing within 30 days.
+                      - listitem [ref=f5e228]: 60 days No projected crossing within 60 days.
+                      - listitem [ref=f5e229]: 90 days 28 Nov 2026
+                  - cell [ref=f5e230]:
+                    - list [ref=f5e231]:
+                      - listitem [ref=f5e232]: 30 days No projected crossing within 30 days.
+                      - listitem [ref=f5e233]: 60 days No projected crossing within 60 days.
+                      - listitem [ref=f5e234]: 90 days No projected crossing within 90 days.
+                - row [ref=f5e235]:
+                  - rowheader "Probability" [ref=f5e236]
+                  - cell [ref=f5e237]:
+                    - list [ref=f5e238]:
+                      - listitem [ref=f5e239]: 30 days 46.39%
+                      - listitem [ref=f5e240]: 60 days 48.29%
+                      - listitem [ref=f5e241]: 90 days 99.00%
+                  - cell [ref=f5e242]:
+                    - list [ref=f5e243]:
+                      - listitem [ref=f5e244]: 30 days 29.83%
+                      - listitem [ref=f5e245]: 60 days 30.60%
+                      - listitem [ref=f5e246]: 90 days 31.41%
+                - row [ref=f5e247]:
+                  - rowheader "Crossing delta" [ref=f5e248]
+                  - cell [ref=f5e249]:
+                    - list [ref=f5e250]:
+                      - listitem [ref=f5e251]: Not applicable
+                      - listitem [ref=f5e252]: Not applicable
+                      - listitem [ref=f5e253]: Not applicable
+                  - cell [ref=f5e254]:
+                    - list [ref=f5e255]:
+                      - listitem [ref=f5e256]: 0 days
+                      - listitem [ref=f5e257]: 0 days
+                      - listitem [ref=f5e258]: At least +5 days
+                - row [ref=f5e259]:
+                  - rowheader "Probability delta" [ref=f5e260]
+                  - cell [ref=f5e261]:
+                    - list [ref=f5e262]:
+                      - listitem [ref=f5e263]: Not applicable
+                      - listitem [ref=f5e264]: Not applicable
+                      - listitem [ref=f5e265]: Not applicable
+                  - cell [ref=f5e266]:
+                    - list [ref=f5e267]:
+                      - listitem [ref=f5e268]: "-16.57%"
+                      - listitem [ref=f5e269]: "-17.69%"
+                      - listitem [ref=f5e270]: "-67.59%"

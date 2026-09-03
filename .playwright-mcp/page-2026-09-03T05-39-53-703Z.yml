@@ -1,0 +1,730 @@
+- generic [active] [ref=f27e1]:
+  - link "Skip to content" [ref=f27e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f27e3]:
+    - complementary "Workspace navigation" [ref=f27e4]:
+      - link "Covenant Radar" [ref=f27e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f27e13]:
+          - strong [ref=f27e14]: Covenant
+          - generic [ref=f27e15]: Radar
+      - navigation "Primary navigation" [ref=f27e16]:
+        - region [ref=f27e17]:
+          - heading "Monitor" [level=2] [ref=f27e18]
+          - link "Portfolio queue" [ref=f27e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f27e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f27e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f27e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f27e31]: "0"
+          - link "Search" [ref=f27e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f27e37]:
+          - heading "Portfolio data" [level=2] [ref=f27e38]
+          - link "Borrowers" [ref=f27e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f27e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f27e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f27e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f27e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f27e61]:
+          - heading "Workflows" [level=2] [ref=f27e62]
+          - link "Intake" [ref=f27e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f27e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f27e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f27e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f27e79] [cursor=pointer]
+    - generic [ref=f27e83]:
+      - banner [ref=f27e84]:
+        - generic [ref=f27e86]:
+          - generic [ref=f27e87]: Workspace
+          - generic [ref=f27e90]: Current view
+        - search [ref=f27e91]:
+          - generic [ref=f27e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f27e93]
+          - generic: /
+        - generic [ref=f27e94]:
+          - button "Live activity" [ref=f27e95]:
+            - generic [ref=f27e97]: Live
+          - button "Use dark theme" [ref=f27e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f27e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f27e105] [cursor=pointer]
+      - main [ref=f27e109]:
+        - generic [ref=f27e111]:
+          - paragraph [ref=f27e112]: Decision workspace
+          - heading "Covenant registry" [level=1] [ref=f27e113]
+        - generic [ref=f27e114]:
+          - paragraph [ref=f27e115]:
+            - link "Register covenant" [ref=f27e116] [cursor=pointer]:
+              - /url: /covenants/new
+          - generic [ref=f27e117]:
+            - heading "Covenant registry" [level=2] [ref=f27e118]
+            - table [ref=f27e121]:
+              - caption [ref=f27e122]: Covenant registry
+              - rowgroup [ref=f27e123]:
+                - row [ref=f27e124]:
+                  - columnheader "Reference" [ref=f27e125]
+                  - columnheader "Name" [ref=f27e126]
+                  - columnheader "Class" [ref=f27e127]
+                  - columnheader "Facility" [ref=f27e128]
+                  - columnheader "Status" [ref=f27e129]
+                  - columnheader "Actions" [ref=f27e130]
+              - rowgroup [ref=f27e131]:
+                - row [ref=f27e132]:
+                  - cell "D01COV" [ref=f27e133]
+                  - cell "Interest coverage ratio" [ref=f27e134]
+                  - cell "coverage" [ref=f27e135]
+                  - cell "018c9d78-f841-7e34-9361-5d1173bcbf1d" [ref=f27e136]
+                  - cell "active" [ref=f27e137]
+                  - cell [ref=f27e138]:
+                    - link "Open" [ref=f27e139] [cursor=pointer]:
+                      - /url: /covenants/D01COV
+                - row [ref=f27e140]:
+                  - cell "D01LEV" [ref=f27e141]
+                  - cell "Leverage ratio" [ref=f27e142]
+                  - cell "leverage" [ref=f27e143]
+                  - cell "018c9d78-f841-7e34-9361-5d1173bcbf1d" [ref=f27e144]
+                  - cell "active" [ref=f27e145]
+                  - cell [ref=f27e146]:
+                    - link "Open" [ref=f27e147] [cursor=pointer]:
+                      - /url: /covenants/D01LEV
+                - row [ref=f27e148]:
+                  - cell "D01LIQ" [ref=f27e149]
+                  - cell "Current ratio" [ref=f27e150]
+                  - cell "liquidity" [ref=f27e151]
+                  - cell "018c9d78-f841-7e34-9361-5d1173bcbf1d" [ref=f27e152]
+                  - cell "active" [ref=f27e153]
+                  - cell [ref=f27e154]:
+                    - link "Open" [ref=f27e155] [cursor=pointer]:
+                      - /url: /covenants/D01LIQ
+                - row [ref=f27e156]:
+                  - cell "D02COV" [ref=f27e157]
+                  - cell "Interest coverage ratio" [ref=f27e158]
+                  - cell "coverage" [ref=f27e159]
+                  - cell "018c9ab1-e902-7158-9da7-82832717e859" [ref=f27e160]
+                  - cell "active" [ref=f27e161]
+                  - cell [ref=f27e162]:
+                    - link "Open" [ref=f27e163] [cursor=pointer]:
+                      - /url: /covenants/D02COV
+                - row [ref=f27e164]:
+                  - cell "D02LEV" [ref=f27e165]
+                  - cell "Leverage ratio" [ref=f27e166]
+                  - cell "leverage" [ref=f27e167]
+                  - cell "018c9ab1-e902-7158-9da7-82832717e859" [ref=f27e168]
+                  - cell "active" [ref=f27e169]
+                  - cell [ref=f27e170]:
+                    - link "Open" [ref=f27e171] [cursor=pointer]:
+                      - /url: /covenants/D02LEV
+                - row [ref=f27e172]:
+                  - cell "D02LIQ" [ref=f27e173]
+                  - cell "Current ratio" [ref=f27e174]
+                  - cell "liquidity" [ref=f27e175]
+                  - cell "018c9ab1-e902-7158-9da7-82832717e859" [ref=f27e176]
+                  - cell "active" [ref=f27e177]
+                  - cell [ref=f27e178]:
+                    - link "Open" [ref=f27e179] [cursor=pointer]:
+                      - /url: /covenants/D02LIQ
+                - row [ref=f27e180]:
+                  - cell "D03COV" [ref=f27e181]
+                  - cell "Interest coverage ratio" [ref=f27e182]
+                  - cell "coverage" [ref=f27e183]
+                  - cell "018d55b1-4f23-7127-a682-20e78bd5a4e3" [ref=f27e184]
+                  - cell "active" [ref=f27e185]
+                  - cell [ref=f27e186]:
+                    - link "Open" [ref=f27e187] [cursor=pointer]:
+                      - /url: /covenants/D03COV
+                - row [ref=f27e188]:
+                  - cell "D03LEV" [ref=f27e189]
+                  - cell "Leverage ratio" [ref=f27e190]
+                  - cell "leverage" [ref=f27e191]
+                  - cell "018d55b1-4f23-7127-a682-20e78bd5a4e3" [ref=f27e192]
+                  - cell "active" [ref=f27e193]
+                  - cell [ref=f27e194]:
+                    - link "Open" [ref=f27e195] [cursor=pointer]:
+                      - /url: /covenants/D03LEV
+                - row [ref=f27e196]:
+                  - cell "D03LIQ" [ref=f27e197]
+                  - cell "Current ratio" [ref=f27e198]
+                  - cell "liquidity" [ref=f27e199]
+                  - cell "018d55b1-4f23-7127-a682-20e78bd5a4e3" [ref=f27e200]
+                  - cell "active" [ref=f27e201]
+                  - cell [ref=f27e202]:
+                    - link "Open" [ref=f27e203] [cursor=pointer]:
+                      - /url: /covenants/D03LIQ
+                - row [ref=f27e204]:
+                  - cell "D04COV" [ref=f27e205]
+                  - cell "Interest coverage ratio" [ref=f27e206]
+                  - cell "coverage" [ref=f27e207]
+                  - cell "018bf575-7ec4-753a-a10a-58bd6a982640" [ref=f27e208]
+                  - cell "active" [ref=f27e209]
+                  - cell [ref=f27e210]:
+                    - link "Open" [ref=f27e211] [cursor=pointer]:
+                      - /url: /covenants/D04COV
+                - row [ref=f27e212]:
+                  - cell "D04LEV" [ref=f27e213]
+                  - cell "Leverage ratio" [ref=f27e214]
+                  - cell "leverage" [ref=f27e215]
+                  - cell "018bf575-7ec4-753a-a10a-58bd6a982640" [ref=f27e216]
+                  - cell "active" [ref=f27e217]
+                  - cell [ref=f27e218]:
+                    - link "Open" [ref=f27e219] [cursor=pointer]:
+                      - /url: /covenants/D04LEV
+                - row [ref=f27e220]:
+                  - cell "D04LIQ" [ref=f27e221]
+                  - cell "Current ratio" [ref=f27e222]
+                  - cell "liquidity" [ref=f27e223]
+                  - cell "018bf575-7ec4-753a-a10a-58bd6a982640" [ref=f27e224]
+                  - cell "active" [ref=f27e225]
+                  - cell [ref=f27e226]:
+                    - link "Open" [ref=f27e227] [cursor=pointer]:
+                      - /url: /covenants/D04LIQ
+                - row [ref=f27e228]:
+                  - cell "D05COV" [ref=f27e229]
+                  - cell "Interest coverage ratio" [ref=f27e230]
+                  - cell "coverage" [ref=f27e231]
+                  - cell "018cfcac-4ec6-7176-8fd5-479d36c25dd5" [ref=f27e232]
+                  - cell "active" [ref=f27e233]
+                  - cell [ref=f27e234]:
+                    - link "Open" [ref=f27e235] [cursor=pointer]:
+                      - /url: /covenants/D05COV
+                - row [ref=f27e236]:
+                  - cell "D05LEV" [ref=f27e237]
+                  - cell "Leverage ratio" [ref=f27e238]
+                  - cell "leverage" [ref=f27e239]
+                  - cell "018cfcac-4ec6-7176-8fd5-479d36c25dd5" [ref=f27e240]
+                  - cell "active" [ref=f27e241]
+                  - cell [ref=f27e242]:
+                    - link "Open" [ref=f27e243] [cursor=pointer]:
+                      - /url: /covenants/D05LEV
+                - row [ref=f27e244]:
+                  - cell "D05LIQ" [ref=f27e245]
+                  - cell "Current ratio" [ref=f27e246]
+                  - cell "liquidity" [ref=f27e247]
+                  - cell "018cfcac-4ec6-7176-8fd5-479d36c25dd5" [ref=f27e248]
+                  - cell "active" [ref=f27e249]
+                  - cell [ref=f27e250]:
+                    - link "Open" [ref=f27e251] [cursor=pointer]:
+                      - /url: /covenants/D05LIQ
+                - row [ref=f27e252]:
+                  - cell "D06COV" [ref=f27e253]
+                  - cell "Interest coverage ratio" [ref=f27e254]
+                  - cell "coverage" [ref=f27e255]
+                  - cell "018cb17e-65a7-7fc7-ab10-28ed928b3ffd" [ref=f27e256]
+                  - cell "active" [ref=f27e257]
+                  - cell [ref=f27e258]:
+                    - link "Open" [ref=f27e259] [cursor=pointer]:
+                      - /url: /covenants/D06COV
+                - row [ref=f27e260]:
+                  - cell "D06LEV" [ref=f27e261]
+                  - cell "Leverage ratio" [ref=f27e262]
+                  - cell "leverage" [ref=f27e263]
+                  - cell "018cb17e-65a7-7fc7-ab10-28ed928b3ffd" [ref=f27e264]
+                  - cell "active" [ref=f27e265]
+                  - cell [ref=f27e266]:
+                    - link "Open" [ref=f27e267] [cursor=pointer]:
+                      - /url: /covenants/D06LEV
+                - row [ref=f27e268]:
+                  - cell "D06LIQ" [ref=f27e269]
+                  - cell "Current ratio" [ref=f27e270]
+                  - cell "liquidity" [ref=f27e271]
+                  - cell "018cb17e-65a7-7fc7-ab10-28ed928b3ffd" [ref=f27e272]
+                  - cell "active" [ref=f27e273]
+                  - cell [ref=f27e274]:
+                    - link "Open" [ref=f27e275] [cursor=pointer]:
+                      - /url: /covenants/D06LIQ
+                - row [ref=f27e276]:
+                  - cell "D07COV" [ref=f27e277]
+                  - cell "Interest coverage ratio" [ref=f27e278]
+                  - cell "coverage" [ref=f27e279]
+                  - cell "018d2ab7-b8e8-7e6d-a90a-fd383933dd44" [ref=f27e280]
+                  - cell "active" [ref=f27e281]
+                  - cell [ref=f27e282]:
+                    - link "Open" [ref=f27e283] [cursor=pointer]:
+                      - /url: /covenants/D07COV
+                - row [ref=f27e284]:
+                  - cell "D07LEV" [ref=f27e285]
+                  - cell "Leverage ratio" [ref=f27e286]
+                  - cell "leverage" [ref=f27e287]
+                  - cell "018d2ab7-b8e8-7e6d-a90a-fd383933dd44" [ref=f27e288]
+                  - cell "active" [ref=f27e289]
+                  - cell [ref=f27e290]:
+                    - link "Open" [ref=f27e291] [cursor=pointer]:
+                      - /url: /covenants/D07LEV
+                - row [ref=f27e292]:
+                  - cell "D07LIQ" [ref=f27e293]
+                  - cell "Current ratio" [ref=f27e294]
+                  - cell "liquidity" [ref=f27e295]
+                  - cell "018d2ab7-b8e8-7e6d-a90a-fd383933dd44" [ref=f27e296]
+                  - cell "active" [ref=f27e297]
+                  - cell [ref=f27e298]:
+                    - link "Open" [ref=f27e299] [cursor=pointer]:
+                      - /url: /covenants/D07LIQ
+                - row [ref=f27e300]:
+                  - cell "D08COV" [ref=f27e301]
+                  - cell "Interest coverage ratio" [ref=f27e302]
+                  - cell "coverage" [ref=f27e303]
+                  - cell "018cbd25-7d89-7d5a-93ad-209aec21e614" [ref=f27e304]
+                  - cell "active" [ref=f27e305]
+                  - cell [ref=f27e306]:
+                    - link "Open" [ref=f27e307] [cursor=pointer]:
+                      - /url: /covenants/D08COV
+                - row [ref=f27e308]:
+                  - cell "D08LEV" [ref=f27e309]
+                  - cell "Leverage ratio" [ref=f27e310]
+                  - cell "leverage" [ref=f27e311]
+                  - cell "018cbd25-7d89-7d5a-93ad-209aec21e614" [ref=f27e312]
+                  - cell "active" [ref=f27e313]
+                  - cell [ref=f27e314]:
+                    - link "Open" [ref=f27e315] [cursor=pointer]:
+                      - /url: /covenants/D08LEV
+                - row [ref=f27e316]:
+                  - cell "D08LIQ" [ref=f27e317]
+                  - cell "Current ratio" [ref=f27e318]
+                  - cell "liquidity" [ref=f27e319]
+                  - cell "018cbd25-7d89-7d5a-93ad-209aec21e614" [ref=f27e320]
+                  - cell "active" [ref=f27e321]
+                  - cell [ref=f27e322]:
+                    - link "Open" [ref=f27e323] [cursor=pointer]:
+                      - /url: /covenants/D08LIQ
+                - row [ref=f27e324]:
+                  - cell "D09COV" [ref=f27e325]
+                  - cell "Interest coverage ratio" [ref=f27e326]
+                  - cell "coverage" [ref=f27e327]
+                  - cell "018c2f85-14ea-75c3-8b9b-17786cce5a51" [ref=f27e328]
+                  - cell "active" [ref=f27e329]
+                  - cell [ref=f27e330]:
+                    - link "Open" [ref=f27e331] [cursor=pointer]:
+                      - /url: /covenants/D09COV
+                - row [ref=f27e332]:
+                  - cell "D09LEV" [ref=f27e333]
+                  - cell "Leverage ratio" [ref=f27e334]
+                  - cell "leverage" [ref=f27e335]
+                  - cell "018c2f85-14ea-75c3-8b9b-17786cce5a51" [ref=f27e336]
+                  - cell "active" [ref=f27e337]
+                  - cell [ref=f27e338]:
+                    - link "Open" [ref=f27e339] [cursor=pointer]:
+                      - /url: /covenants/D09LEV
+                - row [ref=f27e340]:
+                  - cell "D09LIQ" [ref=f27e341]
+                  - cell "Current ratio" [ref=f27e342]
+                  - cell "liquidity" [ref=f27e343]
+                  - cell "018c2f85-14ea-75c3-8b9b-17786cce5a51" [ref=f27e344]
+                  - cell "active" [ref=f27e345]
+                  - cell [ref=f27e346]:
+                    - link "Open" [ref=f27e347] [cursor=pointer]:
+                      - /url: /covenants/D09LIQ
+                - row [ref=f27e348]:
+                  - cell "D10COV" [ref=f27e349]
+                  - cell "Interest coverage ratio" [ref=f27e350]
+                  - cell "coverage" [ref=f27e351]
+                  - cell "018d1ad0-ad6b-7eb9-9418-6696181cfff7" [ref=f27e352]
+                  - cell "active" [ref=f27e353]
+                  - cell [ref=f27e354]:
+                    - link "Open" [ref=f27e355] [cursor=pointer]:
+                      - /url: /covenants/D10COV
+                - row [ref=f27e356]:
+                  - cell "D10LEV" [ref=f27e357]
+                  - cell "Leverage ratio" [ref=f27e358]
+                  - cell "leverage" [ref=f27e359]
+                  - cell "018d1ad0-ad6b-7eb9-9418-6696181cfff7" [ref=f27e360]
+                  - cell "active" [ref=f27e361]
+                  - cell [ref=f27e362]:
+                    - link "Open" [ref=f27e363] [cursor=pointer]:
+                      - /url: /covenants/D10LEV
+                - row [ref=f27e364]:
+                  - cell "D10LIQ" [ref=f27e365]
+                  - cell "Current ratio" [ref=f27e366]
+                  - cell "liquidity" [ref=f27e367]
+                  - cell "018d1ad0-ad6b-7eb9-9418-6696181cfff7" [ref=f27e368]
+                  - cell "active" [ref=f27e369]
+                  - cell [ref=f27e370]:
+                    - link "Open" [ref=f27e371] [cursor=pointer]:
+                      - /url: /covenants/D10LIQ
+                - row [ref=f27e372]:
+                  - cell "D11COV" [ref=f27e373]
+                  - cell "Interest coverage ratio" [ref=f27e374]
+                  - cell "coverage" [ref=f27e375]
+                  - cell "018d085b-07cc-769b-ba33-c951f2d8ffbb" [ref=f27e376]
+                  - cell "active" [ref=f27e377]
+                  - cell [ref=f27e378]:
+                    - link "Open" [ref=f27e379] [cursor=pointer]:
+                      - /url: /covenants/D11COV
+                - row [ref=f27e380]:
+                  - cell "D11LEV" [ref=f27e381]
+                  - cell "Leverage ratio" [ref=f27e382]
+                  - cell "leverage" [ref=f27e383]
+                  - cell "018d085b-07cc-769b-ba33-c951f2d8ffbb" [ref=f27e384]
+                  - cell "active" [ref=f27e385]
+                  - cell [ref=f27e386]:
+                    - link "Open" [ref=f27e387] [cursor=pointer]:
+                      - /url: /covenants/D11LEV
+                - row [ref=f27e388]:
+                  - cell "D11LIQ" [ref=f27e389]
+                  - cell "Current ratio" [ref=f27e390]
+                  - cell "liquidity" [ref=f27e391]
+                  - cell "018d085b-07cc-769b-ba33-c951f2d8ffbb" [ref=f27e392]
+                  - cell "active" [ref=f27e393]
+                  - cell [ref=f27e394]:
+                    - link "Open" [ref=f27e395] [cursor=pointer]:
+                      - /url: /covenants/D11LIQ
+                - row [ref=f27e396]:
+                  - cell "D12COV" [ref=f27e397]
+                  - cell "Interest coverage ratio" [ref=f27e398]
+                  - cell "coverage" [ref=f27e399]
+                  - cell "018be77f-e30d-7da3-8024-015ad807152d" [ref=f27e400]
+                  - cell "active" [ref=f27e401]
+                  - cell [ref=f27e402]:
+                    - link "Open" [ref=f27e403] [cursor=pointer]:
+                      - /url: /covenants/D12COV
+                - row [ref=f27e404]:
+                  - cell "D12LEV" [ref=f27e405]
+                  - cell "Leverage ratio" [ref=f27e406]
+                  - cell "leverage" [ref=f27e407]
+                  - cell "018be77f-e30d-7da3-8024-015ad807152d" [ref=f27e408]
+                  - cell "active" [ref=f27e409]
+                  - cell [ref=f27e410]:
+                    - link "Open" [ref=f27e411] [cursor=pointer]:
+                      - /url: /covenants/D12LEV
+                - row [ref=f27e412]:
+                  - cell "D12LIQ" [ref=f27e413]
+                  - cell "Current ratio" [ref=f27e414]
+                  - cell "liquidity" [ref=f27e415]
+                  - cell "018be77f-e30d-7da3-8024-015ad807152d" [ref=f27e416]
+                  - cell "active" [ref=f27e417]
+                  - cell [ref=f27e418]:
+                    - link "Open" [ref=f27e419] [cursor=pointer]:
+                      - /url: /covenants/D12LIQ
+                - row [ref=f27e420]:
+                  - cell "D13COV" [ref=f27e421]
+                  - cell "Interest coverage ratio" [ref=f27e422]
+                  - cell "coverage" [ref=f27e423]
+                  - cell "018c2edb-b58e-78ee-bf09-11df8aad90f4" [ref=f27e424]
+                  - cell "active" [ref=f27e425]
+                  - cell [ref=f27e426]:
+                    - link "Open" [ref=f27e427] [cursor=pointer]:
+                      - /url: /covenants/D13COV
+                - row [ref=f27e428]:
+                  - cell "D13LEV" [ref=f27e429]
+                  - cell "Leverage ratio" [ref=f27e430]
+                  - cell "leverage" [ref=f27e431]
+                  - cell "018c2edb-b58e-78ee-bf09-11df8aad90f4" [ref=f27e432]
+                  - cell "active" [ref=f27e433]
+                  - cell [ref=f27e434]:
+                    - link "Open" [ref=f27e435] [cursor=pointer]:
+                      - /url: /covenants/D13LEV
+                - row [ref=f27e436]:
+                  - cell "D13LIQ" [ref=f27e437]
+                  - cell "Current ratio" [ref=f27e438]
+                  - cell "liquidity" [ref=f27e439]
+                  - cell "018c2edb-b58e-78ee-bf09-11df8aad90f4" [ref=f27e440]
+                  - cell "active" [ref=f27e441]
+                  - cell [ref=f27e442]:
+                    - link "Open" [ref=f27e443] [cursor=pointer]:
+                      - /url: /covenants/D13LIQ
+                - row [ref=f27e444]:
+                  - cell "D14COV" [ref=f27e445]
+                  - cell "Interest coverage ratio" [ref=f27e446]
+                  - cell "coverage" [ref=f27e447]
+                  - cell "018c2fec-d76f-7a95-a817-1de5defef7a4" [ref=f27e448]
+                  - cell "active" [ref=f27e449]
+                  - cell [ref=f27e450]:
+                    - link "Open" [ref=f27e451] [cursor=pointer]:
+                      - /url: /covenants/D14COV
+                - row [ref=f27e452]:
+                  - cell "D14LEV" [ref=f27e453]
+                  - cell "Leverage ratio" [ref=f27e454]
+                  - cell "leverage" [ref=f27e455]
+                  - cell "018c2fec-d76f-7a95-a817-1de5defef7a4" [ref=f27e456]
+                  - cell "active" [ref=f27e457]
+                  - cell [ref=f27e458]:
+                    - link "Open" [ref=f27e459] [cursor=pointer]:
+                      - /url: /covenants/D14LEV
+                - row [ref=f27e460]:
+                  - cell "D14LIQ" [ref=f27e461]
+                  - cell "Current ratio" [ref=f27e462]
+                  - cell "liquidity" [ref=f27e463]
+                  - cell "018c2fec-d76f-7a95-a817-1de5defef7a4" [ref=f27e464]
+                  - cell "active" [ref=f27e465]
+                  - cell [ref=f27e466]:
+                    - link "Open" [ref=f27e467] [cursor=pointer]:
+                      - /url: /covenants/D14LIQ
+                - row [ref=f27e468]:
+                  - cell "D15COV" [ref=f27e469]
+                  - cell "Interest coverage ratio" [ref=f27e470]
+                  - cell "coverage" [ref=f27e471]
+                  - cell "018c737c-add0-7115-b13c-1eebf8ecc3b3" [ref=f27e472]
+                  - cell "active" [ref=f27e473]
+                  - cell [ref=f27e474]:
+                    - link "Open" [ref=f27e475] [cursor=pointer]:
+                      - /url: /covenants/D15COV
+                - row [ref=f27e476]:
+                  - cell "D15LEV" [ref=f27e477]
+                  - cell "Leverage ratio" [ref=f27e478]
+                  - cell "leverage" [ref=f27e479]
+                  - cell "018c737c-add0-7115-b13c-1eebf8ecc3b3" [ref=f27e480]
+                  - cell "active" [ref=f27e481]
+                  - cell [ref=f27e482]:
+                    - link "Open" [ref=f27e483] [cursor=pointer]:
+                      - /url: /covenants/D15LEV
+                - row [ref=f27e484]:
+                  - cell "D15LIQ" [ref=f27e485]
+                  - cell "Current ratio" [ref=f27e486]
+                  - cell "liquidity" [ref=f27e487]
+                  - cell "018c737c-add0-7115-b13c-1eebf8ecc3b3" [ref=f27e488]
+                  - cell "active" [ref=f27e489]
+                  - cell [ref=f27e490]:
+                    - link "Open" [ref=f27e491] [cursor=pointer]:
+                      - /url: /covenants/D15LIQ
+                - row [ref=f27e492]:
+                  - cell "D16COV" [ref=f27e493]
+                  - cell "Interest coverage ratio" [ref=f27e494]
+                  - cell "coverage" [ref=f27e495]
+                  - cell "018d4d77-98b1-79b7-8ccf-b01f79ec83cc" [ref=f27e496]
+                  - cell "active" [ref=f27e497]
+                  - cell [ref=f27e498]:
+                    - link "Open" [ref=f27e499] [cursor=pointer]:
+                      - /url: /covenants/D16COV
+                - row [ref=f27e500]:
+                  - cell "D16LEV" [ref=f27e501]
+                  - cell "Leverage ratio" [ref=f27e502]
+                  - cell "leverage" [ref=f27e503]
+                  - cell "018d4d77-98b1-79b7-8ccf-b01f79ec83cc" [ref=f27e504]
+                  - cell "active" [ref=f27e505]
+                  - cell [ref=f27e506]:
+                    - link "Open" [ref=f27e507] [cursor=pointer]:
+                      - /url: /covenants/D16LEV
+                - row [ref=f27e508]:
+                  - cell "D16LIQ" [ref=f27e509]
+                  - cell "Current ratio" [ref=f27e510]
+                  - cell "liquidity" [ref=f27e511]
+                  - cell "018d4d77-98b1-79b7-8ccf-b01f79ec83cc" [ref=f27e512]
+                  - cell "active" [ref=f27e513]
+                  - cell [ref=f27e514]:
+                    - link "Open" [ref=f27e515] [cursor=pointer]:
+                      - /url: /covenants/D16LIQ
+                - row [ref=f27e516]:
+                  - cell "D17COV" [ref=f27e517]
+                  - cell "Interest coverage ratio" [ref=f27e518]
+                  - cell "coverage" [ref=f27e519]
+                  - cell "018c93c3-5033-7e23-9a9f-caec5087de4c" [ref=f27e520]
+                  - cell "active" [ref=f27e521]
+                  - cell [ref=f27e522]:
+                    - link "Open" [ref=f27e523] [cursor=pointer]:
+                      - /url: /covenants/D17COV
+                - row [ref=f27e524]:
+                  - cell "D17LEV" [ref=f27e525]
+                  - cell "Leverage ratio" [ref=f27e526]
+                  - cell "leverage" [ref=f27e527]
+                  - cell "018c93c3-5033-7e23-9a9f-caec5087de4c" [ref=f27e528]
+                  - cell "active" [ref=f27e529]
+                  - cell [ref=f27e530]:
+                    - link "Open" [ref=f27e531] [cursor=pointer]:
+                      - /url: /covenants/D17LEV
+                - row [ref=f27e532]:
+                  - cell "D17LIQ" [ref=f27e533]
+                  - cell "Current ratio" [ref=f27e534]
+                  - cell "liquidity" [ref=f27e535]
+                  - cell "018c93c3-5033-7e23-9a9f-caec5087de4c" [ref=f27e536]
+                  - cell "active" [ref=f27e537]
+                  - cell [ref=f27e538]:
+                    - link "Open" [ref=f27e539] [cursor=pointer]:
+                      - /url: /covenants/D17LIQ
+                - row [ref=f27e540]:
+                  - cell "D18COV" [ref=f27e541]
+                  - cell "Interest coverage ratio" [ref=f27e542]
+                  - cell "coverage" [ref=f27e543]
+                  - cell "018ca561-cfb4-7f4d-a1c4-5d4fe033579c" [ref=f27e544]
+                  - cell "active" [ref=f27e545]
+                  - cell [ref=f27e546]:
+                    - link "Open" [ref=f27e547] [cursor=pointer]:
+                      - /url: /covenants/D18COV
+                - row [ref=f27e548]:
+                  - cell "D18LEV" [ref=f27e549]
+                  - cell "Leverage ratio" [ref=f27e550]
+                  - cell "leverage" [ref=f27e551]
+                  - cell "018ca561-cfb4-7f4d-a1c4-5d4fe033579c" [ref=f27e552]
+                  - cell "active" [ref=f27e553]
+                  - cell [ref=f27e554]:
+                    - link "Open" [ref=f27e555] [cursor=pointer]:
+                      - /url: /covenants/D18LEV
+                - row [ref=f27e556]:
+                  - cell "D18LIQ" [ref=f27e557]
+                  - cell "Current ratio" [ref=f27e558]
+                  - cell "liquidity" [ref=f27e559]
+                  - cell "018ca561-cfb4-7f4d-a1c4-5d4fe033579c" [ref=f27e560]
+                  - cell "active" [ref=f27e561]
+                  - cell [ref=f27e562]:
+                    - link "Open" [ref=f27e563] [cursor=pointer]:
+                      - /url: /covenants/D18LIQ
+                - row [ref=f27e564]:
+                  - cell "D19COV" [ref=f27e565]
+                  - cell "Interest coverage ratio" [ref=f27e566]
+                  - cell "coverage" [ref=f27e567]
+                  - cell "018c03bd-8056-77be-a55f-bc72ab64e0b4" [ref=f27e568]
+                  - cell "active" [ref=f27e569]
+                  - cell [ref=f27e570]:
+                    - link "Open" [ref=f27e571] [cursor=pointer]:
+                      - /url: /covenants/D19COV
+                - row [ref=f27e572]:
+                  - cell "D19LEV" [ref=f27e573]
+                  - cell "Leverage ratio" [ref=f27e574]
+                  - cell "leverage" [ref=f27e575]
+                  - cell "018c03bd-8056-77be-a55f-bc72ab64e0b4" [ref=f27e576]
+                  - cell "active" [ref=f27e577]
+                  - cell [ref=f27e578]:
+                    - link "Open" [ref=f27e579] [cursor=pointer]:
+                      - /url: /covenants/D19LEV
+                - row [ref=f27e580]:
+                  - cell "D19LIQ" [ref=f27e581]
+                  - cell "Current ratio" [ref=f27e582]
+                  - cell "liquidity" [ref=f27e583]
+                  - cell "018c03bd-8056-77be-a55f-bc72ab64e0b4" [ref=f27e584]
+                  - cell "active" [ref=f27e585]
+                  - cell [ref=f27e586]:
+                    - link "Open" [ref=f27e587] [cursor=pointer]:
+                      - /url: /covenants/D19LIQ
+                - row [ref=f27e588]:
+                  - cell "D20COV" [ref=f27e589]
+                  - cell "Interest coverage ratio" [ref=f27e590]
+                  - cell "coverage" [ref=f27e591]
+                  - cell "018d3e7b-8977-7bc6-97f5-40242f8dfe56" [ref=f27e592]
+                  - cell "active" [ref=f27e593]
+                  - cell [ref=f27e594]:
+                    - link "Open" [ref=f27e595] [cursor=pointer]:
+                      - /url: /covenants/D20COV
+                - row [ref=f27e596]:
+                  - cell "D20LEV" [ref=f27e597]
+                  - cell "Leverage ratio" [ref=f27e598]
+                  - cell "leverage" [ref=f27e599]
+                  - cell "018d3e7b-8977-7bc6-97f5-40242f8dfe56" [ref=f27e600]
+                  - cell "active" [ref=f27e601]
+                  - cell [ref=f27e602]:
+                    - link "Open" [ref=f27e603] [cursor=pointer]:
+                      - /url: /covenants/D20LEV
+                - row [ref=f27e604]:
+                  - cell "D20LIQ" [ref=f27e605]
+                  - cell "Current ratio" [ref=f27e606]
+                  - cell "liquidity" [ref=f27e607]
+                  - cell "018d3e7b-8977-7bc6-97f5-40242f8dfe56" [ref=f27e608]
+                  - cell "active" [ref=f27e609]
+                  - cell [ref=f27e610]:
+                    - link "Open" [ref=f27e611] [cursor=pointer]:
+                      - /url: /covenants/D20LIQ
+                - row [ref=f27e612]:
+                  - cell "D21COV" [ref=f27e613]
+                  - cell "Interest coverage ratio" [ref=f27e614]
+                  - cell "coverage" [ref=f27e615]
+                  - cell "018bd6cd-e678-7fb8-ac5e-7956296550e6" [ref=f27e616]
+                  - cell "active" [ref=f27e617]
+                  - cell [ref=f27e618]:
+                    - link "Open" [ref=f27e619] [cursor=pointer]:
+                      - /url: /covenants/D21COV
+                - row [ref=f27e620]:
+                  - cell "D21LEV" [ref=f27e621]
+                  - cell "Leverage ratio" [ref=f27e622]
+                  - cell "leverage" [ref=f27e623]
+                  - cell "018bd6cd-e678-7fb8-ac5e-7956296550e6" [ref=f27e624]
+                  - cell "active" [ref=f27e625]
+                  - cell [ref=f27e626]:
+                    - link "Open" [ref=f27e627] [cursor=pointer]:
+                      - /url: /covenants/D21LEV
+                - row [ref=f27e628]:
+                  - cell "D21LIQ" [ref=f27e629]
+                  - cell "Current ratio" [ref=f27e630]
+                  - cell "liquidity" [ref=f27e631]
+                  - cell "018bd6cd-e678-7fb8-ac5e-7956296550e6" [ref=f27e632]
+                  - cell "active" [ref=f27e633]
+                  - cell [ref=f27e634]:
+                    - link "Open" [ref=f27e635] [cursor=pointer]:
+                      - /url: /covenants/D21LIQ
+                - row [ref=f27e636]:
+                  - cell "D22COV" [ref=f27e637]
+                  - cell "Interest coverage ratio" [ref=f27e638]
+                  - cell "coverage" [ref=f27e639]
+                  - cell "018cc008-041a-7b4a-bc9a-9ed6af7a5f22" [ref=f27e640]
+                  - cell "active" [ref=f27e641]
+                  - cell [ref=f27e642]:
+                    - link "Open" [ref=f27e643] [cursor=pointer]:
+                      - /url: /covenants/D22COV
+                - row [ref=f27e644]:
+                  - cell "D22LEV" [ref=f27e645]
+                  - cell "Leverage ratio" [ref=f27e646]
+                  - cell "leverage" [ref=f27e647]
+                  - cell "018cc008-041a-7b4a-bc9a-9ed6af7a5f22" [ref=f27e648]
+                  - cell "active" [ref=f27e649]
+                  - cell [ref=f27e650]:
+                    - link "Open" [ref=f27e651] [cursor=pointer]:
+                      - /url: /covenants/D22LEV
+                - row [ref=f27e652]:
+                  - cell "D22LIQ" [ref=f27e653]
+                  - cell "Current ratio" [ref=f27e654]
+                  - cell "liquidity" [ref=f27e655]
+                  - cell "018cc008-041a-7b4a-bc9a-9ed6af7a5f22" [ref=f27e656]
+                  - cell "active" [ref=f27e657]
+                  - cell [ref=f27e658]:
+                    - link "Open" [ref=f27e659] [cursor=pointer]:
+                      - /url: /covenants/D22LIQ
+                - row [ref=f27e660]:
+                  - cell "D23COV" [ref=f27e661]
+                  - cell "Interest coverage ratio" [ref=f27e662]
+                  - cell "coverage" [ref=f27e663]
+                  - cell "018d23a2-fa7b-71b9-9bb7-6c2b156f3210" [ref=f27e664]
+                  - cell "active" [ref=f27e665]
+                  - cell [ref=f27e666]:
+                    - link "Open" [ref=f27e667] [cursor=pointer]:
+                      - /url: /covenants/D23COV
+                - row [ref=f27e668]:
+                  - cell "D23LEV" [ref=f27e669]
+                  - cell "Leverage ratio" [ref=f27e670]
+                  - cell "leverage" [ref=f27e671]
+                  - cell "018d23a2-fa7b-71b9-9bb7-6c2b156f3210" [ref=f27e672]
+                  - cell "active" [ref=f27e673]
+                  - cell [ref=f27e674]:
+                    - link "Open" [ref=f27e675] [cursor=pointer]:
+                      - /url: /covenants/D23LEV
+                - row [ref=f27e676]:
+                  - cell "D23LIQ" [ref=f27e677]
+                  - cell "Current ratio" [ref=f27e678]
+                  - cell "liquidity" [ref=f27e679]
+                  - cell "018d23a2-fa7b-71b9-9bb7-6c2b156f3210" [ref=f27e680]
+                  - cell "active" [ref=f27e681]
+                  - cell [ref=f27e682]:
+                    - link "Open" [ref=f27e683] [cursor=pointer]:
+                      - /url: /covenants/D23LIQ
+                - row [ref=f27e684]:
+                  - cell "D24COV" [ref=f27e685]
+                  - cell "Interest coverage ratio" [ref=f27e686]
+                  - cell "coverage" [ref=f27e687]
+                  - cell "018c819e-89bc-7683-bfd4-ba82c0eec035" [ref=f27e688]
+                  - cell "active" [ref=f27e689]
+                  - cell [ref=f27e690]:
+                    - link "Open" [ref=f27e691] [cursor=pointer]:
+                      - /url: /covenants/D24COV
+                - row [ref=f27e692]:
+                  - cell "D24LEV" [ref=f27e693]
+                  - cell "Leverage ratio" [ref=f27e694]
+                  - cell "leverage" [ref=f27e695]
+                  - cell "018c819e-89bc-7683-bfd4-ba82c0eec035" [ref=f27e696]
+                  - cell "active" [ref=f27e697]
+                  - cell [ref=f27e698]:
+                    - link "Open" [ref=f27e699] [cursor=pointer]:
+                      - /url: /covenants/D24LEV
+                - row [ref=f27e700]:
+                  - cell "D24LIQ" [ref=f27e701]
+                  - cell "Current ratio" [ref=f27e702]
+                  - cell "liquidity" [ref=f27e703]
+                  - cell "018c819e-89bc-7683-bfd4-ba82c0eec035" [ref=f27e704]
+                  - cell "active" [ref=f27e705]
+                  - cell [ref=f27e706]:
+                    - link "Open" [ref=f27e707] [cursor=pointer]:
+                      - /url: /covenants/D24LIQ

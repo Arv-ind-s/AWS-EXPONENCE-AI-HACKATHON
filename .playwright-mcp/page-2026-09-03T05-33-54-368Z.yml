@@ -1,0 +1,283 @@
+- generic [active] [ref=f10e1]:
+  - link "Skip to content" [ref=f10e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f10e3]:
+    - complementary "Workspace navigation" [ref=f10e4]:
+      - link "Covenant Radar" [ref=f10e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f10e13]:
+          - strong [ref=f10e14]: Covenant
+          - generic [ref=f10e15]: Radar
+      - navigation "Primary navigation" [ref=f10e16]:
+        - region [ref=f10e17]:
+          - heading "Monitor" [level=2] [ref=f10e18]
+          - link "Portfolio queue" [ref=f10e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f10e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f10e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f10e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f10e31]: "9"
+          - link "Search" [ref=f10e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f10e37]:
+          - heading "Portfolio data" [level=2] [ref=f10e38]
+          - link "Borrowers" [ref=f10e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f10e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f10e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f10e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f10e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f10e61]:
+          - heading "Workflows" [level=2] [ref=f10e62]
+          - link "Document review" [ref=f10e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f10e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f10e71] [cursor=pointer]
+    - generic [ref=f10e75]:
+      - banner [ref=f10e76]:
+        - generic [ref=f10e78]:
+          - generic [ref=f10e79]: Workspace
+          - generic [ref=f10e82]: Current view
+        - search [ref=f10e83]:
+          - generic [ref=f10e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f10e85]
+          - generic: /
+        - generic [ref=f10e86]:
+          - button "Live activity" [ref=f10e87]:
+            - generic [ref=f10e89]: Live
+          - button "Use dark theme" [ref=f10e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f10e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f10e97] [cursor=pointer]
+      - main [ref=f10e101]:
+        - generic [ref=f10e103]:
+          - paragraph [ref=f10e104]: Decision workspace
+          - heading "Borrower master data" [level=1] [ref=f10e105]
+        - generic [ref=f10e106]:
+          - generic [ref=f10e107]:
+            - generic [ref=f10e108]:
+              - generic [ref=f10e109]:
+                - generic [ref=f10e110]: Search borrowers
+                - searchbox "Search borrowers" [ref=f10e111]
+              - generic [ref=f10e112]:
+                - generic [ref=f10e113]: Portfolio
+                - combobox "Portfolio" [ref=f10e114]:
+                  - option "All portfolios" [selected]
+                  - option "REF-PORTFOLIO — Synthetic Reference Portfolio"
+              - generic [ref=f10e115]:
+                - generic [ref=f10e116]: Status
+                - combobox "Status" [ref=f10e117]:
+                  - option "All statuses" [selected]
+                  - option "Active"
+                  - option "Inactive"
+            - button "Apply filters" [ref=f10e119] [cursor=pointer]
+          - generic [ref=f10e120]:
+            - heading "Borrower master data" [level=2] [ref=f10e121]
+            - table [ref=f10e124]:
+              - caption [ref=f10e125]: Borrower master data
+              - rowgroup [ref=f10e126]:
+                - row [ref=f10e127]:
+                  - columnheader "Reference" [ref=f10e128]
+                  - columnheader "Legal name" [ref=f10e129]
+                  - columnheader "Portfolio" [ref=f10e130]
+                  - columnheader "Status" [ref=f10e131]
+                  - columnheader "Actions" [ref=f10e132]
+              - rowgroup [ref=f10e133]:
+                - row [ref=f10e134]:
+                  - cell "B-000001" [ref=f10e135]
+                  - cell "Alderwyn Agri Supply Private Limited" [ref=f10e136]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e137]
+                  - cell "active" [ref=f10e138]
+                  - cell [ref=f10e139]:
+                    - link "Open" [ref=f10e140] [cursor=pointer]:
+                      - /url: /borrowers/B-000001/master-data
+                - row [ref=f10e141]:
+                  - cell "B-000002" [ref=f10e142]
+                  - cell "Amberwick Mineral Resources Private Limited" [ref=f10e143]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e144]
+                  - cell "active" [ref=f10e145]
+                  - cell [ref=f10e146]:
+                    - link "Open" [ref=f10e147] [cursor=pointer]:
+                      - /url: /borrowers/B-000002/master-data
+                - row [ref=f10e148]:
+                  - cell "B-000003" [ref=f10e149]
+                  - cell "Anviora Food Products Private Limited" [ref=f10e150]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e151]
+                  - cell "active" [ref=f10e152]
+                  - cell [ref=f10e153]:
+                    - link "Open" [ref=f10e154] [cursor=pointer]:
+                      - /url: /borrowers/B-000003/master-data
+                - row [ref=f10e155]:
+                  - cell "B-000004" [ref=f10e156]
+                  - cell "Arclume Textile Mills Private Limited" [ref=f10e157]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e158]
+                  - cell "active" [ref=f10e159]
+                  - cell [ref=f10e160]:
+                    - link "Open" [ref=f10e161] [cursor=pointer]:
+                      - /url: /borrowers/B-000004/master-data
+                - row [ref=f10e162]:
+                  - cell "B-000005" [ref=f10e163]
+                  - cell "Ardentia Specialty Chemicals Private Limited" [ref=f10e164]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e165]
+                  - cell "active" [ref=f10e166]
+                  - cell [ref=f10e167]:
+                    - link "Open" [ref=f10e168] [cursor=pointer]:
+                      - /url: /borrowers/B-000005/master-data
+                - row [ref=f10e169]:
+                  - cell "B-000006" [ref=f10e170]
+                  - cell "Arkenvale Life Sciences Private Limited" [ref=f10e171]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e172]
+                  - cell "active" [ref=f10e173]
+                  - cell [ref=f10e174]:
+                    - link "Open" [ref=f10e175] [cursor=pointer]:
+                      - /url: /borrowers/B-000006/master-data
+                - row [ref=f10e176]:
+                  - cell "B-000007" [ref=f10e177]
+                  - cell "Ashmere Metalworks Private Limited" [ref=f10e178]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e179]
+                  - cell "active" [ref=f10e180]
+                  - cell [ref=f10e181]:
+                    - link "Open" [ref=f10e182] [cursor=pointer]:
+                      - /url: /borrowers/B-000007/master-data
+                - row [ref=f10e183]:
+                  - cell "B-000008" [ref=f10e184]
+                  - cell "Avenrock Precision Engineering Private Limited" [ref=f10e185]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e186]
+                  - cell "active" [ref=f10e187]
+                  - cell [ref=f10e188]:
+                    - link "Open" [ref=f10e189] [cursor=pointer]:
+                      - /url: /borrowers/B-000008/master-data
+                - row [ref=f10e190]:
+                  - cell "B-000009" [ref=f10e191]
+                  - cell "Bellora Mobility Components Private Limited" [ref=f10e192]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e193]
+                  - cell "active" [ref=f10e194]
+                  - cell [ref=f10e195]:
+                    - link "Open" [ref=f10e196] [cursor=pointer]:
+                      - /url: /borrowers/B-000009/master-data
+                - row [ref=f10e197]:
+                  - cell "B-000010" [ref=f10e198]
+                  - cell "Bluehaven Power Systems Private Limited" [ref=f10e199]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e200]
+                  - cell "active" [ref=f10e201]
+                  - cell [ref=f10e202]:
+                    - link "Open" [ref=f10e203] [cursor=pointer]:
+                      - /url: /borrowers/B-000010/master-data
+                - row [ref=f10e204]:
+                  - cell "B-000011" [ref=f10e205]
+                  - cell "Brambletide Water Infrastructure Private Limited" [ref=f10e206]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e207]
+                  - cell "active" [ref=f10e208]
+                  - cell [ref=f10e209]:
+                    - link "Open" [ref=f10e210] [cursor=pointer]:
+                      - /url: /borrowers/B-000011/master-data
+                - row [ref=f10e211]:
+                  - cell "B-000012" [ref=f10e212]
+                  - cell "Brindale Civil Projects Private Limited" [ref=f10e213]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e214]
+                  - cell "active" [ref=f10e215]
+                  - cell [ref=f10e216]:
+                    - link "Open" [ref=f10e217] [cursor=pointer]:
+                      - /url: /borrowers/B-000012/master-data
+                - row [ref=f10e218]:
+                  - cell "B-000013" [ref=f10e219]
+                  - cell "Cairnwell Wholesale Markets Private Limited" [ref=f10e220]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e221]
+                  - cell "active" [ref=f10e222]
+                  - cell [ref=f10e223]:
+                    - link "Open" [ref=f10e224] [cursor=pointer]:
+                      - /url: /borrowers/B-000013/master-data
+                - row [ref=f10e225]:
+                  - cell "B-000014" [ref=f10e226]
+                  - cell "Caldera Consumer Retail Private Limited" [ref=f10e227]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e228]
+                  - cell "active" [ref=f10e229]
+                  - cell [ref=f10e230]:
+                    - link "Open" [ref=f10e231] [cursor=pointer]:
+                      - /url: /borrowers/B-000014/master-data
+                - row [ref=f10e232]:
+                  - cell "B-000015" [ref=f10e233]
+                  - cell "Cedarwyn Road Logistics Private Limited" [ref=f10e234]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e235]
+                  - cell "active" [ref=f10e236]
+                  - cell [ref=f10e237]:
+                    - link "Open" [ref=f10e238] [cursor=pointer]:
+                      - /url: /borrowers/B-000015/master-data
+                - row [ref=f10e239]:
+                  - cell "B-000016" [ref=f10e240]
+                  - cell "Cinderbay Marine Services Private Limited" [ref=f10e241]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e242]
+                  - cell "active" [ref=f10e243]
+                  - cell [ref=f10e244]:
+                    - link "Open" [ref=f10e245] [cursor=pointer]:
+                      - /url: /borrowers/B-000016/master-data
+                - row [ref=f10e246]:
+                  - cell "B-000017" [ref=f10e247]
+                  - cell "Cloudmere Aviation Support Private Limited" [ref=f10e248]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e249]
+                  - cell "active" [ref=f10e250]
+                  - cell [ref=f10e251]:
+                    - link "Open" [ref=f10e252] [cursor=pointer]:
+                      - /url: /borrowers/B-000017/master-data
+                - row [ref=f10e253]:
+                  - cell "B-000018" [ref=f10e254]
+                  - cell "Coralstone Hospitality Services Private Limited" [ref=f10e255]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e256]
+                  - cell "active" [ref=f10e257]
+                  - cell [ref=f10e258]:
+                    - link "Open" [ref=f10e259] [cursor=pointer]:
+                      - /url: /borrowers/B-000018/master-data
+                - row [ref=f10e260]:
+                  - cell "B-000019" [ref=f10e261]
+                  - cell "Crestora Digital Networks Private Limited" [ref=f10e262]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e263]
+                  - cell "active" [ref=f10e264]
+                  - cell [ref=f10e265]:
+                    - link "Open" [ref=f10e266] [cursor=pointer]:
+                      - /url: /borrowers/B-000019/master-data
+                - row [ref=f10e267]:
+                  - cell "B-000020" [ref=f10e268]
+                  - cell "Dalespring Software Systems Private Limited" [ref=f10e269]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e270]
+                  - cell "active" [ref=f10e271]
+                  - cell [ref=f10e272]:
+                    - link "Open" [ref=f10e273] [cursor=pointer]:
+                      - /url: /borrowers/B-000020/master-data
+                - row [ref=f10e274]:
+                  - cell "B-000021" [ref=f10e275]
+                  - cell "Dawnridge Financial Services Private Limited" [ref=f10e276]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e277]
+                  - cell "active" [ref=f10e278]
+                  - cell [ref=f10e279]:
+                    - link "Open" [ref=f10e280] [cursor=pointer]:
+                      - /url: /borrowers/B-000021/master-data
+                - row [ref=f10e281]:
+                  - cell "B-000022" [ref=f10e282]
+                  - cell "Deepwell Urban Estates Private Limited" [ref=f10e283]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e284]
+                  - cell "active" [ref=f10e285]
+                  - cell [ref=f10e286]:
+                    - link "Open" [ref=f10e287] [cursor=pointer]:
+                      - /url: /borrowers/B-000022/master-data
+                - row [ref=f10e288]:
+                  - cell "B-000023" [ref=f10e289]
+                  - cell "Driftwood Advisory Services Private Limited" [ref=f10e290]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e291]
+                  - cell "active" [ref=f10e292]
+                  - cell [ref=f10e293]:
+                    - link "Open" [ref=f10e294] [cursor=pointer]:
+                      - /url: /borrowers/B-000023/master-data
+                - row [ref=f10e295]:
+                  - cell "B-000024" [ref=f10e296]
+                  - cell "Eastmere Equipment Leasing Private Limited" [ref=f10e297]
+                  - cell "018c131f-cb61-7128-abf6-385b9ab6f62e" [ref=f10e298]
+                  - cell "active" [ref=f10e299]
+                  - cell [ref=f10e300]:
+                    - link "Open" [ref=f10e301] [cursor=pointer]:
+                      - /url: /borrowers/B-000024/master-data

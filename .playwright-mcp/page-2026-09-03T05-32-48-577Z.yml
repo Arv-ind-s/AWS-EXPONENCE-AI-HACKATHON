@@ -1,0 +1,67 @@
+- generic [active] [ref=f4e1]:
+  - link "Skip to content" [ref=f4e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f4e3]:
+    - complementary "Workspace navigation" [ref=f4e4]:
+      - link "Covenant Radar" [ref=f4e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f4e13]:
+          - strong [ref=f4e14]: Covenant
+          - generic [ref=f4e15]: Radar
+      - navigation "Primary navigation" [ref=f4e16]:
+        - region [ref=f4e17]:
+          - heading "Monitor" [level=2] [ref=f4e18]
+          - link "Portfolio queue" [ref=f4e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f4e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f4e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f4e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f4e31]: "9"
+          - link "Search" [ref=f4e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f4e37]:
+          - heading "Portfolio data" [level=2] [ref=f4e38]
+          - link "Borrowers" [ref=f4e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f4e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f4e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f4e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f4e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f4e61]:
+          - heading "Workflows" [level=2] [ref=f4e62]
+          - link "Document review" [ref=f4e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f4e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f4e71] [cursor=pointer]
+    - generic [ref=f4e75]:
+      - banner [ref=f4e76]:
+        - generic [ref=f4e78]:
+          - generic [ref=f4e79]: Workspace
+          - generic [ref=f4e82]: Current view
+        - search [ref=f4e83]:
+          - generic [ref=f4e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f4e85]
+          - generic: /
+        - generic [ref=f4e86]:
+          - button "Live activity" [ref=f4e87]:
+            - generic [ref=f4e89]: Live
+          - button "Use dark theme" [ref=f4e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f4e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f4e97] [cursor=pointer]
+      - main [ref=f4e101]:
+        - generic [ref=f4e103]:
+          - paragraph [ref=f4e104]: Decision workspace
+          - heading "Intervention simulator" [level=1] [ref=f4e105]
+        - region [ref=f4e108]:
+          - generic [ref=f4e112]:
+            - heading "No forecast selected" [level=2] [ref=f4e113]
+            - paragraph [ref=f4e114]: The simulator compares interventions against one covenant forecast. Open a borrower from the queue and start a simulation from the covenant you want to test.
+            - link "Open the queue →" [ref=f4e115] [cursor=pointer]:
+              - /url: /

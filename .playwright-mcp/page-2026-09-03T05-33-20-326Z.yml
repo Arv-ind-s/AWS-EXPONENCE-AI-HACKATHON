@@ -1,0 +1,485 @@
+- generic [active] [ref=f7e1]:
+  - link "Skip to content" [ref=f7e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f7e3]:
+    - complementary "Workspace navigation" [ref=f7e4]:
+      - link "Covenant Radar" [ref=f7e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f7e13]:
+          - strong [ref=f7e14]: Covenant
+          - generic [ref=f7e15]: Radar
+      - navigation "Primary navigation" [ref=f7e16]:
+        - region [ref=f7e17]:
+          - heading "Monitor" [level=2] [ref=f7e18]
+          - link "Portfolio queue" [ref=f7e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f7e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f7e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f7e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f7e31]: "9"
+          - link "Search" [ref=f7e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f7e37]:
+          - heading "Portfolio data" [level=2] [ref=f7e38]
+          - link "Borrowers" [ref=f7e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f7e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f7e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f7e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f7e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f7e61]:
+          - heading "Workflows" [level=2] [ref=f7e62]
+          - link "Document review" [ref=f7e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f7e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f7e71] [cursor=pointer]
+    - generic [ref=f7e75]:
+      - banner [ref=f7e76]:
+        - generic [ref=f7e78]:
+          - generic [ref=f7e79]: Workspace
+          - generic [ref=f7e82]: Current view
+        - search [ref=f7e83]:
+          - generic [ref=f7e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f7e85]
+          - generic: /
+        - generic [ref=f7e86]:
+          - button "Live activity" [ref=f7e87]:
+            - generic [ref=f7e89]: Live
+          - button "Use dark theme" [ref=f7e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f7e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f7e97] [cursor=pointer]
+      - main [ref=f7e101]:
+        - generic [ref=f7e103]:
+          - paragraph [ref=f7e104]: Decision workspace
+          - heading "Cloudmere Aviation Support Private Limited" [level=1] [ref=f7e105]
+        - generic [ref=f7e107]:
+          - region [ref=f7e108]:
+            - generic [ref=f7e109]:
+              - paragraph [ref=f7e110]: Case workspace · C-018D46721C71
+              - heading "Cloudmere Aviation Support Private Limited" [level=2] [ref=f7e111]
+              - paragraph [ref=f7e112]: B-000017 · REF-PORTFOLIO
+            - generic "Case status" [ref=f7e113]:
+              - generic [ref=f7e114]:
+                - generic [ref=f7e115]: State
+                - strong [ref=f7e116]: In progress
+              - generic [ref=f7e117]:
+                - generic [ref=f7e118]: Risk band
+                - strong [ref=f7e119]: Act now
+              - generic [ref=f7e120]:
+                - generic [ref=f7e121]: SLA due
+                - strong [ref=f7e122]: Within SLA
+                - generic [ref=f7e123]: No SLA recorded
+          - navigation "Lifecycle" [ref=f7e124]:
+            - list [ref=f7e125]:
+              - listitem [ref=f7e126]:
+                - generic [ref=f7e128]: Open
+                - generic [ref=f7e129]: Not available from here
+              - listitem [ref=f7e130]:
+                - generic [ref=f7e132]: In progress
+                - generic [ref=f7e133]: Current state
+              - listitem [ref=f7e134]:
+                - generic [ref=f7e136]: Monitoring
+                - generic [ref=f7e137]: Can move here
+              - listitem [ref=f7e138]:
+                - generic [ref=f7e140]: Escalated
+                - generic [ref=f7e141]: Can move here
+              - listitem [ref=f7e142]:
+                - generic [ref=f7e144]: Closed
+                - generic [ref=f7e145]: Can move here
+          - paragraph [ref=f7e146]:
+            - link "← Back to case register" [ref=f7e147] [cursor=pointer]:
+              - /url: /cases
+          - generic [ref=f7e148]:
+            - generic [ref=f7e149]:
+              - heading "Ownership and state" [level=2] [ref=f7e150]
+              - generic [ref=f7e151]:
+                - generic [ref=f7e152]:
+                  - generic [ref=f7e153]:
+                    - term [ref=f7e154]: Case reference
+                    - definition [ref=f7e155]: C-018D46721C71
+                  - generic [ref=f7e156]:
+                    - term [ref=f7e157]: Assignee
+                    - definition [ref=f7e158]: Relationship Manager
+                  - generic [ref=f7e159]:
+                    - term [ref=f7e160]: SLA due
+                    - definition [ref=f7e161]: No SLA recorded
+                  - generic [ref=f7e162]:
+                    - term [ref=f7e163]: Opened
+                    - definition [ref=f7e164]: 02 Sep 2026 · 19:48 IST
+                  - generic [ref=f7e165]:
+                    - term [ref=f7e166]: Last updated
+                    - definition [ref=f7e167]: 03 Sep 2026 · 09:10 IST
+                  - generic [ref=f7e168]:
+                    - term [ref=f7e169]: Record version
+                    - definition [ref=f7e170]: "2"
+                - generic [ref=f7e171]:
+                  - generic [ref=f7e172]:
+                    - generic [ref=f7e173]:
+                      - generic [ref=f7e174]: Assign to *
+                      - combobox "Assign to" [ref=f7e175]:
+                        - option "Assign to" [selected]
+                    - button "Save ownership" [ref=f7e176] [cursor=pointer]
+                  - generic [ref=f7e177]:
+                    - generic [ref=f7e178]:
+                      - generic [ref=f7e179]: Move to *
+                      - combobox "Move to" [ref=f7e180]:
+                        - option "In progress" [selected]
+                      - paragraph [ref=f7e181]: Only permitted next states are offered.
+                    - generic [ref=f7e182]:
+                      - generic [ref=f7e183]: Closure reason
+                      - textbox "Closure reason" [ref=f7e184]:
+                        - /placeholder: Explain why this case is being closed.
+                      - paragraph [ref=f7e185]: Required when moving to Closed.
+                    - button "Save state" [ref=f7e186] [cursor=pointer]
+            - generic [ref=f7e187]:
+              - heading "Immutable case history" [level=2] [ref=f7e188]
+              - list [ref=f7e190]:
+                - listitem [ref=f7e191]:
+                  - paragraph [ref=f7e193]: Bulk State Changed
+                  - paragraph [ref=f7e194]: Administrator · 03 Sep 2026 · 09:10 IST
+                  - paragraph [ref=f7e195]: "action: state · bulk operation id: 01a0655a-3c55-7eb8-8117-5a68d2a57737 · closure reason recorded: False"
+            - generic [ref=f7e196]:
+              - heading "Desk notes" [level=2] [ref=f7e197]
+              - generic [ref=f7e198]:
+                - paragraph [ref=f7e199]: No comments have been added to this case.
+                - generic [ref=f7e200]:
+                  - generic [ref=f7e201]:
+                    - generic [ref=f7e202]: Add a desk note *
+                    - textbox "Add a desk note" [ref=f7e203]:
+                      - /placeholder: What changed, and what should the next reviewer know?
+                    - paragraph [ref=f7e204]: Use @username to mention a colleague. Mentions outside this case scope are stored but never notified.
+                  - button "Add note" [ref=f7e205] [cursor=pointer]
+            - generic [ref=f7e206]:
+              - heading "Actions taken" [level=2] [ref=f7e207]
+              - generic [ref=f7e208]:
+                - paragraph [ref=f7e209]: No intervention has been recorded yet.
+                - generic [ref=f7e210]:
+                  - generic [ref=f7e211]:
+                    - generic [ref=f7e212]: Catalogue intervention
+                    - combobox "Catalogue intervention" [ref=f7e213]:
+                      - option "Choose an intervention" [selected]
+                  - generic [ref=f7e214]:
+                    - generic [ref=f7e215]: Additional detail
+                    - textbox "Additional detail" [ref=f7e216]:
+                      - /placeholder: Record the intervention, decision or follow-up.
+                    - paragraph [ref=f7e217]: Required for a free-text action; optional when citing the catalogue.
+                  - button "Log action" [ref=f7e218] [cursor=pointer]
+            - generic [ref=f7e219]:
+              - heading "Linked warning memos" [level=2] [ref=f7e220]
+              - table [ref=f7e223]:
+                - caption [ref=f7e224]: Linked warning memos
+                - rowgroup [ref=f7e225]:
+                  - row [ref=f7e226]:
+                    - columnheader "Run" [ref=f7e227]
+                    - columnheader "Status" [ref=f7e228]
+                    - columnheader "Memo excerpt" [ref=f7e229]
+                - rowgroup [ref=f7e230]:
+                  - row [ref=f7e231]:
+                    - rowheader "03 Sep 2026" [ref=f7e232]
+                    - cell "Complete" [ref=f7e233]
+                    - cell [ref=f7e234]:
+                      - strong [ref=f7e235]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to cross the threshold on 2026-11-28 The current value is 1.62110000 against a contractual threshold of 1.50000000, with headroom of 8.0733. Projected breach probability is 0.9900…
+                  - row [ref=f7e236]:
+                    - rowheader "03 Sep 2026" [ref=f7e237]
+                    - cell "Complete" [ref=f7e238]
+                    - cell [ref=f7e239]:
+                      - strong [ref=f7e240]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to cross the threshold on 2026-11-28 The recorded current value for the Interest coverage ratio is 1.62110000 against a contractual threshold of 1.50000000, with headroom of 8.0733…
+                  - row [ref=f7e241]:
+                    - rowheader "02 Sep 2026" [ref=f7e242]
+                    - cell "Complete" [ref=f7e243]
+                    - cell [ref=f7e244]:
+                      - strong [ref=f7e245]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to cross the threshold on 2026-11-29, with a simulated exposure reduction point at 2026-09-18 The recorded interest coverage ratio is 1.62110000 against a contractual threshold of…
+                  - row [ref=f7e246]:
+                    - rowheader "02 Sep 2026" [ref=f7e247]
+                    - cell "Complete" [ref=f7e248]
+                    - cell [ref=f7e249]:
+                      - strong [ref=f7e250]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to cross the threshold on 2026-11-29 The recorded current value for the interest coverage ratio is 1.62110000 against a contractual threshold of 1.50000000, with headroom recorded…
+                  - row [ref=f7e251]:
+                    - rowheader "02 Sep 2026" [ref=f7e252]
+                    - cell "Complete" [ref=f7e253]
+                    - cell [ref=f7e254]:
+                      - strong [ref=f7e255]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to breach on 2026-11-29 The recorded current value is 1.62110000 against a contractual threshold of 1.50000000, with headroom of 8.0733. Projected breach probability is 0.9900 with…
+                  - row [ref=f7e256]:
+                    - rowheader "02 Sep 2026" [ref=f7e257]
+                    - cell "Complete" [ref=f7e258]
+                    - cell [ref=f7e259]:
+                      - strong [ref=f7e260]: Grounded warning memo
+                      - text: Interest coverage ratio is projected to cross on 2026-11-29 The recorded interest coverage ratio is 1.62110000 against a contractual threshold of 1.50000000, with headroom of 8.0733. The projected breach probability i…
+            - generic [ref=f7e261]:
+              - heading "Linked simulations" [level=2] [ref=f7e262]
+              - table [ref=f7e265]:
+                - caption [ref=f7e266]: Linked simulations
+                - rowgroup [ref=f7e267]:
+                  - row [ref=f7e268]:
+                    - columnheader "Intervention" [ref=f7e269]
+                    - columnheader "Projected probability" [ref=f7e270]
+                    - columnheader "Projected crossing" [ref=f7e271]
+                    - columnheader "Days moved" [ref=f7e272]
+                - rowgroup [ref=f7e273]:
+                  - row [ref=f7e274]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e275]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e276]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "31.4%" [ref=f7e277]
+                    - cell "—" [ref=f7e278]
+                    - cell "5" [ref=f7e279]
+                  - row [ref=f7e280]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e281]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e282]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "30.6%" [ref=f7e283]
+                    - cell "—" [ref=f7e284]
+                    - cell "0" [ref=f7e285]
+                  - row [ref=f7e286]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e287]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e288]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "29.8%" [ref=f7e289]
+                    - cell "—" [ref=f7e290]
+                    - cell "0" [ref=f7e291]
+                  - row [ref=f7e292]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e293]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e294]: Review the covenant threshold against the executed facility documents.
+                    - cell "45.8%" [ref=f7e295]
+                    - cell "—" [ref=f7e296]
+                    - cell "5" [ref=f7e297]
+                  - row [ref=f7e298]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e299]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e300]: Review the covenant threshold against the executed facility documents.
+                    - cell "44.0%" [ref=f7e301]
+                    - cell "—" [ref=f7e302]
+                    - cell "0" [ref=f7e303]
+                  - row [ref=f7e304]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e305]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e306]: Review the covenant threshold against the executed facility documents.
+                    - cell "42.5%" [ref=f7e307]
+                    - cell "—" [ref=f7e308]
+                    - cell "0" [ref=f7e309]
+                  - row [ref=f7e310]:
+                    - rowheader "CREDIT-REPAY-TERM-DEBT Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process." [ref=f7e311]:
+                      - text: CREDIT-REPAY-TERM-DEBT
+                      - generic [ref=f7e312]: Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process.
+                    - cell "15.0%" [ref=f7e313]
+                    - cell "—" [ref=f7e314]
+                    - cell "0" [ref=f7e315]
+                  - row [ref=f7e316]:
+                    - rowheader "CREDIT-REPAY-TERM-DEBT Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process." [ref=f7e317]:
+                      - text: CREDIT-REPAY-TERM-DEBT
+                      - generic [ref=f7e318]: Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process.
+                    - cell "15.0%" [ref=f7e319]
+                    - cell "—" [ref=f7e320]
+                    - cell "0" [ref=f7e321]
+                  - row [ref=f7e322]:
+                    - rowheader "CREDIT-REPAY-TERM-DEBT Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process." [ref=f7e323]:
+                      - text: CREDIT-REPAY-TERM-DEBT
+                      - generic [ref=f7e324]: Apply surplus cash to a scheduled term-debt prepayment, subject to the bank's approval process.
+                    - cell "15.1%" [ref=f7e325]
+                    - cell "—" [ref=f7e326]
+                    - cell "0" [ref=f7e327]
+                  - row [ref=f7e328]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e329]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e330]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "15.0%" [ref=f7e331]
+                    - cell "—" [ref=f7e332]
+                    - cell "0" [ref=f7e333]
+                  - row [ref=f7e334]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e335]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e336]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "15.0%" [ref=f7e337]
+                    - cell "—" [ref=f7e338]
+                    - cell "0" [ref=f7e339]
+                  - row [ref=f7e340]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e341]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e342]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "15.1%" [ref=f7e343]
+                    - cell "—" [ref=f7e344]
+                    - cell "0" [ref=f7e345]
+                  - row [ref=f7e346]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e347]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e348]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "31.4%" [ref=f7e349]
+                    - cell "—" [ref=f7e350]
+                    - cell "3" [ref=f7e351]
+                  - row [ref=f7e352]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e353]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e354]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "30.6%" [ref=f7e355]
+                    - cell "—" [ref=f7e356]
+                    - cell "0" [ref=f7e357]
+                  - row [ref=f7e358]:
+                    - rowheader "CREDIT-REDUCE-DEBT-SERVICE Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f7e359]:
+                      - text: CREDIT-REDUCE-DEBT-SERVICE
+                      - generic [ref=f7e360]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                    - cell "29.8%" [ref=f7e361]
+                    - cell "—" [ref=f7e362]
+                    - cell "0" [ref=f7e363]
+                  - row [ref=f7e364]:
+                    - rowheader "RM-REVIEW-CONDUCT Review account conduct with the borrower and agree a monitored operating plan." [ref=f7e365]:
+                      - text: RM-REVIEW-CONDUCT
+                      - generic [ref=f7e366]: Review account conduct with the borrower and agree a monitored operating plan.
+                    - cell "18.3%" [ref=f7e367]
+                    - cell "—" [ref=f7e368]
+                    - cell "0" [ref=f7e369]
+                  - row [ref=f7e370]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e371]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e372]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "19.0%" [ref=f7e373]
+                    - cell "—" [ref=f7e374]
+                    - cell "0" [ref=f7e375]
+                  - row [ref=f7e376]:
+                    - rowheader "RM-REVIEW-CONDUCT Review account conduct with the borrower and agree a monitored operating plan." [ref=f7e377]:
+                      - text: RM-REVIEW-CONDUCT
+                      - generic [ref=f7e378]: Review account conduct with the borrower and agree a monitored operating plan.
+                    - cell "18.3%" [ref=f7e379]
+                    - cell "—" [ref=f7e380]
+                    - cell "0" [ref=f7e381]
+                  - row [ref=f7e382]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e383]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e384]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "19.0%" [ref=f7e385]
+                    - cell "—" [ref=f7e386]
+                    - cell "0" [ref=f7e387]
+                  - row [ref=f7e388]:
+                    - rowheader "RM-REVIEW-CONDUCT Review account conduct with the borrower and agree a monitored operating plan." [ref=f7e389]:
+                      - text: RM-REVIEW-CONDUCT
+                      - generic [ref=f7e390]: Review account conduct with the borrower and agree a monitored operating plan.
+                    - cell "18.4%" [ref=f7e391]
+                    - cell "—" [ref=f7e392]
+                    - cell "0" [ref=f7e393]
+                  - row [ref=f7e394]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e395]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e396]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "19.1%" [ref=f7e397]
+                    - cell "—" [ref=f7e398]
+                    - cell "0" [ref=f7e399]
+                  - row [ref=f7e400]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e401]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e402]: Review the covenant threshold against the executed facility documents.
+                    - cell "45.6%" [ref=f7e403]
+                    - cell "—" [ref=f7e404]
+                    - cell "3" [ref=f7e405]
+                  - row [ref=f7e406]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e407]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e408]: Review the covenant threshold against the executed facility documents.
+                    - cell "44.0%" [ref=f7e409]
+                    - cell "—" [ref=f7e410]
+                    - cell "0" [ref=f7e411]
+                  - row [ref=f7e412]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e413]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e414]: Review the covenant threshold against the executed facility documents.
+                    - cell "42.4%" [ref=f7e415]
+                    - cell "—" [ref=f7e416]
+                    - cell "0" [ref=f7e417]
+                  - row [ref=f7e418]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e419]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e420]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e421]
+                    - cell "—" [ref=f7e422]
+                    - cell "0" [ref=f7e423]
+                  - row [ref=f7e424]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e425]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e426]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "17.7%" [ref=f7e427]
+                    - cell "—" [ref=f7e428]
+                    - cell "0" [ref=f7e429]
+                  - row [ref=f7e430]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e431]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e432]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e433]
+                    - cell "—" [ref=f7e434]
+                    - cell "0" [ref=f7e435]
+                  - row [ref=f7e436]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e437]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e438]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "17.7%" [ref=f7e439]
+                    - cell "—" [ref=f7e440]
+                    - cell "0" [ref=f7e441]
+                  - row [ref=f7e442]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e443]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e444]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e445]
+                    - cell "—" [ref=f7e446]
+                    - cell "0" [ref=f7e447]
+                  - row [ref=f7e448]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e449]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e450]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "17.7%" [ref=f7e451]
+                    - cell "—" [ref=f7e452]
+                    - cell "0" [ref=f7e453]
+                  - row [ref=f7e454]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e455]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e456]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e457]
+                    - cell "—" [ref=f7e458]
+                    - cell "0" [ref=f7e459]
+                  - row [ref=f7e460]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e461]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e462]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e463]
+                    - cell "—" [ref=f7e464]
+                    - cell "0" [ref=f7e465]
+                  - row [ref=f7e466]:
+                    - rowheader "RISK-REVIEW-THRESHOLD Review the covenant threshold against the executed facility documents." [ref=f7e467]:
+                      - text: RISK-REVIEW-THRESHOLD
+                      - generic [ref=f7e468]: Review the covenant threshold against the executed facility documents.
+                    - cell "17.7%" [ref=f7e469]
+                    - cell "—" [ref=f7e470]
+                    - cell "0" [ref=f7e471]
+                  - row [ref=f7e472]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e473]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e474]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "99.0%" [ref=f7e475]
+                    - cell "18 Sep 2026" [ref=f7e476]
+                    - cell "-72" [ref=f7e477]
+                  - row [ref=f7e478]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e479]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e480]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "99.0%" [ref=f7e481]
+                    - cell "18 Sep 2026" [ref=f7e482]
+                    - cell "-45" [ref=f7e483]
+                  - row [ref=f7e484]:
+                    - rowheader "CREDIT-REDUCE-EXPOSURE Review and, subject to the bank's approval process, reduce the funded exposure." [ref=f7e485]:
+                      - text: CREDIT-REDUCE-EXPOSURE
+                      - generic [ref=f7e486]: Review and, subject to the bank's approval process, reduce the funded exposure.
+                    - cell "99.0%" [ref=f7e487]
+                    - cell "18 Sep 2026" [ref=f7e488]
+                    - cell "-15" [ref=f7e489]
+            - generic [ref=f7e490]:
+              - heading "Source documents" [level=2] [ref=f7e491]
+              - paragraph [ref=f7e493]: No source documents are linked to this borrower.

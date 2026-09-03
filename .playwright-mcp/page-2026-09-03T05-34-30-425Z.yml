@@ -1,0 +1,67 @@
+- generic [active] [ref=f14e1]:
+  - link "Skip to content" [ref=f14e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f14e3]:
+    - complementary "Workspace navigation" [ref=f14e4]:
+      - link "Covenant Radar" [ref=f14e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f14e13]:
+          - strong [ref=f14e14]: Covenant
+          - generic [ref=f14e15]: Radar
+      - navigation "Primary navigation" [ref=f14e16]:
+        - region [ref=f14e17]:
+          - heading "Monitor" [level=2] [ref=f14e18]
+          - link "Portfolio queue" [ref=f14e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f14e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f14e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f14e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f14e31]: "9"
+          - link "Search" [ref=f14e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f14e37]:
+          - heading "Portfolio data" [level=2] [ref=f14e38]
+          - link "Borrowers" [ref=f14e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f14e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f14e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f14e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f14e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f14e61]:
+          - heading "Workflows" [level=2] [ref=f14e62]
+          - link "Document review" [ref=f14e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f14e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f14e71] [cursor=pointer]
+    - generic [ref=f14e75]:
+      - banner [ref=f14e76]:
+        - generic [ref=f14e78]:
+          - generic [ref=f14e79]: Workspace
+          - generic [ref=f14e82]: Current view
+        - search [ref=f14e83]:
+          - generic [ref=f14e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f14e85]
+          - generic: /
+        - generic [ref=f14e86]:
+          - button "Live activity" [ref=f14e87]:
+            - generic [ref=f14e89]: Live
+          - button "Use dark theme" [ref=f14e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f14e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f14e97] [cursor=pointer]
+      - main [ref=f14e101]:
+        - generic [ref=f14e103]:
+          - paragraph [ref=f14e104]: Decision workspace
+          - heading "Compliance certificate requests" [level=1] [ref=f14e105]
+        - generic [ref=f14e107]:
+          - heading "Compliance certificate requests" [level=2] [ref=f14e108]
+          - region [ref=f14e111]:
+            - generic [ref=f14e115]:
+              - heading "No open certificate requests are in this scope." [level=2] [ref=f14e116]
+              - paragraph [ref=f14e117]: No open certificate requests are in this scope.

@@ -1,0 +1,82 @@
+- generic [active] [ref=f61e1]:
+  - link "Skip to content" [ref=f61e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f61e3]:
+    - complementary "Workspace navigation" [ref=f61e4]:
+      - link "Covenant Radar" [ref=f61e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f61e13]:
+          - strong [ref=f61e14]: Covenant
+          - generic [ref=f61e15]: Radar
+      - navigation "Primary navigation" [ref=f61e16]:
+        - region [ref=f61e17]:
+          - heading "Monitor" [level=2] [ref=f61e18]
+          - link "Portfolio queue" [ref=f61e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f61e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f61e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f61e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f61e31]: "0"
+          - link "Search" [ref=f61e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f61e37]:
+          - heading "Portfolio data" [level=2] [ref=f61e38]
+          - link "Borrowers" [ref=f61e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f61e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f61e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f61e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f61e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f61e61]:
+          - heading "Workflows" [level=2] [ref=f61e62]
+          - link "Intake" [ref=f61e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f61e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f61e71] [cursor=pointer]:
+            - /url: /documents/review
+      - button "Collapse sidebar" [expanded] [ref=f61e75] [cursor=pointer]
+    - generic [ref=f61e79]:
+      - banner [ref=f61e80]:
+        - generic [ref=f61e82]:
+          - generic [ref=f61e83]: Workspace
+          - generic [ref=f61e86]: Current view
+        - search [ref=f61e87]:
+          - generic [ref=f61e88]: Search the workspace
+          - searchbox "Search the workspace" [ref=f61e89]
+          - generic: /
+        - generic [ref=f61e90]:
+          - button "Live activity" [ref=f61e91]:
+            - generic [ref=f61e93]: Live
+          - button "Use dark theme" [ref=f61e95] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f61e99] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f61e101] [cursor=pointer]
+      - main [ref=f61e105]:
+        - generic [ref=f61e107]:
+          - paragraph [ref=f61e108]: Decision workspace
+          - heading "Restate a financial period" [level=1] [ref=f61e109]
+        - generic [ref=f61e110]:
+          - paragraph [ref=f61e111]: Upload one corrected row in the same shape as the original import — it must name the same borrower and financial period an existing period already covers.
+          - generic [ref=f61e112]:
+            - generic [ref=f61e113]:
+              - generic [ref=f61e114]: Source type *
+              - combobox "Source type" [ref=f61e115]:
+                - option "CSV (comma-separated values)" [selected]
+                - option "Excel workbook (.xlsx)"
+                - option "JSON extract"
+            - generic [ref=f61e116]:
+              - generic [ref=f61e117]: Mapping name *
+              - textbox "Mapping name" [ref=f61e118]
+            - generic [ref=f61e119]:
+              - generic [ref=f61e120]: Corrected extract (one row) *
+              - button "Corrected extract (one row)" [ref=f61e121]
+            - generic [ref=f61e122]:
+              - generic [ref=f61e123]: Reason *
+              - textbox "Reason" [ref=f61e124]
+            - button "Submit restatement" [ref=f61e125] [cursor=pointer]

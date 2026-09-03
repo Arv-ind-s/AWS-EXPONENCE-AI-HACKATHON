@@ -1,0 +1,212 @@
+- generic [ref=f35e1]:
+  - link "Skip to content" [ref=f35e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f35e3]:
+    - complementary "Workspace navigation" [ref=f35e4]:
+      - link "Covenant Radar" [ref=f35e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f35e13]:
+          - strong [ref=f35e14]: Covenant
+          - generic [ref=f35e15]: Radar
+      - navigation "Primary navigation" [ref=f35e16]:
+        - region [ref=f35e17]:
+          - heading "Monitor" [level=2] [ref=f35e18]
+          - link "Portfolio queue" [ref=f35e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f35e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f35e308] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f35e311]: Notifications (0)
+            - generic [aria-hidden] [ref=f35e312]: "0"
+          - link "Search" [ref=f35e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f35e37]:
+          - heading "Portfolio data" [level=2] [ref=f35e38]
+          - link "Borrowers" [ref=f35e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f35e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f35e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f35e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f35e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f35e61]:
+          - heading "Workflows" [level=2] [ref=f35e62]
+          - link "Intake" [ref=f35e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f35e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f35e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f35e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Governance" [ref=f35e79] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f35e83]:
+          - heading "Administration" [level=2] [ref=f35e84]
+          - link "Action catalogue" [ref=f35e85] [cursor=pointer]:
+            - /url: /admin/catalogue
+      - button "Collapse sidebar" [expanded] [ref=f35e90] [cursor=pointer]
+    - generic [ref=f35e94]:
+      - banner [ref=f35e95]:
+        - generic [ref=f35e97]:
+          - generic [ref=f35e98]: Workspace
+          - generic [ref=f35e101]: Current view
+        - search [ref=f35e102]:
+          - generic [ref=f35e103]: Search the workspace
+          - searchbox "Search the workspace" [ref=f35e104]
+          - generic: /
+        - generic [ref=f35e105]:
+          - button "Live activity" [ref=f35e106]:
+            - generic [ref=f35e108]: Live
+          - button "Use dark theme" [ref=f35e110] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f35e114] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f35e116] [cursor=pointer]
+      - main [ref=f35e120]:
+        - generic [ref=f35e122]:
+          - paragraph [ref=f35e123]: Decision workspace
+          - heading "Governance" [level=1] [ref=f35e124]
+        - generic [ref=f35e126]:
+          - alert [ref=f35e127]: 1 model in the registry has no approval record — forecast.ml_challenger (scikit-learn / gradient_boosted-ff9af19f21f7).
+          - generic [ref=f35e128]:
+            - tablist "Governance sections" [ref=f35e129]:
+              - tab "Thresholds" [selected] [ref=f35e130] [cursor=pointer]
+              - tab "Approvals" [ref=f35e132] [cursor=pointer]
+              - tab "Model registry 2" [ref=f35e134] [cursor=pointer]:
+                - generic [ref=f35e135]: Model registry
+                - generic [ref=f35e136]: "2"
+              - tab "Drift" [ref=f35e137] [cursor=pointer]
+              - tab "Evaluations" [ref=f35e139] [cursor=pointer]
+              - tab "History" [ref=f35e141] [cursor=pointer]
+            - tabpanel "Thresholds" [ref=f35e143]:
+              - heading "Thresholds in force" [level=2] [ref=f35e144]
+              - paragraph [ref=f35e145]:
+                - button "Propose a threshold change" [expanded] [ref=f35e146] [cursor=pointer]
+              - generic [ref=f35e147]:
+                - generic [ref=f35e148]:
+                  - term [ref=f35e149]: Effective from
+                  - definition [ref=f35e150]: 02 Sep 2026
+                - generic [ref=f35e151]:
+                  - term [ref=f35e152]: Source
+                  - definition [ref=f35e153]: calibration
+                - generic [ref=f35e154]:
+                  - term [ref=f35e155]: Proposed by
+                  - definition [ref=f35e156]: Covenant Radar system
+                - generic [ref=f35e157]:
+                  - term [ref=f35e158]: Approved by
+                  - definition [ref=f35e159]: Covenant Radar system
+              - paragraph [ref=f35e160]: Phase 7A demo calibration
+              - group [ref=f35e161]:
+                - generic "What changed from the prior snapshot" [ref=f35e162] [cursor=pointer]
+              - table [ref=f35e164]:
+                - caption [ref=f35e165]: Current calibrated thresholds — boundary behaviour above, below and exactly at (spec §17.5)
+                - rowgroup [ref=f35e166]:
+                  - row [ref=f35e167]:
+                    - columnheader "Threshold" [ref=f35e168]
+                    - columnheader "Definition" [ref=f35e169]
+                    - columnheader "Value" [ref=f35e170]
+                    - columnheader "Above" [ref=f35e171]
+                    - columnheader "Below" [ref=f35e172]
+                    - columnheader "Exactly at" [ref=f35e173]
+                - rowgroup [ref=f35e174]:
+                  - row [ref=f35e175]:
+                    - rowheader "T1" [ref=f35e176]
+                    - cell "Escalation probability at the worst covenant-horizon" [ref=f35e177]
+                    - 'cell "act: 0.7; amber: 0.4" [ref=f35e178]'
+                    - 'cell "Act: queue top, case raised, memo offered" [ref=f35e179]'
+                    - 'cell "Watch: listed, no escalation" [ref=f35e180]'
+                    - cell "The boundary belongs to the higher band" [ref=f35e181]
+                  - row [ref=f35e182]:
+                    - rowheader "T2" [ref=f35e183]
+                    - cell "Confidence floor for showing a probability" [ref=f35e184]
+                    - 'cell "confidence floor: 0.5" [ref=f35e185]'
+                    - cell "Probability shown with its confidence" [ref=f35e186]
+                    - cell "“Insufficient evidence — watching” with the reason; no bare probability renders anywhere, including the API" [ref=f35e187]
+                    - cell "Shown — the floor is inclusive" [ref=f35e188]
+                  - row [ref=f35e189]:
+                    - rowheader "T3" [ref=f35e190]
+                    - 'cell "Persistence: sustained if ≥14 consecutive days or ≥3 events in 30 days" [ref=f35e191]'
+                    - 'cell "event window days: 30; sustained days: 14; sustained events: 3" [ref=f35e192]'
+                    - 'cell "Sustained: feeds forecast pressure" [ref=f35e193]'
+                    - 'cell "Transient: visible, decaying, no forecast effect" [ref=f35e194]'
+                    - cell "Sustained — inclusive" [ref=f35e195]
+                  - row [ref=f35e196]:
+                    - rowheader "T4" [ref=f35e197]
+                    - 'cell "Materiality: evidence counts if projected 90-day headroom erosion is ≥5% of the threshold value" [ref=f35e198]'
+                    - 'cell "headroom erosion pct: 0.05" [ref=f35e199]'
+                    - cell "Counts toward pressure" [ref=f35e200]
+                    - cell "Noted on the ledger, excluded from pressure" [ref=f35e201]
+                    - cell "Counts — inclusive" [ref=f35e202]
+                  - row [ref=f35e203]:
+                    - rowheader "T5" [ref=f35e204]
+                    - cell "Driver listed if contribution is ≥10% of the risk delta" [ref=f35e205]
+                    - 'cell "contribution share: 0.1" [ref=f35e206]'
+                    - cell "Listed with its share" [ref=f35e207]
+                    - cell "Folded into “other”" [ref=f35e208]
+                    - cell "Listed" [ref=f35e209]
+                  - row [ref=f35e210]:
+                    - rowheader "T6" [ref=f35e211]
+                    - cell "Memo length ceiling" [ref=f35e212]
+                    - 'cell "max output tokens: 1200" [ref=f35e213]'
+                    - cell "Regenerate once shorter, else refuse" [ref=f35e214]
+                    - cell "Fine" [ref=f35e215]
+                    - cell "Fine" [ref=f35e216]
+                  - row [ref=f35e217]:
+                    - rowheader "T7" [ref=f35e218]
+                    - cell "Model calls per hour, per day, and monetary budget per month" [ref=f35e219]
+                    - 'cell "calls per day: 2000; calls per hour: 200; monthly budget: —" [ref=f35e220]'
+                    - cell "Queued, with a banner and an alert" [ref=f35e221]
+                    - cell "Fine" [ref=f35e222]
+                    - cell "The ceiling engages at the value" [ref=f35e223]
+                  - row [ref=f35e224]:
+                    - rowheader "T8" [ref=f35e225]
+                    - cell "Bad-shape retries, then refuse" [ref=f35e226]
+                    - 'cell "bad shape retries: 1" [ref=f35e227]'
+                    - cell "—" [ref=f35e228]
+                    - cell "—" [ref=f35e229]
+                    - cell "—" [ref=f35e230]
+                  - row [ref=f35e231]:
+                    - rowheader "T9" [ref=f35e232]
+                    - cell "OCR page confidence floor" [ref=f35e233]
+                    - 'cell "ocr confidence floor: 0.8" [ref=f35e234]'
+                    - cell "Page text used" [ref=f35e235]
+                    - cell "Page routed to human review" [ref=f35e236]
+                    - cell "Used — inclusive" [ref=f35e237]
+                  - row [ref=f35e238]:
+                    - rowheader "T10" [ref=f35e239]
+                    - cell "Entity-match confidence floor" [ref=f35e240]
+                    - 'cell "auto accept: 0.9; review floor: 0.6" [ref=f35e241]'
+                    - cell "Auto-accepted" [ref=f35e242]
+                    - cell "Below the review floor discarded; between, queued for review" [ref=f35e243]
+                    - cell "Auto-accepted at the auto-accept value" [ref=f35e244]
+                  - row [ref=f35e245]:
+                    - rowheader "T11" [ref=f35e246]
+                    - cell "SLA hours by band" [ref=f35e247]
+                    - 'cell "act sla hours: 24; amber sla hours: 72; watch sla hours: 168" [ref=f35e248]'
+                    - 'cell "Overdue: escalates and appears in the digest" [ref=f35e249]'
+                    - cell "Within SLA" [ref=f35e250]
+                    - cell "Overdue at the value" [ref=f35e251]
+                  - row [ref=f35e252]:
+                    - rowheader "T12" [ref=f35e253]
+                    - cell "Batch completion deadline" [ref=f35e254]
+                    - 'cell "deadline ist: 07:00" [ref=f35e255]'
+                    - cell "Alert raised, run continues" [ref=f35e256]
+                    - cell "Fine" [ref=f35e257]
+                    - cell "Alert at the deadline" [ref=f35e258]
+          - dialog [ref=f35e313]:
+            - generic [ref=f35e314]:
+              - heading "Propose a threshold change" [level=2] [ref=f35e315]
+              - button "Close" [active] [ref=f35e316] [cursor=pointer]
+            - generic [ref=f35e318]:
+              - generic [ref=f35e319]:
+                - generic [ref=f35e320]: Revised values (JSON, keyed by threshold name)
+                - textbox "Revised values (JSON, keyed by threshold name)" [ref=f35e321]:
+                  - /placeholder: "{\"T1\": {\"amber\": \"0.45\"}}"
+                - paragraph [ref=f35e322]: "Only the fields being changed need to appear, e.g. {\"T1\": {\"amber\": \"0.45\"}}."
+              - generic [ref=f35e323]:
+                - generic [ref=f35e324]: Note (required)
+                - textbox "Note (required)" [ref=f35e325]
+              - button "Submit proposal" [ref=f35e326] [cursor=pointer]

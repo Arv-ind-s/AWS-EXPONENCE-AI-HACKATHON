@@ -1,0 +1,276 @@
+- generic [active] [ref=f25e1]:
+  - link "Skip to content" [ref=f25e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f25e3]:
+    - complementary "Workspace navigation" [ref=f25e4]:
+      - link "Covenant Radar" [ref=f25e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f25e13]:
+          - strong [ref=f25e14]: Covenant
+          - generic [ref=f25e15]: Radar
+      - navigation "Primary navigation" [ref=f25e16]:
+        - region [ref=f25e17]:
+          - heading "Monitor" [level=2] [ref=f25e18]
+          - link "Portfolio queue" [ref=f25e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f25e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f25e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f25e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f25e31]: "0"
+          - link "Search" [ref=f25e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f25e37]:
+          - heading "Portfolio data" [level=2] [ref=f25e38]
+          - link "Borrowers" [ref=f25e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f25e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f25e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f25e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f25e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f25e61]:
+          - heading "Workflows" [level=2] [ref=f25e62]
+          - link "Intake" [ref=f25e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f25e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f25e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f25e75] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f25e79] [cursor=pointer]
+    - generic [ref=f25e83]:
+      - banner [ref=f25e84]:
+        - generic [ref=f25e86]:
+          - generic [ref=f25e87]: Workspace
+          - generic [ref=f25e90]: Current view
+        - search [ref=f25e91]:
+          - generic [ref=f25e92]: Search the workspace
+          - searchbox "Search the workspace" [ref=f25e93]
+          - generic: /
+        - generic [ref=f25e94]:
+          - button "Live activity" [ref=f25e95]:
+            - generic [ref=f25e97]: Live
+          - button "Use dark theme" [ref=f25e99] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f25e103] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f25e105] [cursor=pointer]
+      - main [ref=f25e109]:
+        - generic [ref=f25e111]:
+          - paragraph [ref=f25e112]: Decision workspace
+          - heading "Check covenant proposal" [level=1] [ref=f25e113]
+        - generic [ref=f25e115]:
+          - alert [ref=f25e116]: The quarterly testing frequency is longer than the 30-day cure window; a cure window must reach a possible retest.
+          - generic [ref=f25e117]:
+            - heading "Upload a source document" [level=2] [ref=f25e118]
+            - generic [ref=f25e119]:
+              - generic [ref=f25e120]:
+                - generic [ref=f25e121]: Borrower reference *
+                - textbox "Borrower reference" [ref=f25e122]
+              - generic [ref=f25e123]:
+                - generic [ref=f25e124]: Facility reference
+                - textbox "Facility reference" [ref=f25e125]
+              - generic [ref=f25e126]:
+                - generic [ref=f25e127]: Document type *
+                - combobox "Document type" [ref=f25e128]:
+                  - option "Sanction Letter" [selected]
+                  - option "Amendment"
+                  - option "Compliance Certificate"
+                  - option "Stock Statement"
+                  - option "Other"
+              - generic [ref=f25e129]:
+                - generic [ref=f25e130]: Sanction letter or source document *
+                - button "Sanction letter or source document" [ref=f25e131]
+              - button "Upload and extract" [ref=f25e132] [cursor=pointer]
+          - region [ref=f25e133]:
+            - generic [ref=f25e134]:
+              - heading "Check covenant proposal" [level=2] [ref=f25e135]
+              - paragraph [ref=f25e136]: Verification verdicts
+            - article [ref=f25e137]:
+              - generic [ref=f25e138]:
+                - region [ref=f25e139]:
+                  - heading "Source text" [level=3] [ref=f25e140]
+                  - blockquote [ref=f25e141]: maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly
+                  - paragraph [ref=f25e142]: Hand-entered clause
+                - region [ref=f25e143]:
+                  - heading "Proposed fields" [level=3] [ref=f25e144]
+                  - generic [ref=f25e146]:
+                    - generic [ref=f25e147]:
+                      - term [ref=f25e148]: Definition
+                      - definition [ref=f25e149]: dscr
+                    - generic [ref=f25e150]:
+                      - term [ref=f25e151]: Custom formula
+                      - definition [ref=f25e152]: Not supplied
+                    - generic [ref=f25e153]:
+                      - term [ref=f25e154]: Threshold
+                      - definition [ref=f25e155]: "1.25"
+                    - generic [ref=f25e156]:
+                      - term [ref=f25e157]: Direction
+                      - definition [ref=f25e158]: above
+                    - generic [ref=f25e159]:
+                      - term [ref=f25e160]: Unit
+                      - definition [ref=f25e161]: ratio
+                    - generic [ref=f25e162]:
+                      - term [ref=f25e163]: Currency
+                      - definition [ref=f25e164]: Not supplied
+                    - generic [ref=f25e165]:
+                      - term [ref=f25e166]: Testing frequency
+                      - definition [ref=f25e167]: quarterly
+                    - generic [ref=f25e168]:
+                      - term [ref=f25e169]: Effective from
+                      - definition [ref=f25e170]: 2026-04-01
+                    - generic [ref=f25e171]:
+                      - term [ref=f25e172]: Effective to
+                      - definition [ref=f25e173]: Not supplied
+                    - generic [ref=f25e174]:
+                      - term [ref=f25e175]: Exceptions
+                      - definition [ref=f25e176]: Not supplied
+                    - generic [ref=f25e177]:
+                      - term [ref=f25e178]: Cure period (days)
+                      - definition [ref=f25e179]: "30"
+              - region [ref=f25e180]:
+                - heading "Verification verdicts" [level=3] [ref=f25e181]
+                - list [ref=f25e182]:
+                  - listitem [ref=f25e183]:
+                    - 'img "Schema Valid: The stage-1 reply matched its declared output shape." [ref=f25e184]':
+                      - generic [aria-hidden] [ref=f25e185]: ✓
+                      - generic [ref=f25e186]: Schema Valid
+                    - paragraph [ref=f25e187]: The stage-1 reply matched its declared output shape.
+                  - listitem [ref=f25e188]:
+                    - 'img "Definition Known: ''dscr'' is a known ratio-library definition." [ref=f25e189]':
+                      - generic [aria-hidden] [ref=f25e190]: ✓
+                      - generic [ref=f25e191]: Definition Known
+                    - paragraph [ref=f25e192]: "'dscr' is a known ratio-library definition."
+                  - listitem [ref=f25e193]:
+                    - 'img "Recomputable: ''dscr'' recomputed to 2.1413 from this borrower''s own stored statements." [ref=f25e194]':
+                      - generic [aria-hidden] [ref=f25e195]: ✓
+                      - generic [ref=f25e196]: Recomputable
+                    - paragraph [ref=f25e197]: "'dscr' recomputed to 2.1413 from this borrower's own stored statements."
+                  - listitem [ref=f25e198]:
+                    - 'img "Threshold Plausible: 1.25 is within ''dscr''''s plausible band." [ref=f25e199]':
+                      - generic [aria-hidden] [ref=f25e200]: ✓
+                      - generic [ref=f25e201]: Threshold Plausible
+                    - paragraph [ref=f25e202]: 1.25 is within 'dscr''s plausible band.
+                  - listitem [ref=f25e203]:
+                    - 'img "Unit Currency Consistent: The proposed unit matches ''dscr''." [ref=f25e204]':
+                      - generic [aria-hidden] [ref=f25e205]: ✓
+                      - generic [ref=f25e206]: Unit Currency Consistent
+                    - paragraph [ref=f25e207]: The proposed unit matches 'dscr'.
+                  - listitem [ref=f25e208]:
+                    - 'img "Frequency Dates Consistent: The quarterly testing frequency and effective date 2026-04-01 are consistent with the facility." [ref=f25e209]':
+                      - generic [aria-hidden] [ref=f25e210]: ✓
+                      - generic [ref=f25e211]: Frequency Dates Consistent
+                    - paragraph [ref=f25e212]: The quarterly testing frequency and effective date 2026-04-01 are consistent with the facility.
+              - generic [ref=f25e213]:
+                - group [ref=f25e214]:
+                  - generic "Proposed fields" [ref=f25e215] [cursor=pointer]
+                  - option "Not supplied"
+                  - option "Above" [selected]
+                  - option "Below"
+                  - option "Not supplied"
+                  - option "Ratio" [selected]
+                  - option "Percent"
+                  - option "Currency"
+                  - option "Days"
+                  - option "Count"
+                  - option "Not supplied"
+                  - option "Monthly"
+                  - option "Quarterly" [selected]
+                  - option "Half yearly"
+                  - option "Yearly"
+                  - option "Event driven"
+                - generic [ref=f25e216]:
+                  - generic [ref=f25e217]:
+                    - generic [ref=f25e218]: Test basis *
+                    - textbox "Test basis" [ref=f25e219]: standalone
+                  - generic [ref=f25e220]:
+                    - generic [ref=f25e221]: Covenant reference
+                    - textbox "Covenant reference" [ref=f25e222]
+                  - generic [ref=f25e223]:
+                    - generic [ref=f25e224]: Covenant name
+                    - textbox "Covenant name" [ref=f25e225]
+                  - generic [ref=f25e226]:
+                    - generic [ref=f25e227]: Covenant class
+                    - textbox "Covenant class" [ref=f25e228]: financial
+                - button "Confirm covenant" [ref=f25e229] [cursor=pointer]
+          - generic [ref=f25e230]:
+            - heading "Confirm passing proposals" [level=2] [ref=f25e231]
+            - paragraph [ref=f25e232]: Only open proposals with every verification passed are included.
+            - generic [ref=f25e233]:
+              - group "maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly" [ref=f25e234]:
+                - generic [ref=f25e236]:
+                  - generic [ref=f25e237]: Covenant reference
+                  - textbox "Covenant reference" [ref=f25e238]
+                - generic [ref=f25e239]:
+                  - generic [ref=f25e240]: Covenant name
+                  - textbox "Covenant name" [ref=f25e241]
+                - generic [ref=f25e242]:
+                  - generic [ref=f25e243]: Covenant class
+                  - textbox "Covenant class" [ref=f25e244]: financial
+              - button "Confirm passing proposals" [ref=f25e245] [cursor=pointer]
+          - generic [ref=f25e246]:
+            - heading "Enter covenant clause" [level=2] [ref=f25e247]
+            - generic [ref=f25e248]:
+              - generic [ref=f25e249]:
+                - generic [ref=f25e250]: Facility reference *
+                - textbox "Facility reference" [ref=f25e251]
+              - generic [ref=f25e252]:
+                - generic [ref=f25e253]: Source text *
+                - textbox "Source text" [ref=f25e254]: The Borrower shall at all times maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly on the last day of each financial quarter, with a cure period of thirty (30) days.
+              - generic [ref=f25e255]:
+                - generic [ref=f25e256]:
+                  - generic [ref=f25e257]: Definition
+                  - textbox "Definition" [ref=f25e258]: dscr
+                - generic [ref=f25e259]:
+                  - generic [ref=f25e260]: Custom formula
+                  - textbox "Custom formula" [ref=f25e261]
+                - generic [ref=f25e262]:
+                  - generic [ref=f25e263]: Threshold
+                  - textbox "Threshold" [ref=f25e264]: "1.25"
+                - generic [ref=f25e265]:
+                  - generic [ref=f25e266]: Direction
+                  - combobox "Direction" [ref=f25e267]:
+                    - option "Not supplied"
+                    - option "Above" [selected]
+                    - option "Below"
+                - generic [ref=f25e268]:
+                  - generic [ref=f25e269]: Unit
+                  - combobox "Unit" [ref=f25e270]:
+                    - option "Not supplied"
+                    - option "Ratio" [selected]
+                    - option "Percent"
+                    - option "Currency"
+                    - option "Days"
+                    - option "Count"
+                - generic [ref=f25e271]:
+                  - generic [ref=f25e272]: Currency
+                  - textbox "Currency" [ref=f25e273]
+                - generic [ref=f25e274]:
+                  - generic [ref=f25e275]: Testing frequency
+                  - combobox "Testing frequency" [ref=f25e276]:
+                    - option "Not supplied"
+                    - option "Monthly"
+                    - option "Quarterly" [selected]
+                    - option "Half yearly"
+                    - option "Yearly"
+                    - option "Event driven"
+                - generic [ref=f25e277]:
+                  - generic [ref=f25e278]: Effective from
+                  - textbox "Effective from" [ref=f25e279]: 2026-04-01
+                - generic [ref=f25e280]:
+                  - generic [ref=f25e281]: Effective to
+                  - textbox "Effective to" [ref=f25e282]
+                - generic [ref=f25e283]:
+                  - generic [ref=f25e284]: Exceptions
+                  - textbox "Exceptions" [ref=f25e285]
+                - generic [ref=f25e286]:
+                  - generic [ref=f25e287]: Cure period (days)
+                  - spinbutton "Cure period (days)" [ref=f25e288]: "30"
+                - generic [ref=f25e289]:
+                  - generic [ref=f25e290]: Source quote
+                  - textbox "Source quote" [ref=f25e291]: maintain a Debt Service Coverage Ratio of not less than 1.25:1, tested quarterly
+              - button "Verify clause" [ref=f25e292] [cursor=pointer]

@@ -1,0 +1,224 @@
+- generic [ref=f3e1]:
+  - link "Skip to content" [ref=f3e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f3e3]:
+    - complementary "Workspace navigation" [ref=f3e4]:
+      - link "Covenant Radar" [ref=f3e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f3e13]:
+          - strong [ref=f3e14]: Covenant
+          - generic [ref=f3e15]: Radar
+      - navigation "Primary navigation" [ref=f3e16]:
+        - region [ref=f3e17]:
+          - heading "Monitor" [level=2] [ref=f3e18]
+          - link "Portfolio queue" [ref=f3e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f3e23] [cursor=pointer]:
+            - /url: /cases
+          - link "9 unread notifications" [ref=f3e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f3e30]: Notifications (9)
+            - generic [aria-hidden] [ref=f3e31]: "9"
+          - link "Search" [ref=f3e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f3e37]:
+          - heading "Portfolio data" [level=2] [ref=f3e38]
+          - link "Borrowers" [ref=f3e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f3e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f3e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f3e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f3e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f3e61]:
+          - heading "Workflows" [level=2] [ref=f3e62]
+          - link "Document review" [ref=f3e63] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f3e67] [cursor=pointer]:
+            - /url: /simulator
+      - button "Collapse sidebar" [expanded] [ref=f3e71] [cursor=pointer]
+    - generic [ref=f3e75]:
+      - banner [ref=f3e76]:
+        - generic [ref=f3e78]:
+          - generic [ref=f3e79]: Workspace
+          - generic [ref=f3e82]: Current view
+        - search [ref=f3e83]:
+          - generic [ref=f3e84]: Search the workspace
+          - searchbox "Search the workspace" [ref=f3e85]
+          - generic: /
+        - generic [ref=f3e86]:
+          - button "Live activity" [ref=f3e87]:
+            - generic [ref=f3e89]: Live
+          - button "Use dark theme" [ref=f3e91] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f3e95] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f3e97] [cursor=pointer]
+      - main [ref=f3e101]:
+        - generic [ref=f3e103]:
+          - paragraph [ref=f3e104]: Decision workspace
+          - heading "Cloudmere Aviation Support Private Limited" [level=1] [ref=f3e105]
+        - generic [ref=f3e107]:
+          - region [ref=f3e108]:
+            - heading "Borrower facts" [level=2] [ref=f3e109]
+            - generic [ref=f3e110]:
+              - paragraph [ref=f3e111]: "Borrower reference: B-000017"
+              - generic "Borrower facts" [ref=f3e112]:
+                - generic [ref=f3e113]:
+                  - generic [ref=f3e114]: Borrower
+                  - generic [ref=f3e115]: Cloudmere Aviation Support Private Limited
+                - generic [ref=f3e116]:
+                  - generic [ref=f3e117]: Exposure
+                  - generic [ref=f3e118]: ₹351.47 crore
+                - generic [ref=f3e119]:
+                  - generic [ref=f3e120]: Worst covenant
+                  - generic [ref=f3e121]: Interest coverage ratio ≥ 1.5x
+                - generic [ref=f3e122]:
+                  - generic [ref=f3e123]: Dated risk
+                  - generic [ref=f3e124]: No projected crossing in the stored horizon; toward the minimum threshold.
+          - generic [ref=f3e125]:
+            - region [ref=f3e126]:
+              - heading "Case actions" [level=2] [ref=f3e127]
+              - generic [ref=f3e128]:
+                - link "Why this decision" [ref=f3e130] [cursor=pointer]:
+                  - /url: /why/borrower/018d4672-1c71-7421-87d0-3cd9b8fa42f1
+                - button "Generate AI explanation" [ref=f3e133] [cursor=pointer]
+                - link "Run simulation" [ref=f3e135] [cursor=pointer]:
+                  - /url: /simulator/01a064c7-d19d-74ea-84c0-24c42034d1f9
+                - link "Log action" [ref=f3e137] [cursor=pointer]:
+                  - /url: /cases/C-018D46721C71#case-actions
+            - region [ref=f3e138]:
+              - heading "AI-generated explanation" [level=2] [ref=f3e139]
+              - paragraph [ref=f3e140]: Drafted by model
+              - region [ref=f3e141]:
+                - heading "AI explanation provenance" [level=3] [ref=f3e142]
+                - generic [ref=f3e143]:
+                  - generic [ref=f3e144]:
+                    - term [ref=f3e145]: Provider
+                    - definition [ref=f3e146]: Covenant Radar AI
+                  - generic [ref=f3e147]:
+                    - term [ref=f3e148]: Model
+                    - definition [ref=f3e149]: genailab-maas-gpt-5.4-mini
+                  - generic [ref=f3e150]:
+                    - term [ref=f3e151]: Prompt
+                    - definition [ref=f3e152]: v2
+                  - generic [ref=f3e153]:
+                    - term [ref=f3e154]: Grounding checks
+                    - definition [ref=f3e155]: Passed
+              - article "Drafted by model" [ref=f3e156]:
+                - heading "Interest coverage ratio is projected to cross the threshold on 2026-11-28" [level=3] [ref=f3e157]
+                - paragraph [ref=f3e158]: The current value is 1.6211 against a contractual threshold of 1.5, with headroom of 8.0733. Projected breach probability is 0.99 with confidence 1, and the projected crossing date is 2026-11-28. Recorded evidence counts are 0 across all listed citations, while the named drivers are distance and other.
+                - heading "Drivers cited" [level=4] [ref=f3e159]
+                - list [ref=f3e160]:
+                  - listitem [ref=f3e161]: distance
+                  - listitem [ref=f3e162]: other
+                - heading "Recommended actions" [level=4] [ref=f3e163]
+                - table [ref=f3e164]:
+                  - caption [ref=f3e165]: Recommended actions
+                  - rowgroup [ref=f3e166]:
+                    - row [ref=f3e167]:
+                      - columnheader "Action" [ref=f3e168]
+                      - columnheader "Owning role" [ref=f3e169]
+                      - columnheader "Detail" [ref=f3e170]
+                  - rowgroup [ref=f3e171]:
+                    - row [ref=f3e172]:
+                      - cell "CREDIT-REDUCE-DEBT-SERVICE" [ref=f3e173]
+                      - cell "credit" [ref=f3e174]
+                      - cell "Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process." [ref=f3e175]
+                    - row [ref=f3e176]:
+                      - cell "RISK-REVIEW-THRESHOLD" [ref=f3e177]
+                      - cell "risk" [ref=f3e178]
+                      - cell "Review the covenant threshold against the executed facility documents." [ref=f3e179]
+                - heading "Recommended next step" [level=4] [ref=f3e180]
+                - paragraph [ref=f3e181]: Reduce the funded exposure and the associated debt-service burden, subject to the bank's approval process.
+                - paragraph [ref=f3e182]: human credit review is required before action
+              - region [ref=f3e183]:
+                - heading "Grounding citations" [level=3] [ref=f3e184]
+                - paragraph [ref=f3e185]: The model connected these stored facts into prose; it did not calculate the prediction or create new source records.
+                - list [ref=f3e186]:
+                  - listitem [ref=f3e187]:
+                    - link "Forecast — 01a064c7-d19d-74ea-84c0-24c42034d1f9" [ref=f3e188] [cursor=pointer]:
+                      - /url: /why/forecast/01a064c7-d19d-74ea-84c0-24c42034d1f9
+                  - listitem [ref=f3e189]: Forecast driver — 01a064c7-d1f9-73c4-80f4-82dbc095dfd0
+                  - listitem [ref=f3e190]: Forecast driver — 01a064c7-d1f9-73c5-9678-4f631398743c
+                  - listitem [ref=f3e191]:
+                    - link "Evidence item — 01a0627b-fbbd-7ab5-9db0-5c161b9131f9" [ref=f3e192] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbd-7ab5-9db0-5c161b9131f9"
+                  - listitem [ref=f3e193]:
+                    - link "Evidence item — 01a0627b-fbbe-7047-b3a7-1a99045ce5c2" [ref=f3e194] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbe-7047-b3a7-1a99045ce5c2"
+                  - listitem [ref=f3e195]:
+                    - link "Evidence item — 01a0627b-fbbe-7048-8420-6576df581a5a" [ref=f3e196] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbe-7048-8420-6576df581a5a"
+                  - listitem [ref=f3e197]:
+                    - link "Evidence item — 01a0627b-fbbe-7049-9274-d01d47301860" [ref=f3e198] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbe-7049-9274-d01d47301860"
+                  - listitem [ref=f3e199]:
+                    - link "Evidence item — 01a0627b-fbbd-7ab6-8cdc-b7a1db47ac57" [ref=f3e200] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbd-7ab6-8cdc-b7a1db47ac57"
+                  - listitem [ref=f3e201]:
+                    - link "Evidence item — 01a0627b-fbbd-7ab8-8388-7f7eae2f0b11" [ref=f3e202] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbd-7ab8-8388-7f7eae2f0b11"
+                  - listitem [ref=f3e203]:
+                    - link "Evidence item — 01a0627b-fbbd-7ab7-8cc7-20e8a11d4ce6" [ref=f3e204] [cursor=pointer]:
+                      - /url: "#evidence-item-01a0627b-fbbd-7ab7-8cc7-20e8a11d4ce6"
+                  - listitem [ref=f3e205]: Bank action catalogue — 01a063f4-0bf7-7b6a-bc43-55d5404d95bf
+                  - listitem [ref=f3e206]: Bank action catalogue — 01a0627b-c548-7a13-95c8-7191f0472adb
+                  - listitem [ref=f3e207]:
+                    - link "Simulation — 01a06553-8173-70a7-9299-f66a9756eaf6" [ref=f3e208] [cursor=pointer]:
+                      - /url: /api/v1/simulations/01a06553-8173-70a7-9299-f66a9756eaf6
+              - paragraph [ref=f3e209]: Memo reference 01a0658b-d593-7fa3-9c13-cb5120b4473f
+              - region [ref=f3e210]:
+                - heading "Export this memo" [level=3] [ref=f3e211]
+                - paragraph [ref=f3e212]: The export carries a stable integrity digest over the stored memo, so the same memo always exports to the same document.
+                - paragraph [ref=f3e213]:
+                  - link "Download PDF" [ref=f3e214] [cursor=pointer]:
+                    - /url: /memos/01a0658b-d593-7fa3-9c13-cb5120b4473f/export?format=pdf
+                  - link "Download DOCX" [ref=f3e215] [cursor=pointer]:
+                    - /url: /memos/01a0658b-d593-7fa3-9c13-cb5120b4473f/export?format=docx
+            - generic [ref=f3e216]:
+              - tablist "Case sections" [ref=f3e217]:
+                - tab "Forecast trajectory" [ref=f3e218] [cursor=pointer]
+                - tab "Covenant position" [ref=f3e220] [cursor=pointer]
+                - tab "Financials" [ref=f3e222] [cursor=pointer]
+                - tab "Seven signal families" [active] [selected] [ref=f3e224] [cursor=pointer]
+                - tab "Evidence" [ref=f3e226] [cursor=pointer]
+                - tab "Source documents" [ref=f3e228] [cursor=pointer]
+              - tabpanel "Seven signal families" [ref=f3e908]:
+                - generic [ref=f3e909]:
+                  - generic [ref=f3e910]:
+                    - paragraph [ref=f3e911]: Early-warning evidence
+                    - heading "Seven signal families" [level=2] [ref=f3e912]
+                    - paragraph [ref=f3e913]: Behavioural and external indicators are shown separately from contractual covenant status. Each card is backed by dated source events.
+                  - link "Why these signals?" [ref=f3e914] [cursor=pointer]:
+                    - /url: /why/borrower/018d4672-1c71-7421-87d0-3cd9b8fa42f1
+                - list "Signal family trends" [ref=f3e915]:
+                  - listitem [ref=f3e916]:
+                    - generic "Account activity Worsening" [ref=f3e917] [cursor=pointer]:
+                      - generic [ref=f3e918]: Account activity
+                      - generic [ref=f3e920]: Worsening
+                  - listitem [ref=f3e921]:
+                    - generic "Payment behaviour Stable" [ref=f3e922] [cursor=pointer]:
+                      - generic [ref=f3e923]: Payment behaviour
+                      - generic [ref=f3e925]: Stable
+                  - listitem [ref=f3e926]:
+                    - generic "Facility utilisation Worsening" [ref=f3e927] [cursor=pointer]:
+                      - generic [ref=f3e928]: Facility utilisation
+                      - generic [ref=f3e930]: Worsening
+                  - listitem [ref=f3e931]:
+                    - generic "Treasury flows Worsening" [ref=f3e932] [cursor=pointer]:
+                      - generic [ref=f3e933]: Treasury flows
+                      - generic [ref=f3e935]: Worsening
+                  - listitem [ref=f3e936]:
+                    - generic "Concentration exposure Worsening" [ref=f3e937] [cursor=pointer]:
+                      - generic [ref=f3e938]: Concentration exposure
+                      - generic [ref=f3e940]: Worsening
+                  - listitem [ref=f3e941]:
+                    - generic "Industry conditions Worsening" [ref=f3e942] [cursor=pointer]:
+                      - generic [ref=f3e943]: Industry conditions
+                      - generic [ref=f3e945]: Worsening
+                  - listitem [ref=f3e946]:
+                    - generic "News deterioration Worsening" [ref=f3e947] [cursor=pointer]:
+                      - generic [ref=f3e948]: News deterioration
+                      - generic [ref=f3e950]: Worsening

@@ -1,0 +1,510 @@
+- generic [active] [ref=f54e1]:
+  - link "Skip to content" [ref=f54e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f54e3]:
+    - complementary "Workspace navigation" [ref=f54e4]:
+      - link "Covenant Radar" [ref=f54e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f54e13]:
+          - strong [ref=f54e14]: Covenant
+          - generic [ref=f54e15]: Radar
+      - navigation "Primary navigation" [ref=f54e16]:
+        - region [ref=f54e17]:
+          - heading "Monitor" [level=2] [ref=f54e18]
+          - link "Portfolio queue" [ref=f54e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f54e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f54e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f54e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f54e31]: "0"
+          - link "Search" [ref=f54e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f54e37]:
+          - heading "Portfolio data" [level=2] [ref=f54e38]
+          - link "Borrowers" [ref=f54e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f54e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f54e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f54e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f54e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f54e61]:
+          - heading "Workflows" [level=2] [ref=f54e62]
+          - link "Intake" [ref=f54e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f54e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f54e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f54e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f54e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f54e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f54e87]:
+          - heading "Administration" [level=2] [ref=f54e88]
+          - link "Action catalogue" [ref=f54e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f54e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f54e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f54e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f54e109] [cursor=pointer]
+    - generic [ref=f54e113]:
+      - banner [ref=f54e114]:
+        - generic [ref=f54e116]:
+          - generic [ref=f54e117]: Workspace
+          - generic [ref=f54e120]: Current view
+        - search [ref=f54e121]:
+          - generic [ref=f54e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f54e123]
+          - generic: /
+        - generic [ref=f54e124]:
+          - button "Live activity" [ref=f54e125]:
+            - generic [ref=f54e127]: Live
+          - button "Use dark theme" [ref=f54e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f54e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f54e135] [cursor=pointer]
+      - main [ref=f54e139]:
+        - generic [ref=f54e141]:
+          - paragraph [ref=f54e142]: Decision workspace
+          - heading "Admin operations" [level=1] [ref=f54e143]
+        - generic [ref=f54e145]:
+          - paragraph [ref=f54e146]: Operational state is read from the durable run ledger and purge evidence.
+          - region [ref=f54e147]:
+            - generic [ref=f54e148]:
+              - generic [ref=f54e149]:
+                - paragraph [ref=f54e150]: System status
+                - heading "Health and capabilities" [level=2] [ref=f54e151]
+              - paragraph [ref=f54e152]: Version 0.1.0
+            - table [ref=f54e154]:
+              - caption [ref=f54e155]: Configured product capabilities
+              - rowgroup [ref=f54e156]:
+                - row [ref=f54e157]:
+                  - columnheader "Capability" [ref=f54e158]
+                  - columnheader "Status" [ref=f54e159]
+                  - columnheader "Detail" [ref=f54e160]
+                  - columnheader "What configuration enables" [ref=f54e161]
+              - rowgroup [ref=f54e162]:
+                - row [ref=f54e163]:
+                  - rowheader "Model Provider" [ref=f54e164]
+                  - cell "configured" [ref=f54e165]
+                  - cell "tcs" [ref=f54e166]
+                  - cell "Available for use." [ref=f54e167]
+                - row [ref=f54e168]:
+                  - rowheader "Sso" [ref=f54e169]
+                  - cell "not configured" [ref=f54e170]
+                  - cell "none" [ref=f54e171]
+                  - cell "Configure this capability to enable single sign-on identity mapping." [ref=f54e172]
+                - row [ref=f54e173]:
+                  - rowheader "Ocr" [ref=f54e174]
+                  - cell "configured" [ref=f54e175]
+                  - cell "C:\\Program Files\\Tesseract-OCR\\tesseract.exe" [ref=f54e176]
+                  - cell "Available for use." [ref=f54e177]
+                - row [ref=f54e178]:
+                  - rowheader "Smtp" [ref=f54e179]
+                  - cell "not configured" [ref=f54e180]
+                  - cell "not configured" [ref=f54e181]
+                  - cell "Configure this capability to enable email digests and job-failure delivery." [ref=f54e182]
+                - row [ref=f54e183]:
+                  - rowheader "Webhooks" [ref=f54e184]
+                  - cell "not configured" [ref=f54e185]
+                  - cell "not configured" [ref=f54e186]
+                  - cell "Configure this capability to enable signed webhook delivery." [ref=f54e187]
+                - row [ref=f54e188]:
+                  - rowheader "Document Store" [ref=f54e189]
+                  - cell "configured" [ref=f54e190]
+                  - cell "local" [ref=f54e191]
+                  - cell "Available for use." [ref=f54e192]
+            - table [ref=f54e194]:
+              - caption [ref=f54e195]: Dependency checks
+              - rowgroup [ref=f54e196]:
+                - row [ref=f54e197]:
+                  - columnheader "Dependency" [ref=f54e198]
+                  - columnheader "Status" [ref=f54e199]
+                  - columnheader "Detail" [ref=f54e200]
+              - rowgroup [ref=f54e201]:
+                - row [ref=f54e202]:
+                  - rowheader "Database" [ref=f54e203]
+                  - cell "healthy" [ref=f54e204]
+                  - cell "Database connection is responding." [ref=f54e205]
+                - row [ref=f54e206]:
+                  - rowheader "Scheduler" [ref=f54e207]
+                  - cell "healthy" [ref=f54e208]
+                  - cell "Job registry and asynchronous runner are available." [ref=f54e209]
+          - region [ref=f54e210]:
+            - heading "Queues" [level=2] [ref=f54e211]
+            - generic [ref=f54e212]:
+              - generic [ref=f54e213]:
+                - term [ref=f54e214]: Quarantine
+                - definition [ref=f54e215]: "0"
+                - paragraph [ref=f54e216]: Unresolved source rows awaiting steward action.
+              - generic [ref=f54e217]:
+                - term [ref=f54e218]: Entity Matches
+                - definition [ref=f54e219]: "0"
+                - paragraph [ref=f54e220]: Candidate matches awaiting a human decision.
+          - region [ref=f54e221]:
+            - generic [ref=f54e222]:
+              - generic [ref=f54e223]:
+                - paragraph [ref=f54e224]: Scheduler
+                - heading "Registered jobs" [level=2] [ref=f54e225]
+              - paragraph [ref=f54e226]: A running job cannot be triggered a second time.
+            - table [ref=f54e228]:
+              - caption [ref=f54e229]: Job definitions and declared failure policy
+              - rowgroup [ref=f54e230]:
+                - row [ref=f54e231]:
+                  - columnheader "Job" [ref=f54e232]
+                  - columnheader "Schedule" [ref=f54e233]
+                  - columnheader "Attempts" [ref=f54e234]
+                  - columnheader "Timeout" [ref=f54e235]
+                  - columnheader "Action" [ref=f54e236]
+              - rowgroup [ref=f54e237]:
+                - row [ref=f54e238]:
+                  - rowheader "nightly.ingest" [ref=f54e239]
+                  - cell "Manual only" [ref=f54e240]
+                  - cell "3" [ref=f54e241]
+                  - cell "1800.0 seconds" [ref=f54e242]
+                  - cell [ref=f54e243]:
+                    - button "Run now" [ref=f54e245] [cursor=pointer]
+                - row [ref=f54e246]:
+                  - rowheader "nightly.test" [ref=f54e247]
+                  - cell "Manual only" [ref=f54e248]
+                  - cell "3" [ref=f54e249]
+                  - cell "1800.0 seconds" [ref=f54e250]
+                  - cell [ref=f54e251]:
+                    - button "Run now" [ref=f54e253] [cursor=pointer]
+                - row [ref=f54e254]:
+                  - rowheader "nightly.score" [ref=f54e255]
+                  - cell "Manual only" [ref=f54e256]
+                  - cell "3" [ref=f54e257]
+                  - cell "1800.0 seconds" [ref=f54e258]
+                  - cell [ref=f54e259]:
+                    - button "Run now" [ref=f54e261] [cursor=pointer]
+                - row [ref=f54e262]:
+                  - rowheader "nightly.rank" [ref=f54e263]
+                  - cell "Manual only" [ref=f54e264]
+                  - cell "3" [ref=f54e265]
+                  - cell "1800.0 seconds" [ref=f54e266]
+                  - cell [ref=f54e267]:
+                    - button "Run now" [ref=f54e269] [cursor=pointer]
+                - row [ref=f54e270]:
+                  - rowheader "nightly.update_cases" [ref=f54e271]
+                  - cell "Manual only" [ref=f54e272]
+                  - cell "3" [ref=f54e273]
+                  - cell "1800.0 seconds" [ref=f54e274]
+                  - cell [ref=f54e275]:
+                    - button "Run now" [ref=f54e277] [cursor=pointer]
+                - row [ref=f54e278]:
+                  - rowheader "nightly.dispatch" [ref=f54e279]
+                  - cell "Manual only" [ref=f54e280]
+                  - cell "3" [ref=f54e281]
+                  - cell "1800.0 seconds" [ref=f54e282]
+                  - cell [ref=f54e283]:
+                    - button "Run now" [ref=f54e285] [cursor=pointer]
+                - row [ref=f54e286]:
+                  - rowheader "nightly.pipeline" [ref=f54e287]
+                  - cell "0 1 * * *" [ref=f54e288]
+                  - cell "3" [ref=f54e289]
+                  - cell "1800.0 seconds" [ref=f54e290]
+                  - cell [ref=f54e291]:
+                    - button "Run now" [ref=f54e293] [cursor=pointer]
+          - region [ref=f54e294]:
+            - heading "Job history" [level=2] [ref=f54e295]
+            - table [ref=f54e297]:
+              - caption [ref=f54e298]: Recent job attempts
+              - rowgroup [ref=f54e299]:
+                - row [ref=f54e300]:
+                  - columnheader "Job" [ref=f54e301]
+                  - columnheader "Run" [ref=f54e302]
+                  - columnheader "Attempt" [ref=f54e303]
+                  - columnheader "Trigger" [ref=f54e304]
+                  - columnheader "Outcome" [ref=f54e305]
+                  - columnheader "Duration" [ref=f54e306]
+                  - columnheader "Error or action" [ref=f54e307]
+              - rowgroup [ref=f54e308]:
+                - row [ref=f54e309]:
+                  - rowheader "nightly.dispatch" [ref=f54e310]
+                  - cell [ref=f54e311]:
+                    - code [ref=f54e312]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e313]
+                  - cell "scheduled" [ref=f54e314]
+                  - cell "succeeded" [ref=f54e315]
+                  - cell "0.0 seconds" [ref=f54e316]
+                  - cell [ref=f54e317]
+                - row [ref=f54e318]:
+                  - rowheader "nightly.update_cases" [ref=f54e319]
+                  - cell [ref=f54e320]:
+                    - code [ref=f54e321]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e322]
+                  - cell "scheduled" [ref=f54e323]
+                  - cell "succeeded" [ref=f54e324]
+                  - cell "0.0 seconds" [ref=f54e325]
+                  - cell [ref=f54e326]
+                - row [ref=f54e327]:
+                  - rowheader "nightly.rank" [ref=f54e328]
+                  - cell [ref=f54e329]:
+                    - code [ref=f54e330]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e331]
+                  - cell "scheduled" [ref=f54e332]
+                  - cell "succeeded" [ref=f54e333]
+                  - cell "0.11 seconds" [ref=f54e334]
+                  - cell [ref=f54e335]
+                - row [ref=f54e336]:
+                  - rowheader "nightly.score" [ref=f54e337]
+                  - cell [ref=f54e338]:
+                    - code [ref=f54e339]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e340]
+                  - cell "scheduled" [ref=f54e341]
+                  - cell "succeeded" [ref=f54e342]
+                  - cell "11.12 seconds" [ref=f54e343]
+                  - cell [ref=f54e344]
+                - row [ref=f54e345]:
+                  - rowheader "nightly.test" [ref=f54e346]
+                  - cell [ref=f54e347]:
+                    - code [ref=f54e348]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e349]
+                  - cell "scheduled" [ref=f54e350]
+                  - cell "succeeded" [ref=f54e351]
+                  - cell "1.03 seconds" [ref=f54e352]
+                  - cell [ref=f54e353]
+                - row [ref=f54e354]:
+                  - rowheader "nightly.ingest" [ref=f54e355]
+                  - cell [ref=f54e356]:
+                    - code [ref=f54e357]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e358]
+                  - cell "scheduled" [ref=f54e359]
+                  - cell "succeeded" [ref=f54e360]
+                  - cell "3.34 seconds" [ref=f54e361]
+                  - cell [ref=f54e362]
+                - row [ref=f54e363]:
+                  - rowheader "nightly.pipeline" [ref=f54e364]
+                  - cell [ref=f54e365]:
+                    - code [ref=f54e366]: jr-8e46fe4c2b1200c8
+                  - cell "1" [ref=f54e367]
+                  - cell "scheduled" [ref=f54e368]
+                  - cell "succeeded" [ref=f54e369]
+                  - cell "15.64 seconds" [ref=f54e370]
+                  - cell [ref=f54e371]
+                - row [ref=f54e372]:
+                  - rowheader "nightly.dispatch" [ref=f54e373]
+                  - cell [ref=f54e374]:
+                    - code [ref=f54e375]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e376]
+                  - cell "manual" [ref=f54e377]
+                  - cell "succeeded" [ref=f54e378]
+                  - cell "0.08 seconds" [ref=f54e379]
+                  - cell [ref=f54e380]
+                - row [ref=f54e381]:
+                  - rowheader "nightly.update_cases" [ref=f54e382]
+                  - cell [ref=f54e383]:
+                    - code [ref=f54e384]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e385]
+                  - cell "manual" [ref=f54e386]
+                  - cell "succeeded" [ref=f54e387]
+                  - cell "0.09 seconds" [ref=f54e388]
+                  - cell [ref=f54e389]
+                - row [ref=f54e390]:
+                  - rowheader "nightly.rank" [ref=f54e391]
+                  - cell [ref=f54e392]:
+                    - code [ref=f54e393]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e394]
+                  - cell "manual" [ref=f54e395]
+                  - cell "succeeded" [ref=f54e396]
+                  - cell "0.13 seconds" [ref=f54e397]
+                  - cell [ref=f54e398]
+                - row [ref=f54e399]:
+                  - rowheader "nightly.score" [ref=f54e400]
+                  - cell [ref=f54e401]:
+                    - code [ref=f54e402]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e403]
+                  - cell "manual" [ref=f54e404]
+                  - cell "succeeded" [ref=f54e405]
+                  - cell "11.28 seconds" [ref=f54e406]
+                  - cell [ref=f54e407]
+                - row [ref=f54e408]:
+                  - rowheader "nightly.test" [ref=f54e409]
+                  - cell [ref=f54e410]:
+                    - code [ref=f54e411]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e412]
+                  - cell "manual" [ref=f54e413]
+                  - cell "succeeded" [ref=f54e414]
+                  - cell "1.16 seconds" [ref=f54e415]
+                  - cell [ref=f54e416]
+                - row [ref=f54e417]:
+                  - rowheader "nightly.ingest" [ref=f54e418]
+                  - cell [ref=f54e419]:
+                    - code [ref=f54e420]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e421]
+                  - cell "manual" [ref=f54e422]
+                  - cell "succeeded" [ref=f54e423]
+                  - cell "1.95 seconds" [ref=f54e424]
+                  - cell [ref=f54e425]
+                - row [ref=f54e426]:
+                  - rowheader "nightly.pipeline" [ref=f54e427]
+                  - cell [ref=f54e428]:
+                    - code [ref=f54e429]: jr-51778c36ae63d4be
+                  - cell "1" [ref=f54e430]
+                  - cell "manual" [ref=f54e431]
+                  - cell "succeeded" [ref=f54e432]
+                  - cell "14.74 seconds" [ref=f54e433]
+                  - cell [ref=f54e434]
+          - region [ref=f54e435]:
+            - generic [ref=f54e436]:
+              - generic [ref=f54e437]:
+                - paragraph [ref=f54e438]: Data lifecycle
+                - heading "Retention policy" [level=2] [ref=f54e439]
+              - paragraph [ref=f54e440]: The regulatory floor is eight years and the log floor is 180 days.
+            - generic [ref=f54e441]:
+              - generic [ref=f54e442]:
+                - term [ref=f54e443]: Regulatory period
+                - definition [ref=f54e444]: 8 years
+              - generic [ref=f54e445]:
+                - term [ref=f54e446]: Logs minimum
+                - definition [ref=f54e447]: 180 days
+              - generic [ref=f54e448]:
+                - term [ref=f54e449]: Raw signals
+                - definition [ref=f54e450]: 24 months
+              - generic [ref=f54e451]:
+                - term [ref=f54e452]: Forecasts
+                - definition [ref=f54e453]: 24 months
+              - generic [ref=f54e454]:
+                - term [ref=f54e455]: Notifications
+                - definition [ref=f54e456]: 12 months
+              - generic [ref=f54e457]:
+                - term [ref=f54e458]: Resolved quarantine
+                - definition [ref=f54e459]: 90 days
+            - paragraph [ref=f54e460]: The documented default policy is in force; no administrator override has been saved.
+            - generic [ref=f54e461]:
+              - generic [ref=f54e462]:
+                - text: Regulatory period (years)
+                - spinbutton "Regulatory period (years)" [ref=f54e463]: "8"
+              - generic [ref=f54e464]:
+                - text: Log minimum (days)
+                - spinbutton "Log minimum (days)" [ref=f54e465]: "180"
+              - generic [ref=f54e466]:
+                - text: Raw signal window (months; fixed by policy)
+                - spinbutton "Raw signal window (months; fixed by policy)" [ref=f54e467]: "24"
+              - generic [ref=f54e468]:
+                - text: Forecast window (months; fixed by policy)
+                - spinbutton "Forecast window (months; fixed by policy)" [ref=f54e469]: "24"
+              - generic [ref=f54e470]:
+                - text: Notification window (months; fixed by policy)
+                - spinbutton "Notification window (months; fixed by policy)" [ref=f54e471]: "12"
+              - generic [ref=f54e472]:
+                - text: Resolved quarantine window (days; fixed by policy)
+                - spinbutton "Resolved quarantine window (days; fixed by policy)" [ref=f54e473]: "90"
+              - button "Preview purge impact" [ref=f54e474] [cursor=pointer]
+            - region [ref=f54e475]:
+              - heading "Next purge preview" [level=3] [ref=f54e476]
+              - paragraph [ref=f54e477]: 0 rows would be eligible under this policy.
+              - table [ref=f54e479]:
+                - caption [ref=f54e480]: Eligible rows by entity and rule
+                - rowgroup [ref=f54e481]:
+                  - row [ref=f54e482]:
+                    - columnheader "Entity" [ref=f54e483]
+                    - columnheader "Rule" [ref=f54e484]
+                    - columnheader "Eligible rows" [ref=f54e485]
+                    - columnheader "Cutoff" [ref=f54e486]
+                - rowgroup [ref=f54e487]:
+                  - row [ref=f54e488]:
+                    - rowheader "audit events" [ref=f54e489]
+                    - cell "regulatory period (8 years)" [ref=f54e490]
+                    - cell "0" [ref=f54e491]
+                    - cell "03 Sep 2018" [ref=f54e492]
+                  - row [ref=f54e493]:
+                    - rowheader "trace rows" [ref=f54e494]
+                    - cell "regulatory period (8 years)" [ref=f54e495]
+                    - cell "0" [ref=f54e496]
+                    - cell "03 Sep 2018" [ref=f54e497]
+                  - row [ref=f54e498]:
+                    - rowheader "covenant versions" [ref=f54e499]
+                    - cell "regulatory period (8 years)" [ref=f54e500]
+                    - cell "0" [ref=f54e501]
+                    - cell "03 Sep 2018" [ref=f54e502]
+                  - row [ref=f54e503]:
+                    - rowheader "covenant tests" [ref=f54e504]
+                    - cell "regulatory period (8 years)" [ref=f54e505]
+                    - cell "0" [ref=f54e506]
+                    - cell "03 Sep 2018" [ref=f54e507]
+                  - row [ref=f54e508]:
+                    - rowheader "financial periods" [ref=f54e509]
+                    - cell "regulatory period (8 years)" [ref=f54e510]
+                    - cell "0" [ref=f54e511]
+                    - cell "03 Sep 2018" [ref=f54e512]
+                  - row [ref=f54e513]:
+                    - rowheader "memos" [ref=f54e514]
+                    - cell "regulatory period (8 years)" [ref=f54e515]
+                    - cell "0" [ref=f54e516]
+                    - cell "03 Sep 2018" [ref=f54e517]
+                  - row [ref=f54e518]:
+                    - rowheader "overrides" [ref=f54e519]
+                    - cell "regulatory period (8 years)" [ref=f54e520]
+                    - cell "0" [ref=f54e521]
+                    - cell "03 Sep 2018" [ref=f54e522]
+                  - row [ref=f54e523]:
+                    - rowheader "dispositions" [ref=f54e524]
+                    - cell "regulatory period (8 years)" [ref=f54e525]
+                    - cell "0" [ref=f54e526]
+                    - cell "03 Sep 2018" [ref=f54e527]
+                  - row [ref=f54e528]:
+                    - rowheader "statement lines" [ref=f54e529]
+                    - cell "regulatory period (8 years)" [ref=f54e530]
+                    - cell "0" [ref=f54e531]
+                    - cell "03 Sep 2018" [ref=f54e532]
+                  - row [ref=f54e533]:
+                    - rowheader "documents" [ref=f54e534]
+                    - cell "document purge date" [ref=f54e535]
+                    - cell "0" [ref=f54e536]
+                    - cell "03 Sep 2026" [ref=f54e537]
+                  - row [ref=f54e538]:
+                    - rowheader "raw signal events" [ref=f54e539]
+                    - cell "raw signal window (24 months)" [ref=f54e540]
+                    - cell "0" [ref=f54e541]
+                    - cell "03 Sep 2024" [ref=f54e542]
+                  - row [ref=f54e543]:
+                    - rowheader "forecasts" [ref=f54e544]
+                    - cell "forecast window (24 months)" [ref=f54e545]
+                    - cell "0" [ref=f54e546]
+                    - cell "03 Sep 2024" [ref=f54e547]
+                  - row [ref=f54e548]:
+                    - rowheader "forecast paths" [ref=f54e549]
+                    - cell "forecast window (24 months)" [ref=f54e550]
+                    - cell "0" [ref=f54e551]
+                    - cell "03 Sep 2024" [ref=f54e552]
+                  - row [ref=f54e553]:
+                    - rowheader "notifications" [ref=f54e554]
+                    - cell "notification window (12 months)" [ref=f54e555]
+                    - cell "0" [ref=f54e556]
+                    - cell "03 Sep 2025" [ref=f54e557]
+                  - row [ref=f54e558]:
+                    - rowheader "sessions" [ref=f54e559]
+                    - cell "expiry plus 30 days" [ref=f54e560]
+                    - cell "0" [ref=f54e561]
+                    - cell "04 Aug 2026" [ref=f54e562]
+                  - row [ref=f54e563]:
+                    - rowheader "quarantine rows" [ref=f54e564]
+                    - cell "resolved quarantine window (90 days)" [ref=f54e565]
+                    - cell "0" [ref=f54e566]
+                    - cell "05 Jun 2026" [ref=f54e567]
+                  - row [ref=f54e568]:
+                    - rowheader "model-call logs" [ref=f54e569]
+                    - cell "log window (180 days)" [ref=f54e570]
+                    - cell "0" [ref=f54e571]
+                    - cell "07 Mar 2026" [ref=f54e572]
+                  - row [ref=f54e573]:
+                    - rowheader "job runs" [ref=f54e574]
+                    - cell "job-history window (180 days)" [ref=f54e575]
+                    - cell "0" [ref=f54e576]
+                    - cell "07 Mar 2026" [ref=f54e577]
+              - button "Apply retention policy" [ref=f54e579] [cursor=pointer]
+          - region [ref=f54e580]:
+            - heading "Purge log" [level=2] [ref=f54e581]
+            - paragraph [ref=f54e582]: No retention purge has been executed.

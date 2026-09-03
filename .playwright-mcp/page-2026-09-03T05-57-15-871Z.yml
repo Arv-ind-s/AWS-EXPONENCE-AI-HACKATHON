@@ -1,0 +1,108 @@
+- generic [ref=f56e1]:
+  - link "Skip to content" [ref=f56e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=f56e3]:
+    - complementary "Workspace navigation" [ref=f56e4]:
+      - link "Covenant Radar" [ref=f56e6] [cursor=pointer]:
+        - /url: /
+        - generic [ref=f56e13]:
+          - strong [ref=f56e14]: Covenant
+          - generic [ref=f56e15]: Radar
+      - navigation "Primary navigation" [ref=f56e16]:
+        - region [ref=f56e17]:
+          - heading "Monitor" [level=2] [ref=f56e18]
+          - link "Portfolio queue" [ref=f56e19] [cursor=pointer]:
+            - /url: /
+          - link "Cases" [ref=f56e23] [cursor=pointer]:
+            - /url: /cases
+          - link "0 unread notifications" [ref=f56e27] [cursor=pointer]:
+            - /url: /notifications
+            - generic [ref=f56e30]: Notifications (0)
+            - generic [aria-hidden] [ref=f56e31]: "0"
+          - link "Search" [ref=f56e32] [cursor=pointer]:
+            - /url: /search
+        - region [ref=f56e37]:
+          - heading "Portfolio data" [level=2] [ref=f56e38]
+          - link "Borrowers" [ref=f56e39] [cursor=pointer]:
+            - /url: /borrowers
+          - link "Facilities" [ref=f56e44] [cursor=pointer]:
+            - /url: /facilities
+          - link "Portfolios" [ref=f56e48] [cursor=pointer]:
+            - /url: /portfolios
+          - link "Covenants" [ref=f56e52] [cursor=pointer]:
+            - /url: /covenants
+          - link "Certificates" [ref=f56e56] [cursor=pointer]:
+            - /url: /certificates
+        - region [ref=f56e61]:
+          - heading "Workflows" [level=2] [ref=f56e62]
+          - link "Intake" [ref=f56e63] [cursor=pointer]:
+            - /url: /intake
+          - link "Financial statements" [ref=f56e67] [cursor=pointer]:
+            - /url: /financial-statements
+          - link "Document review" [ref=f56e71] [cursor=pointer]:
+            - /url: /documents/review
+          - link "Simulator" [ref=f56e75] [cursor=pointer]:
+            - /url: /simulator
+          - link "Audit trail" [ref=f56e79] [cursor=pointer]:
+            - /url: /audit
+          - link "Governance" [ref=f56e83] [cursor=pointer]:
+            - /url: /governance
+        - region [ref=f56e87]:
+          - heading "Administration" [level=2] [ref=f56e88]
+          - link "Action catalogue" [ref=f56e89] [cursor=pointer]:
+            - /url: /admin/catalogue
+          - link "Operations" [ref=f56e94] [cursor=pointer]:
+            - /url: /admin/jobs
+          - link "Configuration" [ref=f56e99] [cursor=pointer]:
+            - /url: /admin/config
+          - link "Users & access" [ref=f56e104] [cursor=pointer]:
+            - /url: /admin/users
+      - button "Collapse sidebar" [expanded] [ref=f56e109] [cursor=pointer]
+    - generic [ref=f56e113]:
+      - banner [ref=f56e114]:
+        - generic [ref=f56e116]:
+          - generic [ref=f56e117]: Workspace
+          - generic [ref=f56e120]: Current view
+        - search [ref=f56e121]:
+          - generic [ref=f56e122]: Search the workspace
+          - searchbox "Search the workspace" [ref=f56e123]
+          - generic: /
+        - generic [ref=f56e124]:
+          - button "Live activity" [ref=f56e125]:
+            - generic [ref=f56e127]: Live
+          - button "Use dark theme" [ref=f56e129] [cursor=pointer]
+          - button "Switch to Hindi" [ref=f56e133] [cursor=pointer]: हिं
+          - button "Open user menu" [ref=f56e135] [cursor=pointer]
+      - main [ref=f56e139]:
+        - generic [ref=f56e141]:
+          - paragraph [ref=f56e142]: Decision workspace
+          - heading "Admin configuration" [level=1] [ref=f56e143]
+        - generic [ref=f56e145]:
+          - paragraph [ref=f56e146]: Thresholds and recommendations are versioned, approval-gated configuration.
+          - generic [ref=f56e147]:
+            - tablist "Configuration sections" [ref=f56e148]:
+              - tab "Thresholds" [ref=f56e149] [cursor=pointer]
+              - tab "Propose" [active] [selected] [ref=f56e151] [cursor=pointer]
+              - tab "Approvals" [ref=f56e153] [cursor=pointer]
+              - tab "History" [ref=f56e155] [cursor=pointer]
+              - tab "Action catalogue" [ref=f56e157] [cursor=pointer]
+              - link "Catalogue approvals" [ref=f56e159] [cursor=pointer]:
+                - /url: "#config-catalogue-approvals"
+            - tabpanel "Propose" [ref=f56e280]:
+              - heading "Propose a threshold change" [level=2] [ref=f56e281]
+              - generic [ref=f56e282]:
+                - generic [ref=f56e283]:
+                  - generic [ref=f56e284]: Revised values (JSON)
+                  - textbox "Revised values (JSON)" [ref=f56e285]: "{\"T1\": {\"amber\": \"0.30\"}}"
+                  - paragraph [ref=f56e286]: "Enter only changed fields, for example {\"T1\": {\"amber\": \"0.45\"}}."
+                - generic [ref=f56e287]:
+                  - generic [ref=f56e288]: Reason for change
+                  - textbox "Reason for change" [ref=f56e289]: "Dry-run preview: widen the amber band to test band impact."
+                - button "Preview band impact" [ref=f56e290] [cursor=pointer]
+              - region [ref=f56e291]:
+                - heading "Band-change preview" [level=3] [ref=f56e292]
+                - paragraph [ref=f56e293]: 0 of 24 borrowers would change band in the completed run dated 03 Sep 2026.
+                - button "Submit threshold proposal" [ref=f56e295] [cursor=pointer]
+            - region [ref=f56e277]:
+              - heading "Pending catalogue approvals" [level=2] [ref=f56e278]
+              - paragraph [ref=f56e279]: No catalogue proposal is awaiting approval.
